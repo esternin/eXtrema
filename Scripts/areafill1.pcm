@@ -1,0 +1,7 @@
+window 0
+defaults
+clear
+!
+generate x -5,,5 50
+y=x^2+3*x-2
+@curvefill x y red

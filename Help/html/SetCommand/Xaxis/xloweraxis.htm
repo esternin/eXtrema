@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>XLOWERAXIS</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="XLOWERAXIS">
+</OBJECT>
+
+<P><A NAME="setcxloweraxis"></A>
+<font size=+3 color="green"><B>XLOWERAXIS</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET XLOWERAXIS s<br>
+SET %XLOWERAXIS s</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+%XLOWERAXIS = 10.0</CODE>
+</TD></TR>
+</TABLE>
+ 
+<P><CODE><font color="blue">XLOWERAXIS</font></CODE> controls the position of the left, or
+ lower, end of the <i>x</i>-axis. This is also the horizontal coordinate of the lower left
+ hand corner of the graph box, if
+ <CODE><font color="blue"><A HREF="..\generalgraph\graphbox.htm">GRAPHBOX</a></font> = 1</CODE>. There
+ are two forms:</P>
+
+<p>
+<table border=0 cols=3>
+<tr>
+<td valign="top"><code><font color="blue">&nbsp;XLOWERAXIS</font></code></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the horizontal coordinate, in world coordinate units, of the left
+ end of the <i>x</i>-axis</td>
+</tr><tr>
+<td valign="top"><code><font color="blue">%XLOWERAXIS</font></code></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the horizontal coordinate, expressed as a percentage of the width of the
+ graphics sub-window,
+ that is, <NOBR><CODE><font color="blue">XLOWERAXIS</font> =
+ <font color="blue">%XLOWERAXIS</font>
+ * (<font color="blue"><a href="..\generalgraph\xupperwindow.htm">XUPPERWINDOW</a></font>-
+ <font color="blue"><a href="..\generalgraph\xlowerwindow.htm">XLOWERWINDOW</a></font>)/100</CODE></NOBR>.</td>
+</tr></table>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Dithering</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="Dithering">
+</OBJECT>
+
+<P><A NAME="densitycommanddithering"></A>
+<font size=+3 color="green"><B>Dithering</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all WIDTH="572">
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+DENSITY\DITHERING { x y } z { p1 p2 }<br>
+DENSITY\DITHERING\DITHERVECTOR d { x y } z { p1 p2 }<br>
+DENSITY\DITHERING\LEVELS lvl { x y } z { p1 p2 }<br>
+<nobr>DENSITY\DITHERING\LEVELS\DITHERVECTOR d lvl { x y } z { p1 p2 }</nobr></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<NOBR>\LEGEND,</NOBR> <NOBR>\DITHERVECTOR,</NOBR> <NOBR>\CONTOURS,</NOBR>
+<NOBR>\LEVELS,</NOBR> <NOBR>\AREAS,</NOBR> <NOBR>\VOLUMES,</NOBR>
+<NOBR>\LINES,</NOBR> <NOBR>\EQUALLYSPACED,</NOBR>
+<nobr>\PARTIAL,</NOBR> <NOBR>\XPROFILE,</NOBR> <NOBR>\YPROFILE,</NOBR>
+<NOBR>\BORDER,</NOBR> <NOBR>\AXES,</NOBR> <nobr>\RESET</nobr></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>if <CODE>z</CODE> is a matrix:
+<CODE>x=[1;2;3;...], y=[1;2;3;...],</CODE></NOBR>
+<nobr><CODE>p1=0, p2=1,</CODE></nobr>
+<nobr>d=[1;1;2;1;2;2;3;2;3;3;4;3;4;4;5;5;6;6;0;0],</nobr>
+<nobr>\-PARTIAL,</nobr> <nobr>\-LEGEND,</nobr> <nobr>\-XPROFILE,</nobr>
+<nobr>\-YPROFILE,</nobr> <nobr>\BORDER,</nobr> <nobr>\AXES,</nobr>
+<nobr>\RESET,</NOBR> <nobr>\-LEVELS,</NOBR> <NOBR>\-AREAS,</NOBR> <NOBR>\-VOLUMES,</NOBR>
+<NOBR>\-LINES,</nobr> <NOBR>\-EQUALLYSPACED</nobr></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ In this type of density plot, by default, the range of data values is divided into
+ ten (10) equally spaced levels and a different dithering pattern is associated with
+ each level. A value is interpolated at every pixel location within the bounds of the
+ data region to determine the level for that point. The dithering pattern for that
+ level then determines whether that pixel is to be lit up. Thus, the boundaries
+ of the data are divided up into different dithering pattern regions.</p>
+<P>
+<font size=+1 color="green">Input variables</font></P>
+<P>
+ If <CODE><font color="blue">z</font></CODE> is a vector, the parameters
+ <CODE><font color="blue">x</font></CODE> and <CODE><font color="blue">y</font></CODE>
+ are expected and must be vectors. <CODE><font color="blue">x</font></CODE> and
+ <CODE><font color="blue">y</font></CODE> are assumed to represent a scattered set
+ of points, where <CODE><font color="blue">z</font>[i]</CODE> is the altitude
+ corresponding to the location
+ <CODE>(<font color="blue">x</font>[i],<font color="blue">y</font>[i])</CODE>.
+ A matrix is interpolated on these scattered points by means of a Thiessen
+ triangulation of the plane. The three vectors must be the same length.</p>
+<p>
+ If <CODE><font color="blue">z</font></CODE> is a matrix, the parameters
+ <CODE><font color="blue">x</font></CODE> and
+ <CODE><font color="blue">y</font></CODE> default to
+ <CODE>[1;2;3;...]</CODE>, but if entered they must be vectors. Each matrix element,
+ <CODE><font color="blue">z</font>[i,j]</CODE>, is associated with the coordinates
+ <CODE>(<font color="blue">x</font>[j],<font color="blue">y</font>[i])</CODE>.  The
+ length of <CODE><font color="blue">x</font></CODE> must be equal to
+ the number of columns of <CODE><font color="blue">z</font></CODE> and the length of
+ <CODE><font color="blue">y</font></CODE> must be equal to the number
+ of rows. The vectors <CODE><font color="blue">x</font></CODE> and
+ <CODE><font color="blue">y</font></CODE> are used for scaling the axes.</p>
+<p>
+<font size=+1 color="green">Dithering pattern definition</font></p>
+<p>
+ The default dithering pattern vector is:</p>
+<p>
+ <CODE>[ 1;1; 2;1; 2;2; 3;2; 3;3; 4;3; 4;4; 5;5; 6;6; 0;0 ]</CODE></p>
+<p>
+ A user defined dithering pattern can be entered by using the
+ <CODE><font color="blue">\DITHERVECTOR</font></CODE> qualifier and entering the
+ dithering pattern vector, <CODE><font color="blue">d</font></CODE>, as the first
+ parameter.</P>
+<P>
+ The dithering pattern is determined by pairs of numbers from
+ <CODE><font color="blue">d</font></CODE>, so the number of dithering patterns
+ defined by <CODE><font color="blue">d</font></CODE> is &frac12; the 
+ length of <CODE><font color="blue">d</font></CODE>.</p>
+<p>
+ For pattern number <CODE>i</CODE>, every
+ <nobr><CODE><font color="blue">d</font>[2&middot;i-1]</CODE><sup>th</sup></nobr> pixel
+ is lit up horizontally, and every
+ <nobr><CODE><font color="blue">d</font>[2&middot;i]</CODE><sup>th</sup></nobr> pixel
+ is lit up vertically. For example, if 
+ <CODE><font color="blue">d</font>[1]=1</CODE> and
+ <CODE><font color="blue">d</font>[2]=1</CODE>, then for
+ level <CODE>1</CODE> every pixel is lit up, while if
+ <CODE><font color="blue">d</font>[3]=2</CODE> and
+ <CODE><font color="blue">d</font>[4]=3</CODE>, then for level <CODE>2</CODE> every
+ second pixel is lit up horizontally and every third pixel is lit up vertically.</p>
+<p>
+ <font size=+1 color="green">Changing the range of values</font></p>
+<p>
+ The optional parameters <CODE><font color="blue">p1</font></CODE> and
+ <CODE><font color="blue">p2</font></CODE> can be used to broaden or shrink
+ the range of data values. If <CODE>z<sub>max</sub></CODE>
+ is the maximum value of the data and
+ <CODE>z<sub>min</sub></CODE>} is the minimum value of the
+ data, the full colour range will be from a minimum of 
+ <nobr><CODE>min = <font color="blue">p1</font>&middot;(z<sub>max</sub>-z<sub>min</sub>)+z<sub>min</sub></CODE></nobr>
+ to a maximum of 
+ <nobr><CODE>max = <font color="blue">p2</font>&middot;(z<sub>max</sub>-z<sub>min</sub>)+z<sub>min</sub></CODE></nobr>.
+ If <CODE>z</CODE> is a data value and if
+ <nobr><CODE>z &lt; <font color="blue">p1</font>&middot;(z<sub>max</sub>-z<sub>min</sub>)+z<sub>min</sub></CODE></nobr>,
+ that data value is treated as <CODE>z<sub>min</sub></CODE></nobr>.
+ If <CODE>z &gt; <font color="blue">p1</font>&middot;(z<sub>max</sub>-z<sub>min</sub>)+z<sub>min</sub></CODE></nobr>,
+ that data value is treated as <CODE>z<sub>max</sub></CODE>.
+ The default values are: <CODE><font color="blue">p1</font>=0</CODE> and
+ <CODE><font color="blue">p2</font>=1</CODE>.</p>
+<p>
+ <font size=+1 color="green">Legend</font></p>
+<p>
+ If the <CODE><font color="blue">\LEGEND</font></CODE> qualifier is used, a legend is
+ drawn along the right side of the axes. The legend requires the right end of the
+ <i>x</i>-axis to be set to <CODE>75%</CODE> of the window, that is,
+ <CODE><font color="blue"><a href="..\SetCommand\Xaxis\xupperaxis.htm">XUPPERAXIS</a>
+ </font></CODE> is set to <CODE>75%</CODE>.</P>
+<p>
+ When a <i>y</i>-profile is drawn, using the
+ <CODE><font color="blue">\YPROFILE</font></CODE> qualifier, the right edge of the
+ axis box must allow space for the profile as well as a possible legend. If a
+ <i>y</i>-legend profile and a legend are present, then
+ <CODE><font color="blue">XUPPERAXIS</font></CODE> is set to <CODE>65%</CODE>. If a
+ <I>y</I>-legend profile is present but not a legend, then
+ <CODE><font color="blue">XUPPERAXIS</font></CODE> is set to <CODE>85%</CODE>.</p>
+<p>
+ The value of <CODE><font color="blue">XUPPERAXIS</font></CODE> can be changed with
+ the <CODE><font color="blue"><A HREF="..\SetCommand\setcommand.htm">SET</A>
+ </font></CODE> command. By default, <CODE><font color="blue">XUPPERAXIS</font></CODE>
+ is reset to its former value after the <CODE><font color="blue">DENSITY</font></CODE>
+ command. If the <CODE><font color="blue">\-RESET</font></CODE> qualifier is used, the
+ axis location  is not reset.</p>
+<p>
+<font size=+1 color="green">Contours</font></p>
+<p>
+ By default, a contour line is drawn around the boundary of each dithering
+ pattern region. If the <CODE><font color="blue">\-LINES</font></CODE> qualifier is
+ used, then these contour lines will not be drawn.</p>
+<p>
+ If the qualifier <CODE><font color="blue">\CONTOURS</font></CODE> is used, an
+ automatically created vector named
+ <CODE><font color="orange">DENSITY$CONTOURS</font></CODE> will be made which will
+ contain the boundary values of each region. If there are <CODE>N</CODE> regions, the
+ length of <CODE><font color="orange">DENSITY$CONTOURS</font></CODE> will be
+ <CODE>N+1</CODE>.</P>
+<P>
+<font size=+1 color="green">User specified contour levels</font></P>
+<P>
+ A specific set of contour levels can be entered by using
+ <CODE><font color="blue">\LEVELS</font></CODE> and entering a vector of contour level
+ values, <CODE><font color="blue">lvl</font></CODE>, as the first parameter,
+ unless the <CODE><font color="blue">\DITHERVECTOR</font></CODE> qualifier is also used,
+ in which case the contour level vector should be the second parameter.  If both are
+ used, and the length of the dithering vector is <CODE>N</CODE>, the length of the
+ level vector must be <CODE>N/2 - 1</CODE>. Suppose that
+ <CODE><font color="blue">z</font><sub>min</sub></CODE> and
+ <CODE><font color="blue">z</font><sub>max</sub></CODE> are the minimum and
+ maximum of the data <CODE><font color="blue">z</font></CODE>. The level vector must be
+ strictly monotonically increasing, with
+ <nobr><CODE><font color="blue">lvl</font>[1] &gt; <font color="blue">z</font><sub>min</sub></CODE></nobr>
+ and
+ <nobr><CODE><font color="blue">lvl</font>[#] &lt; <font color="blue">z</font><sub>max</sub></CODE></nobr>.</p>
+<p>
+ The <CODE><font color="blue">\EQUALLYSPACED</font></CODE> qualifier only applies
+ to the case of a dithering type density plot with legend, where the user supplies the
+ contour levels, for example:</p>
+<p>
+ <CODE><font color="blue">DENSITY\DITHERING\LEVELS\LEGEND\EQUALLYSPACED lvl x y m</font></CODE></P>
+<P>
+ If the <CODE><font color="blue">\EQUALLYSPACED</font></CODE> qualifier is used, the
+ legend boxes will all be the same size, irregardless of the values specified in the
+ levels vector, <CODE><font color="blue">lvl</font></CODE>.</P>
+<P>
+<font size=+1 color="green">Areas and volumes</font></P>
+<P>
+ If the <CODE><font color="blue">\AREAS</font></CODE> qualifier is used, an
+ automatically created vector named <CODE><font color="orange">DENSITY$AREAS</font></CODE>
+ will be made which will contain the percentage areas contained within each region. If
+ the <CODE><font color="blue">\VOLUMES</font></CODE> qualifier is used,
+ an automatically created vector named
+ <CODE><font color="orange">DENSITY$VOLUMES</font></CODE> will be made which will
+ contain the percentage volumes contained within each region.  If there are
+ <CODE>N</CODE> regions, the length of
+ <CODE><font color="orange">DENSITY$AREAS</font></CODE> and
+ <CODE><font color="orange">DENSITY$VOLUMES</font></CODE> will both be <CODE>N</CODE>.
+ Also, the sum of the elements of each of these vectors will always be
+ <CODE>100</CODE>.</P>
+<P>
+<font size=+1 color="green">Examples</font></P>
+<p>
+ These examples use the following vectors.</p>
+<pre>
+ X=[  1;  0;  1;  0;   .2; .3;   .5;  .8]
+ Y=[  5;  5;  0;  0;    1;1.5;  2.5;   4]
+ Z=[ 10; 10; 10; 10; -100; 10; -100; 500]
+ D=[ 1;1; 2;2; 4;4; 7;7; 11;11; 0;0 ]
+</PRE>
+<table>
+<tr>
+<td><CODE>DENSITY\DITHERING X Y Z</CODE></td>
+<td><img src="dithering1.png"></td>
+</tr><tr>
+<td><CODE>DENSITY\DITHERING\LEGEND X Y Z</CODE></td>
+<td><img src="dithering2.png"></td>
+</tr><tr>
+<td><nobr><CODE>DENSITY\DITHERING\DITHERVECTOR\LEGEND D X Y Z</CODE></nobr></TD>
+<td><img src="dithering3.png"></td>
+</tr></table>
+<p>
+<a href="gradients.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">GRADIENTS</font></a><br>
+<a href="diffusion.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">DIFFUSION</font></a>
+</P>
+</BODY>
+</HTML>

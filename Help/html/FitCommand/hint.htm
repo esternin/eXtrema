@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Hint for Physicists</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="fit">
+</OBJECT>
+
+<P><A NAME="fitchint"></A>
+<font size=+2 color="green">Hint for physicists</font>
+</P>
+<P>
+ Very often, the data to be fitted is a histogram of physical events. In that
+ case, since each bin would follow a multinomial distribution, the error is
+ equal to  <IMG WIDTH=24 HEIGHT=31 ALIGN=MIDDLE SRC="img51.gif">, where
+ <i>f</i> is the expression you are trying to fit.
+ Of course, since you don't know the parameter values yet, you don't actually
+ know <i>f</i>, so you approximate by using the <i>y</i> data values.  In the
+ limit, these results are the same. In the case of a large number of bins, the
+ variance can be approximated by
+ <IMG WIDTH=23 HEIGHT=26 ALIGN=MIDDLE SRC="img52.gif">. Hence, the correct
+ weighting factor that will give properly normalized errors is <i>w = 1/y</i>,
+ and the corresponding one standard deviation error,
+ <IMG WIDTH=128 HEIGHT=34 ALIGN=MIDDLE SRC="img53.gif">, where
+ <IMG WIDTH=25 HEIGHT=12 ALIGN=BOTTOM SRC="img49.gif">  is the
+ standard error and <i>n</i> is the number of degrees of freedom, usually
+ equal to the number of data points minus the number of parameters,
+ <i>(N-M)</i>.
+</P>
+<P>
+<a href="chi2andweights.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Chi-square and weights</font></a><br>
+<a href="degfree.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Degrees of freedom</font></a>
+</P>
+</BODY>
+</HTML>

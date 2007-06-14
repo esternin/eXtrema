@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Derivative</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="DERIV function">
+  <PARAM NAME="Keyword" VALUE="derivative">
+        <PARAM NAME="Keyword" VALUE="spline tension">
+        <PARAM NAME="Keyword" VALUE="TENSION">
+        <PARAM NAME="Keyword" VALUE="cubic spline">
+</OBJECT>
+<P><A NAME="derivative"></A>
+<font size=+3 color="green"><B>Derivative</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+vout = DERIV(x,y)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">DERIV</font></CODE> function evaluates the first derivatives
+ of the vector <CODE><font color="blue">y</font></CODE>, the dependent variable,
+ with respect to the vector <CODE><font color="blue">x</font></CODE>, the independent variable,
+ at the <CODE><font color="blue">x</font></CODE> locations. The vector
+ <CODE><font color="blue">x</font></CODE> must be strictly monotonically increasing. The result
+ of this function is a vector with the same length as the vectors
+ <CODE><font color="blue">x</font></CODE> and <CODE><font color="blue">y</font></CODE>. Currently,
+ the derivatives are calculated using interpolating cubic splines, but more algorithms,
+ such as Lagrange interpolating polynomials, will be added in the future.
+<P>
+<font size=+1 color="green">Interpolating splines</font></P>
+<P>
+ This integration method utilizes an interpolating spline under tension. The spline tension
+ used is the current value of <CODE><font color="blue">TENSION</font></CODE>, which may be
+ changed with the <CODE><font color="blue">
+ <a href="..\..\..\SetCommand\GeneralGraph\Tension\tension.htm">SET TENSION</A></font></CODE>
+ command. The nature of the interpolating curve varies continuously from pure cubic splines, for
+ <CODE><font color="blue">TENSION</font> = 0</CODE>, to a piecewise linear curve, that is,
+ points joined by straight line segments, for large <CODE><font color="blue">TENSION
+ </font></CODE>.</P>
+<P>
+<font size=+1 color="green">Example</font></P>
+ The following code produces the picture below (except for the text which was added
+ interactively).</P>
+<P>
+<font color="blue"><pre>
+ clear
+ defaults
+ !
+ pi=acos(-1)
+ generate x 0,,2*pi 100
+ y = cos(x)^3+sin(x)^3
+ graph x y
+ !
+ set linecolor red
+ graph\overlay x deriv(x,y)
+ set linecolor black
+ replot
+ </pre></P>
+<P>
+<center><IMG ALIGN=BOTTOM SRC="deriv-example1.png"></center></P>
+<P>
+<a href="..\Deconvolute\deconvolute.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Deconvolute function</font></a><br>
+<a href="..\Det\det.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Matrix determinant</font></a>
+</P>
+</BODY>
+</HTML>

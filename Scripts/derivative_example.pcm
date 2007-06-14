@@ -1,0 +1,27 @@
+clear
+window 0
+defaults
+pi=acos(-1)
+generate x 0,,2*pi 100
+y = cos(x)^3+sin(x)^3
+graph x y
+!
+set curvecolor red
+graph\overlay x deriv(x,y)
+set curvecolor black
+replot
+set
+ %xtextlocation 67
+ %ytextlocation 72
+ textalign 3
+ textinteractive 0
+ textcolor red
+ 
+text 'df(x)/dx'
+set
+ %xtextlocation 55
+ %ytextlocation 30
+ textalign 1
+ textcolor black
+ 
+text 'f(x) = cos(x)<^>3<_> + sin(x)<^>3<_>'

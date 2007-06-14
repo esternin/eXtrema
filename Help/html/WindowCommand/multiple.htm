@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Multiple window creation</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+</OBJECT>
+
+<P><A NAME="windowmultiple"></A>
+<font size=+3 color="green">Multiple window creation</font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+WINDOW\TILE nx ny nstart</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>nstart = 1</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE><font color="blue">WINDOW\TILE</font></CODE> command divides the
+ graphics page up into <CODE><font color="blue">nx</font></CODE>
+ horizontal by <CODE><font color="blue">ny</font></CODE> vertical windows,
+ giving the first window the number
+ <CODE><font color="blue">nstart</font></CODE>, which must be
+ <CODE>&gt; 0</CODE>. The total number of windows just defined will be
+ <code><font color="blue">nx</font>*<font color="blue">ny</font></code>. The
+ window numbered <CODE><font color="blue">nstart</font></CODE> will be in the
+ upper left corner of the page, while the window numbered
+ <code><font color="blue">nx</font>*<font color="blue">ny</font>-<font color="blue">nstart</font>+1</code>
+ will be in the lower right corner.</P>
+<P>
+<a href="alternate.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Alternate method</font></a>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,39 @@
+clear
+defaults
+!
+DEFINE\CONSTANTS       ! define pi (among other constants)
+N = 16                 ! even number of points
+X = [0:N-1]*2*PI/N     ! generate some "data"
+Y = SIN(X)+5*RAN(X)    !
+M = FFT(Y,'COS&SIN')   ! calculate Fourier coefficients
+H = M[*,1]             ! extract column 1 as a vector
+G = M[*,2]             ! extract column 2 as a vector
+Z = [0:2*PI:.05]
+DO J = [3:N/2+1:2]
+  WINDOW (J-3)/2+5     ! choose a graphics window
+  DEFAULTS
+  SCALE\-mess 0 6 0 -2 7 0   ! set axis scales
+  SET
+   PLOTSYMBOL -1    ! choose plotting symbol
+   %XNUMBERSHEIGHT 5
+   %YNUMBERSHEIGHT 5
+   
+  GRAPH X Y            ! plot original data
+  SET PLOTSYMBOL 0     ! choose no plotting symbol
+  TMP[1:LEN(Z)] = 0
+  DO K = [2:J]
+    TMP = TMP + H[K]*COS((K-1)*Z)+G[K]*SIN((K-1)*Z)
+  ENDDO
+  GRAPH\OVERLAY Z H[1]/2+TMP
+  DESTROY\-mess TMP
+  SET
+   %TEXTHEIGHT 5    ! increase the size of the x-axis label
+   %XTEXTLOCATION 50
+   %YTEXTLOCATION 80
+    TEXTALIGN 2
+    TEXTINTERACTIVE 0
+    
+  TEXT RCHAR(J)//' harmonics used'
+  replot 
+ENDDO
+GRAPH\OVERLAY [0;2*PI] [H[1]/2;H[1]/2] ! overlay the mean value

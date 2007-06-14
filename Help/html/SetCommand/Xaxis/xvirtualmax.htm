@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>XVIRTUALMAX</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="XVIRTUALMAX">
+</OBJECT>
+
+<P><A NAME="setcxvirtualmax"></A>
+<font size=+3 color="green"><B>XVIRTUALMAX</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET XVIRTUALMAX n</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+XVIRTUALMAX = 10.0</CODE>
+</TD></TR>
+</TABLE>
+
+<P><CODE><font color="blue">XVIRTUALMAX</font></CODE> controls the virtual
+ maximum value for the <I>x</I>-axis.  If
+ <CODE><font color="blue">XVIRTUALMAX</font></CODE> is greater than
+ <CODE><font color="blue"><A HREF="xmax.htm">XMAX</a></font></CODE>,
+ the actual <i>x</i>-axis maximum value will be
+ <CODE><font color="blue">XMAX</font></CODE>, while the large, numbered,
+ tic marks will end at
+ <CODE><font color="blue">XVIRTUALMAX</font></CODE>, which may
+ be 'off the end' of the <I>x</I>-axis.
+ <CODE><font color="blue">XVIRTUALMAX</font></CODE> is always set to
+ <CODE><font color="blue">XMAX</font></CODE> whenever
+ <CODE><font color="blue">XMAX</font><CODE> is set, so you must set
+ <CODE><font color="blue">XVIRTUALMAX</font></CODE> after
+ <CODE><font color="blue">XMAX</font></CODE>.</P>
+
+</BODY>
+</HTML>

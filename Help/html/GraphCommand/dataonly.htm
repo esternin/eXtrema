@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Plot data only</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="graph data only">
+  <PARAM NAME="Keyword" VALUE="\OVERLAY qualifier">
+</OBJECT>
+
+<P><font size=+2 color="green">Plot data only</font></P>
+<P>
+The <CODE><font color="blue">GRAPH\OVERLAY</font></CODE> command plots the data, but does not draw axes. Autoscaling will not apply. The <CODE><font color="blue">GRAPH\OVERLAY</font></CODE> command overlays on an existing set of axes.  For example:</P>
+
+<font color="blue"><PRE>
+ GRAPH\OVERLAY X Y      ! overlay data curve on current axes
+ GRAPH\HIST\OVER X Y   ! overlay histogram on current axes
+</PRE></font>
+<P>
+If the <a href="..\LegendCommand\legendcommand.htm"><CODE><font color="blue">LEGEND</font></CODE></a> is <CODE><font color="blue">ON</font></CODE> then the data variables are not necessary. That is, you can enter:</P>
+
+<font color="blue"><pre>
+ GRAPH\OVERLAY `legendentry'
+</pre></font>
+<P>
+and an entry is made to the legend, but no curves are plotted. The plotting character, as set by the <a href="..\SetCommand\PlottingSymbol\plotsymbol.htm"><CODE><font color="blue">SET PLOTSYMBOL</font></CODE></a> command, will be used in the legend.</P>
+<P>
+<a href="axesonly.htm"><img align="top" border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Plot axes only</font></a><br>
+<a href="smooth.htm"><img align="top" border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Plot a smooth curve through the data</font></a>
+</P>
+</BODY>
+</HTML>

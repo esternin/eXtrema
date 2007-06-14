@@ -1,0 +1,21 @@
+clear
+x=[1:10]
+window\tile\-messages 3 2 20
+do i = [0:4]
+  window i+20
+  defaults
+  set
+   %xloweraxis 15
+   xforcecross 1
+   yforcecross 1
+   xlabel `some x-axis label'
+   xlabelon 1
+   ylabel `some other y-axis label'
+   ylabelon 1
+   plotsymbol i
+   plotsymbolcolor -i
+   xlabelcolor -(23-i)
+   ylabelcolor -(22-i)
+   
+  graph x-2^i x^2-i*10
+enddo

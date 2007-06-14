@@ -1,0 +1,119 @@
+X=[  1;  0;  1;  0;   .2; .3;   .5;  .8]
+Y=[  5;  5;  0;  0;    1;1.5;  2.5;   4]
+Z=[ 10; 10; 10; 10; -100; 10; -100; 500]
+GRID\XYOUT X Y Z M XOUT YOUT
+!
+window 0
+clear
+defaults
+!set
+! XLABEL 'DENSITY\BOXES\XPROFILE\YPROFILE XOUT YOUT M'
+! XLABELON 1
+! ylabel 'Some Y-axis label'
+! ylabelon 1
+! %xnumberheight 4
+! %ynumberheight 4
+! %xlabelheight 4
+!
+!
+DENSITY\BOXES\XPROFILE\YPROFILE XOUT YOUT M
+!
+pause 'four more box density plots'
+defaults
+clear
+!
+WINDOW\inherit 5 0
+set
+ %xlabelheight 5
+ XLABEL 'DENSITY\BOXES XOUT YOUT M'
+ %ylabelheight 7.5
+ ylabel 'Another y-axis label <alpha><beta><gamma>'
+ ylabelcolor red
+ areafillcolor cyan
+
+DENSITY\BOXES XOUT YOUT M
+!
+WINDOW\inherit 7 5
+set
+ XLABEL 'DENSITY\BOXES XOUT YOUT M .5 1'
+ ylabel '<alpha><^><beta><_><gamma>'
+ ylabelcolor blue
+
+DENSITY\BOXES XOUT YOUT M .5 1
+!
+WINDOW\inherit 6 5
+set
+ XLABEL 'DENSITY\BOXES XOUT YOUT M 0 1 .5 1'
+ ylabel '<Alpha><Beta><Gamma>'
+ ylabelcolor green
+
+DENSITY\BOXES XOUT YOUT M 0 1 .5 1
+!
+WINDOW\inherit 8 5
+set
+ XLABEL 'DENSITY\BOXES XOUT YOUT M .5 1 .5 1'
+ ylabel '<alpha><beta><gamma><delta><epsilon><theta>'
+ ylabelcolor brown
+
+DENSITY\BOXES XOUT YOUT M .5 1 .5 1
+!
+!return
+!
+pause 'now a few more examples'
+!
+window 1 20 20 80 80
+defaults
+set %yimagticlength 2
+clear
+set %xnumberheight 5
+set %ynumberheight 5
+set xdropfirstnumber 1
+set xdroplastnumber 1
+set ydropfirstnumber 1
+set ydroplastnumber 1
+set xticangle -90
+set yticangle 90
+density xout yout m
+pause 'click OK to continue'
+!
+clear
+density\legend xout yout m
+pause 'click OK to continue'
+!
+clear
+density\dithering x y z
+pause 'click OK to continue'
+!
+clear
+density\dithering\legend x y z
+pause 'click OK to continue'
+!
+clear
+D=[ 1;1; 2;2; 4;4; 7;7; 11;11; 0;0 ]
+density\dithering\dithervector\legend d x y z
+pause 'click OK to continue'
+!
+clear
+density\diffusion x y z
+pause 'click OK to continue'
+!
+clear
+density\diffusion\xpro\ypro x y z
+pause 'click OK to continue'
+!
+clear
+window 0
+defaults
+set %yimagticlength 2
+r=mod([0:143],4)+1
+sort r
+t=mod([0:143],36)*10
+d=[1;1; 2;2; 4;4; 7;7; 11;11; 0;0]
+x = r*cosd(t)
+y = r*sind(t)
+z = exp(-r/2)*cosd(180*(r-1))
+grid\xyout x y z m xout yout
+density\legend\dithering\dithervector d xout yout m
+!
+window 0
+destroy r t d x y z xout yout m

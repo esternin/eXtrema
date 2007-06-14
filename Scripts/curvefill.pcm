@@ -1,0 +1,16 @@
+! script curvefill.pcm
+!
+XO = ?1
+YO = ?2
+SET AREAFILLCOLOR STRING(?3)
+L = LEN(XO)
+XO[2:L+1] = XO[1:L]
+XO[L+2] = XO[L+1]
+YO[2:L+1] = YO[1:L]
+YO[1] = 0
+YO[L+2] = 0
+GRAPH XO YO
+set areafillcolor 0
+ZEROLINES\HORIZONTAL ! draw horizontal line thru (0,0)
+!DEFAULTS
+!DESTROY XO YO L      ! eliminate dummy variables

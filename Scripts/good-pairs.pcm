@@ -1,0 +1,97 @@
+! The following macro takes measured component values and finds the pairs
+! of components which most closely sum to a given value. For example, suppose
+! you have measured values for 143 capacitors: these values range from 18.27nF
+! to 20.61nF, and you wish to select the pairs of capacitors whose sum most
+! closely approaches a value of 39.5nF. All the capacitors do not need to be
+! used, but a given capacitor can only be used once. 
+!---------------------------------------------------------------------------+
+! The mod function is the modulus function, mod(a,b) = a-b*int(a/b)
+! The operator | is the "OR" operator
+! It only takes about 2.5 minutes to find 42 pairs
+!---------------------------------------------------------------------------+
+generate\random cap 18.27 20.61 143        ! fake some data
+!read pfn_cap.data\(2) cap
+goal = 39.5
+npairs = 10
+inquire 'goal   (def='//rchar(goal)//')' goal
+inquire 'number of pairs (def='//rchar(npairs)//')' npairs
+time0 = time
+t0 = eltime(0)  ! initialize elapsed time function
+!
+lc = len(cap)
+matrix m lc lc            ! upper triangular matrix m
+do i = [1:lc]             ! contains all combinations of sums
+  m[1:lc,i] = cap[i]+cap  ! m[i,j] = cap[i]+cap[j]
+  m[i,i] = 0              ! set diagonal to zero
+enddo                    
+xx = [1:lc*lc]
+mv = unfold(abs(goal-m))
+destroy m
+! mv is a vector containing the differences between the goal and the sums
+!  abs(goal-m[i,j]) = mv[i+(j-1)*lc]
+!  must make it into a vector so it can be sorted
+sort\up mv xx
+! mv is sorted into ascending order
+!  mv[1] is the sum closest to goal and mv[lc*lc] is the worst
+! xx is re-arranged along with mv to keep track of mv's original indices
+! now all we have to do is pick off the elements of mv one-by-one and
+! make sure that it's corresponding index decomposes into unique capacitor
+! indices, ix and jx
+jx = int((xx-1)/lc)+1  ! column index
+ix = xx-(jx-1)*lc      ! row index
+!                        mv[k] = abs(goal-m[ix[k],jx[k]])
+!  we know the first one is the best one, so take it
+icnt = 1
+if exist('ibest') then destroy ibest jbest sums diffs
+ibest[icnt] = ix[1]
+jbest[icnt] = jx[1]
+sums[icnt]  = cap[ix[1]]+cap[jx[1]]
+diffs[icnt] = mv[1]           ! = abs(goal-(cap[ix[1]]+cap[jx[1]]))
+='icnt ibest jbest  sum      |goal-sum|'
+=rchar(icnt,' %3.0f')//rchar(ibest[icnt],'  %4.0f')//-
+ rchar(jbest[icnt],'  %4.0f')//rchar(sums[icnt],'  %7.4f')//-
+ rchar(diffs[icnt],'   %7.4f')
+kstart = 2
+more:
+do k = [kstart:lc*lc]
+!                     the following test determines uniqueness 
+!                     this is the trick I mentioned above
+ test = ((ix[k]=ibest)|(ix[k]=jbest)|(jx[k]=jbest)|(jx[k]=ibest))
+ if (icnt=1) then testSum=test[1]
+ if (icnt=2) then testSum=test[1]+test[2]
+ if (icnt>2) then statistics\-messages test[1:icnt] testSum\sum
+ if (testSum>0) then goto next
+! write out the k's if you want to see how many sums need to be skipped over
+! ='k='//rchar(k) 
+! if we get to here, we have found a unique pair
+ icnt = icnt+1
+ ibest[icnt] = ix[k]
+ jbest[icnt] = jx[k]
+ sums[icnt]  = cap[ix[k]]+cap[jx[k]]
+ diffs[icnt] = mv[k]          ! =abs(goal-(cap[ix[k]]+cap[jx[k]]))
+ =rchar(icnt,' %3.0f')//rchar(ibest[icnt],'  %4.0f')//-
+  rchar(jbest[icnt],'  %4.0f')//rchar(sums[icnt],'  %7.4f')//-
+  rchar(diffs[icnt],'   %7.4f')
+ if (icnt=npairs) then goto done
+ next:
+enddo
+done:
+time1=time
+t1 = eltime(1)
+statistics\-messages sums-goal rms_err\rms
+='RMS error = '//RCHAR(rms_err)
+=' '
+='Start Analysis Time '//time0
+='End Analysis Time   '//time1//'  elapsed time = '//rchar(t1)//' sec'
+answer='NO'
+inquire\yesno 'more pairs' answer
+if eqs(ucase(answer[1]),'Y') then
+ kstart = k+1
+ npairs = npairs+1
+ inquire 'number of pairs (def='//rchar(npairs)//')' npairs
+ goto more
+endif
+clear
+defaults
+npairs = icnt
+graph [1:npairs] diffs[1:npairs]

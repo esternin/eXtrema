@@ -1,0 +1,243 @@
+06/06/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.2.3
+
+	* modified src/wxForms/VisualizationSpeedButtonPanel
+	Minor bug fix for PostScript output: if the .eps extension was not
+	supplied, the plot file was created but not completed.  If the .eps
+	extension was supplied, everything was ok.  This is now fixed.
+
+	* modified src/Commands/CMD_graph
+	Minor bug fix:  if the legend is off and a string is supplied as the
+	first argument to the GRAPH command, an error occurred.  The string
+	is now ignored, as specified in the documentation.
+	
+04/06/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.2.2
+
+	* added src/Commands/CMD_ellipse
+	New command ELLIPSE can be used to populate an ellipse given the major- and
+	minor-axes, centre, and angle; or it can be used to fit an ellipse to a
+	set of data.  The Help files have also been updated.
+
+	* added src/Commands/CMD_polygon
+	New command POLYGON takes the coordinates for a polygon and some data coordinates,
+	and returns a vector indicating which data points are inside/outside the polygon.
+	The Help files have also been updated.
+
+15/05/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.2.1
+
+	* modified src/wxForms/VisualizationWindow, SetAspectRatioForm
+	Minor changes to allow linking with wxGTK v2.6.3
+	
+	* modified src/wxForms/VisualizationWindow, src/Utilities/ExGlobals,
+	src/wxForms/SetAspectRatioForm.  Minor fixes for aspect ratio changes,
+	hidden pages were not being reset properly.
+
+	* added src/Commands/CMD_alias, CMD_dealias.
+	New command ALIAS allows the user to create new commands out of the
+	current commands.  New command DEALIAS is used to remove an alias.
+	
+08/05/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.2.0
+	
+	* added src/wxForms/GraphicsPage, src/Commands/CMD_page.  These allow for
+	multiple graphics pages in a tabbed format.  A new graphics page adds another
+	tab in the visualization window.  Use the speed buttons on the visualization
+	window, or the PAGE command, to add/remove pages.
+
+	* added src/wxForms/SetAspectRatioForm.  This allows for interactively changing
+	the aspect ratio.
+	
+	* modified src/Utilities/ExGlobals, src/wxForm/VisualizationWindow to fix up
+	the SAVE/RESTORE feature for multiple graphics pages.
+	
+	* modified src/Graphics/GRA_postscript to break up long sets of "lineto"s in
+	order to speed up ghostview display of postscript files, also included shorter
+	names for "lineto", "moveto", and "stroke", to make the files smaller.
+	
+	* modified src/Commands/CMD_get,CMD_set to modify orientation, which now
+	uses aspectratio.  For letter size paper, use SET ASPECTRATIO 8.5/11 to
+	get landscape orientation, and use SET ASPECTRATIO 11/8.5 to get portrait
+	orientation.
+
+18/04/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.1.10
+
+	* added src/Functions/FCN_asinh,FCN_acosh,FCN_atanh,FCN_asech,FCN_acsch,FCN_acoth,
+	FCN_cosh,FCN_sinh,FCN_tanh,FCN_sech,FCN_csch,FCN_coth the hyperbolic trig
+	functions (I simply forgot to include them before)
+
+	* added src/Graphics/GRA_postscript (a PostScript driver) to fix up the PostScript
+	output, i.e., it is now encapsulated postscript (with a bounding box), and the
+	Greek characters and the math symbols should now appear in the postscript output
+
+	
+30/03/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.1.9
+
+	* modified src/Commands/CMD_execute to fix a bug in appending the current
+	path to a filename.  The / was missing before the filename.
+
+	* modified src/Commands/CMD_inquire,CMD_execute,CMD_text,CMD_quit,CMD_if,
+	CMD_pause,CMD_set,CMD_get,CMD_return and src/Graphics/GRA_drawableText and
+	src/Parsing/Script and src/Utilities/ExGlobals and
+	src/wxForms/AnalysisMessagePanel,CommandTextCtrl,ExecuteDialog,
+	VisualizationWindow,AnalysisWindow to fix script handling.  Previously,
+	nested scripts were simply not handled correctly, leading to stack overflow
+	or other serious problems.  It should now be fixed.
+
+	* added src/Functions/FCN_skew,FCN_mean,FCN_var,FCN_stdev,FCN_rms,FCN_median,
+	FCN_kurt,FCN_imin,FCN_imax,FCN_gmean,FCN_adev so the various statistics
+	can be obtained easier than via the STATISTICS command.
+
+	* modified src/Functions/FCN_time,FCN_date to fix more bugs in the TIME
+	and DATE functions.
+	
+27/03/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.1.8 (for various reasons, 4.1.8 was skipped)
+	
+06/03/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.1.7
+
+	* modified src/Graphics/GRA_axis to fix a bug with log scales when
+	there are no major tic marks showing
+
+	* modified src/Commands/CMD_fit to fix a bug with the \CL qualifier
+	not being recognized
+
+	* added optional support for MINUIT (minimization code from CERN)
+
+	* modified src/Commands/CMD_scalar to allow limits on fit parameters
+	destined for use in MINUIT, e.g., SCALAR\FIT A[min:max].  These limits
+	are ignored by the FIT command.
+
+	* modified src/Graphics/GRA_ditheringPlot, GRA_gradientPlot and
+	src/Parsing/ParseLine to remove un-named temporary to be passed as a reference
+	to const argument to a function.
+
+	* modified src/Utilities/ExGlobals to fix a bug with the PAUSE command.
+	A pause in a second level macro (one called by another macro)  was causing
+	all scripts to stop after the pause.
+
+	* modified src/Graphics/GRA_axis to fix a bug in drawing a linear axis
+	when the virtual min and/or max are within the axis min/max.
+	
+08/02/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.1.6
+
+	* modified src/Commands/CMD_hardcopy so that the file path defaults to the
+	current directory
+
+	* modified src/Functions/FCN_date and src/Functions/FCN_time so that they
+	work and not seg.fault.
+
+	* modified Help/html/Functions/StringManipulation/time.htm to fix an error
+	in the description of the format
+
+	* modified src/Commands/CMD_statistics to fix the calculation of the median
+
+	* modified src/Parsing/ParseLine to fix a bug so that a qualifier can
+	be appended to a variable with indices, e.g., STAT X XM[1]\MEAN
+	
+	* modified src/Commands/CMD_text and src/wxForms/VisualizationWindow to
+	fix a problem with interactive text placement from within a script
+
+	* modified src/Utilities/ExGlobals, src/wxForms/HintForm, and
+	src/wxForms/VisualizationWindow to fix up the hint window for interactive
+	text placement
+
+	* upgraded to wxGTK-2.8.0
+	
+24/01/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.1.5
+
+	* added  extrema.spec extrema.desktop extrema_icons.tar.bz2 to the distribution
+	
+	* modified src/Command/CMD_set and src/Utilities/ExGlobals to add ECHOON
+	characteristic.  ECHOON controls whether an executing script is displayed
+	in the command history and message window.
+
+	* modified src/Commands/CMD_read and src/Commands/CMD_write so that the
+	file path defaults to the current directory.
+
+	* modified src/Commands/CMD_set to fix a bug when setting AUTOSCALE ON\VIRTUAL
+
+	* modified src/Commands/CMD_destroy, src/Variables/TextVariable and
+	src/Variables/TVariableTable to fix a bug when DESTROYing a text variable
+	or when DESTROYing an element of an array text variable
+
+	* modified src/Commands/CMD_graph to fix an autoscaling bug
+
+	* modified src/Parsing/ParseLine to fix not parsing properly a qualifier
+	after a closing bracket, e.g. STATISTICS X XM[1]\MEAN
+
+	* modified src/Graphics/GRA_cartesianAxes to fix replot of log scales when
+	autoscale is off
+	
+19/01/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.1.4
+
+	* renamed extremaHelp/ back to Help/ and extremaImages/ back to /Images
+	These directories will now be placed, by default, in /usr/local/share/extrema/
+
+	* Makefile.am : added fonts/ directory to the distribution
+	These TrueType fonts are freely available, but the user must install them.
+	The SYMBOL font is neccessary for the special symbols such as <alpha>, <beta>, etc.
+
+	* fixed the QUIT command so the quit dialog only has "Yes" and "No" buttons
+	and if you click "No", the program does not quit
+	
+	* modified src/Functions/FCN_iclose.cpp
+	default calculated index was initialised to 1 instead of 0
+
+	* added new characteristic MAXHISTORY
+	MAXHISTORY controls how many history records are stored for each variable
+
+	* modified src/wxForms/FontChooser.h
+	added #include "wx/notebook.h"
+
+	* modified src/wxForms/FitForm.h
+	changed 'std::size_t nFree_;'  to  'unsigned int nFree_;'
+
+	* modified src/Commands/CMD_fit.cpp
+	changed 'std::size_t nfree=0;'  to  'unsigned int nfree=0;'
+
+	* modified src/wxForms/AnalysisWindow.h
+	removed member function 'GetPointer'
+	
+11/01/2007  Joe Chuma <chuma@triumf.ca>
+	
+	v4.1.3
+	
+	* renamed Help/ to extremaHelp/  and  Images/ to extremaImages/
+	
+	* Makefile.am : added extremaHelp/ and extremaImages/ to $(prefix)/share directory (make install)
+	added extremaHelp/, extremaImages/, Scripts/, and doc/ to distribution tar file (make dist)
+		    
+	* modified src/Commands/CMD_density.h, src/Commands/Command.h, src/Functions/ScalarFunction.h, and
+	src/Graphics/GRA_window.h to remove extraneous class qualifiers, as more recent compilers
+	complain about this (submitted by S.Umar)
+
+	* modified src/Utilities/ExGlobals.h and .cpp to rationalize the locations for the help and image
+	files they now go to $(prefix)/share with "make install"
+	also modified VisualizationSpeedButtonPanel.cpp, PeakFindForm.cpp, ChooseFilePanel.cpp, and
+	AnalysisSpeedButtonPanel.cpp to accommodate the new image file location
+
+	* modified src/Graphics/GRA_axis.cpp to fix the grid line color	
+
+------------------------------------------------------------------------------------------------------------
+Copyright (C) 2006, 2007 Joseph L. Chuma <chuma@triumf.ca>
+Copying and distribution of this file, with or without modification, are
+permitted, provided the copyright notice and this notice are preserved.

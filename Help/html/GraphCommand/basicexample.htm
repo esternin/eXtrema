@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>A basic example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+</OBJECT>
+
+<P><font size=+2 color="green">A basic example</font></P>
+<P>
+ Let's start with a graph of vector <code>Y</code> versus vector
+ <code>X</code>, using all the program defaults.  First we generate
+ some 'data', then set up the automatic
+ axis labels and then draw the graph.</P>
+<P>
+<font color="blue"><PRE>
+ PI = ACOS(-1)
+ X = [1:180:2]*PI/180
+ Y = SIN(X)
+ SET XLABEL 'X (Radians)'
+ SET YLABEL 'SIN(X)'
+ GRAPH X Y
+</PRE></font>
+
+<center>
+ <IMG SRC="basic-graph.gif">
+</center>
+<P>
+ Now consider the following commands, which produce two graphs in seperate
+ windows.</P>
+<P>
+<font color="blue"><PRE>
+ WINDOW 5
+ SET XLABEL 'cosh(x)+sin(1/(.1+x&lt;^&gt;2&lt;_&gt;)) vs. x'
+ X=[0:3:.01]
+ GRAPH X COSH(X)+SIN(1/(.1+X^2))
+ WINDOW 7
+ SET XLABEL 'x*cos(x)  vs.  x*sin(x)'
+ X=[0:19*PI:.5]*2.55555
+ GRAPH SIN(X)*X COS(X)*X
+</PRE></font></p>
+<p>
+ <center><IMG SRC="sincos.gif"></center></p>
+<P>
+<a href="fillareacurve.htm"><img align="top" border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Fill the area under a curve</font></a><br>
+<a href="scripttoplot.htm"><img align="top" border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">A script to plot a curve with axes</font></a>
+</P>
+
+</BODY>
+</HTML>

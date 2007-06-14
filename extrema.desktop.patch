@@ -1,0 +1,14 @@
+--- extrema.desktop.orig	2007-01-15 13:23:02.000000000 -0800
++++ extrema.desktop	2007-02-08 12:01:53.358431730 -0800
+@@ -1,8 +1,8 @@
+ [Desktop Entry]
+ Name=eXtrema
+-Comment=eXtrema 2D/3D Graphics
+-Exec=/usr/local/bin/extrema
+-Icon=extrema
++Comment=Data visualisation and analysis
++Exec=extrema
++Icon=/usr/share/pixmaps/extrema.gif
+ Terminal=0
+ Type=Application
+ Encoding=UTF-8

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Tolerance</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="fit">
+</OBJECT>
+
+<P><A NAME="fitctolerance"></A>
+<font size=+2 color="green">Tolerance</font>
+</P>
+
+<TABLE border=1 cols=2 frame=box rules=cols width=608>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><code>
+FIT\TOLERANCE eps y=expression<br>
+FIT\WEIGHTS\TOLERANCE w eps y=expression<br>
+FIT\ITMAX\TOLERANCE n eps y=expression<br>
+FIT\WEIGHTS\ITMAX\TOLERANCE w n eps y=expression</code>
+</TD></TR>
+</TABLE>
+<P>
+ The <tt>\TOLERANCE</TT>
+ qualifier allows the user to specify the fitting tolerance,
+ which has a default value of <CODE>0.00001</CODE>. This value is used in
+ calculating the central difference formula for the partial derivatives, that
+ is,
+ <IMG WIDTH=47 HEIGHT=40 ALIGN=MIDDLE SRC="img37.gif">  is approximated by
+</P>
+<P><center>
+ <IMG WIDTH=388 HEIGHT=44 ALIGN=BOTTOM SRC="img38.gif"></center>
+</P>
+<P>
+ This value is also used to determine when the fit is successful.
+</P>
+<P>
+<a href="method.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Method</font></a><br>
+<a href="corrcov.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Correlation and covariance</font></a><br>
+</P>
+</BODY>
+</HTML>

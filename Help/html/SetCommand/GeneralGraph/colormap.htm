@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>COLORMAP</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="COLORMAP">
+  <PARAM NAME="Keyword" VALUE="thermal colormap">
+  <PARAM NAME="Keyword" VALUE="gray256 colormap">
+  <PARAM NAME="Keyword" VALUE="gray16 colormap">
+  <PARAM NAME="Keyword" VALUE="rainbow colormap">
+  <PARAM NAME="Keyword" VALUE="redblue16 colormap">
+  <PARAM NAME="Keyword" VALUE="default colormap">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>COLORMAP</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET COLORMAP DEFAULT<br>
+SET COLORMAP THERMAL<br>
+SET COLORMAP RAINBOW<br>
+SET COLORMAP REDBLUE16<br>
+SET COLORMAP CLASSIC8<br>
+SET COLORMAP GRAY256<br>
+SET COLORMAP GRAY16<br>
+SET COLORMAP r g b</CODE>
+</TD></TR>
+</TABLE>
+<p>
+<CODE><font color="blue">SET COLORMAP</font></CODE> allows the user to either import a color map described by RGB codes contained in vectors, or to assign the colormap to one of the predefined color maps.</p>
+<p>
+A colormap is a set of RGB (Red, Green, Blue) values -- the red, green, and blue components combine to make a particular color on the actual drawing, according to the principles of additive color theory.  An individual RGB value is expressed using hexadecimal notation (values from 00 to FF).  For instance, this is the RGB value for white:</p>
+<p>
+<code>FF FF FF</code></p>
+<p>
+Here is the RGB value for yellow (i.e., a combination of red and green):</p>
+<p>
+<code>FF FF 00</code></p>
+<p><font size=+1 color="green"><B>Predefined Colormaps</B></font></P>
+<p>
+There are a number of predefined colormaps, which are chosen by name using the following command</p>
+<p>
+<code>SET COLORMAP colormapname</code></p>
+<p>
+The predefined colormaps are: <code>DEFAULT</code>, <code>THERMAL</code>, <code>RAINBOW</code>, <code>REDBLUE16</code>, <code>GRAY256</code>, <code>GRAY16</code>, and <code>CLASSIC8</code>.  The <code>DEFAULT</code> colormap is pre-loaded whenever you start the program.  The predefined colormaps are displayed below.</p>
+<p>
+<img src="..\..\Characteristics\GeneralGraph\defaultcolormap.jpg">
+<img src="..\..\Characteristics\GeneralGraph\thermalcolormap.jpg">
+<img src="..\..\Characteristics\GeneralGraph\rainbowcolormap.jpg">
+<img src="..\..\Characteristics\GeneralGraph\redblue16colormap.jpg">
+<img src="..\..\Characteristics\GeneralGraph\gray256colormap.jpg">
+<img src="..\..\Characteristics\GeneralGraph\gray16colormap.jpg">
+<img src="..\..\Characteristics\GeneralGraph\classic8colormap.jpg">
+</p>
+<p><font size=+1 color="green"><B>User defined colormaps</B></font></P>
+You can create your own colormaps.  A user created colormap has the name <code>USERDEFINED</code>. There are two ways to generate your own colormap.  The simplest method is to create three vectors, say <code>rvec</code>, <code>gvec</code>, and <code>bvec</code>, containing the R, G, B color values and enter</p>
+<p>
+<code>SET COLORMAP rvec gvec bvec</code></p>
+<p>
+You can also write your R, G, B color values in hexadecimal format to a plain text file and enter</p>
+<p>
+<code>SET <a href="colormapfile.htm">COLORMAPFILE</a> filename</code></p>
+<p>
+A colormap file provides a sequence of RGB values, one per line. These are read into the internal colormap, where they are indexed in the same order.  That is, line number 1 in the file is color number 1 in the colormap, and so on.</p>
+<p>
+If you load a new colormap, it replaces all the indices of the previous one.  It does not replace the standard colors, since those use negative index numbers.</p>
+<p>
+<a href="autoscale.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">AUTOSCALE</font></a><br>
+<a href="colormapfile.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">COLORMAPFILE</font></a>
+</P>
+</body>
+</html>

@@ -1,0 +1,58 @@
+x=[1:10]                       ! fake some data
+y=x*x
+!
+clear
+window 0
+defaults
+!
+set graphbox 0
+set plotsymbol -2
+set plotsymbolcolor red
+set autoscale on
+set xticson 1
+set yticson 1
+graph x y                      ! graph the data
+set autoscale off
+set graphbox 1
+set xticson 0
+graph\axesonly
+!
+get %xnumbersheight xnumsz
+get %yloweraxis ylaxis
+get %yupperaxis yuaxis
+get %ximagticlength xiticl
+get yloweraxis ylaxisw
+get yupperaxis yuaxisw
+get ximagticlength xiticlw
+get ymin ymin
+get ymax ymax
+!
+ASK:
+x2={1.2;2.5;4.3;8.9}
+inquire 'Enter x-coordinates (default=[1.2;2.5;4.3;8.9])' x2
+if (len(x2)=0) then goto ASK
+y2=[1:len(x2)]
+!
+!  now figure out where to plot the tic marks
+!
+y1 = ymax-2*xiticlw/(yuaxisw-ylaxisw)*(ymax-ymin)
+yloc = yuaxis+1.2*xiticl       ! yloc is for plotting the labels
+set %textheight xnumsz
+set textinteractive 0
+set textalign 2
+set %ytextlocation yloc
+set textangle 0
+!set clip 0                     ! allow graphing outside the box
+set plotsymbol 0
+set textcolor blue
+set curvecolor blue
+world\percent x2 y2 xp yp       ! convert graph units to % world coordinates 
+ydum = [y1;ymax]
+do j = [1:len(x2)]
+  set %xtextlocation xp[j]
+  text rchar(x2[j])             ! the labels
+  xdum[1:2] = x2[j]
+  graph\overlay xdum ydum       ! plot the tic marks
+enddo
+!
+destroy x y j xdum ydum y1 yloc x2 y2 xp yp xnumsz ylaxis yuaxis xiticl ylaxisw yuaxisw xiticlw ymin ymax

@@ -1,0 +1,21 @@
+clear
+window 0
+defaults
+r=mod([0:143],4)+1
+sort r
+t=mod([0:143],36)*10
+x = r*cosd(t)
+y = r*sind(t)
+z = exp(-r/2)*cosd(180*(r-1))
+set
+ %yimagticlength 2
+ %xnumbersheight 5
+ %ynumbersheight 5
+ xdropfirstnumber 1
+ xdroplastnumber 1
+ ydropfirstnumber 1
+ ydroplastnumber 1
+ colormap topo256
+
+scales\-messages -5 5 -5 5
+density\dithering x y z

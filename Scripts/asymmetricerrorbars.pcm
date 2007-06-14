@@ -1,0 +1,32 @@
+clear
+window 0
+defaults
+ps = 14
+inquire 'Enter plotsymbol code ('//rchar(ps)//')' ps
+!
+define\constants
+generate x 0,,2*pi,25
+y=sin(x)+2*ran(x)
+generate\random ey1 0 .5 25
+generate\random ey2 0 .5 25
+set
+  %plotsymbolsize 2
+  plotsymbol -ps
+  plotsymbolcolor blue
+
+graph x y ey1,,ey2
+!
+get
+ %xloweraxis xlx
+ %xupperaxis xux
+ %yupperaxis yux
+ 
+set
+ %textheight 6
+ textfont 'ArialBlack'
+ %xtextlocation (xlx+xux)/2
+ %ytextlocation yux+2
+ textalign 2
+ textinteractive 0
+ 
+text 'Asymmetric error bars'

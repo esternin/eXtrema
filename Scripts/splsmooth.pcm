@@ -1,0 +1,40 @@
+clear
+!
+x = [0;1;2;3;5;6;4;3;5;10]
+y = 2*x^2-3*x+50 + 100*ran(x)
+!
+window 0
+defaults
+set
+ plotsymbol -10
+ plotsymbolcolor red
+  
+graph x y
+set
+ plotsymbol 0
+ tension 0
+ curvecolor blue
+
+m = splsmooth(x,y,100)
+graph\overlay m[*,1] m[*,2]
+set
+ textinteractive 0
+ textalign 1
+ %xtextlocation 15
+ %ytextlocation 80
+ %textheight 6
+ textcolor blue
+
+text 'tension = 0'
+set
+ tension 0.01
+ curvecolor lime
+
+m = splsmooth(x,y,100)
+graph\overlay m[*,1] m[*,2]
+set
+ %ytextlocation 70
+ textcolor lime
+
+text 'tension = 0.01'
+replot

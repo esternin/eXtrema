@@ -1,0 +1,40 @@
+EXTREMA -- History of visible changes.
+
+Copyright (C) 2006, 2007 Joseph L. Chuma <chuma@triumf.ca>
+See the end for copying conditions.
+
+Please send extrema bug reports to chuma@triumf.ca.
+
+Version 4.1.3
+-------------
+Bug fixes:
+
+* "make install" did not copy the image directory (for buttons) or the help file directory (for
+  online help) to the proper location.  These directories have new names, extremaImages/ and
+  extremaHelp/, and should now be copied to the $(prefix)/share directory on a make install, where
+  $(prefix) is the directory mentioned with the configure command, which defaults to /usr/local.
+
+* It seems the latest compilers do not like unnecessary class qualifiers in header files.
+  This required modifying src/Commands/CMD_density.h, src/Commands/Command.h,
+  src/Functions/ScalarFunction.h, and src/Graphics/GRA_window.h
+  Thanks to S. Umar for finding this and suggesting the simple fix.
+
+* The optional grid lines (controlled by characteristics YGRID and XGRID) were being drawn in the
+  color of the last text string drawn.  This has now been fixed, and they are drawn using the
+  corresponding axis color (YAXISCOLOR or XAXISCOLOR).
+
+----------------------------------------------------------------------------------------------------
+Copying information:
+
+Copyright (C) 2006, 2007 Joseph L. Chuma <chuma@triumf.ca>
+
+   Permission is granted to anyone to make or distribute verbatim copies
+   of this document as received, in any medium, provided that the
+   copyright notice and this permission notice are preserved,
+   thus giving the recipient permission to redistribute in turn.
+
+   Permission is granted to distribute modified versions
+   of this document, or of portions of it,
+   under the above conditions, provided also that they
+   carry prominent notices stating who last changed them.
+

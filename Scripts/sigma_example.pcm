@@ -1,0 +1,77 @@
+CLEAR
+window 0
+DEFAULTS
+FILE='sigma.dat'
+READ\-messages FILE\[8:31] T1 OSET1
+READ\-MESSages FILE\[34:57] T2 OSET2
+READ\-MESSages FILE\[60:83] T3 OSET3
+READ\-MESSages FILE\[86:105] T4
+READ\-MESSages FILE\[108:127] ROCK2\2
+!
+set
+ %TEXTHEIGHT 3
+  FONT Helvetica
+  YLOGbase 10
+  NSYINC 9
+  NSXINC 4
+  XTICA 90
+  YTICA -90
+  LEGENDON 1
+  LEGENDENTRYLINEON 1
+  LEGENDSYMBOLS 3
+  LEGENDFRAMEON 0
+ %LEGENDFRAME 13 69 58 89
+ %legendtitleheight 4
+  legendtitlecolor blue
+  LEGENDTITLE `<^>16<_>O(<pi><^>+<_>,<pi><^>-<_><pi><^>+<_>)'
+  LEGENDTITLEON 1
+  ylogstyle 1
+ %ynumbersheight 3
+ %xnumbersheight 3
+ %yloweraxis 15
+
+SCALES\-messages 180 305 7 0 4.5 5
+set xvirtualmax 320
+set yvirtualmax 5
+GRAPH\AXESONLY
+SET
+ Plotsymbol 3
+ plotsymbolcolor black
+ CURVECOLOR BLUE
+
+GRAPH\OVERLAY 'Cohen et al. (1983)' T1 OSET1
+SET
+ Plotsymbol 16
+ plotsymbolcolor red
+ CURVECOLOR RED
+
+GRAPH\OVERLAY 'Oset et al. (1986)' T2 OSET2
+SET
+ PLOTSYMBOL 18
+ plotsymbolcolor olive
+ CURVECOLOR GREEN
+
+GRAPH\OVERLAY 'Rockmore (1983)' T3 OSET3
+set
+ plotsymbol 17
+ plotsymbolcolor navy
+ CURVECOLOR BLACK
+
+GRAPH\OVERLAY 'This work' T4 ROCK2*7
+SET
+ %TEXTHEIGHT 3
+  TEXTINTERACTIVE 0
+  TEXTALIGN 1
+ %XTEXTLOCATION 10
+ %YTEXTLOCATION 91
+
+TEXT '<sigma>(<mu>b)'
+SET
+  TEXTALIGN 3
+ %XTEXTLOCATION 95
+ %YTEXTLOCATION 2
+
+!TEXT 'T<H5%><V2%><_><pi><^><H3%><V1%> (MeV)'
+TEXT 'T<_><pi><^> (MeV)'
+REPLOT
+set legendon 0

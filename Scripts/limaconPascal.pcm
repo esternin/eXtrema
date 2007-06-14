@@ -1,0 +1,46 @@
+clear
+window 0
+defaults
+!
+define\constants
+generate theta 0,,2*pi,1000
+b=0.5
+r=-b+cos(theta)
+set
+ autoscale commensurate
+ %xnumbersheight 2
+ %ynumbersheight 2
+ curvelinewidth 5
+ curvecolor red
+ 
+graph r*cos(theta) r*sin(theta)
+set
+ curvecolor black
+ curvelinewidth 1
+
+zerolines
+!
+get
+ %xupperaxis xux
+ %xloweraxis xlx
+ %yupperaxis yux
+ 
+set
+ %textheight 6
+ textfont 'Arial Black'
+ %xtextlocation (xux+xlx)/2
+ %ytextlocation yux+1
+ textalign 2
+ textinteractive 0
+ 
+text 'Limacon of Pascal'
+set
+ %textheight 3
+ textfont 'Arial'
+ %xtextlocation 45
+ %ytextlocation 75
+ textalign 1
+ 
+text '<theta> = [0:2*<pi><z.05>]'
+set %ytextlocation 70
+text '<rho> = -b + cos(<theta>)'

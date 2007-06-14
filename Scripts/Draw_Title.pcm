@@ -1,0 +1,23 @@
+! call this script with the %textheight and the title string
+! e.g.,   @Draw_Title 6 'Some Title'
+!
+get %xloweraxis xlp
+get %xupperaxis xup
+get %yupperaxis yup
+get %xtextlocation txtx
+get %ytextlocation txty
+get %textheight txthite
+get textalign txtalign
+get textinteractive txtinteractive
+set %xtextlocation (xup+xlp)/2
+set %ytextlocation yup+2
+set %textheight ?1
+set textalign 2
+set textinteractive 0
+text ?2
+set %xtextlocation txtx
+set %ytextlocation txty
+set %textheight txthite
+set textalign txtalign
+set textinteractive txtinteractive
+destroy xlp xup yup txtx txty txthite txtalign txtinteractive

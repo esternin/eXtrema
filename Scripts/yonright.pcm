@@ -1,0 +1,29 @@
+x=[1:20:.5]
+y1=x^2
+y2=exp(sin(x/5))
+clear
+window 0
+defaults
+!
+set
+ xlabel 'This is the x-axis label'
+ xlabelon 1
+ %xlabelheight 4
+ ylabel 'x<^>2'
+ ylabelon 1
+ %ylabelheight 4
+ %yimagticlength 1
+ graphbox 0
+ 
+graph x y1
+set
+ yaxiscolor blue
+ ynumberscolor blue
+ curvecolor blue
+ xaxison 0
+ ylabelcolor blue
+ ylabel 'e<^>sin(x/5)'
+ 
+graph\yonright x y2
+!
+defaults

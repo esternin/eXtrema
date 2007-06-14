@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>SORT command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="SORT command">
+</OBJECT>
+
+<P><A NAME="sortcommand"></A>
+<font size=+3 color="green"><B>SORT command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+SORT x { x1 x2 ... }</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\UP,</NOBR> <nobr>\DOWN</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<NOBR>\UP</NOBR></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE><font color="blue">SORT</font></CODE> command sorts vectors into
+ ascending or descending order. By default, the vector
+ <CODE><font color="blue">x</font></CODE> is sorted into ascending order.
+ Ascending order means that element <CODE>1</CODE> will be the smallest
+ element. To sort vector <CODE><font color="blue">x</font></CODE> into
+ descending order, use the <CODE><font color="blue">\DOWN</font></CODE>
+ qualifier. Descending order means that element <CODE>1</CODE> will
+ be the largest.  Vector <CODE><font color="blue">x</font></CODE> will be
+ altered. If other vectors, <CODE><font color="blue">xI</font></CODE>, are
+ entered, then they will not be sorted, but they will be re-arranged in
+ the same way that <CODE><font color="blue">x</font></CODE> is re-arranged.
+ For example, if element <CODE><font color="blue">x</font>[i]</CODE> becomes
+ <CODE><font color="blue">x</font>[j]</CODE> because of sorting, then
+ <CODE><font color="blue">xI</font>[i]</CODE> will become
+ <CODE><font color="blue">xI</font>[j]</CODE>.</P>
+<P>
+<font size=+1 color="green">Examples</font></p>
+<p>
+ Suppose you have a data vector, <CODE>X = [1;2;3;4;5]</CODE><br>
+ To sort <CODE>X</CODE> into descending order, enter:
+ <CODE><font color="blue">SORT\DOWN X</font></CODE> after which
+ <CODE>X = [5;4;3;2;1]</CODE></p>
+<p>
+ Suppose you have three data vectors, <CODE>X</CODE>, <CODE>Y</CODE>, and
+ <CODE>Z</CODE>, which represent rectangular coordinates and an associated
+ altitude:
+ <nobr><CODE>X = [1;2;3;4;5]</CODE>,</nobr>
+ <nobr><CODE>Y = [10;8;6;4;2]</CODE>,</nobr>
+ <nobr><CODE>Z = [-.3;-1;-.5;2;-2]</CODE></nobr><br>
+ If you want to sort <CODE>Z</CODE> into descending order, without breaking
+ up the triplets, enter:
+ <nobr><CODE><font color="blue">SORT\DOWN Z X Y</font></CODE></nobr>
+ After which the vectors are:
+ <nobr><CODE>X = [4;1;3;2;5]</CODE>,</nobr>
+ <nobr><CODE>Y = [4;10;6;8;2]</CODE>,</nobr>
+ <nobr><CODE>Z = [2;-.3;-.5;-1;-2]</CODE></nobr></p>
+<p>
+ Suppose you have three data vectors, <CODE>X</CODE>, <CODE>Y</CODE>, and
+ <CODE>Z</CODE>, which represent rectangular coordinates and an associated
+ altitude:
+ <nobr><CODE>X = [1;2;3;4;5]</CODE>,</nobr>
+ <nobr><CODE>Y = [10;8;6;4;2]</CODE>,</nobr>
+ <nobr><CODE>Z = [-.3;-1;-.5;2;-2]</CODE></nobr><br>
+ If you want to sort <CODE>Y</CODE> into ascending order, without breaking up
+ the triplets, enter:
+ <nobr><CODE><font color="blue">SORT\DOWN Y X Z</font></CODE></nobr>
+ After which the vectors are:
+ <nobr><CODE>X = [5;4;3;2;1]</CODE>,</nobr>
+ <nobr><CODE>Y = [2;4;6;8;10]</CODE>,</nobr>
+ <nobr><CODE>Z = [-2;2;-.5;-1;-.3]</CODE></nobr></P>
+</BODY>
+</HTML>

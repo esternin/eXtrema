@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>ZEROLINES command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="ZEROLINES command">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>ZEROLINES command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+ZEROLINES</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\HORIZONTAL,</NOBR> <NOBR>\VERTICAL</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top">
+both horizontal and vertical lines drawn
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Examples</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<NOBR>ZEROLINES</NOBR><br>
+<NOBR>ZEROLINES\HORIZONTAL</nobr><BR>
+<NOBR>ZEROLINES\VERTICAL</NOBR></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The ZEROLINES command draws horizontal and/or vertical lines on a graph through (0,0)
+ depending on the qualifier that is used.</P>
+<p>
+<table border="1" rules="none" cols="2">
+<tr><td align="center"><i>qualifier</i></td>
+<td><i>result</i></td>
+</tr><tr>
+<td colspan=2><hr></hr></td>
+</tr><tr>
+<td><code>\HORIZONTAL</code>&nbsp;&nbsp;&nbsp;</td>
+<td>a line is drawn through (0,0) parallel to the <i>x</i>-axis,</td>
+<tr><td></td>
+<td>from the left edge to the right edge</td>
+</tr><tr>
+<td><code>\VERTICAL</code></td>
+<td>a line is drawn through (0,0) parallel to the <i>y</i>-axis,</td>
+<tr><td></td>
+<td>from the bottom edge to the top edge</td>
+</tr></table>
+<p>
+<font size=+2 color="green">Examples</font></p>
+<p>
+ The following script produces the figure below.
+<p><font color="blue"><pre>
+ WINDOW 5
+ SCALES -5 5 -5 5
+ GRAPH\AXESONLY
+ SET CURVECOLOR RED
+ ZEROLINES
+ WINDOW 7
+ SCALES -5 5 -5 5
+ GRAPH\AXESONLY
+ SET CURVECOLOR RED
+ ZEROLINES\HORIZONTAL
+ WINDOW 12 25 0 75 50
+ SCALES -5 5 -5 5
+ GRAPH\AXESONLY
+ SET CURVECOLOR RED
+ ZEROLINES\VERTICAL
+</font></pre></p>
+<p>
+<center><img src="zerolines1.png"></center></p>
+</BODY>
+</HTML>

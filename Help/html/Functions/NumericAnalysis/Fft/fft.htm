@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Fast Fourier transform</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="FFT function">
+  <PARAM NAME="Keyword" VALUE="IFFT function">
+  <PARAM NAME="Keyword" VALUE="fast Fourier transform">
+  <PARAM NAME="Keyword" VALUE="amplitude">
+  <PARAM NAME="Keyword" VALUE="phase">
+
+</OBJECT>
+<P><font size=+3 color="green"><B>Fast Fourier transform</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+m = FFT(y)<br>
+m = FFT(y,'AMP&PHASE')<br>
+m = FFT(y,'COS&SIN')</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">FFT</font></CODE> function calculates the
+ discrete fast Fourier transform of the input variable,
+ <CODE><font color="blue">y</font></CODE>. By default,
+ <CODE><font color="blue">FFT</font></CODE> returns the amplitudes and
+ the phases, where the phases are in degrees. If the
+ <CODE><font color="blue">COS&SIN</font></CODE> keyword is used,
+ <CODE><font color="blue">FFT</font></CODE> returns the Fourier
+ coefficients.</p>
+<p>
+ Note that the reason that the amplitudes and phases are returned by
+ default is historical. Actually, the Fourier coefficients, that is, the
+ cosine and sine coefficients, are calculated and the amplitudes and
+ phases are just derived from them, as described below. It is a
+ simple matter for the user to request the cosine and sine coefficients,
+ and then to calculate the amplitudes and phases him/herself.</p>
+<p>
+ Suppose that the length of the input vector is <code>2N</code>. The
+ output of this function is a matrix with <code>N+1</code> rows and 2
+ columns. The first column contains the amplitudes (or the cosine
+ coefficients), and the second column contains the phases (or the sine
+ coefficients).</p>
+<p>
+ The <CODE><font color="blue"><a href="..\Ifft\ifft.htm">IFFT</a></font></CODE> function
+ calculates the inverse fast Fourier transform.</p>
+<p>
+<a href="coefficients.htm"><font size=+1 color="olive">Fourier coefficients interpolation</font></a><br>
+<a href="discrete.htm"><font size=+1 color="olive">Discrete Fourier series</font></a><br>
+<a href="restrictions.htm"><font size=+1 color="olive">Restrictions</font></a><br>
+<a href="primefactors.htm"><font size=+1 color="olive">Prime factors</font></a><br>
+<a href="example.htm"><font size=+1 color="olive">Example</font></a></p>
+<p>
+<a href="..\FermiDirac\ferdirac.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Prime Factors</font></a><br>
+<a href="..\Fresnel\fresnel.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Fresnel integrals</font></a>
+</P>
+</BODY>
+</HTML>

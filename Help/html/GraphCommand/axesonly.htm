@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Plot axes only</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="plot axes only">
+  <PARAM NAME="Keyword" VALUE="GRAPH command plot axes only">
+</OBJECT>
+
+<P><font size=+2 color="green">Plot axes only</font></P>
+<P>
+ If the <CODE><font color="blue">GRAPH\AXESONLY</font></CODE> command is
+ entered with no parameters, autoscaling does not apply. The minima, maxima,
+ and number of increments will be the same as the last set of axes drawn.
+ The axes scales can be set up before entering the
+ <CODE><font color="blue">GRAPH\AXESONLY</font></CODE> command, using the
+ <a href="..\ScalesCommand\scalescommand.htm"><CODE><font color="blue">SCALES</font></CODE></a>
+ command. Autoscaling may apply if two parameters,
+ <CODE><font color="blue">x</font></CODE> and
+ <CODE><font color="blue">y</font></CODE>, are entered. For example:</P>
+
+<font color="blue"><PRE>
+ SET AUTOSCALE ON       ! turn on autoscaling
+ GRAPH\AXESONLY X Y     ! plot axes autoscaled to the data
+
+ SCALES -5 5 0 10 20 0  ! -5 &lt;= x &lt;= 5  and  10 &lt;= y &lt;= 20
+ GRAPH\AXESONLY         ! plot the axes only
+</PRE></font>
+<P>
+<a href="dataandaxes.htm"><img align="top" border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Plot data and axes</font></a><br>
+<a href="dataonly.htm"><img align="top" border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Plot data only</font></a>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,20 @@
+clear
+defaults
+!
+generate x 2,,30,100
+y[1:100] = 1
+scales\-messages 0 40 0 11
+set
+ textalign 5
+ textinteractive 0
+ %textheight 5
+ linewidth 1
+
+do i = [1:10]
+  set linetype i
+  graph\overlay x y*i
+  world\percent 0 i xp yp
+  set %xtextlocation xp
+  set %ytextlocation yp
+  text rchar(i)
+enddo

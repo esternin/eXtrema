@@ -1,0 +1,181 @@
+! Proton Beam Therapy uses protons to fight cancer. Protons are stable,
+! positively-charged subatomic particles with a mass 1800 times that of an
+! electron. Protons slow down relatively fast when entering biological tissue,
+! and most of their energy is deposited, with little scatter, at the end of their
+! path in a peak called a Bragg peak. The depth at which the peak occurs can be
+! controlled by the amount of energy the protons are given by their
+! accelerator. The proton's dose of radiation is released in an exact shape and
+! depth within the body.  Tissues in front of the target receive a very small
+! dose, while tissues adjacent to the tumor receive virtually none.
+!
+! When a high energy proton enters a body, it gives up its energy as it is slowed
+! down.  The proton creates secondary ions by stripping electrons from atoms in
+! the target tissue. These secondary ions snip the DNA strands of the tumor,
+! thereby affecting the tumor's survival.  At first entry into a patient, the
+! protons do not generate many ions, for they are moving at a large fraction of
+! the speed of light. As they penetrate the tissue and slow down, an increasing
+! dosage of ions is generated per unit volume of tissue. When the proton has lost
+! about half of its energy, it absorbs an electron and is no longer able to
+! generate ions.  It comes to a stop, exhausted of energy. That is carefully
+! tuned to occur at the back side of the target tumor.  Essentially no energy is
+! available beyond it's stopping point. The medical value of this effect was
+! first published in 1947 in a paper entitled "Radiological Use of Fast Protons"
+! by Robert R. Wilson.  Proton beam therapy has demonstrated success for the
+! treatment of selected tumours. More than 20,000 patients have been treated with
+! protons or light ions in research laboratories or hospitals around the world.
+!
+! The problem solved in the following script is described here.
+! Given some numerical function (e.g., BRAGG energy loss distribution) explore
+! how a weighted set of these functions, appropriately shifted in the independent
+! variable, can be used to attain a flat distribution over a given range.
+! The script first plots the original data for the BRAGG energy loss distribution
+! and then asks the user for the amount of the shift and the number of functions.
+! The script then calculates the best weights to apply to the individual functions
+! and plots the resultant weighted individual functions and the spread out Bragg
+! peak, which is the sum of these functions.  A vector, output, is created
+! containing the calculated weight values.
+! 
+!-------------------------------------------------------------------------
+! This is the latest version of the BRAGG script
+! A "better" flat top is achieved by carefully choosing the fitting range,
+! which is now done automatically.
+!-------------------------------------------------------------------------
+window 0
+defaults
+clear
+datafile = 'bragg.dat'
+read\-messages datafile xdata ydata
+set tension 0.001
+npts = 100
+generate x1 xdata[1],,xdata[#] npts
+y1 = smooth(xdata,ydata,x1)
+statistics\-messages y1 ylev\max iymax\imax
+xupr = x1[iymax]
+!
+window 5
+defaults
+set
+ graphbox 0
+ plotsymbol -1
+ %xnumbersheight 3
+ %ynumbersheight 3
+ %xloweraxis 20
+ ylabel 'Normalized Dose'
+ ylabelon 1
+ %ylabelheight 5
+ xlabel 'Depth (mm)'
+ xlabelon 1
+ %xlabelheight 3
+
+graph xdata ydata
+set plotsymbol 0
+graph\overlay x1 y1
+set
+ textcolor blue
+ textalign 1
+ textinteractive 0
+ %xtextlocation 24
+ %ytextlocation 80
+ %textheight 6
+
+text 'raw Bragg peak'
+!
+dx = 1
+nstep = 5
+inquire 'shift amount ( '//rchar(dx)//' ) & #functions ( '//rchar(nstep)//' ) >> ' dx nstep
+destroy\-mess m
+m[1:npts,1] = y1
+!
+destroy\-mess a1
+scalar\fit 'a1'
+a1 = 1
+params = '[a1;'
+do i = [2:nstep]
+ m[1:npts,i] = step(y1,-abs(dx)/(x1[2]-x1[1])*(i-1))
+ destroy\-mess\expand 'a'//rchar(i)
+ scalar\fit 'a'//rchar(i)
+ 'a'//rchar(i) = 1
+ params = params//'a'//rchar(i)//';'
+enddo
+paramLen = 1 + 3*min(nstep,9) + 4*(nstep>9)*(nstep-9)
+params[paramLen:paramLen] = ']'
+xlow = xupr-(nstep-1)*abs(dx)
+!
+thresh = 0.01      ! lower limit of fit parameters
+itmax = 10         ! max. # of fit iterations
+yf[1:npts] = ylev
+fit_again:
+fit\weight\itmax\-messages 10*(x1>xlow)*(x1<xupr) itmax yf=m<>params
+pmin=1.e30
+ipmin=0
+do i = [1:nstep]
+ temp = 'a'//rchar(i)
+ value = evaluate(temp)
+ if ( value<pmin & value~=0 ) then
+   ipmin = i
+   pmin = value
+ endif
+enddo
+if ( pmin>=thresh ) then goto done_fit
+temp = 'a'//rchar(ipmin)
+destroy\-mess\expand temp
+scalar temp
+txtemp = temp
+txtemp = 0
+goto fit_again
+done_fit:
+window 7 50 50 100 100
+defaults
+set
+ graphbox 0
+ %xnumbersheight 3
+ %ynumbersheight 3
+ %xloweraxis 15
+ ylabel 'Normalized Dose'
+ ylabelon 1
+ %ylabelheight 5
+ xlabel 'Depth (mm)'
+ xlabelon 1
+ %xlabelheight 3
+
+graph x1 m<>params
+set
+ textcolor blue
+ textalign 1
+ textinteractive 0
+ %xtextlocation 18
+ %ytextlocation 18
+ %textheight 6
+
+text 'spread out Bragg peak'
+!
+window 4 0 0 100 50
+defaults
+set
+ graphbox 0
+ %xnumbersheight 3
+ %ynumbersheight 3
+
+graph x1 m[*,1]*a1
+vector output nstep
+output[1] = a1
+do i = [2:nstep]
+ temp = 'a'//rchar(i)
+ graph\overlay x1 m[*,i]*temp
+ output[i] = evaluate(temp)
+enddo
+set %textheight 6
+get
+ %xloweraxis xlaxis
+ %yupperaxis yuaxis
+ %textheight txthit
+
+set
+ %xtextlocation xlaxis+3
+ %ytextlocation yuaxis-txthit
+ textalign 1
+ textinteractive 0
+
+text 'shift = '//rchar(dx)//' mm'
+set %ytextlocation yuaxis-2.5*txthit
+text '# functions = '//rchar(nstep)

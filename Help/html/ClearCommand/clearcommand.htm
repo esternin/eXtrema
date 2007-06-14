@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>CLEAR command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="CLEAR command">
+	<PARAM NAME="Keyword" VALUE="REPLOT command">
+	<PARAM NAME="Keyword" VALUE="GRAPH command">
+	<PARAM NAME="Keyword" VALUE="history list clear">
+	<PARAM NAME="Keyword" VALUE="command history list clear">
+	<PARAM NAME="Keyword" VALUE="erase window">
+	<PARAM NAME="Keyword" VALUE="clear window">
+</OBJECT>
+
+<P><A NAME="clearcommand"></A>
+<font size=+3 color="green"><B>CLEAR command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+CLEAR<br>
+CLEAR n<br>
+CLEAR\-REPLOT</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers:</B></TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\REPLOT,</nobr> <nobr>\HISTORY</nobr></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults:</B></TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\REPLOT,</nobr> <nobr>\-HISTORY</nobr> </CODE>
+</TD></TR>
+</TABLE>
+
+<P>The <CODE><font color="blue">CLEAR</font></CODE> command, with no
+ qualifiers and no parameters, clears the entire graphics page.  It also clears the replot buffers. That is,
+ if the <CODE><font color="blue">REPLOT</font></CODE> command is entered after
+ a <CODE><font color="blue">CLEAR</font></CODE> command is entered, there will
+ be nothing to replot until you draw something again.  Any hardcopies must be asked for before entering the <CODE><font color="blue">CLEAR</font></CODE> command.</P>
+<P>
+ The <CODE><font color="blue">CLEAR\-REPLOT</font></CODE> command only clears
+ the graphics, it does not affect the <CODE><font color="blue">REPLOT</font></CODE> option.</P>
+<P>
+To clear a specific graphics sub-window, enter the sub-window's number.  For example, to erase
+only window 5, enter <CODE><font color="blue">CLEAR 5</FONT></CODE>.  To erase just the screen display of window 5, allowing for <CODE><font color="blue">REPLOT 5</font></CODE>, enter <CODE><font color="blue">CLEAR\-REPLOT 5</font></CODE>.</P>
+<P>
+ The <CODE><font color="blue">CLEAR\HISTORY</font></CODE> command only clears
+ the command history list in the analysis window.  It does not affect the graphics in any way.</P>
+
+</BODY>
+</HTML>

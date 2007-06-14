@@ -1,0 +1,201 @@
+DEFAULTS
+clear
+!
+X=[1:256]
+YJ='A[J]*EXP(-(X-B[J])^2/C[J])'
+A=[100;10;200;1]
+B=[50;75;100;40]
+C=[25;25;25;50]
+Y[1:256] = 0
+DO J = [1:3]
+ Y = Y+YJ
+ENDDO
+YSAVE=Y
+!
+WINDOW 5
+defaults
+SET %XnumbersHeight 5
+set %YnumbersHeight 5
+GET %YupperAxis YUAXIS
+get %XlargeTicLength XTICL
+set %XimagTicLength 2
+SET %XtextLocation 50
+set %YtextLocation YUAXIS+XTICL+1
+set %TextHeight 5
+set TextAlign 2
+set TextInteractive 0
+GRAPH X Y
+TEXT `Ideal function'
+!
+WINDOW 7
+defaults
+SET %XnumbersHeight 5
+set %YnumbersHeight 5
+GET %YupperAxis YUAXIS
+get %XlargeTicLength XTICL
+set %XimagTicLength 2
+SET %XtextLocation 50
+set %YtextLocation YUAXIS+XTICL+1
+set %TextHeight 5
+set TextAlign 2
+set TextInteractive 0
+J=4
+GRAPH X 1*YJ
+TEXT `Convoluting function'
+!
+WINDOW 6
+defaults
+SET %XnumbersHeight 5
+set %YnumbersHeight 5
+GET %YupperAxis YUAXIS
+get %XlargeTicLength XTICL
+set %XimagTicLength 2
+SET %XtextLocation 50
+set %YtextLocation YUAXIS+XTICL+1
+set %TextHeight 5
+set TextAlign 2
+set TextInteractive 0
+R=CONVOLUTE(Y,YJ)
+GRAPH X R
+TEXT `Result of convolution'
+!
+WINDOW 8
+defaults
+SET %XnumbersHeight 5
+set %YnumbersHeight 5
+GET %YupperAxis YUAXIS
+get %XlargeTicLength XTICL
+set %XimagTicLength 2
+SET %XtextLocation 50
+set %YtextLocation YUAXIS+XTICL+1
+set %TextHeight 5
+set TextAlign 2
+set TextInteractive 0
+GRAPH X DECONVOLUTE(R,YJ)
+TEXT `Deconvoluted'
+!
+answer = 'YES'
+INQUIRE\yesno "Do you want to see more?" answer
+if nes(answer,"YES") then return
+CLEAR
+!
+WINDOW 5
+GRAPH X Y
+TEXT `Ideal function'
+!
+WINDOW 7
+J=4
+B[J]=18
+GRAPH X 1*YJ
+TEXT `Convoluting function'
+!
+WINDOW 6
+R=CONVOLUTE(Y,YJ)
+GRAPH X R
+TEXT `Result of convolution'
+!
+WINDOW 8
+GRAPH X DECONVOLUTE(R,YJ)
+TEXT `Deconvoluted'
+!
+answer = 'YES'
+INQUIRE\yesno "Do you want to see more?" answer
+if nes(answer,"YES") then return
+CLEAR
+R=CONVOLUTE(Y,YJ)
+!
+WINDOW 5
+GRAPH X DECONVOLUTE(R,YJ+.2*(RAN(X)-.5))
+TEXT `10% noise on convoluting function'
+!
+WINDOW 7
+GRAPH X DECONVOLUTE(R,YJ+.02*(RAN(X)-.5))
+TEXT `1% noise on convoluting function'
+!
+WINDOW 6
+GRAPH X DECONVOLUTE(R,YJ+.002*(RAN(X)-.5))
+TEXT `0.1% noise on convoluting function'
+!
+WINDOW 8
+GRAPH X DECONVOLUTE(R,YJ+.0002*(RAN(X)-.5))
+TEXT `0.01% noise on convoluting function'
+!
+answer = 'YES'
+INQUIRE\yesno "Do you want to see more?" answer
+if nes(answer,"YES") then return
+CLEAR
+R=CONVOLUTE(Y,YJ)
+!
+WINDOW 5
+GRAPH X DECONVOLUTE(R+.2*(RAN(R)-.5),YJ)
+TEXT `10% noise on data'
+!
+WINDOW 7
+GRAPH X DECONVOLUTE(R+.02*(RAN(R)-.5),YJ)
+TEXT `1% noise on data'
+!
+WINDOW 6
+GRAPH X DECONVOLUTE(R+.002*(RAN(R)-.5),YJ)
+TEXT `0.1% noise on data'
+!
+WINDOW 8
+GRAPH X DECONVOLUTE(R+.0002*(RAN(R)-.5),YJ)
+TEXT `0.01% noise on data'
+!
+answer = 'YES'
+INQUIRE\yesno "Do you want to see more?" answer
+if nes(answer,"YES") then return
+cLEAR
+!
+F=[.06666;.25;.375;.25;.06666]
+R=CONVOLUTE(Y,YJ)
+!
+WINDOW 5
+FILTER\-recursive R+.2*(RAN(R)-.5) RN F
+GRAPH X DECONVOLUTE(RN,YJ)
+TEXT `10% noise - 5 pt. filter'
+!
+WINDOW 7
+FILTER\-recursive R+.02*(RAN(R)-.5) RN F
+GRAPH X DECONVOLUTE(RN,YJ)
+TEXT `1% noise - 5 pt. filter'
+!
+WINDOW 6
+FILTER\-recursive R+.002*(RAN(R)-.5) RN F
+GRAPH X DECONVOLUTE(RN,YJ)
+TEXT `0.1% noise - 5 pt. filter'
+!
+WINDOW 8
+FILTER\-recursive R+.0002*(RAN(R)-.5) RN F
+GRAPH X DECONVOLUTE(RN,YJ)
+TEXT `0.01% noise - 5 pt. filter'
+!
+answer = 'YES'
+INQUIRE\yesno "Do you want to see more?" answer
+if nes(answer,"YES") then return
+CLEAR
+!
+F = [-21;14;39;54;59;54;39;14;-21]/231
+R=CONVOLUTE(Y,YJ)
+!
+WINDOW 5
+FILTER\-recursive R+.2*(RAN(R)-.5) RN F
+GRAPH X DECONVOLUTE(RN,YJ)
+TEXT `10% noise - 9 pt. filter'
+!
+WINDOW 7
+FILTER\-recursive R+.02*(RAN(R)-.5) RN F
+GRAPH X DECONVOLUTE(RN,YJ)
+TEXT `1% noise - 9 pt. filter'
+!
+WINDOW 6
+FILTER\-recursive R+.002*(RAN(R)-.5) RN F
+GRAPH X DECONVOLUTE(RN,YJ)
+TEXT `0.1% noise - 9 pt. filter'
+!
+WINDOW 8
+FILTER\-recursive R+.0002*(RAN(R)-.5) RN F
+GRAPH X DECONVOLUTE(RN,YJ)
+TEXT `0.01% noise - 9 pt. filter'
+!
+display "...convolute script finished..."

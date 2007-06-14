@@ -1,0 +1,11 @@
+clear
+defaults
+window 0
+!
+X = [1:10]          ! fake some data
+SET
+ HISTOGRAMTYPE 2    ! tails to y=0
+ AREAFILLCOLOR RED
+
+SCALES\-MESSAGES 0 11 0 10.5   ! fix axis scales
+GRAPH X                        ! draw the histogram

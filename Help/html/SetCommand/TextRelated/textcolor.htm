@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TEXTCOLOR</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="TEXTCOLOR">
+</OBJECT>
+
+<P><A NAME="setctextcolor"></A>
+<font size=+3 color="green"><B>TEXTCOLOR</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET TEXTCOLOR c</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ <CODE><font color="blue">TEXTCOLOR</font></CODE> controls the color of
+ the text string drawn with the <CODE><font color="blue">
+ <a href="..\..\TextCommand\textcommand.htm">TEXT</a></font></CODE>
+ command. The parameter <CODE><font color="blue">c</font></CODE> can be
+ either a string or a numeric scalar. A positive numeric value represents
+ the index of the color in the currently loaded colormap. A negative number
+ represents the index of the fixed color.  A string value should be one of the
+ fixed color names. See <a href="..\..\Introduction\colors.htm">Colors</a></p>
+<p>
+ For example:</p>
+<p>
+ <CODE><font color="blue">SET TEXTCOLOR 2</font></CODE> uses the colormap index 2<br>
+ <CODE><font color="blue">SET TEXTCOLOR -2</font></CODE> uses the fixed color index 2<br>
+ <CODE><font color="blue">SET TEXTCOLOR RED</font></CODE> uses the fixed color name
+ "<font color="red">RED"</font></p>
+<P>
+<a href="textangle.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">TEXTINTERACTIVE</font></a><br>
+<a href="textfont.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">TEXTFONT</font></a>
+</P>
+</body>
+</html>

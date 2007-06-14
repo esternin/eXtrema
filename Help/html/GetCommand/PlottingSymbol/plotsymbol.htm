@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>PLOTSYMBOL</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="PLOTSYMBOL">
+</OBJECT>
+
+<P><A NAME="getcplotsymbol"></A>
+<font size=+3 color="green"><B>PLOTSYMBOL</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+GET PLOTSYMBOL {s}</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE><font color="blue">PLOTSYMBOL</font></CODE> controls which plotting symbols
+ to use when the <CODE><font color="blue">
+ <a href="..\..\GraphCommand\graphcommand.htm">GRAPH</a></font></CODE> command is entered.</p>
+<P>
+ <font size=+2 color="green"><B>Symbols</B></font></P>
+<p>
+ The symbols that will be plotted at the point <CODE>(x[i],y[i])</CODE> are
+ shown below.</p>
+<p>
+ <CODE><font color="blue">s</font> = 0</CODE> &rarr; no symbol at
+ <CODE>(x[i],y[i])</CODE>, but connect that point to <CODE>(x[i-1],y[i-1])</CODE><br>
+ <CODE><font color="blue">s</font> &gt; 0</CODE> &rarr;
+ <CODE><font color="blue">s</font></CODE> connected to point <CODE>(x[i-1],y[i-1])</CODE><br>
+ <CODE><font color="blue">s</font> &lt; 0</CODE> &rarr;
+ <CODE><font color="blue">s</font></CODE> not connected to point
+ <CODE>(x[i-1],y[i-1])</CODE></p>
+<center><img src="..\..\SetCommand\PlottingSymbol\pchar.png"></center>
+<p>
+ There are <CODE>18</CODE> special plotting symbols. These symbols are centred at the data
+ points.</p>
+<P>
+ The size of the plotting symbols can be changed with the
+ <CODE><font color="blue"><a href="..\..\SetCommand\PlottingSymbol\plotsymbolsize.htm">SET PLOTSYMBOLSIZE</a>
+ </font></CODE> command.</P>
+<P>
+<a href="plotsymbolangle.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">PLOTSYMBOLANGLE</font></a>
+</P>
+</BODY>
+</HTML>

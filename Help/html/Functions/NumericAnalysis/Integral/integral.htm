@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Integration</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="INTEGRAL function">
+  <PARAM NAME="Keyword" VALUE="integration">
+        <PARAM NAME="Keyword" VALUE="spline tension">
+        <PARAM NAME="Keyword" VALUE="TENSION">
+        <PARAM NAME="Keyword" VALUE="cubic spline">
+</OBJECT>
+<P><A NAME="integral"></A>
+<font size=+3 color="green"><B>Integration</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+vout = INTEGRAL(x,y)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">INTEGRAL</font></CODE> function integrates the vector
+ <CODE><font color="blue">y</font></CODE>, the dependent variable, with respect to
+ vector <CODE><font color="blue">x</font></CODE>, the independent variable.
+ <CODE><font color="blue">x</font></CODE> must be strictly monotonically increasing.
+ The output of this function is a vector with the same length as <CODE><font color="blue">x
+ </font></CODE>. The last element of the output vector is the integral over the full
+ range of <CODE><font color="blue">x</font></CODE>. Currently, integration using
+ interpolating splines is the only type available.</P>
+<P>
+<font size=+1 color="green">Interpolating splines</font></P>
+<P>
+ This integration method utilizes an interpolating spline under tension. The spline tension
+ used is the current value of <CODE><font color="blue">TENSION</font></CODE>, which may be
+ changed with the <CODE><font color="blue">
+ <a href="..\..\..\SetCommand\GeneralGraph\Tension\tension.htm">SET TENSION</A></font></CODE>
+ command. The nature of the interpolating curve varies continuously from pure cubic splines, for
+ <CODE><font color="blue">TENSION</font> = 0</CODE>, to a piecewise linear curve, that is,
+ points joined by straight line segments, for large <CODE><font color="blue">TENSION
+ </font></CODE>.</P>
+<P>
+<font size=+1 color="green">Example</font></P>
+ The following code produces the picture below (except for the text which was added
+ interactively).</P>
+<P>
+<font color="blue"><pre>
+ clear
+ defaults
+ !
+ pi=acos(-1)
+ generate x 0,,2*pi 100
+ y = cos(x)^3+sin(x)^3
+ graph x y
+ !
+ set linecolor red
+ graph\overlay x integral(x,y)
+ set linecolor black
+ replot
+ </pre></P>
+<P>
+<center><IMG ALIGN=BOTTOM SRC="integral-example1.png"></center></P>
+<P>
+<a href="..\Ifft\ifft.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Inverse fast Fourier transform</font></a><br>
+<a href="..\Interpolate\interpolate.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Interpolation</font></a>
+</P>
+</BODY>
+</HTML>

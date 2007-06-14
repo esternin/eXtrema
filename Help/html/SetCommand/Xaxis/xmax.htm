@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>XMAX</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="XMAX">
+</OBJECT>
+
+<P><A NAME="setcxmax"></A>
+<font size=+3 color="green"><B>XMAX</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET XMAX n</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+XMAX = 10.0</CODE>
+</TD></TR>
+</TABLE>
+                            
+<P><CODE><font color="blue">XMAX</font></CODE> controls the maximum value
+ to be displayed on the <i>x</i>-axis.</P>
+ 
+<P>If <CODE>|<font color="blue"><a href="xlogbase.htm">XLOGBASE</a></font>| &gt; 1.0</CODE>,
+ then <CODE><font color="blue">XMAX</font></CODE>
+ is assumed to be the exponent for the maximum value on the <i>x</i>-axis.
+ The maximum value displayed on the <i>x</i>-axis is
+ <CODE>|<font color="blue">XLOGBASE</font>|<SUP><font color="blue">XMAX
+ </font></SUP></CODE>.  Integer exponents are always used for
+ the axis numbering, so the <I>x</I>-axis may not end on a large tic
+ mark. If <CODE>|<font color="blue">XLOGBASE</font>| &le; 1.0</CODE>,
+ <CODE><font color="blue">XMAX</font></CODE> is the actual maximum value for
+ the <i>x</i>-axis, and the <i>x</i>-axis always ends on a large tic
+ mark.</P>
+
+</BODY>
+</HTML>

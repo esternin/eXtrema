@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Error bars</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="error bar">
+</OBJECT>
+
+<P><A NAME="grapherrorbars"></A>
+<font size=+2 color="green">Error bars</font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+GRAPH { `legendtext' } x y { ye1 { xe1 { ye2 { xe2 }}}}</TD>
+</TR>
+</TABLE>
+<P>
+ The optional vectors <CODE><font color="blue">ye1</font></CODE>,
+ <CODE><font color="blue">xe1</font></CODE>,
+ <CODE><font color="blue">ye2</font></CODE>, and
+ <CODE><font color="blue">xe2</font></CODE> are
+ interpreted as errors for drawing error bars. You can have symmetric or
+ asymmetric error bars.</P>
+<P>
+<font size=+1 color="green">Symmetric error bars</font></P>
+<P>
+ For symmetric error bars, the error variable should contain one half of the
+ total error. See the table below.
+<P><center>
+<table border=0 cols=2>
+<tr>
+<td valign="top" width=20%><i>parameters</i></td><td></td>
+</tr><tr>
+<td valign="top" width=20%><i>present</i></td>
+<td align="center"><i>Result</i></td>
+</tr><tr>
+<td valign="center" colspan=2><hr></td>
+</tr><tr>
+<td valign="top" width=20%><CODE><font color="blue">ye1</font></CODE> but not
+ <CODE><font color="blue">ye2</font></CODE></td>
+<td valign="top">symmetric vertical error bars will be drawn, i.e.,<br>
+ at the point <CODE>(<font color="blue">x</font>[j],<font color="blue">y</font>[j])</CODE>,
+ the error bar is drawn<br>
+ from <CODE><font color="blue">y</font>[j]-<font color="blue">ye1</font>[j]</CODE> to
+ <CODE><font color="blue">y</font>[j]+<font color="blue">ye1</font>[j]</CODE></td>
+</tr><tr>
+<td valign="top" width=20%><CODE><font color="blue">xe1</font></CODE> but not
+ <CODE><font color="blue">xe2</font></CODE></td>
+<td valign="top">symmetric horizontal error bars will be drawn, i.e.,<br>
+ at the point <CODE>(<font color="blue">x</font>[j],<font color="blue">y</font>[j])</CODE>,
+ the error bar is drawn<br>
+ from <CODE><font color="blue">x</font>[j]-<font color="blue">xe1</font>[j]</CODE> to
+ <CODE><font color="blue">x</font>[j]+<font color="blue">xe1</font>[j]</CODE></td>
+</tr></table></center>
+<P>
+<font size=+1 color="green">Asymmetric error bars</font></P>
+<P>
+ For asymmetric error bars, the first error variable contains the lower error
+ and the second error variable contains the upper error. See the table below.
+<P><center>
+<table border=0 cols=2>
+<tr>
+<td valign="top" width=20%><i>parameters</i></td><td></td>
+</tr><tr>
+<td valign="top" width=20%><i>present</i></td>
+<td align="center"><i>Result</i></td>
+</tr><tr>
+<td valign="center" colspan=2><hr></td>
+</tr><tr>
+<td valign="top" width=20%><CODE><font color="blue">ye1</font></CODE> and
+ <CODE><font color="blue">ye2</font></CODE></td>
+<td valign="top">asymmetric vertical error bars are drawn, i.e.,<br>
+ at the point <CODE>(<font color="blue">x</font>[j],<font color="blue">y</font>[j])</CODE>,
+ the error bar is drawn<br>
+ from <CODE><font color="blue">y</font>[j]-<font color="blue">ye1</font>[j]</CODE> to
+ <CODE><font color="blue">y</font>[j]+<font color="blue">ye2</font>[j]</CODE></td>
+</tr><tr>
+<td valign="top" width=20%><CODE><font color="blue">xe1</font></CODE> and
+ <CODE><font color="blue">xe2</font></CODE></td>
+<td valign="top">asymmetric horizontal error bars are drawn, i.e.,<br>
+ at the point <CODE>(<font color="blue">x</font>[j],<font color="blue">y</font>[j])</CODE>,
+ the error bar is drawn<br>
+ from <CODE><font color="blue">x</font>[j]-<font color="blue">xe1</font>[j]</CODE> to
+ <CODE><font color="blue">x</font>[j]+<font color="blue">xe2</font>[j]</CODE></td>
+</tr></table></center>
+<P>
+<font size=+1 color="green">Error bar shape</font></P>
+<P>
+ The error bars will have "feet", that is, short line segments, one at each 
+ end of the error bar, which are perpendicular to the error bar.  The size of
+ the foot is the same as the size of the plotting symbol, which can be changed
+ using the <a href="..\SetCommand\PlottingSymbol\plotsymbolheight.htm"><CODE>SET %PLOTSYMBOLHEIGHT</font></CODE></A>
+ command or by entering a relative size vector
+ with the <a href="..\SetCommand\PlottingSymbol\plotsymbol.htm"><CODE><font color="blue">SET PLOTSYMBOL</font></CODE></a>
+ command. The error bar will be clipped at the boundaries of the
+ plotting symbol if the symbol is symmetric under <CODE>90&deg;</CODE>
+ rotations, for example, a box (symbol number <code>1</code>).
+<P>
+<a href="errorbarexample.htm"><font size=+1 color="olive">Example</font></a><br>
+</P>
+<P>
+<a href="histograms.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Histograms</font></a><br>
+<a href="fillareacurve.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Filling the area under a curve</font></a>
+</P>
+</BODY>
+</HTML>

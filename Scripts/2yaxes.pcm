@@ -1,0 +1,63 @@
+clear
+window 0
+defaults
+!
+x = [1:20:.5]        ! the independent variable
+LHSFunction = 'x^2'
+LHSString = 'x<^>2'
+RHSFunction = 'exp(sin(x/5))'
+RHSString = 'e<^>sin(x/5)'
+set
+ graphbox 0
+ %xnumbersheight 2
+ %ynumbersheight 2
+ %xupperaxis 90
+ xlabelon 1
+ xlabel 'This is the X axis label'
+ ylabelon 1
+ ylabel 'This is the LHS Y axis label'
+
+scales\-messages min(x) max(x) min(LHSFunction) max(LHSFunction)
+graph x 1*LHSFunction    ! draw y-axis on left side of box
+set
+ %textheight 5
+ %xtextlocation 43
+ %ytextlocation 19
+ textangle 0
+ textalign 1
+ textinteractive 0
+ textcolor black
+
+text 'y = '//LHSString
+get
+ %yupperaxis yux
+ %yloweraxis ylx
+ %xloweraxis xlx
+ %xupperaxis xux
+
+set
+ curvecolor blue ! change the line type for the next curve
+ yaxiscolor blue
+ ynumberscolor blue
+ ylabelon 0
+ %xtextlocation 98
+ %ytextlocation (ylx+yux)/2
+ %textheight 3
+ textalign 8
+ textangle -90
+ textcolor blue
+
+text 'This is the RHS Y axis label'
+
+scales\-messages min(x) max(x) min(RHSFunction) max(RHSFunction)
+graph\yonright x 1*RHSFunction      ! draw the other data curve (without axes)
+set
+ %textheight 5
+ %xtextlocation 50
+ %ytextlocation 81
+ textangle 0
+ textalign 1
+ textinteractive 0
+ textcolor blue
+
+text 'y = '//RHSString

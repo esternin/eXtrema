@@ -1,0 +1,58 @@
+/*
+Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+#include "GRA_simpleText.h"
+#include "GRA_color.h"
+#include "GRA_colorControl.h"
+#include "GRA_font.h"
+#include "GRA_fontControl.h"
+
+GRA_simpleText::GRA_simpleText( wxString string, double height, GRA_color *color,
+                                wxChar const *fontName, double xShift, double yShift )
+    : string_(string), height_(height), color_(color), xShift_(xShift), yShift_(yShift),
+      font_( GRA_fontControl::GetFont(fontName) )
+{}
+
+void GRA_simpleText::CopyStuff( GRA_simpleText const &rhs )
+{
+  string_ = rhs.string_;
+  color_ = rhs.color_;
+  height_ = rhs.height_;
+  font_ = rhs.font_;
+  xShift_ = rhs.xShift_;
+  yShift_ = rhs.yShift_;
+}
+
+bool GRA_simpleText::operator==( GRA_simpleText const &rhs ) const
+{
+  if( string_ != rhs.string_ || height_ != rhs.height_ ||
+      color_ != rhs.color_  || font_ != rhs.font_ ||
+      xShift_ != rhs.xShift_ || yShift_ != rhs.yShift_ )return false;
+  return true;
+}
+
+std::ostream &operator<<( std::ostream &out, GRA_simpleText const &st )
+{
+  return out << wxT("<simpletext height=\"") << st.height_ << wxT("\" xshift=\"") << st.xShift_
+             << wxT("\" yshift=\"") << st.yShift_ << wxT("\" color=\"")
+             << GRA_colorControl::GetColorCode(st.color_)
+             << wxT("\" font=\"") << GRA_fontControl::GetFontCode(st.font_) << wxT("\">\n")
+             << wxT("<string><![CDATA[") << st.string_.mb_str(wxConvUTF8) << wxT("]]></string>\n")
+             << wxT("</simpletext>\n");
+}
+
+// end of file

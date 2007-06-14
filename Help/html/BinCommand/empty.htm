@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Count only if empty</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="count only if empty">
+	<PARAM NAME="Keyword" VALUE="\EMPTY">
+</OBJECT>
+<P><font size=+2 color="green">Count only if empty</font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+BIN\EMPTY x xbin xcount<BR>
+BIN\EMPTY\EDGES x xbin xcount</CODE>
+</TD></TR>
+</TABLE></P>
+<P>
+ The <CODE><font color="blue">\EMPTY</font></CODE> qualifier means that an
+ event is counted in a bin only if that bin is empty. So only the first event
+ encountered for each bin will be counted in that bin.
+ <CODE><font color="blue">\EMPTY</font></CODE> can be used with
+ <CODE><font color="blue">\WEIGHTS</font></CODE> and
+ <CODE><font color="blue">\EDGES</font></CODE>, but not with
+ <CODE><font color="blue">\AVERAGE</font></CODE>.</P>
+<P>
+<a href="average.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Average</font></a><br>
+<a href="edges.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Edge defined bins</font></a>
+</P>
+</body>
+</html>

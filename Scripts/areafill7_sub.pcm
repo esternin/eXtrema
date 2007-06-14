@@ -1,0 +1,10 @@
+defaults
+SET
+ %xnumberheight 4
+ %ynumberheight 4
+ %ximagticlength 2
+ %xtextlocation 50
+ %ytextlocation 90
+ textinteractive 0
+ textalign 2
+ %textheight 5

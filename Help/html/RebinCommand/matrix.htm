@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Rebin a matrix</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="REBIN command matrix data">
+</OBJECT>
+<P><font size=+2 color="green">Rebin a matrix</font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+REBIN m mout nr nc</CODE>
+</TD></TR>
+</TABLE></P>
+<P>
+ Suppose that matrix <CODE><font color="blue">m</font></CODE> has <i>N</i> rows and <i>M</i>
+ columns, then:</p>
+<p>
+ <center><img src="rebin6.png"></center></p>
+<p>
+ that is, the matrix <CODE><font color="blue">m</font></CODE> will have
+ <i>N</i><code>/<font color="blue">nr</font></CODE> rows and
+ <i>M</i><code>/<font color="blue">nc</font></CODE> columns.</p>
+<p>
+ <center><img src="rebin7.png"></center></p>
+<p>
+ If &nbsp;<img align="bottom" src="rebin8.png">&nbsp; is not equal to <i>N</i>, then the last row of
+ <CODE><font color="blue">mout</font></CODE> will be incomplete.  If
+ &nbsp;<img align="bottom" src="rebin9.png">&nbsp; is not equal to <i>M</i>, then the last column of
+ <CODE><font color="blue">mout</font></CODE> will be incomplete.</p>
+<p>
+ <font size="+1" color="green">Example</font></p>
+<p>
+ Suppose that <code>M</code> is a matrix with <code>8</code> rows and <code>6</code> columns.</p>
+<p>
+ <img src="rebin10.png"></p>
+<p>
+ <table>
+ <tr>
+ <td bgcolor="#FFCCCC"><i>command</i></td><td bgcolor="#FFCCCC"><i>result</i></td>
+ </tr><tr>
+ <td valign="middle"><CODE><font color="blue">REBIN M MOUT 2 3</font></CODE></td>
+ <td bgcolor=#FFFFCC><table><tr>
+  <td><CODE>MOUT[1,1] = M[1,1]+M[2,1]+M[1,2]+M[2,2]+M[1,3]+M[2,3]</CODE></td></tr><tr>
+  <td><CODE>MOUT[1,2] = M[1,4]+M[2,4]+M[1,5]+M[2,5]+M[1,6]+M[2,6]</CODE></td></tr><tr>
+  <td><CODE>MOUT[2,1] = M[3,1]+M[4,1]+M[3,2]+M[4,2]+M[3,3]+M[4,3]</CODE></td></tr><tr>
+  <td><CODE>MOUT[2,2] = M[3,4]+M[4,4]+M[3,5]+M[4,5]+M[3,6]+M[4,6]</CODE></td></tr><tr>
+  <td><CODE>...</CODE></td></tr><tr>
+  </table></td>
+ </tr></table></P>
+<p>
+ <img src="rebin11.png"></p>
+<P>
+<a href="vector.htm"><img align="top" border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">REBIN a vector</font></a>
+</P>
+</body>
+</html>

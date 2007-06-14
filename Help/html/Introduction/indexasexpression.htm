@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Indices as expressions</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="index as expression">
+</OBJECT>
+
+<P><A NAME="indexasexpression"></A>
+<font size=+2 color="green">Indices as expressions</font></P>
+<P>
+ An index can be any expression that results in a scalar or a vector. The
+ index expression is evaluated first, and the resultant values are truncated
+ to integers. For example, suppose <code>x = [1;2;3;...;100]</code>, then:</P>
+<P>
+<font color="blue"><PRE>
+ =x[1:10:2]        ! displays   1  3  5  7  9
+ =x[2.1;2.5;2.9]   ! displays   2  2  2
+ y=[2:5]           !   define Y to be   2  3  4  5
+ =x[y/2+3]         ! displays   4  4  5  5
+ z=[2;3]           !   define Z to be   2  3
+ =x[y[z+1]-2]      ! displays   2  3
+</PRE></font></P>
+<P>
+ A variable index always starts at one (<CODE>1</CODE>).</P>
+<P>
+ The <a href="..\Functions\VariableCharacteristics\len.htm"><font color="blue"><CODE>LEN</CODE></font></a>
+ function returns a scalar value equal to the total length of a vector.  The
+ <a href="..\Functions\VariableCharacteristics\vlen.htm"><font color="blue"><CODE>VLEN</CODE></font></a>
+ function returns a vector whose <i>n</i><sup>th</sup> element is the length
+ of the <i>n</i><sup>th</sup> dimension of its argument.
+ <font color="blue"><CODE>VLEN</CODE></font> of a
+ vector returns a vector of length <CODE>1</CODE>, while
+ <font color="blue"><CODE>VLEN</CODE></font>
+ of a matrix returns a vector of length <CODE>2</CODE>.</P>
+<P>
+ <EM>Note</EM>:  The <a href="..\Functions\VariableCharacteristics\clen.htm"><font color="blue"><CODE>CLEN</CODE></font></a>
+ function returns a scalar value equal to the length of a string.</P>
+<P>
+<a href="indexonexpression.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Indices on expressions</font></a>
+</P>
+
+</body>
+</html>

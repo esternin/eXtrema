@@ -1,0 +1,14 @@
+clear
+defaults
+!
+scales\-messages 0 2 0 60
+set textalign 6
+set textinteractive 0
+do i = [1;5;10;15;20;25;30]
+ set curvelinewidth i
+ graph\overlay [0.1;1.9] [i;i]
+ world\percent 0 i xp yp
+ set %xtextlocation xp-1
+ set %ytextlocation yp
+ text rchar(i)
+enddo

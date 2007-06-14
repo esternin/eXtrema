@@ -1,0 +1,43 @@
+!
+! long string = ?1
+! number of strings = ?2
+! vector of strings = ?3
+! error flag = ?4
+!
+?4 = 0
+!
+! eliminate blanks at the beginning of long string
+!
+do i__ = [1:clen(?1)]
+  if nes(?1[i__],' ') then
+    start__ = i__
+    goto NEXT
+  endif
+enddo
+?4 = 1
+return
+!
+NEXT:
+!
+?2 = 1
+TOP:
+  j__ = index(?1[start__:#],' ')
+  if (j__=0) then j__=clen(?1)-start__+2
+  ?3[?2] = ?1[start__:j__+start__-2]
+  if (j__+start__-2>=clen(?1)) then goto DONE
+  if (clen(?1)>=j__+start__+1) then
+    do i__ = [j__+start__:clen(?1)]
+      if nes(?1[i__],' ') then
+        start__ = i__
+        goto NEXT_2
+      endif
+    enddo
+  endif
+  NEXT_2:
+  if (?2>10) then return
+  ?2 = ?2+1
+goto TOP
+!
+DONE:
+!
+destroy i__ j__ k__ start__

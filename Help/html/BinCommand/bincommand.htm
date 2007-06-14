@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>BIN command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="BIN command">
+	<PARAM NAME="Keyword" VALUE="counts per bin">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>BIN command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+BIN x xbin xcount<br>
+BIN\NBINS x xbin xcount n { xmin xmax }</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\WEIGHTS,</nobr> <nobr>\EDGES,</nobr> <nobr>\NBINS,</nobr>
+<nobr>\DISCARD,</nobr> <nobr>\EMPTY,</nobr> <nobr>\AVERAGE,</nobr>
+<nobr>\LAGRANGE</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\-WEIGHTS,</nobr> <nobr>\-EDGES,</nobr> <nobr>\-NBINS,</nobr>
+<nobr>\-DISCARD,</nobr> <nobr>\-EMPTY,</nobr> <nobr>\-AVERAGE,</nobr>
+<nobr>\LAGRANGE</NOBR>, <nobr>xmin = min(x),</nobr>
+<nobr>xmax = max(x)</nobr></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE><font color="blue">BIN</font></CODE> command sorts an input vector,
+ <CODE><font color="blue">x</font></CODE>, into a grid of bins and accumulates
+ the counts per bin into an output vector,
+ <CODE><font color="blue">xcount</font></CODE>. Each element of
+ <CODE><font color="blue">x</font></CODE> is considered only once, so elements
+ are never counted as being in more than one bin. By default, the bins are
+ defined by their centers, given in vector
+ <CODE><font color="blue">xbin</font></CODE>, which must be strictly
+ monotonically increasing. If
+ <nobr><CODE><i>n</i> = len(<font color="blue">xbin</font>)</CODE>,</nobr>
+ define the bin ranges, <CODE><i>r<sub>i</sub></i></CODE></P>
+<P>
+ <nobr><CODE><i>r</i><sub>1</sub> = <font color="blue">xbin</font>[1] -
+ (<font color="blue">xbin</font>[2] -
+ <font color="blue">xbin</font>[1])/2</CODE></nobr></P>
+<P>
+ <nobr><CODE><i>r<sub>i</sub></i> = <font color="blue">xbin</font>[<i>i</i>] -
+ (<font color="blue">xbin</font>[<i>i</i>] -
+ <font color="blue">xbin</font>[<i>i</i>-1])/2</CODE>&nbsp; for&nbsp;
+ <CODE><i>i</i> = 2, 3, ..., <i>n</i></CODE></nobr></P>
+<P>
+ <nobr><CODE><i>r</i><sub><i>n</i>+1</sub> =
+ <font color="blue">xbin</font>[<i>n</i>]
+ + (<font color="blue">xbin</font>[<i>n</i>] -
+ <font color="blue">xbin</font>[<i>n</i>-1])/2</CODE></nobr></P>
+<P>
+ For each
+ <CODE><i>i</i> = 1, 2, ..., len(<font color="blue">x</font>)</CODE>,
+ if <nobr><CODE><i>r<sub>j</sub></i> &le; <font color="blue">x</font>[<i>i</i>]
+ &lt; <i>r<sub>j+1</sub></i></CODE></nobr>&nbsp; for some
+ <nobr><CODE><i>j</i> = 1, 2, ..., <i>n</i></CODE></nobr>&nbsp; then
+ <nobr><CODE><font color="blue">xcount</font>[<i>j</i>]</CODE></nobr> is
+ incremented by <CODE>1</CODE>, or by the weight,
+ <nobr><CODE><font color="blue">w</font>[<i>i</i>]</CODE>.</nobr> By default,
+ events below <nobr><CODE><i>r</i><sub>1</sub></CODE></nobr> will be placed in
+ the first bin, and events above
+ <nobr><CODE><i>r</i><sub><i>n</i>+1</sub></CODE></nobr> will be placed in
+ the last bin. If the <CODE><font color="blue">\DISCARD</font></CODE>
+ qualifier is used, events outside this range will be discarded.</P>
+<P>
+<a href="weights.htm"><font size=+1 color="olive">Weights</font></a><br>
+<a href="nbins.htm"><font size=+1 color="olive">Number of bins</font></a><br>
+<a href="lagrange.htm"><font size=+1 color="olive">Lagrange</font></a><br>
+<a href="average.htm"><font size=+1 color="olive">Average</font></a><br>
+<a href="empty.htm"><font size=+1 color="olive">Count only if empty</font></a><br>
+<a href="edges.htm"><font size=+1 color="olive">Edge defined bins</font></a>
+</P>
+</BODY>
+</HTML>

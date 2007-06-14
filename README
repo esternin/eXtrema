@@ -1,0 +1,14 @@
+Welcome to EXTREMA.
+
+EXTREMA is free software. Please see the file COPYING for details.
+
+EXTREMA requires that a few packages be installed first...
+
+package    | website
+-----------+-----------------------
+wxWidgets  | http://wxwidgets.org
+libxml2    | http://xmlsoft.org
+
+For documentation, please see the files in the doc subdirectory.
+
+For building and installation instructions please see the INSTALL file.

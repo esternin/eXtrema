@@ -1,0 +1,86 @@
+!
+! program for calculating all the digits of n! (factorial).
+!  (Using Vector_operation)
+!
+! Deming Li,  1996.3.  in TRIUMF
+!
+! run:  @Factorial
+!
+!disable echo
+!
+!  Select the Number_BASE  (available Bases: 10,100,...,10000000)
+!
+BASE=1000
+!
+!  check if n is valid
+!
+startfactorial:
+inquire 'Enter an integer < '//rchar(base) num
+if (num=0) then goto endfactorial
+N=int(num)
+if (N<1) then N=1
+if (N>=Base) then
+  display 'N must be < '//rchar(Base)
+  return
+endif
+NChar = rchar(N)
+!
+!  Guess the number of digits (on BASE)
+!
+M = int(((N+0.5)*log(N+1)-N-0.081+1/(12*(N+1)))/log(Base)+1)
+!
+! Create and initialize Digits
+!
+destroy Dg
+Dg[1:M]=0
+Dg[M]=1
+!
+!  Do the multiply loop
+!
+if (N>1) then
+  do i = [2:N]
+    Dg = mod(Dg*i,Base)+roll(int(Dg*i/Base),-1)
+  enddo
+endif
+!
+!  Post process
+!
+C = 0
+do i = [M:1:-1]
+  D = Dg[i]+C
+  C = int(D/Base)
+  Dg[i] = mod(D,Base)
+enddo
+!
+!  Output the result
+! 
+='------------ Factorial( '//rchar(N)//` ) ------------'
+L = log10(Base)+1
+Fmt = '%'//char(48+L)//'.0f'
+Nj = int(78/L)
+Sl = ' '
+i = 1
+S = rchar(Dg[i]+Base,Fmt)
+do j = [2:L]
+  if nes(S[j],'0') then goto done
+  S[j] = ' '
+enddo
+done:
+Sl = Sl//S[2:L]//','
+j = 1
+if (M>1) then
+  do i = [2:M]
+    S = rchar(Dg[i]+Base,Fmt)
+    Sl = Sl//S[2:L]//','
+    j = j+1
+    if (j=Nj) then 
+      = Sl[1:#-(i=M)]
+      j = 0
+      Sl = ' '
+    endif
+  enddo
+endif
+if (J>0) then =Sl[1:#-1]
+!goto startfactorial
+endfactorial:
+

@@ -1,0 +1,11 @@
+clear
+defaults
+generate x 0,,180 100
+y=sind(x)
+generate x1 0,,180 50
+y1=exp(-x1/90)*sind(x1)
+X[101:150] = X1[50:1:-1]
+Y[101:150] = Y1[50:1:-1]
+SET AREAFILLCOLOR red
+scales\-messages -10 200 -.2 1.2 
+GRAPH X Y

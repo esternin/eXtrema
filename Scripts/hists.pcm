@@ -1,0 +1,49 @@
+!x=[1;2.75;3.2;5;6;7;8;10;10.5]
+generate\random x 1 11 10
+sort\up x
+i=[1:len(x)]
+error=x-x+.5
+clear
+window 5
+defaults
+scales -1 12 -1 12
+set histogramtype 1
+set plotsymbol 1
+graph x i error
+window 6
+defaults
+scales -1 12 -1 12
+set histogramtype 2
+set plotsymbol 1
+graph x i error
+window 7
+defaults
+scales -1 12 -1 12
+set histogramtype 3
+set plotsymbol 1
+graph i x,, error
+window 8
+defaults
+scales -1 12 -1 12
+set histogramtype 4
+set plotsymbol 1
+graph i x,, error
+pause
+clear
+window 5
+set histogramtype 1
+set areafillcolor red
+graph x i error
+window 6
+set histogramtype 2
+set areafillcolor green
+graph x i error
+window 7
+set histogramtype 3
+set areafillcolor blue
+graph i x,, error
+window 8
+set histogramtype 4
+set areafillcolor coral
+graph i x,, error
+

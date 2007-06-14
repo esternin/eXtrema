@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>XLOGBASE</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="XLOGBASE">
+</OBJECT>
+
+<P><A NAME="setcxlogbase"></A>
+<font size=+3 color="green"><B>XLOGBASE</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET XLOGBASE n</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+XLOGBASE = 0.0</CODE>
+</TD></TR>
+</TABLE>
+ 
+<P><CODE><font color="blue">XLOGBASE</font></CODE> determines whether the
+ <i>x</i>-axis is  to be linear or logarithmic.<BR>
+ <CODE><font color="blue">XLOGBASE</font></CODE> should always be 
+ <CODE>&gt; 0</CODE>.</P>
+
+<P><table cols=3 border=0>
+<tr>
+<td valign="bottom" align="left" colspan=3>
+ <CODE><font color="blue">XLOGBASE</font></CODE></TD>
+</TR><TR>
+<TD VALIGN="CENTER" ALIGN="CENTER" COLSPAN=3><HR></TD>
+</TR><TR>
+<td valign="top">
+ <nobr><CODE>&gt; 1.0</CODE></nobr></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the <i>x</i>-axis will have a logarithmic scale.
+ The base will be the integer part of
+ <CODE><font color="blue">XLOGBASE</font></CODE>, except for the special
+ case:
+ <CODE>1.05*<i>e</i> &gt; <font color="blue">XLOGBASE</font> &gt;
+ 0.95*<i>e</i></CODE>,
+ where <CODE><i>e</i></CODE> is the base of the natural logarithms,
+ <CODE><i>e</i> &asymp; 2.718281828</CODE>, in which case the base will be
+ <CODE><i>e</i></CODE>.</td>
+</tr><tr>
+<td valign="top">
+ <nobr><CODE>&le; 1.0</CODE></nobr></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the <i>x</i>-axis will have a linear scale</td>
+</tr></table></P>
+
+<P>If <CODE><font color="blue">XLOGBASE</font> &gt; 1.0</CODE>, then
+ <CODE><font color="blue"><a href="xmin.htm">XMIN</a></font></CODE> and
+ <CODE><font color="blue"><a href="xmax.htm">XMAX</a></font></CODE> are
+ assumed to be the exponents for the minimum and maximum values on the
+ <i>x</i>-axis. The maximum value displayed on the <i>x</i>-axis is
+ <CODE><font color="blue">XLOGBASE<sup>XMAX</sup></font></CODE> and the
+ minimum value displayed on the <i>x</i>-axis is
+ <CODE><font color="blue">XLOGBASE<sup>XMIN</sup></font></CODE>. Integer
+ exponents are always used for the axis numbering, so the <i>x</i>-axis
+ may not begin and/or end on a large tic mark.</P>
+ 
+<P>If <CODE><font color="blue">XLOGBASE</font> = 10.0</CODE>, the small
+ tic marks on the  <i>x</i>-axis can be specified exactly with
+ <CODE><font color="blue"><a href="xnsincs.htm">XNSINCS</a></font></CODE>.
+ If small tic marks are desired at the locations <CODE>j*10<sup>n</sup></CODE>,
+ where <CODE>2 &le; j &le; 9</CODE>, then set
+ <CODE><font color="blue">XNSINCS</font> = -j</CODE>. For example, if you
+ want small tic marks at  <CODE>2*10<sup>n</sup></CODE>,
+ <CODE>4*10<sup>n</sup></CODE>, <CODE>5*10<SUP>n</SUP></CODE>, and
+ <CODE>8*10<SUP>n</SUP></CODE>, then
+ <NOBR><CODE><font color="blue">SET XNSINCS = -2458</font></CODE>.</NOBR></P>
+ 
+<P>If <CODE><font color="blue">XLOGBASE</font> &le; 1.0</CODE>,
+ <CODE><font color="blue">XMIN</font></CODE> and
+ <CODE><font color="blue">XMAX</font></CODE> are the actual minimum and
+ maximum values for the <i>x</i>-axis; and the <i>x</i>-axis always begins and
+ ends on large tic marks.</P>
+
+</body>
+</html>

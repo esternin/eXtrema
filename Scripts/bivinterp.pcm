@@ -1,0 +1,28 @@
+r = mod([1:1000]-1,5)+1
+sort\up r
+generate t 0,1.8,,200
+t[201:400] = t[1:200]
+t[401:800] = t[1:400]
+t[801:1000] = t[1:200]
+z = exp(-r/2)*cosd(180*(r-1))
+grid\xyout\size\-messages 10 r*cosd(t) r*sind(t) z m x y
+!
+npts = 30
+generate d min(x),,max(x) npts
+vector u0 npts*npts
+if exist('v0') then destroy\-messages v0
+v0[1:npts] = d
+u0[1:npts] = d[1]
+do i = [2:npts]
+  u0[(i-1)*npts+1:i*npts] = d[i]
+  v0 = v0//d
+enddo
+w0 = bivinterp(x,y,m,u0,v0)
+grid\pattern\xyout\-messages u0 v0 w0 w u v
+!
+set colormap rainbow
+clear
+window 5
+density x y m
+window 7
+density u v w

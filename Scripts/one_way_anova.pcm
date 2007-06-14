@@ -1,0 +1,57 @@
+!
+! one-way analysis of variance test
+!
+nameList = ?1
+!
+@splitString nameList k names error
+if (error) then
+  display 'an error occurred splitting the name list into vector names'
+  return
+endif
+!
+! k    = number of populations
+! n[i] = i_th population size
+! T[i] = total of the observations for the i_th population
+! TT   = grand total of all observations from all populations
+! df   = population degrees of freedom
+! dfe  = error degrees of freedom
+! dft  = total degrees of freedom
+! SSTr = sum of squares for the populations
+! SSE  = error sum of squares
+! SST  = total sum of squares
+! MSTr = population mean square
+! MSE  = error mean square
+!
+df = k-1
+dfe = 0
+do i = [1:k]
+ T[i] = sum(names[i])
+ n[i] = len(names[i])
+ dfe = dfe + n[i] - 1
+enddo
+dft = df + dfe
+TT = sum(T)
+SSTr = sum(T^2/n)-TT^2/sum(n)
+SST = 0
+do i = [1:k]
+ do j = [1:n[i]]
+   SST = SST + (names[i])[j]^2
+ enddo
+enddo
+SST = SST - TT^2/sum(n)
+MSTr = SSTr/df
+SSE = SST - SSTr
+MSE = SSE/dfe
+F = MSTr/MSE
+='Source of        Degrees of      Sum of          Mean              F'
+='Variation         Freedom        Squares         Square'
+='----------------------------------------------------------------------'
+='Populations '//rchar(df,'%12.0f')//rchar(SSTr,'%15.1f')//rchar(MSTr,'%15.1f')//rchar(F,'%15.1f')
+='Error       '//rchar(dfe,'%12.0f')//rchar(SSE,'%15.1f')//rchar(MSE,'%15.1f')
+='Total       '//rchar(dft,'%12.0f')//rchar(SST,'%15.1f')
+=' '
+criticalValue = 1-fisher(df,dfe,F)
+='Null hypothesis: the differences among the sample means can be atributed to chance'
+='Accept the null hypothesis at a significance level of '//rchar(criticalValue*100)//'%'
+=' '
+destroy error k n df dfe dft i j T TT SST SSTr MSTr SSE MSE F nameList names rowLen numberOfPopulations 

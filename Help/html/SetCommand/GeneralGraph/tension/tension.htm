@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TENSION</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="TENSION">
+  <PARAM NAME="Keyword" VALUE="spline tension">
+  <PARAM NAME="Keyword" VALUE="cubic spline tension">
+  <PARAM NAME="Keyword" VALUE="curviness">
+  <PARAM NAME="Keyword" VALUE="standard deviation">
+  <PARAM NAME="Keyword" VALUE="least-squares line">
+</OBJECT>
+<P>
+ <font size=+3 color="green"><B>TENSION</B></font></P>
+<p>
+ <TABLE border=1 cols=2 frame=box rules=all width=572>
+ <TR>
+ <TD width=20% valign="top"><B>Syntax</B>:</TD>
+ <TD width=80% valign="top"><CODE>
+ SET TENSION t
+ </TD></TR>
+ <TR>
+ <TD width=20% valign="top"><B>Default</B>:</TD>
+ <TD width=80% valign="top"><CODE>
+ TENSION = 0.0</CODE>
+ </TD></TR>
+ </TABLE></P>
+<P>
+ <CODE><font color="blue">TENSION</font></CODE> controls the spline tension
+ for the functions using cubic splines:</P>
+<P>
+ <CODE><a href="..\..\..\Functions\NumericAnalysis\Deriv\deriv.htm">DERIV</a>,
+ <a href="..\..\..\Functions\NumericAnalysis\Integral\integral.htm">INTEGRAL</a>,
+ <a href="..\..\..\Functions\NumericAnalysis\Interpolate\interpolate.htm">INTERPOLATE</a>,
+ <a href="..\..\..\Functions\NumericAnalysis\Smooth\smooth.htm">SMOOTH</a>,
+ <a href="..\..\..\Functions\NumericAnalysis\Interpolate\splinterp.htm">SPLINTERP</a>,</CODE> and
+ <CODE><a href="..\..\..\Functions\NumericAnalysis\Smooth\smooth.htm">SPLSMOOTH</a></CODE></P>
+<P>
+<font size=+1 color="green">Definition</font></P>
+<P>
+ The tension factor corresponds to the "curviness" of the resultant spline
+ function, and must be <CODE>&ge; 0</CODE>.</P>
+<P>
+ If the tension is set to zero, the result will be an interpolating cubic
+ spline.  If the tension is large, the result will be the least-squares line 
+ through the data. As the tension decreases, the amount of smoothing decreases
+ and the data points are fit more exactly. As the tension increases, the fit
+ straightens and has less curvature at peaks, valleys and endpoints.</P>
+<P>
+ Suppose that <i>N</i> is the length of vector <i>y</i> and that the weights
+ are the standard deviations of <i>y</i>. Values of tension <i>t</i> in the
+ range <img WIDTH="214" HEIGHT="35" ALIGN="absmiddle" src="img1.gif"> give the most
+ natural looking results.  To obtain the most suitable fit, the user may
+ wish to do several runs with different values of <i>t</i>. By observing
+ the results of the spline fits,  the most suitable value for <i>t</i> can
+ be selected.</P>
+<P>
+ <font size=+1 color="green">Method</font></P>
+<P>
+Given a set of abscissae: <img src="image1.png">, a cubic spline function over the region <img src="image2.png"> is composed of cubic parabolas</p>
+<p>
+<center><img src="image3.png"></center></p>
+<p>
+where <img src="image4.png">, which join at the endpoints <img src="image5.png"> such that <img src="image6.png">, <img src="image7.png">, and <img src="image8.png"> are continuous.</p>
+<p>
+The smoothing function is constructed by minimizing &nbsp;&nbsp;<img align="absmiddle" src="image9.png">&nbsp;&nbsp; subject to the constraint &nbsp;&nbsp;<img align="absmiddle" src="image10.png">&nbsp;&nbsp; where &nbsp;<img align="absmiddle" src="image11.png">&nbsp; are the weights and &nbsp;<img align="absmiddle" src="image12.png">&nbsp; is the spline tension.</p>
+<p>
+The solution proceeds by the standard methods of minimizing the functional</p>
+<p>
+<center><img src="image13.png"></center></p>
+<p>
+where <img src="image14.png"> and <img src="image15.png"> are auxiliary parameters. The functional is minimized with respect to <img src="image14.png"> and <img src="image15.png"> by setting the partial derivatives with respect to <img src="image14.png"> and <img src="image15.png"> equal to zero.</p>
+<p>
+<a href="..\nhistory.htm"><img align=middle border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">NHISTORY</font></a><br>
+<a href="..\autoscale.htm"><img align=middle border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">AUTOSCALE</font></a>
+</P>
+</body>
+</html>

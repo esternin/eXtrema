@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Variable names</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="variable name">
+</OBJECT>
+
+<P><A NAME="variablenames"></A>
+<font size=+2 color="green">Variable names</font></P>
+<P>
+ The first character of a variable name <EM>must</EM> be an alphabetic
+ character, that is, <CODE>A</CODE> to <CODE>Z</CODE>. Except for this
+ restriction, variable names can be any combination of:
+<P>
+<table border=1 cellpadding=10>
+<tr>
+<td> alphabetic characters</td>
+<td><tt>ABC...XYZ</tt></td>
+</tr><tr>
+<td>digits</td>
+<td><tt>0123456789</tt></td>
+</tr><tr>
+<td>underscore</td>
+<td align=center><tt>_</tt></td>
+</tr><tr>
+<td>dollar sign</td>
+<td align=center><tt>$</tt></td></tr>
+</table></P>
+<P>
+ There is no maximum length for variable names.</P>
+<P>
+ All variable names are stored internally as upper case, but can be refered to
+ as upper or lower case.
+<P>
+ Function names and some other keywords are reserved names and cannot be
+ used as variable names. The following table shows the list of reserved
+ keywords.</P>
+<PRE>
+ ALL           ARC           ARROW         AUTOHEIGHT    BOX
+ CAREA         CCONT         CIRCLE        CLOSE         COMMENSURATE
+ CVOLM         CXMIN         CXMAX         CYMIN         CYMAX
+ DAREA         DVOLM         DCONT         EDIT          ELLIPSE
+ FRAME         GRAPH         HEIGHT        IFF           LANDSCAPE
+ LIST          NSYMBOLS      OFF           ON            OPEN
+ EXTREMA       POLYGON       PORTRAIT      STATUS        SUB1
+ SUB2          SUB3          SUB4          SUB5          SUB6
+ SUB7          SUB8          TITLE         TRANSPARENCY  WEDGE
+ XAXIS         YAXIS
+</PRE>
+<P>
+ The <a href="..\Functions\StringManipulation\varname.htm"><CODE>VARNAME</CODE></a> function
+ accepts a variable, either
+ string or numeric, as its argument, and converts that variable's name into a
+ string.  For example, <font color="blue"><code>a=VARNAME(x)</code></font>
+ would create a string variable called <code>A</code> with the value
+ <code>`X'</code>.</P>
+<P>
+<a href="variables.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Variables</font></a><br>
+<a href="scalarvariable.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Scalar variables</font></a>
+</P>
+
+</body>
+</html>

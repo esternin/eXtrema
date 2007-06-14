@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Conditional statements</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="conditional statement">
+  <PARAM NAME="Keyword" VALUE="if statement">
+</OBJECT>
+
+<P><A NAME="execifthen"></A>
+<font size=+3 color="green"><B>Conditional statements</B></font></P>
+<P>
+ <CODE><font color="blue">IF...THEN</font></CODE> statements can only
+ be used in script files. The general form of an
+ <CODE><font color="blue">IF...THEN</font></CODE> statement is:
+ <CODE><font color="blue">IF (boolean) THEN</font></CODE></P>
+<P>
+ The <CODE><font color="blue">boolean</font></CODE> can take any form, but
+ must be enclosed in parentheses, and it must have a scalar result.  A result
+ of <CODE>1</CODE> is true, while anything else is false.  An
+ <CODE><font color="blue">IF...THEN</font></CODE> statement can precede a
+ single command.  An <CODE><font color="blue">IF...THEN</font></CODE> statement
+ can begin a block of commands, but in that case it must be terminated with an
+ <CODE><font color="blue">ENDIF</font></CODE> statement.  Nested
+ <CODE><font color="blue">IF...THEN</font></CODE> statements are allowed.</P>
+<P>
+ <font size=+2 color="green">Example</font></P>
+
+<font color="blue"><PRE>
+ ...
+ IF (A&gt;B) THEN TEXT 'A &gt; B'
+ IF (A=B) THEN TEXT 'A = B'
+ IF (A&lt;B) THEN TEXT 'A &lt; B'
+ ...
+</PRE></font>
+
+<P><font size=+2 color="green">Example</font></P>
+
+<font color="blue"><PRE>
+ ...
+ IF (A&gt;B) THEN
+  ...
+ ENDIF
+ ...
+</PRE></font>
+
+<P><font size=+2 color="green">Example</font></P>
+
+<font color="blue"><Pre>
+ ...
+ START2:
+ IF (J&lt;=8) THEN 
+  ...
+  J=J+1
+  GOTO START2
+ ENDIF
+ ...
+</PRE></font>
+<P>
+<a href="looping.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Looping</font></a>
+</P>
+</BODY>
+</HTML>

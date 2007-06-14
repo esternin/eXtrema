@@ -1,0 +1,69 @@
+clear
+window 0
+defaults
+y=[1980;1984.5;1988.3;1989.0;1989.2;1990;1990.8;1991.8;1992.0;1993.0;1994.0;1995.0;1995.5;1996.0;1997.0;1997.2;1997.4;1997.7;1999.0;1999.7;2000.2;2001.2]
+v=[1;0;13;29;0;0;45;55;75;110;150;144;144;144;149;0;0;149;149;149;149;149]
+r=[0;0;0;0;10;30;65;142;276;360;748;938;1328;1646;2362;0;0;2290;3379;3379;3279;3700]
+p=[0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;80;260;900;2785;6000;10600;37219]
+scales\-messages 1980 2004 6 0 16 13
+set
+ xlabel `YEAR'
+ xlabelon 1
+ ylabel `Relative Compute Power (1980 = 1)'
+ ylabelon 1
+ %xloweraxis 20
+ 
+get
+ %xloweraxis xls
+ %xupperaxis xus
+ 
+set
+ %xtextlocation (xus+xls)/2
+ %ytextlocation 95
+ textalign 2
+ textinteractive 0
+ 
+text "CPU POWER GROWTH"
+set
+ ylogbase 2
+ ylogstyle 0
+ ynsincs 1
+ xnsincs 4
+ linecolour black
+ %plotsymbolsize 2
+! legendon 0
+! legendsymbols 1
+! legendframeon 0
+! legendframe 20 65 60 85
+! legendtitleon 0
+! legendentryline 0
+ ynumberofdigits 2
+ 
+graph\axesonly
+!
+set
+ plotsymbol -14
+ plotsymbolcolour black
+ legendon 1
+ %legendframe 25 65 55 85
+ 
+graph\overlay 'VAX' y v
+set
+ plotsymbol -16
+ plotsymbolcolour red
+ 
+graph\overlay 'RISC' y r
+set
+ plotsymbol -17
+ plotsymbolcolour blue
+ 
+graph\overlay 'PENTIUM' y p
+replot
+set legendon 0
+xx = [1980:2004:1]
+yd = 2^((xx-1980)/2)
+set
+ linecolour green
+ plotsymbol 0
+ 
+graph\overlay xx yd

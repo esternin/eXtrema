@@ -1,0 +1,9 @@
+clear
+defaults
+window 0
+!
+X = [1:10]                        ! fake some data
+SET HISTOGRAMTYPE 1               ! no tails
+SET AREAFILLCOLOR BLUE            ! fill pattern #8
+SCALES\-MESSAGES 0 11 0 10.5      ! fix axis scales
+GRAPH X X                         ! draw the histogram

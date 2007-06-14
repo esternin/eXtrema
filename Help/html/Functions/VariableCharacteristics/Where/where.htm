@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>WHERE</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="WHERE">
+  <PARAM NAME="Keyword" VALUE="vector length">
+  <PARAM NAME="Keyword" VALUE="length of a vector">
+</OBJECT>
+<P><A NAME="WHERE"></A>
+<font size=+3 color="green"><B>WHERE</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+vout = WHERE(vector)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">WHERE</font></CODE> function only accepts a
+ vector as argument. It returns the indices where this vector is not equal
+ to zero.</P>
+<P>
+<font size=+1 color="green">Examples</font></P>
+<P>
+ Suppose you have a vector <CODE>X = [-5:5]</CODE> and you enter
+ <nobr><CODE><font color="blue">Y=WHERE(X>0)</font></CODE></NOBR>,
+ then <CODE>Y</CODE> would be <CODE>[7;8;9;10;11]</CODE> since 
+ <nobr><CODE>X[Y] &gt; 0</CODE></nobr>.  If you enter 
+ <nobr><CODE><font color="blue">Y=WHERE(X&lt;=0)</font></CODE></NOBR>
+ then <CODE>Y</CODE> would be <CODE>[1;2;3;4;5;6]</CODE> since
+ <nobr><CODE>X[Y] &le; 0</CODE></nobr>.</P>
+<P>
+ Suppose you have two vectors <CODE>X</CODE> and <CODE>Y</CODE> and you
+ want to graph only those points that lie within the unit circle, that is,
+ only those points that satisfy
+ <nobr><CODE>SQRT(X<sup>2</sup>+Y<sup>2</sup>) &le; 1</CODE></nobr>.
+ The following commands produce the picture below.</P>
+<P>
+ <font color="blue"><PRE>
+ GENERATE\RANDOM X -2 2 10000
+ GENERATE\RANDOM Y -2 2 10000
+ SET PLOTSYMBOL -17
+ SET %PLOTSYMBOLSIZE 0.5
+ SET AUTOSCALE COMMENSURATE
+ IDX=WHERE(SQRT(X^2+Y^2)&lt;=1)
+ GRAPH X[IDX] Y[IDX]
+ </PRE></font></P>
+<P>
+<center>
+<IMG ALIGN=BOTTOM SRC="where.png">
+</center></P>
+<p>
+<a href="..\iequal.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">IEQUAL</font></a>
+</P>
+</BODY>
+</HTML>

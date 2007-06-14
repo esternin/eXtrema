@@ -1,0 +1,82 @@
+clear
+window 0
+defaults
+!
+generate theta 0,,180 100 ! make a vector with 100 elements from 0 to 180
+x = cosd(theta)
+y = x^2
+x2 = [0;45;90;135;180]          ! the upper axis large tic mark locations
+x3 = [5;10;15;20;25;30;35;40]   ! the upper axis small tic mark increments
+lx2 = len(x2)                   ! length of vector x2 = number of large tic marks
+y2 = [1:lx2]                    ! y2 = [1;2;3;4;...]
+xupper = cosd(x2)               ! convert to functional values
+lx3 = len(x3)                   !
+y3 = [1:lx3]                    !
+set
+ %yupperaxis 85              ! make room for a label
+ %xloweraxis 15
+ graphbox 0                  ! turn off automatic tic marks on top axis
+ plotsymbol 0                ! no plotting symbol
+ autoscale on                ! autoscale the plot
+ xlabel 'Cos(<theta>)'
+ ylabel 'Cos<^>2<_>(<theta>)'
+ xlabelon 1
+ ylabelon 1
+ curvecolor red
+ ydroplastnumber 1           ! do not draw ymax
+ 
+graph x y                       ! draw the graph with the bottom x-axis
+set
+ autoscale off
+ curvecolor black
+ xticson 0
+ graphbox 1
+ 
+graph\axesonly
+!
+get
+ %xnumbersheight xnumsz  ! number size on x-axis
+ %yloweraxis ylaxis     ! lower end of y-axis (as % of window)
+ %yupperaxis yuaxis     ! upper end of y-axis (as % of window)
+ %ximagticlength xiticl ! distance from x-axis to top of numbers (as %)
+ yloweraxis ylaxisw     ! lower end of y-axis (world units)
+ yupperaxis yuaxisw     ! upper end of y-axis (world units)
+ ximagticlength xiticlw ! distance from x-axis to top of numbers (world units)
+ ymin ymin              ! number at bottom of y-axis
+ ymax ymax              ! number at top of y-axis
+ 
+ticlen = xiticlw/(yuaxisw-ylaxisw)*(ymax-ymin)
+y1 = ymax-2*ticlen
+y11 = ymax-ticlen
+yloc = yuaxis+1
+set
+ %textheight xnumsz     ! height of text (% of window height)
+ textalign 2            ! centre justify text
+ textinteractive 0      !
+ %ytextlocation yloc    ! vertical location of text
+ textangle 0            ! text angle (degrees)
+ !set clip 0 
+ 
+world\percent xupper y2 xp yp ! convert graph units to % of window
+do j = [1:lx2] ! for each large tic mark ...
+ set %xtextlocation xp[j] ! set horizontal location of text
+ text rchar(x2[j])        ! draw the upper x-axis numbers
+ graph\overlay [xupper[j];xupper[j]] [ymax;y1] ! draw large tic marks
+ xtmp = cosd(x2[j]+x3)    ! on top of box
+ world\percent xtmp y3 xpp ypp
+ do k = [1:lx3]
+  graph\overlay [xtmp[k];xtmp[k]] [ymax;y11] ! draw small tic marks
+ enddo ! on top of box
+enddo
+! find the mid point of the x-axis
+get
+ %xupperaxis xux
+ %xloweraxis xlx
+
+set
+ %xtextlocation (xux+xlx)/2 ! position a label at the mid point
+ %ytextlocation 90
+ textalign 2 ! centre justify
+ textinteractive 0
+
+text '<theta><degree>'

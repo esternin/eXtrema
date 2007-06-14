@@ -1,0 +1,43 @@
+X=[0:4:.05]
+Y=X^2-3*X+3+SIN(X*3)*RAN(X)*2
+!
+CLEAR
+WINDOW 5
+defaults
+height = 6
+SET
+  GRAPHBOX 0
+ %XNUMBERSHEIGHT height
+ %YNUMBERSHEIGHT height
+
+@Draw_Title height 'original data'
+GRAPH\AXESONLY X Y
+GET
+ XMIN XMIN
+ XMAX XMAX
+ YMIN YMIN
+ YMAX YMAX
+
+SCALES XMIN XMAX YMIN YMAX
+SET PLOTSYMBOL -1
+GRAPH\OVERLAY X Y
+SET PLOTSYMBOL 0
+!
+WINDOW\inherit 6 5
+@Draw_Title height '11 point quadratic formula'
+FILTER\-RECURSIVE Y YF [-36;9;44;69;84;89;84;69;44;9;-36]
+SCALES XMIN XMAX YMIN YMAX
+GRAPH X YF/429
+!
+WINDOW\inherit 7 5
+@Draw_Title height '11 point quartic formula'
+FILTER\-RECURSIVE Y YF [18;-45;-10;60;120;143;120;60;-10;-45;18]
+SCALES XMIN XMAX YMIN YMAX
+GRAPH X YF/429
+!
+WINDOW\inherit 8 5
+@Draw_Title height "15 point Spencer's formula"
+FILTER\-RECURSIVE Y YF [-3;-6;-5;3;21;46;67;74;67;46;21;3;-5;-6;-3]
+SCALES XMIN XMAX YMIN YMAX
+GRAPH X YF/320
+

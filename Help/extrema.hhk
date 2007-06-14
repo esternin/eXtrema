@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="@">
+		<param name="Name" value="EXECUTE command">
+		<param name="Local" value="html\ExecuteCommand\executecommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="\">
+		<param name="Name" value="qualifier">
+		<param name="Local" value="html\Introduction\qualifiers.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="backslash">
+		<param name="Name" value="making a vector">
+		<param name="Local" value="html\Introduction\introduction.htm">
+		<param name="Local" value="html\Introduction\makingavector.htm">
+		<param name="Local" value="html\Introduction\assignments.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="axis">
+		<param name="Name" value="contour axis">
+		<param name="Local" value="html\ContourCommand\axes.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="backslash">
+		<param name="Name" value="qualifier">
+		<param name="Local" value="html\Introduction\qualifiers.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="branching">
+		<param name="Local" value="html\ExecuteCommand\branching.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="character array">
+		<param name="Local" value="html\Introduction\characterarrays.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="character assignment">
+		<param name="Local" value="html\Introduction\characterassignment.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="character string">
+		<param name="Name" value="string variable">
+		<param name="Local" value="html\Introduction\stringvariable.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="character variable">
+		<param name="Name" value="character assignment">
+		<param name="Local" value="html\Introduction\characterassignment.htm">
+		<param name="Name" value="evaluation">
+		<param name="Local" value="html\Introduction\evaluations.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="chi-square">
+		<param name="Local" value="html\FitCommand\chisquare.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CLEAR command">
+		<param name="Local" value="html\ClearCommand\clearcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="clear graphics">
+		<param name="Name" value="CLEAR command">
+		<param name="Local" value="html\ClearCommand\clearcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="color">
+		<param name="Name" value="contour color">
+		<param name="Local" value="html\Introduction\colors.htm">
+		<param name="Name" value="COLORMAP">
+		<param name="Local" value="html\ContourCommand\colours.htm">
+		<param name="Name" value="COLORMAPFILE">
+		<param name="Local" value="html\SetCommand\GeneralGraph\colormap.htm">
+		<param name="Name" value="XAXISCOLOR">
+		<param name="Local" value="html\SetCommand\GeneralGraph\colormapfile.htm">
+		<param name="Name" value="XNUMBERSCOLOR">
+		<param name="Local" value="html\SetCommand\Xaxis\axiscolor.htm">
+		<param name="Name" value="YAXISCOLOR">
+		<param name="Local" value="html\SetCommand\Xaxis\xnumberscolor.htm">
+		<param name="Name" value="YNUMBERSCOLOR">
+		<param name="Local" value="html\SetCommand\Yaxis\axiscolor.htm">
+		<param name="Name" value="PLOTSYMBOLCOLOR">
+		<param name="Local" value="html\SetCommand\Yaxis\ynumberscolor.htm">
+		<param name="Name" value="LINECOLOR">
+		<param name="Local" value="html\SetCommand\PlottingSymbol\plotsymbolcolor.htm">
+		<param name="Name" value="XLABELCOLOR">
+		<param name="Local" value="html\SetCommand\PlottingSymbol\linecolor.htm">
+		<param name="Name" value="YLABELCOLOR">
+		<param name="Local" value="html\SetCommand\Xaxis\xlabelcolor.htm">
+		<param name="Local" value="html\SetCommand\Yaxis\ylabelcolor.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="command">
+		<param name="Local" value="html\Introduction\commands.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="comment">
+		<param name="Local" value="html\ExecuteCommand\comments.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="confidence level">
+		<param name="Local" value="html\FitCommand\confidencelevel.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="constant">
+		<param name="Name" value="assignment">
+		<param name="Local" value="html\Introduction\assignments.htm">
+		<param name="Name" value="expression">
+		<param name="Local" value="html\Introduction\expression.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CONTOUR command">
+		<param name="Local" value="html\ContourCommand\contourcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="correlation">
+		<param name="Name" value="covariance">
+		<param name="Local" value="html\FitCommand\corrcov.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="defaults">
+		<param name="Name" value="DEFAULTS command">
+		<param name="Local" value="html\DefaultsCommand\defaultscommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="degrees of freedom">
+		<param name="Local" value="html\FitCommand\degfree.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="DERIV function">
+		<param name="Local" value="html\Functions\NumericAnalysis\Deriv\deriv.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="derivative">
+		<param name="Local" value="html\Functions\NumericAnalysis\Deriv\deriv.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="echo">
+		<param name="Local" value="html\ExecuteCommand\echolines.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ERRORFILL">
+		<param name="Name" value="READ\VECTORS command">
+		<param name="Local" value="html\SetCommand\FileRelated\errorfill.htm">
+		<param name="Local" value="html\ReadCommand\rvcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="evaluation">
+		<param name="Local" value="html\Introduction\evaluations.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="EXECUTE command">
+		<param name="Local" value="html\ExecuteCommand\executecommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="EXPAND function">
+		<param name="Name" value="evaluation">
+		<param name="Local" value="html\Introduction\evaluations.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="expression">
+		<param name="Name" value="expression">
+		<param name="Local" value="html\Introduction\expression.htm">
+		<param name="Local" value="html\expression.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FIT command">
+		<param name="Local" value="html\FitCommand\fitcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="fit example">
+		<param name="Name" value="fill example">
+		<param name="Local" value="html\GraphCommand\fillexample.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="function">
+		<param name="Name" value="assignment">
+		<param name="Local" value="html\Introduction\assignments.htm">
+		<param name="Name" value="character assignment">
+		<param name="Local" value="html\Introduction\characterassignment.htm">
+		<param name="Name" value="expression">
+		<param name="Local" value="html\Introduction\expression.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GENERATE command">
+		<param name="Name" value="making a vector">
+		<param name="Local" value="html\Introduction\makingavector.htm">
+		<param name="Name" value="GENERATE command">
+		<param name="Local" value="html\GenerateCommand\generatecommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GRAPH command">
+		<param name="Name" value="getting started">
+		<param name="Local" value="html\Introduction\gettingstarted.htm">
+		<param name="Name" value="GRAPH command">
+		<param name="Local" value="html\GraphCommand\graphcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="if statement">
+		<param name="Name" value="EXECUTE command">
+		<param name="Local" value="html\ExecuteCommand\executecommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="input">
+		<param name="Name" value="keyboard input">
+		<param name="Local" value="html\ExecuteCommand\keyboardinput.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="instruction">
+		<param name="Local" value="html\Introduction\introduction.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="INTEGRAL function">
+		<param name="Local" value="html\Functions\NumericAnalysis\Integral\integral.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="integration">
+		<param name="Local" value="html\Functions\NumericAnalysis\Integral\integral.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="iteration step">
+		<param name="Local" value="html\FitCommand\fitcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="keyboard input">
+		<param name="Local" value="html\ExecuteCommand\keyboardinput.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="label">
+		<param name="Name" value="getting started">
+		<param name="Local" value="html\Introduction\gettingstarted.htm">
+		<param name="Name" value="contour label">
+		<param name="Local" value="html\ContourCommand\labels.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="legend">
+		<param name="Name" value="contour legend">
+		<param name="Local" value="html\ContourCommand\legend.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="contour level">
+		<param name="Local" value="html\ContourCommand\levelselection.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="list">
+		<param name="Name" value="making a vector">
+		<param name="Local" value="html\Introduction\makingavector.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="looping">
+		<param name="Local" value="html\ExecuteCommand\looping.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="matrix">
+		<param name="Name" value="matrix variable">
+		<param name="Local" value="html\ContourCommand\matrixdata.htm">
+		<param name="Local" value="html\Introduction\matrixvariable.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="message">
+		<param name="Name" value="FIT command">
+		<param name="Local" value="html\FitCommand\fitcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="minus sign">
+		<param name="Name" value="qualifier">
+		<param name="Local" value="html\Introduction\qualifiers.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="normal fit">
+		<param name="Name" value="normal distribution">
+		<param name="Local" value="html\FitCommand\normaldist.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="operator">
+		<param name="Name" value="assignment">
+		<param name="Local" value="html\Introduction\assignments.htm">
+		<param name="Name" value="expression">
+		<param name="Local" value="html\Introduction\expression.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="parameter">
+		<param name="Name" value="fit parameter">
+		<param name="Local" value="html\ExecuteCommand\parameters.htm">
+		<param name="Local" value="html\ScalarCommand\fitparameters.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="parenthesis">
+		<param name="Name" value="command">
+		<param name="Local" value="html\Introduction\commands.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="partial derivative">
+		<param name="Name" value="CONTOUR command">
+		<param name="Local" value="html\ContourCommand\contourcommand.htm">
+		<param name="Name" value="FIT command">
+		<param name="Local" value="html\FitCommand\fitcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Poisson fit">
+		<param name="Name" value="Poisson distribution">
+		<param name="Local" value="html\FitCommand\poissondist.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="polar coordinate">
+		<param name="Name" value="polar coordinates">
+		<param name="Local" value="html\ContourCommand\polarcoords.htm">
+		<param name="Local" value="html\GraphCommand\polarcoords.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="qualifier">
+		<param name="Name" value="command">
+		<param name="Local" value="html\Introduction\commands.htm">
+		<param name="Name" value="qualifier">
+		<param name="Local" value="html\Introduction\qualifiers.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="quintic polynomial">
+		<param name="Name" value="CONTOUR command">
+		<param name="Local" value="html\ContourCommand\contourcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="quote">
+		<param name="Name" value="character assignment">
+		<param name="Local" value="html\Introduction\characterassignment.htm">
+		<param name="Name" value="command">
+		<param name="Local" value="html\Introduction\commands.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="range">
+		<param name="Name" value="making a vector">
+		<param name="Local" value="html\Introduction\makingavector.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RCHAR">
+		<param name="Name" value="character assignment">
+		<param name="Local" value="html\Introduction\characterassignment.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="READ command">
+		<param name="Name" value="character assignment">
+		<param name="Local" value="html\Introduction\characterassignment.htm">
+		<param name="Name" value="getting started">
+		<param name="Local" value="html\Introduction\gettingstarted.htm">
+		<param name="Name" value="READ\VECTORS command">
+		<param name="Local" value="html\ReadCommand\rvcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="read vector">
+		<param name="Name" value="READ\VECTORS command">
+		<param name="Local" value="html\ReadCommand\rvcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="REPLOT command">
+		<param name="Name" value="CLEAR command">
+		<param name="Local" value="html\ClearCommand\clearcommand.htm">
+		<param name="Name" value="REPLOT command">
+		<param name="Local" value="html\ReplotCommand\replotcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SCALAR command">
+		<param name="Local" value="html\ScalarCommand\scalarcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SCALES command">
+		<param name="Name" value="contour level selection">
+		<param name="Local" value="html\ContourCommand\levelselection.htm">
+		<param name="Name" value="SCALES command">
+		<param name="Local" value="html\ScalesCommand\scalescommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="script">
+		<param name="Name" value="EXECUTE command">
+		<param name="Local" value="html\ExecuteCommand\executecommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SET command">
+		<param name="Local" value="html\SetCommand\setcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="string">
+		<param name="Name" value="command">
+		<param name="Local" value="html\Introduction\commands.htm">
+		<param name="Name" value="character assignment">
+		<param name="Local" value="html\Introduction\characterassignment.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="syntax">
+		<param name="Name" value="command">
+		<param name="Local" value="html\Introduction\commands.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="TEXT">
+		<param name="Name" value="getting started">
+		<param name="Local" value="html\Introduction\gettingstarted.htm">
+		<param name="Name" value="string variable">
+		<param name="Local" value="html\Introduction\stringvariable.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="tolerance">
+		<param name="Local" value="html\FitCommand\tolerance.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="update after a fit">
+		<param name="Local" value="html\FitCommand\update.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="variable">
+		<param name="Name" value="assignment">
+		<param name="Local" value="html\Introduction\assignments.htm">
+		<param name="Name" value="character assignment">
+		<param name="Local" value="html\Introduction\characterassignment.htm">
+		<param name="Name" value="character array">
+		<param name="Local" value="html\Introduction\characterarrays.htm">
+		<param name="Name" value="expression">
+		<param name="Local" value="html\Introduction\expression.htm">
+		<param name="Name" value="making a vector">
+		<param name="Local" value="html\Introduction\makingavector.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="variable value">
+		<param name="Name" value="evaluation">
+		<param name="Local" value="html\Introduction\evaluations.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="WINDOW command">
+		<param name="Local" value="html\WindowCommand\windowcommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ZEROLINES command">
+		<param name="Local" value="html\ZerolinesCommand\zerolinescommand.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="HARDCOPY command">
+		<param name="Local" value="html\HardcopyCommand\hardcopycommand.htm">
+		</OBJECT>
+</UL>
+</BODY></HTML>

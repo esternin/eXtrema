@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>SCRIPTEXTENSION</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="SCRIPTEXTENSION">
+</OBJECT>
+
+<P><A NAME="setcextension"></A>
+<font size=+3 color="green"><B>SCRIPTEXTENSION</B></font></P>
+
+<p><B>Default script file extension:</b> <CODE><font color="blue">pcm</font></CODE></p>
+
+<p>The <CODE><font color="blue">SET SCRIPTEXTENSION</font></CODE> command is used to
+ redefine the default file extension for script files.  The original default file
+ extension is <CODE>pcm</CODE>. This file extension applies to the
+ <CODE><font color="blue"><a href="..\..\ExecuteCommand\executecommand.htm">EXECUTE</a></font></CODE> command only.
+ If you enter the file name without a file extension, the default extension is automatically
+ appended to the file name. 
+
+ The case of the extension is kept as entered.
+
+<p><font size=+2 color="green"><B>Examples</B></font></P>
+ 
+<p>If you have a script file named <CODE>script_file.pcm</CODE>, you can execute
+this file with the command <CODE><font color="blue">@script_file</font></CODE> or with
+the command <CODE><font color="blue">@script_file.pcm</font></code>.</p>
+<p>
+If you have a script file named <CODE>script_file.extrema</CODE> you can
+execute this file with the command<br>
+ <CODE><font color="blue">@script_file.extrema</font></CODE><br>
+ or<br>
+ <CODE><font color="blue">SET SCRIPTEXTENSION extrema</font></CODE><br>
+ <CODE><font color="blue">@script_file</font></CODE></p>
+<p>
+You can also use character variables, for example:</p>
+
+<font color="blue"><pre>
+T=`script_file'
+SET SCRIPTEXTENSION extrema
+@T
+</pre></font>
+<P>
+<a href="errorfill.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">ERRORFILL</font></a><br>
+<a href="stackextension.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">STACKEXTENSION</font></a>
+</P>
+</body>
+</html>

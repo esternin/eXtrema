@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+</OBJECT>
+
+<P><A NAME="scalesexample"></A>
+<font size=+2 color="green">Example</font></P>
+<P>
+ The following script produces the figure below:
+<font color="blue"><PRE>
+ WINDOW 5                         ! choose a window
+ SCALES -.5 .5 2 -5 5 2           ! set the graph scales
+ GRAPH\AXESONLY                   ! plot only the axes
+ GET                              ! get some GPLOT keyword values
+  %XLAXIS XLX                     !
+  %XUAXIS XUX                     !
+                                  ! don't forget the blank line
+ SET                              ! set some GPLOT keyword values
+  CURSOR -2                       ! centred text
+  %XLOC (XLX+XUX)/2               ! x reference point for text
+  %YLOC 50                        ! y reference point for text
+                                  ! don't forget the blank line
+ TEXT 'SCALES -.5 .5 2 -5 5 2'    ! draw a string
+ WINDOW 6                         ! 
+ SCALES 10 50 4 -100 -80 2        ! 
+ GRAPH\AXESONLY                   ! 
+ TEXT 'SCALES 10 50 4 -100 -80 2' ! 
+ WINDOW 7                         ! 
+ SET YLOG 10                      ! y-axis logarithmic, base 10
+ SCALES 10 50 4 2 6 4             ! 
+ GRAPH\AXESONLY                   ! 
+ TEXT 'SCALES 10 50 4 2 6 4'      ! 
+ SET %YLOC 40                     ! 
+ TEXT 'YLOG = 10'                 ! 
+ SET %YLOC 50                     ! 
+ WINDOW 8                         ! 
+ SET YLOG -2                      ! base 2, numbered without powers
+ GRAPH\AXESONLY                   !
+ TEXT 'SCALES 10 50 4 2 6 4'      !
+ SET %YLOC 40                     !
+ TEXT 'YLOG = -2'                 !
+</PRE></font>
+<P><center>
+ <IMG WIDTH=540 HEIGHT=349 ALIGN=BOTTOM SRC="img1.gif">
+</center></P>
+<P>
+<a href="ticmarks.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Labeled tic marks</font></a>
+</P>
+</BODY>
+</HTML>

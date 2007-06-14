@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>ELLIPSE command: output vectors</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="ELLIPSE command">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>Output vectors</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>ELLIPSE\FIT\XYOUT xin yin xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT\NPTS xin yin n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT\FRACTION xin yin frac xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT\FRACTION\NPTS xin yin frac n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT xin yin a b xc yc angle xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\NPTS xin yin a b xc yc angle n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION xin yin frac a b xc yc angle xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION\NPTS xin yin frac a b xc yc angle n xout yout</nobr><br>
+<nobr>ELLIPSE\POPULATE\XYOUT a b xc yc angle xout yout</nobr><br>
+<nobr>ELLIPSE\POPULATE\XYOUT\NPTS a b xc yc angle n xout yout</nobr></CODE>
+</TD></TR>
+</TABLE>
+<p>
+ By default, the ellipse perimeter will be plotted automatically. It is assumed that
+ a graph has been drawn already. The ellipse will be overlayed on this graph, with
+ no plotting symbol.</p>
+<p>
+ If the <CODE><font color="blue">\XYOUT</font></CODE> qualifier is used, then two
+ output vector names, <CODE><font color="blue">xout</font></CODE> and
+ <CODE><font color="blue">yout</font></CODE>,
+ are expected. No automatic plotting is done, and the horizontal and vertical
+ coordinates of the ellipse perimeter will be placed in these two vectors.</p>
+<P>
+<a href="ellipsecommand.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">ELLIPSE command</font></a><br>
+<a href="npoints.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Number of points</font></a>
+</P>
+</BODY>
+</HTML>

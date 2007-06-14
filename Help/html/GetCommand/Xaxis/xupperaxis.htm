@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>XUPPERAXIS</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="XUPPERAXIS">
+</OBJECT>
+
+<P><A NAME="getcxupperaxis"></A>
+<font size=+3 color="green"><B>XUPPERAXIS</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+GET XUPPERAXIS {s}<br>
+GET %XUPPERAXIS {s}</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+%XUPPERAXIS = 90.0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE><font color="blue">XUPPERAXIS</font></CODE> controls the position of the right,
+ or upper, end of the <i>x</i>-axis. This is also the horizontal coordinate of the upper
+ right hand corner of the graph box, if
+ <CODE><font color="blue"><a href="..\generalgraph\graphbox.htm">GRAPHBOX</a></font> = 1</CODE>.
+ There are two forms:</p>
+<p>
+<table border=0>
+<tr>
+<td valign="top"><CODE><font color="blue">&nbsp;XUPPERAXIS</font></CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the horizontal coordinate, in world coordinate units, of the right end
+ of the <i>x</i>-axis</td>
+</tr><tr>
+<td valign="top"><CODE><font color="blue">%XUPPERAXIS</font></CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the horizontal coordinate, expressed as a percentage of the width
+ of the graphics sub-window,
+ that is, <NOBR><CODE><font color="blue">XUPPERAXIS</font> =
+ <font color="blue">%XUPPERAXIS</font>
+ * (<font color="blue"><a href="..\generalgraph\xupperwindow.htm">XUPPERWINDOW</a></font>-
+ <font color="blue"><a href="..\generalgraph\xlowerwindow.htm">XLOWERWINDOW</a></font>)/100</CODE></NOBR>.</td>
+</tr></table>
+</p>
+
+</body>
+</html>

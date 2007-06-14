@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Increment and number of points</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="increment">
+</OBJECT>
+
+<P><A NAME="gencincnpts"></A>
+<font size=+3 color="green"><B>Increment and number of points</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+GENERATE x min inc ,, npts</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ If the increment and the number of points are given, the formula:
+ <nobr><CODE><font color="blue">x</font>[i] =
+ <font color="blue">min</font>+(i-1)*<font color="blue">inc</font></CODE></nobr>
+ &nbsp;&nbsp; for &nbsp;&nbsp;
+ <nobr><CODE>1&le;i&le;<font color="blue">npts</font></CODE></nobr> is applied 
+ directly.</p>
+<p>
+ For example, after the command: 
+ <nobr><CODE><font color="blue">GENERATE X -1 .5 ,, 4</font></CODE></nobr> we have
+ <nobr><CODE>X = [-1; -0.5; 0; 0.5]</CODE></nobr></p>
+<P>
+<a href="generatecommand.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">GENERATE command</font></a><br>
+<a href="maxnpts.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Maximum and number of points</font></a><br>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,42 @@
+clear
+defaults
+!
+generate x -2,,2 100
+!
+scales -8 3 -5 5
+set legendon 1
+set legendframeon 0
+set %legendframe 15 51 45 87
+set plotsymbol 0
+!
+set curvecolor black
+graph 'sinh' x sinh(x)
+!
+set curvecolor red
+graph\overlay 'cosh' x cosh(x)
+!
+set curvecolor blue
+graph\overlay 'tanh' x tanh(x)
+!
+set curvecolor green
+graph\overlay 'coth' x coth(x)
+!
+set curvecolor purple
+graph\overlay 'sech' x sech(x)
+!
+set curvecolor sienna
+graph\overlay 'csch' x csch(x)
+!
+replot
+zerolines
+!
+get %xlaxis xlx
+get %xuaxis xux
+get %yuaxis yux
+set %xtextlocation (xux+xlx)/2
+set %ytextlocation yux+1
+set textalign 2
+set textinteractive 0
+set textcolor black
+text 'Hyperbolic trig functions'
+

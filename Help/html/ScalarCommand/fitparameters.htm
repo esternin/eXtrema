@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Fitting parameters</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="\FIT qualifier">
+</OBJECT>
+
+<P><A NAME="scalarfit"></A>
+<font size=+3 color="green"><B>Fitting parameters</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+SCALAR\FIT s1 { s2 ... }<br>
+SCALAR\FIT s1[s1min:s1max] { s2[s2min:s2max] ... }</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE><font color="blue">SCALAR\FIT</font></CODE> command defines
+ <CODE><font color="blue">sI</font></CODE> to be a scalar variable and
+ allows <CODE><font color="blue">sI</font></CODE>
+ to vary for a <CODE><font color="blue">FIT</font></CODE> command or a
+ <CODE><font color="blue">MINUIT</font></CODE> command. If
+ <CODE><font color="blue">sI</font></CODE> already is a scalar, the value
+ of <CODE><font color="blue">sI</font></CODE> will be
+ unchanged. If <CODE><font color="blue">sI</font></CODE> is an existing
+ variable, but not a scalar, it will be destroyed first. If
+ <CODE><font color="blue">sI</font></CODE> does not exist, it will be
+ created and initialized to <CODE>1</CODE>.</P>
+<P>
+ Use the <CODE><font color="blue">SCALAR</font></CODE> command with no
+ qualifier to fix a scalar, that is, to not allow it to vary in a fitting
+ procedure.</P>
+<P>
+The <CODE><font color="blue">SCALAR</font></code> command allows for limits to be placed
+on a fitting parameter.  Use the <CODE><font color="blue">a[amin:amax]</font></code>
+syntax to create fit parameter <CODE><font color="blue">a</font></code> with lower limit
+<CODE><font color="blue">amin</font></code> and upper limit
+<CODE><font color="blue">amax</font></code>. To set an upper limit only, use
+<CODE><font color="blue">a[:amax]</font></code>, and to set a lower limit only, use
+<CODE><font color="blue">a[amin:]</font></code>. These limits are only used by the
+<CODE><font color="blue">MINUIT</font></code> command and are ignored by the
+<CODE><font color="blue">FIT</font></code> command.</P>
+<P>
+<a href="scalarcommand.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">SCALAR command</font></a>
+</P>
+</BODY>
+</HTML>

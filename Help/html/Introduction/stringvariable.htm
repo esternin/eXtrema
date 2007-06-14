@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>String variables</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="variable string">
+        <PARAM NAME="Keyword" VALUE="string variable">
+        <PARAM NAME="Keyword" VALUE="CHAR function">
+        <PARAM NAME="Keyword" VALUE="ICHAR function">
+        <PARAM NAME="Keyword" VALUE="single quote">
+        <PARAM NAME="Keyword" VALUE="double quote">
+        <PARAM NAME="Keyword" VALUE="opening quote">
+        <PARAM NAME="Keyword" VALUE="ASCII code">
+        <PARAM NAME="Keyword" VALUE="literal string">
+        <PARAM NAME="Keyword" VALUE="quote string">
+        <PARAM NAME="Keyword" VALUE="// operator">
+        <PARAM NAME="Keyword" VALUE="append">
+</OBJECT>
+
+<P><A NAME="variablestring"></A>
+<font size=+2 color="green">String variables</font></P>
+<P>
+ String variables can be used wherever strings are expected, such
+ as file names and keyword parameters.</P>
+<P>
+ A string is defined to be a one dimensional array of ASCII
+ characters. A string can be a literal quote string, such as,
+ <font color="blue"><code>'this is a quote string'</code></font>,
+ or an expression that results
+ in a string, such as <font color="blue"><code>RCHAR(35.6)</code></font>.</P>
+<P>
+ A literal quote string may begin with the opening quote,
+ <font color="blue"><CODE>`</CODE></font> and
+ end with the single quote, <font color="blue"><CODE>'</CODE></font>, or may begin
+ and end with the single quote, or may begin and end with the double quote,
+ <CODE><font color="blue">"</font></CODE>.</P>
+<p>
+<table>
+<tr>
+<td valign="top"><em><font color="red">Hint</font></em></a></td>
+<td>The simplest way to include a single quote in a string is to use double
+ quotes to delimit the string.  For example:
+ <nobr><font color="blue"><CODE>"ABC'DEF"</CODE></font>.</nobr>  Similarly, to include
+ a double quote in a string, delimit the string with single quotes.  For example:
+ <nobr><CODE><font color="blue">'ABC"DEF'</font></CODE>.</nobr>  Another method is
+ to use the
+ <CODE><font color="blue"><a href="..\Functions\StringManipulation\char.htm">CHAR</a></font></CODE>
+ function to convert the ASCII code for a quote into a character and append it to the
+ string using the
+ <CODE><font color="blue"><a href="..\Operators\append\append.htm">//</a></font></CODE>
+ append operator.  For example:
+ <nobr><CODE><font color="blue">'ABC'//CHAR(34)//'DEF'</font></CODE></nobr>,
+ since the ASCII code for <CODE>"</CODE> is <CODE>34</CODE>.  The ASCII codes for
+ the standard characters can be found using the
+ <CODE><font color="blue"><a href="..\Functions\StringManipulation\ichar.htm">ICHAR</a></font></CODE>
+ function.</td>
+</tr></table></p>
+<P>
+ A string variable is a single string, that is, a one
+ dimensional array of characters. A string array variable is an array of
+ strings. An element of a string variable is a single character.
+ An element of a string array variable is a string. There is no
+ maximum length for either a string variable or any element of a
+ string array variable, nor a maximum number of elements of a string
+ array variable. The elements of a string array variable need not be the
+ same length.</P>
+<P>
+ The <a href="..\Functions\VariableCharacteristics\clen.htm"><CODE>CLEN</CODE></a> function returns
+ a scalar value equal to the length of a string.</P>
+<P>
+ A string variable, or an element of a string array variable, can be entered
+ directly by means of an assignment. For example:</P>
+<P>
+<font color="blue"><PRE>
+ TS='This is a string'    ! string variable
+ TA[3]='This is a string' ! array string variable: third element
+</PRE></font>
+<P>
+ An entire string array variable can be created with the
+ <a href="..\ReadCommand\readcommand.htm"><font color="blue"><CODE>READ\TEXT</CODE></font></a> command.</P>
+<P>
+ Commands that expect strings, such as the
+ <a href="..\TextCommand\textcommand.htm"><font color="blue"><CODE>TEXT</CODE></font></a>
+ command, which draws a string, or the
+ <a href="..\WriteCommand\writecommand.htm"><font color="blue"><CODE>WRITE</CODE></font></a>
+ command, which expects a file name as a parameter,
+ will only accept a single string. Remember, though,
+ that a string can be a literal quote string, a string variable,
+ <EM>one</EM> element of a string array variable, and/or some
+ combination of string functions and string operators.</P>
+<P>
+ The following table shows all of the possible ways that a string
+ variable can be considered to be equivalent to a single string, that is,
+ can be used wherever a string is expected.</P>
+<center>
+<table border=1>
+ <tr><td>
+ <table cellpadding=5>
+ <tr>
+ <td colspan=4>Let <font color="blue"><code>a</code></font> be a scalar and
+ let <font color="blue"><code>x</code></font> be a vector</td>
+ </tr><tr>
+ <td colspan=4>Suppose that <font color="blue"><code>TA</code></font> is
+ a string array variable and <font color="blue"><code>T</code></font> is a
+  string variable</td>
+ </tr><tr>
+ <td><font color="blue"><code>T</code></font></td>
+ <td>=</td>
+ <td><font color="blue"><code>T[i]</code></font></td>
+ <td>for <code>i = 1, ..., CLEN(<font color="blue">T</font>)</code></td>
+ </tr><tr>
+ <td><font color="blue"><code>TA[a]</code></font></td>
+ <td>=</td>
+ <td><font color="blue"><code>TA[a][i]</code></font></td>
+ <td>for <code>i = 1, ..., CLEN(<font color="blue">TA[a]</font>)</code></td>
+ </tr><tr>
+ <td><font color="blue"><code>T[x]</code></font></td>
+ <td>=</td>
+ <td><font color="blue"><code>T[i]</code></font></td>
+ <td>for <code>i = <font color="blue">x</font>[1],
+ <font color="blue">x</font>[2], ..., <font color="blue">x</font>[#]</code></td>
+ </tr><tr>
+ <td><font color="blue"><code>TA[a][x]</code></font></td>
+ <td>=</td>
+ <td><font color="blue"><code>TA[a][i]</code></font></td>
+ <td>for <code>i = <font color="blue">x</font>[1],
+ <font color="blue">x</font>[2], ..., <font color="blue">x</font>[#]</code></td>
+ </table>
+ </td></tr></table>
+</center>
+<P>
+ Strings may be appended together using the append operator,
+ <a href="..\Operators\append\append.htm"><font color="blue"><CODE>//</CODE></font></a>.
+ For example, suppose
+ that <code>T</code> is a string variable with the value
+ <nobr><code>'this is a string'</code></nobr>. You can make
+ a new string variable using the assignment:</P>
+<P>
+ <font color="blue"><code>T2='start of new string '//T//' end of new string'</code></font></P>
+<P>
+ and <code>T2</code> will have the value:
+ <nobr><code>'start of new string this is a string end of new string'</code></nobr>.</P>
+<P>
+ A variable name can be converted to a string by means of the 
+ <a href="..\Functions\StringManipulation\varname.htm"><font color="blue"><code>VARNAME</code></font></a>
+ function. A
+ scalar <EM>value</EM> can be converted to a string by means of the
+ <a href="..\Functions\StringManipulation\rchar.htm"><font color="blue"><code>RCHAR</code></font></a>
+ function. For example, if <CODE>A</CODE> is a scalar with the
+ value <CODE>-1.234</CODE>, and <CODE>T</CODE> is a string variable with
+ the value <code>' units'</code>, then the assignment:</P>
+<P>
+ <font color="blue"><code>T2='The value of '//VARNAME(A)//' is '//RCHAR(A)//T</code></font></P>
+<P>
+ makes a string variable <CODE>T2</CODE> with the value:
+ <nobr><code>'The value of A is -1.234 units'</code></nobr>.</P>
+<P>
+ A format string is allowed as the second
+ argument of the <font color="blue"><code>RCHAR</code></font> function.
+ For example:</P>
+<P>
+ <font color="blue"><code>T2='The value of '//VARNAME(A)//' is '//RCHAR(A,'F4.1')//T</code></font></P>
+<P>
+ makes a string variable <CODE>T2</CODE> with the value:
+ <nobr><code>'The value of A is -1.2 units'</code></nobr>.</P>
+<P>
+<font size=+1 color="green">Expression variables</font></P>
+<P>
+ String variables can be used in numeric expressions, as so called expression
+ variables, to shorten or to simplify an expression. Parentheses around an
+ expression variable are assumed during a numeric evaluation. For example:</P>
+<P>
+<font color="blue"><PRE>
+ T='A+B'
+ Y=X*T      ! this is equivalent to Y=X*(A+B)
+</PRE></font>
+<P>
+ A string variable will be numerically evaluated if it is a numeric operand or
+ the argument of a numeric function. Otherwise, a string variable is treated as
+ a string. You can force numeric evaluation by using the
+ <a href="..\Functions\StringManipulation\eval.htm"><font color="blue"><CODE>EVALUATE</CODE></font></a>
+ function. For example:</P>
+<P>
+<font color="blue"><PRE>
+ T='3+2'        ! define T to be a string variable
+ =T             ! the string '3+2' will be displayed
+ =EVALUATE(T)   ! the numeric value 5 will be displayed
+</PRE></font>
+<P>
+ The <a href="..\Functions\StringManipulation\expand.htm"><font color="blue"><CODE>EXPAND</CODE></font></a>
+ function
+ produces a string by parsing the input string and expanding any expression
+ variables present in this string. If an expression variable, contained in
+ the original string, also contains expression variables, they are also
+ expanded, and so on until all such expression variables have been expanded.
+ Syntax checking is done during the expansion.</P>
+<P>
+ The maximum length of a completely expanded expression is two thousand five
+ hundred (<CODE>2500</CODE>) characters.</P>
+<P>
+ As an example of expression variable use, consider the following set of
+ instructions:</P>
+<P>
+<font color="blue"><PRE>
+ A=2              ! define a scalar A
+ B=3              ! define a scalar B
+ FC1='(A+B)/A'    ! define a string variable FC1
+ FC2='SQRT(A/B)'  ! define a string variable FC2
+ FC3='FC1*FC2'    ! define a string variable FC3
+ FC4='FC3+4*FC2'  ! define a string variable FC4
+ =FC4             ! displays 'FC3+4*FC2'
+ =EXPAND(FC4)     ! displays '(((A+B)/A)*(SQRT(A/B)))+4*(SQRT(A/B))'
+ =EVALUATE(FC4)   ! displays 5.3073
+</PRE></font></P>
+<P>
+<a href="matrixvariable.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Matrix variables</font></a><br>
+<a href="makingavector.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Making a vector</font></a>
+</P>
+
+</BODY>
+</HTML>

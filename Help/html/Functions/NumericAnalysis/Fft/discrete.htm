@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> <HTML>
+<HEAD> <META HTTP-EQUIV="Content-Type" Content="text/html;
+charset=Windows-1252"> <TITLE>Discrete Fourier series</TITLE> </HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="FFT function">
+  <PARAM NAME="Keyword" VALUE="Discrete Fourier series">
+</OBJECT>
+<p> <font size=+1 color="green"><B>Discrete Fourier series</B></font></P>
+<p>
+ Given <code>2N</code> samples of real data <img align="bottom" src="fft4.png">
+ (where <i>j</i> <code>= 0;1;2;...;2N-1</code>) taken at equally spaced intervals
+ <img align="bottom" src="fft5.png">, where <i>T</i> is the period, the corresponding
+ Fourier series is:</p>
+<p>
+ <center><img align="top" src="fft6.png"></center></p>
+<p>
+ where &nbsp;<img align="bottom" src="fft7.png">&nbsp; and
+ &nbsp;<img align="top" src="fft1.png">&nbsp; is the mean value of
+ &nbsp;<img align="bottom" src="fft8.png">.</p>
+<p>
+ From the original <code>2N</code> data points, we have exactly <code>2N</code>
+ calculated coefficients, that is, we have <code>N+1</code>
+ &nbsp;<img align="bottom" src="H.png">’s and <code>N-1</code>
+ &nbsp;<img align="bottom" src="G.png">’s with "real" information.</p>
+<p>
+ If <i>t</i><code>=0</code> at &nbsp;<img align="bottom" src="fft9.png">, then for each
+ <img align="bottom" src="fft10.png"> we have &nbsp;<img align="bottom" src="fft11.png">,
+ for <i>j</i> <code>= 0;1;...;2N-1</code>, and so</p>
+<p>
+ <center><img align="top" src="fft12.png"></center></p>
+<p>
+ The amplitude, <i>A</i>, and the phase, <i>P</i>, are calculated as follows:</p>
+<p>
+ <center><img align="top" src="fft13.png"></center></p>
+<p>
+ <center><img align="top" src="fft14.png"></center></p>
+<p>
+ <center><img align="top" src="fft15.png"></center></p>
+<p>
+ <center><img align="top" src="fft16.png"></center></p>
+<P>
+ <a href="coefficients.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Fourier coefficients</font></a><br>
+ <a href="restrictions.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Restrictions</font></a></P>
+</BODY>
+</HTML>

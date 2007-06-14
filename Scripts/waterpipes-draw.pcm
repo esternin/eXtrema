@@ -1,0 +1,30 @@
+if ~exist('waterpipesDone') then
+ display 'first execute waterpipes.pcm'
+ return
+endif
+clear
+window 0
+defaults
+!
+set plotsymbol -14
+scales\commensurate 0 100 0 100
+graph\overlay x y
+set
+ curvecolor blue
+ plotsymbol 0
+
+generate v 0,,100 50
+graph\overlay v a*v+b
+do i=[1:len(x)]
+  v = (1/a)*(y[i]-b-(y[i]-b-a*x[i])/(a*a+1))
+  w = a*v+b
+  graph\overlay [x[i];v] [y[i];w]
+enddo
+set
+ %textheight 5
+ textalign 2
+ textinteractive 0
+ %xtextlocation 50
+ %ytextlocation 90
+ 
+text 'Total length of pipe = '//rchar(psum,'%4.2f') 

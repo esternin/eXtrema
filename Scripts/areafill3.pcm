@@ -1,0 +1,5 @@
+clear
+window 0
+defaults
+!
+@filledring 12 5 green 100

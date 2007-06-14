@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>RAN</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="RAN function">
+  <PARAM NAME="Keyword" VALUE="random number">
+</OBJECT>
+<P><A NAME="ran"></A>
+<font size=+3 color="green"><B>RAN</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+vout = RAN( v )</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">RAN</font></CODE> function is an element by element function that
+ requires one argument. The argument can be a scalar, vector or matrix. A scalar argument results
+ in a scalar. A vector argument results in a vector with the same length as the argument, and a
+ matrix (tensor) argument results in a matrix (tensor) with the same dimensions as the argument.
+ <CODE><font color="blue">RAN</font></CODE> uses the current value of the seed to generate the
+ next random number, <nobr><CODE>0 &lt; <font color="blue">RAN(v)</font> &lt; 1</CODE>.</nobr>
+ The initial value for the random number seed is <CODE>12345</CODE>. Every time a random number is
+ requested, either from the <a href="..\..\GenerateCommand\generatecommand.htm"><CODE><font color="blue">
+ GENERATE\RANDOM</font></CODE></a> command or from the <CODE><font color="blue">RAN</font></CODE>
+ function, the seed is updated.</p>
+<p>
+<a href="pdiff.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">PDIFF</font></a><br>
+<a href="sign.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">SIGN</font></a>
+</P>
+</BODY>
+</HTML>

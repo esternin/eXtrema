@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Method</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="fit">
+</OBJECT>
+
+<P><A NAME="fitcmethod"></A>
+<font size=+2 color="green">Method</font>
+</P>
+<P>
+ Suppose that you have <i>N</i> data points,
+ <IMG WIDTH=16 HEIGHT=17 ALIGN=MIDDLE SRC="img9.gif">, for
+ <IMG WIDTH=98 HEIGHT=27 ALIGN=MIDDLE SRC="img10.gif">, and the function to be
+ fitted is <IMG WIDTH=51 HEIGHT=29 ALIGN=MIDDLE SRC="img11.gif">, where
+ <IMG WIDTH=11 HEIGHT=12 ALIGN=MIDDLE SRC="img12.gif"> 
+ represents the <i>M</i> parameters
+ <IMG WIDTH=143 HEIGHT=21 ALIGN=MIDDLE SRC="img13.gif">.
+ Define the likelihood of the parameters, given the data, as
+ the probability of the data, given the parameters. We fit for the parameters,
+  <IMG WIDTH=11 HEIGHT=12 ALIGN=MIDDLE SRC="img12.gif">, by finding those
+ values, <IMG WIDTH=40 HEIGHT=12 ALIGN=MIDDLE SRC="img14.gif"> that
+ maximize this likelihood. This form of parameter estimation is known as
+ maximum likelihood estimation.
+</P>
+<P>
+ Good references on this topic include:
+ <UL>
+<LI> <i>Practical Methods of Optimization</i>, 
+ by R. Fletcher, 1980;</li>
+<LI> <i>Methods for Unconstrained Optimization
+ Problems</i> by J. Kowalik and M.R. Osborne, 1968;</li>
+<LI> <i>Statistical Methods in Experimental Physics</i>, by W.T. Eadie, et.al., 1971;</li>
+<LI> <i>Mathematical Statistics</i>, by John E. Freund, 1971;</li>
+<LI> <i>Formulae and Methods in Experimental Data Evaluation, Volume 3,
+ Elements of Probability and Statistics,</i> by Siegmund Brandt, 1984;</li>
+<LI> <i>Numerical Recipes - The Art of Scientific Computing</i>,
+ by W.H. Press, et.al. 1986.</li>
+</UL>
+ Consider the likelihood function
+ <IMG WIDTH=172 HEIGHT=36 ALIGN=MIDDLE SRC="img15.gif"> where <i>P</i> is the
+ probability density, which depends on the random variable <i>x</i> and the
+ parameters
+ <IMG WIDTH=11 HEIGHT=17 ALIGN=MIDDLE SRC="img12.gif">.
+ <IMG WIDTH=11 HEIGHT=12 ALIGN=BOTTOM SRC="img16.gif"> is a measure for the
+ probability to observe just the particular sample we have, and is called
+ an <i>a-posteriori probability</i> since it is computed after the sampling
+ is done. The best estimates for
+ <IMG WIDTH=11 HEIGHT=17 ALIGN=MIDDLE SRC="img12.gif"> are the values which
+ maximize <IMG WIDTH=11 HEIGHT=12 ALIGN=BOTTOM SRC="img16.gif">. But
+ maximizing the logarithm of
+ <IMG WIDTH=11 HEIGHT=12 ALIGN=BOTTOM SRC="img16.gif"> also maximizes
+ <IMG WIDTH=11 HEIGHT=12 ALIGN=BOTTOM SRC="img16.gif">, and
+ maximizing  <IMG WIDTH=43 HEIGHT=29 ALIGN=MIDDLE SRC="img17.gif">
+ is equivalent to minimizing
+ <IMG WIDTH=58 HEIGHT=29 ALIGN=MIDDLE SRC="img18.gif">. So, the goal becomes
+ minimizing the log likelihood function:
+</P>
+<P>
+ <IMG WIDTH=399 HEIGHT=54 ALIGN=BOTTOM SRC="img19.gif">
+</P>
+<P>
+ Let <IMG WIDTH=18 HEIGHT=33 ALIGN=MIDDLE SRC="img20.gif"> be the initial
+ values given for <IMG WIDTH=11 HEIGHT=17 ALIGN=MIDDLE SRC="img12.gif">.
+ The goal is to find a <IMG WIDTH=25 HEIGHT=25 ALIGN=MIDDLE SRC="img21.gif">
+ so that <IMG WIDTH=110 HEIGHT=33 ALIGN=MIDDLE SRC="img22.gif"> is a better
+ approximation to the data. We use the iterative Gauss-Newton method, and the
+ series
+ <IMG WIDTH=101 HEIGHT=33 ALIGN=MIDDLE SRC="img23.gif"> will hopefully
+ converge to the minimum,
+ <IMG WIDTH=45 HEIGHT=16 ALIGN=MIDDLE SRC="img14.gif">.
+</P>
+<P>
+ Generally, the Gauss-Newton method is locally convergent when
+ <IMG WIDTH=16 HEIGHT=33 ALIGN=MIDDLE SRC="img24.gif"> is
+ zero at the minimum. Serious difficulties arise when <i>f</i> is sufficiently
+ nonlinear and  <IMG WIDTH=16 HEIGHT=33 ALIGN=MIDDLE SRC="img24.gif"> is
+ large at the minimum. The Gauss-Newton method has the advantage that linear
+ least squares problems are solved in one iteration.
+<P>
+ Consider the Taylor expansion of
+ <IMG WIDTH=34 HEIGHT=29 ALIGN=MIDDLE SRC="img25.gif">:
+</P>
+<P><center>
+ <IMG WIDTH=493 HEIGHT=57 ALIGN=BOTTOM SRC="img26.gif"></center>
+</P>
+<P>
+ Define the arrays <IMG WIDTH=8 HEIGHT=12 ALIGN=BOTTOM SRC="img27.gif">,
+ <IMG WIDTH=14 HEIGHT=12 ALIGN=BOTTOM SRC="img28.gif">  and
+ <IMG WIDTH=8 HEIGHT=8 ALIGN=BOTTOM SRC="img29.gif">:
+</P>
+<P><center>
+ <IMG WIDTH=332 HEIGHT=131 ALIGN=BOTTOM SRC="img30.gif"></center>
+</P>
+<P>
+ If we linearize, that is, assume that
+ <IMG WIDTH=82 HEIGHT=38 ALIGN=MIDDLE SRC="img31.gif">,
+ then  <IMG WIDTH=224 HEIGHT=33 ALIGN=MIDDLE SRC="img32.gif">, and so
+ <IMG WIDTH=123 HEIGHT=25 ALIGN=MIDDLE SRC="img33.gif">.
+ The problem has reduced to solving the matrix equation
+  <IMG WIDTH=88 HEIGHT=25 ALIGN=MIDDLE SRC="img34.gif">.
+</P>
+<P>
+ <EM>Note</EM>: The partial derivatives are approximated numerically using a
+ central difference approximation:
+</P>
+<P>
+ <IMG WIDTH=428 HEIGHT=43 ALIGN=BOTTOM SRC="img35.gif">
+</P>
+<P>
+<a href="fitform.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Graphical user interface</font></a><br>
+<a href="tolerance.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Tolerance</font></a><br>
+</P>
+</body>
+</html>

@@ -1,0 +1,9 @@
+clear
+defaults
+window 0
+!
+generate x 0,,180 100
+y=sind(x)
+generate x1 0,,180 50
+y1=exp(-x1/90)*sind(x1)
+@fill x y x1 y1 red

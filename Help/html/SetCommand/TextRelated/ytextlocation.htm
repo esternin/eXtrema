@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>YTEXTLOCATION</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="YTEXTLOCATION">
+</OBJECT>
+
+<P><A NAME="setcytextlocation"></A>
+<font size=+3 color="green"><B>YTEXTLOCATION</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET YTEXTLOCATION s<br>
+SET %YTEXTLOCATION s</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+%YTEXTLOCATION = 50.0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE><font color="blue">YTEXTLOCATION</font></CODE> controls the vertical reference position
+ of a character string drawn using the <CODE><font color="blue">
+ <a href="..\..\TextCommand\textcommand.htm">TEXT</a></font></CODE> command. This
+ reference point is used for text alignment.  See the explanation of
+ <A HREF="textalign.htm"><CODE><font color="blue">TEXTALIGN</font></CODE></a> for how
+ <CODE><font color="blue">YTEXTLOCATION</font></CODE> will be used.</p>
+<p>
+ <CODE><font color="blue">YTEXTLOCATION</font></CODE> will be used if
+ <A HREF="textinteractive.htm"><CODE><font color="blue">TEXTINTERACTIVE</font></A> &ne; 0</CODE>.</P>
+<p>
+ There are two forms for <CODE><font color="blue">YTEXTLOCATION</font></CODE>:
+<table border=0 cols=3>
+<tr>
+<td valign="top"><code><font color="blue">&nbsp;YTEXTLOCATION</font></code></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the vertical coordinate, in world coordinate units, of the reference point</td>
+</tr><tr>
+<td valign="top"><code><font color="blue">%YTEXTLOCATION</font></code></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the vertical coordinate, expressed as a percentage of the height of the
+ graphics sub-window,
+ that is, <NOBR><CODE><font color="blue">YTEXTLOCATION</font> =
+ <font color="blue">%YTEXTLOCATION</font>
+ * (<font color="blue"><a href="..\generalgraph\yupperwindow.htm">YUPPERWINDOW</a></font>-
+ <font color="blue"><a href="..\generalgraph\ylowerwindow.htm">YLOWERWINDOW</a></font>)/100</CODE></NOBR>.</td>
+</tr></table>
+</p>
+<P>
+<a href="xtextlocation.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">XTEXTLOCATION</font></a>
+</P>
+</body>
+</html>

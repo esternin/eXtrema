@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>INTERSECTION</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="intersection">
+	<PARAM NAME="Keyword" VALUE="order property">
+	<PARAM NAME="Keyword" VALUE="vector order property">
+	<PARAM NAME="Keyword" VALUE="SHOW command">
+	<PARAM NAME="Keyword" VALUE="WHERE function">
+</OBJECT>
+<P><A NAME="intersection"></A>
+<font size=+3 color="green"><B>INTERSECTION</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+vout = v1 /&amp; v2</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The intersection operator, <CODE>/&</CODE>, is a binary operator that only accepts vectors
+ as operands, and returns a vector which contains the intersection of the elements of
+ these two vectors.</p>
+<p>
+ All vectors have an order property. Vectors are either in ascending order, descending
+ order, or un-ordered.  The type is displayed in the 
+ <CODE><font color="blue"><a href="../../ShowCommand/showcommand.htm">SHOW</a></font></CODE>
+ command. For now, being ordered only has an affect on the vector union,
+ <CODE>/|</CODE>, and the vector intersection, <CODE>/&amp;</CODE>.  These operations are
+ much faster if the vector operands are ordered.  The
+ <CODE><font color="blue"><a href="../../Functions/VariableCharacteristics/Where/where.htm">WHERE</a></font></CODE>
+ function produces an ascending order vector, as does the
+ <CODE><font color="blue"><a href="../../SortCommand/sortcommand.htm">SORT\UP</a></font></CODE>
+ command.  The <CODE><font color="blue"><a href="../../SortCommand/sortcommand.htm">SORT\DOWN</a></font></CODE> command produces a
+ descending order vector.  This vector property will be utilized more in the future to
+ enhance speed and efficiency.</P>
+<p>
+ <font size=+1 color="green">Example</font></p>
+<p>
+ To illustrate vector intersection, suppose you have two vectors:</p>
+<p>
+ <CODE>X = [1;2;3;4;5;6;7]</CODE> and <CODE>Y = [-2;-1;0;1;2]</CODE></p>
+<p>
+ Then: <CODE>X/&amp;Y = [1;2]</CODE></p>
+<P>
+<a href="..\union\union.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">vector union</font></a><br>
+<a href="..\append\append.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">append vectors or strings</font></a>
+</P>
+</BODY>
+</HTML>
+
+
+

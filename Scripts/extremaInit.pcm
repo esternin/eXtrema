@@ -1,0 +1,10 @@
+x=[1:10]
+y=x*x
+window 1 0 0 50 50
+window 2 0 50 50 100
+window 3 50 50 100 100
+window 4 50 0 100 50
+window 0
+clear
+defaults
+graph x y

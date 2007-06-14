@@ -1,0 +1,18 @@
+CLEAR
+DEFAULTS
+WINDOW 0
+!
+GENERATE THETA 0 .25 360
+R[1:LEN(THETA)] = 1
+clear
+defaults
+SET AUTOSCALE COMMENSURATE
+GRAPH R*COSD(THETA) R*SIND(THETA)
+PIC = AREA(R*COSD(THETA),R*SIND(THETA))
+set
+ textalign 2
+ %xtextlocation 50
+ %ytextlocation 90
+ textinteractive 0
+
+text 'Calculated  <pi> = '//rchar(pic)//', acos(-1) = '//rchar(acos(-1))

@@ -1,0 +1,23 @@
+clear
+defaults
+window 0
+!
+cmap='DEFAULT'
+inquire 'What colormap would you like to see ('//cmap//')' cmap
+set colormap cmap
+get colormapsize cSize
+!
+xmax = int(sqrt(cSize)+0.5)
+ymax = xmax
+!
+scales\commensurate\-messages 0 17 0 17
+do j = [0:ymax-1]
+ do i = [1:xmax]
+  n = i+j*xmax
+  if (n>cSize) then goto DONE
+  set areafillcolor n
+  graph\overlay [i;i+1;i+1;i;i] [ymax-j-1;ymax-j-1;ymax-j;ymax-j;ymax-j-1]
+ enddo
+enddo
+DONE:
+return

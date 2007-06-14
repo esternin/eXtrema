@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>HISTOGRAMTYPE</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="HISTOGRAMTYPE">
+</OBJECT>
+
+<P><A NAME="setchistogramtype"></A>
+<font size=+3 color="green"><B>HISTOGRAMTYPE</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET HISTOGRAMTYPE a</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+HISTOGRAMTYPE = 0</CODE>
+</TD></TR>
+</TABLE>
+ 
+<P><CODE><font color="blue">HISTOGRAMTYPE</font></CODE> controls whether a normal line graph
+ or a  histogram is drawn. Histograms can have tails or no tails  and the profile
+ can be along the <i>x</i>-axis or along the <i>y</i>-axis.</P>
+
+<TABLE BORDER=0 COLS=3>
+<TR>
+<TD valign="top" colspan=3 align="left"><CODE><font color="blue">HISTOGRAMTYPE</font></CODE></td>
+</tr><tr>
+<td colspan=3 valign="center"><hr></td>
+</tr><tr>
+<TD valign="top" align="center"><CODE>0</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">normal line graph, not a histogram</td>
+</tr><tr>
+<TD valign="top" align="center"><CODE>1</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">histogram with no tails and profile along the <i>x</i>-axis.<br>
+  Can control the width and colour of each individual bar.</td>
+</tr><tr>
+<TD valign="top" align="center"><CODE>2</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">histogram with tails to <i>y</i><CODE>=0</CODE> and profile along the <i>x</i>-axis.<br>
+  Can control the fill pattern, width and colour of each individual bar</td>
+</tr><tr>
+<TD valign="top" align="center"><CODE>3</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">histogram without tails and profile along the <i>y</i>-axis.<br>
+  Can control the height and colour of each individual bar.</td>
+</tr><tr>
+<TD valign="top" align="center"><CODE>4</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">histogram with tails to <i>x</i><CODE>=0</CODE> and profile along the <i>y</i>-axis.<br>
+  Can control the fill pattern, height and colour of each individual bar.</td>
+</tr></table>
+
+<p>No plotting symbol will be drawn at the data  points when
+ <CODE><font color="blue">HISTOGRAMTYPE</font> &gt; 0</CODE>.
+<P>
+<a href="curvelinetype.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">CURVELINETYPE</font></a>
+</P>
+</body>
+</html>

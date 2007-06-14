@@ -1,0 +1,54 @@
+clear
+window 0
+defaults
+!
+a=2
+b=0.3
+c=4
+generate x 0,,10 50
+generate\random r 1 1.2 50
+y=a*exp(-b*(x-c)^2)+r
+set
+ plotsymbol -1
+ %xnumbersheight 4
+ %ynumbersheight 4
+ 
+graph x y
+scalar\fit a b c d
+fit\chisq y=a*exp(-b*(x-c)^2)+d
+fit\update yf
+set
+ plotsymbol 0
+ curvecolor red
+
+graph\overlay x yf
+get
+ %xloweraxis xlx
+ %yupperaxis yux
+
+set
+ %textheight 4
+ textfont 'Arial'
+ %xtextlocation xlx
+ %ytextlocation 98
+ textalign 7
+ textinteractive 0
+
+yux = yux-2
+text 'Fit: y=a*e<^>-b*(x-c)<^>2<_><_> + d'
+set
+ %textheight 3
+ textfont 'Courier New'
+ textalign 1
+ %xtextlocation 55
+ %ytextlocation yux-5
+
+text 'a = '//rchar(a)
+set %ytextlocation yux-10
+text 'b = '//rchar(b)
+set %ytextlocation yux-15
+text 'c = '//rchar(c)
+set %ytextlocation yux-20
+text 'd = '//rchar(d)
+set %ytextlocation yux-25
+text 'Total <V1%><chi><V-1%><^>2<_> = '//rchar(fit$chisq)

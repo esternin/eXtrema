@@ -1,0 +1,27 @@
+defaults
+clear
+x=[1:19]
+y=[1:10]//[9:1:-1]+5*ran(x)
+f1='(a+b*x)*(x<=x0)+(c+d*x)*(x>=x0)+(a+b*x-c-d*x)*1.e5*(x=x0)'
+f2='(a+b*x)*(x<=x0)+(c+d*x)*(x>x0)'
+window 5
+defaults
+set plotsymbol -1
+graph x y
+scalar\fit a b c d
+x0=10
+fit y=1*f1
+set plotsymbol 0
+graph\overlay x[where(x<=x0)] (a+b*x)[where(x<=x0)]
+graph\overlay x[where(x>=x0)] (c+d*x)[where(x>=x0)]
+window 7
+defaults
+set plotsymbol -1
+graph x y
+destroy a b c d
+scalar\fit a b c d
+fit y=1*f2
+set plotsymbol 0
+graph\overlay x[where(x<=x0)] (a+b*x)[where(x<=x0)]
+graph\overlay x[where(x>x0)] (c+d*x)[where(x>x0)]
+replot\all

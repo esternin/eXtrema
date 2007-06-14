@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Expanded names</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="expand name">
+	<PARAM NAME="Keyword" VALUE="\EXPAND qualifier">
+</OBJECT>
+
+<P><A NAME="destroycommandexpandednames"></A>
+<font size=+3 color="green"><B>Expanded names</B></font></P>
+<P>
+ By using the <CODE><font color="blue">\EXPAND</font></CODE> qualifier,
+ you can enter names that must be constructed, or string variables that
+ can be expanded.</P>
+<P>
+ For example, suppose that scalar <CODE>I</CODE> has the value <CODE>2</CODE>,
+ and the string variable <CODE>TXT</CODE> has the value <CODE>'X2'</CODE>.</P>
+<P>
+ <TABLE>
+ <tr>
+ <td><CODE><font color="blue">DESTROY\EXPAND 'X'//RCHAR(I)</font></CODE>&nbsp;&nbsp;&nbsp;</td>
+ <td>will destroy <CODE>X2</CODE></td>
+ </tr><tr>
+ <td><CODE><font color="blue">DESTROY TXT</font></CODE></td>
+ <td>will destroy <CODE>TXT</CODE></td>
+ </tr><tr>
+ <td><CODE><font color="blue">DESTROY\EXPAND TXT</font></CODE></td>
+ <td>will destroy <CODE>X2</CODE></td>
+ </tr></table></P>
+<P>
+<a href="destroycommand.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">DESTROY command</font></a><br>
+<a href="indexranges.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Index ranges</font></a><br>
+</P>
+</BODY>
+</HTML>

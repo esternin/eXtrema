@@ -1,0 +1,13 @@
+clear
+defaults
+GENERATE THETA 0,,360 100
+XTEMP = 12*COSD(THETA)
+YTEMP = 12*SIND(THETA)
+XTEMP[200:101:-1] = 5*COSD(THETA)
+YTEMP[200:101:-1] = 5*SIND(THETA)
+SET
+ AREAFILLCOLOR green
+ PLOTSYMBOL 0                    ! no plotting symbol
+ AUTOSCALE COMMENSURATE          ! choose axis autoscaling type
+
+GRAPH XTEMP YTEMP                ! plot data with axes

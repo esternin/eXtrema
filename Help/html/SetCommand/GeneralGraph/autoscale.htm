@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>AUTOSCALE</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="AUTOSCALE">
+	<PARAM NAME="Keyword" VALUE="graph axes">
+	<PARAM NAME="Keyword" VALUE="tic marks">
+	<PARAM NAME="Keyword" VALUE="ON keyword">
+	<PARAM NAME="Keyword" VALUE="OFF keyword">
+	<PARAM NAME="Keyword" VALUE="COMMENSURATE keyword">
+	<PARAM NAME="Keyword" VALUE="X keyword">
+	<PARAM NAME="Keyword" VALUE="Y keyword">
+	<PARAM NAME="Keyword" VALUE="\VIRTUAL qualifier">
+	<PARAM NAME="Keyword" VALUE="minimum axis value">
+	<PARAM NAME="Keyword" VALUE="maximum axis value">
+</OBJECT>
+<P><A NAME="setcautoscale"></A>
+<font size=+3 color="green"><B>AUTOSCALE</B></font></P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET AUTOSCALE ON<br>
+SET AUTOSCALE ON\VIRTUAL<BR>
+SET AUTOSCALE OFF<BR>
+SET AUTOSCALE COMMENSURATE<BR>
+SET AUTOSCALE X<BR>
+SET AUTOSCALE X\VIRTUAL<BR>
+SET AUTOSCALE Y<BR>
+SET AUTOSCALE Y\VIRTUAL</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default</B>:</TD>
+<TD width=80% valign="top"><CODE>
+ON</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE><font color="blue">AUTOSCALE</font></CODE> controls the autoscaling for
+ the graph axes.  Autoscaling means to automatically choose the minimum and maximum
+ values for the axes, as well as the number of large, numbered, tic marks for the
+ axes.  Autoscaling affects commands that draw axes.  The type of autoscaling
+ that is done depends on the keyword that is used.</p>
+<p>
+ <table border=0 cols=2 frame=box rules=all>
+ <tr>
+ <td align="center" valign="top"><i>keyword</i></td>
+ <td align="center" valign="top"><i>result</i></td>
+ </tr><tr>
+ <TD COLSPAN=2><HR></TD>
+ </TR><TR>
+ <td align="center"><code>ON</code></td>
+ <td>autoscale the horizontal and the vertical axes</td>
+ </tr><tr>
+ <td align="center"><code>OFF</code></td>
+ <td>turn off all autoscaling</td>
+ </tr><tr>
+ <td></td>
+ <td>the axes will remain as they are currently set</td>
+ <tr></tr>
+ <td align="center"><code>COMMENSURATE</code></td>
+ <td>autoscale the horizontal and vertical axes and</td>
+ </tr><tr>
+ <td></td>
+ <td>change the lengths of the axes to be commensurate</td>
+ </tr><tr>
+ <td align="center"><code>X</code></td>
+ <td>autoscale the horizontal axis only</td>
+ </tr><tr>
+ <td></td>
+ <td>the vertical axis will remain as currently set</td>
+ </tr><tr>
+ <td align="center"><code>Y</code></td>
+ <td>autoscale the vertical axis only</td>
+ </tr><tr>
+ <td></td>
+ <td>the horizontal axis will remain as currently set</td>
+ </tr></table></p>
+<p>
+Autoscaling remains in effect until either the <CODE><FONT COLOR="BLUE">
+SET AUTOSCALE</FONT></CODE> or the <a href="..\..\ScalesCommand\scalescommand.htm">
+<code><font color="blue">SCALES</font></code></a>
+command is entered.  The default is to have autoscaling on.</p>
+<p>
+When the <code><font color="blue">\VIRTUAL</font></code> qualifier is used,
+the virtual minima and maxima for the axes will be determined, so that the
+axes may not begin or end at a large tic mark.  If the keyword <code><font color="blue">
+ON</FONT></CODE> is used, both the <i>x</i> and <i>y</i>-axes will have virtual
+minima and maxima.  If the keyword <code><font color="blue">X</font></code>
+is used, only the <i>x</i>-axis will have virtual minimum and maximum.  If the
+keyword <code><font color="blue">Y</font></code> is used, only the <i>y</i>-axis
+will have virtual minimum and maximum.</p>
+<p>
+<a href="tension\tension.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">TENSION</font></a><BR>
+<a href="colormap.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">COLORMAP</font></a>
+</P>
+</body>
+</html>
