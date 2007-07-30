@@ -40,7 +40,6 @@ GRA_plotSymbol::GRA_plotSymbol( int code, double size, double angle, GRA_color *
   int c = abs(code);
   shapeCode_ = (c-1)%numberOfShapes_ + 1;
   connectToPrevious_ = (code>=0);
-  if( c==0 || c==32 )size_ = 0.0;
 }
 
 void GRA_plotSymbol::CopyStuff( GRA_plotSymbol const &rhs )

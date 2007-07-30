@@ -44,10 +44,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_diffusionPlot.h"
 #include "GRA_ditheringPlot.h"
 #include "GRA_gradientPlot.h"
+#include "GRA_cartesianAxes.h"
+#include "GRA_axis.h"
+#include "AxisPopup.h"
+#include "CurvePopup.h"
 
 BEGIN_EVENT_TABLE( GraphicsPage, wxNotebookPage )
   EVT_PAINT( GraphicsPage::OnPaint )
   EVT_LEFT_DOWN( GraphicsPage::OnMouseLeftDown )
+  EVT_RIGHT_DOWN( GraphicsPage::OnMouseRightDown )
   EVT_MOTION( GraphicsPage::OnMouseMove )
 END_EVENT_TABLE()
 
@@ -329,6 +334,52 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
     }
     textToPlace_ = 0;
     ExGlobals::RestartScripts();
+  }
+}
+
+void GraphicsPage::OnMouseRightDown( wxMouseEvent &event )
+{
+  long xl, yl;
+  event.GetPosition( &xl, &yl );
+  double xW, yW;
+  ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), xW, yW );
+  //
+  // loop over all GRA_window's on the page
+  std::vector<GRA_window*>::const_iterator GWend = graphWindows_.end();
+  for( std::vector<GRA_window*>::const_iterator i=graphWindows_.begin(); i!=GWend; ++i )
+  {
+    // loop over all drawable objects in each GRA_window
+    std::vector<GRA_drawableObject*>::const_iterator DOend = (*i)->GetDrawableObjects().end();
+    for( std::vector<GRA_drawableObject*>::const_iterator j=(*i)->GetDrawableObjects().begin(); j!=DOend; ++j )
+    {
+      if( (*j)->IsaCartesianAxes() )
+      {
+        GRA_axis *x=0, *y=0, *boxX=0, *boxY=0;
+        static_cast<GRA_cartesianAxes*>(*j)->GetAxes(x,y,boxX,boxY);
+        if( x && x->Inside(xW,yW) )
+        {
+          AxisPopup *axisPopup = ExGlobals::GetAxisPopup( this );
+          axisPopup->Setup( *i, 'X' );
+          return;
+        }
+        if( y && y->Inside(xW,yW) )
+        {
+          AxisPopup *axisPopup = ExGlobals::GetAxisPopup( this );
+          axisPopup->Setup( *i, 'Y' );
+          return;
+        }
+      }
+      else if( (*j)->IsaCartesianCurve() )
+      {
+        GRA_cartesianCurve *cc = static_cast<GRA_cartesianCurve*>(*j);
+        if( cc->Inside(xW,yW) )
+        {
+          CurvePopup *curvePopup = ExGlobals::GetCurvePopup( this );
+          curvePopup->Setup( *i, cc );
+          return;
+        }
+      }
+    }
   }
 }
 

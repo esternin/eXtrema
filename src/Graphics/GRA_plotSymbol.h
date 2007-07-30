@@ -62,8 +62,8 @@ public:
   
   void SetShapeCode( int c )
   {
-    if( c < 0 )connectToPrevious_ = false;
-    shapeCode_ = abs(c);
+    connectToPrevious_ = (c>=0);
+    shapeCode_ = (abs(c)-1)%numberOfShapes_ + 1;
   }
   
   int GetShapeCode() const

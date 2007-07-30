@@ -117,7 +117,9 @@ public:
   void DrawZerolines( bool, bool );
   
   void AddDrawableObject( GRA_drawableObject *object )
-  { drawableObjects_.push_back( object ); }
+  { drawableObjects_.push_back(object); }
+
+  void RemoveDrawableObject( GRA_drawableObject * );
   
   GRA_drawableObject *GetDrawableObject( int i ) const
   {

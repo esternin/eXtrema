@@ -1,4 +1,4 @@
-# Copyright (C) 2006 Joseph L. Chuma <chuma@triumf.ca>
+# Copyright (C) 2007 Joseph L. Chuma <chuma@triumf.ca>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 

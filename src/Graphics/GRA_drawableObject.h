@@ -102,7 +102,10 @@ public:
 
   virtual void Make()
   {}
-
+  
+  virtual bool Inside( double, double )
+  { return false; }
+  
 protected:
   Type type_;
 };

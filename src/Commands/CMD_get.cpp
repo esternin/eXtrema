@@ -335,7 +335,7 @@ NEXTLINE:
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with GRIDLINETYPE") );
     GRA_intCharacteristic *gridLineType =
-      static_cast<GRA_intCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("GRIDLINETYPE")));
+      static_cast<GRA_intCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("GRIDLINETYPE")));
     fvalue = static_cast<double>(gridLineType->Get());
   }
   else if( keyword==wxT("CURVELINETYPE") || keyword==wxT("LINTYP") )
@@ -351,6 +351,20 @@ NEXTLINE:
     GRA_intCharacteristic *curveLineWidth =
       static_cast<GRA_intCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("CURVELINEWIDTH")));
     fvalue = static_cast<double>(curveLineWidth->Get());
+  }
+  else if( keyword==wxT("XAXISLINEWIDTH") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with XAXISLINEWIDTH") );
+    GRA_intCharacteristic *axisLineWidth =
+      static_cast<GRA_intCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LINEWIDTH")));
+    fvalue = static_cast<double>(axisLineWidth->Get());
+  }
+  else if( keyword==wxT("YAXISLINEWIDTH") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with YAXISLINEWIDTH") );
+    GRA_intCharacteristic *axisLineWidth =
+      static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LINEWIDTH")));
+    fvalue = static_cast<double>(axisLineWidth->Get());
   }
   else if( keyword==wxT("XAXISCOLOR") || keyword==wxT("XAXISCOLOUR") )
   {

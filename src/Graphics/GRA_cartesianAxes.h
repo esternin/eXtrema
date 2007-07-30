@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -34,8 +34,7 @@ class GRA_cartesianAxes : public GRA_drawableObject
 {
 public:
   GRA_cartesianAxes()
-    : GRA_drawableObject(wxT("CARTESIANAXES")), xAxis_(0), yAxis_(0),
-      boxBottomAxis_(0), boxTopAxis_(0), boxRightAxis_(0), boxLeftAxis_(0)
+    : GRA_drawableObject(wxT("CARTESIANAXES")), xAxis_(0), yAxis_(0), boxXAxis_(0), boxYAxis_(0)
   {}
 
   GRA_cartesianAxes( std::vector<double> const &, std::vector<double> const &, bool, bool );
@@ -62,18 +61,21 @@ public:
 
   friend std::ostream &operator<<( std::ostream &, GRA_cartesianAxes const & );
 
-  void SetAxes( GRA_axis *x, GRA_axis *y,
-                GRA_axis *bottom, GRA_axis *top, GRA_axis *left, GRA_axis *right )
+  void SetAxes( GRA_axis *x, GRA_axis *y, GRA_axis *boxX, GRA_axis *boxY )
   {
     xAxis_ = x;
     yAxis_ = y;
-    boxBottomAxis_ = bottom;
-    boxTopAxis_ = top;
-    boxLeftAxis_ = left;
-    boxRightAxis_ = right;
+    boxXAxis_ = boxX;
+    boxYAxis_ = boxY;
   }
 
-  void GetAxes( GRA_axis *&, GRA_axis *&, GRA_axis *&, GRA_axis *&, GRA_axis *&, GRA_axis *& );
+  void GetAxes( GRA_axis *&x, GRA_axis *&y, GRA_axis *&boxX, GRA_axis *&boxY ) const
+  {
+    x = xAxis_;
+    y = yAxis_;
+    boxX = boxXAxis_;
+    boxY = boxYAxis_;
+  }
   
 private:
   void DeleteStuff();
@@ -87,8 +89,7 @@ private:
   void SetNumberOfIncrements( int &, double, double, GRA_setOfCharacteristics * );
   //
   bool xOnTop_, yOnRight_;
-  GRA_axis *xAxis_, *yAxis_;
-  GRA_axis *boxBottomAxis_, *boxTopAxis_, *boxLeftAxis_, *boxRightAxis_;
+  GRA_axis *xAxis_, *yAxis_, *boxXAxis_, *boxYAxis_;
 };
 
 #endif

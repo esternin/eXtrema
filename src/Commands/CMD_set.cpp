@@ -527,7 +527,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("HISTOGRAMTYPE")))->
           Set(static_cast<int>(GetValue(keyword)));
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -559,7 +559,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("TITLECOLOR")))->
           Set( color );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -658,7 +658,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("CURVECOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -730,7 +730,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("CURVELINETYPE")))->
           Set( static_cast<int>(value) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -743,7 +743,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("CURVELINETYPE")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -756,7 +756,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("GRIDLINETYPE")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -775,7 +775,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(
         gw->GetDataCurveCharacteristics()->Get(wxT("CURVELINEWIDTH")))->Set( w );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -788,7 +788,33 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("CURVELINEWIDTH")))->
           Set(static_cast<int>(GetValue(keyword)+0.5));
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
+    {
+      throw;
+    }
+  }
+  else if( keyword==wxT("XAXISLINEWIDTH") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    try
+    {
+      static_cast<GRA_intCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LINEWIDTH")))->
+          Set(static_cast<int>(GetValue(keyword)+0.5));
+    }
+    catch (ECommandError const &e)
+    {
+      throw;
+    }
+  }
+  else if( keyword==wxT("YAXISLINEWIDTH") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    try
+    {
+      static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LINEWIDTH")))->
+          Set(static_cast<int>(GetValue(keyword)+0.5));
+    }
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -801,7 +827,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("AXISCOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -814,7 +840,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("AXISCOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -827,7 +853,7 @@ NEXTLINE:
       static_cast<GRA_fontCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LABELFONT")))->
           Set( GetFont(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -840,7 +866,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LABELCOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -853,7 +879,7 @@ NEXTLINE:
       static_cast<GRA_fontCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELFONT")))->
           Set( GetFont(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -866,7 +892,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELCOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -879,7 +905,7 @@ NEXTLINE:
       static_cast<GRA_fontCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSFONT")))->
           Set( GetFont(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -892,7 +918,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSCOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -905,7 +931,7 @@ NEXTLINE:
       static_cast<GRA_fontCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSFONT")))->
           Set( GetFont(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -918,7 +944,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSCOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -930,7 +956,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LOWERAXIS")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -942,7 +968,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("UPPERAXIS")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -954,7 +980,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LOWERAXIS")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -966,7 +992,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("UPPERAXIS")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -978,7 +1004,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("XLOWERWINDOW")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -990,7 +1016,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("XUPPERWINDOW")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1002,7 +1028,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("YLOWERWINDOW")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1014,7 +1040,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("YUPPERWINDOW")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1027,7 +1053,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("GRAPHBOX")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1040,7 +1066,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1053,7 +1079,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1066,7 +1092,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBEROFDIGITS")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1079,7 +1105,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBEROFDIGITS")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1092,7 +1118,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBEROFDECIMALS")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1105,7 +1131,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBEROFDECIMALS")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1117,7 +1143,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSHEIGHT")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1129,7 +1155,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSHEIGHT")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1141,7 +1167,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("IMAGTICLENGTH")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1153,7 +1179,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("IMAGTICLENGTH")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1166,7 +1192,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("IMAGTICANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1179,7 +1205,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("IMAGTICANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1192,7 +1218,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1205,7 +1231,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1218,7 +1244,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("POWER")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1231,7 +1257,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("POWER")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1244,7 +1270,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("POWERAUTO")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1257,7 +1283,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("POWERAUTO")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1299,7 +1325,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LABELHEIGHT")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1311,7 +1337,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELHEIGHT")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1324,7 +1350,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LABELON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1337,7 +1363,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1349,7 +1375,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LARGETICLENGTH")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1361,7 +1387,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LARGETICLENGTH")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1373,7 +1399,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("SMALLTICLENGTH")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1385,7 +1411,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("SMALLTICLENGTH")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1398,7 +1424,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("TICANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1411,7 +1437,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("TICANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1424,7 +1450,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("FORCECROSS")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1437,7 +1463,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("FORCECROSS")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1451,7 +1477,7 @@ NEXTLINE:
       temp = GetValue(keyword);
       static_cast<GRA_doubleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("MIN")))->Set(temp);
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1466,7 +1492,7 @@ NEXTLINE:
       temp = GetValue(keyword);
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("MIN")))->Set(temp);
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1481,7 +1507,7 @@ NEXTLINE:
       temp = GetValue(keyword);
       static_cast<GRA_doubleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("MAX")))->Set(temp);
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1496,7 +1522,7 @@ NEXTLINE:
       temp = GetValue(keyword);
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("MAX")))->Set(temp);
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1510,7 +1536,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("VIRTUALMIN")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1523,7 +1549,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("VIRTUALMIN")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1536,7 +1562,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("VIRTUALMAX")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1549,7 +1575,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("VIRTUALMAX")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1562,7 +1588,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NLINCS")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1574,7 +1600,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1597,7 +1623,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NLINCS")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1609,7 +1635,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1632,7 +1658,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NSINCS")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1645,7 +1671,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NSINCS")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1658,7 +1684,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("TICSON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1671,7 +1697,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("TICSON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1684,7 +1710,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("TICSBOTHSIDES")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1697,7 +1723,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("TICSBOTHSIDES")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1709,7 +1735,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1724,7 +1750,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1740,7 +1766,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("AXISON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1753,7 +1779,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("AXISON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1766,7 +1792,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("GRID")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1779,7 +1805,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("GRID")))->
           Set( static_cast<int>(GetValue(keyword)) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1792,7 +1818,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("AXISANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1805,7 +1831,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("AXISANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1820,7 +1846,7 @@ NEXTLINE:
           Set( value );
       //gw->GetReplot()->SetXLogBase( value );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1833,7 +1859,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LOGSTYLE")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1848,7 +1874,7 @@ NEXTLINE:
           Set( value );
       //gw->GetReplot()->SetYLogBase( value );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1861,7 +1887,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LOGSTYLE")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1874,7 +1900,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("ZERO")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1887,7 +1913,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("ZERO")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1900,7 +1926,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("MOD")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1913,7 +1939,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("MOD")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1926,7 +1952,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LEADINGZEROS")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1939,7 +1965,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LEADINGZEROS")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1952,7 +1978,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("OFFSET")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1965,7 +1991,7 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("OFFSET")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1978,7 +2004,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("DROPFIRSTNUMBER")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -1991,7 +2017,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("DROPFIRSTNUMBER")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2004,7 +2030,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("DROPLASTNUMBER")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2017,7 +2043,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("DROPLASTNUMBER")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2057,7 +2083,7 @@ NEXTLINE:
     {
       CMD_read::Instance()->SetErrorFill( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2091,7 +2117,7 @@ NEXTLINE:
     {
       font = GetFont(keyword);
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2109,7 +2135,7 @@ NEXTLINE:
       static_cast<GRA_fontCharacteristic*>(gw->GetTextCharacteristics()->Get(wxT("FONT")))->
           Set( GetFont(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2122,7 +2148,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetTextCharacteristics()->Get(wxT("COLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2135,7 +2161,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetTextCharacteristics()->Get(wxT("INTERACTIVE")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2147,7 +2173,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2162,7 +2188,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2188,7 +2214,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetTextCharacteristics()->Get(wxT("HEIGHT")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2201,7 +2227,7 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetTextCharacteristics()->Get(wxT("ANGLE")))->
           Set( GetValue(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2213,7 +2239,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetTextCharacteristics()->Get(wxT("XLOCATION")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2225,7 +2251,7 @@ NEXTLINE:
       static_cast<GRA_distanceCharacteristic*>(gw->GetTextCharacteristics()->Get(wxT("YLOCATION")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2237,7 +2263,7 @@ NEXTLINE:
     {
       value = fabs( GetValue( keyword ) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2258,7 +2284,7 @@ NEXTLINE:
     {
       value = fabs( GetValue( keyword ) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2338,7 +2364,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2351,7 +2377,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("LEGENDSIZE")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2364,7 +2390,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("ON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2377,7 +2403,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("ENTRYLINEON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2390,7 +2416,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("FRAMEON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2439,7 +2465,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("FRAMECOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2452,7 +2478,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("TRANSPARENCY")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2467,7 +2493,7 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("SYMBOLS")))->
           Set( u );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2480,7 +2506,7 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("TITLEON")))->
           Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2505,7 +2531,7 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("TITLEHEIGHT")))->
           Set( GetValue(keyword), percent );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2518,7 +2544,7 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("TITLECOLOR")))->
           Set( GetColor(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2531,7 +2557,7 @@ NEXTLINE:
       static_cast<GRA_fontCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("TITLEFONT")))->
           Set( GetFont(keyword) );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2543,7 +2569,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2556,7 +2582,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2570,7 +2596,7 @@ NEXTLINE:
         gw->GetGeneralCharacteristics()->Get(wxT("CONTOURLABELHEIGHT")))->
           Set(GetValue(keyword),percent);
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2583,7 +2609,7 @@ NEXTLINE:
         gw->GetGeneralCharacteristics()->Get(wxT("CONTOURLABELSEPARATION")))->
           Set(GetValue(keyword),percent);
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }
@@ -2595,7 +2621,7 @@ NEXTLINE:
     {
       value = GetValue( keyword );
     }
-    catch (ECommandError &e)
+    catch (ECommandError const &e)
     {
       throw;
     }

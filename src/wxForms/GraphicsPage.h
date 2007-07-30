@@ -83,6 +83,7 @@ public:
 
   void OnMouseMove( wxMouseEvent & );
   void OnMouseLeftDown( wxMouseEvent & );
+  void OnMouseRightDown( wxMouseEvent & );
 
   friend std::ostream &operator<<( std::ostream &, GraphicsPage const * );
 

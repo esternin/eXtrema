@@ -62,6 +62,7 @@ public:
   double GetLowerAxis() const;
   double GetUpperAxis() const;
 
+  bool Inside( double, double );
   void Make();
   void Draw( GRA_wxWidgets *, wxDC & );
 

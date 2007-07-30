@@ -55,7 +55,7 @@ void GRA_cartesianCurve::SetUp()
     {
       // make sure plot symbols are disconnected when plotting smooth data curve
       for( std::size_t i=0; i<psSize; ++i )
-        symbols[i]==0 ? symbols[i]=-11 : symbols[i]=-1*abs(symbols[i]); // 11 is a dot
+        symbols[i] = symbols[i]==0 ? -11 : -1*abs(symbols[i]); // 11 is a dot
       for( std::size_t i=psSize; i<xSize; ++i )symbols.push_back(-11);
     }
     else for( std::size_t i=psSize; i<xSize; ++i )symbols.push_back(11);
@@ -63,7 +63,7 @@ void GRA_cartesianCurve::SetUp()
   else
   {
     int s = psCharacteristic->Get();
-    if( smooth_ )s==0 ? s=-11 : s=-1*abs(s);
+    if( smooth_ )s = s==0 ? -11 : -1*abs(s);
     symbols.assign( xSize, s );
   }
   GRA_sizeCharacteristic *pssizeCharacteristic =
@@ -214,6 +214,119 @@ void GRA_cartesianCurve::Make()
   MakeErrorBars();
 }
 
+void GRA_cartesianCurve::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
+{
+  ExGlobals::SetClippingBoundary( xlaxis_, ylaxis_, xuaxis_, yuaxis_ );
+  switch ( histogramType_ )
+  {
+    case 1:
+    case 3:
+      DrawHistogramNoTails( graphicsOutput, dc );
+      break;
+    case 2:
+    case 4:
+      DrawHistogramWithTails( graphicsOutput, dc );
+      break;
+    default:
+      DrawNonHistogram( graphicsOutput, dc );
+  }
+  DrawErrorBars( graphicsOutput, dc );
+  ExGlobals::ResetClippingBoundary();
+}
+
+bool GRA_cartesianCurve::Inside( double x, double y )
+{
+  double const eps = 0.05;
+  std::vector<double> xp(4,0.0), yp(4,0.0);
+  if( histogramType_ == 0 )
+  {
+    int size = xCurve_.size();
+    for( int i=1; i<size; ++i )
+    {
+      double L = sqrt((xCurve_[i]-xCurve_[i-1])*(xCurve_[i]-xCurve_[i-1])+
+                      (yCurve_[i]-yCurve_[i-1])*(yCurve_[i]-yCurve_[i-1]));
+      double cost = (xCurve_[i]-xCurve_[i-1])/L;
+      double sint = (yCurve_[i]-yCurve_[i-1])/L;
+      xp[0] = xCurve_[i-1] - eps*sint;
+      yp[0] = yCurve_[i-1] + eps*cost;
+      xp[1] = xCurve_[i-1] + eps*sint;
+      yp[1] = yCurve_[i-1] - eps*cost;
+      xp[2] = xCurve_[i] + (xCurve_[i-1]-xp[0]);
+      yp[2] = yCurve_[i] - (yp[0]-yCurve_[i-1]);
+      xp[3] = xCurve_[i] - (xCurve_[i-1]-xp[0]);
+      yp[3] = yCurve_[i] + (yp[0]-yCurve_[i-1]);
+      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
+    }
+    return false;
+  }
+  else if( histogramType_ == 1 )
+  {
+    int size = xCurve_.size();
+    for( int i=0; i<size; i+=2 )
+    {
+      xp[0] = xCurve_[i] - eps;
+      yp[0] = yCurve_[i];
+      xp[1] = xCurve_[i] + eps;
+      yp[1] = yCurve_[i];
+      xp[2] = xCurve_[i+1] + eps;
+      yp[2] = yCurve_[i+1];
+      xp[3] = xCurve_[i+1] - eps;
+      yp[3] = yCurve_[i+1];
+      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
+      if( i+2 >= size )break;
+      xp[0] = xCurve_[i+1];
+      yp[0] = yCurve_[i+1] - eps;
+      xp[1] = xCurve_[i+1];
+      yp[1] = yCurve_[i+1] + eps;
+      xp[2] = xCurve_[i+2];
+      yp[2] = yCurve_[i+2] + eps;
+      xp[3] = xCurve_[i+2];
+      yp[3] = yCurve_[i+2] - eps;
+      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
+    }
+    return false;
+  }
+  else if( histogramType_ == 2 )
+  {
+    int size = xCurve_.size();
+    for( int i=0; i<size; i+=4 )
+    {
+      xp[0] = xCurve_[i] - eps;
+      yp[0] = yCurve_[i];
+      xp[1] = xCurve_[i] + eps;
+      yp[1] = yCurve_[i];
+      xp[2] = xCurve_[i+1] + eps;
+      yp[2] = yCurve_[i+1];
+      xp[3] = xCurve_[i+1] - eps;
+      yp[3] = yCurve_[i+1];
+      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
+      if( i+2 >= size )break;
+      xp[0] = xCurve_[i+1];
+      yp[0] = yCurve_[i+1] - eps;
+      xp[1] = xCurve_[i+1];
+      yp[1] = yCurve_[i+1] + eps;
+      xp[2] = xCurve_[i+2];
+      yp[2] = yCurve_[i+2] + eps;
+      xp[3] = xCurve_[i+2];
+      yp[3] = yCurve_[i+2] - eps;
+      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
+      if( i+3 >= size )break;
+      xp[0] = xCurve_[i+2] - eps;
+      yp[0] = yCurve_[i+2];
+      xp[1] = xCurve_[i+2] + eps;
+      yp[1] = yCurve_[i+2];
+      xp[2] = xCurve_[i+3] + eps;
+      yp[2] = yCurve_[i+3];
+      xp[3] = xCurve_[i+3] - eps;
+      yp[3] = yCurve_[i+3];
+      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
+    }
+    return false;
+  }
+  else
+    return false;
+}
+
 void GRA_cartesianCurve::MakeNonHistogram()
 {
   GRA_window *gw = ExGlobals::GetGraphWindow();
@@ -227,7 +340,7 @@ void GRA_cartesianCurve::MakeNonHistogram()
     std::size_t const nsmooth = 100;
     x.resize( nsmooth );
     y.resize( nsmooth );
-    pen_.resize( nsmooth, 2 );
+    pen_.assign( nsmooth, 2 );
     pen_[0] = 3;
     UsefulFunctions::Splinterp( xData_, yData_, x, y );
     for( int i=0; i<nsmooth; ++i )
@@ -241,7 +354,7 @@ void GRA_cartesianCurve::MakeNonHistogram()
     x.assign( xData_.begin(), xData_.end() );
     y.assign( yData_.begin(), yData_.end() );
     std::size_t size = xData_.size();
-    pen_.resize( size, 3 );
+    pen_.assign( size, 3 );
     for( std::size_t i=0; i<size; ++i )
     {
       if( ylog>1 && y[i]<=0.0 )y[i] = std::numeric_limits<double>::min();
@@ -498,26 +611,6 @@ void GRA_cartesianCurve::MakeVerticalHistogramWithTails()
     y.push_back( yData_[npt-1]+dy );
   }
   gw->GraphToWorld( x, y, xCurve_, yCurve_ );
-}
-
-void GRA_cartesianCurve::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
-{
-  ExGlobals::SetClippingBoundary( xlaxis_, ylaxis_, xuaxis_, yuaxis_ );
-  switch ( histogramType_ )
-  {
-    case 1:
-    case 3:
-      DrawHistogramNoTails( graphicsOutput, dc );
-      break;
-    case 2:
-    case 4:
-      DrawHistogramWithTails( graphicsOutput, dc );
-      break;
-    default:
-      DrawNonHistogram( graphicsOutput, dc );
-  }
-  DrawErrorBars( graphicsOutput, dc );
-  ExGlobals::ResetClippingBoundary();
 }
 
 void GRA_cartesianCurve::DrawNonHistogram( GRA_wxWidgets *graphicsOutput, wxDC &dc )
@@ -985,6 +1078,51 @@ void GRA_cartesianCurve::GetXMinMax( double const ymin, double const ymax,
       }
     }
   }
+}
+
+int GRA_cartesianCurve::GetPlotsymbolCode() const
+{ return plotsymbols_[0]->GetShapeCode(); }
+
+void GRA_cartesianCurve::SetPlotsymbolCode( int ps )
+{
+  int size = plotsymbols_.size();
+  for( int i=0; i<size; ++i )plotsymbols_[i]->SetShapeCode( ps );
+}
+
+GRA_color *GRA_cartesianCurve::GetPlotsymbolColor() const
+{ return plotsymbols_[0]->GetColor(); }
+
+void GRA_cartesianCurve::SetPlotsymbolColor( GRA_color *c )
+{
+  int size = plotsymbols_.size();
+  for( int i=0; i<size; ++i )plotsymbols_[i]->SetColor( c );
+}
+
+double GRA_cartesianCurve::GetPlotsymbolSize() const
+{ return plotsymbols_[0]->GetSize(); }
+
+void GRA_cartesianCurve::SetPlotsymbolSize( double s )
+{
+  int size = plotsymbols_.size();
+  for( int i=0; i<size; ++i )plotsymbols_[i]->SetSize( s );
+}
+
+double GRA_cartesianCurve::GetPlotsymbolAngle() const
+{ return plotsymbols_[0]->GetAngle(); }
+
+void GRA_cartesianCurve::SetPlotsymbolAngle( double a )
+{
+  int size = plotsymbols_.size();
+  for( int i=0; i<size; ++i )plotsymbols_[i]->SetAngle( a );
+}
+
+GRA_color *GRA_cartesianCurve::GetAreaFillColor()
+{
+  GRA_colorCharacteristic *areaFillColorCharacteristic =
+      static_cast<GRA_colorCharacteristic*>(ExGlobals::GetGraphWindow()->GetGeneralCharacteristics()->
+                                            Get(wxT("AREAFILLCOLOR")));
+  if( areaFillColorCharacteristic->IsVector() )return areaFillColors_[0];
+  else                                         return areaFillColor_;
 }
 
 // end of file

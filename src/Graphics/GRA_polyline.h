@@ -80,6 +80,9 @@ public:
   GRA_color *GetColor() const
   { return color_; }
 
+  void SetColor( GRA_color *c )
+  { color_ = c; }
+  
   void Add( double x, double y, int p )
   {
     x_.push_back( x );

@@ -78,6 +78,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "HintForm.h"
 #include "GRA_postscript.h"
 #include "GraphicsPage.h"
+#include "AxisPopup.h"
+#include "CurvePopup.h"
 
 DECLARE_APP(extrema)
 
@@ -117,6 +119,8 @@ std::ofstream stackStream_;
 HintForm *hintForm_;
 bool prepareToExecuteScript_, prepareToStopScript_, prepareToPauseScript_;
 std::map<wxString,wxString> alias_;
+AxisPopup *axisPopup_;
+CurvePopup *curvePopup_;
 
 void Initialize()
 {
@@ -151,6 +155,8 @@ void Initialize()
   //graphicsWindow_ = 0;
   visualizationWindow_ = 0;
   analysisWindow_ = 0;
+  axisPopup_ = 0;
+  curvePopup_ = 0;
   //
   // default world coordinates (inches)
   //
@@ -220,6 +226,34 @@ void SetVisualizationWindow( VisualizationWindow *vw )
 
 VisualizationWindow *GetVisualizationWindow()
 { return visualizationWindow_; }
+
+AxisPopup *GetAxisPopup( GraphicsPage *page )
+{
+  if( axisPopup_ )axisPopup_->Raise();
+  else
+  {
+    axisPopup_ = new AxisPopup( page );
+    axisPopup_->Show();
+  }
+  return axisPopup_;
+}
+
+void ZeroAxisPopup()
+{ axisPopup_ = 0; }
+
+CurvePopup *GetCurvePopup( GraphicsPage *page )
+{
+  if( curvePopup_ )curvePopup_->Raise();
+  else
+  {
+    curvePopup_ = new CurvePopup( page );
+    curvePopup_->Show();
+  }
+  return curvePopup_;
+}
+
+void ZeroCurvePopup()
+{ curvePopup_ = 0; }
 
 void ShowHint( std::vector<wxString> const &lines )
 { hintForm_->ShowHint(lines); }
@@ -295,7 +329,7 @@ GRA_wxWidgets *GetGraphicsOutput()
 
 wxColour GetwxColor( GRA_color *color )
 {
-  int r =0, g =0, b =0;
+  int r =255, g =255, b =255;
   if( color )color->GetRGB( r, g, b );
   return wxColour( static_cast<unsigned char>(r),
                    static_cast<unsigned char>(g),
@@ -2031,20 +2065,19 @@ GRA_cartesianAxes *GetCartesianAxes( ExXML &xml )
   GRA_axis *xaxis = GetAxis( xml, 'X' );
   xml.NextElementNode(); // get y <axis>
   GRA_axis *yaxis = GetAxis( xml, 'Y' );
-  GRA_axis *bottom =0, *top =0, *left =0, *right =0;
-  if( size == 6 )
+  GRA_axis *boxX =0, *boxY =0;
+  if( size >= 3 )
   {
-    xml.NextElementNode(); // get bottom <axis>
-    bottom = GetAxis( xml, 'X' );
-    xml.NextElementNode(); // get top <axis>
-    top = GetAxis( xml, 'X' );
-    xml.NextElementNode(); // get left <axis>
-    left = GetAxis( xml, 'Y' );
-    xml.NextElementNode(); // get right <axis>
-    right = GetAxis( xml, 'Y' );
+    xml.NextElementNode(); // get box x-axis
+    boxX = GetAxis( xml, 'X' );
+    if( size == 4 )
+    {
+      xml.NextElementNode(); // get box y-axis
+      boxY = GetAxis( xml, 'Y' );
+    }
   }
   GRA_cartesianAxes *axes = new GRA_cartesianAxes();
-  axes->SetAxes( xaxis, yaxis, bottom, top, left, right );
+  axes->SetAxes( xaxis, yaxis, boxX, boxY );
   return axes;
 }
 

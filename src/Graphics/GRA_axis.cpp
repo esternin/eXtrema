@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,2006,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -87,6 +87,32 @@ void GRA_axis::InheritFrom( GRA_axis *inherit )
       characteristics_ = new GRA_setOfCharacteristics(*inherit->characteristics_);
 }
 
+bool GRA_axis::Inside( double xloc, double yloc )
+{
+  double const degToRad = M_PI/180.;
+  double const eps = 0.0001;
+  double axisAngle =
+    static_cast<GRA_angleCharacteristic*>(characteristics_->Get(wxT("AXISANGLE")))->Get();
+  NormalizeAngle( axisAngle );
+  double cosA = cos(axisAngle*degToRad);
+  double sinA = sin(axisAngle*degToRad);
+  if( fabs(cosA) <= eps )cosA = 0.0;
+  if( fabs(sinA) <= eps )sinA = 0.0;
+  //
+  double const uAxis =
+    static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("UPPERAXIS")))->GetAsWorld();
+  double const lAxis =
+    static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("LOWERAXIS")))->GetAsWorld();
+  double const dx = uAxis - lAxis;
+  //
+  double const fudge = 0.05;
+  double xlo = xOrigin_ - fudge*cosA - 2*fudge*sinA;
+  double ylo = yOrigin_ - 2*fudge*cosA - fudge*sinA;
+  double xup = xOrigin_ + (dx+fudge)*cosA + 2*fudge*sinA;
+  double yup = yOrigin_ + 2*fudge*cosA + (dx+fudge)*sinA;
+  return (xup-xloc)*(xloc-xlo)>0.0 && (yup-yloc)*(yloc-ylo)>0.0;
+}
+  
 void GRA_axis::Make()
 {
   if( static_cast<GRA_boolCharacteristic*>(characteristics_->Get(wxT("AXISON")))->Get() )
@@ -210,12 +236,12 @@ void GRA_axis::MakeAxisLabel()
       if( imagTicAngle > 180.0 )
       {
         align = 8; // 8=top centre
-        y1 = yOrigin_ - 1.05*(imagTicLen+numHeight);
+        y1 = yOrigin_ - 1.5*(imagTicLen+numHeight);
       }
       else
       {
         align = 2; // 2=bottom centre
-        y1 = yOrigin_ + 1.05*(imagTicLen+numHeight);
+        y1 = yOrigin_ + 1.1*(imagTicLen+numHeight);
       }
     }
     else // draw the label vertically and centered on the axis
@@ -769,6 +795,11 @@ void GRA_axis::MakeLogAxis()
   //
   double xticl = cosImagTicAngle*imagTicLength;
   double yticl = sinImagTicAngle*imagTicLength;
+  if( logStyle && axisAngle==0.0 ) // move exponential style numbers on x-axis further away
+  {
+    xticl *= 2.0;
+    yticl *= 2.0;
+  }
   //
   bool numbers = static_cast<GRA_boolCharacteristic*>(characteristics_->Get(wxT("NUMBERSON")))->Get();
   double numberHeight =

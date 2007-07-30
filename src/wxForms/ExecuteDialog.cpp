@@ -62,14 +62,14 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
   midPanel->SetSizer( midSizer );
   mainSizer->Add( midPanel, wxSizerFlags(1).Expand().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( this );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   wxButton *applyButton = new wxButton( bottomPanel, wxID_APPLY, wxT("Apply") );
   applyButton->SetToolTip( wxT("execute the chosen file") );
-  bottomSizer->Add( applyButton, wxSizerFlags(0).Border(wxALL,10) );
+  bottomSizer->Add( applyButton, wxSizerFlags(0).Center().Border(wxALL,10) );
   wxButton *closeButton = new wxButton( bottomPanel, wxID_CLOSE, wxT("Close") );
   closeButton->SetToolTip( wxT("close this form") );
-  bottomSizer->Add( closeButton, wxSizerFlags(0).Border(wxALL,10) );
+  bottomSizer->Add( closeButton, wxSizerFlags(0).Center().Border(wxALL,10) );
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(1).Expand().Centre().Border(wxALL,1) );
 

@@ -58,6 +58,9 @@ class VisualizationWindow;
 class AnalysisWindow;
 class HintForm;
 class ParseLine;
+class AxisPopup;
+class CurvePopup;
+class GraphicsPage;
 
 namespace ExGlobals
 {
@@ -85,6 +88,8 @@ namespace ExGlobals
   extern HintForm *hintForm_;
   extern bool prepareToExecuteScript_, prepareToStopScript_, prepareToPauseScript_;
   extern std::map<wxString,wxString> alias_;
+  extern AxisPopup *axisPopup_;
+  extern CurvePopup *curvePopup_;
 
   void Initialize();
   wxPrintData *GetPrintData();
@@ -232,6 +237,12 @@ namespace ExGlobals
 
   wxColour GetwxColor( GRA_color * );
   wxColour GetwxColor( int );
+
+  AxisPopup *GetAxisPopup( GraphicsPage * );
+  void ZeroAxisPopup();
+
+  CurvePopup *GetCurvePopup( GraphicsPage * );
+  void ZeroCurvePopup();
 
   void QuitApp();
 

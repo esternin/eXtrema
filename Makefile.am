@@ -1,4 +1,4 @@
-# Copyright (C) 2006 Joseph L. Chuma <chuma@triumf.ca>
+# Copyright (C) 2007 Joseph L. Chuma <chuma@triumf.ca>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 
@@ -8,7 +8,7 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-EXTRA_DIST = reconf configure extrema.spec extrema.desktop extrema_icons.tar.bz2 ./Images ./Help ./Scripts ./doc ./fonts
+EXTRA_DIST = reconf configure extrema.spec extrema.desktop extrema_icons.tar.bz2 ./Images ./Help ./Scripts ./doc ./fonts ./src/wxForms/ExColorCtrl.h ./src/wxForms/ExSpinCtrlD.h ./src/wxForms/ExSpinCtrlI.h
 
 # list immediate subdirectories only
 SUBDIRS = src

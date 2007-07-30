@@ -72,6 +72,8 @@ public:
 
   void Make();
   void Draw( GRA_wxWidgets *, wxDC & );
+
+  bool Inside( double, double );
   
   std::vector<double> const &GetXData()
   { return xData_; }
@@ -85,8 +87,6 @@ public:
 
   friend std::ostream &operator<<( std::ostream &, GRA_cartesianCurve const & );
 
-  void SetCharacteristic( wxString &, wxString & );
-  void SetCharacteristic( wxString &, wxString &, wxString & );
   void SetValues( int, int, int, GRA_color*, GRA_color*, double, double, double,
                   double, double, double, double, double, std::vector<GRA_color*> &,
                   std::vector<double> &, std::vector<double> &, std::vector<int> &,
@@ -100,15 +100,14 @@ public:
     xuaxis = xuaxis_;
     yuaxis = yuaxis_;
   }
-  
-  int GetHistogramType() const
-  { return histogramType_; }
 
   std::vector<GRA_color*> &GetAreaFillColors()
   { return areaFillColors_; }
 
-  GRA_color *GetAreaFillColor()
-  { return areaFillColor_; }
+  GRA_color *GetAreaFillColor();
+
+  void SetAreaFillColor( GRA_color *c )
+  { areaFillColor_ = c; }
 
   void GetXYcurve( std::vector<double> &x, std::vector<double> &y )
   {
@@ -119,11 +118,38 @@ public:
   GRA_color *GetColor()
   { return color_; }
 
+  void SetColor( GRA_color *c )
+  { color_ = c; }
+
+  int GetHistogramType() const
+  { return histogramType_; }
+
+  void SetHistogramType( int ht )
+  { histogramType_ = ht; }
+
   int GetLineWidth() const
   { return lineWidth_; }
 
+  void SetLineWidth( int lw )
+  { lineWidth_ = lw; }
+
   int GetLineType() const
   { return lineType_; }
+
+  void SetLineType( int lt )
+  { lineType_ = lt; }
+
+  int GetPlotsymbolCode() const;
+  void SetPlotsymbolCode( int );
+
+  GRA_color *GetPlotsymbolColor() const;
+  void SetPlotsymbolColor( GRA_color * );
+
+  double GetPlotsymbolSize() const;
+  void SetPlotsymbolSize( double );
+
+  double GetPlotsymbolAngle() const;
+  void SetPlotsymbolAngle( double );
   
   std::vector<int> &GetPen()
   { return pen_; }

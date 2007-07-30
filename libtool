@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # libtoolT - Provide generalized library-building support services.
-# Generated automatically by  (GNU extrema 4.2.3)
+# Generated automatically by  (GNU extrema 4.2.5)
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 #
 # Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001
@@ -319,7 +319,7 @@ link_all_deplibs=unknown
 sys_lib_search_path_spec=" /usr/lib/gcc/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../../i386-redhat-linux/lib/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../../i386-redhat-linux/lib/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../ /lib/i386-redhat-linux/3.4.6/ /lib/ /usr/lib/i386-redhat-linux/3.4.6/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib include ld.so.conf.d/*.conf "
+sys_lib_dlsearch_path_spec="/lib /usr/lib include ld.so.conf.d/*.conf /usr/ofed/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7040,7 +7040,7 @@ link_all_deplibs=unknown
 sys_lib_search_path_spec=" /usr/lib/gcc/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../../i386-redhat-linux/lib/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../../i386-redhat-linux/lib/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../ /lib/i386-redhat-linux/3.4.6/ /lib/ /usr/lib/i386-redhat-linux/3.4.6/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib include ld.so.conf.d/*.conf "
+sys_lib_dlsearch_path_spec="/lib /usr/lib include ld.so.conf.d/*.conf /usr/ofed/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7339,7 +7339,7 @@ link_all_deplibs=unknown
 sys_lib_search_path_spec=" /usr/lib/gcc/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../../i386-redhat-linux/lib/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../../i386-redhat-linux/lib/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../ /lib/i386-redhat-linux/3.4.6/ /lib/ /usr/lib/i386-redhat-linux/3.4.6/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib include ld.so.conf.d/*.conf "
+sys_lib_dlsearch_path_spec="/lib /usr/lib include ld.so.conf.d/*.conf /usr/ofed/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""

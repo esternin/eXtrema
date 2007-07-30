@@ -740,17 +740,12 @@ void GRA_postscript::Draw( GRA_axis *axis )
 
 void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
 {
-  GRA_axis *xAxis, *yAxis, *bottomAxis, *topAxis, *leftAxis, *rightAxis;
-  cartesianAxes->GetAxes( xAxis, yAxis, bottomAxis, topAxis, leftAxis, rightAxis );
+  GRA_axis *xAxis, *yAxis, *boxXAxis, *boxYAxis;
+  cartesianAxes->GetAxes( xAxis, yAxis, boxXAxis, boxYAxis );
   Draw( xAxis );
   Draw( yAxis );
-  if( bottomAxis )
-  {
-    Draw( bottomAxis );
-    Draw( topAxis );
-    Draw( leftAxis );
-    Draw( rightAxis );
-  }
+  if( boxXAxis )Draw( boxXAxis );
+  if( boxYAxis )Draw( boxYAxis );
 }
 
 void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
@@ -758,7 +753,6 @@ void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
   double xlaxis, ylaxis, xuaxis, yuaxis;
   cartesianCurve->GetClippingBoundary( xlaxis, ylaxis, xuaxis, yuaxis );
   ExGlobals::SetClippingBoundary( xlaxis, ylaxis, xuaxis, yuaxis );
-  std::vector<GRA_color*> areaFillColors( cartesianCurve->GetAreaFillColors() );
   GRA_color *areaFillColor = cartesianCurve->GetAreaFillColor();
   GRA_color *color = cartesianCurve->GetColor();
   int lineWidth = cartesianCurve->GetLineWidth();
@@ -772,11 +766,6 @@ void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
     {
       // draw histogram with no tails
       //
-      if( !areaFillColors.empty() )
-      {
-        areaFillColor = areaFillColors[0];
-        std::vector<GRA_color*>().swap( areaFillColors );
-      }
       std::size_t size = xCurve.size();
       if( areaFillColor && size>1 )
       {
@@ -805,12 +794,11 @@ void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
       if( npt > 1 )
       {
         std::vector<double> xp, yp;
+        std::vector<GRA_color*> areaFillColors( cartesianCurve->GetAreaFillColors() );
         bool areaFillColorVector = !areaFillColors.empty();
         for( std::size_t i=0; i<npt; ++i )
         {
-          GRA_color *fillColor;
-          areaFillColorVector ? fillColor=areaFillColors[i%areaFillColors.size()] :
-              fillColor=areaFillColor;
+          GRA_color *fillColor = areaFillColorVector ? areaFillColors[i%areaFillColors.size()] : areaFillColor;
           if( fillColor )
           {
             std::size_t j = 4*i;
@@ -856,11 +844,6 @@ void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
     {
       // draw non-histogram
       //
-      if( !areaFillColors.empty() )
-      {
-        areaFillColor = areaFillColors[0];
-        std::vector<GRA_color*>().swap( areaFillColors );
-      }
       if( areaFillColor )
       {
         // draw the filled region

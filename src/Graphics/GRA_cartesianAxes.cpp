@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005, 2006, 2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -81,34 +81,33 @@ GRA_cartesianAxes::GRA_cartesianAxes( std::vector<double> const &x, std::vector<
   xCharacteristics.AddNumber(wxT("GRIDLINETYPE"),gridLineType);
   yCharacteristics.AddNumber(wxT("GRIDLINETYPE"),gridLineType);
   //
+  boxXAxis_ = 0;
+  boxYAxis_ = 0;
   if( graphBox )
   {
     GRA_setOfCharacteristics boxSettings( xCharacteristics );
     static_cast<GRA_intCharacteristic*>(boxSettings.Get(wxT("GRID")))->Set(0);
     static_cast<GRA_boolCharacteristic*>(boxSettings.Get(wxT("LABELON")))->Set(false);
     static_cast<GRA_boolCharacteristic*>(boxSettings.Get(wxT("NUMBERSON")))->Set(false);
-    boxBottomAxis_ = new GRA_axis( xlaxis, ylaxis, &boxSettings );
     //
-    double angle = static_cast<GRA_angleCharacteristic*>(xAxisC->Get(wxT("TICANGLE")))->Get();
-    static_cast<GRA_angleCharacteristic*>(boxSettings.Get(wxT("TICANGLE")))->Set(-angle);
-    boxTopAxis_ = new GRA_axis( xlaxis, yuaxis, &boxSettings );
-    //
+    if( xOnTop )boxXAxis_ = new GRA_axis( xlaxis, ylaxis, &boxSettings );
+    else
+    {
+      double angle = static_cast<GRA_angleCharacteristic*>(xAxisC->Get(wxT("TICANGLE")))->Get();
+      static_cast<GRA_angleCharacteristic*>(boxSettings.Get(wxT("TICANGLE")))->Set(-angle);
+      boxXAxis_ = new GRA_axis( xlaxis, yuaxis, &boxSettings );
+    }
     boxSettings = yCharacteristics;
     static_cast<GRA_intCharacteristic*>(boxSettings.Get(wxT("GRID")))->Set(0);
     static_cast<GRA_boolCharacteristic*>(boxSettings.Get(wxT("LABELON")))->Set(false);
     static_cast<GRA_boolCharacteristic*>(boxSettings.Get(wxT("NUMBERSON")))->Set(false);
-    boxLeftAxis_ = new GRA_axis( xlaxis, ylaxis, &boxSettings );
-    //
-    angle = static_cast<GRA_angleCharacteristic*>(yAxisC->Get(wxT("TICANGLE")))->Get();
-    static_cast<GRA_angleCharacteristic*>(boxSettings.Get(wxT("TICANGLE")))->Set(-angle);
-    boxRightAxis_ = new GRA_axis( xuaxis, ylaxis, &boxSettings );
-  }
-  else
-  {
-    boxBottomAxis_ = 0;
-    boxTopAxis_ = 0;
-    boxLeftAxis_ = 0;
-    boxRightAxis_ = 0;
+    if( yOnRight )boxYAxis_ = new GRA_axis( xlaxis, ylaxis, &boxSettings );
+    else
+    {
+      double angle = static_cast<GRA_angleCharacteristic*>(yAxisC->Get(wxT("TICANGLE")))->Get();
+      static_cast<GRA_angleCharacteristic*>(boxSettings.Get(wxT("TICANGLE")))->Set(-angle);
+      boxYAxis_ = new GRA_axis( xuaxis, ylaxis, &boxSettings );
+    }
   }
   if( yOnRight )
   {
@@ -140,10 +139,8 @@ void GRA_cartesianAxes::DeleteStuff()
 {
   delete xAxis_; xAxis_=0;
   delete yAxis_; yAxis_=0;
-  delete boxBottomAxis_; boxBottomAxis_=0;
-  delete boxTopAxis_; boxTopAxis_=0;
-  delete boxLeftAxis_; boxLeftAxis_=0;
-  delete boxRightAxis_; boxRightAxis_=0;
+  delete boxXAxis_; boxXAxis_=0;
+  delete boxYAxis_; boxYAxis_=0;
 }
 
 void GRA_cartesianAxes::CopyStuff( GRA_cartesianAxes const &rhs )
@@ -153,51 +150,24 @@ void GRA_cartesianAxes::CopyStuff( GRA_cartesianAxes const &rhs )
   //
   if( rhs.xAxis_ )xAxis_ = new GRA_axis( *rhs.xAxis_ );
   if( rhs.yAxis_ )yAxis_ = new GRA_axis( *rhs.yAxis_ );
-  if( rhs.boxBottomAxis_ ) // if one is available, all are available
-  {
-    boxBottomAxis_ = new GRA_axis( *rhs.boxBottomAxis_ );
-    boxTopAxis_ = new GRA_axis( *rhs.boxTopAxis_ );
-    boxLeftAxis_ = new GRA_axis( *rhs.boxLeftAxis_ );
-    boxRightAxis_ = new GRA_axis( *rhs.boxRightAxis_ );
-  }
-}
-
-void GRA_cartesianAxes::GetAxes( GRA_axis *&x, GRA_axis *&y,
-                                 GRA_axis *&bottom, GRA_axis *&top,
-                                 GRA_axis *&left, GRA_axis *&right )
-{
-  x = xAxis_;
-  y = yAxis_;
-  bottom = boxBottomAxis_;
-  top = boxTopAxis_;
-  left = boxLeftAxis_;
-  right = boxRightAxis_;
+  if( rhs.boxXAxis_ )boxXAxis_ = new GRA_axis( *rhs.boxXAxis_ );
+  if( rhs.boxYAxis_ )boxYAxis_ = new GRA_axis( *rhs.boxYAxis_ );
 }
 
 void GRA_cartesianAxes::Make()
 {
   xAxis_->Make();
   yAxis_->Make();
-  if( boxBottomAxis_ )
-  {
-    boxBottomAxis_->Make();
-    boxTopAxis_->Make();
-    boxLeftAxis_->Make();
-    boxRightAxis_->Make();
-  }
+  if( boxXAxis_ )boxXAxis_->Make();
+  if( boxYAxis_ )boxYAxis_->Make();
 }
 
 void GRA_cartesianAxes::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   xAxis_->Draw( graphicsOutput, dc );
   yAxis_->Draw( graphicsOutput, dc );
-  if( boxBottomAxis_ )
-  {
-    boxBottomAxis_->Draw( graphicsOutput, dc );
-    boxTopAxis_->Draw( graphicsOutput, dc );
-    boxLeftAxis_->Draw( graphicsOutput, dc );
-    boxRightAxis_->Draw( graphicsOutput, dc );
-  }
+  if( boxXAxis_ )boxXAxis_->Draw( graphicsOutput, dc );
+  if( boxYAxis_ )boxYAxis_->Draw( graphicsOutput, dc );
 }
 
 void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<double> const &y )
@@ -696,11 +666,12 @@ void GRA_cartesianAxes::FixupScales( bool linear, bool zeroForce, double minValu
 std::ostream &operator<<( std::ostream &out, GRA_cartesianAxes const &ca )
 {
   int size = 2;
-  if( ca.boxBottomAxis_ )size = 6;
+  if( ca.boxXAxis_ )++size;
+  if( ca.boxYAxis_ )++size;
   out << "<cartesianaxes size=\"" << size << "\">\n";
   out << *ca.xAxis_ << *ca.yAxis_;
-  if( ca.boxBottomAxis_ )
-    out << *ca.boxBottomAxis_ << *ca.boxTopAxis_ << *ca.boxLeftAxis_ << *ca.boxRightAxis_;
+  if( ca.boxXAxis_ )out << *ca.boxXAxis_;
+  if( ca.boxYAxis_ )out << *ca.boxYAxis_;
   return out << "</cartesianaxes>\n";
 }
 

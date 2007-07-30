@@ -16,30 +16,33 @@ libwxforms_la_SOURCES = \
 	  AnalysisMessagePanel.cpp AnalysisMessagePanel.h \
 	  AnalysisSpeedButtonPanel.cpp AnalysisSpeedButtonPanel.h \
 	  AnalysisWindow.cpp AnalysisWindow.h \
+          AxisPopup.cpp AxisPopup.h \
+          BasicColors.cpp BasicColors.h \
+	  ChooseFilePanel.cpp ChooseFilePanel.h \
           CommandTextCtrl.cpp CommandTextCtrl.h \
 	  ExecuteDialog.cpp ExecuteDialog.h \
-	  VisualizationSpeedButtonPanel.cpp VisualizationSpeedButtonPanel.h \
-	  VisualizationWindow.cpp VisualizationWindow.h \
+          CurvePopup.cpp CurvePopup.h \
+          FitForm.cpp FitForm.h \
+          FontChooser.cpp FontChooser.h \
+          GenerateVectorForm.cpp GenerateVectorForm.h \
+          GraphForm.cpp GraphForm.h \
+	  GraphicsPage.cpp GraphicsPage.h \
+	  HintForm.cpp HintForm.h \
 	  InquireYNDialog.cpp InquireYNDialog.h \
 	  InquireDialog.cpp InquireDialog.h \
+	  PeakFindForm.cpp PeakFindForm.h \
 	  ReadVectorsForm.cpp ReadVectorsForm.h \
 	  ReadScalarsForm.cpp ReadScalarsForm.h \
 	  ReadMatrixForm.cpp ReadMatrixForm.h \
 	  ReadTextForm.cpp ReadTextForm.h \
+	  SetAspectRatioForm.cpp SetAspectRatioForm.h \
+          ShowVariablesForm.cpp ShowVariablesForm.h \
+	  StackDialog.cpp StackDialog.h \
+          TextForm.cpp TextForm.h \
+          VarInfoForm.cpp VarInfoForm.h \
+	  VisualizationSpeedButtonPanel.cpp VisualizationSpeedButtonPanel.h \
+	  VisualizationWindow.cpp VisualizationWindow.h \
 	  WriteVectorsForm.cpp WriteVectorsForm.h \
 	  WriteScalarsForm.cpp WriteScalarsForm.h \
 	  WriteMatrixForm.cpp WriteMatrixForm.h \
-	  WriteTextForm.cpp WriteTextForm.h \
-	  ChooseFilePanel.cpp ChooseFilePanel.h \
-          ShowVariablesForm.cpp ShowVariablesForm.h \
-          VarInfoForm.cpp VarInfoForm.h \
-          GenerateVectorForm.cpp GenerateVectorForm.h \
-          FitForm.cpp FitForm.h \
-          GraphForm.cpp GraphForm.h \
-          TextForm.cpp TextForm.h \
-          FontChooser.cpp FontChooser.h \
-	  StackDialog.cpp StackDialog.h \
-	  HintForm.cpp HintForm.h \
-	  PeakFindForm.cpp PeakFindForm.h \
-	  GraphicsPage.cpp GraphicsPage.h \
-	  SetAspectRatioForm.cpp SetAspectRatioForm.h
+	  WriteTextForm.cpp WriteTextForm.h
