@@ -20,8 +20,8 @@ libwxforms_la_SOURCES = \
           BasicColors.cpp BasicColors.h \
 	  ChooseFilePanel.cpp ChooseFilePanel.h \
           CommandTextCtrl.cpp CommandTextCtrl.h \
-	  ExecuteDialog.cpp ExecuteDialog.h \
           CurvePopup.cpp CurvePopup.h \
+	  ExecuteDialog.cpp ExecuteDialog.h \
           FitForm.cpp FitForm.h \
           FontChooser.cpp FontChooser.h \
           GenerateVectorForm.cpp GenerateVectorForm.h \
@@ -39,6 +39,7 @@ libwxforms_la_SOURCES = \
           ShowVariablesForm.cpp ShowVariablesForm.h \
 	  StackDialog.cpp StackDialog.h \
           TextForm.cpp TextForm.h \
+          TextPopup.cpp TextPopup.h \
           VarInfoForm.cpp VarInfoForm.h \
 	  VisualizationSpeedButtonPanel.cpp VisualizationSpeedButtonPanel.h \
 	  VisualizationWindow.cpp VisualizationWindow.h \

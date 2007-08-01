@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -43,6 +43,22 @@ bool GRA_simpleText::operator==( GRA_simpleText const &rhs ) const
       color_ != rhs.color_  || font_ != rhs.font_ ||
       xShift_ != rhs.xShift_ || yShift_ != rhs.yShift_ )return false;
   return true;
+}
+
+void GRA_simpleText::SetBoundary( int x, int y, int width, int height )
+{
+  xLo_ = x;
+  yLo_ = y;
+  xHi_ = x+width;
+  yHi_ = y+height;
+}
+
+void GRA_simpleText::GetBoundary( int &xLo, int &yLo, int &xHi, int &yHi )
+{
+  xLo = xLo_;
+  yLo = yLo_;
+  xHi = xHi_;
+  yHi = yHi_;
 }
 
 std::ostream &operator<<( std::ostream &out, GRA_simpleText const &st )

@@ -1,6 +1,17 @@
-30/07/2007  Joe Chuma <chuma@triumf.ca>
+01/08/2007  Joe Chuma <chuma@triumf.ca>
 
 	v4.2.6
+
+	* added src/wxForms/TextPopup
+	New context sensitive options.  If you right-click on a drawn text string,
+	a form pops up allowing you to modify aspects of the text string, such as
+	color, height, font, location, etc.
+
+	* modified src/Commands/CMD_write
+	Writing a text string to a file was writing gibberish instead, due to a
+	unicode confusion.  This has been fixed.  Also, writing a scalar to a
+	file was failing with a complaint that it wasn't a vector.  This has also
+	been fixed.
 
 27/07/2007  Joe Chuma <chuma@triumf.ca>
 

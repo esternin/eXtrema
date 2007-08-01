@@ -48,6 +48,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_axis.h"
 #include "AxisPopup.h"
 #include "CurvePopup.h"
+#include "TextPopup.h"
 
 BEGIN_EVENT_TABLE( GraphicsPage, wxNotebookPage )
   EVT_PAINT( GraphicsPage::OnPaint )
@@ -376,6 +377,16 @@ void GraphicsPage::OnMouseRightDown( wxMouseEvent &event )
         {
           CurvePopup *curvePopup = ExGlobals::GetCurvePopup( this );
           curvePopup->Setup( *i, cc );
+          return;
+        }
+      }
+      else if( (*j)->IsaDrawableText() )
+      {
+        GRA_drawableText *dt = static_cast<GRA_drawableText*>(*j);
+        if( dt->Inside(xW,yW) )
+        {
+          TextPopup *textPopup = ExGlobals::GetTextPopup( this );
+          textPopup->Setup( *i, dt );
           return;
         }
       }

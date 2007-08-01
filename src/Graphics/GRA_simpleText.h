@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -71,6 +71,9 @@ public:
   double GetYShift() const
   { return yShift_; }
 
+  void SetBoundary( int, int, int, int );
+  void GetBoundary( int &, int &, int &, int & );
+
   friend std::ostream &operator<<( std::ostream &, GRA_simpleText const & );
 
 private:
@@ -82,6 +85,8 @@ private:
   GRA_font *font_;
   //
   double xShift_, yShift_;
+  //
+  int xLo_, yLo_, xHi_, yHi_;
 };
 
 #endif

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -590,126 +590,121 @@ void GRA_window::Replot()
       }
     }
   }
-  std::vector<double> xTmp, yTmp;
   if( curveFound )
   {
+    std::vector<double> xTmp, yTmp;
     xTmp.push_back( xmin );
     xTmp.push_back( xmax );
     yTmp.push_back( ymin );
     yTmp.push_back( ymax );
-  }
-  else
-  {
-    xTmp.push_back( 0.0 );
-    yTmp.push_back( 0.0 );
-  }
-  if( autoScale == wxT("COMMENSURATE") )
-  {
-    double xlwind =
-     static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->Get(wxT("XLOWERWINDOW")))->
-      GetAsWorld();
-    double ylwind =
-     static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->Get(wxT("YLOWERWINDOW")))->
-      GetAsWorld();
-    double xuwind =
-     static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->Get(wxT("XUPPERWINDOW")))->
-      GetAsWorld();
-    double yuwind =
-     static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->Get(wxT("YUPPERWINDOW")))->
-      GetAsWorld();
-    //
-    double delxwind = fabs(xuwind - xlwind);
-    double delywind = fabs(yuwind - ylwind);
-    //
-    double xlaxis = 0.15 * delxwind + xlwind;
-    double xuaxis = 0.90 * delxwind + xlwind;
-    double ylaxis = 0.15 * delywind + ylwind;
-    double yuaxis = 0.90 * delywind + ylwind;
-    double xmid = 0.5 * (xlwind + xuwind);
-    double ymid = 0.5 * (ylwind + yuwind);
-    //
-    double xmins, xmaxs, xincs, ymins, ymaxs, yincs;
+    if( autoScale == wxT("COMMENSURATE") )
+    {
+      double xlwind =
+          static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->Get(wxT("XLOWERWINDOW")))->
+          GetAsWorld();
+      double ylwind =
+          static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->Get(wxT("YLOWERWINDOW")))->
+          GetAsWorld();
+      double xuwind =
+          static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->Get(wxT("XUPPERWINDOW")))->
+          GetAsWorld();
+      double yuwind =
+          static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->Get(wxT("YUPPERWINDOW")))->
+          GetAsWorld();
+      //
+      double delxwind = fabs(xuwind - xlwind);
+      double delywind = fabs(yuwind - ylwind);
+      //
+      double xlaxis = 0.15 * delxwind + xlwind;
+      double xuaxis = 0.90 * delxwind + xlwind;
+      double ylaxis = 0.15 * delywind + ylwind;
+      double yuaxis = 0.90 * delywind + ylwind;
+      double xmid = 0.5 * (xlwind + xuwind);
+      double ymid = 0.5 * (ylwind + yuwind);
+      //
+      double xmins, xmaxs, xincs, ymins, ymaxs, yincs;
+      try
+      {
+        UsefulFunctions::Scale1( xmins, xmaxs, xincs, 5, xmin, xmax );
+        UsefulFunctions::Scale1( ymins, ymaxs, yincs, 5, ymin, ymax );
+      }
+      catch ( std::runtime_error &e )
+      {
+        throw EGraphicsError( wxString(e.what(),wxConvUTF8) );
+      }
+      double xd = xmaxs - xmins;
+      double yd = ymaxs - ymins;
+      int nlxinc = static_cast<int>( xd/xincs + 0.5 );
+      int nlyinc = static_cast<int>( yd/yincs + 0.5 );
+      //
+      double delx, dely;
+      if( xd >= yd )
+      {
+        delx = xuaxis - xlaxis;
+        dely  = delx * yd / xd;
+        ylaxis = ymid - 0.5*dely;
+        yuaxis = ymid + 0.5*dely;
+      }
+      else
+      {
+        dely = yuaxis - ylaxis;
+        delx = dely * xd / yd;
+        xlaxis = xmid - 0.5*delx;
+        xuaxis = xmid + 0.5*delx;
+      }
+      if( (ylaxis-ylwind)/delywind < 0.15 )
+      {
+        dely = 0.15*delywind + ylwind - ylaxis;
+        ylaxis = 0.15*delywind + ylwind;
+        yuaxis = yuaxis - dely;
+        xlaxis = xlaxis + dely;
+        xuaxis = xuaxis - dely;
+      }
+      else if( (xlaxis-xlwind)/delxwind < 0.15 )
+      {
+        delx = 0.15*delxwind + xlwind - xlaxis;
+        xlaxis = 0.15*delxwind + xlwind;
+        xuaxis = xuaxis - delx;
+        ylaxis = ylaxis + delx;
+        yuaxis = yuaxis - delx;
+      }
+      double xlp = (xlaxis-xlwind)/delxwind*100.;
+      double xup = (xuaxis-xlwind)/delxwind*100.;
+      double ylp = (ylaxis-ylwind)/delywind*100.;
+      double yup = (yuaxis-ylwind)/delywind*100.;
+      //
+      static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("LOWERAXIS")))->SetAsPercent( xlp );
+      static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("UPPERAXIS")))->SetAsPercent( xup );
+      static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Set( xmax );
+      static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Set( xmin );
+      static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( xmax );
+      static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( xmin );
+      static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NLINCS")))->Set( nlxinc );
+      static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 7 );
+      static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set( -1 );
+      //
+      static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("LOWERAXIS")))->SetAsPercent( ylp );
+      static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("UPPERAXIS")))->SetAsPercent( yup );
+      static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MAX")))->Set( ymax );
+      static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MIN")))->Set( ymin );
+      static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( ymax );
+      static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( ymin );
+      static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NLINCS")))->Set( nlyinc );
+      static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 7 );
+      static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set( -1 );
+    }
+    GRA_cartesianAxes *cartesianAxes = 0;
     try
     {
-      UsefulFunctions::Scale1( xmins, xmaxs, xincs, 5, xmin, xmax );
-      UsefulFunctions::Scale1( ymins, ymaxs, yincs, 5, ymin, ymax );
+      cartesianAxes = new GRA_cartesianAxes( xTmp, yTmp, false, false );
+      cartesianAxes->Make();
+      AddDrawableObject( cartesianAxes );
     }
-    catch ( std::runtime_error &e )
+    catch ( EGraphicsError &e )
     {
-      throw EGraphicsError( wxString(e.what(),wxConvUTF8) );
+      delete cartesianAxes;
+      throw;
     }
-    double xd = xmaxs - xmins;
-    double yd = ymaxs - ymins;
-    int nlxinc = static_cast<int>( xd/xincs + 0.5 );
-    int nlyinc = static_cast<int>( yd/yincs + 0.5 );
-    //
-    double delx, dely;
-    if( xd >= yd )
-    {
-      delx = xuaxis - xlaxis;
-      dely  = delx * yd / xd;
-      ylaxis = ymid - 0.5*dely;
-      yuaxis = ymid + 0.5*dely;
-    }
-    else
-    {
-      dely = yuaxis - ylaxis;
-      delx = dely * xd / yd;
-      xlaxis = xmid - 0.5*delx;
-      xuaxis = xmid + 0.5*delx;
-    }
-    if( (ylaxis-ylwind)/delywind < 0.15 )
-    {
-      dely = 0.15*delywind + ylwind - ylaxis;
-      ylaxis = 0.15*delywind + ylwind;
-      yuaxis = yuaxis - dely;
-      xlaxis = xlaxis + dely;
-      xuaxis = xuaxis - dely;
-    }
-    else if( (xlaxis-xlwind)/delxwind < 0.15 )
-    {
-      delx = 0.15*delxwind + xlwind - xlaxis;
-      xlaxis = 0.15*delxwind + xlwind;
-      xuaxis = xuaxis - delx;
-      ylaxis = ylaxis + delx;
-      yuaxis = yuaxis - delx;
-    }
-    double xlp = (xlaxis-xlwind)/delxwind*100.;
-    double xup = (xuaxis-xlwind)/delxwind*100.;
-    double ylp = (ylaxis-ylwind)/delywind*100.;
-    double yup = (yuaxis-ylwind)/delywind*100.;
-    //
-    static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("LOWERAXIS")))->SetAsPercent( xlp );
-    static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("UPPERAXIS")))->SetAsPercent( xup );
-    static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Set( xmax );
-    static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Set( xmin );
-    static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( xmax );
-    static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( xmin );
-    static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NLINCS")))->Set( nlxinc );
-    static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 7 );
-    static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set( -1 );
-    //
-    static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("LOWERAXIS")))->SetAsPercent( ylp );
-    static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("UPPERAXIS")))->SetAsPercent( yup );
-    static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MAX")))->Set( ymax );
-    static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MIN")))->Set( ymin );
-    static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( ymax );
-    static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( ymin );
-    static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NLINCS")))->Set( nlyinc );
-    static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 7 );
-    static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set( -1 );
-  }
-  GRA_cartesianAxes *cartesianAxes = 0;
-  try
-  {
-    cartesianAxes = new GRA_cartesianAxes( xTmp, yTmp, false, false );
-    cartesianAxes->Make();
-    AddDrawableObject( cartesianAxes );
-  }
-  catch ( EGraphicsError &e )
-  {
-    delete cartesianAxes;
-    throw;
   }
   drawableVecIter end = drawableObjects_.end();
   wxClientDC dc( ExGlobals::GetwxWindow() );

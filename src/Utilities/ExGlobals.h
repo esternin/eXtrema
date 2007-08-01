@@ -60,6 +60,7 @@ class HintForm;
 class ParseLine;
 class AxisPopup;
 class CurvePopup;
+class TextPopup;
 class GraphicsPage;
 
 namespace ExGlobals
@@ -90,6 +91,7 @@ namespace ExGlobals
   extern std::map<wxString,wxString> alias_;
   extern AxisPopup *axisPopup_;
   extern CurvePopup *curvePopup_;
+  extern TextPopup *textPopup_;
 
   void Initialize();
   wxPrintData *GetPrintData();
@@ -243,6 +245,9 @@ namespace ExGlobals
 
   CurvePopup *GetCurvePopup( GraphicsPage * );
   void ZeroCurvePopup();
+
+  TextPopup *GetTextPopup( GraphicsPage * );
+  void ZeroTextPopup();
 
   void QuitApp();
 

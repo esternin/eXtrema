@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -37,6 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_wxWidgets.h"
 #include "ExGlobals.h"
 #include "EVariableError.h"
+#include "UsefulFunctions.h"
 
 GRA_drawableText::GRA_drawableText( wxString const &inputString, double height,
                                     double angle, double x, double y, int alignment,
@@ -146,6 +147,10 @@ void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     dc.SetFont( font );
     dc.SetTextForeground( ExGlobals::GetwxColor(strings_[i]->GetColor()) );
     dc.DrawRotatedText( strings_[i]->GetString(), x, y, angle );
+    //
+    int w, descent, externalLeading;
+    dc.GetTextExtent( strings_[i]->GetString(), &w, &h, &descent, &externalLeading );
+    strings_[i]->SetBoundary( x, y, w, h );
   }
 }
 
@@ -302,6 +307,8 @@ void GRA_drawableText::AlignXY( double width, double height,
 
 void GRA_drawableText::Parse()
 {
+  textVec().swap( strings_ );
+  //
   // multiple adjacent commands can entered as <comand><command>  or  <command,command>
   //
   double xShift=0.0, yShift=0.0;
@@ -558,6 +565,25 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
     }
   }
   return 0;
+}
+
+bool GRA_drawableText::Inside( double x, double y )
+{
+  std::vector<double> xp(4,0.0), yp(4,0.0);
+  std::vector<GRA_simpleText*>::const_iterator end = strings_.end();
+  for( std::vector<GRA_simpleText*>::const_iterator i=strings_.begin(); i!=end; ++i )
+  {
+    int xlo, ylo, xhi, yhi;
+    (*i)->GetBoundary( xlo, ylo, xhi, yhi );
+    ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( xlo, ylo, xp[0], yp[0] );
+    ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( xhi, yhi, xp[2], yp[2] );
+    xp[1] = xp[2];
+    yp[1] = yp[0];
+    xp[3] = xp[0];
+    yp[3] = yp[2];
+    if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
+  }
+  return false;
 }
 
 // end of file

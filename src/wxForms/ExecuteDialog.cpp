@@ -45,36 +45,37 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
       analysisWindow_(parent)
 {
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
-
+  SetSizer( mainSizer );
+  
   chooseFilePanel_ = new ChooseFilePanel( this, true, wxT("Choose an extrema script file"),
                                    wxT("script file|*.pcm|stack file|*.stk|any file|*.*") );
-  mainSizer->Add( chooseFilePanel_, wxSizerFlags(1).Expand().Border(wxALL,1) );
+  mainSizer->Add( chooseFilePanel_, wxSizerFlags(1).Expand().Left().Border(wxALL,5) );
 
-  wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
+  wxPanel *midPanel = new wxPanel( this );
+  //wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
   wxBoxSizer *midSizer = new wxBoxSizer( wxHORIZONTAL );
-  wxStaticText *parameterLabel =
-    new wxStaticText( midPanel, wxID_ANY, wxT("Parameter(s): "), wxDefaultPosition, wxDefaultSize );
-  midSizer->Add( parameterLabel, wxSizerFlags(0).Right().Border(wxALL,10) );
-  parameterTextCtrl_ = new wxTextCtrl( midPanel, wxID_ANY, wxT(""),
-                                       wxDefaultPosition, wxSize(350,20) );
-  parameterTextCtrl_->SetToolTip( wxT("enter any required parameters") );
-  midSizer->Add( parameterTextCtrl_, wxSizerFlags(1).Left().Border(wxALL,10) );
   midPanel->SetSizer( midSizer );
-  mainSizer->Add( midPanel, wxSizerFlags(1).Expand().Border(wxALL,1) );
+  mainSizer->Add( midPanel, wxSizerFlags(1).Expand().Center().Border(wxALL,1) );
+
+  midSizer->Add(
+    new wxStaticText(midPanel,wxID_ANY,wxT("Parameter(s): ")), wxSizerFlags(0).Right().Border(wxALL,10) );
+  parameterTextCtrl_ = new wxTextCtrl( midPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxSize(350,20) );
+  parameterTextCtrl_->SetToolTip( wxT("enter any required parameters") );
+  midSizer->Add( parameterTextCtrl_, wxSizerFlags(1).Expand().Left().Border(wxALL,10) );
   
   wxPanel *bottomPanel = new wxPanel( this );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
+  bottomPanel->SetSizer( bottomSizer );
+  mainSizer->Add( bottomPanel, wxSizerFlags(1).Center().Border(wxALL,5) );
+
   wxButton *applyButton = new wxButton( bottomPanel, wxID_APPLY, wxT("Apply") );
   applyButton->SetToolTip( wxT("execute the chosen file") );
-  bottomSizer->Add( applyButton, wxSizerFlags(0).Center().Border(wxALL,10) );
+  bottomSizer->Add( applyButton, wxSizerFlags(0).Center().Border(wxRIGHT,5) );
+
   wxButton *closeButton = new wxButton( bottomPanel, wxID_CLOSE, wxT("Close") );
   closeButton->SetToolTip( wxT("close this form") );
-  bottomSizer->Add( closeButton, wxSizerFlags(0).Center().Border(wxALL,10) );
-  bottomPanel->SetSizer( bottomSizer );
-  mainSizer->Add( bottomPanel, wxSizerFlags(1).Expand().Centre().Border(wxALL,1) );
+  bottomSizer->Add( closeButton, wxSizerFlags(0).Center().Border(wxLEFT,5) );
 
-  SetSizer( mainSizer );
-  
   wxConfigBase *config = wxConfigBase::Get();
   int ulx = config->Read( wxT("/ExecuteDialog/UPPERLEFTX"), 0l );
   int uly = config->Read( wxT("/ExecuteDialog/UPPERLEFTY"), 640l );

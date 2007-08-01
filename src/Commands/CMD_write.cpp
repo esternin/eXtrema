@@ -96,6 +96,8 @@ void CMD_write::Execute( ParseLine const *p )
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("FORMAT")] && qualifiers[wxT("BINARY")] )
     throw ECommandError( command+wxT("BINARY and FORMAT qualifiers are not compatible") );
+  if( qualifiers[wxT("SCALARS")] || qualifiers[wxT("MATRIX")] ||
+      qualifiers[wxT("TENSOR")] || qualifiers[wxT("TEXT")] )qualifiers[wxT("VECTORS")] = false;
   //
   if( !p->IsString(1) )throw ECommandError( command+wxT("no filename was entered") );
   try
@@ -175,7 +177,7 @@ void CMD_write::Execute( ParseLine const *p )
     }
     else
     {
-      ofStream_ << line.c_str() << std::endl;
+      ofStream_ << line.mb_str(wxConvUTF8) << std::endl;
     }
     ofStream_.close();
     return;
@@ -193,10 +195,7 @@ void CMD_write::Execute( ParseLine const *p )
   while( icnt < p->GetNumberOfTokens() )
   {
     if( !p->IsString(icnt) )
-    {
-      wxString c(wxT("parameter "));
-      throw ECommandError( command+(c << icnt+1 << wxT(" is invalid")) );
-    }
+      throw ECommandError( command+( wxString(wxT("parameter ")) << icnt+1 << wxT(" is invalid")) );
     int ndm;
     double value;
     int dimSizes[3];
@@ -271,7 +270,7 @@ void CMD_write::Execute( ParseLine const *p )
       }
       else
       {
-        for( std::size_t j=0; j<names.size(); ++j )ofStream_ << values[j] << wxT(" ");
+        for( std::size_t j=0; j<names.size(); ++j )ofStream_ << values[j] << " ";
         ofStream_ << std::endl;
       }
     }
@@ -295,7 +294,7 @@ void CMD_write::Execute( ParseLine const *p )
       {
         for( int i=0; i<nd1[0]; ++i )
         {
-          for( int j=0; j<nd2[0]; ++j )ofStream_ << data[0][i+j*nd1[0]] << wxT(" ");
+          for( int j=0; j<nd2[0]; ++j )ofStream_ << data[0][i+j*nd1[0]] << " ";
           ofStream_ << std::endl;
         }
       }
@@ -325,7 +324,7 @@ void CMD_write::Execute( ParseLine const *p )
         {
           for( int j=0; j<nd2[0]; ++j )
           {
-            for( int k=0; k<nd2[0]; ++k )ofStream_ << data[0][i+j*nd1[0]+k*nd2[0]] << wxT(" ");
+            for( int k=0; k<nd2[0]; ++k )ofStream_ << data[0][i+j*nd1[0]+k*nd2[0]] << " ";
             ofStream_ << std::endl;
           }
         }
@@ -357,7 +356,7 @@ void CMD_write::Execute( ParseLine const *p )
         }
         else
         {
-          for( std::size_t j=0; j<d.size(); ++j )ofStream_ << d[j] << wxT(" ");
+          for( std::size_t j=0; j<d.size(); ++j )ofStream_ << d[j] << " ";
           ofStream_ << std::endl;
         }
       }

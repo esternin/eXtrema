@@ -10,7 +10,7 @@ READ\-MESSages FILE\[108:127] ROCK2\2
 !
 set
  %TEXTHEIGHT 3
-  FONT Helvetica
+  FONT Arial
   YLOGbase 10
   NSYINC 9
   NSXINC 4

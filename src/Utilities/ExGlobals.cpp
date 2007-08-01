@@ -80,6 +80,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GraphicsPage.h"
 #include "AxisPopup.h"
 #include "CurvePopup.h"
+#include "TextPopup.h"
 
 DECLARE_APP(extrema)
 
@@ -121,6 +122,7 @@ bool prepareToExecuteScript_, prepareToStopScript_, prepareToPauseScript_;
 std::map<wxString,wxString> alias_;
 AxisPopup *axisPopup_;
 CurvePopup *curvePopup_;
+TextPopup *textPopup_;
 
 void Initialize()
 {
@@ -157,6 +159,7 @@ void Initialize()
   analysisWindow_ = 0;
   axisPopup_ = 0;
   curvePopup_ = 0;
+  textPopup_ = 0;
   //
   // default world coordinates (inches)
   //
@@ -254,6 +257,20 @@ CurvePopup *GetCurvePopup( GraphicsPage *page )
 
 void ZeroCurvePopup()
 { curvePopup_ = 0; }
+
+TextPopup *GetTextPopup( GraphicsPage *page )
+{
+  if( textPopup_ )textPopup_->Raise();
+  else
+  {
+    textPopup_ = new TextPopup( page );
+    textPopup_->Show();
+  }
+  return textPopup_;
+}
+
+void ZeroTextPopup()
+{ textPopup_ = 0; }
 
 void ShowHint( std::vector<wxString> const &lines )
 { hintForm_->ShowHint(lines); }

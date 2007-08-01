@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -61,6 +61,9 @@ public:
   
   bool operator==( GRA_drawableText const & ) const;
 
+  void SetString( wxString const &s )
+  { inputString_ = s; }
+  
   wxString GetString() const
   { return inputString_; }
         
@@ -82,9 +85,15 @@ public:
   double GetY() const
   { return y_; }
 
+  void SetHeight( double h )
+  { height_ = h; }
+  
   double GetHeight() const
   { return height_; }
 
+  void SetAngle( double a )
+  { angle_ = a; }
+  
   double GetAngle() const
   {
     double result = angle_ - static_cast<int>(angle_/360.)*360.;
@@ -95,15 +104,23 @@ public:
   int GetAlignment() const
   { return alignment_; }
 
+  void SetFont( GRA_font *f )
+  { font_ = f; }
+  
   GRA_font *GetFont() const
   { return font_; }
-
+  
+  void SetColor( GRA_color *c )
+  { color_ = c; }
+  
   GRA_color *GetColor() const
   { return color_; }
   
   void Parse();
   void Draw( GRA_wxWidgets *, wxDC & );
   void Erase( GRA_wxWidgets *, wxDC & );
+
+  bool Inside( double, double );
 
   friend std::ostream &operator<<( std::ostream &, GRA_drawableText const & );
   
