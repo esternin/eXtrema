@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -33,14 +33,15 @@ class GRA_wxWidgets;
 class GRA_cartesianCurve : public GRA_drawableObject
 {
 public:
-  GRA_cartesianCurve() : GRA_drawableObject(wxT("CARTESIANCURVE")), smooth_(false)
+  GRA_cartesianCurve()
+      : GRA_drawableObject(wxT("CARTESIANCURVE")), smooth_(false), popup_(false)
   {}
 
   GRA_cartesianCurve( std::vector<double> const &x, std::vector<double> const &y,
                       std::vector<double> const &xE1, std::vector<double> const &yE1,
                       std::vector<double> const &xE2, std::vector<double> const &yE2,
                       bool smooth =false )
-      : GRA_drawableObject(wxT("CARTESIANCURVE")), smooth_(smooth)
+      : GRA_drawableObject(wxT("CARTESIANCURVE")), smooth_(smooth), popup_(false)
   {
     xData_.assign( x.begin(), x.end() );
     yData_.assign( y.begin(), y.end() );
@@ -53,8 +54,7 @@ public:
     SetUp();
   }
 
-  ~GRA_cartesianCurve()
-  { DeleteStuff(); }
+  ~GRA_cartesianCurve();
   
   GRA_cartesianCurve( GRA_cartesianCurve const &rhs ) : GRA_drawableObject(rhs)
   { CopyStuff(rhs); }
@@ -159,6 +159,12 @@ public:
 
   std::vector<GRA_errorBar*> &GetErrorBars()
   { return errorBars_; }
+
+  void SetPopup()
+  { popup_ = true; }
+
+  void Disconnect()
+  { popup_ = false; }
     
 private:
   void SetUp();
@@ -188,6 +194,8 @@ private:
   std::vector<GRA_errorBar*> errorBars_;
   double xlaxis_, ylaxis_, xuaxis_, yuaxis_;
   double xmin_, xmax_, ymin_, ymax_;
+  //
+  bool popup_;
 };
 
 #endif

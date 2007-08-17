@@ -138,6 +138,8 @@ void TextPopup::Setup( GRA_window *window, GRA_drawableText *dt )
   setup_ = true;
   window_ = window;
   drawableText_ = dt;
+  drawableText_->SetPopup();
+
   textChars_ = window_->GetTextCharacteristics();
   
   stringTC_->SetValue( drawableText_->GetString() );
@@ -165,7 +167,7 @@ void TextPopup::Setup( GRA_window *window, GRA_drawableText *dt )
 
 void TextPopup::OnColor( GRA_color *color )
 {
-  if( setup_ )return;
+  if( setup_ || !drawableText_ )return;
   static_cast<GRA_colorCharacteristic*>(textChars_->Get(wxT("COLOR")))->Set( color );
   drawableText_->SetColor( color );
   ReDraw();
@@ -173,7 +175,7 @@ void TextPopup::OnColor( GRA_color *color )
 
 void TextPopup::OnHeight( double height )
 {
-  if( setup_ )return;
+  if( setup_ || !drawableText_ )return;
   static_cast<GRA_sizeCharacteristic*>(textChars_->Get(wxT("HEIGHT")))->SetAsPercent( height );
   drawableText_->SetHeight(
     static_cast<GRA_sizeCharacteristic*>(textChars_->Get(wxT("HEIGHT")))->GetAsWorld() );
@@ -182,7 +184,7 @@ void TextPopup::OnHeight( double height )
 
 void TextPopup::OnAngle( int angle )
 {
-  if( setup_ )return;
+  if( setup_ || !drawableText_ )return;
   static_cast<GRA_angleCharacteristic*>(textChars_->Get(wxT("ANGLE")))->Set( angle );
   drawableText_->SetAngle( angle );
   ReDraw();
@@ -190,7 +192,7 @@ void TextPopup::OnAngle( int angle )
 
 void TextPopup::OnXLocation( double loc )
 {
-  if( setup_ )return;
+  if( setup_ || !drawableText_ )return;
   static_cast<GRA_distanceCharacteristic*>(textChars_->Get(wxT("XLOCATION")))->SetAsPercent( loc );
   drawableText_->SetX(
     static_cast<GRA_distanceCharacteristic*>(textChars_->Get(wxT("XLOCATION")))->GetAsWorld() );
@@ -199,7 +201,7 @@ void TextPopup::OnXLocation( double loc )
 
 void TextPopup::OnYLocation( double loc )
 {
-  if( setup_ )return;
+  if( setup_ || !drawableText_ )return;
   static_cast<GRA_distanceCharacteristic*>(textChars_->Get(wxT("YLOCATION")))->SetAsPercent( loc );
   drawableText_->SetY(
     static_cast<GRA_distanceCharacteristic*>(textChars_->Get(wxT("YLOCATION")))->GetAsWorld() );
@@ -208,14 +210,14 @@ void TextPopup::OnYLocation( double loc )
 
 void TextPopup::OnStringEnter( wxCommandEvent &WXUNUSED(event) )
 {
-  if( setup_ )return;
+  if( setup_ || !drawableText_ )return;
   drawableText_->SetString( stringTC_->GetValue() );
   ReDraw();
 }
 
 void TextPopup::OnFont( wxCommandEvent &WXUNUSED(event) )
 {
-  if( setup_ )return;
+  if( setup_ || !drawableText_ )return;
   static_cast<GRA_fontCharacteristic*>(textChars_->Get(wxT("FONT")))->Set(
     GRA_fontControl::GetFont(fontCB_->GetValue()));
   drawableText_->SetFont( static_cast<GRA_fontCharacteristic*>(textChars_->Get(wxT("FONT")))->Get() );
@@ -236,6 +238,7 @@ void TextPopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     config->Write( wxT("/TextPopup/WIDTH"), static_cast<long>(width) );
     config->Write( wxT("/TextPopup/HEIGHT"), static_cast<long>(height) );
   }
+  if( drawableText_ )drawableText_->Disconnect();
   //
   // close all child windows
   //
@@ -254,9 +257,12 @@ void TextPopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 void TextPopup::OnClose( wxCommandEvent &WXUNUSED(event) )
 { Close(); }
 
+void TextPopup::Disconnect()
+{ drawableText_ = 0; }
+
 void TextPopup::ReDraw()
 {
-  if( setup_ )return;
+  if( setup_ || !drawableText_ )return;
   try
   {
     drawableText_->Parse();

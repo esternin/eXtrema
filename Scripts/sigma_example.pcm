@@ -74,4 +74,4 @@ SET
 !TEXT 'T<H5%><V2%><_><pi><^><H3%><V1%> (MeV)'
 TEXT 'T<_><pi><^> (MeV)'
 REPLOT
-set legendon 0
+!set legendon 0

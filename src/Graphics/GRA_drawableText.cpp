@@ -38,6 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "ExGlobals.h"
 #include "EVariableError.h"
 #include "UsefulFunctions.h"
+#include "TextPopup.h"
 
 GRA_drawableText::GRA_drawableText( wxString const &inputString, double height,
                                     double angle, double x, double y, int alignment,
@@ -45,12 +46,12 @@ GRA_drawableText::GRA_drawableText( wxString const &inputString, double height,
     : GRA_drawableObject(wxT("DRAWABLETEXT")), inputString_(inputString), height_(height),
       angle_(angle), x_(x), y_(y), alignment_(alignment),
       color_(color), font_(font), graphUnits_(false),
-      subsupFactor_(0.75)
+      subsupFactor_(0.75), popup_(false)
 {}
 
 GRA_drawableText::GRA_drawableText( wxString const &inputString, bool graphUnits )
     : GRA_drawableObject(wxT("DRAWABLETEXT")), inputString_(inputString), graphUnits_(graphUnits),
-      subsupFactor_(0.75)
+      subsupFactor_(0.75), popup_(false)
 {
   GRA_window *gw = ExGlobals::GetGraphWindow();
   GRA_setOfCharacteristics *textCharacteristics = gw->GetTextCharacteristics();
@@ -66,6 +67,12 @@ GRA_drawableText::GRA_drawableText( wxString const &inputString, bool graphUnits
   font_ = static_cast<GRA_fontCharacteristic*>(textCharacteristics->Get(wxT("FONT")))->Get();
   color_ = static_cast<GRA_colorCharacteristic*>(textCharacteristics->Get(wxT("COLOR")))->Get();
   height_ = static_cast<GRA_sizeCharacteristic*>(textCharacteristics->Get(wxT("HEIGHT")))->GetAsWorld();
+}
+
+GRA_drawableText::~GRA_drawableText()
+{
+  DeleteStuff();
+  if( popup_ )ExGlobals::DisconnectTextPopup();
 }
 
 void GRA_drawableText::DeleteStuff()
@@ -87,10 +94,12 @@ void GRA_drawableText::CopyStuff( GRA_drawableText const &rhs )
   height_ = rhs.height_;
   font_ = rhs.font_;
   color_ = rhs.color_;
+  inputString_ = rhs.inputString_;
   textVec().swap( strings_ );
   textVecIter end = rhs.strings_.end();
   for( textVecIter i=rhs.strings_.begin(); i!=end; ++i )
    strings_.push_back( new GRA_simpleText(**i) );
+  popup_ = rhs.popup_;
 }
 
 bool GRA_drawableText::operator==( GRA_drawableText const &rhs ) const

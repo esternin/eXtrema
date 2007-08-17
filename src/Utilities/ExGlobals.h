@@ -61,6 +61,7 @@ class ParseLine;
 class AxisPopup;
 class CurvePopup;
 class TextPopup;
+class LegendPopup;
 class GraphicsPage;
 
 namespace ExGlobals
@@ -92,6 +93,7 @@ namespace ExGlobals
   extern AxisPopup *axisPopup_;
   extern CurvePopup *curvePopup_;
   extern TextPopup *textPopup_;
+  extern LegendPopup *legendPopup_;
 
   void Initialize();
   wxPrintData *GetPrintData();
@@ -245,9 +247,15 @@ namespace ExGlobals
 
   CurvePopup *GetCurvePopup( GraphicsPage * );
   void ZeroCurvePopup();
+  void DisconnectCurvePopup();
 
   TextPopup *GetTextPopup( GraphicsPage * );
   void ZeroTextPopup();
+  void DisconnectTextPopup();
+
+  LegendPopup *GetLegendPopup( GraphicsPage * );
+  void ZeroLegendPopup();
+  void DisconnectLegendPopup();
 
   void QuitApp();
 

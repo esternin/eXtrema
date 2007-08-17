@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -34,12 +34,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 int GRA_plotSymbol::numberOfShapes_ = 18;
 
 GRA_plotSymbol::GRA_plotSymbol( int code, double size, double angle, GRA_color *color, int width )
-    : GRA_drawableObject(), size_(size), angle_(angle), lineWidth_(width), x_(0.0), y_(0.0)
+    : GRA_drawableObject(), code_(code), size_(size), angle_(angle), lineWidth_(width),
+      x_(0.0), y_(0.0)
 {
   color ? color_=color : color_=GRA_colorControl::GetColor(wxT("BLACK"));
-  int c = abs(code);
+  int c = abs(code_);
   shapeCode_ = (c-1)%numberOfShapes_ + 1;
-  connectToPrevious_ = (code>=0);
+  connectToPrevious_ = (code_>=0);
 }
 
 void GRA_plotSymbol::CopyStuff( GRA_plotSymbol const &rhs )

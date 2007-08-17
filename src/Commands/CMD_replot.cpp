@@ -24,7 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "ExGlobals.h"
 #include "EGraphicsError.h"
 #include "GRA_window.h"
-#include "GRA_legend.h"
 #include "EVariableError.h"
 #include "NumericVariable.h"
 

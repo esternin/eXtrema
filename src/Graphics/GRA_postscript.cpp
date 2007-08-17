@@ -905,37 +905,63 @@ void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
 
 void GRA_postscript::Draw( GRA_legend *legend )
 {
-  if( legend->GetFrame() )Draw( legend->GetFrame() );
-  if( legend->GetTitle() )Draw( legend->GetTitle() );
+  GRA_window *gw = legend->GetGraphWindow();
+  GRA_setOfCharacteristics *legendC = gw->GetGraphLegendCharacteristics();
   //
-  std::vector<GRA_drawableText*> *textVec = legend->GetTextVec();
-  std::vector<bool> *entryLines = legend->GetEntryLines();
-  std::vector<int> *lineTypes = legend->GetLineTypes();
-  std::vector<int> *lineWidths = legend->GetLineWidths();
-  std::vector<GRA_color*> *colors = legend->GetColors();
-  double xLineStart, xLineEnd;
-  legend->GetStartEnd( xLineStart, xLineEnd );
-  std::size_t size = textVec->size();
-  for( std::size_t i=0; i<size; ++i )
+  if( static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("FRAMEON")))->Get() && legend->GetFrame() )
+    Draw( legend->GetFrame() );
+  if( static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("TITLEON")))->Get() && legend->GetTitle() )
+    Draw( legend->GetTitle() );
+  //
+  double xStart = legend->GetLineStart();
+  double xEnd = legend->GetLineEnd();
+  double xLabel = legend->GetXLabel();
+  std::vector<GRA_legendEntry*> entries( legend->GetEntries() );
+  std::vector<GRA_legendEntry*>::const_iterator end = entries.end();
+  for( std::vector<GRA_legendEntry*>::const_iterator i=entries.begin(); i!=end; ++i )
   {
-    // fudge to get the legend to look ok
-    // something is wrong, but i do not see it as of now
-    double y = textVec->at(i)->GetY();
-    textVec->at(i)->SetY( y + 0.8*textVec->at(i)->GetHeight() );
-    Draw( textVec->at(i) );   // plot the text portion of the legend entry
-    textVec->at(i)->SetY( y );
-    if( entryLines->at(i) )   // plot the line segment
+    double labelHeight = (*i)->GetLabelHeight();
+    double y0 = legend->GetYHi() - 1.5*labelHeight*((*i)->GetEntryNumber()+1);
+    // first draw the line segment
+    //
+    double y = y0 + labelHeight*0.5;
+    if( (*i)->GetDrawLineSegment() )
     {
-      double yc = textVec->at(i)->GetY() + textVec->at(i)->GetHeight();
-      SetLineType( lineTypes->at(i) );
-      SetLineWidth( lineWidths->at(i) );
-      SetColor( colors->at(i) );
-      StartLine( xLineStart, yc );
-      ContinueLine( xLineEnd, yc );
+      SetLineType( (*i)->GetLineType() );
+      SetLineWidth( (*i)->GetLineWidth() );
+      SetColor( (*i)->GetLineColor() );
+      StartLine( xStart, y );
+      ContinueLine( xEnd, y );
     }
-    std::vector<GRA_plotSymbol*> *psv = legend->GetSymbols( i );
-    std::vector<GRA_plotSymbol*>::const_iterator end = psv->end();
-    for( std::vector<GRA_plotSymbol*>::const_iterator j=psv->begin(); j!=end; ++j )Draw( *j );
+    // draw the symbols on the line segment
+    //
+    int nSymbols = (*i)->GetNSymbols();
+    GRA_plotSymbol plotSymbol( *(*i)->GetPlotSymbol() );
+    if( nSymbols > 0 )
+    {
+      if( nSymbols > 1 )
+      {
+        double xinc = (xEnd-xStart)/(nSymbols-1.);
+        for( int i=0; i<nSymbols-1; ++i )
+        {
+          plotSymbol.SetLocation( xStart+i*xinc, y );
+          Draw( &plotSymbol );
+        }
+        plotSymbol.SetLocation( xEnd, y );
+        Draw( &plotSymbol );
+      }
+      else
+      {
+        plotSymbol.SetLocation( (xStart+xEnd)/2.0, y );
+        Draw( &plotSymbol );
+      }
+    }
+    // draw the label at the end of the line segment
+    //
+    GRA_drawableText label( *(*i)->GetLabel() );
+    label.SetX( xLabel );
+    label.SetY( y0 );
+    Draw( &label );
   }
 }
 

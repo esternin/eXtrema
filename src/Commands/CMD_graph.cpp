@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005, 2006, 2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -73,7 +73,7 @@ void CMD_graph::Execute( ParseLine const *p )
   {
     SetUp( p, qualifiers );
   }
-  catch (ECommandError &e)
+  catch (ECommandError const &e)
   {
     throw;
   }
@@ -111,7 +111,7 @@ void CMD_graph::Execute( ParseLine const *p )
       TextVariable::GetVariable( p->GetString(1), false, legendLabel );
       AddToStackLine( p->GetString(1) );
     }
-    catch( EVariableError &e )
+    catch( EVariableError const &e )
     {
       if( qualifiers[wxT("AXESONLY")] || !legendIsOn )--ifld;
       else throw ECommandError( command+wxT("expecting legend label") );
@@ -149,7 +149,7 @@ void CMD_graph::Execute( ParseLine const *p )
         {
           NumericVariable::GetVector( p->GetString(ifld), wxT("dependent variable"), y );
         }
-        catch( EVariableError &e )
+        catch( EVariableError const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -176,7 +176,7 @@ void CMD_graph::Execute( ParseLine const *p )
         {
           NumericVariable::GetVector( p->GetString(ifld), wxT("independent variable"), x );
         }
-        catch( EVariableError &e )
+        catch( EVariableError const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -199,7 +199,7 @@ void CMD_graph::Execute( ParseLine const *p )
         {
           NumericVariable::GetVector( p->GetString(ifld), wxT("dependent variable"), y );
         }
-        catch( EVariableError &e )
+        catch( EVariableError const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -234,7 +234,7 @@ void CMD_graph::Execute( ParseLine const *p )
       {
         NumericVariable::GetVector( p->GetString(ifld), wxT("y error vector"), ye1 );
       }
-      catch( EVariableError &e )
+      catch( EVariableError const &e )
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
@@ -265,7 +265,7 @@ void CMD_graph::Execute( ParseLine const *p )
         {
           NumericVariable::GetVector( p->GetString(ifld), wxT("x error vector"), xe1 );
         }
-        catch( EVariableError &e )
+        catch( EVariableError const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -296,7 +296,7 @@ void CMD_graph::Execute( ParseLine const *p )
         {
           NumericVariable::GetVector( p->GetString(ifld), wxT("second y error vector"), ye2 );
         }
-        catch( EVariableError &e )
+        catch( EVariableError const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -323,7 +323,7 @@ void CMD_graph::Execute( ParseLine const *p )
         {
           NumericVariable::GetVector( p->GetString(ifld), wxT("second x error vector"), xe2 );
         }
-        catch( EVariableError &e )
+        catch( EVariableError const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -433,7 +433,7 @@ void CMD_graph::Execute( ParseLine const *p )
       gw->AddDrawableObject( cartesianCurve );
     }
   }
-  catch ( EGraphicsError &e )
+  catch ( EGraphicsError const &e )
   {
     delete cartesianAxes;
     delete cartesianCurve;
@@ -441,99 +441,14 @@ void CMD_graph::Execute( ParseLine const *p )
   }
   if( legendIsOn && !qualifiers[wxT("AXESONLY")] )
   {
-    std::size_t nSymbols =
-      static_cast<GRA_intCharacteristic*>(legendC->Get(wxT("SYMBOLS")))->Get();
-    GRA_intCharacteristic *plotSymbol =
-      static_cast<GRA_intCharacteristic*>(dataC->Get(wxT("PLOTSYMBOL")));
-    //
-    // syms contains nSymbols plotsymbol codes
-    //
-    std::vector<int> syms;
-    if( plotSymbol->IsVector() )
+    try
     {
-      std::vector<int> temp( plotSymbol->Gets() );
-      std::size_t size = temp.size();
-      syms.insert( syms.begin(), temp.begin(), temp.begin()+std::min(nSymbols,size) );
-      if( size < nSymbols )syms.insert( syms.end(), nSymbols-size, temp[size-1] );
+      gw->GetGraphLegend()->AddEntry( legendLabel );
     }
-    else
+    catch (EGraphicsError const &e)
     {
-      int temp = plotSymbol->Get();
-      syms.insert( syms.begin(), nSymbols, temp );
+      throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
-    GRA_sizeCharacteristic *pSize =
-      static_cast<GRA_sizeCharacteristic*>(dataC->Get(wxT("PLOTSYMBOLSIZE")));
-    std::vector<double> symSizes;
-    if( pSize->IsVector() )
-    {
-      std::vector<double> temp( pSize->GetAsWorlds() );
-      std::size_t size = temp.size();
-      symSizes.insert( symSizes.begin(), temp.begin(), temp.begin()+std::min(nSymbols,size) );
-      if( size < nSymbols )symSizes.insert( symSizes.end(), nSymbols-size, temp[size-1] );
-    }
-    else
-    {
-      double temp = pSize->GetAsWorld();
-      symSizes.insert( symSizes.begin(), nSymbols, temp );
-    }
-    GRA_angleCharacteristic *pAngle =
-      static_cast<GRA_angleCharacteristic*>(dataC->Get(wxT("PLOTSYMBOLANGLE")));
-    std::vector<double> symAngles;
-    if( pAngle->IsVector() )
-    {
-      std::vector<double> temp( pAngle->Gets() );
-      std::size_t size = temp.size();
-      symAngles.insert( symAngles.begin(), temp.begin(), temp.begin()+std::min(nSymbols,size) );
-      if( size < nSymbols )symAngles.insert( symAngles.end(), nSymbols-size, temp[size-1] );
-    }
-    else
-    {
-      double temp = pAngle->Get();
-      symAngles.insert( symAngles.begin(), nSymbols, temp );
-    }
-    GRA_colorCharacteristic *pColor =
-      static_cast<GRA_colorCharacteristic*>(dataC->Get(wxT("PLOTSYMBOLCOLOR")));
-    std::vector<GRA_color*> symColors;
-    if( pColor->IsVector() )
-    {
-      std::vector<GRA_color*> temp( pColor->Gets() );
-      std::size_t size = temp.size();
-      symColors.insert( symColors.begin(), temp.begin(), temp.begin()+std::min(nSymbols,size) );
-      if( size < nSymbols )symColors.insert( symColors.end(), nSymbols-size, temp[size-1] );
-    }
-    else
-    {
-      GRA_color *temp = pColor->Get();
-      symColors.insert( symColors.begin(), nSymbols, temp );
-    }
-    GRA_intCharacteristic *pLineWidth =
-      static_cast<GRA_intCharacteristic*>(dataC->Get(wxT("PLOTSYMBOLLINEWIDTH")));
-    std::vector<int> symLWs;
-    if( pLineWidth->IsVector() )
-    {
-      std::vector<int> temp( pLineWidth->Gets() );
-      std::size_t size = temp.size();
-      symLWs.insert( symLWs.begin(), temp.begin(), temp.begin()+std::min(nSymbols,size) );
-      if( size < nSymbols )symLWs.insert( symLWs.end(), nSymbols-size, temp[size-1] );
-    }
-    else
-    {
-      int temp = pLineWidth->Get();
-      symLWs.insert( symLWs.begin(), nSymbols, temp );
-    }
-    std::vector<GRA_plotSymbol*> symbols( nSymbols );
-    for( std::size_t i=0; i<nSymbols; ++i )
-      symbols[i] = new GRA_plotSymbol(syms[i],symSizes[i],symAngles[i],symColors[i],symLWs[i]);
-    //
-    bool entryLineOn = static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("ENTRYLINEON")))->Get();
-    int lineType = static_cast<GRA_intCharacteristic*>(dataC->Get(wxT("CURVELINETYPE")))->Get();
-    int lineWidth = static_cast<GRA_intCharacteristic*>(dataC->Get(wxT("CURVELINEWIDTH")))->Get();
-    GRA_color *color = static_cast<GRA_colorCharacteristic*>(dataC->Get(wxT("CURVECOLOR")))->Get();
-    //
-    GRA_legend *gl = gw->GetLegend();
-    wxClientDC dc( ExGlobals::GetwxWindow() );
-    gl->AddEntry( legendLabel, entryLineOn, color, lineType, lineWidth, symbols,
-                  ExGlobals::GetGraphicsOutput(), dc );
   }
   histType->Set( hstyp );
   ExGlobals::RefreshGraphics();

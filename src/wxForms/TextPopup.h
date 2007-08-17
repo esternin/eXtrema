@@ -43,6 +43,8 @@ public:
   void OnXLocation( double );
   void OnYLocation( double );
 
+  void Disconnect();
+
 private:
   void CreateForm();
   void ReDraw();

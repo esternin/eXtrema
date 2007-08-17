@@ -36,4 +36,4 @@ enddo
 !pause 'hit the <Enter> key to replot on a common scale...'
 replot
 !
-set legendon 0
+!set legendon 0

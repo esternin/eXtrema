@@ -25,8 +25,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "VisualizationWindow.h"
 #include "VisualizationSpeedButtonPanel.h"
 #include "GRA_window.h"
-#include "GRA_setOfCharacteristics.h"
-#include "GRA_distanceCharacteristic.h"
 #include "GRA_wxWidgets.h"
 #include "ExGlobals.h"
 #include "EGraphicsError.h"
@@ -283,6 +281,7 @@ void VisualizationWindow::SavePS( wxString const &filename )
 
 void VisualizationWindow::ResetPages()
 {
+  GraphicsPage *currentPage = static_cast<GraphicsPage*>(notebook_->GetCurrentPage());
   Layout();
   
   wxSize size( notebook_->GetClientSize() );
@@ -304,8 +303,10 @@ void VisualizationWindow::ResetPages()
   for( int i=0; i<nPages; ++i )
   {
     notebook_->GetPage(i)->SetClientSize( width, height );
-    static_cast<GraphicsPage*>(notebook_->GetPage(i))->Paint();
+    //static_cast<GraphicsPage*>(notebook_->GetPage(i))->Paint();
   }
+  currentPage->Paint();
+  SetPage( currentPage );
 }
 
 void VisualizationWindow::ClearAllPages()
@@ -562,6 +563,19 @@ void VisualizationWindow::SetPage( int n )
 #else
   notebook_->ChangeSelection( n-1 );
 #endif
+}
+
+void VisualizationWindow::SetPage( GraphicsPage *p )
+{
+  int np = notebook_->GetPageCount();
+  for( int i=0; i<np; ++i )
+  {
+    if( notebook_->GetPage(i) == p )
+    {
+      SetPage(i+1);
+      return;
+    }
+  }
 }
 
 void VisualizationWindow::InheritPage( int m )

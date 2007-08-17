@@ -164,6 +164,8 @@ void CurvePopup::Setup( GRA_window *window, GRA_cartesianCurve *curve )
 
   window_ = window;
   curve_ = curve;
+  curve_->SetPopup();
+
   curveChars_ = window_->GetDataCurveCharacteristics();
   
   // this will be a problem if histType is other than 0, 1, or 2
@@ -211,6 +213,7 @@ void CurvePopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     config->Write( wxT("/CurvePopup/WIDTH"), static_cast<long>(width) );
     config->Write( wxT("/CurvePopup/HEIGHT"), static_cast<long>(height) );
   }
+  if( curve_ )curve_->Disconnect();
   //
   // close all child windows
   //
@@ -229,9 +232,12 @@ void CurvePopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 void CurvePopup::OnClose( wxCommandEvent &WXUNUSED(event) )
 { Close(); }
 
+void CurvePopup::Disconnect()
+{ curve_ = 0; }
+
 void CurvePopup::OnCurveColor( GRA_color *color )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   static_cast<GRA_colorCharacteristic*>(curveChars_->Get(wxT("CURVECOLOR")))->Set( color );
   curve_->SetColor( color );
   ReDraw();
@@ -239,7 +245,7 @@ void CurvePopup::OnCurveColor( GRA_color *color )
 
 void CurvePopup::OnAreafillColor( GRA_color *color )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   if( GRA_colorControl::GetColorCode(color) == 0 )color = 0;
   static_cast<GRA_colorCharacteristic*>(window_->GetGeneralCharacteristics()->
                                         Get(wxT("AREAFILLCOLOR")))->Set( color );
@@ -249,7 +255,7 @@ void CurvePopup::OnAreafillColor( GRA_color *color )
 
 void CurvePopup::OnPlotsymbolColor( GRA_color *color )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   static_cast<GRA_colorCharacteristic*>(curveChars_->Get(wxT("PLOTSYMBOLCOLOR")))->Set( color );
   curve_->SetPlotsymbolColor( color );
   ReDraw();
@@ -257,7 +263,7 @@ void CurvePopup::OnPlotsymbolColor( GRA_color *color )
 
 void CurvePopup::OnPlotsymbolCode( int code )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   if( !connectCB_->IsChecked() )code *= -1;
   static_cast<GRA_intCharacteristic*>(curveChars_->Get(wxT("PLOTSYMBOL")))->Set( code );
   curve_->SetPlotsymbolCode( code );
@@ -266,7 +272,7 @@ void CurvePopup::OnPlotsymbolCode( int code )
 
 void CurvePopup::OnCurveLineWidth( int lw )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   static_cast<GRA_intCharacteristic*>(curveChars_->Get(wxT("CURVELINEWIDTH")))->Set( lw );
   curve_->SetLineWidth( lw );
   ReDraw();
@@ -274,7 +280,7 @@ void CurvePopup::OnCurveLineWidth( int lw )
 
 void CurvePopup::OnCurveLineType( int lt )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   static_cast<GRA_intCharacteristic*>(curveChars_->Get(wxT("CURVELINETYPE")))->Set( lt );
   curve_->SetLineType( lt );
   ReDraw();
@@ -282,7 +288,7 @@ void CurvePopup::OnCurveLineType( int lt )
 
 void CurvePopup::OnPlotsymbolSize( double size )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   static_cast<GRA_sizeCharacteristic*>(curveChars_->Get(wxT("PLOTSYMBOLSIZE")))->SetAsPercent( size );
   curve_->SetPlotsymbolSize(
     static_cast<GRA_sizeCharacteristic*>(curveChars_->Get(wxT("PLOTSYMBOLSIZE")))->GetAsWorld() );
@@ -291,7 +297,7 @@ void CurvePopup::OnPlotsymbolSize( double size )
 
 void CurvePopup::OnPlotsymbolAngle( int angle )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   static_cast<GRA_angleCharacteristic*>(curveChars_->Get(wxT("PLOTSYMBOLANGLE")))->
       Set( static_cast<double>(angle) );
   curve_->SetPlotsymbolAngle( angle );
@@ -300,7 +306,7 @@ void CurvePopup::OnPlotsymbolAngle( int angle )
 
 void CurvePopup::OnCurveType( wxCommandEvent &WXUNUSED(event) )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   int histType = histogramRB_->GetSelection();
   static_cast<GRA_intCharacteristic*>(curveChars_->Get(wxT("HISTOGRAMTYPE")))->Set( histType );
   curve_->SetHistogramType( histType );
@@ -310,7 +316,7 @@ void CurvePopup::OnCurveType( wxCommandEvent &WXUNUSED(event) )
 
 void CurvePopup::OnConnect( wxCommandEvent &WXUNUSED(event) )
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   int code = plotsymbolCodeSC_->GetValue();
   if( !connectCB_->IsChecked() )code *= -1;
   static_cast<GRA_intCharacteristic*>(curveChars_->Get(wxT("PLOTSYMBOL")))->Set( code );
@@ -320,7 +326,7 @@ void CurvePopup::OnConnect( wxCommandEvent &WXUNUSED(event) )
 
 void CurvePopup::ReDraw()
 {
-  if( setup_ )return;
+  if( setup_ || !curve_ )return;
   try
   {
     page_->SetGraphWindow( window_ );

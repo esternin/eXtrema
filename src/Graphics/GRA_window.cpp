@@ -171,7 +171,7 @@ void GRA_window::RemoveDrawableObject( GRA_drawableObject *object )
   if( i != drawableObjects_.end() )drawableObjects_.erase( i );
 }
 
-GRA_legend *GRA_window::GetLegend()
+GRA_legend *GRA_window::GetGraphLegend()
 {
   drawableVecIter end = drawableObjects_.end();
   GRA_legend *legend = 0;
@@ -185,8 +185,7 @@ GRA_legend *GRA_window::GetLegend()
   }
   if( !legend )
   {
-    legend = new GRA_legend();
-    legend->Initialize();
+    legend = new GRA_legend( this );
     AddDrawableObject( legend );
   }
   return legend;

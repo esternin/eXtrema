@@ -15,36 +15,35 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#ifndef EXTREMA_CURVEPOPUP
-#define EXTREMA_CURVEPOPUP
+#ifndef EXTREMA_LEGENDPOPUP
+#define EXTREMA_LEGENDPOPUP
 
 #include "wx/wx.h"
 
+#include "ExSlider.h"
 #include "ExSpinCtrlD.h"
-#include "ExSpinCtrlI.h"
 #include "ExColorCtrl.h"
 
 class GraphicsPage;
 class GRA_window;
 class GRA_setOfCharacteristics;
 class GRA_color;
-class GRA_cartesianCurve;
+class GRA_legend;
 
-class CurvePopup : public wxFrame
+class LegendPopup : public wxFrame
 {
 public:
-  CurvePopup( GraphicsPage * );
+  LegendPopup( GraphicsPage * );
 
-  void Setup( GRA_window *, GRA_cartesianCurve * );
+  void Setup( GRA_window *, GRA_legend * );
 
-  void OnCurveColor( GRA_color * );
-  void OnAreafillColor( GRA_color * );
-  void OnPlotsymbolColor( GRA_color * );
-  void OnPlotsymbolCode( int );
-  void OnCurveLineWidth( int );
-  void OnCurveLineType( int );
-  void OnPlotsymbolAngle( int );
-  void OnPlotsymbolSize( double );
+  void OnFrameColor( GRA_color * );
+  void OnTitleColor( GRA_color * );
+  void OnTitleHeight( double );
+  void OnMoveH( double );
+  void OnMoveV( double );
+  void OnExpandH( double );
+  void OnExpandV( double );
 
   void Disconnect();
 
@@ -53,29 +52,35 @@ private:
   void ReDraw();
 
   // event handlers
-  void OnCurveType( wxCommandEvent & );
-  void OnConnect( wxCommandEvent & );
+  void OnTitleEnter( wxCommandEvent & );
+  void OnTitleFont( wxCommandEvent & );
+  void OnDrawLegend( wxCommandEvent & );
+  void OnDrawFrame( wxCommandEvent & );
+  void OnDrawTitle( wxCommandEvent & );
+
   void OnClose( wxCommandEvent & );
   void CloseEventHandler( wxCloseEvent & );
 
   bool setup_;
   GraphicsPage *page_;
   GRA_window *window_;
-  GRA_cartesianCurve *curve_;
-  GRA_setOfCharacteristics *curveChars_;
+  GRA_legend *legend_;
+  GRA_setOfCharacteristics *legChars_;
 
-  wxRadioBox *histogramRB_;
-  ExColorCtrl<CurvePopup> *curveColor_, *areafillColor_, *plotsymbolColor_;
-  ExSpinCtrlI<CurvePopup> *lineWidthSC_, *lineTypeSC_;
-  ExSpinCtrlI<CurvePopup> *plotsymbolCodeSC_, *plotsymbolAngleSC_;
-  ExSpinCtrlD<CurvePopup> *plotsymbolSizeSC_;
-  wxCheckBox *connectCB_;
-  wxPanel *plotsymbolPanel_;
+  ExColorCtrl<LegendPopup> *frameColor_, *titleColor_;
+  ExSpinCtrlD<LegendPopup> *titleHeightSC_;
+  ExSlider<LegendPopup> *moveH_, *moveV_, *expandH_, *expandV_;
+  wxComboBox *titleFontCB_;
+  wxTextCtrl *titleTC_;
+  wxCheckBox *drawLegendCB_, *drawFrameCB_, *drawTitleCB_;
   wxButton *closeBTN_;
 
   enum {
-      ID_curveType,
-      ID_connect
+      ID_font,
+      ID_title,
+      ID_drawLegend,
+      ID_drawFrame,
+      ID_drawTitle
   };
   
   // any class wishing to process wxWidgets events must use this macro

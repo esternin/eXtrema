@@ -74,6 +74,7 @@ public:
   GraphicsPage *GetPage( int );
   void NewPage( int );
   void SetPage( int );
+  void SetPage( GraphicsPage * );
   void InheritPage( int );
 
   void ZeroPeakFindForm();

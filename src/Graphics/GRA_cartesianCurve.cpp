@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -35,7 +35,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_window.h"
 #include "ExGlobals.h"
 #include "UsefulFunctions.h"
+#include "CurvePopup.h"
 
+GRA_cartesianCurve::~GRA_cartesianCurve()
+{
+  DeleteStuff();
+  if( popup_ )ExGlobals::DisconnectCurvePopup();
+}
+  
 void GRA_cartesianCurve::SetUp()
 {
   GRA_window *gw = ExGlobals::GetGraphWindow();
@@ -190,6 +197,8 @@ void GRA_cartesianCurve::CopyStuff( GRA_cartesianCurve const &rhs )
   std::vector<GRA_errorBar*>::const_iterator eEnd = rhs.errorBars_.end();
   for( std::vector<GRA_errorBar*>::const_iterator i=rhs.errorBars_.begin(); i!=eEnd; ++i )
     errorBars_.push_back( new GRA_errorBar(**i) );
+  //
+  popup_ = rhs.popup_;
 }
 
 void GRA_cartesianCurve::Make()

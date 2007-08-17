@@ -37,7 +37,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_fontControl.h"
 #include "GRA_font.h"
 #include "CMD_read.h"
-#include "GRA_legend.h"
 #include "GRA_boolCharacteristic.h"
 #include "GRA_intCharacteristic.h"
 #include "GRA_sizeCharacteristic.h"
@@ -199,7 +198,8 @@ NEXTLINE:
             keyword.assign( temp,0,temp.length() );
   valueIndex_ = 2;
   //command += keyword;
-  if( p.GetNumberOfTokens() < 3 )throw ECommandError( command+wxT("expecting value") );
+  if( p.GetNumberOfTokens()<3 && keyword!=wxT("LEGENDFRAME") )
+    throw ECommandError( command+wxT("expecting value") );
   if( p.IsEqualSign(2) )
   {
     valueIndex_ = 3;

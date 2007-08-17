@@ -49,6 +49,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "AxisPopup.h"
 #include "CurvePopup.h"
 #include "TextPopup.h"
+#include "LegendPopup.h"
 
 BEGIN_EVENT_TABLE( GraphicsPage, wxNotebookPage )
   EVT_PAINT( GraphicsPage::OnPaint )
@@ -123,9 +124,7 @@ void GraphicsPage::OnPaint( wxPaintEvent &event )
 { Paint(); }
 
 void GraphicsPage::RefreshGraphics()
-{
-  Refresh();
-}
+{ Refresh(); }
 
 void GraphicsPage::SetUpDefaultWindows()
 {
@@ -189,6 +188,7 @@ void GraphicsPage::AddGraphWindow( GRA_window *gw )
 
 void GraphicsPage::SetGraphWindow( GRA_window *gw )
 {
+  ExGlobals::GetVisualizationWindow()->SetPage( this );
   currentWindowNumber_ =
     std::distance( graphWindows_.begin(),
                    std::find(graphWindows_.begin(),graphWindows_.end(),gw) );
@@ -387,6 +387,16 @@ void GraphicsPage::OnMouseRightDown( wxMouseEvent &event )
         {
           TextPopup *textPopup = ExGlobals::GetTextPopup( this );
           textPopup->Setup( *i, dt );
+          return;
+        }
+      }
+      else if( (*j)->IsaGraphLegend() )
+      {
+        GRA_legend *legend = static_cast<GRA_legend*>(*j);
+        if( legend->Inside(xW,yW) )
+        {
+          LegendPopup *legendPopup = ExGlobals::GetLegendPopup( this );
+          legendPopup->Setup( *i, legend );
           return;
         }
       }

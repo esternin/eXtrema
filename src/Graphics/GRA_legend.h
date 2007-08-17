@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -27,19 +27,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class GRA_window;
 class GRA_color;
+class GRA_font;
 class GRA_drawableText;
 class GRA_rectangle;
 class GRA_plotSymbol;
 class GRA_wxWidgets;
+class GRA_legendEntry;
+class GRA_outputType;
 
 class GRA_legend : public GRA_drawableObject
 {
 public:
-  GRA_legend() : GRA_drawableObject(wxT("GRAPHLEGEND")), frame_(0), title_(0), firstTime_(true)
-  {}
+  GRA_legend( GRA_window *gw)
+    : GRA_drawableObject(wxT("GRAPHLEGEND")), graphWindow_(gw), frame_(0),
+      title_(0), popup_(false)
+  { Initialize(); }
 
-  ~GRA_legend()
-  { DeleteStuff(); }
+  ~GRA_legend();
 
   GRA_legend( GRA_legend const &rhs ) : GRA_drawableObject(rhs)
   { CopyStuff(rhs); }
@@ -56,59 +60,132 @@ public:
   }
 
   void Initialize();
+  void MakeFrame();
+  void MakeTitle();
 
-  void AddEntry( wxString &, bool, GRA_color *, int, int,
-                 std::vector<GRA_plotSymbol*>, GRA_wxWidgets *, wxDC & );
+  void AddEntry( wxString const & );
 
+  void AddEntry( GRA_legendEntry *entry )
+  { entries_.push_back(entry); }
+  
+  std::vector<GRA_legendEntry*> const &GetEntries() const
+  { return entries_; }
+      
   void Draw( GRA_wxWidgets *, wxDC & );
-
+  bool Inside( double, double );
+  
   GRA_rectangle *GetFrame() const
   { return frame_; }
 
   GRA_drawableText *GetTitle() const
   { return title_; }
 
-  std::vector<GRA_drawableText*> *GetTextVec()
-  { return &textVec_; }
+  double GetLineStart() const
+  { return xLineStart_; }
 
-  std::vector<bool> *GetEntryLines()
-  { return &entryLines_; }
-
-  std::vector<int> *GetLineTypes()
-  { return &lineTypes_; }
+  double GetLineEnd() const
+  { return xLineEnd_; }
   
-  std::vector<int> *GetLineWidths()
-  { return &lineWidths_; }
-
-  std::vector<GRA_color*> *GetColors()
-  { return &colors_; }
+  double GetXLabel() const
+  { return xLabel_; }
   
-  void GetStartEnd( double &start, double &end )
-  {
-    start = xLineStart_;
-    end = xLineEnd_;
-  }
+  void SetFrame( GRA_rectangle * );
+  void SetTitle( GRA_drawableText * );
 
-  std::vector<GRA_plotSymbol*> *GetSymbols( std::size_t i )
-  { return &symbols_[i]; }
+  GRA_window *GetGraphWindow() const
+  { return graphWindow_; }
+  
+  double GetYHi() const
+  { return yhi_; }
+  
+  int GetNumberOfEntries() const
+  { return static_cast<int>(entries_.size()); }
+  
+  void SetPopup()
+  { popup_ = true; }
+  
+  void Disconnect()
+  { popup_ = false; }
   
   friend std::ostream &operator<<( std::ostream &, GRA_legend const & );
 
 private:
   void DeleteStuff();
   void CopyStuff( GRA_legend const & );
-  void DrawFrameAndTitle( GRA_wxWidgets *, wxDC & );
   //
-  bool firstTime_;
-  double xlo_, ylo_, xhi_, yhi_, xLineStart_, xLineEnd_, xText_;
+  GRA_window *graphWindow_;
+  std::vector<GRA_legendEntry*> entries_;
+  double xlo_, ylo_, xhi_, yhi_, xLineStart_, xLineEnd_, xLabel_;
   GRA_rectangle *frame_;
   GRA_drawableText *title_;
-  std::vector<wxString> labels_;
-  std::vector<GRA_drawableText*> textVec_;
-  std::vector< std::vector<GRA_plotSymbol*> > symbols_;
-  std::vector<bool> entryLines_; // true=draw line through entry symbols
-  std::vector<int> lineTypes_, lineWidths_;
-  std::vector<GRA_color*> colors_;
+  bool popup_;
+};
+
+class GRA_legendEntry
+{
+public:
+  GRA_legendEntry( GRA_legend *, wxString const &, double, GRA_font *, GRA_color *, int,
+                   int, double, double, GRA_color *, int, bool, int, int, GRA_color * );
+
+  ~GRA_legendEntry()
+  { DeleteStuff(); }
+  
+  GRA_legendEntry( GRA_legendEntry const &rhs )
+  { CopyStuff(rhs); }
+  
+  GRA_legendEntry &operator=( GRA_legendEntry const &rhs )
+  {
+    if( this != &rhs )
+    {
+      DeleteStuff();
+      CopyStuff( rhs );
+    }
+    return *this;
+  }
+  
+  GRA_drawableText *GetLabel() const
+  { return label_; }
+  
+  double GetLabelHeight() const
+  { return labelHeight_; }
+
+  int GetEntryNumber() const
+  { return entryNumber_; }
+
+  bool GetDrawLineSegment() const
+  { return drawLineSegment_; }
+
+  int GetLineType() const
+  { return lineType_; }
+  
+  int GetLineWidth() const
+  { return lineWidth_; }
+  
+  GRA_color *GetLineColor() const
+  { return lineColor_; }
+
+  int GetNSymbols() const
+  { return nSymbols_; }
+  
+  GRA_plotSymbol *GetPlotSymbol() const
+  { return symbol_; }
+  
+  void Draw( GRA_wxWidgets *, wxDC & );
+  
+  friend std::ostream &operator<<( std::ostream &, GRA_legendEntry const & );
+
+private:
+  void DeleteStuff();
+  void CopyStuff( GRA_legendEntry const & );
+  
+  GRA_legend *legend_;
+  GRA_drawableText *label_;
+  GRA_plotSymbol *symbol_;
+  bool drawLineSegment_;
+  double labelHeight_;
+  int entryNumber_, nSymbols_, lineType_, lineWidth_;
+  GRA_color *lineColor_, *labelColor_;
+  GRA_font *labelFont_;
 };
 
 #endif

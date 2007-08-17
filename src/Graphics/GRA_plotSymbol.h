@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -59,7 +59,10 @@ public:
     x = x_;
     y = y_;
   }
-  
+
+  int GetCode() const
+  { return code_; }
+        
   void SetShapeCode( int c )
   {
     connectToPrevious_ = (c>=0);
@@ -109,7 +112,7 @@ private:
   static int numberOfShapes_;
   //
   double x_, y_;  // location in world units
-  int shapeCode_;
+  int code_, shapeCode_;
   double angle_;
   double size_;   // size in world units
   GRA_color *color_;

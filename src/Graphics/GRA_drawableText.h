@@ -42,8 +42,7 @@ public:
   GRA_drawableText( wxString const &, bool =false );
   GRA_drawableText( wxString const &, double, double, double, double, int, GRA_font *, GRA_color * );
 
-  ~GRA_drawableText()
-  { DeleteStuff(); }
+  ~GRA_drawableText();
   
   GRA_drawableText( GRA_drawableText const &rhs ) : GRA_drawableObject(rhs)
   { CopyStuff(rhs); }
@@ -122,6 +121,12 @@ public:
 
   bool Inside( double, double );
 
+  void SetPopup()
+  { popup_ = true; }
+
+  void Disconnect()
+  { popup_ = false; }
+  
   friend std::ostream &operator<<( std::ostream &, GRA_drawableText const & );
   
 private:
@@ -134,6 +139,8 @@ private:
   GRA_color *color_;
   //
   double subsupFactor_;
+  //
+  bool popup_;
   //
   void CopyStuff( GRA_drawableText const & );
   void DeleteStuff();

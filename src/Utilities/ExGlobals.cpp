@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <stdlib.h>
 
 #include "wx/html/helpctrl.h"
 #include "wx/utils.h"
@@ -47,6 +48,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_point.h"
 #include "GRA_polyline.h"
 #include "GRA_polygon.h"
+#include "GRA_rectangle.h"
 #include "GRA_multiLineFigure.h"
 #include "GRA_ellipse.h"
 #include "GRA_drawableText.h"
@@ -81,6 +83,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "AxisPopup.h"
 #include "CurvePopup.h"
 #include "TextPopup.h"
+#include "LegendPopup.h"
 
 DECLARE_APP(extrema)
 
@@ -123,6 +126,7 @@ std::map<wxString,wxString> alias_;
 AxisPopup *axisPopup_;
 CurvePopup *curvePopup_;
 TextPopup *textPopup_;
+LegendPopup *legendPopup_;
 
 void Initialize()
 {
@@ -160,6 +164,7 @@ void Initialize()
   axisPopup_ = 0;
   curvePopup_ = 0;
   textPopup_ = 0;
+  legendPopup_ = 0;
   //
   // default world coordinates (inches)
   //
@@ -232,12 +237,9 @@ VisualizationWindow *GetVisualizationWindow()
 
 AxisPopup *GetAxisPopup( GraphicsPage *page )
 {
-  if( axisPopup_ )axisPopup_->Raise();
-  else
-  {
-    axisPopup_ = new AxisPopup( page );
-    axisPopup_->Show();
-  }
+  if( axisPopup_ )axisPopup_->Close();
+  axisPopup_ = new AxisPopup( page );
+  axisPopup_->Show();
   return axisPopup_;
 }
 
@@ -246,31 +248,45 @@ void ZeroAxisPopup()
 
 CurvePopup *GetCurvePopup( GraphicsPage *page )
 {
-  if( curvePopup_ )curvePopup_->Raise();
-  else
-  {
-    curvePopup_ = new CurvePopup( page );
-    curvePopup_->Show();
-  }
+  if( curvePopup_ )curvePopup_->Close();
+  curvePopup_ = new CurvePopup( page );
+  curvePopup_->Show();
   return curvePopup_;
 }
 
 void ZeroCurvePopup()
 { curvePopup_ = 0; }
 
+void DisconnectCurvePopup()
+{ curvePopup_->Disconnect(); }
+
 TextPopup *GetTextPopup( GraphicsPage *page )
 {
-  if( textPopup_ )textPopup_->Raise();
-  else
-  {
-    textPopup_ = new TextPopup( page );
-    textPopup_->Show();
-  }
+  if( textPopup_ )textPopup_->Close();
+  textPopup_ = new TextPopup( page );
+  textPopup_->Show();
   return textPopup_;
 }
 
 void ZeroTextPopup()
 { textPopup_ = 0; }
+
+void DisconnectTextPopup()
+{ textPopup_->Disconnect(); }
+
+LegendPopup *GetLegendPopup( GraphicsPage *page )
+{
+  if( legendPopup_ )legendPopup_->Close();
+  legendPopup_ = new LegendPopup( page );
+  legendPopup_->Show();
+  return legendPopup_;
+}
+
+void ZeroLegendPopup()
+{ legendPopup_ = 0; }
+
+void DisconnectLegendPopup()
+{ legendPopup_->Disconnect(); }
 
 void ShowHint( std::vector<wxString> const &lines )
 { hintForm_->ShowHint(lines); }
@@ -892,6 +908,11 @@ void PreParse( wxString &line )
 void ProcessCommand( wxString &commandLine )
 {
   if( commandLine[0] == Script::GetCommentCharacter() )return;
+  else if( commandLine[0] == wxT('%') )
+  {
+    system( wxString(commandLine.substr(1)).mb_str(wxConvUTF8) );
+    return;
+  }
   else if( commandLine[0] == executeCharacter_ )
   {
     commandLine = wxString()<<wxT("EXECUTE ")<<commandLine.substr(1);
@@ -1645,33 +1666,84 @@ void RestoreSession( wxString &fileName )
         }
         else if( xml.GetName() == wxT("graphlegend") )
         {
-          GRA_legend *gl = gw->GetLegend();
           long int tmp;
           xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
           int size = static_cast<int>(tmp);
+          xml.GetAttributeValue(wxT("frameon")).ToLong( &tmp );
+          bool frameOn = (tmp==1L);
+          xml.GetAttributeValue(wxT("titleon")).ToLong( &tmp );
+          bool titleOn = (tmp==1L);
+          double xlo, ylo, xhi, yhi;
+          xml.GetAttributeValue(wxT("xlo")).ToDouble( &xlo );
+          xml.GetAttributeValue(wxT("ylo")).ToDouble( &ylo );
+          xml.GetAttributeValue(wxT("xhi")).ToDouble( &xhi );
+          xml.GetAttributeValue(wxT("yhi")).ToDouble( &yhi );
+
+          GRA_setOfCharacteristics *legendC = gw->GetGraphLegendCharacteristics();
+          static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEXLO")))->SetAsWorld( xlo );
+          static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEYLO")))->SetAsWorld( ylo );
+          static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEXHI")))->SetAsWorld( xhi );
+          static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEYHI")))->SetAsWorld( yhi );
+
+          static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("FRAMEON")))->Set( frameOn );
+          static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("TITLEON")))->Set( titleOn );
+
+          GRA_legend *gl = gw->GetGraphLegend();
+          double xstart = gl->GetLineStart();
+          double xend = gl->GetLineEnd();
+          double xlabel = gl->GetXLabel();
+
           for( int j=0; j<size; ++j )
           {
-            xml.NextElementNode(); // get <entry>
+            xml.NextElementNode(); // get <legendentry>
+            long int tmp;
+            xml.GetAttributeValue(wxT("nsymbols")).ToLong( &tmp );
+            int nSymbols = static_cast<int>(tmp);
             xml.GetAttributeValue(wxT("line")).ToLong( &tmp );
-            bool line = tmp?true:false;
+            bool line = (tmp==1L);
             xml.GetAttributeValue(wxT("linetype")).ToLong( &tmp );
             int lt = static_cast<int>(tmp);
             xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
             int lw = static_cast<int>(tmp);
             xml.GetAttributeValue(wxT("linecolor")).ToLong( &tmp );
             int lc = static_cast<int>(tmp);
-            xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
-            int nSymbols = static_cast<int>(tmp);
-            xml.NextElementNode(); // get <string>
-            wxString label( xml.GetTextValue() );
-            std::vector<GRA_plotSymbol*> symbols(nSymbols);
-            for( int k=0; k<nSymbols; ++k )
+            static_cast<GRA_intCharacteristic*>(legendC->Get(wxT("SYMBOLS")))->Set( nSymbols );
+            GRA_color *lineColor = GRA_colorControl::GetColor( lc );
+
+            xml.NextElementNode(); // get <label>
+            GRA_drawableText *labelDT = GetDrawableText( xml );
+            wxString label( labelDT->GetString() );
+            double labelHeight = labelDT->GetHeight();
+            GRA_font *labelFont = labelDT->GetFont();
+            GRA_color *labelColor = labelDT->GetColor();
+
+            xml.NextElementNode(); // get <plotsymbol>
+            GRA_plotSymbol *symbol = GetPlotSymbol( xml );
+            int symCode = symbol->GetCode();
+            double symSize = symbol->GetSize();
+            double symAngle = symbol->GetAngle();
+            GRA_color *symColor = symbol->GetColor();
+            int symLineWidth = symbol->GetLineWidth();
+
+            GRA_legendEntry *entry = 0;
+            try
             {
-              xml.NextElementNode(); // get <plotsymbol>
-              symbols[k] = GetPlotSymbol( xml );
+              entry = new GRA_legendEntry( gl, label, labelHeight, labelFont, labelColor,
+                                           nSymbols, symCode, symSize, symAngle, symColor,
+                                           symLineWidth, line, lt, lw, lineColor );
             }
-            gl->AddEntry( label, line, GRA_colorControl::GetColor(lc), lt, lw, symbols, graphicsOutput_, dc );
+            catch (EGraphicsError const &e)
+            {
+              delete entry;
+              throw;
+            }
+            gl->AddEntry( entry );
           }
+          xml.NextElementNode(); // get <title>
+          gl->SetFrame( static_cast<GRA_rectangle*>(GetPolygon(xml)) );
+          xml.NextElementNode(); // get <title>
+          gl->SetTitle( GetDrawableText(xml) );
+          gl->Draw( graphicsOutput_, dc );
         }
         else if( xml.GetName() == wxT("contour") )
         {

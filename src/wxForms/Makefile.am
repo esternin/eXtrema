@@ -30,6 +30,7 @@ libwxforms_la_SOURCES = \
 	  HintForm.cpp HintForm.h \
 	  InquireYNDialog.cpp InquireYNDialog.h \
 	  InquireDialog.cpp InquireDialog.h \
+          LegendPopup.cpp LegendPopup.h \
 	  PeakFindForm.cpp PeakFindForm.h \
 	  ReadVectorsForm.cpp ReadVectorsForm.h \
 	  ReadScalarsForm.cpp ReadScalarsForm.h \
