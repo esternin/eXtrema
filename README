@@ -1,13 +1,9 @@
 Welcome to EXTREMA.
 
-EXTREMA is free software. Please see the file COPYING for details.
+EXTREMA is distributed under the GNU GPL. Please see the file COPYING for details.
 
-EXTREMA requires that a few packages be installed first...
-
-package    | website
------------+-----------------------
-wxWidgets  | http://wxwidgets.org
-libxml2    | http://xmlsoft.org
+EXTREMA requires that wxWidgets be installed first.  wxWidgets can be
+obtained from http://wxwidgets.org
 
 For documentation, please see the files in the doc subdirectory.
 

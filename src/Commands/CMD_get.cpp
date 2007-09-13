@@ -82,7 +82,7 @@ NEXTLINE:
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     if( line.empty() || line==wxString(wxT(" ")) )return;
-    if( line[0] == Script::GetCommentCharacter() )goto NEXTLINE;
+    if( line.at(0) == Script::GetCommentCharacter() )goto NEXTLINE;
     line = wxString(wxT("GET "))+line;
     ParseLine p2( line );
     try
@@ -107,7 +107,7 @@ NEXTLINE:
     name = p.GetString(2);
     AddToStackLine( p.GetString(2) );
   }
-  bool percent = (temp[0]==wxT('%'));
+  bool percent = (temp.at(0)==wxT('%'));
   //
   double fvalue;
   wxString svalue;

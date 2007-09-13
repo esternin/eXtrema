@@ -91,15 +91,11 @@ void NVariableTable::RemoveEntry( wxString const &name )
 
 std::ostream &operator<<( std::ostream &out, NVariableTable const &table )
 {
-  if( table.vMap_.size() > 0 )
-  {
-    out << "<numericvariables size=\"" << table.Entries() << "\">\n";
-    NVariableTable::NVariableMap::const_iterator end = table.vMap_.end();
-    for( NVariableTable::NVariableMap::const_iterator i=table.vMap_.begin(); i!=end; ++i )
-      out << *((*i).second);
-    out << "</numericvariables>\n";
-  }
-  return out;
+  out << "<numericvariables size=\"" << table.Entries() << "\">\n";
+  NVariableTable::NVariableMap::const_iterator end = table.vMap_.end();
+  for( NVariableTable::NVariableMap::const_iterator i=table.vMap_.begin(); i!=end; ++i )
+    out << *((*i).second);
+  return out << "</numericvariables>\n";
 }
 
 // end of file

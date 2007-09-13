@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define EXTREMA_COLORCTRL
 
 #include "wx/wx.h"
+#include "wx/sizer.h"
 #include "wx/button.h"
 
 #include "GRA_color.h"
@@ -34,9 +35,12 @@ public:
   {
     wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
     SetSizer( sizer );
-    sizer->Add( new wxStaticText(this,wxID_ANY,title), wxSizerFlags(0).Center().Border(wxALL,2) );
+    sizer->Add( new wxStaticText(this,wxID_ANY,title), 0,wxALIGN_CENTER|wxALL,2 );
+    //wxSizerFlags flags(0);
+    //sizer->Add( new wxStaticText(this,wxID_ANY,title), flags.Center().Border(wxALL,2) );
     button_ = new wxButton( this, ID_button, wxT(""), wxDefaultPosition, wxSize(25,25), wxRAISED_BORDER );
-    sizer->Add( button_, wxSizerFlags(0).Center().Border(wxALL,1) );
+    sizer->Add( button_, 0,wxALIGN_CENTER|wxALL,1 );
+    //sizer->Add( button_, flags.Center().Border(wxALL,1) );
     Connect( ID_button, wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED,
              (wxObjectEventFunction)
              (wxEventFunction)

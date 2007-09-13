@@ -21,9 +21,9 @@ evaluator, again in FORTRAN, allowing for array operations and indices on variab
 functions, and entire expressions.  This work was incorporated into a new program,
 PHYSICA, which also introduced many other new graphics and analysis features. After
 a few aborted attempts at creating a GUI for PHYSICA, EXTREMA for Microsoft Windows
-was born.
+was born, followed by EXTREMA for Linux.
 
-EXTREMA was written completely in C++ by Joe Chuma using Borland C++Builder 5.
+EXTREMA was first written completely in C++ by Joe Chuma using Borland C++Builder 5.
 This version of EXTREMA has now been ported to Linux using wxWidgets, an open source
 cross-platform toolkit.  This wxWidgets version of EXTREMA will now be ported back to
 Windows so developers will not be forced to purchase any commercial products.
@@ -40,9 +40,4 @@ Graphics format, a format for storing bitmapped (raster) images on computers", a
 libpng is "the official PNG reference library".  Information on the zlib library can
 be found at http://www.zlib.net, while information on the libpng library can be found
 at http://www.libpng.org/pub/png/libpng.html
-
-EXTREMA makes use of the XML2 Library, which is "the XML C parser and toolkit developed
-for the Gnome project (but usable outside of the Gnome platform), it is free software
-available under the MIT License."  Information on the libxml2 library can be found at 
-http://xmlsoft.org/index.html
 

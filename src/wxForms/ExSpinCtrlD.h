@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define EXTREMA_SPINCTRLD
 
 #include "wx/wx.h"
+#include "wx/sizer.h"
 #include "wx/spinbutt.h"
 #include "wx/textctrl.h"
 
@@ -31,20 +32,24 @@ public:
   {
     wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
     SetSizer( sizer );
-    
-    sizer->Add( new wxStaticText(this,wxID_ANY,label), wxSizerFlags(0).Left().Border(wxALL,2) );
+    sizer->Add( new wxStaticText(this,wxID_ANY,label), 0,wxALIGN_LEFT|wxALL,2 );
+    //wxSizerFlags flags(0);
+    //sizer->Add( new wxStaticText(this,wxID_ANY,label), flags.Left().Border(wxALL,2) );
     
     wxPanel *panel2 = new wxPanel( this );
     wxBoxSizer *sizer2 = new wxBoxSizer( wxHORIZONTAL );
     panel2->SetSizer( sizer2 );
-    sizer->Add( panel2, wxSizerFlags(0).Center().Border(wxALL,1) );
+    sizer->Add( panel2, 0,wxALIGN_CENTER|wxALL,1 );
+    //sizer->Add( panel2, flags.Center().Border(wxALL,1) );
     
     textCtrl_ = new wxTextCtrl( panel2, ID_text );
-    sizer2->Add( textCtrl_, wxSizerFlags(0).Left().Border(wxALL,1) );
+    sizer2->Add( textCtrl_, 0,wxALIGN_LEFT|wxALL,1 );
+    //sizer2->Add( textCtrl_, flags.Left().Border(wxALL,1) );
     
     spinButton_ = new wxSpinButton( panel2, ID_spin );
     spinButton_->SetRange( 0, 1000 );
-    sizer2->Add( spinButton_, wxSizerFlags(0).Left().Border(wxALL,1) );
+    sizer2->Add( spinButton_, 0,wxALIGN_LEFT|wxALL,1 );
+    //sizer2->Add( spinButton_, flags.Left().Border(wxALL,1) );
     
     Connect( ID_spin, wxID_ANY, wxEVT_SCROLL_THUMBTRACK, 
              (wxObjectEventFunction)

@@ -11,7 +11,7 @@
 AC_PREREQ(2.59)
 
 # touch src/wxForms/VisualizationWindow.cpp to get the latest version number
-AC_INIT([extrema],[4.2.7],[Joseph L. Chuma chuma@triumf.ca])
+AC_INIT([extrema],[4.2.8],[Joseph L. Chuma chuma@triumf.ca])
 
 # automake < 1.9 will not be allowed
 # use gnu strictness
@@ -30,8 +30,6 @@ AX_CHECK_MINUIT
 AX_SETCXXFLAGS
 
 AC_SUBST(GTK_LIBS,`pkg-config --libs gtk+-2.0`)
-
-AC_SUBST(EX_LDFLAGS,"-lxml2")
 
 AC_CONFIG_FILES([
    Makefile

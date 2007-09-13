@@ -5,25 +5,38 @@ clear
 window 0
 defaults
 !
-set
- xlabel 'This is the x-axis label'
- xlabelon 1
- %xlabelheight 4
- ylabel 'x<^>2'
- ylabelon 1
- %ylabelheight 4
- %yimagticlength 1
- graphbox 0
- 
+set %yloweraxis 15
+set %yupperaxis 90
+set %xloweraxis 15
+set %xupperaxis 80
+!
+set %xtextlocation (80+15)/2
+set %ytextlocation 1
+set textalign 2
+set textinteractive 0
+set %textheight 4
+text 'This is the x-axis label'
+!
+set %xtextlocation 3
+set %ytextlocation (90+15)/2
+set textalign 8
+set textangle 90
+text 'x<^>2'
+!
+set graphbox 0
 graph x y1
-set
- yaxiscolor blue
- ynumberscolor blue
- curvecolor blue
- xaxison 0
- ylabelcolor blue
- ylabel 'e<^>sin(x/5)'
- 
+!
+set yaxiscolor blue
+set ynumberscolor blue
+set curvecolor blue
+set xaxison 0
+!
 graph\yonright x y2
 !
-defaults
+set %xtextlocation 93
+set %ytextlocation (90+15)/2
+set textalign 8
+set textangle -90
+set textcolor blue
+text 'e<^>sin(x/5)'
+

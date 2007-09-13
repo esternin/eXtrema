@@ -46,14 +46,14 @@ void Command::SetUp( ParseLine const *p )
 {
   parseLine_ = p;
   stackLine_.erase();
-  stackLine_ = names_[0];
+  stackLine_ = names_.at(0);
 }
 
 void Command::SetUp( ParseLine const *p, QualifierMap &qualifiers )
 {
   parseLine_ = p;
   stackLine_.erase();
-  stackLine_ = names_[0];
+  stackLine_ = names_.at(0);
   //
   // make a copy of the fixed qualifiers and default bool values
   // so the bool values can be altered
@@ -68,7 +68,7 @@ void Command::SetUp( ParseLine const *p, QualifierMap &qualifiers )
   {
     wxString qString( *currentQualifiers[i] );
     bool negate = false;
-    if( qString[0] == '-' )
+    if( qString.at(0) == wxT('-') )
     {
       negate = true;
       qString.erase(0,1);
@@ -93,7 +93,7 @@ void Command::SetUp( ParseLine const *p, QualifierMap &qualifiers )
       }
     }
     if( notFound )
-      throw ECommandError( names_[0]+wxT(": unknown qualifier: ")+qString );
+      throw ECommandError( names_.at(0)+wxT(": unknown qualifier: ")+qString );
   }
 }
 

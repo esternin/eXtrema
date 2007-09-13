@@ -1222,317 +1222,347 @@ wxString IntToHex( int n )
   return wxString( sout.c_str(), wxConvUTF8 );
 }
 
-void SaveSession( wxString &fileName )
+void SaveSession( wxString &file )
 {
   ExXML xml;
   try
   {
-    xml.OpenFileForWrite( fileName );
+    xml.OpenFileForWrite( file );
   }
-  catch ( std::runtime_error &e )
+  catch (std::runtime_error const &e)
   {
     throw;
   }
-  std::ostream &out( xml.GetStream() );
-  out << "<extrema>\n";
-  //
-  out << analysisWindow_;
-  out << visualizationWindow_;
-  //
-  out << *NVariableTable::GetTable();
-  out << *TVariableTable::GetTable();
-  //
-  out << *GRA_colorControl::GetColorMap();
-  //
+  std::ofstream *out = xml.GetStream();
+  
+  *out << "<extrema>\n";
+  
+  *out << analysisWindow_;
+  *out << visualizationWindow_;
+  
+  *out << *NVariableTable::GetTable();
+  *out << *TVariableTable::GetTable();
+  
+  *out << *GRA_colorControl::GetColorMap();
+  
   int nPages = visualizationWindow_->GetNumberOfPages();
-  for( int i=1; i<=nPages; ++i )out << visualizationWindow_->GetPage(i);
-  out << "</extrema>" << std::endl;
-  xml.CloseFile();
+  for( int i=1; i<=nPages; ++i )*out << visualizationWindow_->GetPage(i);
+  
+  *out << "</extrema>" << std::endl;
+  out->close();
 }
 
-void RestoreSession( wxString &fileName )
+void RestoreSession( wxString &file )
 {
   ExXML xml;
   try
   {
-    xml.OpenFileForRead( fileName );
+    xml.OpenFileForRead( file );
   }
   catch ( std::runtime_error const &e )
   {
     throw;
   }
-  // NextElementNode() returns 0 if no more nodes
-  //                   returns -1 if an error occurred
+  // first get the analysis window
   //
-  if( xml.NextElementNode() == -1 )return; // this should be the <extrema> node
-  std::ostream &out( xml.GetStream() );
-  //
-  visualizationWindow_->DeleteAllPages();
-  //
-  xml.NextElementNode();                         // get <analysiswindow>
+  if( !xml.GetFirstChild() )
+    throw std::runtime_error(
+      std::string( (wxString()<<wxT("root node extrema has no children, file: ")<<file).mb_str(wxConvUTF8) ) );
+
   if( xml.GetName() != wxT("analysiswindow") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<analysiswindow>")) );
-  
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<analysiswindow>"),file) );
+
+  visualizationWindow_->DeleteAllPages();
   analysisWindow_->ClearOutput();
+  try
+  {
+    long top, left, height, width;
+    xml.GetPropertyValue( wxT("top") ).ToLong( &top );
+    xml.GetPropertyValue( wxT("left") ).ToLong( &left );
+    xml.GetPropertyValue( wxT("height") ).ToLong( &height );
+    xml.GetPropertyValue( wxT("width") ).ToLong( &width );
+    analysisWindow_->SetSize( static_cast<int>(left), static_cast<int>(top),
+                              static_cast<int>(width), static_cast<int>(height) );
+  }
+  catch (std::runtime_error const &e)
+  {
+    throw;
+  }
+  xml.GetFirstChild(); // get the messages <string> node
+  if( xml.GetName() != wxT("string") )
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<string>"),file) );
   
-  long top, left, height, width;
-  xml.GetAttributeValue( wxT("top") ).ToLong( &top );
-  xml.GetAttributeValue( wxT("left") ).ToLong( &left );
-  xml.GetAttributeValue( wxT("height") ).ToLong( &height );
-  xml.GetAttributeValue( wxT("width") ).ToLong( &width );
-  analysisWindow_->SetSize( static_cast<int>(left), static_cast<int>(top),
-                            static_cast<int>(width), static_cast<int>(height) );
+  analysisWindow_->WriteOutput( xml.GetTextValue() );
+  
+  xml.GetNextSibling(); // get the <commands> node
+  if( xml.GetName() != wxT("commands") )
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<commands>"),file) );
 
-  xml.NextElementNode(); // get the messages <string> node
-  bool messagesFound = false;
-  if( xml.GetName() == wxT("string") )
+  long int size;
+  xml.GetPropertyValue( wxT("size") ).ToLong( &size );
+  for( int i=0; i<static_cast<int>(size); ++i )
   {
-    messagesFound = true;
-    analysisWindow_->WriteOutput( xml.GetTextValue() );
+    i==0 ? xml.GetFirstChild() : xml.GetNextSibling();
+    analysisWindow_->AddCommandString( xml.GetTextValue() );
   }
-  if( messagesFound )xml.NextElementNode();
-  bool commandsFound = false;
-  if( xml.GetName() == wxT("commands") )
-  {
-    commandsFound = true;
-    long size;
-    xml.GetAttributeValue( wxT("size") ).ToLong( &size );
-    for( long i=0; i<size; ++i )
-    {
-      xml.NextElementNode();  // get <string>
-      analysisWindow_->AddCommandString( xml.GetTextValue() );
-    }
-  }
-  if( commandsFound )xml.NextElementNode();
+  if( size > 0L )xml.SetBackToParent();  // set current node back to <commands>
+  xml.SetBackToParent(); // set current node back to <analysiswindow>
   //
+  // next get the visualization window
+  //
+  if( !xml.GetNextSibling() )
+    throw std::runtime_error(
+      std::string( (wxString()<<wxT("expecting node: <visualizationwindow>, file: ")<<file).mb_str(wxConvUTF8) ) );
+
   if( xml.GetName() != wxT("visualizationwindow") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<visualizationwindow>")) );
-
-  xml.GetAttributeValue( wxT("top") ).ToLong( &top );
-  xml.GetAttributeValue( wxT("left") ).ToLong( &left );
-  xml.GetAttributeValue( wxT("height") ).ToLong( &height );
-  xml.GetAttributeValue( wxT("width") ).ToLong( &width );
-  visualizationWindow_->SetSize( static_cast<int>(left), static_cast<int>(top),
-                                 static_cast<int>(width), static_cast<int>(height) );
-  double aspectRatio;
-  xml.GetAttributeValue( wxT("aspectratio") ).ToDouble( &aspectRatio );
-
-  long tmp;
-  xml.GetAttributeValue( wxT("currentpage") ).ToLong( &tmp );
-
-  visualizationWindow_->MakeFirstPage();
-  SetAspectRatio( aspectRatio );
-  visualizationWindow_->ResetPages();
-  visualizationWindow_->ResetWindows();
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<visualizationwindow>"),file) );
+  
+  try
+  {
+    long int top, left, height, width;
+    xml.GetPropertyValue( wxT("top") ).ToLong( &top );
+    xml.GetPropertyValue( wxT("left") ).ToLong( &left );
+    xml.GetPropertyValue( wxT("height") ).ToLong( &height );
+    xml.GetPropertyValue( wxT("width") ).ToLong( &width );
+    double aspectRatio;
+    xml.GetPropertyValue( wxT("aspectratio") ).ToDouble( &aspectRatio );
+    long page;
+    xml.GetPropertyValue( wxT("currentpage") ).ToLong( &page );
+    visualizationWindow_->SetSize( static_cast<int>(left), static_cast<int>(top),
+                                   static_cast<int>(width), static_cast<int>(height) );
+    visualizationWindow_->MakeFirstPage();
+    SetAspectRatio( aspectRatio );
+    visualizationWindow_->ResetPages();
+    visualizationWindow_->ResetWindows();
+    visualizationWindow_->SetPage( static_cast<int>(page) );
+  }
+  catch (std::runtime_error const &e)
+  {
+    throw;
+  }
 
   NVariableTable *nvt = NVariableTable::GetTable();
   TVariableTable *tvt = TVariableTable::GetTable();
   
   nvt->ClearTable(); // delete all numeric variables
   tvt->ClearTable(); // delete all character variables
-  
-  xml.NextElementNode(); // get the <numericvariables> node
-  bool numericVariablesFound = false;
-  if( xml.GetName() == wxT("numericvariables") )
-  {
-    numericVariablesFound = true;
-    long int tmp;
-    xml.GetAttributeValue(wxT("size")).ToLong(&tmp); // number of numeric variables
-    int size = static_cast<int>(tmp);
-    for( int i=0; i<size; ++i )
-    {
-      xml.NextElementNode();
-      if( xml.GetName() == wxT("scalar") )
-      {
-        wxString name( xml.GetAttributeValue(wxT("name")) );
-        wxString type( xml.GetAttributeValue(wxT("type")) );
-        xml.NextElementNode(); // get <data>
-        double value;
-        xml.GetTextValue().ToDouble( &value );
-        xml.NextElementNode(); // get <history>
-        xml.GetAttributeValue(wxT("size")).ToLong(&tmp); // number of history strings
-        int nHist = static_cast<int>(tmp);
-        std::deque<wxString> history;
-        for( int j=0; j<nHist; ++j )
-        {
-          xml.NextElementNode(); // get <string>
-          history.push_front( xml.GetTextValue() );
-        }
-        NumericVariable *nv = NumericVariable::PutVariable( name, value, wxString(wxT("")), false );
-        nv->SetHistory( history );
-        xml.NextElementNode(); // get <origin>
-        wxString origin( xml.GetTextValue() );
-        if( !origin.empty() )nv->SetOrigin( origin );
-        if( type == wxT("FIT") )nv->GetData().SetFit();
-      }
-      else if( xml.GetName() == wxT("vector") )
-      {
-        wxString name( xml.GetAttributeValue(wxT("name")) );
-        wxString orderS( xml.GetAttributeValue(wxT("order")) );
-        int order = 0;
-        if( orderS == wxT("ASCENDING") )order = 1;
-        else if( orderS == wxT("DESCENDING") )order = 2;
-        xml.NextElementNode(); // get <data>
-        long int tmp;
-        xml.GetAttributeValue(wxT("size")).ToLong(&tmp);
-        int size = static_cast<int>(tmp);
-        std::vector<double> data( GetDoubleData(xml.GetTextValue(),size) );
-        xml.NextElementNode(); // get <history>
-        xml.GetAttributeValue(wxT("size")).ToLong(&tmp); // number of history strings
-        int nHist = static_cast<int>(tmp);
-        std::deque<wxString> history;
-        for( int j=0; j<nHist; ++j )
-        {
-          xml.NextElementNode(); // get <string>
-          history.push_front( xml.GetTextValue() );
-        }
-        NumericVariable *nv = NumericVariable::PutVariable( name, data, order, wxString(wxT("")), false );
-        nv->SetHistory( history );
-        xml.NextElementNode(); // get <origin>
-        wxString origin( xml.GetTextValue() );
-        if( !origin.empty() )nv->SetOrigin( origin );
-      }
-      else if( xml.GetName() == wxT("matrix") )
-      {
-        wxString name( xml.GetAttributeValue(wxT("name")) );
-        long int tmp;
-        xml.GetAttributeValue(wxT("rows")).ToLong( &tmp );
-        int rows = static_cast<int>(tmp);
-        xml.GetAttributeValue(wxT("columns")).ToLong( &tmp );
-        int columns = static_cast<int>(tmp);
-        xml.NextElementNode(); // get <data>
-        xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
-        int size = static_cast<int>(tmp);
-        std::vector<double> data( GetDoubleData(xml.GetTextValue(),size) );
-        xml.NextElementNode(); // get <history>
-        xml.GetAttributeValue(wxT("size")).ToLong( &tmp ); // number of history strings
-        int nHist = static_cast<int>(tmp);
-        std::deque<wxString> history;
-        for( int j=0; j<nHist; ++j )
-        {
-          xml.NextElementNode(); // get <string>
-          history.push_front( xml.GetTextValue() );
-        }
-        NumericVariable *nv =
-          NumericVariable::PutVariable( name, data, rows, columns, wxString(wxT("")), false );
-        nv->SetHistory( history );
-        xml.NextElementNode(); // get <origin>
-        wxString origin( xml.GetTextValue() );
-        if( !origin.empty() )nv->SetOrigin( origin );
-      }
-      else if( xml.GetName() == wxT("tensor") )
-      {
-        wxString name( xml.GetAttributeValue(wxT("name")) );
-        long int tmp;
-        xml.GetAttributeValue(wxT("rows")).ToLong( &tmp );
-        int rows = static_cast<int>(tmp);
-        xml.GetAttributeValue(wxT("columns")).ToLong( &tmp );
-        int columns = static_cast<int>(tmp);
-        xml.GetAttributeValue(wxT("planes")).ToLong( &tmp );
-        int planes = static_cast<int>(tmp);
-        xml.NextElementNode(); // get <data>
-        xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
-        int size = static_cast<int>(tmp);
-        std::vector<double> data( GetDoubleData(xml.GetTextValue(),size) );
-        xml.NextElementNode(); // get <history>
-        xml.GetAttributeValue(wxT("size")).ToLong( &tmp ); // number of history strings
-        int nHist = static_cast<int>(tmp);
-        std::deque<wxString> history;
-        for( int j=0; j<nHist; ++j )
-        {
-          xml.NextElementNode(); // get <string>
-          history.push_front( xml.GetTextValue() );
-        }
-        //NumericVariable *nv = NumericVariable::PutVariable( name, data, rows, columns, planes, wxT(""), false );
-        //nv->SetHistory( history );
-        //xml.NextElementNode(); // get <origin>
-        //wxString origin( xml.GetTextValue() );
-        //if( !origin.empty() )nv->SetOrigin( origin );
-      }
-    }
-  }
-  if( numericVariablesFound )xml.NextElementNode(); // get <textvariables>
-  bool textVariablesFound = false;
-  if( xml.GetName() == wxT("textvariables") )
-  {
-    textVariablesFound = true;
-    long int tmp;
-    xml.GetAttributeValue(wxT("size")).ToLong( &tmp ); // number of text variables
-    int size = static_cast<int>(tmp);
-    for( int i=0; i<size; ++i )
-    {
-      xml.NextElementNode();
-      if( xml.GetName() == wxT("textscalar") )
-      {
-        wxString name( xml.GetAttributeValue(wxT("name")) );
-        xml.NextElementNode(); // get <string>
-        wxString value = xml.GetTextValue();
-        xml.NextElementNode(); // get <history>
-        xml.GetAttributeValue(wxT("size")).ToLong( &tmp ); // number of history strings
-        int nHist = static_cast<int>(tmp);
-        std::deque<wxString> history;
-        for( int j=0; j<nHist; ++j )
-        {
-          xml.NextElementNode(); // get <string>
-          history.push_front( xml.GetTextValue() );
-        }
-        TextVariable *tv = TextVariable::PutVariable( name, value, wxString(wxT("")), false );
-        tv->SetHistory( history );
-        xml.NextElementNode(); // get <origin>
-        wxString origin( xml.GetTextValue() );
-        if( !origin.empty() )tv->SetOrigin( origin );
-      }
-      else if( xml.GetName() == wxT("textvector") )
-      {
-        wxString name( xml.GetAttributeValue(wxT("name")) );
-        xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
-        int size = static_cast<int>(tmp);
-        std::vector<wxString> strings(size);
-        for( int j=0; j<size; ++j )
-        {
-          xml.NextElementNode(); // get <string>
-          strings[j] = xml.GetTextValue();
-        }
-        xml.NextElementNode(); // get <history>
-        xml.GetAttributeValue(wxT("size")).ToLong( &tmp ); // number of history strings
-        int nHist = static_cast<int>(tmp);
-        std::deque<wxString> history;
-        for( int j=0; j<nHist; ++j )
-        {
-          xml.NextElementNode(); // get <string>
-          history.push_front( xml.GetTextValue() );
-        }
-        TextVariable *tv = TextVariable::PutVariable( name, strings, wxString(wxT("")), false );
-        tv->SetHistory( history );
-        xml.NextElementNode(); // get <origin>
-        wxString origin( xml.GetTextValue() );
-        if( !origin.empty() )tv->SetOrigin( origin );
-      }
-    }
-  }
-  if( textVariablesFound )xml.NextElementNode();
-  if( xml.GetName() != wxT("colormap") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<colormap>")) );
+  //
+  // next get the <numericvariables> node
+  //
+  if( !xml.GetNextSibling() )
+    throw std::runtime_error(
+      std::string( (wxString()<<wxT("expecting node: <numericvariables>, file: ")<<file).mb_str(wxConvUTF8) ) );
 
-  wxString name( xml.GetAttributeValue(wxT("name")) );
+  if( xml.GetName() != wxT("numericvariables") )
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<numericvariables>"),file) );
+  
+  xml.GetPropertyValue(wxT("size")).ToLong( &size ); // number of numeric variables
+  for( int i=0; i<static_cast<int>(size); ++i )
+  {
+    i==0 ? xml.GetFirstChild() : xml.GetNextSibling();
+    if( xml.GetName() == wxT("scalar") )
+    {
+      wxString name( xml.GetPropertyValue(wxT("name")) );
+      wxString type( xml.GetPropertyValue(wxT("type")) );
+      xml.GetFirstChild(); // get <data>
+      double value;
+      xml.GetTextValue().ToDouble( &value );
+      xml.GetNextSibling(); // get <history>
+      long int nhist;
+      xml.GetPropertyValue(wxT("size")).ToLong(&nhist); // number of history strings
+      std::deque<wxString> history;
+      for( int j=0; j<static_cast<int>(nhist); ++j )
+      {
+        j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <string>
+        history.push_front( xml.GetTextValue() );
+      }
+      xml.SetBackToParent();  // set current node back to <history>
+      NumericVariable *nv = NumericVariable::PutVariable( name, value, wxString(wxT("")), false );
+      nv->SetHistory( history );
+      xml.GetNextSibling(); // get <origin>
+      wxString origin( xml.GetTextValue() );
+      if( !origin.empty() )nv->SetOrigin( origin );
+      if( type == wxT("FIT") )nv->GetData().SetFit();
+      xml.SetBackToParent();  // set current node back to <scalar>
+    }
+    else if( xml.GetName() == wxT("vector") )
+    {
+      wxString name( xml.GetPropertyValue(wxT("name")) );
+      wxString orderS( xml.GetPropertyValue(wxT("order")) );
+      int order = 0;
+      if( orderS == wxT("ASCENDING") )order = 1;
+      else if( orderS == wxT("DESCENDING") )order = 2;
+      xml.GetFirstChild(); // get <data>
+      long int size;
+      xml.GetPropertyValue(wxT("size")).ToLong(&size);
+      std::vector<double> data( GetDoubleData(xml.GetTextValue(),static_cast<int>(size)) );
+      xml.GetNextSibling(); // get <history>
+      xml.GetPropertyValue(wxT("size")).ToLong(&size); // number of history strings
+      std::deque<wxString> history;
+      for( int j=0; j<static_cast<int>(size); ++j )
+      {
+        j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <string>
+        history.push_front( xml.GetTextValue() );
+      }
+      xml.SetBackToParent();  // set current node back to <history>
+      NumericVariable *nv = NumericVariable::PutVariable( name, data, order, wxString(wxT("")), false );
+      nv->SetHistory( history );
+      xml.GetNextSibling(); // get <origin>
+      wxString origin( xml.GetTextValue() );
+      if( !origin.empty() )nv->SetOrigin( origin );
+      xml.SetBackToParent(); // set current node back to <vector>
+    }
+    else if( xml.GetName() == wxT("matrix") )
+    {
+      wxString name( xml.GetPropertyValue(wxT("name")) );
+      long int rows, columns, size;
+      xml.GetPropertyValue(wxT("rows")).ToLong( &rows );
+      xml.GetPropertyValue(wxT("columns")).ToLong( &columns );
+      xml.GetFirstChild(); // get <data>
+      xml.GetPropertyValue(wxT("size")).ToLong( &size );
+      std::vector<double> data( GetDoubleData(xml.GetTextValue(),static_cast<int>(size)) );
+      xml.GetNextSibling(); // get <history>
+      xml.GetPropertyValue(wxT("size")).ToLong( &size ); // number of history strings
+      std::deque<wxString> history;
+      for( int j=0; j<static_cast<int>(size); ++j )
+      {
+        j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <string>
+        history.push_front( xml.GetTextValue() );
+      }
+      xml.SetBackToParent(); // set current node back to history
+      NumericVariable *nv = NumericVariable::PutVariable( name, data, static_cast<int>(rows),
+                                                          static_cast<int>(columns), wxString(wxT("")),
+                                                          false );
+      nv->SetHistory( history );
+      xml.GetNextSibling(); // get <origin>
+      wxString origin( xml.GetTextValue() );
+      if( !origin.empty() )nv->SetOrigin( origin );
+      xml.SetBackToParent(); // set current node back to <matrix>
+    }
+    /*
+    else if( xml.GetName() == wxT("tensor") )
+    {
+      wxString name( xml.GetPropertyValue(wxT("name")) );
+      long int rows, columns, planes, size;
+      xml.GetPropertyValue(wxT("rows")).ToLong( &rows );
+      xml.GetPropertyValue(wxT("columns")).ToLong( &columns );
+      xml.GetPropertyValue(wxT("planes")).ToLong( &planes );
+      xml.GetFirstChild(); // get <data>
+      xml.GetPropertyValue(wxT("size")).ToLong( &size );
+      std::vector<double> data( GetDoubleData(xml.GetTextValue(),static_cast<int>(size)) );
+      xml.GetNextSibling(); // get <history>
+      xml.GetPropertyValue(wxT("size")).ToLong( &size ); // number of history strings
+      std::deque<wxString> history;
+      for( int j=0; j<static_cast<int>(size); ++j )
+      {
+        j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <string>
+        history.push_front( xml.GetTextValue() );
+      }
+      xml.SetBackToParent(); // set current node back to <history>
+      NumericVariable *nv =
+      NumericVariable::PutVariable( name, data, static_cast<int>(rows),
+      static_cast<int>(columns),
+      static_cast<int>(planes), wxT(""), false );
+      nv->SetHistory( history );
+      xml.GetNextSibling(); // get <origin>
+      wxString origin( xml.GetTextValue() );
+      if( !origin.empty() )nv->SetOrigin( origin );
+      xml.SetBackToParent(); // set current node back to <tensor>
+    }
+    */
+  }
+  if( size > 0L )xml.SetBackToParent(); // set node to <numericvariables>
+  //
+  // next get the <textvariables> node
+  //
+  if( !xml.GetNextSibling() )
+    throw std::runtime_error(
+      std::string( (wxString()<<wxT("expecting node: <textvariables>, file: ")<<file).mb_str(wxConvUTF8) ) );
+
+  if( xml.GetName() != wxT("textvariables") )
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<textvariables>"),file) );
+  
+  xml.GetPropertyValue(wxT("size")).ToLong( &size ); // number of text variables
+  for( int i=0; i<static_cast<int>(size); ++i )
+  {
+    i==0 ? xml.GetFirstChild() : xml.GetNextSibling();
+    if( xml.GetName() == wxT("textscalar") )
+    {
+      wxString name( xml.GetPropertyValue(wxT("name")) );
+      xml.GetFirstChild(); // get <string>
+      wxString value = xml.GetTextValue();
+      xml.GetNextSibling(); // get <history>
+      long int tmp;
+      xml.GetPropertyValue(wxT("size")).ToLong( &tmp ); // number of history strings
+      std::deque<wxString> history;
+      for( int j=0; j<static_cast<int>(tmp); ++j )
+      {
+        j==0 ? xml.GetFirstChild() : xml.GetNextSibling();
+        history.push_front( xml.GetTextValue() );
+      }
+      xml.SetBackToParent(); // set current node back to <history>
+      TextVariable *tv = TextVariable::PutVariable( name, value, wxString(wxT("")), false );
+      tv->SetHistory( history );
+      xml.GetNextSibling(); // get <origin>
+      wxString origin( xml.GetTextValue() );
+      if( !origin.empty() )tv->SetOrigin( origin );
+      xml.SetBackToParent(); // set current node back to <textscalar>
+    }
+    else if( xml.GetName() == wxT("textvector") )
+    {
+      wxString name( xml.GetPropertyValue(wxT("name")) );
+      long int tmp;
+      xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+      std::vector<wxString> strings;
+      for( int j=0; j<static_cast<int>(tmp); ++j )
+      {
+        j==0 ? xml.GetFirstChild() : xml.GetNextSibling();
+        strings.push_back( xml.GetTextValue() );
+      }
+      xml.GetNextSibling(); // get <history>
+      xml.GetPropertyValue(wxT("size")).ToLong( &tmp ); // number of history strings
+      std::deque<wxString> history;
+      for( int j=0; j<static_cast<int>(tmp); ++j )
+      {
+        j==0 ? xml.GetFirstChild() : xml.GetNextSibling();
+        history.push_front( xml.GetTextValue() );
+      }
+      xml.SetBackToParent(); // set current node back to <history>
+      TextVariable *tv = TextVariable::PutVariable( name, strings, wxString(wxT("")), false );
+      tv->SetHistory( history );
+      xml.GetNextSibling(); // get <origin>
+      wxString origin( xml.GetTextValue() );
+      if( !origin.empty() )tv->SetOrigin( origin );
+      xml.SetBackToParent(); // set current node back to <textvector>
+    }
+  }
+  if( size > 0L )xml.SetBackToParent(); // set node to <textvariables>
+  //
+  // next get the <colormap> node
+  //
+  if( !xml.GetNextSibling() )
+    throw std::runtime_error(
+      std::string( (wxString()<<wxT("expecting node: <colormap>, file: ")<<file).mb_str(wxConvUTF8) ) );
+
+  if( xml.GetName() != wxT("colormap") )
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<colormap>"),file) );
+  
+  wxString name( xml.GetPropertyValue(wxT("name")) );
   if( name == wxT("USERDEFINED") )
   {
-    GRA_colorMap *tmp = new GRA_colorMap( wxT("USERDEFINED") );
-    long int itmp;
-    xml.GetAttributeValue(wxT("size")).ToLong( &itmp ); // number of colors
-    int size = static_cast<int>(itmp);
-    for( int i=0; i<size; ++i )
+    GRA_colorMap *cmap = new GRA_colorMap( wxT("USERDEFINED") );
+    xml.GetPropertyValue(wxT("size")).ToLong( &size ); // number of colors
+    for( int i=0; i<static_cast<int>(size); ++i )
     {
-      xml.NextElementNode(); // get <color> node
-      long int rl;
-      xml.GetAttributeValue(wxT("r")).ToLong( &rl );
-      long int gl;
-      xml.GetAttributeValue(wxT("g")).ToLong( &gl );
-      long int bl;
-      xml.GetAttributeValue(wxT("b")).ToLong( &bl );
-      tmp->AddColor( new GRA_color(static_cast<int>(rl),static_cast<int>(gl),static_cast<int>(bl)) );
+      i==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <color> node
+      long int rl, gl, bl;
+      xml.GetPropertyValue(wxT("r")).ToLong( &rl );
+      xml.GetPropertyValue(wxT("g")).ToLong( &gl );
+      xml.GetPropertyValue(wxT("b")).ToLong( &bl );
+      cmap->AddColor( new GRA_color(static_cast<int>(rl),static_cast<int>(gl),static_cast<int>(bl)) );
     }
-    GRA_colorControl::SetColorMapUser( tmp );
+    if( size > 0L )xml.SetBackToParent(); // set node to <colormap>
+    GRA_colorControl::SetColorMapUser( cmap );
   }
   else
   {
@@ -1540,76 +1570,125 @@ void RestoreSession( wxString &fileName )
     {
       GRA_colorControl::SetColorMap( name );
     }
-    catch (EGraphicsError &e)
+    catch (EGraphicsError const &e)
     {
       throw std::runtime_error( e.what() );
     }
   }
-  int nodeType = xml.NextElementNode(); // get <graphicspage>
+  //
+  // get the graphics page(s)
+  //
   int pageCounter = 0;
-  while( nodeType == 1 )
+  bool nextPage = xml.GetNextSibling();
+  while( nextPage )
   {
-    if( xml.GetName() == wxT("") )break;
     if( xml.GetName() != wxT("graphicspage") )
-      throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<graphicspage>")) );
+      throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<graphicspage>"),file) );
+    //
     // first page already made above
     // only make new page if more than one page
     //
     if( ++pageCounter > 1 )visualizationWindow_->NewPage( pageCounter );
     long int cwl;
-    xml.GetAttributeValue(wxT("currentwindow")).ToLong( &cwl );
+    xml.GetPropertyValue(wxT("currentwindow")).ToLong( &cwl );
     int windowNumber = static_cast<int>(cwl);
-    nodeType = xml.NextElementNode();
-    while( nodeType == 1 )
+    bool nextWindow = xml.GetFirstChild();
+    while( nextWindow )
     {
-      if( xml.GetName() == wxT("graphicspage") )break;
       if( xml.GetName() != wxT("graphwindow") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<graphwindow>")) );
+        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<graphwindow>"),file) );
       
       long int tmp;
-      xml.GetAttributeValue(wxT("number")).ToLong( &tmp );
+      xml.GetPropertyValue(wxT("number")).ToLong( &tmp );
       int number = static_cast<int>(tmp);
       double xLoP;
-      xml.GetAttributeValue(wxT("xLoP")).ToDouble( &xLoP );
+      xml.GetPropertyValue(wxT("xLoP")).ToDouble( &xLoP );
       double yLoP;
-      xml.GetAttributeValue(wxT("yLoP")).ToDouble( &yLoP );
+      xml.GetPropertyValue(wxT("yLoP")).ToDouble( &yLoP );
       double xHiP;
-      xml.GetAttributeValue(wxT("xHiP")).ToDouble( &xHiP );
+      xml.GetPropertyValue(wxT("xHiP")).ToDouble( &xHiP );
       double yHiP;
-      xml.GetAttributeValue(wxT("yHiP")).ToDouble( &yHiP );
+      xml.GetPropertyValue(wxT("yHiP")).ToDouble( &yHiP );
       double xPrevious;
-      xml.GetAttributeValue(wxT("xPrevious")).ToDouble( &xPrevious );
+      xml.GetPropertyValue(wxT("xPrevious")).ToDouble( &xPrevious );
       double yPrevious;
-      xml.GetAttributeValue(wxT("yPrevious")).ToDouble( &yPrevious );
+      xml.GetPropertyValue(wxT("yPrevious")).ToDouble( &yPrevious );
       GRA_window *gw = new GRA_window( number, xLoP, yLoP, xHiP, yHiP );
       visualizationWindow_->AddGraphWindow( gw );
-      xml.NextElementNode(); // get <axisc>
-      if( xml.GetName() != wxT("axisc") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<axisc>")) );
-      nodeType = SetCharacteristics( xml, gw->GetXAxisCharacteristics() );
-      if( xml.GetName() != wxT("axisc") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<axisc>")) );
-      nodeType = SetCharacteristics( xml, gw->GetYAxisCharacteristics() );
-      if( xml.GetName() != wxT("generalc") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<generalc>")) );
-      nodeType = SetCharacteristics( xml, gw->GetGeneralCharacteristics() );
-      if( xml.GetName() != wxT("textc") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<textc>")) );
-      nodeType = SetCharacteristics( xml, gw->GetTextCharacteristics() );
-      if( xml.GetName() != wxT("graphlegendc") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<graphlegendc>")) );
-      nodeType = SetCharacteristics( xml, gw->GetGraphLegendCharacteristics() );
-      if( xml.GetName() != wxT("datacurvec") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<datacurvec>")) );
-      nodeType = SetCharacteristics( xml, gw->GetDataCurveCharacteristics() );
-      if( xml.GetName() != wxT("drawableobjects") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<drawableobjects>")) );
-      xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
-      int size = static_cast<int>(tmp);
-      wxClientDC dc( visualizationWindow_->GetPage() );
-      for( int i=0; i<size; ++i )
+
+      xml.GetFirstChild(); // get <axisc> for x-axis
+      try
       {
-        nodeType = xml.NextElementNode();
+        SetCharacteristics( xml, gw->GetXAxisCharacteristics(), wxT("axisc"), file );
+      }
+      catch (std::runtime_error const &e)
+      {
+        throw;
+      }
+
+      xml.GetNextSibling(); // get <axisc> for y-axis
+      try
+      {
+        SetCharacteristics( xml, gw->GetYAxisCharacteristics(), wxT("axisc"), file );
+      }
+      catch (std::runtime_error const &e)
+      {
+        throw;
+      }
+
+      xml.GetNextSibling(); // get <generalc>
+      try
+      {
+        SetCharacteristics( xml, gw->GetGeneralCharacteristics(), wxT("generalc"), file );
+      }
+      catch (std::runtime_error const &e)
+      {
+        throw;
+      }
+
+      xml.GetNextSibling(); // get <textc>
+      try
+      {
+        SetCharacteristics( xml, gw->GetTextCharacteristics(), wxT("textc"), file );
+      }
+      catch (std::runtime_error const &e)
+      {
+        throw;
+      }
+
+      xml.GetNextSibling(); // get <graphlegendc>
+      try
+      {
+        SetCharacteristics( xml, gw->GetGraphLegendCharacteristics(), wxT("graphlegendc"), file );
+      }
+      catch (std::runtime_error const &e)
+      {
+        throw;
+      }
+
+      xml.GetNextSibling(); // get <datacurvec>
+      try
+      {
+        SetCharacteristics( xml, gw->GetDataCurveCharacteristics(), wxT("datacurvec"), file );
+      }
+      catch (std::runtime_error const &e)
+      {
+        throw;
+      }
+
+      xml.GetNextSibling(); // get <drawableobjects>
+      if( xml.GetName() != wxT("drawableobjects") )
+        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<drawableobjects>"),file) );
+      
+      //xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+      //int size = static_cast<int>(tmp);
+      wxClientDC dc( visualizationWindow_->GetPage() );
+
+      bool nextObject = xml.GetFirstChild();
+      //for( int i=0; i<size; ++i )
+      while( nextObject )
+      {
+        //i==0 ? xml.GetFirstChild() : xml.GetNextSibling();
         if( xml.GetName() == wxT("point") )
         {
           GRA_point *point = GetPoint( xml );
@@ -1654,7 +1733,7 @@ void RestoreSession( wxString &fileName )
         }
         else if( xml.GetName() == wxT("cartesianaxes") )
         {
-          GRA_cartesianAxes *axes = GetCartesianAxes( xml );
+          GRA_cartesianAxes *axes = GetCartesianAxes( xml, file );
           axes->Draw( graphicsOutput_, dc );
           gw->AddDrawableObject( axes );
         }
@@ -1666,84 +1745,9 @@ void RestoreSession( wxString &fileName )
         }
         else if( xml.GetName() == wxT("graphlegend") )
         {
-          long int tmp;
-          xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
-          int size = static_cast<int>(tmp);
-          xml.GetAttributeValue(wxT("frameon")).ToLong( &tmp );
-          bool frameOn = (tmp==1L);
-          xml.GetAttributeValue(wxT("titleon")).ToLong( &tmp );
-          bool titleOn = (tmp==1L);
-          double xlo, ylo, xhi, yhi;
-          xml.GetAttributeValue(wxT("xlo")).ToDouble( &xlo );
-          xml.GetAttributeValue(wxT("ylo")).ToDouble( &ylo );
-          xml.GetAttributeValue(wxT("xhi")).ToDouble( &xhi );
-          xml.GetAttributeValue(wxT("yhi")).ToDouble( &yhi );
-
-          GRA_setOfCharacteristics *legendC = gw->GetGraphLegendCharacteristics();
-          static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEXLO")))->SetAsWorld( xlo );
-          static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEYLO")))->SetAsWorld( ylo );
-          static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEXHI")))->SetAsWorld( xhi );
-          static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEYHI")))->SetAsWorld( yhi );
-
-          static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("FRAMEON")))->Set( frameOn );
-          static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("TITLEON")))->Set( titleOn );
-
-          GRA_legend *gl = gw->GetGraphLegend();
-          double xstart = gl->GetLineStart();
-          double xend = gl->GetLineEnd();
-          double xlabel = gl->GetXLabel();
-
-          for( int j=0; j<size; ++j )
-          {
-            xml.NextElementNode(); // get <legendentry>
-            long int tmp;
-            xml.GetAttributeValue(wxT("nsymbols")).ToLong( &tmp );
-            int nSymbols = static_cast<int>(tmp);
-            xml.GetAttributeValue(wxT("line")).ToLong( &tmp );
-            bool line = (tmp==1L);
-            xml.GetAttributeValue(wxT("linetype")).ToLong( &tmp );
-            int lt = static_cast<int>(tmp);
-            xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
-            int lw = static_cast<int>(tmp);
-            xml.GetAttributeValue(wxT("linecolor")).ToLong( &tmp );
-            int lc = static_cast<int>(tmp);
-            static_cast<GRA_intCharacteristic*>(legendC->Get(wxT("SYMBOLS")))->Set( nSymbols );
-            GRA_color *lineColor = GRA_colorControl::GetColor( lc );
-
-            xml.NextElementNode(); // get <label>
-            GRA_drawableText *labelDT = GetDrawableText( xml );
-            wxString label( labelDT->GetString() );
-            double labelHeight = labelDT->GetHeight();
-            GRA_font *labelFont = labelDT->GetFont();
-            GRA_color *labelColor = labelDT->GetColor();
-
-            xml.NextElementNode(); // get <plotsymbol>
-            GRA_plotSymbol *symbol = GetPlotSymbol( xml );
-            int symCode = symbol->GetCode();
-            double symSize = symbol->GetSize();
-            double symAngle = symbol->GetAngle();
-            GRA_color *symColor = symbol->GetColor();
-            int symLineWidth = symbol->GetLineWidth();
-
-            GRA_legendEntry *entry = 0;
-            try
-            {
-              entry = new GRA_legendEntry( gl, label, labelHeight, labelFont, labelColor,
-                                           nSymbols, symCode, symSize, symAngle, symColor,
-                                           symLineWidth, line, lt, lw, lineColor );
-            }
-            catch (EGraphicsError const &e)
-            {
-              delete entry;
-              throw;
-            }
-            gl->AddEntry( entry );
-          }
-          xml.NextElementNode(); // get <title>
-          gl->SetFrame( static_cast<GRA_rectangle*>(GetPolygon(xml)) );
-          xml.NextElementNode(); // get <title>
-          gl->SetTitle( GetDrawableText(xml) );
+          GRA_legend *gl = GetGraphLegend( xml, gw );
           gl->Draw( graphicsOutput_, dc );
+          //gw->AddDrawableObject( gl );
         }
         else if( xml.GetName() == wxT("contour") )
         {
@@ -1788,11 +1792,17 @@ void RestoreSession( wxString &fileName )
           s += wxT("<")+xml.GetName()+wxT("> node encountered");
           throw std::runtime_error( std::string(s.mb_str(wxConvUTF8)) );
         }
+        nextObject = xml.GetNextSibling();
       }
       visualizationWindow_->SetWindowNumber( windowNumber );
       dynamic_cast<GraphicsPage*>(visualizationWindow_->GetPage())->Paint();
-      nodeType = xml.NextElementNode(); // get <graphwindow>
+
+      xml.SetBackToParent(); // set back to <drawableobjects>
+      xml.SetBackToParent(); // set back to <graphwindow>
+      nextWindow = xml.GetNextSibling(); // get next <graphwindow>
     }
+    xml.SetBackToParent(); // set back to <graphicspage>
+    nextPage = xml.GetNextSibling();
   }
 }
 
@@ -1844,20 +1854,32 @@ std::vector<bool> GetBoolData( wxString const &sdata, int size )
   return data;
 }
 
-int SetCharacteristics( ExXML &xml, GRA_setOfCharacteristics *characteristics )
+void SetCharacteristics( ExXML &xml, GRA_setOfCharacteristics *characteristics,
+                         wxString const &type, wxString const &file )
 {
-  int nodeType;
-  xml.NextElementNode();
-  while( xml.GetName() == wxT("characteristic") )
+  if( xml.GetName() != type )throw std::runtime_error( InvalidNodeMessage(xml.GetName(),type,file) );
+  
+  bool nextCharacteristic = xml.GetFirstChild();
+  while( nextCharacteristic )
   {
-    wxString name( xml.GetAttributeValue(wxT("name")) );
-    wxString type( xml.GetAttributeValue(wxT("type")) );
-    wxString shape( xml.GetAttributeValue(wxT("shape")) );
+    if( xml.GetName() != wxT("characteristic") )
+      throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<characteristic>"),file) );
+    
+    wxString name( xml.GetPropertyValue(wxT("name")) );
+    wxString type( xml.GetPropertyValue(wxT("type")) );
+    wxString shape( xml.GetPropertyValue(wxT("shape")) );
+
+    //std::cout << "  characteristic name=|" << name.mb_str(wxConvUTF8) << "| type=|"
+    //          << type.mb_str(wxConvUTF8) << "| shape=|" << shape.mb_str(wxConvUTF8) << "|\n";
+
     if( shape == wxT("VECTOR") )
     {
-      xml.NextElementNode(); // get <data>
-      int size;
-      std::istringstream( (char const*)xml.GetAttributeValue(wxT("size")).mb_str(wxConvUTF8) ) >> size;
+      xml.GetFirstChild(); // get <data>
+      
+      long int tmp;
+      xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+      int size = static_cast<int>(tmp);
+      
       wxString sdata( xml.GetTextValue() );
       if( type == wxT("SIZE") )
         static_cast<GRA_sizeCharacteristic*>(characteristics->Get(name))->SetAsPercent( GetDoubleData(sdata,size) );
@@ -1875,94 +1897,101 @@ int SetCharacteristics( ExXML &xml, GRA_setOfCharacteristics *characteristics )
         static_cast<GRA_fontCharacteristic*>(characteristics->Get(name))->Set( GetIntData(sdata,size) );
       else if( type == wxT("COLOR") )
         static_cast<GRA_colorCharacteristic*>(characteristics->Get(name))->Set( GetIntData(sdata,size) );
+
+      xml.SetBackToParent(); // set back to <characteristic>
     }
     else
     {
       if( type == wxT("SIZE") )
       {
         double tmp;
-        std::istringstream( (char const*)xml.GetAttributeValue(wxT("value")).mb_str(wxConvUTF8) ) >> tmp;
+        xml.GetPropertyValue(wxT("value")).ToDouble( &tmp );
         static_cast<GRA_sizeCharacteristic*>(characteristics->Get(name))->SetAsPercent( tmp );
       }
       else if( type == wxT("DISTANCE") )
       {
         double tmp;
-        std::istringstream( (char const*)xml.GetAttributeValue(wxT("value")).mb_str(wxConvUTF8) ) >> tmp;
+        xml.GetPropertyValue(wxT("value")).ToDouble( &tmp );
         static_cast<GRA_distanceCharacteristic*>(characteristics->Get(name))->SetAsPercent( tmp );
       }
       else if( type == wxT("INT") )
       {
-        int tmp;
-        std::istringstream( (char const*)xml.GetAttributeValue(wxT("value")).mb_str(wxConvUTF8) ) >> tmp;
-        static_cast<GRA_intCharacteristic*>(characteristics->Get(name))->Set( tmp );
+        long int tmp;
+        xml.GetPropertyValue(wxT("value")).ToLong( &tmp );
+        static_cast<GRA_intCharacteristic*>(characteristics->Get(name))->Set( static_cast<int>(tmp) );
       }
       else if( type == wxT("DOUBLE") )
       {
         double tmp;
-        std::istringstream( (char const*)xml.GetAttributeValue(wxT("value")).mb_str(wxConvUTF8) ) >> tmp;
+        xml.GetPropertyValue(wxT("value")).ToDouble( &tmp );
         static_cast<GRA_doubleCharacteristic*>(characteristics->Get(name))->Set( tmp );
       }
       else if( type == wxT("BOOL") )
       {
-        bool tmp;
-        std::istringstream( (char const*)xml.GetAttributeValue(wxT("value")).mb_str(wxConvUTF8) ) >> tmp;
-        static_cast<GRA_boolCharacteristic*>(characteristics->Get(name))->Set( tmp );
+        long int tmp;
+        xml.GetPropertyValue(wxT("value")).ToLong( &tmp );
+        static_cast<GRA_boolCharacteristic*>(characteristics->Get(name))->Set( (tmp!=0L) );
       }
       else if( type == wxT("ANGLE") )
       {
         double tmp;
-        std::istringstream( (char const*)xml.GetAttributeValue(wxT("value")).mb_str(wxConvUTF8) ) >> tmp;
+        xml.GetPropertyValue(wxT("value")).ToDouble( &tmp );
         static_cast<GRA_angleCharacteristic*>(characteristics->Get(name))->Set( tmp );
       }
       else if( type == wxT("FONT") )
       {
-        int tmp;
-        std::istringstream( (char const*)xml.GetAttributeValue(wxT("value")).mb_str(wxConvUTF8) ) >> tmp;
-        static_cast<GRA_fontCharacteristic*>(characteristics->
-                                             Get(name))->Set( GRA_fontControl::GetFont(tmp) );
+        long int tmp;
+        xml.GetPropertyValue(wxT("value")).ToLong( &tmp );
+        static_cast<GRA_fontCharacteristic*>(characteristics->Get(name))->
+            Set( GRA_fontControl::GetFont(static_cast<int>(tmp)) );
       }    
       else if( type == wxT("COLOR") )
       {
-        int tmp;
-        std::istringstream( (char const*)xml.GetAttributeValue(wxT("value")).mb_str(wxConvUTF8) ) >> tmp;
-        static_cast<GRA_colorCharacteristic*>(characteristics->
-                                              Get(name))->Set( GRA_colorControl::GetColor(tmp) );
+        long int tmp;
+        xml.GetPropertyValue(wxT("value")).ToLong( &tmp );
+        static_cast<GRA_colorCharacteristic*>(characteristics->Get(name))->
+            Set( GRA_colorControl::GetColor(static_cast<int>(tmp)) );
       }
     }
-    nodeType = xml.NextElementNode();
+    nextCharacteristic = xml.GetNextSibling();
   }
-  return nodeType;
+  xml.SetBackToParent();
 }
 
-std::string InvalidNodeMessage( wxString const &invalid, wxString const &valid )
+std::string InvalidNodeMessage( wxString const &invalid, wxString const &valid, wxString const &file )
 {
-  wxString s;
-  s << wxT("xml node \"<") << invalid << wxT(">\" is invalid: node should be ") << valid;
-  return std::string(s.mb_str(wxConvUTF8));
+
+  //std::cout << "InvalidNodeMessage: "
+  //          << (wxString() << wxT("expected node: ") << valid << wxT(", found: <")
+  //              << invalid << wxT(">, file: ") << file).mb_str(wxConvUTF8) << "\n";
+
+  return std::string( (wxString() << wxT("expected node: ") << valid << wxT(", found: <")
+                                  << invalid << wxT(">, file: ") << file).mb_str(wxConvUTF8) );
 }
 
 GRA_point *GetPoint( ExXML &xml )
 {
   double x;
-  xml.GetAttributeValue(wxT("x")).ToDouble( &x );
+  xml.GetPropertyValue(wxT("x")).ToDouble( &x );
   double y;
-  xml.GetAttributeValue(wxT("y")).ToDouble( &y );
+  xml.GetPropertyValue(wxT("y")).ToDouble( &y );
   long int c;
-  xml.GetAttributeValue(wxT("color")).ToLong( &c );
+  xml.GetPropertyValue(wxT("color")).ToLong( &c );
   return new GRA_point( x, y, GRA_colorControl::GetColor(static_cast<int>(c)) );
 }
 
 GRA_polyline *GetPolyline( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
   int lw = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linetype")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linetype")).ToLong( &tmp );
   int lt = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linecolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linecolor")).ToLong( &tmp );
   int lc = static_cast<int>(tmp);
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetFirstChild(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   wxString sdata( xml.GetTextValue() );
   std::vector<double> x(size), y(size);
@@ -1984,20 +2013,23 @@ GRA_polyline *GetPolyline( ExXML &xml )
     pen[j] = static_cast<int>(tmp);
     jStart = jEnd+1;
   }
+  xml.SetBackToParent();
+
   return new GRA_polyline( x, y, pen, lw, lt, GRA_colorControl::GetColor(lc) );
 }
 
 GRA_multiLineFigure *GetMultiLineFigure( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
   int lw = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linetype")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linetype")).ToLong( &tmp );
   int lt = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linecolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linecolor")).ToLong( &tmp );
   int lc = static_cast<int>(tmp);
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetFirstChild(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   wxString sdata( xml.GetTextValue() );
   std::vector<double> x(size), y(size);
@@ -2019,27 +2051,29 @@ GRA_multiLineFigure *GetMultiLineFigure( ExXML &xml )
     pen[j] = static_cast<int>(tmp);
     jStart = jEnd+1;
   }
+  xml.SetBackToParent();
+
   return new GRA_multiLineFigure( x, y, pen, GRA_colorControl::GetColor(lc), lw, lt );
 }
 
 GRA_errorBar *GetErrorBar( ExXML &xml )
 {
   double x;
-  xml.GetAttributeValue(wxT("x")).ToDouble( &x );
+  xml.GetPropertyValue(wxT("x")).ToDouble( &x );
   double y;
-  xml.GetAttributeValue(wxT("y")).ToDouble( &y );
+  xml.GetPropertyValue(wxT("y")).ToDouble( &y );
   long int tmp;
-  xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
   int lw = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linecolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linecolor")).ToLong( &tmp );
   int lc = static_cast<int>(tmp);
   double bottom;
-  xml.GetAttributeValue(wxT("bottom")).ToDouble( &bottom );
+  xml.GetPropertyValue(wxT("bottom")).ToDouble( &bottom );
   double top;
-  xml.GetAttributeValue(wxT("top")).ToDouble( &top );
+  xml.GetPropertyValue(wxT("top")).ToDouble( &top );
   double footsize;
-  xml.GetAttributeValue(wxT("footsize")).ToDouble( &footsize );
-  xml.GetAttributeValue(wxT("vertical")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("footsize")).ToDouble( &footsize );
+  xml.GetPropertyValue(wxT("vertical")).ToLong( &tmp );
   bool vertical = static_cast<bool>(tmp);
   return new GRA_errorBar( x, y, bottom, top, vertical, footsize,
                            GRA_colorControl::GetColor(lc), lw );
@@ -2048,16 +2082,17 @@ GRA_errorBar *GetErrorBar( ExXML &xml )
 GRA_polygon *GetPolygon( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
   int lw = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linetype")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linetype")).ToLong( &tmp );
   int lt = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linecolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linecolor")).ToLong( &tmp );
   int lc = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("fillcolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("fillcolor")).ToLong( &tmp );
   int fc = static_cast<int>(tmp);
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetFirstChild(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   std::vector<double> x(size), y(size), data(GetDoubleData(xml.GetTextValue(),2*size));
   for( int j=0; j<size; ++j )
@@ -2065,6 +2100,8 @@ GRA_polygon *GetPolygon( ExXML &xml )
     x[j] = data[2*j];
     y[j] = data[2*j+1];
   }
+  xml.SetBackToParent();
+
   return new GRA_polygon( x, y, GRA_colorControl::GetColor(lc),
                           GRA_colorControl::GetColor(fc), lw, lt );
 }
@@ -2072,23 +2109,23 @@ GRA_polygon *GetPolygon( ExXML &xml )
 GRA_ellipse *GetEllipse( ExXML &xml )
 {
   double xmin;
-  xml.GetAttributeValue(wxT("xmin")).ToDouble( &xmin );
+  xml.GetPropertyValue(wxT("xmin")).ToDouble( &xmin );
   double ymin;
-  xml.GetAttributeValue(wxT("ymin")).ToDouble( &ymin );
+  xml.GetPropertyValue(wxT("ymin")).ToDouble( &ymin );
   double xmax;
-  xml.GetAttributeValue(wxT("xmax")).ToDouble( &xmax );
+  xml.GetPropertyValue(wxT("xmax")).ToDouble( &xmax );
   double ymax;
-  xml.GetAttributeValue(wxT("ymax")).ToDouble( &ymax );
+  xml.GetPropertyValue(wxT("ymax")).ToDouble( &ymax );
   long int tmp;
-  xml.GetAttributeValue(wxT("circle")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("circle")).ToLong( &tmp );
   bool circle = static_cast<bool>(tmp);  
-  xml.GetAttributeValue(wxT("linecolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linecolor")).ToLong( &tmp );
   int lc = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("fillcolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("fillcolor")).ToLong( &tmp );
   int fc = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
   int lw = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linetype")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linetype")).ToLong( &tmp );
   int lt = static_cast<int>(tmp);
   return new GRA_ellipse( xmin, ymin, xmax, ymax, circle,
                           GRA_colorControl::GetColor(lc), GRA_colorControl::GetColor(fc),
@@ -2098,19 +2135,19 @@ GRA_ellipse *GetEllipse( ExXML &xml )
 GRA_plotSymbol *GetPlotSymbol( ExXML &xml )
 {
   double x;
-  xml.GetAttributeValue(wxT("x")).ToDouble( &x );
+  xml.GetPropertyValue(wxT("x")).ToDouble( &x );
   double y;
-  xml.GetAttributeValue(wxT("y")).ToDouble( &y );
+  xml.GetPropertyValue(wxT("y")).ToDouble( &y );
   long int tmp;
-  xml.GetAttributeValue(wxT("shape")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("shape")).ToLong( &tmp );
   int code = static_cast<int>(tmp);
   double angle;
-  xml.GetAttributeValue(wxT("angle")).ToDouble( &angle );
+  xml.GetPropertyValue(wxT("angle")).ToDouble( &angle );
   double size;
-  xml.GetAttributeValue(wxT("size")).ToDouble( &size );
-  xml.GetAttributeValue(wxT("color")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("size")).ToDouble( &size );
+  xml.GetPropertyValue(wxT("color")).ToLong( &tmp );
   int color = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
   int lw = static_cast<int>(tmp);
   GRA_plotSymbol *ps = new GRA_plotSymbol( code, size, angle,
     GRA_colorControl::GetColor(color), lw );
@@ -2121,64 +2158,157 @@ GRA_plotSymbol *GetPlotSymbol( ExXML &xml )
 GRA_drawableText *GetDrawableText( ExXML &xml )
 {
   double x;
-  xml.GetAttributeValue(wxT("x")).ToDouble( &x );
+  xml.GetPropertyValue(wxT("x")).ToDouble( &x );
   double y;
-  xml.GetAttributeValue(wxT("y")).ToDouble( &y );
+  xml.GetPropertyValue(wxT("y")).ToDouble( &y );
   double height;
-  xml.GetAttributeValue(wxT("height")).ToDouble( &height );
+  xml.GetPropertyValue(wxT("height")).ToDouble( &height );
   double angle;
-  xml.GetAttributeValue(wxT("angle")).ToDouble( &angle );
+  xml.GetPropertyValue(wxT("angle")).ToDouble( &angle );
   long int tmp;
-  xml.GetAttributeValue(wxT("alignment")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("alignment")).ToLong( &tmp );
   int alignment = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("color")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("color")).ToLong( &tmp );
   int color = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("font")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("font")).ToLong( &tmp );
   int font = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("graphunits")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("graphunits")).ToLong( &tmp );
   bool graphunits = static_cast<bool>(tmp);
-  xml.NextElementNode(); // get <string>
+
+  xml.GetFirstChild(); // get <string>
   GRA_drawableText *dt = new GRA_drawableText( xml.GetTextValue(), height,
-    angle, x, y, alignment, GRA_fontControl::GetFont(font),
-    GRA_colorControl::GetColor(color) );
+                                               angle, x, y, alignment, GRA_fontControl::GetFont(font),
+                                               GRA_colorControl::GetColor(color) );
   dt->Parse();
+  xml.SetBackToParent();
+
   return dt;
 }
 
-GRA_cartesianAxes *GetCartesianAxes( ExXML &xml )
+GRA_legend *GetGraphLegend( ExXML &xml, GRA_window *gw )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
-  xml.NextElementNode(); // get x <axis>
-  GRA_axis *xaxis = GetAxis( xml, 'X' );
-  xml.NextElementNode(); // get y <axis>
-  GRA_axis *yaxis = GetAxis( xml, 'Y' );
+  xml.GetPropertyValue(wxT("frameon")).ToLong( &tmp );
+  bool frameOn = (tmp!=0L);
+  xml.GetPropertyValue(wxT("titleon")).ToLong( &tmp );
+  bool titleOn = (tmp!=0L);
+  double xlo, ylo, xhi, yhi;
+  xml.GetPropertyValue(wxT("xlo")).ToDouble( &xlo );
+  xml.GetPropertyValue(wxT("ylo")).ToDouble( &ylo );
+  xml.GetPropertyValue(wxT("xhi")).ToDouble( &xhi );
+  xml.GetPropertyValue(wxT("yhi")).ToDouble( &yhi );
+  
+  GRA_setOfCharacteristics *legendC = gw->GetGraphLegendCharacteristics();
+  static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEXLO")))->SetAsWorld( xlo );
+  static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEYLO")))->SetAsWorld( ylo );
+  static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEXHI")))->SetAsWorld( xhi );
+  static_cast<GRA_distanceCharacteristic*>(legendC->Get(wxT("FRAMEYHI")))->SetAsWorld( yhi );
+  
+  static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("FRAMEON")))->Set( frameOn );
+  static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("TITLEON")))->Set( titleOn );
+  
+  GRA_legend *gl = gw->GetGraphLegend();
+  double xstart = gl->GetLineStart();
+  double xend = gl->GetLineEnd();
+  double xlabel = gl->GetXLabel();
+  
+  for( int j=0; j<size; ++j )
+  {
+    j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <legendentry>
+    long int tmp;
+    xml.GetPropertyValue(wxT("nsymbols")).ToLong( &tmp );
+    int nSymbols = static_cast<int>(tmp);
+    xml.GetPropertyValue(wxT("line")).ToLong( &tmp );
+    bool line = (tmp==1L);
+    xml.GetPropertyValue(wxT("linetype")).ToLong( &tmp );
+    int lt = static_cast<int>(tmp);
+    xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
+    int lw = static_cast<int>(tmp);
+    xml.GetPropertyValue(wxT("linecolor")).ToLong( &tmp );
+    int lc = static_cast<int>(tmp);
+    static_cast<GRA_intCharacteristic*>(legendC->Get(wxT("SYMBOLS")))->Set( nSymbols );
+    GRA_color *lineColor = GRA_colorControl::GetColor( lc );
+    
+    xml.GetFirstChild(); // get <drawabletext>
+    GRA_drawableText *labelDT = GetDrawableText( xml );
+    wxString label( labelDT->GetString() );
+    double labelHeight = labelDT->GetHeight();
+    GRA_font *labelFont = labelDT->GetFont();
+    GRA_color *labelColor = labelDT->GetColor();
+    
+    xml.GetNextSibling(); // get <plotsymbol>
+    GRA_plotSymbol *symbol = GetPlotSymbol( xml );
+    int symCode = symbol->GetCode();
+    double symSize = symbol->GetSize();
+    double symAngle = symbol->GetAngle();
+    GRA_color *symColor = symbol->GetColor();
+    int symLineWidth = symbol->GetLineWidth();
+    
+    GRA_legendEntry *entry = 0;
+    try
+    {
+      entry = new GRA_legendEntry( gl, label, labelHeight, labelFont, labelColor,
+                                   nSymbols, symCode, symSize, symAngle, symColor,
+                                   symLineWidth, line, lt, lw, lineColor );
+    }
+    catch (EGraphicsError const &e)
+    {
+      delete entry;
+      throw std::runtime_error( e.what() );
+    }
+    gl->AddEntry( entry );
+    xml.SetBackToParent();  // set back to <legendentry>
+  }
+  xml.GetNextSibling(); // get <polygon>  frame
+  gl->SetFrame( static_cast<GRA_rectangle*>(GetPolygon(xml)) );
+  xml.GetNextSibling(); // get <drawabletext>  title
+  gl->SetTitle( GetDrawableText(xml) );
+  xml.SetBackToParent();
+  
+  return gl;
+}
+
+GRA_cartesianAxes *GetCartesianAxes( ExXML &xml, wxString const &file )
+{
+  long int tmp;
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+  int size = static_cast<int>(tmp);
+
+  xml.GetFirstChild(); // get x <axis>
+  GRA_axis *xaxis = GetAxis( xml, 'X', file );
+
+  xml.GetNextSibling(); // get y <axis>
+  GRA_axis *yaxis = GetAxis( xml, 'Y', file );
   GRA_axis *boxX =0, *boxY =0;
   if( size >= 3 )
   {
-    xml.NextElementNode(); // get box x-axis
-    boxX = GetAxis( xml, 'X' );
+    xml.GetNextSibling(); // get box x-axis
+    boxX = GetAxis( xml, 'X', file );
     if( size == 4 )
     {
-      xml.NextElementNode(); // get box y-axis
-      boxY = GetAxis( xml, 'Y' );
+      xml.GetNextSibling(); // get box y-axis
+      boxY = GetAxis( xml, 'Y', file );
     }
   }
+  xml.SetBackToParent();
+
   GRA_cartesianAxes *axes = new GRA_cartesianAxes();
   axes->SetAxes( xaxis, yaxis, boxX, boxY );
   return axes;
 }
 
-GRA_axis *GetAxis( ExXML &xml, wxChar const type )
+GRA_axis *GetAxis( ExXML &xml, wxChar const type, wxString const &file )
 {
   double xOrigin;
-  xml.GetAttributeValue(wxT("xorigin")).ToDouble( &xOrigin );
+  xml.GetPropertyValue(wxT("xorigin")).ToDouble( &xOrigin );
   double yOrigin;
-  xml.GetAttributeValue(wxT("yorigin")).ToDouble( &yOrigin );
-  xml.NextElementNode(); // get <ticcoordinates>
+  xml.GetPropertyValue(wxT("yorigin")).ToDouble( &yOrigin );
+
+  xml.GetFirstChild(); // get <ticcoordinates>
   long int tmp;
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   std::vector<double> xtics(size), ytics(size), data(GetDoubleData(xml.GetTextValue(),2*size));
   for( int j=0; j<size; ++j )
@@ -2186,7 +2316,8 @@ GRA_axis *GetAxis( ExXML &xml, wxChar const type )
     xtics[j] = data[2*j];
     ytics[j] = data[2*j+1];
   }
-  xml.NextElementNode(); // get <axisc>
+
+  xml.GetNextSibling(); // get <axisc>
   //
   GRA_window *gw = visualizationWindow_->GetGraphWindow();
   GRA_setOfCharacteristics *generalC = gw->GetGeneralCharacteristics();
@@ -2229,24 +2360,31 @@ GRA_axis *GetAxis( ExXML &xml, wxChar const type )
       break;
     }
   }
-  SetCharacteristics( xml, &axisc );
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+  SetCharacteristics( xml, &axisc, wxT("axisc"), file );
+
+  xml.GetNextSibling(); // get <polylines>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<GRA_polyline*> polylines(size);
   for( int j=0; j<size; ++j )
   {
-    xml.NextElementNode(); // get <polyline>
+    j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <polyline>
     polylines[j] = GetPolyline(xml);
+    if( j == size-1 )xml.SetBackToParent();
   }
-  xml.NextElementNode(); // get <drawabletexts>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <drawabletexts>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<GRA_drawableText*> textVec(size);
   for( int j=0; j<size; ++j )
   {
-    xml.NextElementNode(); // get <drawabletext>
+    j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <drawabletext>
     textVec[j] = GetDrawableText(xml);
+    if( j == size-1 )xml.SetBackToParent();
   }
+  xml.SetBackToParent();
+
   GRA_axis *axis = new GRA_axis( xOrigin, yOrigin, &axisc );
   axis->SetTicCoordinates( xtics, ytics );
   axis->SetPolylines( polylines );
@@ -2257,45 +2395,46 @@ GRA_axis *GetAxis( ExXML &xml, wxChar const type )
 GRA_cartesianCurve *GetCartesianCurve( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("histype")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("histype")).ToLong( &tmp );
   int histype = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linetype")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linetype")).ToLong( &tmp );
   int linetype = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("linewidth")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
   int linewidth = static_cast<int>(tmp);
-  xml.GetAttributeValue(wxT("smooth")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("smooth")).ToLong( &tmp );
   bool smooth = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("linecolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linecolor")).ToLong( &tmp );
   GRA_color *linecolor = GRA_colorControl::GetColor(static_cast<int>(tmp));
-  xml.GetAttributeValue(wxT("areafillcolor")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("areafillcolor")).ToLong( &tmp );
   int temp = static_cast<int>(tmp);
   GRA_color *areafillcolor = 0;
   if( temp != 0 )areafillcolor = GRA_colorControl::GetColor(temp);
   double xlaxis;
-  xml.GetAttributeValue(wxT("xlaxis")).ToDouble( &xlaxis );
+  xml.GetPropertyValue(wxT("xlaxis")).ToDouble( &xlaxis );
   double ylaxis;
-  xml.GetAttributeValue(wxT("ylaxis")).ToDouble( &ylaxis );
+  xml.GetPropertyValue(wxT("ylaxis")).ToDouble( &ylaxis );
   double xuaxis;
-  xml.GetAttributeValue(wxT("xuaxis")).ToDouble( &xuaxis );
+  xml.GetPropertyValue(wxT("xuaxis")).ToDouble( &xuaxis );
   double yuaxis;
-  xml.GetAttributeValue(wxT("yuaxis")).ToDouble( &yuaxis );
+  xml.GetPropertyValue(wxT("yuaxis")).ToDouble( &yuaxis );
   double xmin;
-  xml.GetAttributeValue(wxT("xmin")).ToDouble( &xmin );
+  xml.GetPropertyValue(wxT("xmin")).ToDouble( &xmin );
   double ymin;
-  xml.GetAttributeValue(wxT("ymin")).ToDouble( &ymin );
+  xml.GetPropertyValue(wxT("ymin")).ToDouble( &ymin );
   double xmax;
-  xml.GetAttributeValue(wxT("xmax")).ToDouble( &xmax );
+  xml.GetPropertyValue(wxT("xmax")).ToDouble( &xmax );
   double ymax;
-  xml.GetAttributeValue(wxT("ymax")).ToDouble( &ymax );
-  xml.NextElementNode(); // get <areafillcolors>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("ymax")).ToDouble( &ymax );
+
+  xml.GetFirstChild(); // get <areafillcolors>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   std::vector<GRA_color*> areaFillColors(size);
   std::vector<int> ivec( GetIntData(xml.GetTextValue(),size) );
-  for( int j=0; j<size; ++j )
-    areaFillColors[j] = GRA_colorControl::GetColor(ivec[j]);
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+  for( int j=0; j<size; ++j )areaFillColors[j] = GRA_colorControl::GetColor(ivec[j]);
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> x(size), y(size), data(GetDoubleData(xml.GetTextValue(),2*size));
   for( int j=0; j<size; ++j )
@@ -2303,24 +2442,29 @@ GRA_cartesianCurve *GetCartesianCurve( ExXML &xml )
     x[j] = data[2*j];
     y[j] = data[2*j+1];
   }
-  xml.NextElementNode(); // get <xe1>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <xe1>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> xe1( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <xe2>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <xe2>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> xe2( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <ye1>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <ye1>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> ye1( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <ye2>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <ye2>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> ye2( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <xycurve>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <xycurve>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> xcurve(size), ycurve(size), data2(GetDoubleData(xml.GetTextValue(),2*size));
   for( int j=0; j<size; ++j )
@@ -2328,28 +2472,36 @@ GRA_cartesianCurve *GetCartesianCurve( ExXML &xml )
     xcurve[j] = data2[2*j];
     ycurve[j] = data2[2*j+1];
   }
-  xml.NextElementNode(); // get <pen>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <pen>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<int> pen( GetIntData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <plotsymbols>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <plotsymbols>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<GRA_plotSymbol*> symbols(size);
   for( int j=0; j<size; ++j )
   {
-    xml.NextElementNode(); // get <plotsymbol>
+    j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <plotsymbol>
     symbols[j] = GetPlotSymbol( xml );
   }
-  xml.NextElementNode(); // get <errorbars>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+  if( size > 0 )xml.SetBackToParent();
+
+  xml.GetNextSibling(); // get <errorbars>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<GRA_errorBar*> errorbars(size);
   for( int j=0; j<size; ++j )
   {
-    xml.NextElementNode(); // get <plotsymbol>
+    j==0 ? xml.GetFirstChild() : xml.GetNextSibling();
     errorbars[j] = GetErrorBar( xml );
   }
+  if( size > 0 )xml.SetBackToParent();
+
+  xml.SetBackToParent();
+
   GRA_cartesianCurve *curve = new GRA_cartesianCurve( x, y, xe1, ye1, xe2, ye2, smooth );
   curve->SetValues( histype, linetype, linewidth, linecolor, areafillcolor, xlaxis, ylaxis,
                     xuaxis, yuaxis, xmin, ymin, xmax, ymax, areaFillColors, xcurve, ycurve,
@@ -2360,10 +2512,11 @@ GRA_cartesianCurve *GetCartesianCurve( ExXML &xml )
 GRA_contour *GetContour( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("color")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("color")).ToLong( &tmp );
   int color = static_cast<int>(tmp);
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetFirstChild(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   wxString sdata( xml.GetTextValue() );
   std::vector<double> x(size), y(size);
@@ -2386,15 +2539,19 @@ GRA_contour *GetContour( ExXML &xml )
     connect[j] = static_cast<bool>(tmp);
     jStart = jEnd+1;
   }
-  xml.NextElementNode(); // get <drawabletexts>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <drawabletexts>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
-  std::vector<GRA_drawableText*> textVec(size);
+  std::vector<GRA_drawableText*> textVec;
   for( int j=0; j<size; ++j )
   {
-    xml.NextElementNode(); // get <drawabletext>
-    textVec[j] = GetDrawableText(xml);
+    j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <drawabletext>
+    textVec.push_back( GetDrawableText(xml) );
+    if( j == size-1 )xml.SetBackToParent();
   }
+  xml.SetBackToParent();
+
   GRA_contour *contour = new GRA_contour();
   contour->SetColor( GRA_colorControl::GetColor(color) );
   contour->SetCoords( x, y, connect );
@@ -2405,42 +2562,47 @@ GRA_contour *GetContour( ExXML &xml )
 GRA_boxPlot *GetBoxPlot( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("nrow")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("nrow")).ToLong( &tmp );
   int nrow = static_cast<int>(tmp);
   double fmin;
-  xml.GetAttributeValue(wxT("fmin")).ToDouble( &fmin );
+  xml.GetPropertyValue(wxT("fmin")).ToDouble( &fmin );
   double fmax;
-  xml.GetAttributeValue(wxT("fmax")).ToDouble( &fmax );
+  xml.GetPropertyValue(wxT("fmax")).ToDouble( &fmax );
   double gmin;
-  xml.GetAttributeValue(wxT("gmin")).ToDouble( &gmin );
+  xml.GetPropertyValue(wxT("gmin")).ToDouble( &gmin );
   double gmax;
-  xml.GetAttributeValue(wxT("gmax")).ToDouble( &gmax );
-  xml.GetAttributeValue(wxT("xprofile")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("gmax")).ToDouble( &gmax );
+  xml.GetPropertyValue(wxT("xprofile")).ToLong( &tmp );
   bool xprofile = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("yprofile")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("yprofile")).ToLong( &tmp );
   bool yprofile = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("border")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("border")).ToLong( &tmp );
   bool border = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("zoom")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("zoom")).ToLong( &tmp );
   bool zoom = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("axes")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("axes")).ToLong( &tmp );
   bool axes = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("reset")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("reset")).ToLong( &tmp );
   bool reset = static_cast<bool>(tmp);
   double bscale;
-  xml.GetAttributeValue(wxT("bscale")).ToDouble( &bscale );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("bscale")).ToDouble( &bscale );
+
+  xml.GetFirstChild(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   std::vector<double> x( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> y( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> z( GetDoubleData(xml.GetTextValue(),size) );
+  xml.SetBackToParent();
+
   return new GRA_boxPlot( x, y, z, nrow, fmin, fmax, gmin, gmax, xprofile, yprofile,
                           border, zoom, axes, reset, bscale );
 }
@@ -2448,40 +2610,45 @@ GRA_boxPlot *GetBoxPlot( ExXML &xml )
 GRA_diffusionPlot *GetDiffusionPlot( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("nrow")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("nrow")).ToLong( &tmp );
   int nrow = static_cast<int>(tmp);
   double fmin;
-  xml.GetAttributeValue(wxT("fmin")).ToDouble( &fmin );
+  xml.GetPropertyValue(wxT("fmin")).ToDouble( &fmin );
   double fmax;
-  xml.GetAttributeValue(wxT("fmax")).ToDouble( &fmax );
+  xml.GetPropertyValue(wxT("fmax")).ToDouble( &fmax );
   double gmin;
-  xml.GetAttributeValue(wxT("gmin")).ToDouble( &gmin );
+  xml.GetPropertyValue(wxT("gmin")).ToDouble( &gmin );
   double gmax;
-  xml.GetAttributeValue(wxT("gmax")).ToDouble( &gmax );
-  xml.GetAttributeValue(wxT("xprofile")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("gmax")).ToDouble( &gmax );
+  xml.GetPropertyValue(wxT("xprofile")).ToLong( &tmp );
   bool xprofile = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("yprofile")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("yprofile")).ToLong( &tmp );
   bool yprofile = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("border")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("border")).ToLong( &tmp );
   bool border = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("zoom")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("zoom")).ToLong( &tmp );
   bool zoom = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("axes")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("axes")).ToLong( &tmp );
   bool axes = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("reset")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("reset")).ToLong( &tmp );
   bool reset = static_cast<bool>(tmp);
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetFirstChild(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   std::vector<double> x( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> y( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> z( GetDoubleData(xml.GetTextValue(),size) );
+  xml.SetBackToParent();
+
   return new GRA_diffusionPlot( x, y, z, nrow, fmin, fmax, gmin, gmax, xprofile, yprofile,
                                 border, zoom, axes, reset );
 }
@@ -2489,58 +2656,65 @@ GRA_diffusionPlot *GetDiffusionPlot( ExXML &xml )
 GRA_ditheringPlot *GetDitheringPlot( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("nrow")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("nrow")).ToLong( &tmp );
   int nrow = static_cast<int>(tmp);
   double fmin;
-  xml.GetAttributeValue(wxT("fmin")).ToDouble( &fmin );
+  xml.GetPropertyValue(wxT("fmin")).ToDouble( &fmin );
   double fmax;
-  xml.GetAttributeValue(wxT("fmax")).ToDouble( &fmax );
+  xml.GetPropertyValue(wxT("fmax")).ToDouble( &fmax );
   double gmin;
-  xml.GetAttributeValue(wxT("gmin")).ToDouble( &gmin );
+  xml.GetPropertyValue(wxT("gmin")).ToDouble( &gmin );
   double gmax;
-  xml.GetAttributeValue(wxT("gmax")).ToDouble( &gmax );
-  xml.GetAttributeValue(wxT("xprofile")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("gmax")).ToDouble( &gmax );
+  xml.GetPropertyValue(wxT("xprofile")).ToLong( &tmp );
   bool xprofile = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("yprofile")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("yprofile")).ToLong( &tmp );
   bool yprofile = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("border")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("border")).ToLong( &tmp );
   bool border = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("zoom")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("zoom")).ToLong( &tmp );
   bool zoom = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("axes")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("axes")).ToLong( &tmp );
   bool axes = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("reset")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("reset")).ToLong( &tmp );
   bool reset = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("legend")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("legend")).ToLong( &tmp );
   bool legend = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("equalspaced")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("equalspaced")).ToLong( &tmp );
   bool equalspaced = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("areas")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("areas")).ToLong( &tmp );
   bool areas = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("volumes")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("volumes")).ToLong( &tmp );
   bool volumes = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("lines")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("lines")).ToLong( &tmp );
   bool lines = static_cast<bool>(tmp);
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetFirstChild(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   std::vector<int> dither( GetIntData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> contourLevels( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> x( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> y( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> z( GetDoubleData(xml.GetTextValue(),size) );
+  xml.SetBackToParent();
+
   return new GRA_ditheringPlot( x, y, z, nrow, fmin, fmax, gmin, gmax, xprofile, yprofile,
                                 border, zoom, axes, reset, legend, equalspaced, areas,
                                 volumes, lines, dither, contourLevels );
@@ -2549,44 +2723,49 @@ GRA_ditheringPlot *GetDitheringPlot( ExXML &xml )
 GRA_gradientPlot *GetGradientPlot( ExXML &xml )
 {
   long int tmp;
-  xml.GetAttributeValue(wxT("nrow")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("nrow")).ToLong( &tmp );
   int nrow = static_cast<int>(tmp);
   double fmin;
-  xml.GetAttributeValue(wxT("fmin")).ToDouble( &fmin );
+  xml.GetPropertyValue(wxT("fmin")).ToDouble( &fmin );
   double fmax;
-  xml.GetAttributeValue(wxT("fmax")).ToDouble( &fmax );
+  xml.GetPropertyValue(wxT("fmax")).ToDouble( &fmax );
   double gmin;
-  xml.GetAttributeValue(wxT("gmin")).ToDouble( &gmin );
+  xml.GetPropertyValue(wxT("gmin")).ToDouble( &gmin );
   double gmax;
-  xml.GetAttributeValue(wxT("gmax")).ToDouble( &gmax );
-  xml.GetAttributeValue(wxT("xprofile")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("gmax")).ToDouble( &gmax );
+  xml.GetPropertyValue(wxT("xprofile")).ToLong( &tmp );
   bool xprofile = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("yprofile")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("yprofile")).ToLong( &tmp );
   bool yprofile = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("border")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("border")).ToLong( &tmp );
   bool border = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("zoom")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("zoom")).ToLong( &tmp );
   bool zoom = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("axes")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("axes")).ToLong( &tmp );
   bool axes = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("reset")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("reset")).ToLong( &tmp );
   bool reset = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("legend")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("legend")).ToLong( &tmp );
   bool legend = static_cast<bool>(tmp);
-  xml.GetAttributeValue(wxT("linear")).ToLong( &tmp );
+  xml.GetPropertyValue(wxT("linear")).ToLong( &tmp );
   bool linear = static_cast<bool>(tmp);
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetFirstChild(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   int size = static_cast<int>(tmp);
   std::vector<double> x( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> y( GetDoubleData(xml.GetTextValue(),size) );
-  xml.NextElementNode(); // get <data>
-  xml.GetAttributeValue(wxT("size")).ToLong( &tmp );
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
   size = static_cast<int>(tmp);
   std::vector<double> z( GetDoubleData(xml.GetTextValue(),size) );
+  xml.SetBackToParent();
+
   return new GRA_gradientPlot( x, y, z, nrow, fmin, fmax, gmin, gmax, xprofile, yprofile,
                                border, zoom, axes, reset, legend, linear );
 }

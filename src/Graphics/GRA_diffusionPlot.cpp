@@ -150,22 +150,22 @@ void GRA_diffusionPlot::FillBitmap( GRA_bitmap *bitmap )
 
 std::ostream &operator<<( std::ostream &out, GRA_diffusionPlot const &dp )
 {
-  out << wxT("<diffusionplot nrow=\"") << dp.nrow_ << wxT("\" fmin=\"") << dp.fmin_
-      << wxT("\" fmax=\"") << dp.fmax_ << wxT("\" gmin=\"") << dp.gmin_ << wxT("\" gmax=\"")
-      << dp.gmax_ << wxT("\" xprofile=\"") << dp.xProfile_ << wxT("\" yprofile=\"")
-      << dp.yProfile_ << wxT("\" border=\"") << dp.border_ << wxT("\" zoom=\"")
-      << dp.zoom_ << wxT("\" axes=\"") << dp.drawAxes_ << wxT("\" reset=\"") << dp.resetAxes_ << wxT("\">\n");
+  out << "<diffusionplot nrow=\"" << dp.nrow_ << "\" fmin=\"" << dp.fmin_
+      << "\" fmax=\"" << dp.fmax_ << "\" gmin=\"" << dp.gmin_ << "\" gmax=\""
+      << dp.gmax_ << "\" xprofile=\"" << dp.xProfile_ << "\" yprofile=\""
+      << dp.yProfile_ << "\" border=\"" << dp.border_ << "\" zoom=\""
+      << dp.zoom_ << "\" axes=\"" << dp.drawAxes_ << "\" reset=\"" << dp.resetAxes_ << "\">\n";
   int size = dp.x_.size();
-  out << wxT("<data size=\"") << size << wxT("\">");
-  for( int i=0; i<size; ++i )out << dp.x_[i] << wxT(" ");
-  out << wxT("</data>\n");
+  out << "<data size=\"" << size << "\">";
+  for( int i=0; i<size; ++i )out << dp.x_[i] << " ";
+  out << "</data>\n";
   size = dp.y_.size();
-  out << wxT("<data size=\"") << size << wxT("\">");
-  for( int i=0; i<size; ++i )out << dp.y_[i] << wxT(" ");
-  out << wxT("</data>\n");
+  out << "<data size=\"" << size << "\">";
+  for( int i=0; i<size; ++i )out << dp.y_[i] << " ";
+  out << "</data>\n";
   size = dp.z_.size();
-  out << wxT("<data size=\"") << size << wxT("\">");
-  for( int i=0; i<size; ++i )out << dp.z_[i] << wxT(" ");
-  return out << wxT("</data>\n</diffusionplot>\n");
+  out << "<data size=\"" << size << "\">";
+  for( int i=0; i<size; ++i )out << dp.z_[i] << " ";
+  return out << "</data>\n</diffusionplot>\n";
 }
 // end of file

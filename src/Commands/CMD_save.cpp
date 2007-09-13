@@ -56,7 +56,6 @@ void CMD_save::Execute( ParseLine const *p )
   if( i != filename.npos )extension = filename.substr(i,len-i);
   //
   if( extension.empty() )filename += wxString(wxT(".xml"));
-  std::ofstream ofs( filename.mb_str(), std::ios_base::out );
   AddToStackLine( p->GetString(1) );
   try
   {

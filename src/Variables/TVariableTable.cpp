@@ -77,15 +77,11 @@ TextVariable *TVariableTable::GetVariable( wxString const &name ) const
 
 std::ostream &operator<<( std::ostream &out, TVariableTable const &table )
 {
-  if( table.vMap_.size() > 0 )
-  {
-    out << "<textvariables size=\"" << table.Entries() << "\">\n";
-    TVariableTable::TVariableMap::const_iterator end = table.vMap_.end();
-    for( TVariableTable::TVariableMap::const_iterator i=table.vMap_.begin(); i!=end; ++i )
-      out << *((*i).second);
-    out << "</textvariables>\n";
-  }
-  return out;
+  out << "<textvariables size=\"" << table.Entries() << "\">\n";
+  TVariableTable::TVariableMap::const_iterator end = table.vMap_.end();
+  for( TVariableTable::TVariableMap::const_iterator i=table.vMap_.begin(); i!=end; ++i )
+    out << *((*i).second);
+  return out << "</textvariables>\n";
 }
 
 // end of file

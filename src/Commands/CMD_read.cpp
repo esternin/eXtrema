@@ -1148,8 +1148,8 @@ void CMD_read::ReadVectors( QualifierMap &qualifiers, bool const output )
     // determine if the vector name has a field count prefix
     //
     int numberOfDigits = 0;
-    while( (toascii(name[numberOfDigits]) >= 48) &&
-           (toascii(name[numberOfDigits]) <= 57) )++numberOfDigits;
+    while( (toascii(name.at(numberOfDigits)) >= 48) &&
+           (toascii(name.at(numberOfDigits)) <= 57) )++numberOfDigits;
     int fieldCount = 0;
     if( numberOfDigits > 0 ) // there is a field count, strip it off the name
     {

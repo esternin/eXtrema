@@ -80,14 +80,14 @@ void CMD_scalar::Execute( ParseLine const *p )
     else // assume there are limits attached, e.g., [low:high]
     {
       wxString limits( name.substr(names.back().size(),name.size()-names.back().size()) );
-      if( limits[0]!='(' && limits[0]!='{' && limits[0]!='[' )
+      if( limits.at(0)!=wxT('(') && limits.at(0)!=wxT('{') && limits.at(0)!=wxT('[') )
         throw ECommandError( command+wxT("variable limits must begin with an opening bracket") );
       int cntr = 0;
       std::size_t start = 1;
       for( std::size_t j=0; j<limits.size(); ++j )
       {
-        if( limits[j]=='(' || limits[j]=='{' || limits[j]=='[' )++cntr;
-        else if( limits[j]==':' && cntr==1 )
+        if( limits.at(j)==wxT('(') || limits.at(j)==wxT('{') || limits.at(j)==wxT('[') )++cntr;
+        else if( limits.at(j)==wxT(':') && cntr==1 )
         {
           if( j == start )
           {
@@ -96,7 +96,7 @@ void CMD_scalar::Execute( ParseLine const *p )
           }
           else
           {
-            Expression expr( wxString()<<'['<<limits.substr(start,j-start)<<']' );
+            Expression expr( wxString()<<wxT('[')<<limits.substr(start,j-start)<<wxT(']') );
             try
             {
               expr.Evaluate();
@@ -115,7 +115,7 @@ void CMD_scalar::Execute( ParseLine const *p )
           }
           start = j+1;
         }
-        else if( (limits[j]==')'||limits[j]=='}'||limits[j]==']') && (cntr--==1) )
+        else if( (limits.at(j)==wxT(')')||limits.at(j)==wxT('}')||limits.at(j)==wxT(']')) && (cntr--==1) )
         {
           if( j = start )
           {
@@ -124,7 +124,7 @@ void CMD_scalar::Execute( ParseLine const *p )
           }
           else
           {
-            Expression expr( wxString()<<'['<<limits.substr(start,j-start)<<']' );
+            Expression expr( wxString()<<wxT('[')<<limits.substr(start,j-start)<<wxT(']') );
             try
             {
               expr.Evaluate();

@@ -36,7 +36,7 @@ void FCN_time::TextScalarEval( int j, std::vector<wxString> &sStack ) const
     try
     {
       order = ParseInputString( sStack[j], seperator, nh, nm, ns, ampm );
-      AddToFormat( format, order[0], nh, nm, ns, ampm );
+      AddToFormat( format, order.at(0), nh, nm, ns, ampm );
     }
     catch (EExpressionError &e)
     {
@@ -47,7 +47,7 @@ void FCN_time::TextScalarEval( int j, std::vector<wxString> &sStack ) const
       format += seperator;
       try
       {
-        AddToFormat( format, order[1], nh, nm, ns, ampm );
+        AddToFormat( format, order.at(1), nh, nm, ns, ampm );
       }
       catch (EExpressionError &e)
       {
@@ -58,7 +58,7 @@ void FCN_time::TextScalarEval( int j, std::vector<wxString> &sStack ) const
         format += seperator;
         try
         {
-          AddToFormat( format, order[2], nh, nm, ns, ampm );
+          AddToFormat( format, order.at(2), nh, nm, ns, ampm );
         }
         catch (EExpressionError &e)
         {
@@ -188,21 +188,21 @@ wxString FCN_time::ParseInputString( wxString const &input_in, wxChar &seperator
       case 7:
       {
         if( ++nsep > 2 )currentState = -12;
-        else seperator = input[i];
+        else seperator = input.at(i);
         hdone = true;
         break;
       }
       case 8:
       {
         if( ++nsep > 2 )currentState = -12;
-        else seperator = input[i];
+        else seperator = input.at(i);
         mdone = true;
         break;
       }
       case 9:
       {
         if( ++nsep > 2 )currentState = -12;
-        else seperator = input[i];
+        else seperator = input.at(i);
         sdone = true;
         break;
       }
@@ -213,7 +213,7 @@ wxString FCN_time::ParseInputString( wxString const &input_in, wxChar &seperator
       break;
     }
     currentState = newState;
-    int iascii = toascii( input[++i] );
+    int iascii = toascii( input.at(++i) );
     newState = stateTable[currentState][classes[iascii]];
     
     //std::cout << "iascii=" << iascii << ", currentState=" << currentState 

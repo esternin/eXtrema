@@ -181,7 +181,7 @@ void AnalysisSpeedButtonPanel::OnSaveSession( wxCommandEvent &WXUNUSED(event) )
   {
     ExGlobals::SaveSession( filename );
   }
-  catch ( std::runtime_error &e )
+  catch ( std::runtime_error const &e )
   {
     wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
                                                wxT("Fatal error"), wxOK|wxICON_ERROR );
@@ -212,8 +212,11 @@ void AnalysisSpeedButtonPanel::OnRestoreSession( wxCommandEvent &WXUNUSED(event)
   {
     ExGlobals::RestoreSession( filename );
   }
-  catch ( std::runtime_error &e )
+  catch ( std::runtime_error const &e )
   {
+
+    std::cout << "error: |" << e.what() << "|\n";
+
     wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
                                                wxT("Fatal error"), wxOK|wxICON_ERROR );
     md->ShowModal();

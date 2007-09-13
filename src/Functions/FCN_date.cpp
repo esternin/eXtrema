@@ -41,7 +41,7 @@ void FCN_date::TextScalarEval( int j, std::vector<wxString> &sStack ) const
 
       //std::cout << "order=|" << order.mb_str(wxConvUTF8) << "|\n";
 
-      AddToFormat( format, order[0], nd, nm, ny );
+      AddToFormat( format, order.at(0), nd, nm, ny );
     }
     catch (EExpressionError &e)
     {
@@ -52,7 +52,7 @@ void FCN_date::TextScalarEval( int j, std::vector<wxString> &sStack ) const
       format += seperator;
       try
       {
-        AddToFormat( format, order[1], nd, nm, ny );
+        AddToFormat( format, order.at(1), nd, nm, ny );
       }
       catch (EExpressionError &e)
       {
@@ -63,7 +63,7 @@ void FCN_date::TextScalarEval( int j, std::vector<wxString> &sStack ) const
         format += seperator;
         try
         {
-          AddToFormat( format, order[2], nd, nm, ny );
+          AddToFormat( format, order.at(2), nd, nm, ny );
         }
         catch (EExpressionError &e)
         {
@@ -170,7 +170,7 @@ wxString FCN_date::ParseInputString( wxString const &input_in, wxChar &seperator
       case 7:
       {
         if( ++nsep > 2 )currentState = -12;
-        else seperator = input[i];
+        else seperator = input.at(i);
 
         //std::cout << "7: seperator=|" << seperator << "|, " << toascii(seperator) << "\n";
 
@@ -180,7 +180,7 @@ wxString FCN_date::ParseInputString( wxString const &input_in, wxChar &seperator
       case 8:
       {
         if( ++nsep > 2 )currentState = -12;
-        else seperator = input[i];
+        else seperator = input.at(i);
 
         //std::cout << "8: seperator=|" << seperator << "|, " << toascii(seperator) << "\n";
 
@@ -190,7 +190,7 @@ wxString FCN_date::ParseInputString( wxString const &input_in, wxChar &seperator
       case 9:
       {
         if( ++nsep > 2 )currentState = -12;
-        else seperator = input[i];
+        else seperator = input.at(i);
 
         //std::cout << "9: seperator=|" << seperator << "|, " << toascii(seperator) << "\n";
 
@@ -204,7 +204,7 @@ wxString FCN_date::ParseInputString( wxString const &input_in, wxChar &seperator
       break;
     }
     currentState = newState;
-    int iascii = toascii( input[++i] );
+    int iascii = toascii( input.at(++i) );
     newState = stateTable[currentState][classes[iascii]];
     
     //std::cout << "iascii=" << iascii << ", currentState=" << currentState 

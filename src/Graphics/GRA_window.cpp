@@ -1380,7 +1380,7 @@ std::ostream &operator<<( std::ostream &out, GRA_window const &gw )
       << "<textc>\n" << *gw.textCharacteristics_ << "</textc>\n"
       << "<graphlegendc>\n" << *gw.graphLegendCharacteristics_ << "</graphlegendc>\n"
       << "<datacurvec>\n" << *gw.dataCurveCharacteristics_ << "</datacurvec>\n"
-      << "<drawableobjects size=\"" << gw.drawableObjects_.size() << "\">\n";
+      << "<drawableobjects>\n";
   GRA_window::drawableVecIter end = gw.drawableObjects_.end();
   for( GRA_window::drawableVecIter i=gw.drawableObjects_.begin(); i!=end; ++i )
   {

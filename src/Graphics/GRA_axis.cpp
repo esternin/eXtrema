@@ -204,7 +204,8 @@ void GRA_axis::MakeAxisLabel()
   {
     wxString powLabel(wxT("(x10<^><Z0.5%>"));
     powLabel << power << wxT("<_>)");
-    label.empty() ? label=powLabel : label+=wxString(wxT(" "))+powLabel;
+    //label.empty() ? label=powLabel : label+=wxString(wxT(" "))+powLabel;
+    label.empty() ? label=powLabel : label << wxT(" ") << powLabel;
     labelIsOn = true;
   }
   //
@@ -614,17 +615,17 @@ void GRA_axis::MakeLinearAxis()
       if( i > 0 )number.erase( 0, i );
       //
       std::size_t nSize = number.size();
-      if( leadingZeros>0 && number[0]=='.' )
+      if( leadingZeros>0 && number.at(0)==wxT('.') )
       {
         number.resize( nSize+1 );
-        for( std::size_t j=0; j<nSize; ++j )number[nSize-j] = number[nSize-j-1];
-        number[0] = '0';
+        for( std::size_t j=0; j<nSize; ++j )number.at(nSize-j) = number.at(nSize-j-1);
+        number.at(0) = wxT('0');
       }
-      if( number[0]=='-' && number[1]=='.' )
+      if( number.at(0)==wxT('-') && number.at(1)==wxT('.') )
       {
         number.resize( nSize+1 );
-        for( std::size_t j=0; j<nSize-1; ++j )number[nSize-j] = number[nSize-j-1];
-        number[1] = '0';
+        for( std::size_t j=0; j<nSize-1; ++j )number.at(nSize-j) = number.at(nSize-j-1);
+        number.at(1) = wxT('0');
       }
       // Plot the number at an angle relative to the horizontal of numberAngle+axisAngle degrees
       //
@@ -878,7 +879,7 @@ void GRA_axis::MakeLogAxis()
             std::size_t idc1;
             for( idc1=0; idc1<wxStrlen(s); ++idc1 )
             {
-              if( s[idc1] != '0' )break;
+              if( s[idc1] != wxT('0') )break;
             }
             for( std::size_t i=idc1; i<wxStrlen(s); ++i )lab2 += wxString( s[i] );
             lab2 << wxT("*") << label << wxT("<^>") << powMin;
@@ -892,7 +893,7 @@ void GRA_axis::MakeLogAxis()
             std::size_t idc1;
             for( idc1=0; idc1<wxStrlen(s); ++idc1 )
             {
-              if( s[idc1] != '0' )break;
+              if( s[idc1] != wxT('0') )break;
             }
             if( actualValue<1.0 && leadingZeros )--idc1;
             for( std::size_t i=idc1; i<wxStrlen(s); ++i )lab2 += wxString( s[i] );
@@ -965,12 +966,12 @@ void GRA_axis::MakeLogAxis()
           ::wxSnprintf( s, 25, wxT("%024.7f"), xout );
           for( idc1=0; idc1<wxStrlen(s); ++idc1 )
           {
-            if( s[idc1] != '0' )break;
+            if( s[idc1] != wxT('0') )break;
           }
           int idc2;
           for( idc2=wxStrlen(s)-1; idc2>=0; --idc2 )
           {
-            if( s[idc2] != '0' )break;
+            if( s[idc2] != wxT('0') )break;
           }
           if( s[idc1] == '.' )--idc1;
           if( s[idc2] == '.' )--idc2;
@@ -1280,12 +1281,12 @@ wxString GRA_axis::DoubleToString( double r, int power, int nPos, int nDec ) con
     {
       int index = static_cast<int>(fmod(realn,10.0));
       if( index<0 || index>9 )index = 0;
-      s[nPos-i-1] = digit[index];
+      s.at(nPos-i-1) = digit[index];
       realn /= 10.0;
     }
     else
     {
-      s[nPos-i-1] = dec;
+      s.at(nPos-i-1) = dec;
     }
   }
   // if realn >= 1 then realn has overflowed the format, because there are
@@ -1304,7 +1305,7 @@ wxString GRA_axis::DoubleToString( double r, int power, int nPos, int nDec ) con
     // if the decimal point is the first non-zero character,
     // then put a leading zero in front if there is room
     //
-    if( s[i] == wxT('.') && i > 0 )s[i-1] = digit[0];
+    if( s.at(i) == wxT('.') && i > 0 )s.at(i-1) = digit[0];
   }
   else     // r < 0, so put a minus sign
   {
@@ -1314,21 +1315,21 @@ wxString GRA_axis::DoubleToString( double r, int power, int nPos, int nDec ) con
     }
     else
     {
-      if( s[i] == wxT('.') )  // first non-zero character is a '.'
+      if( s.at(i) == wxT('.') )  // first non-zero character is a '.'
       {
         if( i == 1 )
         {
-          s[0] = minus;
+          s.at(0) = minus;
         }
         else
         {
-          s[i-1] = digit[0];
-          s[i-2] = minus;
+          s.at(i-1) = digit[0];
+          s.at(i-2) = minus;
         }
       }
       else
       {
-        s[i-1] = minus;
+        s.at(i-1) = minus;
       }
     }
   }

@@ -63,6 +63,7 @@ class CurvePopup;
 class TextPopup;
 class LegendPopup;
 class GraphicsPage;
+class GRA_legend;
 
 namespace ExGlobals
 {
@@ -232,7 +233,7 @@ namespace ExGlobals
 
   void SaveSession( wxString & );
   void RestoreSession( wxString & );
-  std::string InvalidNodeMessage( wxString const &, wxString const & );
+  std::string InvalidNodeMessage( wxString const &, wxString const &, wxString const & );
 
   void DefineConstants();
 
@@ -272,7 +273,8 @@ namespace ExGlobals
   std::vector<int> GetIntData( wxString const &, int );
   std::vector<bool> GetBoolData( wxString const &, int );
 
-  int SetCharacteristics( ExXML &, GRA_setOfCharacteristics * );
+  void SetCharacteristics( ExXML &, GRA_setOfCharacteristics *,
+                           wxString const &, wxString const & );
   GRA_point *GetPoint( ExXML & );
   GRA_polyline *GetPolyline( ExXML & );
   GRA_multiLineFigure *GetMultiLineFigure( ExXML & );
@@ -280,15 +282,16 @@ namespace ExGlobals
   GRA_ellipse *GetEllipse( ExXML & );
   GRA_drawableText *GetDrawableText( ExXML & );
   GRA_plotSymbol *GetPlotSymbol( ExXML & );
-  GRA_cartesianAxes *GetCartesianAxes( ExXML & );
+  GRA_cartesianAxes *GetCartesianAxes( ExXML &, wxString const & );
   GRA_cartesianCurve *GetCartesianCurve( ExXML & );
-  GRA_axis *GetAxis( ExXML &, wxChar const );
+  GRA_axis *GetAxis( ExXML &, wxChar const, wxString const & );
   GRA_errorBar *GetErrorBar( ExXML & );
   GRA_contour *GetContour( ExXML & );
   GRA_boxPlot *GetBoxPlot( ExXML & );
   GRA_diffusionPlot *GetDiffusionPlot( ExXML & );
   GRA_ditheringPlot *GetDitheringPlot( ExXML & );
   GRA_gradientPlot *GetGradientPlot( ExXML & );
+  GRA_legend *GetGraphLegend( ExXML &, GRA_window * );
 }
 
 #endif

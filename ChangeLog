@@ -1,3 +1,14 @@
+13/09/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.2.8
+
+	* modified src/Utilities/ExXML, src/Utilities/ExGlobals
+	removed dependency on libxml2, now using wxXmlDocument, wxXmlNode
+
+	* modified Command, FCN_adev, FCN_mean, FCN_gmean, FCN_rms, FCN_skew, FCN_stdev,
+	CMD_get, CMD_read, CMD_scalar, CMD_set, FCN_date, FCN_time, GRA_axis, ExSpinCtrlD.h,
+	ExSpinCtrlI.h, and ExColorCtrl.h  to comply with the latest gcc compiler.
+
 17/08/2007  Joe Chuma <chuma@triumf.ca>
 
 	v4.2.7

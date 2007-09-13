@@ -174,7 +174,7 @@ NEXTLINE:
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     if( line.empty() || line==wxT(" ") )return;
-    if( line[0] == Script::GetCommentCharacter() )goto NEXTLINE;
+    if( line.at(0) == Script::GetCommentCharacter() )goto NEXTLINE;
     line = wxString(wxT("SET "))+line;
     ParseLine p2( line );
     try
@@ -192,7 +192,7 @@ NEXTLINE:
   wxString temp( p.GetString(1).Upper() );
   //
   double value;
-  bool percent = (temp[0] == '%');
+  bool percent = (temp.at(0) == wxT('%'));
   wxString keyword;
   percent ? keyword.assign( temp,1,temp.length()-1 ) :
             keyword.assign( temp,0,temp.length() );

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2006 Joseph L. Chuma, TRIUMF
+Copyright (C) 2006,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -22,66 +22,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <string>
 #include <vector>
 
-#include <libxml/xmlreader.h>
-#include <libxml/xpath.h>
-
 #include "wx/wx.h"
-
-template <typename T> class my_cast
-{
-private:
-  void const *value;
-public:
-  my_cast( void const *input ) : value(input) { }
-  operator T () const { return static_cast<T>(value); }
-};
+#include "wx/xml/xml.h"
 
 class ExXML
 {
 public:
-  ExXML() : reader_(0), version_(wxT("1.0")), encoding_(wxT("ISO-8859-1"))
+  ExXML() : encoding_(wxT("UTF-8")), version_(wxT("1.0"))
   {}
-
-  virtual ~ExXML()
-  { if( reader_ )xmlFreeTextReader(reader_); }
-
-  std::ofstream &GetStream()
-  { return outputFile_; }
-
-  void OpenFileForRead( wxString );
+  
+  ~ExXML()
+  {}
+  
+  void OpenFileForRead( wxString const & );
   void OpenFileForWrite( wxString );
-  void CloseFile();
 
-  int NextElementNode();
+  void CloseFile()
+  { output_.close(); }
+  
+  std::ofstream *GetStream()
+  { return &output_; }
+  
+  bool GetFirstChild();
+  bool GetNextSibling();
   wxString GetName();
   wxString GetTextValue();
-
-  int GetType()
-  {
-    // for the enum definitions of the node types see xmlreader.h
-    //
-    // node types:
-    // 1   start of element           8   comment                  15  end element
-    // 2   attribute                  9   document node            16  end entity
-    // 3   text node                  10  DTD/Doctype node         17  xml declaration
-    // 4   CDATA section              11  document fragment
-    // 5   entity reference           12  notation node
-    // 6   entity declaration         13  whitespace
-    // 7   processing instruction     14  significant whitespace
-    //
-    return xmlTextReaderNodeType(reader_);
-  }
-
-  wxString GetAttributeValue( wxString const & );
-
+  wxString GetPropertyValue( wxString const & );
+  void SetBackToParent();
+  
 protected:
-  xmlTextReaderPtr reader_;
-  bool elementIsOpen_;
-  std::vector<wxString> names_;
-  std::ofstream outputFile_;
+  wxXmlDocument doc_;
   wxString encoding_, version_;
-
-  wxString Encode( wxString const & );
+  wxXmlNode *rootNode_, *currentNode_;
+  std::ofstream output_;
 };
 
 #endif

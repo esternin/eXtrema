@@ -207,13 +207,13 @@ void GRA_legend::MakeTitle()
 void GRA_legend::SetFrame( GRA_rectangle *frame )
 {
   delete frame_;
-  frame_ = new GRA_rectangle(*frame);
+  frame_ = frame;
 }
 
 void GRA_legend::SetTitle( GRA_drawableText *title )
 { 
   delete title_;
-  title_ = new GRA_drawableText(*title);
+  title_ = title;
   GRA_setOfCharacteristics *legendC = graphWindow_->GetGraphLegendCharacteristics();
   static_cast<GRA_stringCharacteristic*>(legendC->Get(wxT("TITLE")))->Set( title_->GetString() );
 }
