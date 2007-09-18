@@ -1,4 +1,4 @@
-13/09/2007  Joe Chuma <chuma@triumf.ca>
+14/09/2007  Joe Chuma <chuma@triumf.ca>
 
 	v4.2.8
 
@@ -8,6 +8,10 @@
 	* modified Command, FCN_adev, FCN_mean, FCN_gmean, FCN_rms, FCN_skew, FCN_stdev,
 	CMD_get, CMD_read, CMD_scalar, CMD_set, FCN_date, FCN_time, GRA_axis, ExSpinCtrlD.h,
 	ExSpinCtrlI.h, and ExColorCtrl.h  to comply with the latest gcc compiler.
+
+	* added FCN_heaviside                                    0.0  for x < 0
+	The Heaviside function has been added.   HEAVISIDE(x) =  0.5  for x = 0
+	                                                         1.0  for x > 0
 
 17/08/2007  Joe Chuma <chuma@triumf.ca>
 

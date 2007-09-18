@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 void ExXML::OpenFileForRead( wxString const &file )
 {
-  if( !doc_.Load(file,encoding_,wxXMLDOC_KEEP_WHITESPACE_NODES) )
+  //if( !doc_.Load(file,encoding_,wxXMLDOC_KEEP_WHITESPACE_NODES) )
+  if( !doc_.Load(file,encoding_) )
   {
     wxString tmp(wxT("Unable to open "));
     tmp += file;
@@ -43,22 +44,42 @@ void ExXML::OpenFileForRead( wxString const &file )
 bool ExXML::GetFirstChild()
 {
   if( !currentNode_ )return false;
-  currentNode_ = currentNode_->GetChildren();
-  if( !currentNode_ )return false;
+
   wxXmlNode *node0 = currentNode_;
-  if( currentNode_->GetType() == 3 )
+
+  currentNode_ = currentNode_->GetChildren();
+  if( !currentNode_ )
+  {
+    currentNode_ = node0;
+    
+    //std::cout << "GetFirstChild 0: name=|"<<currentNode_->GetName().mb_str(wxConvUTF8)
+    //          << "| type=" << currentNode_->GetType() << "\n";
+
+    return false;
+  }
+    
+  //std::cout << "GetFirstChild 1: name=|"<<currentNode_->GetName().mb_str(wxConvUTF8)
+  //          << "| type=" << currentNode_->GetType() << "\n";
+
+  node0 = currentNode_;
+  if( currentNode_->GetType() == wxXML_TEXT_NODE ||
+      currentNode_->GetType() == wxXML_CDATA_SECTION_NODE )
   {
     currentNode_ = currentNode_->GetNext();
     if( !currentNode_ )
     {
       currentNode_ = node0;
+    
+      //std::cout << "GetFirstChild 2: name=|"<<currentNode_->GetName().mb_str(wxConvUTF8)
+      //          << "| type=" << currentNode_->GetType() << "\n";
+
       return false;
     }
-    
-    //std::cout << "GetFirstChild: name=|"<<currentNode_->GetName().mb_str(wxConvUTF8)
-    //          << "| type=" << currentNode_->GetType() << "\n";
-
   }
+    
+  //std::cout << "GetFirstChild 3: name=|"<<currentNode_->GetName().mb_str(wxConvUTF8)
+  //          << "| type=" << currentNode_->GetType() << "\n";
+
   return true;
 }
 
@@ -70,9 +91,14 @@ bool ExXML::GetNextSibling()
   if( !currentNode_ )
   {
     currentNode_ = node0;
+    
+    //std::cout << "GetNextSibling 1: name=|"<<currentNode_->GetName().mb_str(wxConvUTF8)
+    //          << "| type=" << currentNode_->GetType() << "\n";
+    
     return false;
   }
-  if( currentNode_->GetType() == 3 )
+  if( currentNode_->GetType() == wxXML_TEXT_NODE ||
+      currentNode_->GetType() == wxXML_CDATA_SECTION_NODE )
   {
     currentNode_ = currentNode_->GetNext();
     if( !currentNode_ )
@@ -84,11 +110,11 @@ bool ExXML::GetNextSibling()
       
       return false;
     }
-    
-    //std::cout << "GetNextSibling: name=|"<<currentNode_->GetName().mb_str(wxConvUTF8)
-    //          << "| type=" << currentNode_->GetType() << "\n";
-    
   }
+    
+  //std::cout << "GetNextSibling 3: name=|"<<currentNode_->GetName().mb_str(wxConvUTF8)
+  //          << "| type=" << currentNode_->GetType() << "\n";
+    
   return true;
 }
 
@@ -111,7 +137,14 @@ wxString ExXML::GetPropertyValue( wxString const &name )
 wxString ExXML::GetTextValue()
 {
   if( !currentNode_ )return wxString();
-  return currentNode_->GetNodeContent();
+  wxXmlNode *node = currentNode_->GetChildren();
+  while( node )
+  {
+    if( node->GetType() == wxXML_TEXT_NODE ||
+        node->GetType() == wxXML_CDATA_SECTION_NODE )return node->GetContent();
+    node = node->GetNext();
+  }
+  return wxString();
 }
 
 void ExXML::SetBackToParent()

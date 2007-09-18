@@ -116,6 +116,7 @@ libfunctions_la_SOURCES = \
 	  FCN_gaussin.cpp FCN_gaussin.h \
 	  FCN_gaussj.cpp FCN_gaussj.h \
 	  FCN_gmean.cpp FCN_gmean.h \
+	  FCN_heaviside.cpp FCN_heaviside.h \
 	  FCN_hermite.cpp FCN_hermite.h \
 	  FCN_hypgeo.cpp FCN_hypgeo.h \
 	  FCN_ichar.cpp FCN_ichar.h \

@@ -123,6 +123,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "FCN_gaussin.h"
 #include "FCN_gaussj.h"
 #include "FCN_gmean.h"
+#include "FCN_heaviside.h"
 #include "FCN_hermite.h"
 #include "FCN_hypgeo.h"
 #include "FCN_ichar.h"
@@ -387,6 +388,7 @@ void FunctionTable::CreateFunctions()
   FCN_gaussin::Instance();
   FCN_gaussj::Instance();
   FCN_gmean::Instance();
+  FCN_heaviside::Instance();
   FCN_hermite::Instance();
   FCN_hypgeo::Instance();
   FCN_ichar::Instance();

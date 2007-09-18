@@ -1270,7 +1270,7 @@ void RestoreSession( wxString &file )
       std::string( (wxString()<<wxT("root node extrema has no children, file: ")<<file).mb_str(wxConvUTF8) ) );
 
   if( xml.GetName() != wxT("analysiswindow") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<analysiswindow>"),file) );
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("analysiswindow"),file) );
 
   visualizationWindow_->DeleteAllPages();
   analysisWindow_->ClearOutput();
@@ -1290,13 +1290,13 @@ void RestoreSession( wxString &file )
   }
   xml.GetFirstChild(); // get the messages <string> node
   if( xml.GetName() != wxT("string") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<string>"),file) );
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("string"),file) );
   
   analysisWindow_->WriteOutput( xml.GetTextValue() );
   
   xml.GetNextSibling(); // get the <commands> node
   if( xml.GetName() != wxT("commands") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<commands>"),file) );
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("commands"),file) );
 
   long int size;
   xml.GetPropertyValue( wxT("size") ).ToLong( &size );
@@ -1315,7 +1315,7 @@ void RestoreSession( wxString &file )
       std::string( (wxString()<<wxT("expecting node: <visualizationwindow>, file: ")<<file).mb_str(wxConvUTF8) ) );
 
   if( xml.GetName() != wxT("visualizationwindow") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<visualizationwindow>"),file) );
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("visualizationwindow"),file) );
   
   try
   {
@@ -1354,7 +1354,7 @@ void RestoreSession( wxString &file )
       std::string( (wxString()<<wxT("expecting node: <numericvariables>, file: ")<<file).mb_str(wxConvUTF8) ) );
 
   if( xml.GetName() != wxT("numericvariables") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<numericvariables>"),file) );
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("numericvariables"),file) );
   
   xml.GetPropertyValue(wxT("size")).ToLong( &size ); // number of numeric variables
   for( int i=0; i<static_cast<int>(size); ++i )
@@ -1480,7 +1480,7 @@ void RestoreSession( wxString &file )
       std::string( (wxString()<<wxT("expecting node: <textvariables>, file: ")<<file).mb_str(wxConvUTF8) ) );
 
   if( xml.GetName() != wxT("textvariables") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<textvariables>"),file) );
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("textvariables"),file) );
   
   xml.GetPropertyValue(wxT("size")).ToLong( &size ); // number of text variables
   for( int i=0; i<static_cast<int>(size); ++i )
@@ -1545,7 +1545,7 @@ void RestoreSession( wxString &file )
       std::string( (wxString()<<wxT("expecting node: <colormap>, file: ")<<file).mb_str(wxConvUTF8) ) );
 
   if( xml.GetName() != wxT("colormap") )
-    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<colormap>"),file) );
+    throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("colormap"),file) );
   
   wxString name( xml.GetPropertyValue(wxT("name")) );
   if( name == wxT("USERDEFINED") )
@@ -1583,7 +1583,7 @@ void RestoreSession( wxString &file )
   while( nextPage )
   {
     if( xml.GetName() != wxT("graphicspage") )
-      throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<graphicspage>"),file) );
+      throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("graphicspage"),file) );
     //
     // first page already made above
     // only make new page if more than one page
@@ -1596,7 +1596,7 @@ void RestoreSession( wxString &file )
     while( nextWindow )
     {
       if( xml.GetName() != wxT("graphwindow") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<graphwindow>"),file) );
+        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("graphwindow"),file) );
       
       long int tmp;
       xml.GetPropertyValue(wxT("number")).ToLong( &tmp );
@@ -1678,17 +1678,13 @@ void RestoreSession( wxString &file )
 
       xml.GetNextSibling(); // get <drawableobjects>
       if( xml.GetName() != wxT("drawableobjects") )
-        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<drawableobjects>"),file) );
+        throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("drawableobjects"),file) );
       
-      //xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
-      //int size = static_cast<int>(tmp);
       wxClientDC dc( visualizationWindow_->GetPage() );
-
       bool nextObject = xml.GetFirstChild();
-      //for( int i=0; i<size; ++i )
+      bool drawableObjects = nextObject;
       while( nextObject )
       {
-        //i==0 ? xml.GetFirstChild() : xml.GetNextSibling();
         if( xml.GetName() == wxT("point") )
         {
           GRA_point *point = GetPoint( xml );
@@ -1797,7 +1793,7 @@ void RestoreSession( wxString &file )
       visualizationWindow_->SetWindowNumber( windowNumber );
       dynamic_cast<GraphicsPage*>(visualizationWindow_->GetPage())->Paint();
 
-      xml.SetBackToParent(); // set back to <drawableobjects>
+      if( drawableObjects )xml.SetBackToParent(); // set back to <drawableobjects>
       xml.SetBackToParent(); // set back to <graphwindow>
       nextWindow = xml.GetNextSibling(); // get next <graphwindow>
     }
@@ -1860,10 +1856,11 @@ void SetCharacteristics( ExXML &xml, GRA_setOfCharacteristics *characteristics,
   if( xml.GetName() != type )throw std::runtime_error( InvalidNodeMessage(xml.GetName(),type,file) );
   
   bool nextCharacteristic = xml.GetFirstChild();
+  if( !nextCharacteristic )return;
   while( nextCharacteristic )
   {
     if( xml.GetName() != wxT("characteristic") )
-      throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("<characteristic>"),file) );
+      throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("characteristic"),file) );
     
     wxString name( xml.GetPropertyValue(wxT("name")) );
     wxString type( xml.GetPropertyValue(wxT("type")) );
@@ -1965,7 +1962,7 @@ std::string InvalidNodeMessage( wxString const &invalid, wxString const &valid, 
   //          << (wxString() << wxT("expected node: ") << valid << wxT(", found: <")
   //              << invalid << wxT(">, file: ") << file).mb_str(wxConvUTF8) << "\n";
 
-  return std::string( (wxString() << wxT("expected node: ") << valid << wxT(", found: <")
+  return std::string( (wxString() << wxT("expected node: <") << valid << wxT(">, found: <")
                                   << invalid << wxT(">, file: ") << file).mb_str(wxConvUTF8) );
 }
 
