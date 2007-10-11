@@ -1,3 +1,13 @@
+05/10/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.2.9
+
+	* modified src/Utilities/ExGlobals
+	can now pass a script and parameters as command line arguments.  This script 
+	will be executed immediately.  For example:
+	$ extrema --script "testIt.pcm 50 90 'some <alpha,beta,gamma> string'"
+	will execute the script testIt.pcm with 3 parameters.
+
 14/09/2007  Joe Chuma <chuma@triumf.ca>
 
 	v4.2.8
