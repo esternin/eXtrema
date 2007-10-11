@@ -303,7 +303,19 @@ void StartHelp()
 void ExecuteInit()
 {
   wxString fname( wxT("extremaInit.pcm") );
-  if( wxTheApp->argc >= 2 )fname = wxTheApp->argv[1];
+  wxString parameters;
+  if( wxTheApp->argc > 1 )
+  {
+    wxString arg1( wxTheApp->argv[1] );
+    if( arg1.size()>2 && arg1.substr(0,2)==wxT("--") )
+    {
+      wxString command( fname );
+      if( arg1.substr(2)==wxT("script") && wxTheApp->argc>2 )command = wxTheApp->argv[2];
+      std::size_t b = command.find(wxT(" "));
+      fname = command.substr(0,b);
+      if( b != command.npos )parameters = command.substr(b);
+    }
+  }
   std::ifstream in;
   in.open( fname.mb_str(wxConvUTF8) );
   if( !in.is_open() )
@@ -326,7 +338,7 @@ void ExecuteInit()
   in.close();
   try
   {
-    ParseLine p( wxString(wxT("EXECUTE '"))+fname+wxT("'") );
+    ParseLine p( wxString(wxT("EXECUTE '"))+fname+wxT("'")+parameters );
     try
     {
       p.ParseIt();
