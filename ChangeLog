@@ -1,3 +1,11 @@
+12/10/2007  Joe Chuma <chuma@triumf.ca>
+
+	v4.2.10
+
+	* modified src/Commands/CMD_read
+	when reading a matrix where the number of columns is not given, extrema was
+	returning 1000 columns, which is obviously wrong.  This has been fixed.
+
 05/10/2007  Joe Chuma <chuma@triumf.ca>
 
 	v4.2.9

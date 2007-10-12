@@ -925,7 +925,11 @@ void CMD_read::ReadMatrix( QualifierMap &qualifiers, bool const output )
         ++recordNumber;
         std::string sc;
         sc.clear();
-        if( std::getline(inStream_,sc).fail() || sc.empty() )break;
+        if( std::getline(inStream_,sc).fail() || sc.empty() )
+        {
+          nCol = recordNumber-1;
+          break;
+        }
         //
         // trim leading and trailing blanks
         //
