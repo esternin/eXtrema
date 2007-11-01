@@ -1,67 +1,53 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>XNLINCS</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="XNLINCS">
-</OBJECT>
-
 <P><A NAME="xnlincs"></A>
-<font size=+3 color="green"><B>XNLINCS</B></font></P>
+<font size="+3" color="green"><B>XNLINCS</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=20% valign="top"><B>Syntax</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 SET XNLINCS n<br>
 GET XNLINCS { n }</CODE>
 </TD></TR>
 <TR>
-<TD width=20% valign="top"><B>Default</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 XNLINCS = 5</CODE>
 </TD></TR>
 </TABLE>
- 
-<P><CODE><font color="blue">XNLINCS</font></CODE> controls the number of
+<P>
+ <CODE>XNLINCS</CODE> controls the number of
  large, labeled, tic marks to be displayed on the <i>x</i>-axis.</P>
-
-<P><table border=0 cols=3>
-<tr>
-<td valign="top" width=20%>
-<CODE><font color="blue">XNLINCS</font> &lt; 0</CODE></td>
-<td valign="top">&rarr;</td>
-<td valign="top">the number of large tic marks on the <i>x</i>-axis will 
- be <CODE><font color="blue">XNLINCS</font> + 1</CODE>. If
- <CODE><font color="blue"><a href="xlogbase.htm">XLOGBASE</a></font>
- &gt; 1</CODE>, logarithmic <i>x</i>-axis,
- <CODE><font color="blue">XNLINCS</font></CODE> may be changed to avoid
- fractional powers. If <CODE><font color="blue">XLOGBASE</font> &lt; 1</CODE>,
- linear <i>x</i>-axis, the <i>x</i>-axis minimum and maximum will not be
- labeled with numbers.</td>
-</tr><tr>
-<td valign="top"><CODE><font color="blue">XNLINCS</font> = 0</CODE></td>
-<td valign="top">&rarr;</td>
-<td valign="top">the number of large tic marks on the <i>x</i>-axis will
- be automatically determined for the user. The virtual <i>x</i>-axis minimum
- and maximum will be determined, so the <i>x</i>-axis may not begin or end
- at a large tic mark.</td>
-</tr><tr>
-<td valign="top"><CODE><font color="blue">XNLINCS</font> &gt; 0</CODE></td>
-<td valign="top">&rarr;</td>
-<td valign="top">the number of large tic marks on the <i>x</i>-axis will 
- be <CODE><font color="blue">XNLINCS</font> + 1</CODE>. If
- <CODE><font color="blue">XLOGBASE</font> &gt; 1</CODE>, logarithmic
- <i>x</i>-axis, <CODE><font color="blue">XNLINCS</font></CODE> may be changed
- to avoid fractional powers. If <CODE><font color="blue">XLOGBASE</font> &lt;
- 1</CODE>, linear <i>x</i>-axis, <CODE><font color="blue">XNLINCS</font></CODE>
- will not be changed.</td>
-</tr></table></p>
-
+<P>
+ <table border="1" cols="2">
+ <tr>
+ <td valign="center" align="center" width="15%"><code>XNLINCS</code></td>
+ <td valign="center" align="center"><em>meaning</em></td>
+ </tr><tr>
+ <td valign="center" align="center">&lt; 0</td>
+ <td valign="top">the number of large tic marks on the <i>x</i>-axis will 
+  be <CODE>XNLINCS + 1</CODE>. If <CODE><a href="xlogbase.htm">XLOGBASE</a> &gt; 1</CODE>,
+  logarithmic <i>x</i>-axis, <CODE>XNLINCS</CODE> may be changed to avoid
+  fractional powers. If <CODE>XLOGBASE &lt; 1</CODE>, linear <i>x</i>-axis, the
+ <i>x</i>-axis minimum and maximum will not be labeled with numbers.</td>
+ </tr><tr>
+ <td valign="center" align="center">= 0</td>
+ <td valign="top">the number of large tic marks on the <i>x</i>-axis will
+  be automatically determined for the user. The virtual <i>x</i>-axis minimum
+  and maximum will be determined, so the <i>x</i>-axis may not begin or end
+  at a large tic mark.</td>
+ </tr><tr>
+ <td valign="center" align="center">&gt; 0</td>
+ <td valign="top">the number of large tic marks on the <i>x</i>-axis will 
+  be <CODE>XNLINCS + 1</CODE>. If <CODE>XLOGBASE &gt; 1</CODE>, logarithmic
+  <i>x</i>-axis, <CODE>XNLINCS</CODE> may be changed to avoid fractional powers. If
+  <CODE>XLOGBASE &lt; 1</CODE>, linear <i>x</i>-axis, <CODE>XNLINCS</CODE>
+  will not be changed.</td>
+ </tr></table></p>
 </BODY>
 </HTML>

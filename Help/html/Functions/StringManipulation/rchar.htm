@@ -1,73 +1,67 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>RCHAR</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="RCHAR function">
-	<PARAM NAME="Keyword" VALUE="convert numeric to string">
-</OBJECT>
 <P><A NAME="rchar"></A>
-<font size=+3 color="green"><B>RCHAR</B></font></P>
+<font size="+3" color="green"><B>RCHAR</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
-string = RCHAR(scalar)<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+string = RCHAR(scalar)<br />
 string = RCHAR(scalar,format)</CODE>
 </TD></TR>
 </table></p>
 <p>
- The <CODE><font color="blue">RCHAR</font></CODE> function accepts a numeric scalar as first
+ The <CODE>RCHAR</CODE> function accepts a numeric scalar as first
  argument and returns a string. It converts the numeric value to a string using
  the default format <CODE>%g</CODE>. You can
  specify a C style format string by including it as the optional second string argument.</p>
 <p>
- <font size=+1 color="green">Examples</font></P>
+ <font size="+1" color="green">Examples</font></P>
 <table>
 <tr>
- <td align="center" bgcolor=#CCFFFF><em>function</em></td>
- <td align="center" bgcolor=#FF9966><em>result</em></td>
+ <td align="center" bgcolor="#CCFFFF"><em>function</em></td>
+ <td align="center" bgcolor="#FF9966"><em>result</em></td>
 </tr><tr>
- <td><CODE><font color="blue">RCHAR(-1.234)</font></CODE></td>
+ <td><CODE>RCHAR(-1.234)</CODE></td>
  <td><font color="orange">'-1.234'</font></td>
 </tr><tr>
- <td><CODE><font color="blue">RCHAR(PI,'pi = %6.4f')</font></CODE></td>
+ <td><CODE>RCHAR(PI,'pi = %6.4f')</CODE></td>
  <td><font color="orange">'pi = 3.1416'</font></td>
 </tr><tr>
- <td><CODE><font color="blue">RCHAR(2*PI,'%10.4E')</font></CODE></td>
+ <td><CODE>RCHAR(2*PI,'%10.4E')</CODE></td>
  <td><font color="orange">'6.2832E+00'</font></td>
 </tr><tr>
- <td><CODE><font color="blue">RCHAR(2*PI,'%10.4e')</font></CODE></td>
+ <td><CODE>RCHAR(2*PI,'%10.4e')</CODE></td>
  <td><font color="orange">'6.2832e+00'</font></td>
 </tr></table></p>
 <p>
- Strings may be appended together using the append operator,
- <CODE><font color="blue">//</font></CODE>. Scalar values can also be
- appended to strings using the <CODE><font color="blue">
- <a href="rchar.htm">RCHAR</a></font></CODE> function. For example,
+ Strings may be appended together using the <a href="../../Operators/append/append.htm">append operator</a>,
+ <CODE>//</CODE>. Scalar values can also be
+ appended to strings using the <CODE>RCHAR</CODE> function. For example,
  suppose <CODE>A = -1.234</CODE>, and <CODE>T</CODE> is a
  string variable with <CODE>T = ' units'</CODE>.</p>
 <p>
 <table>
 <tr>
- <td align="center" bgcolor=#CCFFFF><em>function</em></td>
- <td align="center" bgcolor=#FF9966><em>result</em></td>
+ <td align="center" bgcolor="#CCFFFF"><em>function</em></td>
+ <td align="center" bgcolor="#FF9966"><em>result</em></td>
 </tr><tr>
- <td><CODE><font color="blue">'The value of A is '//RCHAR(A)//T</font></CODE></td>
+ <td><CODE>'The value of A is '//RCHAR(A)//T</CODE></td>
  <td><font color="orange">'The value of A is -1.234 units'</font></td>
 </tr><tr>
- <td><CODE><font color="blue">'The value of A is '//RCHAR(A,'%4.1f')//T</font></CODE></td>
+ <td><CODE>'The value of A is '//RCHAR(A,'%4.1f')//T</CODE></td>
  <td><font color="orange">'The value of A is -1.2 units'</font></td>
 </tr></table></p>
 <p>
-<a href="string.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">STRING</font></a><br>
-<a href="eqs.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">EQS</font></a>
+ <a href="string.htm"><img border="0" src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">STRING</font></a><br />
+ <a href="eqs.htm"><img border="0" src="../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">EQS</font></a>
 </P>
 </BODY>
 </HTML>

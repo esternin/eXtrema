@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<TITLE>REFLECT</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="reflect"></A>
+<font size="+3" color="green"><B>REFLECT</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = &gt;&minus;v</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The reflect operator, <code>&gt;&minus;</code>, is a unary operator that interchanges the
+ columns of a matrix.</p>
+<p>
+ Suppose the matrix <code>M</code> has N rows and M columns.
+ Then <code>&gt;&minus;M</code> is also an N by M matrix, but column 1 has been interchanged
+ with column M, column 2 has been interchanged with column M-1, and so on.</p>
+<P>
+ <font size="+1" color="green">Examples</font></p>
+<P>
+ Suppose matrix <code>M</code> is 
+ <pre>
+     | 1 10 -1 |
+ M = | 2 20 -2 |
+     | 3 30 -3 |
+     | 4 40 -4 |
+ </pre>
+ then
+ <pre>
+       | -1 10 1 |
+ &gt;-M = | -2 20 2 |
+       | -3 30 3 |
+       | -4 40 4 |
+ </pre></p>
+<P>
+ You can reflect the rows of a matrix, by using the reflect operator and the
+ <a href="../transpose/transpose.htm">transpose</a> operator.</p>
+<P>
+ Suppose <code>M</code> is as above.  Then
+ <pre>
+               | 4 40 -4 |
+ &lt;-(&gt;-(&lt;-M)) = | 3 30 -3 |
+               | 2 20 -2 |
+               | 1 10 -1 |
+ </pre></p>
+<P>
+ <a href="../transpose/transpose.htm"><img border="0" src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">matrix transpose</font></a><br />
+ <a href="../union/union.htm"><img border="0" src="../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">vector union</font></a>
+</P>
+</BODY>
+</HTML>
+
+
+

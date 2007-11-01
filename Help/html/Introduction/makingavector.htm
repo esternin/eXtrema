@@ -1,54 +1,43 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Making a vector</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="assignment">
-	<PARAM NAME="Keyword" VALUE="range">
-	<PARAM NAME="Keyword" VALUE="list">
-	<PARAM NAME="Keyword" VALUE="GENERATE">
-</OBJECT>
-
 <P><A NAME="makingavector"></A>
-<font size=+3 color="green"><B>Making a vector</B></font></P>
+<font size="+3" color="green"><B>Making a vector</B></font></P>
 
-<P>The simplest way to make a vector is with an assignment to a range.  For example,
-<nobr><CODE><font color="blue">X = [1:5]</font></CODE>,</nobr> makes a vector named
- <CODE><font color="blue">X</font></CODE> with elements
- <CODE>{1,2,3,4,5}</code>.</P>
-
-<P>A vector can also be made with an assignment to a list.  For example,
- <nobr><CODE><font color="blue">X = [1;23;-3;5;10]</font></code>,</nobr> where the
- elements of a list are separated by semicolons.</P>
-
-<P>The <a href="..\GenerateCommand\generatecommand.htm"><CODE><font color="blue">GENERATE</font></CODE></a>
- command also makes a vector, e.g.,</P>
-
-<TABLE>
-<TR>
-<TD valign="top"><CODE><font color="blue">GENERATE X 0,1,,4</font></CODE></TD>
-<TD valign="top">makes <CODE><font color="blue">X</font></CODE> with <CODE>4</CODE> elements
- <CODE>{0,1,2,3}</CODE></TD>
-</TR><TR>
-<TD valign="top"><CODE><font color="blue">GENERATE X 0,1,4</font></CODE></TD>
-<TD valign="top">makes <CODE><font color="blue">X</font></CODE> with <CODE>5</CODE> elements
- <CODE>{0,1,2,3,4}</CODE></TD>
-</TR><TR>
-<TD valign="top"><CODE><font color="blue">GENERATE X 0,,4,9</font></CODE></TD>
-<TD valign="top">makes <CODE><font color="blue">X</font></CODE> with <CODE>9</CODE> elements
- <CODE>{0,.5,1,1.5,2,2.5,3,3.5,4}</CODE></TD>
-</TR><TR>
-<TD valign="top"><nobr><CODE><font color="blue">GENERATE\RANDOM X 0,5,10&nbsp;&nbsp;</font></CODE></nobr></TD>
-<TD valign="top">makes <CODE><font color="blue">X</font></CODE> with <CODE>10</CODE> random
- number elements with values between <CODE>0</CODE> and <CODE>5</CODE>
-</TABLE>
 <P>
-<a href="stringvariable.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">String variables</font></a>
+ The simplest way to make a vector is with an assignment to a range.  For example,
+ <CODE>X = [1:5]</CODE>,</nobr> makes a vector named <CODE>X</CODE> with elements
+ <CODE>{1,2,3,4,5}</code>.</P>
+<P>
+ A vector can also be made with an assignment to a list.  For example,
+ <CODE>X = [1;23;-3;5;10]</code>, where the elements of a list are separated by semicolons.</P>
+<P>
+ The <a href="../GenerateCommand/generatecommand.htm"><CODE>GENERATE</CODE></a>
+ command also makes a vector, e.g.,</P>
+<p>
+ <TABLE border="1" cols="3">
+ <TR>
+ <td bgcolor="#FFCCCC" align="center"><em>command</em></td>
+ <td bgcolor="#FFCCCC" align="center"><em>resultant vector <code>X</code></em></td></tr>
+ <tr>
+ <TD valign="top" width="45%"><CODE>GENERATE X 0,1,,4</CODE></TD>
+ <TD valign="top"><CODE>4</CODE> elements: <CODE>{0,1,2,3}</CODE></TD>
+ </TR><TR>
+ <TD valign="top"><CODE>GENERATE X 0,1,4</CODE></TD>
+ <TD valign="top"><CODE>5</CODE> elements: <CODE>{0,1,2,3,4}</CODE></TD>
+ </TR><TR>
+ <TD valign="top"><CODE>GENERATE X 0,,4,9</CODE></TD>
+ <TD valign="top"><CODE>9</CODE> elements <CODE>{0,.5,1,1.5,2,2.5,3,3.5,4}</CODE></TD>
+ </TR><TR>
+ <TD valign="top"><CODE>GENERATE/RANDOM X 0,5,10&nbsp;&nbsp;</CODE></TD>
+ <TD valign="top"><CODE>10</CODE> random elements with values between <CODE>0</CODE> and <CODE>5</CODE>.
+ </TABLE></p>
+<P>
+ <a href="stringvariable.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">String variables</font></a>
 </P>
 </BODY>
 </HTML>

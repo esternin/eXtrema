@@ -1,48 +1,44 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Increment and maximum</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="maximum">
-</OBJECT>
+<P><font size="+3" color="green"><B>Increment and maximum</B></font></P>
 
-<P><A NAME="gencincmax"></A>
-<font size=+3 color="green"><B>Increment and maximum</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 GENERATE x min inc max</CODE>
 </TD></TR>
 </TABLE>
 <P>
  If the increment and the maximum value are given, the number of points
- will be ignored. The formula: <nobr><CODE><font color="blue">x</font>[i] =
- <font color="blue">min</font>+(i-1)*<font color="blue">inc</font></CODE></nobr>
- &nbsp;&nbsp; for &nbsp;&nbsp; <nobr><CODE>i=[1;2;3;...]</CODE></nobr> will be applied
- until the next value would be greater than the specified maximum. If the calculated
- maximum is different than the given maximum, a warning message will be displayed.
- The calculated maximum will be the last value stored in the vector.</p>
+ will be ignored. The formula:</p>
 <p>
- For example, suppose you enter the command:
- <nobr><CODE><font color="blue">GENERATE X -1 .41 1</font></CODE></nobr> then we have
- <nobr><CODE>X = [-1;-0.59;-0.18;0.23;0.64]</CODE>.</nobr>
- The warning message:<br>
+ <center><CODE>x[i] = min+(i-1)*inc</CODE> &nbsp;&nbsp; for &nbsp;&nbsp; <CODE>i=[1;2;3;...]
+ </CODE></center></p>
+<p>
+ will be applied until the next value would be greater than the specified maximum. If the calculated
+ maximum is different than the given maximum, a warning message will be displayed. The calculated maximum
+ will be the last value stored in the vector.</p>
+<p>
+ For example, suppose you enter the command:</p>
+<p>
+ <CODE><font color="blue">GENERATE X -1 .41 1</font></CODE></p>
+<p>
+ the vector <code>X</code> will be <CODE>[-1;-0.59;-0.18;0.23;0.64]</CODE>.  The warning message:<br />
  <font color="orange"><pre>
        GENERATE warning: calculated maximum = 0.64000000E+00
                               given maximum = 0.10000000E+01
  </pre></font>
  will be displayed.</p>
 <P>
-<a href="maxnpts.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Maximum and number of points</font></a><br>
-<a href="random.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Random values</font></a><br>
+ <a href="maxnpts.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Maximum and number of points</font></a><br />
+ <a href="random.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Random values</font></a>
 </P>
 </BODY>
 </HTML>

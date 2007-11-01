@@ -84,7 +84,7 @@ void FCN_integral::ArrayEval( Workspace *ws )
   //
   if( !arg3 ) // arg3 is a string determining the type of integration
   {
-    s3 = wxT("INTERP");
+    s3 = wxT("SMOOTH");
   }
   else
   {
@@ -96,15 +96,20 @@ void FCN_integral::ArrayEval( Workspace *ws )
       throw EExpressionError( wxT("INTEGRAL: third argument must be character") );
     s3.UpperCase();
   }
-  for( std::size_t i=1; i<size1; ++i )
-  {
-    if( d1[i] <= d1[i-1] )throw EExpressionError(
-      wxT("INTEGRAL: independent vector must be strictly monotonically increasing") );
-  }
   std::vector<double> yy( size1, 0.0 );
-  if( s3 == wxT("INTERP") )
+  if( s3 == wxT("SMOOTH") )
   {
+    for( std::size_t i=1; i<size1; ++i )
+    {
+      if( d1[i] <= d1[i-1] )throw EExpressionError(
+      wxT("INTEGRAL: splines require that independent vector must be strictly monotonically increasing") );
+    }
     UsefulFunctions::SplineIntegral( d1, d2, d1, yy );
+  }
+  else if( s3 == wxT("TRAPEZOID") )
+  {
+    for( std::size_t i=0; i<size1-1; ++i )
+      yy[i+1] = yy[i] + 0.5*(d1[i+1]-d1[i])*(d2[i+1]+d2[i]);
   }
   else throw EExpressionError( wxT("INTEGRAL: invalid third parameter") );
   //

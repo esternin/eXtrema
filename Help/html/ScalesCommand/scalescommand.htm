@@ -1,90 +1,71 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>SCALES command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="SCALES command">
-</OBJECT>
+<P><font size="+3" color="green"><B>SCALES command</B></font></P>
 
-<P><A NAME="scalescommand"></A>
-<font size=+3 color="green"><B>SCALES command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-SCALES { minx maxx nlxinc miny maxy nlyinc }<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+SCALES { minx maxx nlxinc miny maxy nlyinc }<br />
 SCALES minx maxx miny maxy</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers:</B></TD>
-<TD width=85% valign="top"><CODE>
+<TD valign="top"><B>Qualifiers:</B></TD>
+<TD valign="top"><CODE>
 \COMMENSURATE</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults:</B></TD>
-<TD width=85% valign="top"><CODE>
-<CODE>nlxinc=0</CODE> & <CODE>nlyinc=0</CODE> if not entered,
- non-commensurate axes</CODE>
+<TD valign="top"><B>Defaults:</B></TD>
+<TD valign="top"><CODE>
+<CODE>nlxinc=0</CODE> & <CODE>nlyinc=0</CODE> if not entered, non-commensurate axes</CODE>
 </TD></TR>
 </TABLE>
 <P>
- The <CODE><font color="blue">SCALES</font></CODE> command turns off the
- autoscaling feature, as set with the
- <a href="..\SetCommand\GeneralGraph\autoscale.htm"><CODE><font color="blue">SET AUTOSCALE</font></CODE></a>
- command, and sets the graph scales for subsequent graphs as follows:</P>
-<table border=0 cols=3>
-<tr>
-<td><CODE><font color="blue">minx</font></CODE></td>
-<td>-</td>
-<td>minimum value to display on the x-axis</td>
-</tr><tr>
-<td><CODE><font color="blue">maxx</font></CODE></td>
-<td>-</td>
-<td>maximum value to display on the x-axis</td>
-</tr><tr>
-<td><CODE><font color="blue">nlxinc</font></CODE></td>
-<td>-</td>
-<td>number of large (numbered) tic marks on the x-axis</td>
-</tr><tr>
-<td><CODE><font color="blue">miny</font></CODE></td>
-<td>-</td>
-<td>minimum value to display on the y-axis</td>
-</tr><tr>
-<td><CODE><font color="blue">maxy</font></CODE></td>
-<td>-</td>
-<td>maximum value to display on the y-axis</td>
-</tr><tr>
-<td><CODE><font color="blue">nlyinc</font></CODE>
-<td>-</td>
-<td>number of large (numbered) tic marks on the y-axis</td>
-</tr></table>
+ The <CODE>SCALES</CODE> command turns off the autoscaling feature, as set by the
+ <a href="../Characteristics/GeneralGraph/autoscale.htm"><CODE>AUTOSCALE</CODE></a>
+ characteristic, and sets the graph scales for subsequent graphs as follows:</P>
+ <table border="0" cols="3">
+ <tr>
+ <td><CODE>minx</CODE></td>
+ <td>-</td>
+ <td>minimum value to display on the x-axis</td>
+ </tr><tr>
+ <td><CODE>maxx</CODE></td>
+ <td>-</td>
+ <td>maximum value to display on the x-axis</td>
+ </tr><tr>
+ <td><CODE>nlxinc</CODE></td>
+ <td>-</td>
+ <td>number of large (numbered) tic marks on the x-axis</td>
+ </tr><tr>
+ <td><CODE>miny</CODE></td>
+ <td>-</td>
+ <td>minimum value to display on the y-axis</td>
+ </tr><tr>
+ <td><CODE>maxy</CODE></td>
+ <td>-</td>
+ <td>maximum value to display on the y-axis</td>
+ </tr><tr>
+ <td><CODE>nlyinc</CODE>
+ <td>-</td>
+ <td>number of large (numbered) tic marks on the y-axis</td>
+ </tr></table>
 <P>
  If no parameters are entered, the scales will be frozen at their current
- values, and the current values of
- <CODE><font color="blue">minx</font></CODE>,
- <CODE><font color="blue">maxx</font></CODE>,
- <CODE><font color="blue">nlxinc</font></CODE>,
- <CODE><font color="blue">miny</font></CODE>,
- <CODE><font color="blue">maxy</font></CODE>, and
- <CODE><font color="blue">nlyinc</font></CODE> will be displayed.</P>
+ values, and the current values of <CODE>minx</CODE>, <CODE>maxx</CODE>, <CODE>nlxinc</CODE>,
+ <CODE>miny</CODE>, <CODE>maxy</CODE>, and <CODE>nlyinc</CODE> will be displayed.</P>
 <P>
  If four (<CODE>4</CODE>) parameters are entered, the number of labeled tic
- marks on the <i>x</i> and <i>y</i>-axes, that is,
- <CODE><font color="blue">nlxinc</font></CODE> and
- <CODE><font color="blue">nlyinc</font></CODE>, default to zero
- (<CODE>0</CODE>), which means the program will choose &quot;nice&quot;
- numbers of increments.</P>
+ marks on the <i>x</i> and <i>y</i>-axes, that is, <CODE>nlxinc</CODE> and
+ <CODE>nlyinc</CODE>, default to zero (<CODE>0</CODE>), which means the program will
+ choose &quot;nice&quot; numbers of increments.</P>
 <P>
-<a href="commensurate.htm"><font size=+1 color="olive">Commensurate axis scaling</font></a><br>
-<a href="ticmarks.htm"><font size=+1 color="olive">Labeled tic marks</font></a><br>
-<a href="example.htm"><font size=+1 color="olive">Example</font></a>
-</P>
+ <a href="commensurate.htm"><font size="+1" color="olive">Commensurate axis scaling</font></a><br />
+ <a href="ticmarks.htm"><font size="+1" color="olive">Labeled tic marks</font></a><br />
+ <a href="example.htm"><font size="+1" color="olive">Example</font></a></P>
 </BODY>
 </HTML>

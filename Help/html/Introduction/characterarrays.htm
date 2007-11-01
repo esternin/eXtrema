@@ -1,56 +1,45 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Character arrays</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="character array">
-	<PARAM NAME="Keyword" VALUE="character string">
-	<PARAM NAME="Keyword" VALUE="variable">
-	<PARAM NAME="Keyword" VALUE="READ">
-</OBJECT>
-
-<P><A NAME="characterarrays"></A>
-<font size=+3 color="green"><B>Character arrays</B></font></P>
+<P><font size="+3" color="green"><B>Character arrays</B></font></P>
 <P>
  An element of a array character variable is a character string, for example,
- <font color="blue"><CODE>T</CODE></font> is an array character variable with
- <code>3</code> elements:</P>
+ <CODE>T</CODE> is an array character variable with <code>3</code> elements:</P>
 
-<font color="blue"><PRE>
-T[1] = 'This is line one'
-T[2] = 'This is line two'
-T[3] = 'This is line three'
-</PRE></font>
+ <font color="blue"><PRE>
+ T[1] = 'This is line one'
+ T[2] = 'This is line two'
+ T[3] = 'This is line three'
+ </PRE></font>
 <P>
  Array character variables can be defined with the
- <a href="..\ReadCommand\rtcommand.htm"><CODE><font color="blue">READ</font></CODE></a>
- command by entering more than one line number to read. For example:</P>
+ <CODE><a href="../ReadCommand/readcommand.htm">READ</a></CODE>
+ command by entering more than one line number to read. For example:
 
-<font color="blue"><PRE>
-READ\TEXT FILE.DAT\[1:5] T
-</PRE></font>
+ <font color="blue"><PRE>
+ READ\TEXT FILE.DAT/[1:5] T
+ </PRE></font></p>
 <P>
- creates array character variable <CODE><font color="blue">T</font></CODE> with
+ creates array character variable <CODE>T</CODE> with
  <code>5</code> elements.  Array character variables can also be defined with a
  character assignment, as above.</p>
 <p>
  To specify the character elements of an array element of a array character
  variable, use another set of brackets. For example, if
- <CODE><font color="blue">T[3]='abcdefghijkl'</font></CODE> then
- <CODE><font color="blue">T[3][1:10:2]</font></CODE> specifies characters
+ <CODE>T[3]='abcdefghijkl'</CODE> then
+ <CODE>T[3][1:10:2]</CODE> specifies characters
  <code>1, 3, 5, 7, 9</code> of array element <code>3</code> of the array
- character variable <CODE><font color="blue">T</font></CODE>, which is
+ character variable <CODE>T</CODE>, which is
  '<CODE>acegi</CODE>'.  There is no maximum number of array elements for a
  character variable. There is no maximum character length for an
  array element.</P>
 <P>
-<a href="characterassignment.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">String assignments</font></a><br>
-<a href="evaluations.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Evaluations</font></a>
-</P>
+ <a href="characterassignment.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">String assignments</font></a><br />
+ <a href="evaluations.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Evaluations</font></a></P>
 </BODY>
 </HTML>

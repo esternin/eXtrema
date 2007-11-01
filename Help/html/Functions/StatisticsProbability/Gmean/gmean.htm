@@ -1,44 +1,39 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>GMEAN function</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="GMEAN function">
-  <PARAM NAME="Keyword" VALUE="geometric mean">
-</OBJECT>
-<P><font size=+3 color="green"><B>Geometric mean</B></font></P>
+<P><font size="+3" color="green"><B>Geometric mean</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>s = GMEAN(x)</CODE><BR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>s = GMEAN(x)</CODE><BR />
 <CODE>s = GMEAN(w,x)</CODE></TD></TR>
 </table></p>
 <p>
-The <code><font color="blue">GMEAN</font></code> function only accepts one or two vector arguments.
-If only one vector is entered, the function returns the geometric mean of that vector's data. If two
-vectors are entered, the first vector holds the weights and the second vector holds the data.  The result is
-always a scalar value.
+ The <code>GMEAN</code> function only accepts one or two vector arguments.
+ If only one vector is entered, the function returns the geometric mean of that vector's data. If two
+ vectors are entered, the first vector holds the weights and the second vector holds the data.  The result is
+ always a scalar value.
 <p>
- Suppose that <i>x</i> is a vector with <i>N</i> elements.</P>
+ Suppose that <code>x</code> is a vector with N elements.</P>
 <P>
- A weight vector, <i>w</i>, may be entered as the first argument. The
- length of <i>w</i> is assumed to also be <i>N</i>. If no weights are entered,
- let <IMG WIDTH=17 HEIGHT=17 ALIGN=MIDDLE SRC="..\img8.gif"> default to
- <CODE>1</CODE>, for <IMG WIDTH=98 HEIGHT=25 ALIGN=MIDDLE SRC="..\img9.gif">.
- Define the total weight: <IMG WIDTH=108 HEIGHT=36 ALIGN=MIDDLE SRC="..\img10.gif"></p>
+ A weight vector, <code>w</code>, may be entered as the first argument. The
+ length of <code>w</code> is assumed to also be N. If no weights are entered,
+ <code>w<sub>j</sub></code> defaults to <CODE>1</CODE>, for j = 1, ..., N.
+ Define the total weight: W = <i>w<sub>1</sub> + w<sub>2</sub> + ... + w<sub>N</sub></i></p>
 <P>
- The geometric mean, <IMG WIDTH=17 HEIGHT=25 ALIGN=MIDDLE SRC="..\img14.gif">, is
- defined if each <IMG WIDTH=48 HEIGHT=25 ALIGN=MIDDLE SRC="..\img15.gif"> by:
- <IMG WIDTH=171 HEIGHT=43 ALIGN=MIDDLE SRC="..\img16.gif"></p> 
+ The geometric mean, G<sub>x</sub>, is
+ defined if each x<sub>i</sub> &ge; 0 by: G<sub>x</sub> =
+ <i>e</i><sup>1/W</sup>{w<sub>1</sub>log(x<sub>1</sub>) + w<sub>2</sub>log(x<sub>2</sub>) + ... +
+ w<sub>N</sub>log(x<sub>N</sub>)}.</p>
 <P>
-<a href="..\Gauss\gauss.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Gaussian distribution</font></a><br>
-<a href="..\Imax\imax.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Index of maximum</font></a>
+ <a href="../Gauss/gauss.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Gaussian distribution</font></a><br />
+ <a href="../Imax/imax.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Index of maximum</font></a>
 </P>
 </BODY>
 </HTML>

@@ -1,37 +1,30 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Example 1</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-</OBJECT>
-
-<P><A NAME="replotexample1"></A>
-<font size=+2 color="green">Example 1</font></P>
+<P><font size="+2" color="green">Example 1</font></P>
 <P>
  The following sequence of commands draws a graph of <code>20*X</code> versus 
  <code>10*X</code> and overlays a graph of <code>(X^3)/10</code> versus
  <code>X^2</code> on the same set of axes. To see the complete drawing, the
  <CODE><font color="blue">REPLOT</font></CODE> command is used.</P>
-
-<font color="blue"><PRE>
- X=[1:20]                  ! create some data
- WINDOW 5                  ! choose graphics window
- SET PCHAR -1              ! set plotting symbol
- GRAPH 20*X 10*X           ! plot 10*X vs 20*X with axes
- SET PCHAR -2              ! choose different plotting symbol
- GRAPH\NOAXES X^2 (X^3)/10 ! overlay (X^3)/10 vs X^2 on same axes
- CLEAR\NOREPLOT            ! clear graphics but not replot buffers
- REPLOT                    ! replot all data on common scale
-</PRE></font>
+<p>
+ <font color="blue"><PRE>
+ X=[1:20]                   ! create some data
+ WINDOW 5                   ! choose graphics window
+ SET PCHAR -1               ! set plotting symbol
+ GRAPH 20*X 10*X            ! plot 10*X vs 20*X with axes
+ SET PCHAR -2               ! choose different plotting symbol
+ GRAPH\OVERLAY X^2 (X^3)/10 ! overlay (X^3)/10 vs X^2 on same axes
+ CLEAR\-REPLOT              ! clear graphics but not replot buffers
+ REPLOT                     ! replot all data on common scale
+ </PRE></font></p>
 <P>
-<a href="clearing.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Clearing the graphics</font></a><br>
-<a href="example2.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Example 2</font></a>
-</P>
+ <a href="clearing.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Clearing the graphics</font></a><br />
+ <a href="example2.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Example 2</font></a></P>
 </BODY>
 </HTML>

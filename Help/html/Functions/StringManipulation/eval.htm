@@ -1,25 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>EVALUATE</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="EVALUATE function">
-	<PARAM NAME="Keyword" VALUE="expression variable">
-	<PARAM NAME="Keyword" VALUE="string variable">
-	<PARAM NAME="Keyword" VALUE="numeric evaluation">
-</OBJECT>
 <P><A NAME="evaluate"></A>
-<font size=+3 color="green"><B>EVALUATE</B></font></P>
+<font size="+3" color="green"><B>EVALUATE</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
 numeric = EVALUATE(string)</CODE>
 </TD></TR>
 </table></p>
@@ -35,28 +26,30 @@ numeric = EVALUATE(string)</CODE>
 <p>
  A string variable will be numerically evaluated if it is a numeric operand or the argument of
  a numeric function. Otherwise, a string variable is treated as a string. Use the
- <CODE><font color="blue">EVALUATE</font></CODE> function to force numeric evaluation. The type of
+ <CODE>EVALUATE</CODE> function to force numeric evaluation. The type of
  result, that is, scalar, vector, or matrix, depends on the evaluated expression. The string
  argument will not be modified.</p>
 <p>
- <font size=+1 color="green">Examples</font></p>
+ <font size="+1" color="green">Examples</font></p>
 <p>
- Suppose that string variable <CODE><font color="blue">T='3+2'</font></CODE>.</p>
+ Suppose that string variable <CODE>T='3+2'</CODE>.</p>
 <p>
 <table>
 <tr>
- <td align="center" bgcolor=#CCFFFF><em>input</em></td>
- <td align="center" bgcolor=#FF9966><em>result</em></td>
+ <td align="center" bgcolor="#CCFFFF"><em>input</em></td>
+ <td align="center" bgcolor="#FF9966"><em>result</em></td>
 </tr><tr>
- <td><CODE><font color="blue">=T</font></CODE></td>
+ <td><CODE>=T</CODE></td>
  <td>the string <font color="orange">'3+2'</font></td>
 </tr><tr>
- <td><CODE><font color="blue">=EVALUATE(T)</font></CODE></td>
+ <td><CODE>=EVALUATE(T)</CODE></td>
  <td>the numeric value <font color="orange">5</font></td>
 </tr></table></p>
 <p>
-<a href="index.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">INDEX</font></a><br>
-<a href="expand.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">EXPAND</font></a>
+ <a href="index.htm"><img border="0" src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">INDEX</font></a><br />
+ <a href="expand.htm"><img border="0" src="../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">EXPAND</font></a>
 </P>
 </BODY>
 </HTML>

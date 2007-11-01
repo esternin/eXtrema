@@ -1,102 +1,75 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>TEXT command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="TEXT command">
-	<PARAM NAME="Keyword" VALUE="draw character string">
-	<PARAM NAME="Keyword" VALUE="character string draw">
-	<PARAM NAME="Keyword" VALUE="draw text">
-</OBJECT>
-
 <P><A NAME="textcommand"></A>
-<font size=+3 color="green"><B>TEXT command</B></font></P>
+<font size="+3" color="green"><B>TEXT command</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-TEXT 'string'</CODE>
-</TD></TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>TEXT 'string'</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\GRAPHUNITS,</NOBR> <NOBR>\ERASE</NOBR></CODE>
-</TD></TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\GRAPHUNITS, \ERASE</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<NOBR>\-GRAPHUNITS,</NOBR> <NOBR>\-ERASE</NOBR></CODE>
-</TD></TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\-GRAPHUNITS, \-ERASE</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Examples</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<NOBR>TEXT 'This is a string'</NOBR><br>
-<NOBR>TEXT 'The value of A is '//RCHAR(A)//' and B = '//RCHAR(B)</NOBR><BR>
-<NOBR>TEXT TIME//DATE</NOBR><BR>
-<NOBR>TEXT\ERASE</NOBR><br>
-<nobr>TEXT 'theta squared &lt;theta&gt;&lt;^&gt;2'</nobr></CODE>
+<TD valign="top"><B>Examples</B>:</TD>
+<TD valign="top"><CODE>
+TEXT 'This is a string'<br />
+TEXT 'The value of A is '//RCHAR(A)//' and B = '//RCHAR(B)<BR />
+TEXT TIME//DATE<BR />
+TEXT\ERASE<br />
+TEXT 'theta squared &lt;theta&gt;&lt;^&gt;2'</CODE>
 </TD></TR>
 </TABLE>
 <P>
- By default, the <CODE><font color="blue">TEXT</font></CODE> command draws character
- strings.</P>
+ By default, the <CODE>TEXT</CODE> command draws character strings.</P>
 <p>
  <table><tr>
- <td valign="top"><a href="..\SetCommand\TextRelated\textinteractive.htm"><CODE>
- <font color="blue">TEXTINTERACTIVE</font></CODE></a></td>
+ <td valign="top"><a href="../Characteristics/TextRelated/textinteractive.htm"><CODE>
+  TEXTINTERACTIVE</CODE></a></td>
  <td>controls whether the graphics cursor is used to interactively place the character
- strings that are drawn when using the <CODE><font color="blue">TEXT</font></CODE>
- command.</td>
+  strings that are drawn when using the <CODE>TEXT</CODE> command.</td>
  </tr><tr>
- <td valign="top"><a href="..\SetCommand\TextRelated\textalign.htm"><CODE>
- <font color="blue">TEXTALIGN</font></CODE></a></td>
- <td>controls the alignment or justification of the
- character strings that are drawn when using the <CODE><font color="blue">TEXT</font></CODE>
- command.  The origin of the text string is always the lower left corner of the string. The
- alignment determines where this origin is placed with respect to a reference point.</td>
+ <td valign="top"><a href="../Characteristics/TextRelated/textalign.htm"><CODE>TEXTALIGN</CODE></a></td>
+ <td>controls the alignment or justification of the character strings that are drawn when using the
+  <CODE>TEXT</CODE> command.  The origin of the text string is always the lower left corner of the string.
+  The alignment determines where this origin is placed with respect to a reference point.</td>
  </tr><tr>
- <td valign="top"><a href="..\SetCommand\TextRelated\textcolor.htm"><CODE>
- <font color="blue">TEXTCOLOR</font></CODE></A></td>
+ <td valign="top"><a href="../Characteristics/TextRelated/textcolor.htm"><CODE>TEXTCOLOR</CODE></A></td>
  <td>is the color of the drawn text string.</td>
  </tr><tr>
- <td valign="top"><a href="..\SetCommand\TextRelated\textfont.htm"><CODE>
- <font color="blue">TEXTFONT</font></CODE></A></td>
+ <td valign="top"><a href="../Characteristics/TextRelated/textfont.htm"><CODE>TEXTFONT</CODE></A></td>
  <td>is the font name used for drawing the text string.</td>
  </tr><tr>
- <td valign="top"><a href="..\SetCommand\TextRelated\textangle.htm"><CODE>
- <font color="blue">TEXTANGLE</font></CODE></A></td>
- <td>is the angle, in degrees, measured counterclockwise, between the
- base line of the text string and a horizontal line.</td>
+ <td valign="top"><a href="../Characteristics/TextRelated/textangle.htm"><CODE>TEXTANGLE</CODE></A></td>
+ <td>is the angle, in degrees, measured counterclockwise, between the base line of the text string and
+  a horizontal line.</td>
  </tr><tr>
- <td valign="top"><a href="..\SetCommand\TextRelated\textheight.htm"><CODE>
- <font color="blue">TEXTHEIGHT</font></CODE></A></td>
+ <td valign="top"><a href="../Characteristics/TextRelated/textheight.htm"><CODE>TEXTHEIGHT</CODE></A></td>
  <td>controls the text height.</td>
  </tr><tr>
- <td valign="top"><a href="..\SetCommand\TextRelated\xtextlocation.htm"><CODE>
- <font color="blue">XTEXTLOCATION</font></CODE></A></td>
- <td>is the horizontal reference position of a text string.
- This reference point is used for alignment.</td>
+ <td valign="top"><a href="../Characteristics/TextRelated/xtextlocation.htm">
+  <CODE>XTEXTLOCATION</CODE></A></td>
+ <td>is the horizontal reference position of a text string. This reference point is used for alignment.</td>
  </tr><tr>
- <td valign="top"><a href="..\SetCommand\TextRelated\ytextlocation.htm"><CODE>
- <font color="blue">YTEXTLOCATION</font></CODE></A></td>
- <td>is the vertical reference position of a text string.
- This reference point is used for alignment.</td>
+ <td valign="top"><a href="../Characteristics/TextRelated/ytextlocation.htm">
+  <CODE>YTEXTLOCATION</CODE></A></td>
+ <td>is the vertical reference position of a text string. This reference point is used for alignment.</td>
  </tr></table></P>
 <p>
-<a href="numeric.htm"><font size=+1 color="olive">Appending numeric values</font></a><br>
-<a href="graphunits.htm"><font size=+1 color="olive">GRAPHUNITS</font></a><br>
-<a href="erase.htm"><font size=+1 color="olive">ERASE</font></a><br>
-<a href="justandloc.htm"><font size=+1 color="olive">Alignment and location</font></a><br>
-<a href="formatting.htm"><font size=+1 color="olive">Formatting</font></a><br>
-<a href="date.htm"><font size=+1 color="olive">Date and time</font></a><br>
-<a href="example.htm"><font size=+1 color="olive">Examples</font></a>
+ <a href="numeric.htm"><font size="+1" color="olive">Appending numeric values</font></a><br />
+ <a href="graphunits.htm"><font size="+1" color="olive">GRAPHUNITS</font></a><br />
+ <a href="erase.htm"><font size="+1" color="olive">ERASE</font></a><br />
+ <a href="justandloc.htm"><font size="+1" color="olive">Alignment and location</font></a><br />
+ <a href="formatting.htm"><font size="+1" color="olive">Formatting</font></a><br />
+ <a href="date.htm"><font size="+1" color="olive">Date and time</font></a><br />
+ <a href="example.htm"><font size="+1" color="olive">Examples</font></a>
 </p>
 </BODY>
 </HTML>

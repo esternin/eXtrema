@@ -1,40 +1,31 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Matrix inverse</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" 
-CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="INVERSE function">
-  <PARAM NAME="Keyword" VALUE="LU decomposition">
-  <PARAM NAME="Keyword" VALUE="matrix inverse">
-  <PARAM NAME="Keyword" VALUE="invert matrix">
-  <PARAM NAME="Keyword" VALUE="Gauss-Jordan method">
-</OBJECT>
 <P>
-<font size=+3 color="green"><B>Matrix inverse</B></font></P>
+<font size="+3" color="green"><B>Matrix inverse</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
 x = INVERSE(m)</CODE>
 </TD></TR>
 </table></p>
 <p>
- The function <CODE><font color="blue">INVERSE(m)</font></code> returns the inverse
- of the matrix <CODE><font color="blue">m</font></code>, which <i>must</i> be a
+ The function <CODE>INVERSE(m)</code> returns the inverse
+ of the matrix <CODE>m</code>, which <i>must</i> be a
  square matrix. The output is a matrix with the same shape as the argument. The
  answer can be checked by using the inner product operator, for example:</p>
-<p><pre>
- invm=INVERSE(m) ! find the inverse of m
- =m&lt;&gt;invm        ! this should be close to the identity matrix</pre></p>
 <p>
-<font size=+1 color="green">Method</font></P>
+ <font color="blue"><pre>
+ invm=INVERSE(m) ! find the inverse of m
+ =m&lt;&gt;invm        ! this should be close to the identity matrix
+ </pre></font></p>
+<p>
+ <font size="+1" color="green">Method</font></P>
 <p>
  Suppose that the matrix <i>A</i> has <i>n</i> rows and <i>n</i> columns.
  Let <i>X</i> represent the inverse of <i>A</i>, and let <i>I</i> be the
@@ -66,8 +57,10 @@ x = INVERSE(m)</CODE>
 <p>
  <IMG ALIGN="top" SRC="inverse4.png"></p>
 <P>
-<a href="..\Interpolate\interpolate.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Interpolation</font></a><br>
-<a href="..\Jacobi\jacobi.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Jacobi polynomials</font></a>
+ <a href="../Interpolate/interpolate.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Interpolation</font></a><br />
+ <a href="../Jacobi/jacobi.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Jacobi polynomials</font></a>
 </P>
 </BODY>
 </HTML>

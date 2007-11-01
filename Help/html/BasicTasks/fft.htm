@@ -1,38 +1,34 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Analyze data using FFT</TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="FFT">
-  <PARAM NAME="Keyword" VALUE="Fast Fourier Transform">
-</OBJECT>
 <P>
-   Read sunspot data s from file <a href="sunspot.dat">sunspot.dat</a>,
-   calculate the FFT of s, and graph the amplitudes and phases<br>
+ Read sunspot data s from file <a href="sunspot.dat">sunspot.dat</a>,
+ calculate the FFT of s, and graph the amplitudes and phases<br />
 <P>
-<font color="blue"><pre>
-read sunspot.dat year s
-window 5
-set xlabel 'year'
-set ylabel 's'
-graph year s
-m = fft(s)
-window 6
-set ylabel 'amplitudes'
-graph m[*,2]
-window 7
-set ylabel 'phases'
-graph m[*,1]
-</pre></font></P>
+ <font color="blue"><pre>
+ read sunspot.dat year s
+ window 5
+ set xlabel 'year'
+ set ylabel 's'
+ graph year s
+ m = fft(s)
+ window 6
+ set ylabel 'amplitudes'
+ graph m[*,2]
+ window 7
+ set ylabel 'phases'
+ graph m[*,1]
+ </pre></font></P>
 <P>
-<img src="fft.gif"></p>
+ <img src="fft.gif"></p>
 <P>
-<a href="defineplotfunction.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Define and plot a function</font></a><br>
-<a href="contourdensity.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Display array data as contours and density plot</font></a>
+ <a href="defineplotfunction.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Define and plot a function</font></a><br />
+ <a href="contourdensity.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Display array data as contours and density plot</font></a>
 </P>
 </BODY>
 </HTML>

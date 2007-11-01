@@ -21,6 +21,9 @@ myhelp_DATA = ./Help/extrema.hhc ./Help/extrema.hhk ./Help/extrema.hhp
 myhtmldir = $(myhelpdir)/html
 myhtml_DATA = ./Help/html/*.gif ./Help/html/*.htm
 
+myaliascommanddir = $(myhelpdir)/html/AliasCommand
+myaliascommand_DATA = ./Help/html/AliasCommand/*.htm
+
 mybasictasksdir = $(myhelpdir)/html/BasicTasks
 mybasictasks_DATA = ./Help/html/BasicTasks/*.gif ./Help/html/BasicTasks/*.htm
 
@@ -38,6 +41,9 @@ myclearcommand_DATA = ./Help/html/ClearCommand/*.htm
 
 mycontourcommanddir = $(myhelpdir)/html/ContourCommand
 mycontourcommand_DATA = ./Help/html/ContourCommand/*.gif ./Help/html/ContourCommand/*.htm
+
+mydealiascommanddir = $(myhelpdir)/html/DealiasCommand
+mydealiascommand_DATA = ./Help/html/DealiasCommand/*.htm
 
 mydefaultscommanddir = $(myhelpdir)/html/DefaultsCommand
 mydefaultscommand_DATA = ./Help/html/DefaultsCommand/*.htm
@@ -67,31 +73,13 @@ myfiltercommanddir = $(myhelpdir)/html/FilterCommand
 myfiltercommand_DATA = ./Help/html/FilterCommand/*.gif  ./Help/html/FilterCommand/*.jpg  ./Help/html/FilterCommand/*.htm
 
 myfitcommanddir = $(myhelpdir)/html/FitCommand
-myfitcommand_DATA = ./Help/html/FitCommand/*.gif  ./Help/html/FitCommand/*.png  ./Help/html/FitCommand/*.htm
+myfitcommand_DATA = ./Help/html/FitCommand/*.gif  ./Help/html/FitCommand/*.htm
 
 mygeneratecommanddir = $(myhelpdir)/html/GenerateCommand
 mygeneratecommand_DATA = ./Help/html/GenerateCommand/*.htm
 
 mygetcommanddir = $(myhelpdir)/html/GetCommand
 mygetcommand_DATA = ./Help/html/GetCommand/*.htm
-mygcfrdir = $(myhelpdir)/html/GetCommand/FileRelated
-mygcfr_DATA = ./Help/html/GetCommand/FileRelated/*.htm
-mygcggdir = $(myhelpdir)/html/GetCommand/GeneralGraph
-mygcgg_DATA = ./Help/html/GetCommand/GeneralGraph/*.htm
-mygcggafcdir = $(myhelpdir)/html/GetCommand/GeneralGraph/areafillcolor
-mygcggafc_DATA = ./Help/html/GetCommand/GeneralGraph/areafillcolor/*.htm ./Help/html/GetCommand/GeneralGraph/areafillcolor/*.jpg
-mygcggtdir = $(myhelpdir)/html/GetCommand/GeneralGraph/tension
-mygcggt_DATA = ./Help/html/GetCommand/GeneralGraph/tension/*.htm ./Help/html/GetCommand/GeneralGraph/tension/*.gif ./Help/html/GetCommand/GeneralGraph/tension/*.png
-mygcgldir = $(myhelpdir)/html/GetCommand/GraphLegend
-mygcgl_DATA = ./Help/html/GetCommand/GraphLegend/*.htm ./Help/html/GetCommand/GraphLegend/*.png
-mygcpsdir = $(myhelpdir)/html/GetCommand/PlottingSymbol
-mygcps_DATA = ./Help/html/GetCommand/PlottingSymbol/*.htm ./Help/html/GetCommand/PlottingSymbol/*.png
-mygctrdir = $(myhelpdir)/html/GetCommand/TextRelated
-mygctr_DATA = ./Help/html/GetCommand/TextRelated/*.htm
-mygcxadir = $(myhelpdir)/html/GetCommand/Xaxis
-mygcxa_DATA = ./Help/html/GetCommand/Xaxis/*.htm
-mygcyadir = $(myhelpdir)/html/GetCommand/Yaxis
-mygcya_DATA = ./Help/html/GetCommand/Yaxis/*.htm
 
 mygraphcommanddir = $(myhelpdir)/html/GraphCommand
 mygraphcommand_DATA = ./Help/html/GraphCommand/*.htm ./Help/html/GraphCommand/*.gif ./Help/html/GraphCommand/*.jpg
@@ -156,24 +144,6 @@ myscalescommand_DATA = ./Help/html/ScalesCommand/*.gif ./Help/html/ScalesCommand
 
 mysetcommanddir = $(myhelpdir)/html/SetCommand
 mysetcommand_DATA = ./Help/html/SetCommand/*.htm
-myscfrdir = $(myhelpdir)/html/SetCommand/FileRelated
-myscfr_DATA = ./Help/html/SetCommand/FileRelated/*.htm
-myscggdir = $(myhelpdir)/html/SetCommand/GeneralGraph
-myscgg_DATA = ./Help/html/SetCommand/GeneralGraph/*.htm
-myscggafcdir = $(myhelpdir)/html/SetCommand/GeneralGraph/areafillcolor
-myscggafc_DATA = ./Help/html/SetCommand/GeneralGraph/areafillcolor/*.htm ./Help/html/SetCommand/GeneralGraph/areafillcolor/*.jpg
-myscggtdir = $(myhelpdir)/html/SetCommand/GeneralGraph/tension
-myscggt_DATA = ./Help/html/SetCommand/GeneralGraph/tension/*.htm ./Help/html/SetCommand/GeneralGraph/tension/*.gif ./Help/html/SetCommand/GeneralGraph/tension/*.png
-myscgldir = $(myhelpdir)/html/SetCommand/GraphLegend
-myscgl_DATA = ./Help/html/SetCommand/GraphLegend/*.htm ./Help/html/SetCommand/GraphLegend/*.png
-myscpsdir = $(myhelpdir)/html/SetCommand/PlottingSymbol
-myscps_DATA = ./Help/html/SetCommand/PlottingSymbol/*.htm ./Help/html/SetCommand/PlottingSymbol/*.png
-mysctrdir = $(myhelpdir)/html/SetCommand/TextRelated
-mysctr_DATA = ./Help/html/SetCommand/TextRelated/*.htm
-myscxadir = $(myhelpdir)/html/SetCommand/Xaxis
-myscxa_DATA = ./Help/html/SetCommand/Xaxis/*.htm
-myscyadir = $(myhelpdir)/html/SetCommand/Yaxis
-myscya_DATA = ./Help/html/SetCommand/Yaxis/*.htm
 
 myshowcommanddir = $(myhelpdir)/html/ShowCommand
 myshowcommand_DATA = ./Help/html/ShowCommand/*.htm
@@ -194,7 +164,7 @@ myvectorcommanddir = $(myhelpdir)/html/VectorCommand
 myvectorcommand_DATA = ./Help/html/VectorCommand/*.htm
 
 mywindowcommanddir = $(myhelpdir)/html/WindowCommand
-mywindowcommand_DATA = ./Help/html/WindowCommand/*.gif ./Help/html/WindowCommand/*.htm
+mywindowcommand_DATA = ./Help/html/WindowCommand/*.htm
 
 myworldcommanddir = $(myhelpdir)/html/WorldCommand
 myworldcommand_DATA = ./Help/html/WorldCommand/*.htm
@@ -234,22 +204,6 @@ mylicense_DATA = ./Help/html/License/*.htm
 
 myoperatorsdir = $(myhelpdir)/html/Operators
 myoperators_DATA = ./Help/html/Operators/*.htm
-myoappenddir = $(myhelpdir)/html/Operators/append
-myoappend_DATA = ./Help/html/Operators/append/*.htm
-myobooleandir = $(myhelpdir)/html/Operators/boolean
-myoboolean_DATA = ./Help/html/Operators/boolean/*.htm
-myoinnerdir = $(myhelpdir)/html/Operators/innerproduct
-myoinner_DATA = ./Help/html/Operators/innerproduct/*.htm ./Help/html/Operators/innerproduct/*.gif
-myointerdir = $(myhelpdir)/html/Operators/intersection
-myointer_DATA = ./Help/html/Operators/intersection/*.htm
-myoouterdir = $(myhelpdir)/html/Operators/outerproduct
-myoouter_DATA = ./Help/html/Operators/outerproduct/*.htm ./Help/html/Operators/outerproduct/*.gif
-myoreflectdir = $(myhelpdir)/html/Operators/reflect
-myoreflect_DATA = ./Help/html/Operators/reflect/*.htm ./Help/html/Operators/reflect/*.gif
-myotransdir = $(myhelpdir)/html/Operators/transpose
-myotrans_DATA = ./Help/html/Operators/transpose/*.htm ./Help/html/Operators/transpose/*.gif
-myouniondir = $(myhelpdir)/html/Operators/union
-myounion_DATA = ./Help/html/Operators/union/*.htm
 
 myfunctionsdir = $(myhelpdir)/html/Functions
 myfunctions_DATA = ./Help/html/Functions/*.htm

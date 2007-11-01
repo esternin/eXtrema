@@ -1,67 +1,45 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Lagrange</TITLE>
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="Lagrange bin">
-	<PARAM NAME="Keyword" VALUE="\LAGRANGE">
-</OBJECT>
-<P><font size=+2 color="green">Lagrange</font></P>
-<P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<P><font size="+2" color="green">Lagrange</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 BIN\LAGRANGE x xbin xcount</CODE>
 </TD></TR>
-</TABLE></P>
+</TABLE>
 <P>
- If the <CODE><font color="blue">\LAGRANGE</font></CODE> qualifier is used,
- <CODE><font color="blue">\WEIGHTS</font>, <font color="blue">\EDGES</font>,
- <font color="blue">\AVERAGES</font>,</CODE> and
- <CODE><font color="blue">\EMPTY</font></CODE> are not allowed.</P>
+ If the <CODE>\LAGRANGE</CODE> qualifier is used, <CODE>\WEIGHTS, \EDGES, \AVERAGES,</CODE> and
+ <CODE>\EMPTY</CODE> are not allowed.</P>
 <P>
- If <CODE><i>n</i> = len(<font color="blue">xbin</font>)</CODE>, define the
- bin ranges, <CODE><i>r<sub>i</sub></i></CODE></P>
+ If <CODE>n = <a href="../Functions/VariableCharacteristics/len.htm">LEN</a>(xbin)</CODE>, define the
+ bin ranges, <CODE>r<sub>i</sub></CODE></P>
 <P>
- <nobr><CODE><i>r</i><sub>1</sub> = <font color="blue">xbin</font>[1] -
- (<font color="blue">xbin</font>[2] -
-  <font color="blue">xbin</font>[1])/2</CODE></nobr></P>
+ <CODE>r<sub>1</sub> = xbin[1] - (xbin[2] -  xbin[1])/2</CODE></P>
 <P>
- <nobr><CODE><i>r<sub>i</sub></i> = <font color="blue">xbin</font>[<i>i</i>] -
- (<font color="blue">xbin</font>[<i>i</i>] -
- <font color="blue">xbin</font>[<i>i</i>-1])/2</CODE>&nbsp; for&nbsp;
- <CODE><i>i</i> = 2, 3, ..., <i>n</i></CODE></nobr></P>
+ <CODE>r<sub>i</sub> = xbin[i] - (xbin[i] - xbin[i-1])/2</CODE>&nbsp; for&nbsp;
+ <CODE>i = 2, 3, ..., n</CODE></P>
 <P>
- <nobr><CODE><i>r</i><sub><i>n</i>+1</sub> =
- <font color="blue">xbin</font>[<i>n</i>] +
- (<font color="blue">xbin</font>[<i>n</i>] -
- <font color="blue">xbin</font>[<i>n</i>-1])/2</CODE></nobr></P>
+ <CODE>r<sub>n+1</sub> = xbin[n] + (xbin[n] - xbin[n-1])/2</CODE></P>
 <P>
- For each&nbsp;
- <CODE><i>i</i> = 1, 2, ..., len(<font color="blue">x</font>)</CODE>&nbsp;
- find <CODE><i>j</i></CODE> so that&nbsp;
- <nobr><CODE><i>r<sub>j</sub></i> &le; <font color="blue">x</font>[<i>i</i>]
- &lt; <i>r</i><sub><i>j</i>+1</sub></CODE></nobr>&nbsp; for some&nbsp;
- <nobr><CODE><i>j</i> = 1, 2, ..., <i>n</i></CODE></nobr>.&nbsp; If&nbsp;
- <CODE><i>j</i> = <i>n</i></CODE>, then
- <CODE><font color="blue">xcount</font>[<i>n</i>]</CODE> is incremented by
- <CODE>1</CODE>, otherwise, let
- <nobr><CODE><font color="blue">w</font> =
- (<font color="blue">x</font>[<i>i</i>]-<font color="blue">xbin</font>[<i>j</i>])/(<i>r</i><sub><i>j</i>+1</sub>+<i>r<sub>j</sub></i>)/2</CODE></nobr> then
- <CODE><font color="blue">xcount</font>[<i>j</i>]</CODE> is incremented by
- <CODE>1 - <font color="blue">w</font></CODE> and
- <CODE><font color="blue">xcount</font>[<i>j</i>+1]</CODE> is incremented by
- <CODE><font color="blue">w</font></CODE>.</P>
+ For each&nbsp; <CODE>i = 1, 2, ..., LEN(x)</CODE>&nbsp; find <CODE>j</CODE> so that&nbsp;
+ <CODE>r<sub>j</sub> &le; x[i] &lt; r<sub>j+1</sub></CODE>&nbsp; for some&nbsp;
+ <CODE>j = 1, 2, ..., n</CODE>.&nbsp; If&nbsp; <CODE>j = n</CODE>, then
+ <CODE>xcount[n]</CODE> is incremented by <CODE>1</CODE>, otherwise, let
+ <CODE>w = (x[i]-xbin[j])/(r<sub>j+1</sub>+r<sub>j</sub>)/2</CODE> then
+ <CODE>xcount[j]</CODE> is incremented by <CODE>1 - w</CODE> and <CODE>xcount[j+1]</CODE> is incremented by
+ <CODE>w</CODE>.</P>
 <P>
-<a href="nbins.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Number of bins</font></a><br>
-<a href="average.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Average</font></a>
+ <a href="nbins.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Number of bins</font></a><br />
+ <a href="average.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Average</font></a>
 </P>
 </body>
 </html>

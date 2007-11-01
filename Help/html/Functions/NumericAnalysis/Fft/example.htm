@@ -1,56 +1,54 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> <HTML>
-<HEAD> <META HTTP-EQUIV="Content-Type" Content="text/html;
-charset=Windows-1252"> <TITLE>Example</TITLE> </HEAD>
-
+<HTML>
+<HEAD>
+<TITLE>Example</TITLE>
+</HEAD>
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="FFT function">
-  <PARAM NAME="Keyword" VALUE="FFT function example">
-</OBJECT>
 <p>
-<font size=+1 color="green"><B>Example</B></font></P>
+ <font size="+1" color="green"><B>Example</B></font></P>
 <p>
- The following script demonstrates how you can use the <code><font color="blue">FFT</font></code>
+ The following script demonstrates how you can use the <code>FFT</code>
  function to smooth data. Note that when all the Fourier coefficients are used, the smoothed
  curve must pass through the original data points.</p>
-<p><pre>
-PI = ACOS(-1)          ! define pi
-N = 16                 ! even number of points
-X = [0:N-1]*2*PI/N     ! generate some "data"
-Y = SIN(X)+5*RAN(X)    !
-M = FFT(Y,'COS&SIN')   ! calculate Fourier coefficients
-H = M[*,1]             ! extract column 1 as a vector
-G = M[*,2]             ! extract column 2 as a vector
-Z = [0:2*PI:.05]
-DO J = [3:N/2+1:2]
-  WINDOW (J-3)/2+5     ! choose a graphics window
-  SCALE 0 6 0 -2 7 0   ! set axis scales
-  SET PLOTSYMBOL -1    ! choose plotting symbol
-  SET %XNUMBERHEIGHT 5
-  SET %YNUMBERHEIGHT 5
-  GRAPH X Y            ! plot original data
-  SET PLOTSYMBOL 0     ! choose no plotting symbol
-  VECTOR TMP len(z)
-  DO K = [2:J]
-    TMP = TMP + H[K]*COS((K-1)*Z)+G[K]*SIN((K-1)*Z)
-  ENDDO
-  GRAPH\OVERLAY Z H[1]/2+TMP
-  destroy tmp
-  SET %TEXTHEIGHT 5    ! increase the size of the text label
-  SET %XTEXTLOCATION 50
-  SET %YTEXTLOCATION 85
-  SET TEXTALIGN 2
-  SET TEXTINTERACTIVE 0
-  TEXT RCHAR(J)//' harmonics used'
-ENDDO
-GRAPH\OVERLAY [0;2*PI] [H[1]/2;H[1]/2] ! overlay the mean value
-CLEAR\-REPLOT
-REPLOT\ALL</pre></p>
 <p>
- <center><img align="top" src="fftexample1.jpg"></center></p>
+ <font color="blue"><pre>
+ PI = ACOS(-1)          ! define pi
+ N = 16                 ! even number of points
+ X = [0:N-1]*2*PI/N     ! generate some "data"
+ Y = SIN(X)+5*RAN(X)    !
+ M = FFT(Y,'COS&SIN')   ! calculate Fourier coefficients
+ H = M[*,1]             ! extract column 1 as a vector
+ G = M[*,2]             ! extract column 2 as a vector
+ Z = [0:2*PI:.05]
+ DO J = [3:N/2+1:2]
+   WINDOW (J-3)/2+5     ! choose a graphics window
+   SCALE 0 6 0 -2 7 0   ! set axis scales
+   SET PLOTSYMBOL -1    ! choose plotting symbol
+   SET %XNUMBERHEIGHT 5
+   SET %YNUMBERHEIGHT 5
+   GRAPH X Y            ! plot original data
+   SET PLOTSYMBOL 0     ! choose no plotting symbol
+   VECTOR TMP len(z)
+   DO K = [2:J]
+     TMP = TMP + H[K]*COS((K-1)*Z)+G[K]*SIN((K-1)*Z)
+   ENDDO
+   GRAPH/OVERLAY Z H[1]/2+TMP
+   destroy tmp
+   SET %TEXTHEIGHT 5    ! increase the size of the text label
+   SET %XTEXTLOCATION 50
+   SET %YTEXTLOCATION 85
+   SET TEXTALIGN 2
+   SET TEXTINTERACTIVE 0
+   TEXT RCHAR(J)//' harmonics used'
+ ENDDO
+ GRAPH/OVERLAY [0;2*PI] [H[1]/2;H[1]/2] ! overlay the mean value
+ CLEAR/-REPLOT
+ REPLOT/ALL
+ </pre></font></p>
+<p>
+ <center><img src="fftexample1.jpg"></center></p>
 <P>
- <a href="primefactors.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Prime factors</font></a></p>
+ <a href="primefactors.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Prime factors</font></a></p>
 </BODY>
 </HTML>

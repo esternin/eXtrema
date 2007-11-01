@@ -1,21 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Example 2</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="read vector">
-	<PARAM NAME="Keyword" VALUE="example">
-</OBJECT>
-
 <P><A NAME="rvexample2"></A>
-<font size=+3 color="green"><B>Example 2</B></font></P>
+<font size="+3" color="green"><B>Example 2</B></font></P>
 
-<TABLE border=0 cols=2 frame=box rules=all width=591>
+<TABLE border="0" width="591">
 <TR>
 <TD width=50% valign="center">Suppose ASCII file DUM.DAT is as follows:</TD>
 <TD width=50%><pre>
@@ -30,50 +22,40 @@
 
 <p><CODE><font color="blue">READ DUM.DAT X Y</font></CODE></P>
 
-<TABLE border=0 cols=2 frame=box rules=all width=591>
+<TABLE border="0" width="591">
 <TR>
-<TD width=15% valign="top">results in:</TD>
-<TD width=85% valign="top"><CODE>
-X = [ 1; 2; 3; 4; 5; 6 ]<br>
+<TD width="15%" valign="top">results in:</TD>
+<TD width="85%" valign="top"><CODE>
+X = [ 1; 2; 3; 4; 5; 6 ]<br />
 Y = [ 23.7; -31.4; 9.09; 10.001; -2.0; 30.2]</CODE>
 </TD></TR>
 </TABLE>
 
 <P><CODE><font color="blue">READ DUM.DAT\3 X Y</font></CODE></P>
 
-<TABLE border=0 cols=2 frame=box rules=all width=591>
+<TABLE border="0" width="591">
 <TR>
-<TD width=15% valign="top">results in:</TD>
-<TD width=85%><CODE>
-X = [ 3; 4; 5; 6 ]<br>
+<TD width="15%" valign="top">results in:</TD>
+<TD width="85%"><CODE>
+X = [ 3; 4; 5; 6 ]<br />
 Y = [ 9.09; 10.001; -2.0; 30.2 ]</CODE>
 </TD></TR>
 </TABLE>
 
-<P><CODE><font color="blue">READ DUM.DAT\[2:4] X\3 Y</font></CODE></P>
+<P><CODE><font color="blue">READ DUM.DAT\[2:4] X/3 Y</font></CODE></P>
 
-<TABLE border=0 cols=2 frame=box rules=all width=591>
+<TABLE border="0" width="591">
 <TR>
-<TD width=15% valign="top">results in:</TD>
-<TD width=85%><CODE>
-X = [ .0002; .03; 4.0 ]<br>
+<TD width="15%" valign="top">results in:</TD>
+<TD width="85%"><CODE>
+X = [ .0002; .03; 4.0 ]<br />
 Y = [ -31.4; 9.09; 10.001 ]</CODE>
 </TD></TR>
 </TABLE>
-
-<P><CODE><font color="blue">READ\FORMAT DUM.DAT\[1:5:2] (2X,F8.4,E9.4) X Y</font></CODE></P>
-
-<TABLE border=0 cols=2 frame=box rules=all width=591>
-<TR>
-<TD width=15% valign="top">results in:</TD>
-<TD width=85%><CODE>
-X = [ 23.7; 9.09; -2.0 ]<br>
-Y = [ .000001; .03; 50.0 ]</CODE>
-</TD></TR>
-</TABLE>
 <P>
-<a href="rvexample1.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Example 1</font></a><br>
-<a href="rvexample3.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Example 3</font></a>
-</P>
+ <a href="rvexample1.htm"><img src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Example 1</font></a><br />
+ <a href="rvexample3.htm"><img src="../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Example 3</font></a></P>
 </BODY>
 </HTML>

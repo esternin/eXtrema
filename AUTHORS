@@ -25,19 +25,10 @@ was born, followed by EXTREMA for Linux.
 
 EXTREMA was first written completely in C++ by Joe Chuma using Borland C++Builder 5.
 This version of EXTREMA has now been ported to Linux using wxWidgets, an open source
-cross-platform toolkit.  This wxWidgets version of EXTREMA will now be ported back to
-Windows so developers will not be forced to purchase any commercial products.
+cross-platform toolkit.
 
 EXTREMA makes use of the wxWidgets toolkit, which is "a single, easy-to-use API for
 writing GUI applications on multiple platforms that still utilize the native platform's
 controls and utilities."  Information on the wxWidgets project can be found at 
 http://wxwidgets.org
-
-EXTREMA also makes use of the Z Library, which is "a free, general-purpose, legally
-unencumbered lossless data-compression library for use on virtually any computer
-hardware and operating system", and the PNG Library.  PNG is "the Portable Network
-Graphics format, a format for storing bitmapped (raster) images on computers", and 
-libpng is "the official PNG reference library".  Information on the zlib library can
-be found at http://www.zlib.net, while information on the libpng library can be found
-at http://www.libpng.org/pub/png/libpng.html
 

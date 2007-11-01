@@ -1,51 +1,37 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Number of bins</TITLE>
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="number of bins">
-</OBJECT>
-<P><font size=+2 color="green">Number of bins</font></P>
+<P><font size="+2" color="green">Number of bins</font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 BIN\NBINS x xbin xcount n { xmin xmax }</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>xmin = min(x),</nobr> <nobr>xmax = max(x)</nobr></CODE>
-</TD></TR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top"><CODE>xmin = min(x), xmax = max(x)</CODE></TD></TR>
 </TABLE></P>
 <P>
  By default, the bins are defined by their centers, given in vector
- <CODE><font color="blue">xbin</font></CODE>, which must be strictly
- monotonically increasing. If the <CODE><font color="blue">\NBINS</font></CODE>
- qualifier is used, the number of bins,
- <CODE><font color="blue">n</font></CODE>, is expected. A new vector,
- <CODE><font color="blue">xbin</font></CODE>, will be created which will have
- <CODE><font color="blue">n</font></CODE> elements. If the numbers
- <CODE><font color="blue">xmin</font></CODE> and
- <CODE><font color="blue">xmax</font></CODE> are not entered, they default to
- the minimum and maximum of vector
- <CODE><font color="blue">x</font></CODE>.</P>
+ <CODE>xbin</CODE>, which must be strictly monotonically increasing. If the <CODE>\NBINS</CODE>
+ qualifier is used, the number of bins, <CODE>n</CODE>, is expected. A new vector,
+ <CODE>xbin</CODE>, will be created which will have <CODE>n</CODE> elements. If the numbers
+ <CODE>xmin</CODE> and <CODE>xmax</CODE> are not entered, they default to the minimum and maximum of vector
+ <CODE>x</CODE>.</P>
 <P>
- <nobr><CODE><font color="blue">xbin</font>[<i>i</i>] =
- <font color="blue">xmin</font> + (<i>i</i> -
- 1/2)(<font color="blue">xmax</font> - <font color="blue">xmin</font>)
- = n</CODE>&nbsp; for&nbsp; <CODE><i>i</i> = 1, 2, ...,
- <font color="blue">n</font></CODE>.</nobr></P>
+ <CODE>xbin[i] = xmin + (i - 1/2)(xmax - xmin) = n</CODE>&nbsp; for&nbsp;
+ <CODE>i = 1, 2, ..., n</CODE>.</P>
 <P>
-<a href="weights.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Weights</font></a><br>
-<a href="lagrange.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Lagrange</font></a>
+ <a href="weights.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Weights</font></a><br />
+ <a href="lagrange.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Lagrange</font></a>
 </P>
 </body>
 </html>

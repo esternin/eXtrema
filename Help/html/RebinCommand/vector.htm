@@ -1,47 +1,40 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Rebin a vector</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="REBIN command vector data">
-</OBJECT>
-<P><font size=+2 color="green">Rebin a vector</font></P>
+<P><font size="+2" color="green">Rebin a vector</font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 REBIN x y n</CODE>
 </TD></TR>
 </TABLE></P>
 <P>
-Suppose that the length of vector <CODE><font color="blue">x</font></CODE> is <i>N</i> then:</p>
+ Suppose that the length of vector <CODE>x</CODE> is <i>N</i> then:</p>
 <p>
  <center><img src="rebin1.png"></center></p>
 <p>
- that is, the length of <CODE><font color="blue">y</font></CODE> will be
- <i>N</i><code>/<font color="blue">n</font></CODE>, and</p>
+ that is, the length of <CODE>y</CODE> will be
+ <i>N</i><code>/n</CODE>, and</p>
 <p>
  <center><img src="rebin3.png"></center></p>
 <p>
  If &nbsp;<img align="top" src="rebin5.png">&nbsp; is not equal to <i>N</i>, then the last
- element of <CODE><font color="blue">y</font></CODE> will be incomplete. For example, if
+ element of <CODE>y</CODE> will be incomplete. For example, if
  <i>N</i> <code>= 10</code> and <i>n</i> <coce>= 3</code> then
- <CODE><font color="blue">y</font></CODE> will have <code>3</code> elements:</p>
+ <CODE>y</CODE> will have <code>3</code> elements:</p>
 <p>
-<pre>
-   <font color="blue">y</font>[1] = <font color="blue">x</font>[1] + <font color="blue">x</font>[2] + <font color="blue">x</font>[3]
-   <font color="blue">y</font>[2] = <font color="blue">x</font>[4] + <font color="blue">x</font>[5] + <font color="blue">x</font>[6]
-   <font color="blue">y</font>[3] = <font color="blue">x</font>[7] + <font color="blue">x</font>[8] + <font color="blue">x</font>[9]
-</pre></p>
+ <pre>
+   y[1] = x[1] + x[2] + x[3]
+   y[2] = x[4] + x[5] + x[6]
+   y[3] = x[7] + x[8] + x[9]
+ </pre></p>
 <p>
- and <code><font color="blue">x</font>[10]</code> will not be included in
- <CODE><font color="blue">y</font></CODE>.</p>
+ and <code>x[10]</code> will not be included in <CODE>y</CODE>.</p>
 <p>
  <font size="+1" color="green">Examples</font></p>
 <p>
@@ -71,11 +64,13 @@ Suppose that the length of vector <CODE><font color="blue">x</font></CODE> is <i
   </table></td>
  </tr></table></P>
 <p>
- A warning will be given that the length of <CODE><font color="blue">DATA</font></CODE> is not
- evenly divisible by <CODE><font color="blue">3</font></CODE> and so the last bin is incomplete.</p>
+ A warning will be given that the length of <CODE>DATA</CODE> is not
+ evenly divisible by <CODE>3</CODE> and so the last bin is incomplete.</p>
 <P>
-<a href="rebincommand.htm"><img align="top" border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">REBIN command</font></a><br>
-<a href="matrix.htm"><img align="top" border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Rebin a matrix</font></a>
+ <a href="rebincommand.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">REBIN command</font></a><br />
+ <a href="matrix.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Rebin a matrix</font></a>
 </P>
 </body>
 </html>

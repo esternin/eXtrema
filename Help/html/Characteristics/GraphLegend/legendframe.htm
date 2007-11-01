@@ -1,54 +1,44 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>LEGENDFRAME</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="LEGENDFRAME">
-</OBJECT>
-<P>
- <A NAME="legendframe"></A>
- <font size=+3 color="green"><B>LEGENDFRAME</B></font></P>
+<P><A NAME="legendframe"></A>
+<font size="+3" color="green"><B>LEGENDFRAME</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=20% valign="top"><B>Syntax</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 SET LEGENDFRAME { xlo ylo xup yup }<br>
 SET %LEGENDFRAME { xlo ylo xup yup }<br>
 GET LEGENDFRAME { v }<br>
 GET %LEGENDFRAME { v }</CODE>
 </TD></TR>
 <TR>
-<TD width=20% valign="top"><B>Default value</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 xlo = 15%, ylo = 70%, xup = 50%, yup = 90%</CODE>
 </TD></TR>
 </TABLE>
 <P>
- <em>Note:</em> The <CODE><font color="blue">GET LEGENDFRAME</font></CODE>
- command returns a four element vector.</P>
+ <em>Note:</em> The <CODE><font color="blue"><a href="../../GetCommand/getcommand.htm">GET LEGENDFRAME</a>
+ </font></CODE> command returns a four element vector.</P>
 <P>
- <CODE><font color="blue">LEGENDFRAME</font></CODE> controls the size and location
- of the graph legend frame.</p>
+ <CODE>LEGENDFRAME</CODE> controls the size and location of the graph legend frame.</p>
 <p>
- <CODE>(<font color="blue">xlo</font>,<font color="blue">ylo</font>)</CODE> are the
- coordinates of the lower left corner of the frame box, while
- <CODE>(<font color="blue">xhi</font>,<font color="blue">yhi</font>)</CODE> are the
- coordinates of the upper right corner. If any of these values are not entered,
- the coordinates will be chosen interactively by stretching a rectangle in the
+ <CODE>(xlo,ylo)</CODE> are the coordinates of the lower left corner of the frame box, while
+ <CODE>(xhi,yhi)</CODE> are the coordinates of the upper right corner. If any of these values are
+ not entered, the coordinates will be chosen interactively by stretching a rectangle in the
  graphics window. The default coordinates are
- <CODE>(<font color="blue">xlo</font>,<font color="blue">ylo</font>) = (15,70)</CODE>
- and
- <CODE>(<font color="blue">xup</font>,<font color="blue">yup</font>) = (50,90)</CODE>
- expressed as percentages of the window.</p>
+ <CODE>(xlo,ylo) = (15,70)</CODE> and
+ <CODE>(xup,yup) = (50,90)</CODE> expressed as percentages of the window.</p>
 <P>
-<a href="legendframeon.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">LEGENDFRAMEON</font></a><br>
-<a href="legendsymbols.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">LEGENDSYMBOLS</font></a>
+ <a href="legendframeon.htm"><img align="middle" border="0" src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">LEGENDFRAMEON</font></a><br />
+ <a href="legendsymbols.htm"><img align="middle" border="0" src="../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">LEGENDSYMBOLS</font></a>
 </P>
 </body>
 </html>

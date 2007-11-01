@@ -1,52 +1,40 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>PAUSE command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="PAUSE command">
-	<PARAM NAME="Keyword" VALUE="keyboard">
-	<PARAM NAME="Keyword" VALUE="script">
-	<PARAM NAME="Keyword" VALUE="EXECUTE command">
-</OBJECT>
+<P><font size="+3" color="green"><B>PAUSE command</B></font></P>
 
-<P><A NAME="pausecommand"></A>
-<font size=+3 color="green"><B>PAUSE command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 PAUSE { 'string' }</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-'string' =</CODE> <NOBR>type the &lt;ENTER&gt; key to continue the script'</NOBR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+'string' =</CODE> type the &lt;ENTER&gt; key to continue the script'
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Examples</B>:</TD>
-<TD width=85% valign="top"><CODE>
-PAUSE<BR>
+<TD width="15%" valign="top"><B>Examples</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+PAUSE<BR />
 PAUSE 'display this message'</CODE>
 </TD></TR>
 </TABLE>
 <P>
- If the <CODE><font color="blue">PAUSE</font></CODE> command is encountered in a
+ If the <CODE>PAUSE</CODE> command is encountered in a
  <font size=-1 face="Arial black" color="red">EXTREMA</font> script that is being
  executed, interactive control is passed back to the user. Commands can
  then be entered interactively. To continue execution of the script, type the
  <CODE>&lt;ENTER&gt;</CODE> key, with focus in the command entry area, without
  entering anything. The script will then
  continue execution with the command immediately following the
- <CODE><font color="blue">PAUSE</font></CODE> command. By default, the message
- <nobr><font color="orange">'type the &lt;ENTER&gt; key to continue the script'</font></nobr>
- will be displayed. You can specify the message by entering a character string with
- the command.</p>
+ <CODE>PAUSE</CODE> command.</p>
+<p>
+ By default, the message <font color="orange">'type the &lt;ENTER&gt; key to continue the script'</font>
+ will be displayed. You can specify the message by entering a character string with the command.</p>
 </BODY>
 </HTML>

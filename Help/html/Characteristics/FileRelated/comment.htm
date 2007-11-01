@@ -1,46 +1,40 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>COMMENT</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="COMMENT">
-</OBJECT>
-
 <P><A NAME="comment"></A>
-<font size=+3 color="green"><B>COMMENT</B></font></P>
+<font size="+3" color="green"><B>COMMENT</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 SET COMMENT s<br>
 GET COMMENT { s }</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Default</B>:</TD>
-<TD width=85% valign="top">
+<TD width="15%" valign="top"><B>Default</B>:</TD>
+<TD width="85%" valign="top">
 comment delimiter = <CODE><font color="blue">!</font></CODE>
 </TD></TR>
 </TABLE>
 <P>
- <em>Note:</em> The value of the <CODE><font color="blue">COMMENT</font></CODE>
- characteristic is a string and not a numeric value. So, if you
- enter: <CODE><font color="blue">GET COMMENT X</font></CODE>, the variable
- <CODE>X</CODE> will be a string variable.</P>
+ <em>Note:</em> The value of the <CODE>COMMENT</CODE> characteristic is a string and not a
+ numeric value. So, if you enter:
+ <CODE><font color="blue"><a href="../../GetCommand/getcommand.htm">GET COMMENT X</a></font></CODE>
+ the variable <CODE>X</CODE> will be a string variable.</P>
 <p>
- The <CODE><font color="blue">SET COMMENT</font></CODE> command changes the
- comment delimiter. The default comment delimiter is
- <CODE><font color="blue">!</font></CODE>.</p>
+ The <CODE><font color="blue"><a href="../../SetCommand/setcommand.htm">SET COMMENT</a></font></CODE>
+ command changes the comment delimiter. The default comment delimiter is an exclamation mark,
+ <CODE>!</CODE>.</p>
 <P>
  In a script file, when a comment delimiter is encountered, everything from that
  delimiter to the end of that line is considered a comment and is ignored.</P>
 <p>
-<a href="errorfill.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">ERRORFILL</font></a>
+ <a href="errorfill.htm"><img align="middle" border="0" src="../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">ERRORFILL</font></a>
 </P>
 </body>
 </html>

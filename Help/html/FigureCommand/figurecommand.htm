@@ -1,114 +1,116 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>FIGURE command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="FIGURE command">
-  <PARAM NAME="Keyword" VALUE="ARROW figure">
-  <PARAM NAME="Keyword" VALUE="RECTANGLE figure">
-  <PARAM NAME="Keyword" VALUE="TRIANGLE figure">
-  <PARAM NAME="Keyword" VALUE="ELLIPSE figure">
-  <PARAM NAME="Keyword" VALUE="geometric figure">
-  <PARAM NAME="Keyword" VALUE="draw geometric figure">
-</OBJECT>
+<P><font size="+3" color="green"><B>FIGURE command</B></font></P>
 
-<P><font size=+3 color="green"><B>FIGURE command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-FIGURE ARROW style nheads x1 y1 x2 y2<br>
-FIGURE RECTANGLE x1 y1 x2 y2<br>
-FIGURE TRIANGLE x1 y1 x2 y2 x3 y3<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+FIGURE ARROW style nheads x1 y1 x2 y2<br />
+FIGURE RECTANGLE x1 y1 x2 y2<br />
+FIGURE TRIANGLE x1 y1 x2 y2 x3 y3<br />
 FIGURE ELLIPSE x1 y1 x2 y2</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\WORLD,</NOBR> <nobr>\GRAPH,</NOBR> <NOBR>\PERCENT</NOBR></CODE>
-</TD></TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\WORLD, \GRAPH, \PERCENT</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\WORLD</nobr></CODE>
-</TD></TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\WORLD</CODE></TD></TR>
 </TABLE>
 <P>
-This command is used to draw geometric figures. The figure type is chosen with the keyword (<CODE><font color="blue">ARROW</font></code>,
-<CODE><font color="blue">RECTANGLE</font></code>, <CODE><font color="blue">TRIANGLE</font></code>, or <CODE><font color="blue">ELLIPSE</font></code>).</p>
-<P><font size=+1 color="green"><B>Fillable figures</B></font></P>
+ This command is used to draw geometric figures. The figure type is chosen with the keyword
+ (<CODE>ARROW</code>, <CODE>RECTANGLE</code>, <CODE>TRIANGLE</code>, or <CODE>ELLIPSE</code>).</p>
+<P>
+ <font size="+1" color="green"><B>Fillable figures</B></font></P>
 <p>
-The figures are fillable, except for style 3 arrows. Use the <CODE><font color="blue">SET FILLCOLOR</font></code> command to choose the fill color before drawing the figure.</p>
-<P><font size=+1 color="green"><B>Units</B></font></P>
+ The figures are fillable, except for style 3 arrows. The
+ <CODE><a href="../Characteristics/GeneralGraph/areafillcolor/areafillcolor.htm">AREAFILLCOLOR</a></code>
+ characteristic controls the fill color.  Set it before drawing the figure.</p>
+<P>
+ <font size="+1" color="green"><B>Units</B></font></P>
 <p>
-The numeric location parameters may be expressed in three types of units, which are chosen by command qualifier. The default is <CODE><font color="blue">\WORLD</font></code>.</p>
+ The numeric location parameters may be expressed in three types of units, which are chosen by
+ command qualifier. The default is <CODE>/WORLD</code>.</p>
 <p>
-<table border="1"><tr>
-<td><i>qualifier</i></td>
-<td><i>Interpretation of the coordinates</i></td>
-</tr><tr>
-<td><CODE><font color="blue">\WORLD</font></code></td>
-<td>centimeters</td>
-</tr><tr>
-<td><CODE><font color="blue">\PERCENT</font></code></td>
-<td>percentages of the current window, as chosen with the
-<CODE><font color="blue">WINDOW</font></code> command.</td>
-</tr><tr>
-<td><CODE><font color="blue">\GRAPH</font></code></td>
-<td>graph units, that is, the units defined by the minimum and maximum
-values for the last graph drawn in the active window. If no graph has been drawn yet, the defaults are <nobr><code>-1 &le; x &le; 1</code></nobr> and <nobr><code>-1 &le; y &le; 1</code></nobr></td>
-</tr></table></p>
-<p>For example, if the <CODE><font color="blue">\PERCENT</font></code> qualifier is used, then a location of <code>(50,50)</code> represents the center of the active window. If the <CODE><font color="blue">\WORLD</font></code> qualifier is used, the coordinates are in units of the world coordinate system, the plotting units. The default world coordinate system units are centimeters.</p>
-<P><font size=+1 color="green"><B>Arrows</B></font></P>
+ <table border="1"><tr>
+ <td><i>qualifier</i></td>
+ <td><center><i>Interpretation of the coordinates</i></center></td>
+ </tr><tr>
+ <td><CODE>\WORLD</code></td>
+ <td>centimeters</td>
+ </tr><tr>
+ <td><CODE>\PERCENT</code></td>
+ <td>percentages of the current window, as chosen with the
+ <CODE><a href="../WindowCommand/windowcommand.htm">WINDOW</a></code> command.</td>
+ </tr><tr>
+ <td><CODE>\GRAPH</code></td>
+ <td>graph units, that is, the units defined by the minimum and maximum
+ values for the last graph drawn in the active window. If no graph has been drawn yet, the defaults
+ are <code>-1 &le; x &le; 1</code> and <code>-1 &le; y &le; 1</code></td>
+ </tr></table></p>
 <p>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
-<TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-FIGURE ARROW style nheads x1 y1 x2 y2<code></td>
-</tr></table></p>
+ For example, if the <CODE>\PERCENT</code> qualifier is used, then a location of <code>(50,50)</code>
+ represents the center of the active window. If the <CODE>\WORLD</code> qualifier is used, the
+ coordinates are in units of the world coordinate system, the plotting units. The default world
+ coordinate system units are centimeters.</p>
+<P>
+ <font size="+1" color="green"><B>Arrows</B></font></P>
 <p>
-The <CODE><font color="blue">FIGURE ARROW</font></code> command draws an arrow with base at <code>(<font color="blue">x1</font>,<font color="blue">y1</font>)</code> and end point at <code>(<font color="blue">x2</font>,<font color="blue">y2</font>)</code>.</p>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ FIGURE ARROW style nheads x1 y1 x2 y2<code></td>
+ </tr></table></p>
 <p>
-There are three styles of arrow:</p>
-<center><img src="arrows.png"></center></p>
+ The <CODE>FIGURE ARROW</code> command draws an arrow with base at <code>(x1,y1)</code> and end point
+ at <code>(x2,y2)</code>.</p>
 <p>
-The parameter <CODE><font color="blue">nheads</font></code> can be either <code>1</code>, for single headed arrows, or <code>2</code>, for arrows with heads on both ends.</p>
-<P><font size=+1 color="green"><B>Rectangles</B></font></P>
+ There are three styles of arrow:</p>
+ <center><img src="arrows.png"></center>
 <p>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
-<TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-FIGURE RECTANGLE x1 y1 x2 y2<code></td>
-</tr></table></p>
+ The parameter <CODE>nheads</code> can be either <code>1</code>, for single headed arrows, or
+ <code>2</code>, for arrows with heads on both ends.</p>
+<P>
+ <font size="+1" color="green"><B>Rectangles</B></font></P>
 <p>
-The <CODE><font color="blue">FIGURE RECTANGLE</font></code> command draws a rectangle with one corner at <code>(<font color="blue">x1</font>,<font color="blue">y1</font>)</code> and the opposite corner at <code>(<font color="blue">x2</font>,<font color="blue">y2</font>)</code>.</p> 
-<P><font size=+1 color="green"><B>Triangles</B></font></P>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ FIGURE RECTANGLE x1 y1 x2 y2<code></td>
+ </tr></table></p>
 <p>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
-<TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-FIGURE RECTANGLE x1 y1 x2 y2 x3 y3<code></td>
-</tr></table></p>
+ The <CODE>FIGURE RECTANGLE</code> command draws a rectangle with one corner at <code>(x1,y1)</code>
+ and the opposite corner at <code>(x2,y2)</code>.</p> 
+<P>
+ <font size="+1" color="green"><B>Triangles</B></font></P>
 <p>
-The <CODE><font color="blue">FIGURE TRIANGLE</font></code> command draws a triangle with corners at <code>(<font color="blue">x1</font>,<font color="blue">y1</font>)</code>, <code>(<font color="blue">x2</font>,<font color="blue">y2</font>)</code>, and <code>(<font color="blue">x3</font>,<font color="blue">y3</font>)</code>.</p> 
-<P><font size=+1 color="green"><B>Rectangles</B></font></P>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ FIGURE RECTANGLE x1 y1 x2 y2 x3 y3<code></td>
+ </tr></table></p>
 <p>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
-<TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-FIGURE ELLIPSE x1 y1 x2 y2<code></td>
-</tr></table></p>
+ The <CODE>FIGURE TRIANGLE</code> command draws a triangle with corners at <code>(x1,y1)</code>,
+ <code>(x2,y2)</code>, and <code>(x3,y3)</code>.</p> 
+<P>
+ <font size="+1" color="green"><B>Rectangles</B></font></P>
 <p>
-The <CODE><font color="blue">FIGURE ELLIPSE</font></code> command draws the ellipse which fits within the rectangle with one corner at <code>(<font color="blue">x1</font>,<font color="blue">y1</font>)</code> and the opposite corner at <code>(<font color="blue">x2</font>,<font color="blue">y2</font>)</code>.</p>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ FIGURE ELLIPSE x1 y1 x2 y2<code></td>
+ </tr></table></p>
+<p>
+ The <CODE>FIGURE ELLIPSE</code> command draws the ellipse which fits within the rectangle with
+ one corner at <code>(x1,y1)</code> and the opposite corner at <code>(x2,y2)</code>.</p>
 </BODY>
 </HTML>

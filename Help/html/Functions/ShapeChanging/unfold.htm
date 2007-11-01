@@ -1,35 +1,30 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>UNFOLD</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="UNFOLD function">
-</OBJECT>
 <P><A NAME="unfold"></A>
-<font size=+3 color="green"><B>UNFOLD</B></font></P>
+<font size="+3" color="green"><B>UNFOLD</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
 vector = UNFOLD( matrix )</CODE>
 </TD></TR>
 </table></p>
 <p>
- The <CODE><font color="blue">UNFOLD</font></CODE> function has one argument, which must be a
+ The <CODE>UNFOLD</CODE> function has one argument, which must be a
  matrix. The result is a vector formed by unfolding the rows of the matrix.</P>
 <P>
  Suppose that matrix <CODE>m</CODE> has <CODE>r</CODE> rows and <CODE>c</CODE> columns.
- <nobr><CODE><font color="blue">UNFOLD(m)</font>[i+(j-1)*r] = m[i,j]</CODE></nobr>
- for <nobr><CODE>i = 1,2,...,r</CODE></nobr> and
- <nobr><CODE>j = 1,2,...,c</CODE></nobr>.</P>
+ Then</p>
+<p>
+ <CODE>UNFOLD(m)[i+(j-1)*r] = m[i,j]</CODE> for <CODE>i = 1,2,...,r</CODE> and
+ <CODE>j = 1,2,...,c</CODE>.</P>
 <P>
- <font size=+1 color="green">Examples</font></P>
+ <font size="+1" color="green">Examples</font></P>
 <P>
  Suppose that 
  <pre>
@@ -39,24 +34,25 @@ vector = UNFOLD( matrix )</CODE>
  </pre>
  <table>
  <tr>
- <td bgcolor=#FFCCCC><i>function</i></td><td bgcolor=#FFCCCC><i>result</i></td>
+ <td bgcolor="#FFCCCC"><i>function</i></td><td bgcolor="#FFCCCC"><i>result</i></td>
  </tr><tr>
  <td><CODE><font color="blue">UNFOLD(M)</font></CODE></td>
- <td bgcolor=#FFFFCC><CODE>[1;2;3;4;5;6;7;8;9;10;11;12]</CODE></td>
+ <td bgcolor="#FFFFCC"><CODE>[1;2;3;4;5;6;7;8;9;10;11;12]</CODE></td>
  </tr></table></P>
 <P>
  <table><tr>
  <td valign=top>Note:</td>
  <td>if <CODE>X</CODE> is a vector and <CODE>N</CODE> is a scalar such than
- <CODE>LEN(X)</CODE> is divisible by <CODE>N</CODE>, then<br>
- <NOBR><CODE>UNFOLD(FOLD(X,N)) = X</CODE></NOBR></td>
+ <CODE>LEN(X)</CODE> is divisible by <CODE>N</CODE>, then<br />
+ <CODE>UNFOLD(FOLD(X,N))</code> is equal to <code>X</CODE></td>
  </tr><tr>
  <td></td>
- <td>if <CODE>M</CODE> is a matrix with <CODE>R</CODE> rows, then<br>
- <nobr><CODE>FOLD(UNFOLD(M),R) = M</CODE></NOBR></td>
+ <td>if <CODE>M</CODE> is a matrix with <CODE>R</CODE> rows, then<br />
+ <CODE>FOLD(UNFOLD(M),R)</code> is equal to <code>M</CODE></td>
  </tr></table></P>
 <p>
-<a href="fold.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">FOLD</font></a>
+ <a href="fold.htm"><img align=middle border="0" src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">FOLD</font></a>
 </P>
 </BODY>
 </HTML>

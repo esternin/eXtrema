@@ -1,59 +1,46 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>XIMAGTICLENGTH</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="XIMAGTICLENGTH">
-</OBJECT>
-
 <P><A NAME="ximagticlength"></A>
-<font size=+3 color="green"><B>XIMAGTICLENGTH</B></font></P>
+<font size="+3" color="green"><B>XIMAGTICLENGTH</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=20% valign="top"><B>Syntax</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 SET XIMAGTICLENGTH h<br>
 SET %XIMAGTICLENGTH h<br>
 GET XIMAGTICLENGTH { n }<br>
 GET %XIMAGTICLENGTH { n }</CODE>
 </TD></TR>
 <TR>
-<TD width=20% valign="top"><B>Default value</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 %XIMAGTICLENGTH = 1</CODE>
 </TD></TR>
 </TABLE>
- 
-<P><CODE><font color="blue">XIMAGTICLENGTH</font></CODE>, along with
- <CODE><font color="blue"><A HREF="ximagticangle.htm">XIMAGTICANGLE</a>
- </font></CODE>, controls the location of  the numbers
- labeling the <i>x</i>-axis at the large  tic marks.
+<P>
+ <CODE>XIMAGTICLENGTH</CODE>, along with <CODE><A HREF="ximagticangle.htm">XIMAGTICANGLE</a>
+ </CODE>, controls the location of  the numbers labeling the <i>x</i>-axis at the large tic marks.
  There are two forms:</p>
-
-<p><table cols=3>
-<tr>
-<td valign="top"><code><font color="blue">&nbsp;XIMAGTICLENGTH</font></code></td>
-<td valign="top"> &rarr;</td>
-<td valign="top">the distance, in world coordinate units, measured from the
- base of each large tic mark on the <i>x</i>-axis, to the center of the
- number labeling that tic mark</td>
-</tr><tr>
-<td valign="top"><code><font color="blue">%XIMAGTICLENGTH</font></code></td>
-<td valign="top"> &rarr;</td>
-<td valign="top">the distance, expressed as a percentage of the height of
- the graphics sub-window, that is,
- <NOBR><CODE><font color="blue">XIMAGTICLENGTH</font> =
- <font color="blue">%XIMAGTICLENGTH</font>
- * (<font color="blue"><a href="..\generalgraph\yupperwindow.htm">YUPPERWINDOW</a></font>-
- <font color="blue"><a href="..\generalgraph\ylowerwindow.htm">YLOWERWINDOW</a></font>)/100</CODE></NOBR>.</td>
-</tr></table>
-</p>
-
+<p>
+ <table cols="3">
+ <tr>
+ <td valign="top"><code>&nbsp;XIMAGTICLENGTH</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the distance, in world coordinate units, measured from the
+  base of each large tic mark on the <i>x</i>-axis, to the center of the
+  number labeling that tic mark</td>
+ </tr><tr>
+ <td valign="top"><code>%XIMAGTICLENGTH</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the distance, expressed as a percentage of the height of
+  the graphics sub-window, that is, <CODE>XIMAGTICLENGTH = %XIMAGTICLENGTH<br />
+  * (<a href="../GeneralGraph/yupperwindow.htm">YUPPERWINDOW</a> -
+  <a href="../GeneralGraph/ylowerwindow.htm">YLOWERWINDOW</a>)/100</CODE>.</td>
+ </tr></table></p>
 </body>
 </html>

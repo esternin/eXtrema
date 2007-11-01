@@ -1,40 +1,41 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"> <HTML>
-<HEAD> <META HTTP-EQUIV="Content-Type" Content="text/html;
-charset=Windows-1252"> <TITLE>Prime factors</TITLE> </HEAD>
-
+<HTML>
+<HEAD>
+<TITLE>Prime factors</TITLE>
+</HEAD>
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="FFT function">
-  <PARAM NAME="Keyword" VALUE="FFT function prime factors">
-</OBJECT>
 <p>
-<font size=+1 color="green"><B>Prime factors</B></font></P>
+ <font size="+1" color="green"><B>Prime factors</B></font></P>
 <p>
  Suppose that <code>LEN(x) = 2N</code>. The largest prime factor of <code>2N</code> must be
  <code>&le;23</code>, and there must be no more than <code>11</code> distinct prime factors.
  The product of the square-free prime factors of <code>2N</code> must be <code>&le;210</code>.
  The calculation speed is enhanced by using a value of <code>2N</code> with small prime
- factors, particularly powers of <code>2</code>. For reference, the prime numbers less than <code>1000</code> are listed
- below.</p>
-<p><pre>
-   2   3   5   7  11  13  17  19  23  29  31  37  41  43  47  53  59  61  67  71  73  79
-  83  89  97 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193
- 197 199 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293 307 311 313 317
- 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419 421 431 433 439 443 449 457
- 461 463 467 479 487 491 499 503 509 521 523 541 547 557 563 569 571 577 587 593 599 601
- 607 613 617 619 631 641 643 647 653 659 661 673 677 683 691 701 709 719 727 733 739 743
- 751 757 761 769 773 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883 887
- 907 911 919 929 937 941 947 953 967 971 977 983 991 997</pre></p>
+ factors, particularly powers of <code>2</code>. For reference, the prime numbers less than
+ <code>1000</code> are listed below.</p>
+<p>
+ <pre>
+   2   3   5   7  11  13  17  19  23  29  31  37  41  43  47  53  59
+  61  67  71  73  79  83  89  97 101 103 107 109 113 127 131 137 139
+ 149 151 157 163 167 173 179 181 191 193 197 199 211 223 227 229 233
+ 239 241 251 257 263 269 271 277 281 283 293 307 311 313 317 331 337
+ 347 349 353 359 367 373 379 383 389 397 401 409 419 421 431 433 439
+ 443 449 457 461 463 467 479 487 491 499 503 509 521 523 541 547 557
+ 563 569 571 577 587 593 599 601 607 613 617 619 631 641 643 647 653
+ 659 661 673 677 683 691 701 709 719 727 733 739 743 751 757 761 769
+ 773 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883
+ 887 907 911 919 929 937 941 947 953 967 971 977 983 991 997
+ </pre></p>
 <p>
  For example, <code>2N = 202 = 2*101</code> is not allowed, and <code>2N = 402 = 2*3*67</code>
  is also not allowed. If <code>2N</code> does not satisfy the above restrictions, the input
  vector can be padded out, usually with zeroes, to an even length whose prime factors do not
- exceed <code>23</code>. The <code><font color="blue"><a href="../Pfactors/pfactors.htm">PFACTORS</a>
- </font></code> function returns the prime factors of a constant or scalar.</p>
+ exceed <code>23</code>. The <code><a href="../Pfactors/pfactors.htm">PFACTORS</a>
+ </code> function returns the prime factors of a constant or scalar.</p>
 <P>
- <a href="restrictions.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Restrictions</font></a><br>
- <a href="example.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Example</font></a></P>
+ <a href="restrictions.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Restrictions</font></a><br />
+ <a href="example.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Example</font></a></P>
 </BODY>
 </HTML>

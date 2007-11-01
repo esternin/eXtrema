@@ -1,41 +1,31 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Branching</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="branching">
-  <PARAM NAME="Keyword" VALUE="GOTO statement">
-</OBJECT>
-
 <P><A NAME="execbranching"></A>
-<font size=+3 color="green"><B>Branching</B></font></P>
-
+<font size="+3" color="green"><B>Branching</B></font></P>
 <P>
- <CODE><font color="blue">GOTO</font></CODE> can only be used in a script
- file. Use a <CODE><font color="blue">GOTO</font></CODE> to branch to a label.
+ <CODE>GOTO</CODE> can only be used in a script
+ file. Use a <CODE>GOTO</CODE> to branch to a label.
  A label is a character string that ends with a colon,
- <CODE><font color="blue">:</font></CODE>. A label must be on a line by itself,
+ <CODE>:</CODE>. A label must be on a line by itself,
  and it must have <B>no</B> embedded blanks.  Do not include the colon with
- the label after a <CODE><font color="blue">GOTO</font></CODE>. </P>
+ the label after a <CODE>GOTO</CODE>. </P>
+<P><font size="+2" color="green">Example</font></P>
 
-<P><font size=+2 color="green">Example</font></P>
-
-<font color="blue"><PRE>
+ <font color="blue"><PRE>
  ...
  GOTO A_LABEL
  ...
  A_LABEL:
  ...
-</PRE></font>
+ </PRE></font>
 
-<P><font size=+2 color="green">Example</font></P>
+<P><font size="+2" color="green">Example</font></P>
 
-<font color="blue"><PRE>
+ <font color="blue"><PRE>
  ...
  START:
  IF (J&gt;8) THEN GOTO END
@@ -44,10 +34,12 @@
  GOTO START
  END:
  ...
-</PRE></font>
+ </PRE></font>
 <P>
-<a href="parameters.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Parameters</font></a><br>
-<a href="looping.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Looping</font></a><br>
+ <a href="parameters.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Parameters</font></a><br />
+ <a href="looping.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Looping</font></a>
 </P>
 </BODY>
 </HTML>

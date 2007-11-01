@@ -1,49 +1,39 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Getting the axis numbers right</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-</OBJECT>
-
-<P><A NAME="graphgetaxisnums"></A>
-<font size=+2 color="green">Getting the axis numbers right</font></P>
+<P><font size="+2" color="green">Getting the axis numbers right</font></P>
 <P>
  Suppose you want a <i>y</i>-axis number range from <CODE>0</CODE> to
  <CODE>0.0008</CODE> and an <i>x</i>-axis number
  range from <CODE>-40</CODE> to <CODE>30</CODE>.  You set the axis scales
  with the commands below and by default you will get the left axis box
  in the figure below.</P>
-<font color="blue"><PRE>
+<p>
+ <font color="blue"><PRE>
  SCALE -40 30 0 .0008  ! x-axis: -40 to 30,  y-axis: 0 to 0.0008
  GRAPH\AXESONLY        ! only plot the axes
-</PRE></font>
-
-<center>
-<IMG SRC="img4.gif">
-</center>
+ </PRE></font></p>
+<p>
+ <center><IMG SRC="img4.gif"></center></p>
 <P>
  But suppose you want the <i>y</i>-axis numbers to be of the form
  <CODE>n.0</CODE> with something like (&times;10<sup><i>-m</i></sup>)
  included as part of the <i>y</i>-axis label.  Then you could enter the
  commands below to produce the axis box on the right in the figure.</P>
-
-<font color="blue"><PRE>
+<p>
+ <font color="blue"><PRE>
  SET YPOWERAUTO 0        ! do not automatically calculate the y-axis power 
  SET YPOWER -4           ! set the y-axis power
  SET YNUMBEROFDECIMALS 1 ! number of decimal places for y-axis numbers
  SET YNUMBEROFDIGITS 3   ! number of digits for y-axis numbers
  SCALE -40 30 0 .0008    ! set the axis scales after the numbering format
  GRAPH\AXESONLY          ! just plot the axes
-</PRE></font>
+ </PRE></font></p>
 <P>
-<a href="scripttoplot.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">A script to plot a curve with axes</font></a>
-</P>
-
+ <a href="scripttoplot.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">A script to plot a curve with axes</font></a></P>
 </BODY>
 </HTML>

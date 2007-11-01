@@ -1,19 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Indices</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="indices">
-	<PARAM NAME="Keyword" VALUE="index on variable">
-</OBJECT>
-
 <P><A NAME="indices"></A>
-<font size=+3 color="green">Indices</font></P>
+<font size="+3" color="green">Indices</font></P>
 <P>
  Indices can be used on any numeric variable, except scalars, and on any string
  variable. A string variable is a string, and can have only one index, which
@@ -25,79 +17,70 @@
  simple numeric literal or a complicated expression.  Indices can also be
  nested.</P>
 <P>
-An index is enclosed in square parentheses, <font color="blue"><CODE>[</CODE></font>
-and <font color="blue"><CODE>]</CODE></font>.  Actually, <font color="blue"><CODE>()</CODE></font>
-and <font color="blue"><CODE>{}</CODE></font> work as well, but 
-<font color="blue"><CODE>[]</CODE></font> are used in the documentation to alleviate
-confusion.  The colon, <font color="blue"><CODE>:</CODE></font>, is the range
-separator while the semicolon, <font color="blue"><CODE>;</CODE></font>, is the 
-element separator.  For example, <font color="blue"><CODE>[1:5]</CODE></font>
-represents the set of numbers <font color="blue"><CODE>[1;2;3;4;5]</CODE></font>.
-An increment is optional with a range, and defaults to one <CODE>(1)</CODE>.
-For example, <font color="blue"><CODE>[1:5:2]</CODE></font> represents the set of numbers
-<font color="blue"><CODE>[1;3;5]</CODE></font>.</P>
+ An index is enclosed in square parentheses, <CODE>[</CODE> and <CODE>]</CODE>.
+ Actually, <CODE>()</CODE> and <CODE>{}</CODE> work as well, but <CODE>[]</CODE>
+ are used in the documentation to alleviate confusion.  The colon, <CODE>:</CODE>, is the range
+ separator while the semicolon, <CODE>;</CODE>, is the element separator.  For example,
+ <CODE>[1:5]</CODE> represents the set of numbers <CODE>[1;2;3;4;5]</CODE>.
+ An increment is optional with a range, and defaults to one <CODE>(1)</CODE>.
+ For example, <CODE>[1:5:2]</CODE> represents the set of numbers <CODE>[1;3;5]</CODE>.</P>
 </P>
 <P>
  There are two special characters that are defined only within a variable
- index: <font color="blue"><CODE>#</CODE></font> denotes the last element
- of a dimension, and <font color="blue"><CODE>*</CODE></font> denotes the
- entire range of a dimension. The <font color="blue"><CODE>*</CODE></font>
- character is not allowed on string variables. The
- <font color="blue"><CODE>#</CODE></font> character can be used in an
- index expression, for example, <font color="blue"><code>X[#-1]</code></font>
+ index: <CODE>#</CODE> denotes the last element
+ of a dimension, and <CODE>*</CODE> denotes the
+ entire range of a dimension. The <CODE>*</CODE> character is not allowed on string variables. The
+ <CODE>#</CODE> character can be used in an
+ index expression, for example, <code>X[#-1]</code>
  is the next to last element of vector <code>X</code>. Refer to the table
  below for some examples of these special index characters.</P>
-<center>
-<table border=1 cellpadding=10>
-<tr>
-<td><code><font color="blue">X[#]</font></code></td>
-<td>is the last element of vector <code>X</code></td>
-</tr><tr>
-<td><code><font color="blue">TS[#]</font></code></td>
-<td>is the last character of string variable <code>TS</code></td>
-</tr><tr>
-<td><code><font color="blue">TA[#]</font></code></td>
-<td>is the last string of string array variable <code>TA</code></td>
-</tr><tr>
-<td><code><font color="blue">TA[#][3:7]</font></code></td>
-<td>is characters <CODE>3</CODE> to <CODE>7</CODE> of the last string of
- <code>TA</code></td>
-</tr><tr>
-<td><code><font color="blue">M[#,2:10]</font></code></td>
-<td>is elements <CODE>2</CODE> to <CODE>10</CODE> from the last row of
- matrix <code>M</code></td>
-</tr><tr>
-<td><code><font color="blue">M[3:12,#-1]</font></code></td>
-<td>is elements <CODE>3</CODE> to <CODE>12</CODE> from the next to last
- column of <code>M</code></td>
-</tr><tr>
-<td></td>
-</tr><tr>
-<td><code><font color="blue">X[*]</font></code></td>
-<td>is all of vector <code>X</code></td>
-</tr><tr>
-<td><code><font color="blue">M[3,*]</font></code></td>
-<td>is all of row <CODE>3</CODE> from matrix <code>M</code></td>
-</tr><tr>
-<td><code><font color="blue">M[*,5]</font></code></td>
-<td>is all of column <CODE>5</CODE> from <code>M</code></td>
-</tr>
-</table>
-</center>
+<p>
+ <center>
+ <table border="1" cellpadding="10">
+ <tr>
+ <td><code>X[#]</code></td>
+ <td>is the last element of vector <code>X</code></td>
+ </tr><tr>
+ <td><code>TS[#]</code></td>
+ <td>is the last character of string variable <code>TS</code></td>
+ </tr><tr>
+ <td><code>TA[#]</code></td>
+ <td>is the last string of string array variable <code>TA</code></td>
+ </tr><tr>
+ <td><code>TA[#][3:7]</code></td>
+ <td>is characters <CODE>3</CODE> to <CODE>7</CODE> of the last string of <code>TA</code></td>
+ </tr><tr>
+ <td><code>M[#,2:10]</code></td>
+ <td>is elements <CODE>2</CODE> to <CODE>10</CODE> from the last row of matrix <code>M</code></td>
+ </tr><tr>
+ <td><code>M[3:12,#-1]</code></td>
+ <td>is elements <CODE>3</CODE> to <CODE>12</CODE> from the next to last column of <code>M</code></td>
+ </tr><tr>
+ </tr><tr>
+ <td><code>X[*]</code></td>
+ <td>is all of vector <code>X</code></td>
+ </tr><tr>
+ <td><code>M[3,*]</code></td>
+ <td>is all of row <CODE>3</CODE> from matrix <code>M</code></td>
+ </tr><tr>
+ <td><code>M[*,5]</code></td>
+ <td>is all of column <CODE>5</CODE> from <code>M</code></td>
+ </tr>
+ </table></center></p>
 <P>
- <font color="blue"><CODE>#</CODE></font> and
- <CODE><font color="blue">*</font></CODE> cannot be used in indices on
+ <CODE>#</CODE> and <CODE>*</CODE> cannot be used in indices on
  output variables, since they would be undefined. They also cannot be
  used in indices on functions or in indices on expressions.</P>
 <P>
-<a href="indexonfunction.htm"><font size=+1 color="olive">Indices on functions</font></a><br>
-<a href="indexonexpression.htm"><font size=+1 color="olive">Indices on expressions</font></a><br>
-<a href="indexasexpression.htm"><font size=+1 color="olive">Index as expression</font></a>
+ <a href="indexonfunction.htm"><font size="+1" color="olive">Indices on functions</font></a><br />
+ <a href="indexonexpression.htm"><font size="+1" color="olive">Indices on expressions</font></a><br />
+ <a href="indexasexpression.htm"><font size="+1" color="olive">Index as expression</font></a>
 </P>
 <P>
-<a href="variables.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Variables</font></a><br>
-<a href="expression.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Expressions</font></a>
+ <a href="variables.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Variables</font></a><br />
+ <a href="expression.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Expressions</font></a>
 </P>
-
 </body>
 </html>

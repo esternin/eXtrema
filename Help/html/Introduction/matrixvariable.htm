@@ -1,19 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Matrix variables</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="variable matrix">
-        <PARAM NAME="Keyword" VALUE="matrix variable">
-</OBJECT>
-
 <P><A NAME="variablematrix"></A>
-<font size=+2 color="green">Matrix variables</font></P>
+<font size="+2" color="green">Matrix variables</font></P>
 <P>
  A matrix is a two dimensional array of double precision real numbers, with
  rows and columns. The row and column indices of a matrix are separated with
@@ -27,38 +19,25 @@
  The following table shows the possible ways that
  variables can be considered to be equivalent to matrices, that is, can be
  used wherever matrices are expected.</P>
-<center>
- <table border=1>
- <tr><td>
- <table cellpadding=5>
+<p>
+ <center><table border="1" width="100%">
+ <tr><td bgcolor="#FFCCCC">Let <code>x</code> and <code>y</code> be vectors<br />
+  Suppose that <code>M</code> is a matrix</td>
+ </tr><tr>
+ <td><table cellpadding="2">
  <tr>
- <td colspan=3>Let <font color="blue"><code>x</code></font> and
- <font color="blue"><code>y</code></font> be vectors</td>
+ <td><code>M</code></td><td>=</td><td><code>M[i,j]</code> for <code>i=1,...,VLEN(M)[1],
+  j=1,...,VLEN(M)[2]</code></td>
  </tr><tr>
- <td colspan=3>Suppose that <font color="blue"><code>M</code></font> is
- a matrix</td>
- </tr><tr>
- <td><font color="blue"><code>M</code></font></td>
- <td>=</td>
- <td><font color="blue"><code>M[i,j]</code></font> for <code>i=1, ...,
- VLEN(<font color="blue">M</font>)[1], j=1, ...,
- VLEN(<font color="blue">M</font>)[2]</code></td>
- </tr><tr>
- <td><font color="blue"><code>M[x,y]</code></font></td>
- <td>=</td>
- <td><font color="blue"><code>M[i,j]</code></font>
- for <code>i = <font color="blue">x</font>[1],
- <font color="blue">x</font>[2], ..., <font color="blue">x</font>[#], j =
- <font color="blue">y</font>[1], <font color="blue">y</font>[2], ...,
- <font color="blue">y</font>[#]</code></td>
- </tr>
- </table>
- </td></tr></table>
-</center>
+ <td valign="top"><code>M[x,y]</code></td><td valign="top">=</td>
+  <td><code>M[i,j]</code> for <code>i=x[1],x[2],...,x[#], j=y[1],y[2],...,y[#]</code></td>
+ </tr></table></td>
+ </tr></table></center></p>
 <P>
-<a href="vectorvariable.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Vector variables</font></a><br>
-<a href="stringvariable.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">String variables</font></a>
+ <a href="vectorvariable.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Vector variables</font></a><br />
+ <a href="stringvariable.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">String variables</font></a>
 </P>
-
 </body>
 </html>

@@ -1,72 +1,59 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>ALIAS command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="ALIAS command">
-</OBJECT>
+<P><font size="+3" color="green"><B>ALIAS command</B></font></P>
 
-<P><font size=+3 color="green"><B>ALIAS command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=590>
+<TABLE border="1" cols="2" frame="box" rules="all" width="590">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-ALIAS<br>
-ALIAS name<br>
-ALIAS name value<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+ALIAS<br />
+ALIAS name<br />
+ALIAS name value<br />
 ALIAS\EXPAND name value</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\EXPAND</nobr></CODE>
-</TD></TR>
+<TD width="15%" valign="top"><B>Qualifiers</B>:</TD>
+<TD width="85%" valign="top"><CODE>\EXPAND</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\-EXPAND</nobr></CODE>
-</TD></TR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top"><CODE>\-EXPAND</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Examples</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>ALIAS XRED SET XAXISCOLOR RED</nobr>
-</TD></TR>
+<TD width="15%" valign="top"><B>Examples</B>:</TD>
+<TD width="85%" valign="top"><CODE>ALIAS XRED SET XAXISCOLOR RED</TD></TR>
 </TABLE>
 <P>
-The <CODE><font color="blue">ALIAS</font></CODE> command allows the user to create
-new commands by equating a keyword to a command string.  The command string must begin
-with a valid command.  For example, it cannot be a file name that is to be used with
-other commands (use a character variable for that).</p>
+ The <CODE>ALIAS</CODE> command allows the user to create
+ new commands by equating a keyword to a command string.  The command string must begin
+ with a valid command.  For example, it cannot be a file name that is to be used with
+ other commands (use a character variable for that).</p>
 <p>
-If the <CODE><font color="blue">ALIAS</font></CODE> command is entered with no parameters, all
-the current aliases will be displayed.  If the <CODE><font color="blue">ALIAS</font></CODE>
-command is entered with one parameter, the parameter is assumed to be an alias name, and
-the command string associated with that name will be displayed.  If a
-<CODE><font color="blue">name</font></code> and a <CODE><font color="blue">value</font></code>
-are entered, and if <CODE><font color="blue">name</font></code> already exists as an alias,
-the command string value will be updated to the new <CODE><font color="blue">value</font></code>.
-If <CODE><font color="blue">name</font></code> does not exist, a new alias will be created.</p>
+ If the <CODE>ALIAS</CODE> command is entered with no parameters, all
+ the current aliases will be displayed.  If the <CODE>ALIAS</CODE>
+ command is entered with one parameter, the parameter is assumed to be an alias name, and
+ the command string associated with that name will be displayed.  If a
+ <CODE>name</code> and a <CODE>value</code>
+ are entered, and if <CODE>name</code> already exists as an alias,
+ the command string value will be updated to the new <CODE>value</code>.
+ If <CODE>name</code> does not exist, a new alias will be created.</p>
 <p>
-Use the <a href="../DealiasCommand/dealiascommand.htm"><CODE><font color="blue">DEALIAS</font></CODE></a> command to eliminate an alias.</p>
+ Use the
+ <CODE><a href="../DealiasCommand/dealiascommand.htm">DEALIAS</a></font></CODE>
+ command to eliminate an alias.</p>
 <p>
-If the <CODE><font color="blue">\EXPAND</font></CODE> qualifier is used, and if the second
-parameter is a character variable (or character expression), then the value of the 
-variable (or of the expression) will become the command string.  This allows you
-to construct commands in a script and alias them to single word commands.  For example:
-<font color="blue"><pre>
+ If the <CODE>\EXPAND</CODE> qualifier is used, and if the second
+ parameter is a character variable (or character expression), then the value of the 
+ variable (or of the expression) will become the command string.  This allows you
+ to construct commands in a script and alias them to single word commands.  For example:
+ <font color="blue"><pre>
      TT = 'GRAPH X '
      VECTOR V 1
      INQUIRE 'Enter a vector >>' V
      ALIAS\EXPAND PLOT TT//VARNAME(V)
-</pre></font>
-and you can then just enter the new command <CODE><font color="blue">PLOT</font></code>
-to draw the graph.</p>
+ </pre></font>
+ and you can then just enter the new command <CODE>PLOT</code> to draw the graph.</p>
 </BODY>
 </HTML>

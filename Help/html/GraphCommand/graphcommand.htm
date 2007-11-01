@@ -1,47 +1,36 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>GRAPH command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="GRAPH command">
-</OBJECT>
+<P><font size="+3" color="green"><B>GRAPH command</B></font></P>
 
-<P><A NAME="graphcommand"></A>
-<font size=+3 color="green"><B>GRAPH command</B></font></P>
-<P>
 <TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 GRAPH { 'legendtext' } x y { ye1 { xe1 { ye2 { xe2 }}}}</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers:</B></TD>
-<TD width=85% valign="top"><CODE>
- <nobr>\AXESONLY,</nobr> <nobr>\OVERLAY,</nobr> <nobr>\POLAR,</nobr>
- <nobr>\REPLOT,</nobr> <nobr>\HISTOGRAM,</nobr> <nobr>\YONRIGHT,</nobr>
- <nobr>\XONTOP</nobr>, <nobr>\SMOOTH</nobr></CODE>
+<TD valign="top"><B>Qualifiers:</B></TD>
+<TD valign="top"><CODE>
+ \AXESONLY, \OVERLAY, \POLAR, \REPLOT, \HISTOGRAM, \YONRIGHT, \XONTOP, \SMOOTH</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults:</B></TD>
-<TD width=85% valign="top">
- axes drawn, <CODE><nobr>\REPLOT,</nobr> <nobr>\-POLAR,</nobr>
- <nobr>\-HISTOGRAM,</nobr> <nobr>\-YONRIGHT,</nobr>
- <nobr>\-XONTOP,</nobr> <nobr>\-SMOOTH,</nobr></CODE>&nbsp;&nbsp; legendtext ignored
+<TD valign="top"><B>Defaults:</B></TD>
+<TD valign="top">
+ axes drawn, <CODE>\REPLOT, \-POLAR, \-HISTOGRAM, \-YONRIGHT,
+ \-XONTOP, \-SMOOTH,</CODE>&nbsp;&nbsp; legendtext ignored
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Examples:</B></TD>
-<TD width=85% valign="top"><CODE>
-GRAPH X Y<BR>
-GRAPH 'legend entry' X Y YERR XERR<BR>
-GRAPH\OVERLAY X Y<br>
-GRAPH\OVERLAY\SMOOTH X Y<br>
-GRAPH\HISTOGRAM X Y<BR>
+<TD valign="top"><B>Examples:</B></TD>
+<TD valign="top"><CODE>
+GRAPH X Y<BR />
+GRAPH 'legend entry' X Y YERR XERR<BR />
+GRAPH\OVERLAY X Y<br />
+GRAPH\OVERLAY\SMOOTH X Y<br />
+GRAPH\HISTOGRAM X Y<BR />
 GRAPH\POLAR RAD THETA</CODE>
 </TD></TR>
 </TABLE></P>
@@ -52,54 +41,52 @@ GRAPH\POLAR RAD THETA</CODE>
 </tr><tr>
 <TD></TD><TD></TD><TD><hr></td>
 </tr><tr>
-<td>The <code><font color="blue">GRAPH</font></CODE> command draws:</td>
+<td>The <code>GRAPH</CODE> command draws:</td>
 <td>data with axes</td>
-<td><CODE><font color="blue">GRAPH</font></CODE></TD>
+<td><CODE>GRAPH</CODE></TD>
 </tr><tr>
 <td></td>
 <td>just the data</td>
-<td><CODE><font color="blue">GRAPH\OVERLAY</font></CODE></td>
+<td><CODE>GRAPH\OVERLAY</CODE></td>
 </tr><tr>
 <td></td>
 <td>just the axes</td>
-<td><CODE><font color="blue">GRAPH\AXESONLY</font></CODE></td>
+<td><CODE>GRAPH\AXESONLY</CODE></td>
 </tr><tr>
 <td></td>
 <td>y-axis on the right</td>
-<td><CODE><font color="blue">GRAPH\YONRIGHT</font></CODE></td>
+<td><CODE>GRAPH\YONRIGHT</CODE></td>
 </tr><tr>
 <td></td>
 <td>x-axis on the top</td>
-<td><CODE><font color="blue">GRAPH\XONTOP</font></CODE></td>
+<td><CODE>GRAPH\XONTOP</CODE></td>
 </tr><tr>
 <td></td>
-<td><nobr>smooth curve through the data</nobr></td>
-<td><CODE><font color="blue">GRAPH\SMOOTH</font></CODE></td>
+<td>smooth curve through the data</td>
+<td><CODE>GRAPH\SMOOTH</CODE></td>
 </tr></table></P>
-
 <P>
  The data curve may be a histogram. The parameters must be
  vectors, but can be vectors of length one. The input vectors can have
  different lengths as the minimum length of all of the input vectors will
  be used.</P>
 <P>
-<a href="plotsymbol.htm"><font size=+1 color="olive">Plotting symbols</font></a><br>
-<a href="graphlegend.htm"><font size=+1 color="olive">Graph legend</font></a><br>
-<a href="axisscaling.htm"><font size=+1 color="olive">Axis scaling</font></a><br>
-<a href="polarcoords.htm"><font size=+1 color="olive">Polar coordinates</font></a><br>
-<a href="dataandaxes.htm"><font size=+1 color="olive">Plot data and axes</font></a><br>
-<a href="axesonly.htm"><font size=+1 color="olive">Plot axes only</font></a><br>
-<a href="dataonly.htm"><font size=+1 color="olive">Plot data only</font></a><br>
-<a href="smooth.htm"><font size=+1 color="olive">Plot a smooth curve through the data</font></a><br>
-<a href="yonright.htm"><font size=+1 color="olive">Draw the y-axis on the right</font></a><br>
-<a href="xontop.htm"><font size=+1 color="olive">Draw the x-axis on the top</font></a><br>
-<a href="replotdata.htm"><font size=+1 color="olive">Replot data on a common scale</font></a><br>
-<a href="histograms.htm"><font size=+1 color="olive">Histograms</font></a><br>
-<a href="errorbars.htm"><font size=+1 color="olive">Error bars</font></a><br>
-<a href="fillareacurve.htm"><font size=+1 color="olive">Fill the area under a curve</font></a><br>
-<a href="basicexample.htm"><font size=+1 color="olive">A basic example</font></a><br>
-<a href="scripttoplot.htm"><font size=+1 color="olive">A script to plot a curve with axes</font></a><br>
-<a href="getaxisnums.htm"><font size=+1 color="olive">Getting the axis numbers right</font></a><br>
-</P>
+ <a href="plotsymbol.htm"><font size="+1" color="olive">Plotting symbols</font></a><br />
+ <a href="graphlegend.htm"><font size="+1" color="olive">Graph legend</font></a><br />
+ <a href="axisscaling.htm"><font size="+1" color="olive">Axis scaling</font></a><br />
+ <a href="polarcoords.htm"><font size="+1" color="olive">Polar coordinates</font></a><br />
+ <a href="dataandaxes.htm"><font size="+1" color="olive">Plot data and axes</font></a><br />
+ <a href="axesonly.htm"><font size="+1" color="olive">Plot axes only</font></a><br />
+ <a href="dataonly.htm"><font size="+1" color="olive">Plot data only</font></a><br />
+ <a href="smooth.htm"><font size="+1" color="olive">Plot a smooth curve through the data</font></a><br />
+ <a href="yonright.htm"><font size="+1" color="olive">Draw the y-axis on the right</font></a><br />
+ <a href="xontop.htm"><font size="+1" color="olive">Draw the x-axis on the top</font></a><br />
+ <a href="replotdata.htm"><font size="+1" color="olive">Replot data on a common scale</font></a><br />
+ <a href="histograms.htm"><font size="+1" color="olive">Histograms</font></a><br />
+ <a href="errorbars.htm"><font size="+1" color="olive">Error bars</font></a><br />
+ <a href="fillareacurve.htm"><font size="+1" color="olive">Fill the area under a curve</font></a><br />
+ <a href="basicexample.htm"><font size="+1" color="olive">A basic example</font></a><br />
+ <a href="scripttoplot.htm"><font size="+1" color="olive">A script to plot a curve with axes</font></a><br />
+ <a href="getaxisnums.htm"><font size="+1" color="olive">Getting the axis numbers right</font></a></P>
 </BODY>
 </HTML>

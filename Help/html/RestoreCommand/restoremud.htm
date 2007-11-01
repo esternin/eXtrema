@@ -1,43 +1,33 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
-<TITLE>RESTORE\MUD command</TITLE>
+<TITLE>RESTORE/MUD command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="RESTORE\MUD command">
-  <PARAM NAME="Keyword" VALUE="MUD format data file">
-</OBJECT>
-
-<P><font size=+3 color="green">MUD format data files</font></P>
+<P><font size="+3" color="green">MUD format data files</font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-RESTORE\MUD file<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+RESTORE\MUD file<br />
 RESTORE\MUD\TITLE file</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers:</B></TD>
-<TD width=85% valign="top"><CODE>
- <NOBR>\MUD,</NOBR> <nobr>\TITLE</nobr></CODE>
-</TD></TR>
+<TD valign="top"><B>Qualifiers:</B></TD>
+<TD valign="top"><CODE>\MUD, \TITLE</CODE></TD></TR>
 </TABLE></P>
 <p>
- The <CODE><FONT COLOR="blue">RESTORE\MUD</font></code> command restores
+ The <CODE>RESTORE\MUD</code> command restores
  muSR MUD type data files containing histograms.  Histogram number j is stored
  in column j of matrix <code>IH</code>. Histogram number j can be extracted into
- a vector using: <code><font color="blue">HJ = IH[*,j]</font></code>.</p>
+ a vector using: <code>HJ = IH[*,j]</code>.</p>
 <p>
- If the <code><font color="blue">\TITLE</font></code> qualifier is used, only the
+ If the <code>\TITLE</code> qualifier is used, only the
  title is restored, into a character variable named <code>RUNTITLE</code> (so as not
  to confuse it with variable <code>MUDTITLE</code> used to store the same title on a
  complete restore).</p>
-<p><font size=+1 color="green">General</font></p>
+<p><font size="+1" color="green">General</font></p>
 <p>
  <table cellpadding="0" cellspacing="1">
  <tr>
@@ -68,7 +58,7 @@ RESTORE\MUD\TITLE file</CODE>
  </tr><tr>
  <td></td><td><code>FIELD</code></td>
  </tr></table></p>
-<p><font size=+1 color="green">Histograms</font></p>
+<p><font size="+1" color="green">Histograms</font></p>
 <p> 
  <table cellpadding="0" cellspacing="1">
  <tr>
@@ -118,7 +108,7 @@ RESTORE\MUD\TITLE file</CODE>
  </tr><tr>
  <td></td><td></td><td>otherwise <CODE>HISTFSPERBIN</CODE> = TimeCode</td>
  </tr></table></p>
-<p><font size=+1 color="green">Scalers</font></p>
+<p><font size="+1" color="green">Scalers</font></p>
 <p>
  <table cellpadding="0" cellspacing="1">
  <tr>
@@ -134,7 +124,7 @@ RESTORE\MUD\TITLE file</CODE>
 <p>
  If <code>NUMSCALERS</CODE> is zero, <CODE>SCALERTYPE</CODE>, <CODE>SCALERCOUNTS</CODE>, 
  and <CODE>SCALERLABEL</CODE> will not be created.</p>
-<p><font size=+1 color="green">Comments</font></p>
+<p><font size="+1" color="green">Comments</font></p>
 <p>
  <table cellpadding="0" cellspacing="1">
  <tr>
@@ -153,7 +143,7 @@ RESTORE\MUD\TITLE file</CODE>
  <td><code>COMMENTTIME</code></td>
  <td><code>COMMENTBODY</code></td>
  </tr></table></p>
-<p><font size=+1 color="green">Independent variables</font></p>
+<p><font size="+1" color="green">Independent variables</font></p>
 <p>
  <table cellpadding="0" cellspacing="1">
  <tr>

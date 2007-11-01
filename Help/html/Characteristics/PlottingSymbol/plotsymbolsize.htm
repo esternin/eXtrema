@@ -1,68 +1,60 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>PLOTSYMBOLSIZE</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="PLOTSYMBOLSIZE">
-</OBJECT>
-
 <P><A NAME="plotsymbolsize"></A>
-<font size=+3 color="green"><B>PLOTSYMBOLSIZE</B></font></P>
+<font size="+3" color="green"><B>PLOTSYMBOLSIZE</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=20% valign="top"><B>Syntax</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 SET PLOTSYMBOLSIZE n<br>
 SET %PLOTSYMBOLSIZE n<br>
 GET PLOTSYMBOLSIZE { n }<br>
 GET %PLOTSYMBOLSIZE { n }</CODE>
 </TD></TR>
 <TR>
-<TD width=20% valign="top"><B>Default value</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 %PLOTSYMBOLSIZE = 2.0</CODE>
 </TD></TR>
 </TABLE>
 <p>
- <CODE><font color="blue">PLOTSYMBOLSIZE</font></CODE> controls the size of
- the plotting symbols drawn when the <CODE><font color="blue">
- <a href="..\..\GraphCommand\graphcommand.htm">GRAPH</a></font></CODE>
- command is entered. The parameter <CODE><font color="blue">s</font></CODE> can be
- either a scalar or a vector.  If <CODE><font color="blue">s</font></CODE> is a scalar,
- every symbol will have the same size.  If <CODE><font color="blue">s</font></CODE>
- is a vector, the <CODE>i</CODE><sup>th</sup> symbol will have size given by
- <CODE><font color="blue">s</font>[i]</CODE>. In this case, the length of 
- <CODE><font color="blue">s</font></CODE> must be the same as the length of 
- the data vectors entered with the <CODE><font color="blue">GRAPH</font></CODE>
- command.</p>
+ <CODE>PLOTSYMBOLSIZE</CODE> controls the size of the plotting symbols drawn when the
+ <CODE><a href="../../GraphCommand/graphcommand.htm">GRAPH</a></CODE>
+ command is entered. The parameter <CODE>n</CODE> can be either a scalar or a vector.</p>
+<p>
+ If <CODE>n</CODE> is a scalar, every symbol will have the same size.</p>
+<p>
+ If <CODE>n</CODE> is a vector, the <CODE>i</CODE><sup>th</sup> symbol will have size given by
+ <CODE>n[i]</CODE>. In this case, the length of <CODE>n</CODE> must be the same as the length of 
+ the data vectors being plotted.</p>
 <p>
  There are two ways to specify the symbol size:</P>
 <p>
 <table border=0>
 <tr>
-<td valign="top"><CODE><font color="blue">&nbsp;PLOTSYMBOLSIZE</font></CODE></td>
+<td valign="top"><CODE>&nbsp;PLOTSYMBOLSIZE</CODE></td>
 <td valign="top">&rarr;</td>
 <td valign="top">specifies the size of the plotting symbols in world units</td>
 </tr><tr>
-<td valign="top"><CODE><font color="blue"><nobr>%PLOTSYMBOLSIZE</nobr></font></CODE></td>
+<td valign="top"><CODE><nobr>%PLOTSYMBOLSIZE</nobr></CODE></td>
 <td valign="top">&rarr;</td>
 <td valign="top">specifies the size as a percentage of the height of the graphics
- sub-window, that is, <NOBR><CODE><font color="blue">PLOTSYMBOLSIZE</font> =
- <font color="blue">%PLOTSYMBOLSIZE</font>
- * (<font color="blue"><a href="../generalgraph/yupperwindow.htm">YUPPERWINDOW</a></font>-
- <font color="blue"><a href="../generalgraph/ylowerwindow.htm">YLOWERWINDOW</a></font>)/100</CODE></NOBR>
+ sub-window, that is, <NOBR><CODE>PLOTSYMBOLSIZE = %PLOTSYMBOLSIZE
+ * (<a href="../GeneralGraph/yupperwindow.htm">YUPPERWINDOW</a>-
+ <a href="../GeneralGraph/ylowerwindow.htm">YLOWERWINDOW</a>)/100</CODE></NOBR>
  </td>
 </tr></table>
 </p>
 <P>
-<a href="plotsymbolcolor.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">PLOTSYMBOLCOLOR</font></a><br>
-<a href="plotsymbollinewidth.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">PLOTSYMBOLLINEWIDTH</font></a>
+ <a href="plotsymbolcolor.htm"><img align="middle" border="0" src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">PLOTSYMBOLCOLOR</font></a><br />
+ <a href="plotsymbollinewidth.htm"><img align="middle" border="0" src="../../shadow_right.gif">
+ &nbsp;<font size="+1" color="olive">PLOTSYMBOLLINEWIDTH</font></a>
 </P>
 </body>
 </html>

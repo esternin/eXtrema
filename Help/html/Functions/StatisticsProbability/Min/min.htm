@@ -1,28 +1,21 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>MIN</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="MIN function">
-	<PARAM NAME="Keyword" VALUE="minimum">
-</OBJECT>
 <P><A NAME="min"></A>
-<font size=+3 color="green"><B>MIN</B></font></P>
+<font size="+3" color="green"><B>MIN</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
 vout = MIN( v1{,v2,...} )</CODE>
 </TD></TR>
 </table></p>
 <p>
- The <CODE><font color="blue">MIN</font></CODE> function accepts from one (1) to a maximum
+ The <CODE>MIN</CODE> function accepts from one to a maximum
  of twenty (20) arguments. If only one argument is supplied, the minimum element of that
  argument is returned. If two or more arguments are supplied, the arguments are compared
  element by element, and the minimum values are returned. The arguments can be scalars,
@@ -31,35 +24,37 @@ vout = MIN( v1{,v2,...} )</CODE>
  length as the arguments, and matrix (tensor) arguments result in a matrix (tensor) with
  the same dimensions as the arguments.</p>
 <p>
-<center><table border=0 cols=4 cellspacing=0>
-<tr>
- <td bgcolor=#FFCCCC><em>arguments</em>&nbsp;</td>
- <td bgcolor=#FFCCCC><em>result</em>&nbsp;</td>
- <td colspan=2 align="center" bgcolor=#FFCCCC><em>definition</em></td>
-</tr><tr>
+ <center><table border="0" cols="4" cellspacing="0">
+ <tr>
+ <td bgcolor="#FFCCCC"><em>arguments</em>&nbsp;</td>
+ <td bgcolor="#FFCCCC"><em>result</em>&nbsp;</td>
+ <td colspan="2" align="center" bgcolor="#FFCCCC"><em>definition</em></td>
+ </tr><tr>
  <td>one vector</td><td>scalar</td>
- <td bgcolor=#FFFFCC>&nbsp;<CODE>MIN(x)</CODE></td>
- <td bgcolor=#FFFFCC>= minimum(<CODE>x[1],x[2],...,x[#]</CODE>)</td>
-</tr><tr>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>MIN(x)</CODE></td>
+ <td bgcolor="#FFFFCC">= minimum(<CODE>x[1],x[2],...,x[#]</CODE>)</td>
+ </tr><tr>
  <td>one matrix</td><td>scalar</td>
- <td bgcolor=#FFFFCC>&nbsp;<CODE>MIN(m)</CODE></td>
- <td bgcolor=#FFFFCC>= minimum(<CODE>m[1,1],...,m[#,#]</CODE>)</td>
-</tr><tr>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>MIN(m)</CODE></td>
+ <td bgcolor="#FFFFCC">= minimum(<CODE>m[1,1],...,m[#,#]</CODE>)</td>
+ </tr><tr>
  <td>scalars</td><td>scalar</td>
- <td bgcolor=#FFFFCC>&nbsp;<CODE>MIN(a,b,...)</CODE></td>
- <td bgcolor=#FFFFCC>= minimum(<CODE>a,b,...</CODE>)</td>
-</tr><tr>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>MIN(a,b,...)</CODE></td>
+ <td bgcolor="#FFFFCC">= minimum(<CODE>a,b,...</CODE>)</td>
+ </tr><tr>
  <td>vector</td><td>vector</td>
- <td bgcolor=#FFFFCC>&nbsp;<CODE>MIN(x,y,...)[j]</CODE></td>
- <td bgcolor=#FFFFCC>= minimum(<CODE>x[j],y[j],...</CODE>)</td>
-</tr><tr>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>MIN(x,y,...)[j]</CODE></td>
+ <td bgcolor="#FFFFCC">= minimum(<CODE>x[j],y[j],...</CODE>)</td>
+ </tr><tr>
  <td>matrix</td><td>matrix</td>
- <td bgcolor=#FFFFCC>&nbsp;<CODE>MIN(m1,m2,...)[i,j]</CODE></td>
- <td bgcolor=#FFFFCC>= minimum(<CODE>m1[i,j],m2[i,j],...</CODE>)</td>
-</tr></table></center></p>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>MIN(m1,m2,...)[i,j]</CODE></td>
+ <td bgcolor="#FFFFCC">= minimum(<CODE>m1[i,j],m2[i,j],...</CODE>)</td>
+ </tr></table></center></p>
 <p>
-<a href="..\Median\median.htm"><img align=middle border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Median</font></a><br>
-<a href="..\Poisson\poisson.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Poisson distribution</font></a>
+ <a href="../Median/median.htm"><img align=middle border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Median</font></a><br />
+ <a href="../Poisson/poisson.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Poisson distribution</font></a>
 </P>
 </BODY>
 </HTML>

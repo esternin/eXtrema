@@ -1,67 +1,46 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Normal Distribution</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="fit">
-</OBJECT>
-
-<P><A NAME="fitcnormaldist"></A>
-<font size=+2 color="green">Normal distribution</font>
-</P>
+<P><font size="+2" color="green">Normal distribution</font></P>
 <P>
- Assume that each data point,
- <IMG WIDTH=16 HEIGHT=17 ALIGN=MIDDLE SRC="img9.gif">, has an error that is
- independently random
- and distributed as a normal distribution, that is, 
-</P>
-<P> <IMG WIDTH=382 HEIGHT=46 ALIGN=BOTTOM SRC="img39.gif">
-</P>
+ Assume that each data point, <code>y<sub>k</sub></code>, has an error that is
+ independently random and distributed as a normal distribution, that is,</P>
 <P>
- where <IMG WIDTH=16 HEIGHT=16 ALIGN=BOTTOM SRC="img40.gif">  is the variance,
- and <IMG WIDTH=60 HEIGHT=29 ALIGN=MIDDLE SRC="img41.gif">  is the
- expression that we want to fit.
-</P>
-<P> <IMG WIDTH=495 HEIGHT=54 ALIGN=BOTTOM SRC="img42.gif">
-</P>
+ <IMG SRC="img39.gif"></P>
 <P>
- The goal is to minimize the
- <IMG WIDTH=16 HEIGHT=33 ALIGN=MIDDLE SRC="img24.gif"> 
- function:
-</P>
-<P> <IMG WIDTH=463 HEIGHT=54 ALIGN=BOTTOM SRC="img43.gif">
-</P>
+ where <code>&sigma;<sup>2</sup></code> is the variance, and
+ <code><i>f</i>(x<sub>k</sub>,p)</code> is the expression that we want to fit.</P>
 <P>
- where the weights,  <IMG WIDTH=20 HEIGHT=16 ALIGN=MIDDLE SRC="img44.gif">,
- are defined as:  <IMG WIDTH=81 HEIGHT=31 ALIGN=MIDDLE SRC="img45.gif">.
- Consider the Taylor expansion of
- <IMG WIDTH=16 HEIGHT=33 ALIGN=MIDDLE SRC="img24.gif">:
-</P>
-<P> <IMG WIDTH=503 HEIGHT=57 ALIGN=BOTTOM SRC="img46.gif">
-</P>
+ <IMG SRC="img42.gif"></P>
 <P>
- Define the arrays  <IMG WIDTH=8 HEIGHT=12 ALIGN=BOTTOM SRC="img27.gif">,
- <IMG WIDTH=14 HEIGHT=12 ALIGN=BOTTOM SRC="img28.gif">  and
- <IMG WIDTH=8 HEIGHT=8 ALIGN=BOTTOM SRC="img29.gif">:
-</P>
-<P> <IMG WIDTH=629 HEIGHT=149 ALIGN=BOTTOM SRC="img47.gif">
-</P>
+ The goal is to minimize the <code>&chi;<sup>2</sup></code> function:</P>
 <P>
- Linearize and the problem reduces to solving the matrix equation
- <IMG WIDTH=88 HEIGHT=25 ALIGN=MIDDLE SRC="img34.gif">.
-</P>
+ <IMG SRC="img43.gif"></P>
 <P>
-<a href="chi2andweights.htm"><font size=+1 color="olive">Chi-square and weights</font></a><br>
-<a href="hint.htm"><font size=+1 color="olive">Hint for physicists</font></a><br>
-<a href="degfree.htm"><font size=+1 color="olive">Degrees of freedom</font></a>
-</P><P>
-<a href="update.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Update after a fit</font></a><br>
-<a href="poissondist.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Poisson distribution</font></a>
+ where the weights are defined as: <code>w&equiv;1/&sigma;<sup>2</sup></code>.
+ Consider the Taylor expansion of <code>&chi;<sup>2</sup></code>:</P>
+<P>
+ <IMG SRC="img46.gif"></P>
+<P>
+ Define the arrays <IMG SRC="img27.gif">, <IMG SRC="img28.gif">&nbsp; and <IMG SRC="img29.gif">:</P>
+<P>
+ <IMG SRC="img47.gif"></P>
+<P>
+ Linearize and the problem reduces to solving the matrix equation</p>
+<p>
+ <center><IMG SRC="img34.gif"></center></P>
+<P>
+ <a href="chi2andweights.htm"><font size="+1" color="olive">Chi-square and weights</font></a><br />
+ <a href="hint.htm"><font size="+1" color="olive">Hint for physicists</font></a><br />
+ <a href="degfree.htm"><font size="+1" color="olive">Degrees of freedom</font></a></P>
+<P>
+ <a href="update.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Update after a fit</font></a><br />
+ <a href="poissondist.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Poisson distribution</font></a>
 </P>
 </BODY>
 </HTML>

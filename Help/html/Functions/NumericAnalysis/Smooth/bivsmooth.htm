@@ -1,61 +1,65 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>2D smoothing</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" 
-CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="BIVSMOOTH function">
-  <PARAM NAME="Keyword" VALUE="2D smoothing">
-  <PARAM NAME="Keyword" VALUE="smoothing 2D">
-</OBJECT>
 <P><A NAME="bivsmooth"></A>
-<font size=+3 color="green"><B>2D smoothing</B></font></P>
+<font size="+3" color="green"><B>2D smoothing</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
 wout = BIVSMOOTH(x,y,z,mx,my)</CODE>
 </TD></TR>
 </table></p>
 <p>
-This function fits a smooth surface of a single-valued bivariate function z = z(x,y) to a set of input data
-points given at input grid points in an x-y plane.  It generates a set of output grid points by equally
-dividing the x and y coordinates in each interval between a pair of input grid points, interpolates the z
-value for the x and y values of each output grid point, and generates a set of output points consisting of
-input data points and the interpolated points.  The method is based on a piece-wise function composed of a set
-of bicubic polynomials in x and y.  Each polynomial is applicable to a rectangle of the input grid in the x-y
-plane.  Each polynomial is determined locally.</P>
+ This function fits a smooth surface of a single-valued bivariate function z = z(x,y) to a set of input data
+ points given at input grid points in an x-y plane.  It generates a set of output grid points by equally
+ dividing the x and y coordinates in each interval between a pair of input grid points, interpolates the z
+ value for the x and y values of each output grid point, and generates a set of output points consisting of
+ input data points and the interpolated points.  The method is based on a piece-wise function composed of
+ a set of bicubic polynomials in x and y.  Each polynomial is applicable to a rectangle of the input grid
+ in the x-y plane.  Each polynomial is determined locally.</P>
 <P>
-The first two parameters are vectors. Vector <CODE><font color="blue">x</font></CODE> contains the x-coordinates of the input grid points, in
-ascending or descending order. Vector <CODE><font color="blue">y</font></CODE> contains the y-coordinates of the input grid points, in ascending or
-descending order.  Both <CODE><font color="blue">x</font></CODE> and <CODE><font color="blue">y</font></CODE> must be monotonic.  The third parameter is a matrix, <CODE><font color="blue">z</font></CODE>, which contains the
-values of the function at the input grid points, <CODE><font color="blue">z[i][j]</font></CODE> is the data value at <CODE><font color="blue">(x[i],y[j])</font></CODE>.  The last two
-parameters are scalars. The fourth parameter, <CODE><font color="blue">mx</font></CODE>, is the number of subintervals between each pair of input
-grid points in the x direction, and must be at least 2. The fifth parameter, <CODE><font color="blue">my</font></CODE>, is the number of subintervals
-between each pair of input grid points in the y direction, and must be at least 2.  The result of the function
-is a matrix, <CODE><font color="blue">wout</font></CODE>, which has <CODE><font color="blue">my*(LEN(y)-1)+1</font></CODE> rows and <CODE><font color="blue">mx*(LEN(x)-1)+1</font></CODE> columns.  The first row of the matrix,
-starting in column 2, contains the x coordinates of the output values.  It can be extracted into a vector, <CODE><font color="blue">u</font></CODE>,
-with the following: <CODE><font color="blue">u = wout[1,2:VLEN(wout)[2]]</font></CODE>.  The first column of the matrix, starting in row 2, contains
-the y coordinates of the output values.  It can be extracted into a vector, <CODE><font color="blue">v</font></CODE>, with the following: <CODE><font color="blue">v =
-wout[2:VLEN(wout)[1],1]</font></CODE>.  The smoothed values at the <CODE><font color="blue">(u,v)</font></CODE> locations can be extracted into a matrix, <CODE><font color="blue">w</font></CODE>, with
-the following: <CODE><font color="blue">w = wout[2:VLEN(wout)[1],2:VLEN(wout)[2]]</font></CODE>.  For example, suppose <CODE><font color="blue">x</font></CODE> and <CODE><font color="blue">y</font></CODE> are vectors and <CODE><font color="blue">m</font></CODE> is a
-data matrix with <CODE><font color="blue">LEN(y)</font></CODE> rows and <CODE><font color="blue">LEN(x)</font></CODE> columns:
-<CODE><font color="blue"><PRE>
-nx = 5 ! number of subdivisions in x
-ny = 4 ! number of subdivisions in y
-ww = bivsmooth(x,y,m,nx,ny)
-u = ww[1,2:VLEN(ww)[2]]
-v = ww[2:VLEN(ww)[1],1]
-w = ww[2:VLEN(ww)[1],2:VLEN(ww)[2]]
-</PRE></font></CODE></P>
+ The first two parameters are vectors. Vector <CODE>x</CODE> contains the x-coordinates of the input
+ grid points, in ascending or descending order. Vector <CODE>y</CODE> contains the y-coordinates of the
+ input grid points, in ascending or descending order.  Both <CODE>x</CODE> and <CODE>y</CODE> must be
+ monotonic.  The third parameter is a matrix, <CODE>z</CODE>, which contains the values of the function
+ at the input grid points, <CODE>z[i][j]</CODE> is the data value at <CODE>(x[i],y[j])</CODE>.  The last two
+ parameters are scalars. The fourth parameter, <CODE>mx</CODE>, is the number of subintervals between
+ each pair of input grid points in the x direction, and must be at least 2. The fifth parameter,
+ <CODE>my</CODE>, is the number of subintervals between each pair of input grid points in the y direction,
+ and must be at least 2.  The result of the function is a matrix, <CODE>wout</CODE>, which has
+ <CODE>my*(LEN(y)-1)+1</CODE> rows and <CODE>mx*(LEN(x)-1)+1</CODE> columns.  The first row of the matrix,
+ starting in column 2, contains the x coordinates of the output values.  It can be extracted into a vector,
+ <CODE>u</CODE>, with the following:</p>
+<p>
+ <CODE><font color="blue">u = wout[1,2:VLEN(wout)[2]]</font></CODE></p>
+<p>
+ The first column of the matrix, starting in row 2, contains the y coordinates of the output values.
+ It can be extracted into a vector, <CODE>v</CODE>, with the following:</p>
+<p>
+ <CODE><font color="blue">v = wout[2:VLEN(wout)[1],1]</font></CODE></p>
+<p>
+ The smoothed values at the <CODE>(u,v)</CODE> locations can be extracted into a matrix, <CODE>w</CODE>, with
+ the following:</p>
+<p>
+ <CODE><font color="blue">w = wout[2:VLEN(wout)[1],2:VLEN(wout)[2]]</font></CODE></p>
+<p>
+ For example, suppose <CODE>x</CODE> and <CODE>y</CODE> are vectors and
+ <CODE>m</CODE> is a data matrix with <CODE>LEN(y)</CODE> rows and <CODE>LEN(x)</CODE> columns:
+ <font color="blue"><PRE>
+ nx = 5 ! number of subdivisions in x
+ ny = 4 ! number of subdivisions in y
+ ww = bivsmooth(x,y,m,nx,ny)
+ u = ww[1,2:VLEN(ww)[2]]
+ v = ww[2:VLEN(ww)[1],1]
+ w = ww[2:VLEN(ww)[1],2:VLEN(ww)[2]]
+ </PRE></font></P>
 <P>
-Algorithm derived from an article by Hiroshi Akima, <b>Communications of the ACM</b>, volume 17, number 1,
-January 1974, pp. 26-31.</P>
+ Algorithm derived from an article by Hiroshi Akima, <b>Communications of the ACM</b>, volume 17, number 1,
+ January 1974, pp. 26-31.</P>
 </BODY>
 </HTML>

@@ -1,18 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>A script to plot a curve with axes</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-</OBJECT>
-
-<P><A NAME="graphscripttoplot"></A>
-<font size=+2 color="green">A script to plot a curve with axes</font></P>
+<P><font size="+2" color="green">A script to plot a curve with axes</font></P>
 <P>
  The script file, <TT>graph.pcm</TT>, listed below, reads two columns of
  numbers, in free format, from a file. The name of the
@@ -24,8 +16,8 @@
  Plotting symbol number one, a `box', is used.  The plot is then labeled with
  the date and time, positioned interactively.  Note that
  comments begin with a <code>!</code>.</P>
-
-<font color="blue"><PRE>
+<p>
+ <font color="blue"><PRE>
  ! script file   graph.pcm
  !
  READ ?1 X Y    ! read two columns of numbers into vectors X and Y
@@ -33,28 +25,27 @@
  GRAPH X Y      ! plot the data, autoscaled, with axes
  TEXT DATE      ! draw the current date using the graphics cursor
  TEXT TIME      ! draw the current time using the graphics cursor
-</PRE></font>
+ </PRE></font></p>
 <P>
  The figure below was produced by entering the command:
- <nobr><font color="blue"><code>@graph file.dat</code></font></nobr>
+ <font color="blue"><code>@graph file.dat</code></font>
  The data file, with two columns of numbers, is also shown below.</P>
-
-<PRE>
+<p>
+ <PRE>
  1.1  2.2
  1.2  2.4
  1.3  2.6
  1.4  3.1
  1.5  4.5
  1.6  5.1
-</PRE>
-
-<center>
- <img src="graphex1.gif">
-</center>
+ </PRE></p>
+<p>
+ <center><img src="graphex1.gif"></center></p>
 <P>
-<a href="basicexample.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Basic example</font></a><br>
-<a href="getaxisnums.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Getting the axis numbers right</font></a>
+ <a href="basicexample.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Basic example</font></a><br />
+ <a href="getaxisnums.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Getting the axis numbers right</font></a>
 </P>
-
 </BODY>
 </HTML>

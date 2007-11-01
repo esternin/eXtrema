@@ -1,19 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Vector variables</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="variable vector">
-        <PARAM NAME="Keyword" VALUE="vector variable">
-</OBJECT>
-
 <P><A NAME="variablevector"></A>
-<font size=+2 color="green">Vector variables</font></P>
+<font size="+2" color="green">Vector variables</font></P>
 <P>
  A vector is a one dimension array of double precision real numbers.  A
  vector can be thought of as a list of numbers. There is no maximum length
@@ -22,69 +14,55 @@
  A literal vector can be a list of numbers, such as,
  <code>[3;4.2;.456;-8]</code>, or a range of numbers, such as,
  <code>[3:21:2]</code>, or an expression that results in a list of
- numbers, such as <code>3*[2:5]^2</code>. Elements of a list are separated
+ numbers, such as <code>3*[2:5]^2</code>.</p>
+<p>
+ Elements of a list are separated
  by semicolons, <CODE>;</CODE>, while the colon, <CODE>:</CODE>, is used as
  the range element separator.</P>
 <P>
  The following table shows the possible ways that
  variables can be considered to be equivalent to vectors, that is, can be
  used wherever vectors are expected.</P>
-<center>
-<table border=1>
- <tr><td>
- <table cellpadding=5>
- <tr>
- <td colspan=4>Let <font color="blue"><code>a</code></font> be a scalar and
- let <font color="blue"><code>x</code></font> be a vector</td>
+<p>
+ <center>
+ <table border="1" cols="1" width="70%">
+ <tr><td bgcolor="#FFCCCC">Let <code>a</code> be a scalar and let <code>x</code> be a vector<br />
+ Suppose that <code>M</code> is a matrix and <code>V</code> is a vector</td>
  </tr><tr>
- <td colspan=4>Suppose that <font color="blue"><code>M</code></font> is a
- matrix and <font color="blue"><code>V</code></font> is a vector</td>
- </tr><tr>
- <td><font color="blue"><code>V</code></font></td>
- <td>=</td>
- <td><font color="blue"><code>V[i]</code></font></td>
- <td>for <code>i = 1, ..., LEN(<font color="blue">V</font>)</code></td>
- </tr><tr>
- <td><font color="blue"><code>V[x]</code></font></td>
- <td>=</td>
- <td><font color="blue"><code>V[i]</code></font></td>
- <td>for <code>i = <font color="blue">x</font>[1],
-  <font color="blue">x</font>[2], ..., <font color="blue">x</font>[#]</code></td>
- </tr><tr>
- <td><font color="blue"><code>M[x,b]</code></font></td>
- <td>=</td>
- <td><font color="blue"><code>M[i,a]</code></font></td>
- <td>for <code>i = <font color="blue">x</font>[1],
- <font color="blue">x</font>[2], ..., <font color="blue">x</font>[#]</code></td>
- </tr><tr>
- <td><font color="blue"><code>M[a,x]</code></font></td>
- <td>=</td>
- <td><font color="blue"><code>M[a,j]</code></font></td>
- <td>for <code>j = <font color="blue">x</font>[1],
- <font color="blue">x</font>[2], ..., <font color="blue">x</font>[#]</code></td>
- </table>
- </td></tr></table>
-</center>
+ <td><table cellpadding="2" cols="4">
+  <tr>
+  <td><code>V</code></td><td>=</td><td><code>V[i]</code></td><td>for <code>i = 1, ..., LEN(V)</code></td>
+  </tr><tr>
+  <td><code>V[x]</code></td><td>=</td><td><code>V[i]</code></td>
+   <td>for <code>i = x[1], x[2], ..., x[#]</code></td>
+  </tr><tr>
+  <td><code>M[x,b]</code></td><td>=</td><td><code>M[i,a]</code></td>
+   <td>for <code>i = x[1], x[2], ..., x[#]</code></td>
+  </tr><tr>
+  <td><code>M[a,x]</code></td><td>=</td><td><code>M[a,j]</code></td>
+   <td>for <code>j = x[1], x[2], ..., x[#]</code></td>
+  </table></td></tr>
+ </table></center></P>
 <P>
  All vectors have an order property. Vectors are either in ascending order,
  descending order, or un-ordered.  The type is displayed in the
- <a href="..\ShowCommand\showcommand.htm"><font color="blue"><CODE>SHOW</CODE></font></a>
+ <a href="..\ShowCommand\showcommand.htm"><CODE>SHOW</CODE></a>
  command, where <code>+O</code> means ascending
  order, <code>-O</code> means descending order, and no symbol means
  un-ordered.  For now, being ordered only has an affect on the vector
- union, <code>/|</code>, and the vector intersection,
- <code>/&amp;</code>, operators.  These operations are much faster if the
- vector operands are ordered.  The
- <a href="..\Functions\VariableCharacteristics\Where\where.htm"><font color="blue"><CODE>WHERE</CODE></font></a>
+ <a href="../Operators/union.htm">union</a>, <code>/|</code>, and the vector
+ <a href="../Operators/intersection.htm">intersection</a>, <code>/&amp;</code>, operators.
+ These operations are much faster if the vector operands are ordered.  The
+ <a href="../Functions/VariableCharacteristics/Where/where.htm"><CODE>WHERE</CODE></a>
  function produces an ascending order vector, as does the
- <a href="..\SortCommand\sortcommand.htm"><font color="blue"><CODE>SORT\UP</CODE></font></a>
- command.  The
- <a href="..\SortCommand\sortcommand.htm"><font color="blue"><CODE>SORT\DOWN</CODE></font></a>
+ <a href="../SortCommand/sortcommand.htm"><CODE>SORT/UP</CODE></a> command.  The
+ <a href="../SortCommand/sortcommand.htm"><CODE>SORT/DOWN</CODE></a>
  command produces a descending order vector.</P>
 <P>
-<a href="scalarvariable.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Scalar variables</font></a><br>
-<a href="matrixvariable.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Matrix variables</font></a>
+ <a href="scalarvariable.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size=+1 color="olive">Scalar variables</font></a><br>
+ <a href="matrixvariable.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size=+1 color="olive">Matrix variables</font></a>
 </P>
-
 </body>
 </html>

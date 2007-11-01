@@ -1,73 +1,53 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>YPOWERAUTO</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="YPOWERAUTO">
-</OBJECT>
-
 <P><A NAME="ypowerauto"></A>
-<font size=+3 color="green"><B>YPOWERAUTO</B></font></P>
+<font size="+3" color="green"><B>YPOWERAUTO</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=20% valign="top"><B>Syntax</B>:</TD>
-<TD width=80% valign="top"><CODE>
-SET YPOWERAUTO n<br>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YPOWERAUTO n<br />
 GET YPOWERAUTO { n }</CODE>
 </TD></TR>
 <TR>
-<TD width=20% valign="top"><B>Default</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 YPOWERAUTO = 1</CODE>
 </TD></TR>
 </TABLE>
- 
-<P><CODE><font color="blue">YPOWERAUTO</font></CODE>, along with
- <CODE><font color="blue"><a href="ypower.htm">YPOWER</A></font></CODE>,
- controls the <i>y</i>-axis scale value that is appended to the
- <i>y</i>-axis text label.  This scale value is needed when there
- are not enough digits allowed for the numbers labeling the
- <I>y</I>-axis.</P>
-
 <P>
-<table border=0 cols=3>
-<tr>
-<td colspan=3 valign="top" align="left">
- <CODE><font color="blue">YPOWERAUTO</font></CODE></td>
-</tr><tr>
-<td colspan=3 valign="center"><hr></td>
-</tr><tr>
-<td valign="top"><nobr><CODE>2</CODE></nobr></td>
-<td valign="top">&rarr;</td>
-<td valign="top">determine <CODE><font color="blue">YPOWER</font></CODE>,
- but do not append the scale value to the text label, even if it is needed</td>
-</tr><tr>
-<td valign="top"><nobr><CODE>1</CODE></nobr></td>
-<td valign="top">&rarr;</td>
-<td valign="top">determine <CODE><font color="blue">YPOWER</font></CODE>,
- and append the scale value to the text label</td>
-</tr><tr>
-<td valign="top"><nobr><CODE>0</CODE></nobr></td>
-<td valign="top">&rarr;</td>
-<td valign="top">use the present value of
- <CODE><font color="blue">YPOWER</font></CODE>, and append the scale value
- to the text label</td>
-</tr></table>
-</P>
-
-<P>If the user wishes to completely specify the appearance of the
- <i>y</i>-axis, <CODE><font color="blue">YPOWERAUTO</font></CODE>
- must be set to <CODE>0</CODE>, otherwise the number of
+ <CODE>YPOWERAUTO</CODE>, along with <CODE><a href="ypower.htm">YPOWER</A></CODE>,
+ controls the <i>y</i>-axis scale value that is appended to the <i>y</i>-axis text label.
+ This scale value is needed when there are not enough digits allowed for the numbers labeling the
+ <I>y</I>-axis.</P>
+<P>
+ <table border="1" cols="2">
+ <tr>
+ <td valign="center" align="center"><CODE>YPOWERAUTO</CODE></td>
+ <td valign="center" align="center"><em>meaning</em></td>
+ </tr><tr>
+ <td valign="center" align="center">2</td>
+ <td valign="top">determine <CODE>YPOWER</CODE>,
+  but do not append the scale value to the text label, even if it is needed</td>
+ </tr><tr>
+ <td valign="center" align="center">1</td>
+ <td valign="top">determine <CODE>YPOWER</CODE>, and append the scale value to the text label</td>
+ </tr><tr>
+ <td valign="center" align="center">0</td>
+ <td valign="top">use the present value of <CODE>YPOWER</CODE>, and append the scale value
+  to the text label</td>
+ </tr></table></P>
+<P>
+ If the user wishes to completely specify the appearance of the
+ <i>y</i>-axis, <CODE>YPOWERAUTO</CODE> must be set to <CODE>0</CODE>, otherwise the number of
  digits and decimal places,
- <CODE><font color="blue"><A HREF="..\generalgraph\ynumberofdigits.htm">YNUMBEROFDIGITS</A>
- </font></CODE> and
- <CODE><font color="blue"><A HREF="..\generalgraph\ynumberofdecimals.htm">YNUMBEROFDECIMALS</A></font></CODE>, may be changed.</P>
-
+ <CODE><A HREF="ynumberofdigits.htm">YNUMBEROFDIGITS</A>
+ </CODE> and <CODE><A HREF="ynumberofdecimals.htm">YNUMBEROFDECIMALS</A></CODE>,
+ may be changed.</P>
 </body>
 </html>

@@ -1,66 +1,46 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>WINDOW command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="WINDOW command">
-  <PARAM NAME="Keyword" VALUE="\TILE qualifier">
-  <PARAM NAME="Keyword" VALUE="\MESSAGES qualifier">
-  <PARAM NAME="Keyword" VALUE="\INHERIT qualifier">
-  <PARAM NAME="Keyword" VALUE="inherit characteristics">
-</OBJECT>
+<P><font size="+3" color="green"><B>WINDOW command</B></font></P>
 
-<P><font size=+3 color="green"><B>WINDOW command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-WINDOW { n { lowx lowy { upx upy }}}<BR>
-WINDOW\INHERIT n m<BR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+WINDOW { n { lowx lowy { upx upy }}}<BR />
+WINDOW\INHERIT n m<BR />
 WINDOW\TILE nx ny nstart</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\TILE,</NOBR> <nobr>\INHERIT,</NOBR> <NOBR>\MESSAGES</NOBR></CODE>
-</TD></TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\TILE, \INHERIT, \MESSAGES</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\-TILE,</NOBR> <NOBR>\-MESSAGES,</NOBR> <nobr>\-INHERIT,</NOBR> nstart=1</CODE>
-</TD></TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\-TILE, \-MESSAGES, \-INHERIT, nstart=1</CODE></TD></TR>
 </TABLE>
 <P>
- The <CODE><font color="blue">WINDOW</font></CODE> command chooses a subset
- of the graphics page. The default window is the entire current graphics page,
- that is, window number zero (<CODE>0</CODE>).</P>
+ The <CODE>WINDOW</CODE> command chooses a subset of the graphics page. The default window is
+ the entire current graphics page, that is, window number zero (<CODE>0</CODE>).</P>
 <P>
- If the <CODE><font color="blue">WINDOW</font></CODE> command is entered with
- no parameters, a listing of the currently defined windows will be displayed,
- along with their corner coordinates.</P>
+ If the <CODE>WINDOW</CODE> command is entered with no parameters, a listing of the currently
+ defined windows will be displayed, along with their corner coordinates.</P>
 <p>
  Every window has its own set of characteristics, such as plot symbols, line widths, etc.
- If the <CODE><font color="blue">\INHERIT</font></CODE> qualifier is used, window number
- <CODE><font color="blue">n</font></CODE> will be chosen, and the values of the characteristics
- for window <CODE><font color="blue">n</font></CODE> will be taken from window
- <CODE><font color="blue">m</font></CODE>.</p>
+ If the <CODE>\INHERIT</CODE> qualifier is used, window number
+ <CODE>n</CODE> will be chosen, and the values of the characteristics
+ for window <CODE>n</CODE> will be taken from window <CODE>m</CODE>.</p>
 <P>
- Use the <CODE><font color="blue">\-MESSAGES</font></CODE> qualifier to turn
+ Use the <CODE>\-MESSAGES</CODE> qualifier to turn
  off the display of informational messages to the message area of the analysis window.</P>
 <P>
-<a href="whatare.htm"><font size=+1 color="olive">What are windows?</font></a><br>
-<a href="boundaries.htm"><font size=+1 color="olive">Boundaries</font></a><br>
-<a href="plotunits.htm"><font size=+1 color="olive">Plotting units</font></a><br>
-<a href="define.htm"><font size=+1 color="olive">Defining a new window</font></a><br>
-<a href="predefined.htm"><font size=+1 color="olive">Pre-defined windows</font></a><br>
-<a href="alternate.htm"><font size=+1 color="olive">Alternate method</font></a><br>
-<a href="multiple.htm"><font size=+1 color="olive">Multiple window creation</font></a>
-</P>
+ <a href="whatare.htm"><font size="+1" color="olive">What are windows?</font></a><br />
+ <a href="plotunits.htm"><font size="+1" color="olive">Plotting units</font></a><br />
+ <a href="define.htm"><font size="+1" color="olive">Defining a new window</font></a><br />
+ <a href="predefined.htm"><font size="+1" color="olive">Pre-defined windows</font></a><br />
+ <a href="alternate.htm"><font size="+1" color="olive">Alternate method</font></a><br />
+ <a href="multiple.htm"><font size="+1" color="olive">Multiple window creation</font></a></P>
 </BODY>
 </HTML>

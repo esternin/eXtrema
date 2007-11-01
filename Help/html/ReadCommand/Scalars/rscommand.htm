@@ -1,86 +1,71 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
-<TITLE>READ\SCALARS command</TITLE>
+<TITLE>READ/SCALARS command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="read scalar">
-	<PARAM NAME="Keyword" VALUE="file">
-</OBJECT>
+<P><font size="+3" color="green"><B>READ/SCALARS Command</B></font></P>
 
-<P><A NAME="rvcommand"></A>
-<font size=+3 color="green"><B>READ\SCALARS Command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 READ\SCALARS file{\n} s1{\c1} { s2{\c2} ... }</CODE></TD>
 </TR><TR>
-<TD width=15% valign="top"><B>Qualifiers:</B></TD>
-<TD width=85% valign="top"><CODE>
- <nobr>\ERRFILL,</nobr></CODE></TD>
-</TR><TR>
-<TD width=15% valign="top"><B>Defaults:</B></TD>
-<TD width=85% valign="top"><CODE>
- <nobr>\-ERRORFILL</nobr></CODE></TD>
+<TD valign="top"><B>Qualifiers:</B></TD>
+<TD valign="top"><CODE>\ERRFILL,</CODE></TD></TR><TR>
+<TD valign="top"><B>Defaults:</B></TD>
+<TD valign="top"><CODE>\-ERRFILL</CODE></TD>
 </TR>
 </TABLE>
 <P>
  By default, the first record is read from an ASCII file, and, if no errors
  are encountered on the read, the <CODE>I</CODE><sup>th</sup> number is placed into
- scalar <CODE><font color="blue">sI</font></CODE>. New
- scalar variables are created. By default, no scalars will be made if an
+ scalar <CODE>sI</CODE>. New scalar variables are created. By default, no scalars will be made if an
  invalid field is encountered on the read.</p>
 <p>
- A scalar appended to the file name, <CODE><font color="blue">file\n</font></CODE>,
- specifies the starting record. The first <CODE><font color="blue">n</font>-1</CODE>
- records will be skipped.</p>
+ A scalar appended to the file name, <CODE>file\n</CODE>,
+ specifies the starting record. The first <CODE>n-1</CODE> records will be skipped.</p>
 <p>
  By default, the <CODE>I</CODE><sup>th</sup> number field is placed into scalar
- <CODE><font color="blue">sI</font></CODE>. The field
- number can be specified by appending a scalar, <CODE><font color="blue">cI</font></CODE>,
+ <CODE>sI</CODE>. The field number can be specified by appending a scalar, <CODE>cI</CODE>,
  to the scalar name as a qualifier. In this case, the
- <CODE><font color="blue">cI</font></CODE><sup>th</sup> field can be placed into the
- <CODE><font color="blue">sI</font></CODE><sup>th</sup> scalar. For example, after the command:
- <nobr><CODE><font color="blue">READ\SCALARS DUM.DAT W\2 X\4 Y Z\1</font></CODE></nobr>
- <CODE><font color="blue">W</font></CODE> would contain field <CODE>2</CODE>,
- <CODE><font color="blue">X</font></CODE> would contain field <CODE>4</CODE>,
- <CODE><font color="blue">Y</font></CODE> would default to field <CODE>3</CODE>, and
- <CODE><font color="blue">Z</font></CODE> would contain field <CODE>1</CODE>.</p>
+ <CODE>cI</CODE><sup>th</sup> field can be placed into the
+ <CODE>sI</CODE><sup>th</sup> scalar. For example, after the command:
+ <nobr><CODE>READ\SCALARS DUM.DAT W\2 X\4 Y Z\1</CODE></nobr>
+ <CODE>W</CODE> would contain field <CODE>2</CODE>,
+ <CODE>X</CODE> would contain field <CODE>4</CODE>,
+ <CODE>Y</CODE> would default to field <CODE>3</CODE>, and
+ <CODE>Z</CODE> would contain field <CODE>1</CODE>.</p>
 <p>
- If the <CODE><font color="blue">\ERRFILL</font></CODE> qualifier is used, an invalid
- field causes that field to be set to <CODE><font color="blue">ERRORFILL</font></CODE>.
- By default, <CODE><font color="blue">ERRORFILL</font>=0</CODE>, but it's value can
- be changed with the <A HREF="../../SetCommand/setcommand.htm">SET</font></CODE></a>
- command.</p>
+ If the <CODE>\ERRFILL</CODE> qualifier is used, an invalid
+ field causes that field to be set to <CODE>ERRORFILL</CODE>.
+ By default, <CODE>ERRORFILL=0</CODE>, but it's value can
+ be controlled with the <code><A HREF="../../Characteristics/FileRelated/errorfill.htm">ERRORFILL</a></CODE>
+ characteristic.</p>
 <p>
-<font size=+1 color="green">Examples</font></p>
+ <font size="+1" color="green">Examples</font></p>
 <p>
  Suppose you have file <CODE>DUM.DAT</CODE> as below:</p>
-<pre>
+ <pre>
   1  23.7   0.1000E-5
   2 -31.4   0.2000E-3
   3   9.09  0.3000E-1
-</pre>
+ </pre>
 <p>
- Then <nobr><CODE><font color="blue">READ\SCALARS DUM.DAT A B</font></CODE></nobr>
- results in: <nobr><CODE>A = 1, B = 23.7</CODE></nobr></p>
+ <CODE><font color="blue">READ\SCALARS DUM.DAT A B</font></CODE>
+ results in: <CODE>A = 1, B = 23.7</CODE></p>
 <p>
- <nobr><CODE><font color="blue">READ\SCALARS DUM.DAT A\3 B</font></CODE></nobr>
- results in: <nobr><CODE>A = .000001, B = 23.7</CODE></nobr></p>
+ <CODE><font color="blue">READ\SCALARS DUM.DAT A/3 B</font></CODE>
+ results in: <CODE>A = .000001, B = 23.7</CODE></p>
 <p>
- <nobr><CODE><font color="blue">READ\SCALARS DUM.DAT\3 A B</font></CODE></nobr>
- results in: <nobr><CODE>A = 3, B = 9.09</CODE></nobr></p>
+ <CODE><font color="blue">READ\SCALARS DUM.DAT\3 A B</font></CODE>
+ results in: <CODE>A = 3, B = 9.09</CODE></p>
 <p>
- <nobr><CODE><font color="blue">READ\SCALARS DUM.DAT\2 A\3 B</font></CODE></nobr>
- results in: <nobr><CODE>A = .0002, B = -31.4</CODE></nobr></p>
+ <CODE><font color="blue">READ\SCALARS DUM.DAT\2 A/3 B</font></CODE>
+ results in: <CODE>A = .0002, B = -31.4</CODE></p>
 <P>
-<a href="../readcommand.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">READ command</font></a><br>
-</P>
+ <a href="../readcommand.htm"><img src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">READ command</font></a></P>
 </BODY>
 </HTML>

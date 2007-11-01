@@ -1,37 +1,31 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>JOIN function</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" 
-CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="JOIN function">
-</OBJECT>
-<P><font size=+3 color="green"><B>JOIN function</B></font></P>
+<P><font size="+3" color="green"><B>JOIN function</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
 m = JOIN(x,y)</CODE>
 </TD></TR>
 </table></p>
 <p>
- The arguments of the <CODE><font color="blue">JOIN</font></CODE> function must both be
- vectors. <CODE><font color="blue">JOIN</font></CODE> produces a matrix with 3
- columns. The first column is the intersection of <CODE><font color="blue">x</font></CODE>
- and <CODE><font color="blue">y</font></CODE>, that is, if you enter
+ The arguments of the <CODE>JOIN</CODE> function must both be
+ vectors. <CODE>JOIN</CODE> produces a matrix with 3
+ columns. The first column is the intersection of <CODE>x</CODE>
+ and <CODE>y</CODE>, that is, if you enter
  <CODE><font color="blue">m=JOIN(x,y)</font></CODE> then <code>m[*,1]</code> is the same
- as <code>x/&y</code>.  &nbsp;&nbsp;<code>m[i,2]</code> is the index of
- <CODE><font color="blue">x</font></CODE> from which <code>m[i,1]</code> was
- taken, and <code>m[i,3]</code> is the index of <CODE><font color="blue">y</font></CODE>
+ as <code>x/&y</code>, where /& is the
+ <a href="../../../Operators/intersection/intersection.htm">intersection</a> operator.
+ &nbsp;&nbsp;<code>m[i,2]</code> is the index of
+ <CODE>x</CODE> from which <code>m[i,1]</code> was
+ taken, and <code>m[i,3]</code> is the index of <CODE>y</CODE>
  from which <code>m[i,1]</code> was taken. If the vector arguments
- are ordered, the <CODE><font color="blue">JOIN</font></CODE> function will proceed much
- faster than if they are unordered.</p>
+ are ordered, the <CODE>JOIN</CODE> function will proceed much faster than if they are unordered.</p>
 <p><font color="green" size="+1">Example</font></p>
 <p>
  Suppose that you have two vectors:</p>
@@ -52,8 +46,10 @@ m = JOIN(x,y)</CODE>
   <tr><td><code>| 9&nbsp; 10 &nbsp;5&nbsp;|</code></td></tr></table></td>
  </tr></table></p>
 <p>
-<a href="..\Jacobi\jacobi.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Jacobi polynomials</font></a><br>
-<a href="..\Kelvin\kelvin.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Kelvin functions</font></a>
+ <a href="../Jacobi/jacobi.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Jacobi polynomials</font></a><br />
+ <a href="../Kelvin/kelvin.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Kelvin functions</font></a>
 </P>
 </BODY>
 </HTML>

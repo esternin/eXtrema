@@ -1,46 +1,42 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Fit a function</TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="read data">
-</OBJECT>
 <p>
-Read in some x-y data and then find a least-squares fit to the data as a linear
-combination of given functions, or as a nonlinear function.</P>
+ Read in some x-y data and then find a least-squares fit to the data as a linear
+ combination of given functions, or as a nonlinear function.</P>
 <P>
-Read in arrays <code>x</code> and <code>y</code> from
-<a href="xyL.dat">xyL.dat</a> and find the best 5th degree polynomial fit</P>
+ Read in arrays <code>x</code> and <code>y</code> from
+ <a href="xyL.dat">xyL.dat</a> and find the best 5th degree polynomial fit</P>
 <P>
-<font color="blue"><pre>
-read xyL.dat x y
-scalar\fit a0 a1 a2 a3 a4 a5
-fit y = a0+a1*x+a1*x^2+a2*x^3+a3*x^4+a4*x^5
-</pre></font></P>
+ <font color="blue"><pre>
+ read xyL.dat x y
+ scalar\fit a0 a1 a2 a3 a4 a5
+ fit y = a0+a1*x+a1*x^2+a2*x^3+a3*x^4+a4*x^5
+ </pre></font></P>
 <P>
-<img src="fit1.gif"></P>
+ <img src="fit1.gif"></P>
 <P>
-Read in arrays <code>x</code> and <code>y</code> from <a href="xyN.dat">xyN.dat</a>
-and find the best fit to <code>y(x) = a0*exp(a1*x)*sin(a2*x+a3)</code></P>
+ Read in arrays <code>x</code> and <code>y</code> from <a href="xyN.dat">xyN.dat</a>
+ and find the best fit to <code>y(x) = a0*exp(a1*x)*sin(a2*x+a3)</code></P>
 <P>
-<font color="blue"><pre>
-read xyN.dat x y
-scalar\fit a0 a1 a2 a3
-a0 = 5
-a1 = -.5
-a2 = 1.5
-a3 = .5
-fit y = a0*exp(a1*x)*sin(a2*x+a3)
-</pre></font></P>
+ <font color="blue"><pre>
+ read xyN.dat x y
+ scalar\fit a0 a1 a2 a3
+ a0 = 5
+ a1 = -.5
+ a2 = 1.5
+ a3 = .5
+ fit y = a0*exp(a1*x)*sin(a2*x+a3)
+ </pre></font></P>
 <P>
-<img src="fit2.gif"></P>
+ <img src="fit2.gif"></P>
 <P>
-<a href="readdata.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Read data from files</font></a><br>
-<a href="defineplotfunction.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Define and plot a function</font></a>
-</P>
+ <a href="readdata.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Read data from files</font></a><br />
+ <a href="defineplotfunction.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Define and plot a function</font></a></P>
 </BODY>
 </HTML>

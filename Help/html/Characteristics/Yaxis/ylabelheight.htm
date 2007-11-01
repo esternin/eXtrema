@@ -1,55 +1,45 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>YLABELHEIGHT</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="YLABELHEIGHT">
-</OBJECT>
-
 <P><A NAME="ylabelheight"></A>
-<font size=+3 color="green"><B>YLABELHEIGHT</B></font></P>
+<font size="+3" color="green"><B>YLABELHEIGHT</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=20% valign="top"><B>Syntax</B>:</TD>
-<TD width=80% valign="top"><CODE>
-SET YLABELHEIGHT n<br>
-SET %YLABELHEIGHT n<br>
-GET YLABELHEIGHT { n }<br>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YLABELHEIGHT n<br />
+SET %YLABELHEIGHT n<br />
+GET YLABELHEIGHT { n }<br />
 GET %YLABELHEIGHT { n }</CODE>
 </TD></TR>
 <TR>
-<TD width=20% valign="top"><B>Default</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 %YLABELHEIGHT = 3</CODE>
 </TD></TR>
 </TABLE>
-
-<P><CODE><font color="blue">YLABELHEIGHT</font></CODE> controls the size of the
- automatic text label for the <i>y</i>-axis. There are two forms: 
-
-<p><table cols=3>
-<tr>
-<td valign="top"><code><font color="blue">&nbsp;YLABELHEIGHT</font></code></td>
-<td valign="top"> &rarr;</td>
-<td valign="top">the height, in world coordinate units, of the character string
- labeling the <i>y</i>-axis</td>
-</tr><tr>
-<td valign="top"><code><font color="blue">%YLABELHEIGHT</font></code></td>
-<td valign="top"> &rarr;</td>
-<td valign="top">the height, expressed as a percentage of the height of the graphics sub-window,
- that is, <NOBR><CODE><font color="blue">YLABELHEIGHT</font> =
- <font color="blue">%YLABELHEIGHT</font>
- * (<font color="blue"><a href="..\generalgraph\yupperwindow.htm">YUPPERWINDOW</a></font>-
- <font color="blue"><a href="..\generalgraph\ylowerwindow.htm">YLOWERWINDOW</a></font>)/100</CODE></NOBR>.</td>
-</tr></table>
-</p>
-
+<P>
+ <CODE>YLABELHEIGHT</CODE> controls the size of the
+ automatic text label for the <i>y</i>-axis. There are two forms:</p>
+<p>
+ <table cols="3">
+ <tr>
+ <td valign="top"><code>&nbsp;YLABELHEIGHT</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the height, in world coordinate units, of the character string
+  labeling the <i>y</i>-axis</td>
+ </tr><tr>
+ <td valign="top"><code>%YLABELHEIGHT</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the height, expressed as a percentage of the height of the graphics sub-window,
+  that is, <CODE>YLABELHEIGHT = %YLABELHEIGHT<br />
+  * (<a href="../GeneralGraph/yupperwindow.htm">YUPPERWINDOW</a> -
+  <a href="../GeneralGraph/ylowerwindow.htm">YLOWERWINDOW</a>)/100</CODE>.</td>
+</tr></table></p>
 </body>
 </html>
 

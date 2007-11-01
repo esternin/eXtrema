@@ -1,47 +1,29 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Defining a new windows</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-</OBJECT>
+<P><font size="+2" color="green">Defining a new window</font></P>
 
-<P><A NAME="windowdefining"></A>
-<font size=+2 color="green">Defining a new window</font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 WINDOW { n { lowx lowy upx upy }}</CODE>
 </TD></TR>
 </TABLE>
 <P>
- A new window is defined by the final four parameters
- with the command. The lower left corner will be
- <CODE>(<font color="blue">lowx</font>,<font color="blue">lowy</font>)</CODE>
- and the upper right corner will be
- <CODE>(<font color="blue">upx</font>,<font color="blue">upy</font>)</CODE>.
+ A new window is defined by the final four parameters with the command. The lower left corner will be
+ <CODE>(lowx,lowy)</CODE> and the upper right corner will be <CODE>(upx,upy)</CODE>.
  These four parameters should be expressed as percentages of the full page,
- for example, <CODE><font color="blue">lowx</font> = 50</CODE>,
- <CODE><font color="blue">lowy</font> = 50</CODE> represents the centre of
- the world, while <CODE><font color="blue">lowx</font> = 100</CODE>,
- <CODE><font color="blue">lowy</font> = 100</CODE> represents the upper right
+ for example, <CODE>lowx = 50</CODE>, <CODE>lowy = 50</CODE> represents the centre of
+ the world, while <CODE>lowx = 100</CODE>, <CODE>lowy = 100</CODE> represents the upper right
  hand corner.</P>
-<!--
 <P>
- If a window number, <CODE><font color="blue">n</font></CODE>, is entered but
- not the final four parameters, and that window number is undefined, then
- the graphics cursor will be used to choose the lower left and upper right
- corners of the new window.</P> -->
-<P>
-<a href="plotunits.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Plotting units</font></a><br>
-<a href="predefined.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Pre-defined windows</font></a>
-</P>
+ <a href="plotunits.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Plotting units</font></a><br />
+ <a href="predefined.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Pre-defined windows</font></a></P>
 </BODY>
 </HTML>

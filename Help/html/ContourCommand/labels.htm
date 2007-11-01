@@ -1,33 +1,34 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Contour labels</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-</OBJECT>
-
-<P><A NAME="contourlabels"></A>
-<font size=+2 color="green">Contour labels</font></P>
+<P><font size="+2" color="green">Contour labels</font></P>
 <P>
  By default, contours are labeled with the actual contour level, using
  three significant digits.  See the discussion on the
- <a href="legend.htm"><CODE><font color="blue">\LEGEND</font></CODE></a>
- qualifier for an alternate contour labeling facility.
+ <CODE>\LEGEND</CODE> qualifier for an alternate contour labeling facility.</p>
 <P>
-<font size=+1 color="green">Contour label size</font></P>
+ <font size="+1" color="green">Contour label size</font></P>
 <P>
-The size of the contour labels is <CODE><font color="blue"><a href="..\Characteristics\GeneralGraph\contourlabelheight.htm">CONTOURLABELHEIGHT</a></font></CODE>. If labels are not desired on the contours, use the <nobr><CODE><font color="blue"><a href="..\SetCommand\GeneralGraph\contourlabelheight.htm">SET CONTOURLABELHEIGHT</a></font> 0</CODE></nobr> command to set the label height to zero before entering the <CODE><font color="blue">CONTOUR</font></CODE> command.</P>
+ The size of the contour labels is
+ <CODE><a href="../Characteristics/GeneralGraph/contourlabelheight.htm">CONTOURLABELHEIGHT</a></CODE>.
+ If labels are not desired on the contours, set the
+ <CODE>CONTOURLABELHEIGHT</code> characteristic to <code>0</CODE> to set the label height to
+ zero before entering the <CODE>CONTOUR</CODE> command. The default is
+ <CODE>%CONTOURLABELHEIGHT = 2</code>.</P>
 <P>
-<font size=+1 color="green">Contour label separation</font></P>
+ <font size="+1" color="green">Contour label separation</font></P>
 <P>
- The separation between contour labels is controlled with <CODE><font color="blue">CONTOURLABELSEPARATION</font></CODE> or <nobr><CODE><font color="blue">%CONTOURLABELSEPARATION</font></CODE>,</nobr> which can be changed with the <CODE><font color="blue"><a href="..\SetCommand\GeneralGraph\contourlabelseparation.htm">SET CONTOURLABELSEPARATION</a></font></CODE> command.  If <CODE><font color="blue">%CONTOURLABELSEPARATION</font></CODE> is set, the separation is a percentage of the height of the window, that is, <CODE><font color="blue"><A HREF="..\SetCommand\GeneralGraph\yupperwindow.htm">YUPPERWINDOW</a>-<a href="..\SetCommand\GeneralGraph\ylowerwindow.htm">YLOWERWINDOW</a></font></CODE>. If <CODE><font color="blue">CONTOURLABELSEPARATION</font></CODE> is set, the separation is expressed in inches or centimeters, depending on the units.  The default is <CODE><font color="blue">CONTOURLABELSEPARATION</font> = 10</CODE>.</P>
+ The separation between contour labels is controlled with
+ <code><a href="../Characteristics/GeneralGraph/contourlabelseparation.htm">CONTOURLABELSEPARATION</a></CODE>.
+ The default is <CODE>CONTOURLABELSEPARATION = 10</CODE>.</P>
 <P>
-<a href="colours.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Colours</font></a><br>
-<a href="saving.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Saving contour levels and coordinates</font></a>
+ <a href="colours.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Colours</font></a><br />
+ <a href="saving.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Saving contour levels and coordinates</font></a>
 </P>
 </body>
 </html>

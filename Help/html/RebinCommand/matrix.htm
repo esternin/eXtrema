@@ -1,40 +1,31 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<HTML>
+!<HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Rebin a matrix</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="REBIN command matrix data">
-</OBJECT>
-<P><font size=+2 color="green">Rebin a matrix</font></P>
+<P><font size="+2" color="green">Rebin a matrix</font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 REBIN m mout nr nc</CODE>
 </TD></TR>
 </TABLE></P>
 <P>
- Suppose that matrix <CODE><font color="blue">m</font></CODE> has <i>N</i> rows and <i>M</i>
- columns, then:</p>
+ Suppose that matrix <CODE>m</CODE> has <i>N</i> rows and <i>M</i> columns, then:</p>
 <p>
  <center><img src="rebin6.png"></center></p>
 <p>
- that is, the matrix <CODE><font color="blue">m</font></CODE> will have
- <i>N</i><code>/<font color="blue">nr</font></CODE> rows and
- <i>M</i><code>/<font color="blue">nc</font></CODE> columns.</p>
+ that is, the matrix <CODE>m</CODE> will have <i>N</i><code>/nr</CODE> rows and
+ <i>M</i><code>/nc</CODE> columns.</p>
 <p>
  <center><img src="rebin7.png"></center></p>
 <p>
- If &nbsp;<img align="bottom" src="rebin8.png">&nbsp; is not equal to <i>N</i>, then the last row of
- <CODE><font color="blue">mout</font></CODE> will be incomplete.  If
- &nbsp;<img align="bottom" src="rebin9.png">&nbsp; is not equal to <i>M</i>, then the last column of
- <CODE><font color="blue">mout</font></CODE> will be incomplete.</p>
+ If &nbsp;<img src="rebin8.png">&nbsp; is not equal to <i>N</i>, then the last row of
+ <CODE>mout</CODE> will be incomplete.  If &nbsp;<img src="rebin9.png">&nbsp; is not equal to
+ <i>M</i>, then the last column of <CODE>mout</CODE> will be incomplete.</p>
 <p>
  <font size="+1" color="green">Example</font></p>
 <p>
@@ -58,7 +49,8 @@ REBIN m mout nr nc</CODE>
 <p>
  <img src="rebin11.png"></p>
 <P>
-<a href="vector.htm"><img align="top" border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">REBIN a vector</font></a>
+ <a href="vector.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">REBIN a vector</font></a>
 </P>
 </body>
 </html>

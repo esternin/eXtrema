@@ -1,34 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Savitzky-Golay smoothing</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" 
-CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="SAVGOL function">
-  <PARAM NAME="Keyword" VALUE="smoothing filter">
-  <PARAM NAME="Keyword" VALUE="filter">
-  <PARAM NAME="Keyword" VALUE="Savitzky-Golay smoothing">
-</OBJECT>
-<P><font size=+3 color="green"><B>Savitzky-Golay smoothing</B></font></P>
+<P><font size="+3" color="green"><B>Savitzky-Golay smoothing</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
 ys = SAVGOL(n,m,y)</CODE>
 </TD></TR>
 </table></p>
 <p>
- The <CODE><font color="blue">SAVGOL</font></CODE> function calculates a smooth curve through
- the data contained in vector <CODE><font color="blue">y</font></CODE>, the dependent variable, using
+ The <CODE>SAVGOL</CODE> function calculates a smooth curve through
+ the data contained in vector <CODE>y</CODE>, the dependent variable, using
  the Savitzky-Golay smoothing filter method. The order of the filter is given in scalar
- <CODE><font color="blue">n</font></CODE>, which currently can only be <code>2</code> or
- <code>4</code>. The filter width is given in scalar <CODE><font color="blue">m</font></CODE>.
+ <CODE>n</CODE>, which currently can only be <code>2</code> or
+ <code>4</code>. The filter width is given in scalar <CODE>m</CODE>.
  These filters preserve the area under the data, the zero<sup>th</sup> moment, but also the
  higher moments.</p>
 <p>
@@ -38,13 +28,15 @@ ys = SAVGOL(n,m,y)</CODE>
  Savitzky-Golay filter is between one and two times the full width half maximum (FWHM) of
  desired features in the data.</p>
 <p>
- For more information on Savitzky-Golay filters, see:<br>
+ For more information on Savitzky-Golay filters, see:<br />
  <b>Computers in Physics</b>, volume 4, number 6, November/December 1990, pages 669–672.</p>
 <p>
-<a href="method.htm"><font size=+1 color="olive">Method</font></a><br>
+ <a href="method.htm"><font size="+1" color="olive">Method</font></a><br />
 <p>
-<a href="..\Rademacher\radmac.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Rademacher function</font></a><br>
-<a href="..\Sinint\sinint.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Sine integral</font></a>
+ <a href="../Rademacher/radmac.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Rademacher function</font></a><br />
+ <a href="../Sinint/sinint.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Sine integral</font></a>
 </P>
 </BODY>
 </HTML>

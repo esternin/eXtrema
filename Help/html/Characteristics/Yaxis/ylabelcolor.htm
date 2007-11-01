@@ -1,51 +1,41 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>YLABELCOLOR</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="YLABELCOLOR">
-</OBJECT>
-
 <P><A NAME="ylabelcolor"></A>
-<font size=+3 color="green"><B>YLABELCOLOR</B></font></P>
+<font size="+3" color="green"><B>YLABELCOLOR</B></font></P>
 
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=20% valign="top"><B>Syntax</B>:</TD>
-<TD width=80% valign="top"><CODE>
-SET YLABELCOLOR n<br>
-SET YLABELCOLOR colorname<br>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YLABELCOLOR n<br />
+SET YLABELCOLOR colorname<br />
 GET YLABELCOLOR { n }</CODE>
 </TD></TR>
 <TR>
-<TD width=20% valign="top"><B>Default</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 YLABELCOLOR =</CODE> black
 </TD></TR>
 </TABLE>
 <P>
- <em>Note:</em> The <CODE><font color="blue">GET YLABELCOLOR</font></CODE>
- command always returns the color index, and not the color
+ <em>Note:</em> The <CODE><font color="blue"><a href="../../GetCommand/getcommand.htm">GET YLABELCOLOR</a>
+ </font></CODE> command always returns the color index, and not the color
  name, even if <CODE>YLABELCOLOR</CODE> was set with a color name.</P>
 <p>
- <CODE><font color="blue">SET YLABELCOLOR</font></CODE> controls the color of
- the automatic <I>y</i>-axis text label. The parameter
- <CODE><font color="blue">c</font></CODE>
- can be a numeric scalar or one of the fixed color names.
-A positive numeric value represents the index of the
- color in the currently loaded colormap. A negative number represents the index of
- the fixed color.  A string value should be one of the fixed color names.</p>
+ <CODE>YLABELCOLOR</CODE> controls the color of the automatic <I>y</i>-axis text label. The parameter
+ <CODE>c</CODE> can be a numeric scalar or one of the fixed color names. A positive numeric value
+ represents the index of the color in the currently loaded colormap. A negative number represents
+ the index of the fixed color.  A string value should be one of the fixed color names.</p>
 <p>
  For example:</p>
 <p>
- <CODE><font color="blue">SET YLABELCOLOR 2</font></CODE> uses the colormap index 2<br>
- <CODE><font color="blue">SET YLABELCOLOR -2</font></CODE> uses the fixed color index 2<br>
- <CODE><font color="blue">SET YLABELCOLOR RED</font></CODE> uses the fixed color name "<font color="red">RED</font>"</p>
-
+ <CODE><font color="blue">SET YLABELCOLOR 2</font></CODE> uses the colormap index 2<br />
+ <CODE><font color="blue">SET YLABELCOLOR -2</font></CODE> uses the fixed color index 2<br />
+ <CODE><font color="blue">SET YLABELCOLOR RED</font></CODE> uses the fixed color name
+  "<font color="red">RED</font>"</p>
 </body>
 </html>

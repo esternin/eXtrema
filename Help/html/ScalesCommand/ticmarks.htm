@@ -1,96 +1,72 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Labeled tic marks</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-</OBJECT>
-
-<P><A NAME="scaleslabels"></A>
-<font size=+2 color="green">Labeled tic marks</font></P>
+<P><font size="+2" color="green">Labeled tic marks</font></P>
 <P>
  The number of large, labeled, tic marks to be displayed
  on the <i>x</i>-axis is controlled by
- <CODE><font color="blue">nlxinc</font></CODE>. Its initial value is
- <CODE>5</CODE>.</P>
+ <CODE>nlxinc</CODE>. Its initial value is <CODE>5</CODE>.</P>
 <P>
-<table border=0 cols=3>
-<tr>
-<td width=15% valign="top"><CODE><font color="blue">nlxinc</font>
- &lt; 0</CODE></td>
-<td valign="top">-</td>
-<td valign="top">the number of large tic marks on the x-axis will
- be <CODE><font color="blue">nlxinc</font> + 1</CODE>. If
- <CODE><font color="blue">XLOGBASE</font> &gt; 1</CODE>, logarithmic
- <I>x</I>-axis, <CODE><font color="blue">nlxinc</font></CODE> may be
- changed to avoid fractional powers. If
- <CODE><font color="blue">XLOGBASE</font> &lt; 1</CODE>, linear <I>x</I>-axis,
- the <I>x</I>-axis minimum and maximum will not be labeled with numbers.</td>
-</tr><tr>
-<td width=15% valign="top"><CODE><font color="blue">nlxinc</font>
- = 0</CODE></td>
-<td valign="top">-</td>
-<td valign="top">the number of large tic marks on the <I>x</i>-axis will
- be automatically determined for the user. The virtual <i>x</i>-axis minimum
- and maximum will be determined, so the <i>x</i>-axis may not begin or end
- at a large tic mark</td>
-</tr><tr>
-<td width=15% valign="top"><CODE><font color="blue">nlxinc</font>
- &gt; 0</CODE></td>
-<td valign="top">-</td>
-<td valign="top">the number of large tic marks on the <i>x</i>-axis will
- be <CODE><font color="blue">nlxinc</font> + 1</CODE>. If
- <CODE><font color="blue">XLOGBASE</font> &gt; 1</CODE>, logarithmic
- <i>x</i>-axis, <CODE><font color="blue">nlxinc</font></CODE> may be changed
- to avoid fractional powers. If <CODE><font color="blue">XLOGBASE</font>
- &lt; 1</CODE>, linear <i>x</i>-axis,
- <CODE><font color="blue">nlxinc</font></CODE> will not be changed.</td>
-</tr></table>
+ <table border="0" cols="3">
+ <tr>
+ <td width="15%" valign="top"><CODE>nlxinc &lt; 0</CODE></td>
+ <td valign="top">-</td>
+ <td valign="top">the number of large tic marks on the x-axis will
+  be <CODE>nlxinc + 1</CODE>. If <CODE>XLOGBASE &gt; 1</CODE>, logarithmic
+  <I>x</I>-axis, <CODE>nlxinc</CODE> may be changed to avoid fractional powers. If
+  <CODE>XLOGBASE &lt; 1</CODE>, linear <I>x</I>-axis,
+  the <I>x</I>-axis minimum and maximum will not be labeled with numbers.</td>
+ </tr><tr>
+ <td width="15%" valign="top"><CODE>nlxinc = 0</CODE></td>
+ <td valign="top">-</td>
+ <td valign="top">the number of large tic marks on the <I>x</i>-axis will
+  be automatically determined for the user. The virtual <i>x</i>-axis minimum
+  and maximum will be determined, so the <i>x</i>-axis may not begin or end at a large tic mark</td>
+ </tr><tr>
+ <td width="15%" valign="top"><CODE>nlxinc &gt; 0</CODE></td>
+ <td valign="top">-</td>
+ <td valign="top">the number of large tic marks on the <i>x</i>-axis will
+  be <CODE>nlxinc + 1</CODE>. If <CODE>XLOGBASE &gt; 1</CODE>, logarithmic
+  <i>x</i>-axis, <CODE>nlxinc</CODE> may be changed to avoid fractional powers. If
+  <CODE>XLOGBASE &lt; 1</CODE>, linear <i>x</i>-axis,
+  <CODE>nlxinc</CODE> will not be changed.</td>
+ </tr></table></P>
 <P>
  The number of large, labeled, tic marks to be displayed on the <i>y</i>-axis
- is controlled by <CODE><font color="blue">nlyinc</font></CODE>. Its initial
- value is <CODE>5</CODE>.</P>
+ is controlled by <CODE>nlyinc</CODE>. Its initial value is <CODE>5</CODE>.</P>
 <P>
-<table border=0 cols=3>
-<tr>
-<td width=15% valign="top"><CODE><font color="blue">nlyinc</font>
- &lt; 0</CODE></td>
-<td valign="top">-</td>
-<td valign="top">the number of large tic marks on the <i>y</i>-axis will
- be <CODE><font color="blue">nlyinc</font> + 1</CODE>. If
- <CODE><font color="blue">YLOGBASE</font> &gt; 1</CODE>, logarithmic
- <i>y</i>-axis, <CODE><font color="blue">nlyinc</font></CODE> may be changed
- to avoid fractional powers. If <CODE><font color="blue">YLOGBASE</font>
- &lt; 1</CODE>, linear <i>y</i>-axis, the <i>y</i>-axis minimum and
- maximum will not be labeled with numbers.</td>
-</tr><tr>
-<td width=15% valign="top"><CODE><font color="blue">nlyinc</font>
- = 0</CODE></td>
-<td valign="top">-</td>
-<td valign="top">the number of large tic marks on the <i>y</i>-axis will
- be automatically determined for the user. The virtual <i>y</i>-axis minimum
- and maximum will be determined, so the <i>y</i>-axis may not begin or end
- at a large tic mark</td>
-</tr><tr>
-<td width=15% valign="top"><CODE><font color="blue">nlyinc</font>
- &gt; 0</CODE></td>
-<td valign="top">-</td>
-<td valign="top">the number of large tic marks on the <i>y</i>-axis will
- be <CODE><font color="blue">nlyinc</font> + 1</CODE>. If
- <CODE><font color="blue">YLOGBASE</font> &gt; 1</CODE>, logarithmic
- <i>y</i>-axis, <CODE><font color="blue">nlyinc</font></CODE> may be changed
- to avoid fractional powers. If <CODE><font color="blue">YLOGBASE</font>
- &lt; 1</CODE>, linear <i>y</i>-axis,
- <CODE><font color="blue">nlyinc</font></CODE> will not be changed.</td>
-</tr></table>
+ <table border="0" cols="3">
+ <tr>
+ <td width="15%" valign="top"><CODE>nlyinc &lt; 0</CODE></td>
+ <td valign="top">-</td>
+ <td valign="top">the number of large tic marks on the <i>y</i>-axis will
+  be <CODE>nlyinc + 1</CODE>. If
+  <CODE>YLOGBASE &gt; 1</CODE>, logarithmic <i>y</i>-axis, <CODE>nlyinc</CODE> may be changed
+  to avoid fractional powers. If <CODE>YLOGBASE &lt; 1</CODE>, linear <i>y</i>-axis, the
+  <i>y</i>-axis minimum and maximum will not be labeled with numbers.</td>
+ </tr><tr>
+ <td width="15%" valign="top"><CODE>nlyinc = 0</CODE></td>
+ <td valign="top">-</td>
+ <td valign="top">the number of large tic marks on the <i>y</i>-axis will
+  be automatically determined for the user. The virtual <i>y</i>-axis minimum
+  and maximum will be determined, so the <i>y</i>-axis may not begin or end at a large tic mark</td>
+ </tr><tr>
+ <td width="15%" valign="top"><CODE>nlyinc &gt; 0</CODE></td>
+ <td valign="top">-</td>
+ <td valign="top">the number of large tic marks on the <i>y</i>-axis will
+  be <CODE>nlyinc + 1</CODE>. If <CODE>YLOGBASE &gt; 1</CODE>, logarithmic
+  <i>y</i>-axis, <CODE>nlyinc</CODE> may be changed to avoid fractional powers. If
+  <CODE>YLOGBASE &lt; 1</CODE>, linear <i>y</i>-axis,
+  <CODE>nlyinc</CODE> will not be changed.</td>
+ </tr></table></p>
 <P>
-<a href="commensurate.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Commensurate axis scaling</font></a><br>
-<a href="example.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Example</font></a>
+ <a href="commensurate.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Commensurate axis scaling</font></a><br />
+ <a href="example.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Example</font></a>
 </P>
 </BODY>
 </HTML>

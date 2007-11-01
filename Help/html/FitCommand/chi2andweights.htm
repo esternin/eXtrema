@@ -1,83 +1,57 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Chi-square and Weights</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="fit">
-</OBJECT>
+<P><font size="+2" color="green">Chi-square and weights</font></P>
 
-<P><A NAME="fitcchi2weights"></A>
-<font size=+2 color="green">Chi-square and weights</font>
-</P>
-<TABLE border=1 cols=2 frame=box rules=cols width=608>
+<TABLE border="1" width="608">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="center">
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="center">
 <code>
-FIT\WEIGHTS w y=expression<br>
-FIT\WEIGHTS\-ZEROS w y=expression<br>
-FIT\WEIGHTS\TOLERANCE w eps y=expression<br>
-FIT\WEIGHTS\ITMAX w n y=expression<br>
-FIT\WEIGHTS\ITMAX\TOLERANCE w n eps y=expression<br>
+FIT\WEIGHTS w y=expression<br />
+FIT\WEIGHTS\-ZEROS w y=expression<br />
+FIT\WEIGHTS\TOLERANCE w eps y=expression<br />
+FIT\WEIGHTS\ITMAX w n y=expression<br />
+FIT\WEIGHTS\ITMAX\TOLERANCE w n eps y=expression<br />
 FIT\WEIGHTS\-ZEROS\ITMAX w n y=expression</code>
 </td></tr>
 </TABLE>
 <P>
  The weight at each point defaults to one (<CODE>1</CODE>), if a weight vector
  is not entered.  Weights only make sense with a normal distribution, and
- are ignored when used with the
- <font color="blue"><code>\POISSON</code></font> qualifier.
+ are ignored when used with the <code>\POISSON</code> qualifier.
 <P>
- To make use of a weight array, the
- <font color="blue"><code>\WEIGHTS</code></font> qualifier
- <EM>must</EM> be entered. If the
- <font color="blue"><code>\WEIGHTS</code></font> qualifier is used,
- the weight vector, <font color="blue"><TT>w</TT></font>, will then be
- expected. The weights are
- assigned to the dependent variable in a one-to-one fashion, that is, the
- weight vector must be the same length as the data vector,
- <font color="blue"><TT>y</TT></font>.  If the
- <font color="blue"><code>\ITMAX</code></font> qualifier is used, the weight
- comes before the iteration
- maximum in the command parameter list.  If the
- <font color="blue"><code>\TOLERANCE</code></font>
- qualifier is used, the iteration maximum comes before the tolerance in
- the command parameter list.
-</P>
+ To make use of a weight array, the <code>\WEIGHTS</code> qualifier <EM>must</EM> be entered. If the
+ <code>\WEIGHTS</code> qualifier is used, the weight vector, <TT>w</TT>, will then be expected. The
+ weights are assigned to the dependent variable in a one-to-one fashion, that is, the
+ weight vector must be the same length as the data vector, <TT>y</TT>.  If the <code>\ITMAX</code>
+ qualifier is used, the weight comes before the iteration maximum in the command parameter list.  If the
+ <code>\TOLERANCE</code> qualifier is used, the iteration maximum comes before the tolerance in
+ the command parameter list.</P>
 <P>
- By default, the zero elements of the weight vector are used when
- calculating the number of degrees of freedom. If the
- <font color="blue"><code>\-ZEROS</code></font>
- qualifier is used with the
- <font color="blue"><code>\WEIGHTS</code></font> qualifier, then
- the zero elements of the weight vector will not be used when calculating
- the number of degrees of freedom.  This could have an affect on the
- calculation of the confidence level, the
- <IMG WIDTH=16 HEIGHT=33 ALIGN=MIDDLE SRC="img24.gif">  per degrees of
- freedom, and  <IMG WIDTH=25 HEIGHT=12 ALIGN=BOTTOM SRC="img49.gif">, the
- root mean square total errors of estimate.
-</P>
+ By default, the zero elements of the weight vector are used when calculating the number of degrees of
+ freedom. If the <code>\-ZEROS</code> qualifier is used with the <code>\WEIGHTS</code> qualifier, then
+ the zero elements of the weight vector will not be used when calculating the number of degrees of
+ freedom.  This could have an affect on the calculation of the confidence level, the
+ <code>&chi;<sup>2</sup></code> per degrees of freedom, and <code>E2</code>, the root mean square total
+ errors of estimate.</P>
 <P>
- If the <font color="blue"><code>\CHISQ</code></font> qualifier is used, a
- new scalar, named <font color="orange"><code>FIT$CHISQ</code></font>,
- will be made with value equal to the total 
- <IMG WIDTH=248 HEIGHT=38 ALIGN=MIDDLE SRC="img50.gif"> 
- where  <IMG WIDTH=20 HEIGHT=16 ALIGN=MIDDLE SRC="img44.gif">  represents the
- optional weight at each data point
- <IMG WIDTH=16 HEIGHT=17 ALIGN=MIDDLE SRC="img9.gif">,
- <i>f</i> is the expression to be fitted, and
- <IMG WIDTH=45 HEIGHT=16 ALIGN=MIDDLE SRC="img14.gif">  are the best
- values of the  <IMG WIDTH=11 HEIGHT=17 ALIGN=MIDDLE SRC="img12.gif">
- parameters.
-</P>
+ If the <code>\CHISQ</code> qualifier is used, a new scalar, named
+ <font color="orange"><code>FIT$CHISQ</code></font>, will be made with value equal to the total</p>
+<p> 
+ <center><font size="+1"><code>&chi;<sup>2</sup> = &sum;
+  w<sub>k</sub>[y<sub>k</sub> - <i>f</i>(x<sub>k</sub>,p<sub>min</sub>)]<sup>2</sup></code></font></center></p>
+<p>
+ where <code>w<sub>k</sub></code> represents the optional weight at each data point
+ <code>y<sub>k</sub></code>, <i>f</i> is the expression to be fitted, and <code>p<sub>min</sub></code>
+ are the best values of the parameters, <code>p</code>.</P>
 <P>
-<a href="normaldist.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Normal distribution</font></a><br>
-<a href="hint.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Hint for physicists</font></a>
-</P>
+ <a href="normaldist.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Normal distribution</font></a><br />
+ <a href="hint.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Hint for physicists</font></a></P>
 </BODY>
 </HTML>

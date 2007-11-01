@@ -1,47 +1,34 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>DENSITY command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="DENSITY command">
-</OBJECT>
+<P><font size="+3" color="green"><B>DENSITY command</B></font></P>
 
-<P><A NAME="densitycommand"></A>
-<font size=+3 color="green"><B>DENSITY command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 DENSITY { x y } z</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\GRADIENTS,</NOBR> <NOBR>\DITHERING,</NOBR>
-<NOBR>\DIFFUSION,</NOBR> <NOBR>\BOXES,</NOBR>
-<nobr>\PARTIAL,</NOBR> <NOBR>\XPROFILE,</NOBR> <NOBR>\YPROFILE,</NOBR>
-<NOBR>\BORDER,</NOBR> <NOBR>\AXES,</NOBR> <nobr>\RESET</nobr></CODE>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>
+\GRADIENTS, \DITHERING, \DIFFUSION, \BOXES, \PARTIAL, \XPROFILE, \YPROFILE,
+\BORDER, \AXES, \RESET</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\GRADIENTS,</NOBR>
-<nobr>\-PARTIAL,</nobr> <nobr>\-XPROFILE,</nobr> <nobr>\-YPROFILE,</nobr>
-<nobr>\BORDER,</nobr> <nobr>\AXES,</nobr> <nobr>\RESET</nobr></CODE>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>
+\GRADIENTS, \-PARTIAL, \-XPROFILE, \-YPROFILE, \BORDER, \AXES, \RESET</CODE>
 </TD></TR>
 </TABLE>
 <P>
  This command produces a density plot for either data contained in a
  matrix or a scattered set of points contained in three vectors.</p>
 <P>
-<font size=+1 color="green">Density plot types</font></P>
+ <font size="+1" color="green">Density plot types</font></P>
 <P>
  There are four types of density plot available.  The default, requiring no
  special qualifier, uses color gradients.  Other types are
@@ -52,77 +39,65 @@ DENSITY { x y } z</CODE>
  <td><i>density plot types</i></td>
  <td><i>qualifier</i></td>
 </tr><tr>
- <td>color gradients</td>
- <td><CODE><font color="blue">\GRADIENTS</font></CODE> (default)</td>
+ <td>color gradients</td><td><CODE>\GRADIENTS</CODE> (default)</td>
 </tr><tr>
- <td>dithering with points (grey scales)</td>
- <td><CODE><font color="blue">\DITHERING</font></CODE></td>
+ <td>dithering with points (grey scales)</td><td><CODE>\DITHERING</CODE></td>
 </tr><tr>
- <td>diffusion with points (grey scales)</td>
- <td><CODE><font color="blue">\DIFFUSION</font></CODE></td>
+ <td>diffusion with points (grey scales)</td><td><CODE>\DIFFUSION</CODE></td>
 </tr><tr>
- <td>scaled rectangles</td>
- <td><CODE><font color="blue">\BOXES</font></CODE></td></tr>
+ <td>scaled rectangles</td><td><CODE>\BOXES</CODE></td></tr>
 </table>
 <P>
-<font size=+1 color="green">Draw axes</font></P>
+ <font size="+1" color="green">Draw axes</font></P>
 <P>
  By default, axes are drawn for the density plot.  If the density plot is to be
- overlayed on an existing set of axes, use the
- <CODE><font color="blue">\-AXES</font></CODE> qualifier and
- no axes will be drawn. The axis scales will be left at their current values.</p>
+ overlayed on an existing set of axes, use the <CODE>\-AXES</CODE> qualifier and no axes
+ will be drawn. The axis scales will be left at their current values.</p>
 <p>
-<font size=+1 color="green">Draw rectangular boundary</font></P>
+ <font size="+1" color="green">Draw rectangular boundary</font></P>
 <P>
- The <CODE><font color="blue">\BORDER</font></CODE> qualifier is valid only if
- matrix data is entered. By default, the rectangular boundary of the matrix is
- outlined within the axes. If you do not want this boundary to be drawn, use the
- <CODE><font color="blue">\-BORDER</font></CODE> qualifier.</P>
+ The <CODE>\BORDER</CODE> qualifier is valid only if matrix data is entered. By default, the
+ rectangular boundary of the matrix is outlined within the axes. If you do not want this
+ boundary to be drawn, use the <CODE>\-BORDER</CODE> qualifier.</P>
 <p>
-<font size=+1 color="green">Zoom in</font></P>
+ <font size="+1" color="green">Zoom in</font></P>
 <P>
  By default, the entire range of possible density levels will be used to
  determine the minimum and maximum density levels. If the
- <CODE><font color="blue">\PARTIAL</font></CODE> qualifier is used, the
+ <CODE>\PARTIAL</CODE> qualifier is used, the
  minimum and maximum density levels will be determined by the region contained
  within the axes. To zoom in on a particular region for more detail, pre-set
  the axis scales, using the
- <CODE><font color="blue"><a href="..\ScalesCommand\scalescommand.htm">SCALES</a>
- </font></CODE> command, before entering the
- <CODE><font color="blue">DENSITY</font></CODE> command.</p>
+ <CODE><a href="../ScalesCommand/scalescommand.htm">SCALES</a></CODE> command, before entering the
+ <CODE>DENSITY</CODE> command.</p>
 <p>
-<font size=+1 color="green">Profiles</font></P>
+ <font size="+1" color="green">Profiles</font></P>
 <P>
- The qualifiers <CODE><font color="blue">\XPROFILE</font></CODE> and
- <CODE><font color="blue">\YPROFILE</font></CODE> are valid only if matrix
+ The qualifiers <CODE>\XPROFILE</CODE> and <CODE>\YPROFILE</CODE> are valid only if matrix
  data is entered.</p>
 <p>
- If the <CODE><font color="blue">\XPROFILE</font></CODE> qualifier is used,
+ If the <CODE>\XPROFILE</CODE> qualifier is used,
  the columns of the matrix are summed, the sums are normalized to be between
  <CODE>0</CODE> and <CODE>1</CODE>, and a histogram of the normalized sums is
  drawn horizontally across the top of the graph.</p>
 <p>
- If the <CODE><font color="blue">\YPROFILE</font></CODE> qualifier is used,
+ If the <CODE>\YPROFILE</CODE> qualifier is used,
  the rows of the matrix are summed, the sums are normalized to be between
  <CODE>0</CODE> and <CODE>1</CODE>, and a histogram of the normalized sums is
  drawn vertically along the right side of the graph.</p>
 <p>
  When a profile is drawn, the axis borders must also be set to allow space for
- the profiles, that is,
- <CODE><font color="blue"><a href="..\SetCommand\Xaxis\xupperaxis.htm">XUPPERAXIS</a>
- </font></CODE> is set to <CODE>65%</CODE> if a legend is present or <CODE>85%</CODE>
- if there is no legend, and
- <CODE><font color="blue"><a href="..\SetCommand\Yaxis\yupperaxis.htm">YUPPERAXIS</a>
- </font></CODE> is set to <CODE>80%</CODE>.</p>
+ the profiles, that is, <CODE><a href="../Characteristics/Xaxis/xupperaxis.htm">XUPPERAXIS</a>
+ </CODE> is set to <CODE>65%</CODE> if a legend is present or <CODE>85%</CODE>
+ if there is no legend, and <CODE><a href="../Characteristics/Yaxis/yupperaxis.htm">YUPPERAXIS</a>
+ </CODE> is set to <CODE>80%</CODE>.</p>
 <p>
- By default, <CODE><font color="blue">XUPPERAXIS</font></CODE> and
- <CODE><font color="blue">YUPPERAXIS</font></CODE> are reset to their former values.
- If the <CODE><font color="blue">\-RESET</font></CODE> qualifier is used, the
- axis locations are not reset.</p>
+ By default, <CODE>XUPPERAXIS</CODE> and <CODE>YUPPERAXIS</CODE> are reset to their former values.
+ If the <CODE>\-RESET</CODE> qualifier is used, the axis locations are not reset.</p>
 <p>
-<a href="gradients.htm"><font size=+1 color="olive">GRADIENTS</font></a><br>
-<a href="dithering.htm"><font size=+1 color="olive">DITHERING</font></a><br>
-<a href="diffusion.htm"><font size=+1 color="olive">DIFFUSION</font></a><br>
-<a href="boxes.htm"><font size=+1 color="olive">BOXES</font></a></p>
+ <a href="gradients.htm"><font size="+1" color="olive">GRADIENTS</font></a><br />
+ <a href="dithering.htm"><font size="+1" color="olive">DITHERING</font></a><br />
+ <a href="diffusion.htm"><font size="+1" color="olive">DIFFUSION</font></a><br />
+ <a href="boxes.htm"><font size="+1" color="olive">BOXES</font></a></p>
 </BODY>
 </HTML>

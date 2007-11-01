@@ -1,44 +1,35 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Weights</TITLE>
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="\WEIGHTS">
-	<PARAM NAME="Keyword" VALUE="bin weight">
-</OBJECT>
-
-<P><font size=+2 color="green">Weights</font></P>
+<P><font size="+2" color="green">Weights</font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-BIN\WEIGHTS w x xbin xcount<br>
-BIN\AVERAGE\WEIGHTS w x xbin xcount<br>
-BIN\EMPTY\WEIGHTS w x xbin xcount<br>
-BIN\EDGES\WEIGHTS w x xbin xcount<br>
-BIN\EDGES\EMPTY\WEIGHTS w x xbin xcount<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+BIN\WEIGHTS w x xbin xcount<br />
+BIN\AVERAGE\WEIGHTS w x xbin xcount<br />
+BIN\EMPTY\WEIGHTS w x xbin xcount<br />
+BIN\EDGES\WEIGHTS w x xbin xcount<br />
+BIN\EDGES\EMPTY\WEIGHTS w x xbin xcount<br />
 BIN\EDGES\EMPTY\AVERAGE\WEIGHTS w x xbin xcount</CODE>
 </TD></TR>
 </TABLE></P>
 <P>
  By default, a bin count is incremented by <CODE>1</CODE> for every event that
  goes in a bin. If a weight vector is entered, you must indicate that it is
- there by using <CODE><font color="blue">\WEIGHTS</font></CODE> qualifier. The
- weight <CODE><font color="blue">w</font></CODE> must be a vector with the
- same length as <CODE><font color="blue">x</font></CODE>. The
- <CODE><i>i<sup>th</sup></i></CODE> event causes the bin count to be
- incremented by
- <nobr><CODE><font color="blue">w</font>[<i>i</i>]</CODE>.</nobr></P>
+ there by using <CODE>\WEIGHTS</CODE> qualifier. The weight <CODE>w</CODE> must be a vector with the
+ same length as <CODE>x</CODE>. The <CODE>i</code><sup>th</sup> event causes the bin count to be
+ incremented by <CODE>w[i]</CODE>.</P>
 <P>
-<a href="bincommand.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">BIN command</font></a><br>
-<a href="nbins.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Number of bins</font></a>
+ <a href="bincommand.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">BIN command</font></a><br />
+ <a href="nbins.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Number of bins</font></a>
 </P>
 </BODY>
 </HTML>

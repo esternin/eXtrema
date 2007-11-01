@@ -1,100 +1,78 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Histograms</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="histogram">
-</OBJECT>
-
-<P><A NAME="graphhistogram"></A>
-<font size=+2 color="green">Histograms</font></P>
+<P><font size="+2" color="green">Histograms</font></P>
 <P>
  It is possible to draw four types of histograms using the
- <a href="..\SetCommand\PlottingSymbol\histogramtype.htm"><CODE><font color="blue">SET HISTOGRAMTYPE</font></CODE></a>
- approach, or you can use the <CODE><font color="blue">\HISTOGRAM</font></CODE>
- qualifier to plot a histogram with tails to <i>y=0</i> and profile along the
- <i>x</i>-axis.
+ <a href="../Characteristics/PlottingSymbol/histogramtype.htm"><CODE>HISTOGRAMTYPE</CODE></a>
+ characteristic approach, or you can use the <CODE>\HISTOGRAM</CODE> qualifier to plot a histogram
+ with tails to <i>y=0</i> and profile along the <i>x</i>-axis.</p>
 <P>
-<font size=+1 color="green">Using the <TT>HISTOGRAMTYPE</TT> keyword</font></P>
+ <font size="+1" color="green">Using the <TT>HISTOGRAMTYPE</TT> characteristic</font></P>
 <P>
- The table below shows the histogram type that
- will be produced depending on the value of
- <CODE><font color="blue">HISTOGRAMTYPE</font></CODE>.</P>
-<center>
-<table border=1 cols=3>
-<tr>
-<td valign="top"><CODE>HISTOGRAMTYPE =</CODE></td>
-<td valign="top"><CODE>0</CODE></td>
-<td valign="top">(default value) line graph, not a histogram</td>
-</tr><tr>
-<td></td>
-<td valign="top"><CODE>1</CODE></td>
-<td valign="top">histogram with no tails and profile along the
- <I>x</I>-axis<br>
- May control the width and colour individual bars</td>
-</tr><tr>
-<td></td>
-<td valign="top"><CODE>2</CODE></td>
-<td valign="top">histogram with tails to <I>y=0</I> and profile along the
- <I>x</I>-axis<br>
- May control the fill pattern, width, colour of each bar</td>
-</tr><tr>
-<td></td>
-<td valign="top"><CODE>3</CODE></td>
-<td valign="top">histogram without tails and profile along the
- <I>y</I>-axis<br>
- May control the height and colour of each bar
-</tr><tr>
-<td></td>
-<td valign="top"><CODE>4</CODE></td>
-<td valign="top">histogram with tails to <I>x=0</I> and profile along the
- <I>y</I>-axis<br>
- May control the fill pattern, height, colour of each bar</td>
-</tr></table>
-</center>
+ The table below shows the histogram type that will be produced depending on the value of
+ <CODE>HISTOGRAMTYPE</CODE>.</P>
+<p>
+ <center>
+ <table border="1" cols="2">
+ <tr>
+ <td><CODE>HISTOGRAMTYPE</CODE></td>
+ <td align="center"><em>result</em></td></tr>
+ <tr><td align="center"><CODE>0</CODE></td><td>(default value) line graph, not a histogram</td>
+ </tr><tr>
+ <td align="center"><CODE>1</CODE></td>
+ <td valign="top">histogram with no tails and profile along the <I>x</I>-axis<br />
+  May control the width and colour individual bars</td>
+ </tr><tr>
+ <td align="center"><CODE>2</CODE></td>
+ <td valign="top">histogram with tails to <I>y=0</I> and profile along the <I>x</I>-axis<br />
+  May control the fill pattern, width, colour of each bar</td>
+ </tr><tr>
+ <td align="center"><CODE>3</CODE></td>
+ <td valign="top">histogram without tails and profile along the <I>y</I>-axis<br />
+  May control the height and colour of each bar
+ </tr><tr>
+ <td align="center"><CODE>4</CODE></td>
+ <td valign="top">histogram with tails to <I>x=0</I> and profile along the <I>y</I>-axis<br />
+  May control the fill pattern, height, colour of each bar</td>
+ </tr></table></center></p>
 <P>
-<font size=+1 color="green">Using the <TT>\HISTOGRAM</TT> qualifier</font></P>
+ <font size="+1" color="green">Using the <TT>\HISTOGRAM</TT> qualifier</font></P>
 <P>
- The <CODE><font color="blue">\HISTOGRAM</font></CODE> qualifier is
- inconsistent when used in conjunction with the
- <CODE><font color="blue">\AXESONLY</font></CODE> qualifier.</P>
+ The <CODE>\HISTOGRAM</CODE> qualifier is inconsistent when used in conjunction with the
+ <CODE>\AXESONLY</CODE> qualifier.</P>
 <P>
- Using the <CODE><font color="blue">\HISTOGRAM</font></CODE> qualifier is
- equivalent to using a <CODE><font color="blue">HISTOGRAMTYPE</font></CODE>
+ Using the <CODE>\HISTOGRAM</CODE> qualifier is equivalent to using a <CODE>HISTOGRAMTYPE</CODE>
  setting of <CODE>2</CODE>.  A histogram with tails to <i>y=0</i> and profile
  along the <i>x</i>-axis will be plotted. The following three commands:</P>
-
-<font color="blue"><PRE>
- SET HISTYP 2       ! force histogram plotting
- GRAPH X Y          ! plot axes and histogram
- SET HISTYP 0       ! reset to default value
-</PRE></font>
+<p>
+ <font color="blue"><PRE>
+ SET HISTOGRAMTYPE 2       ! force histogram plotting
+ GRAPH X Y                 ! plot axes and histogram
+ SET HISTOGRAMTYPE 0       ! reset to default value
+ </PRE></font>
 <P>
  are equivalent to the single command:</P>
-<font color="blue"><Pre>
+ <font color="blue"><Pre>
  GRAPH\HIST X Y</pre></font>
 <P>
-<font size=+1 color="green">Filling</font></P>
+ <font size="+1" color="green">Filling</font></P>
 <P>
  For information on how to fill the area under a histogram, see the
- <CODE><font color="blue"><a href="..\SetCommand\GeneralGraph\areafillcolor\areafillcolor.htm">
- SET AREAFILLCOLOR</a></font></CODE>
- command. For histograms with tails, types <code>2</code> and <code>4</code>, it is possible to
+ <CODE><a href="../Characteristics/GeneralGraph/areafillcolor/areafillcolor.htm">AREAFILLCOLOR</a></CODE>
+ characteristic. For histograms with tails, types <code>2</code> and <code>4</code>, it is possible to
  fill each histogram bar with a different color. For types <code>1</code> and <code>3</code>,
  the area under a histogram can be filled with a single color.</P>
 <P>
- For an example of various types of filled histograms see the <font size=+1 color="olive">
- <a href="..\Characteristics\GeneralGraph\areafillcolor\example2.htm">histogram
- example</a></font>.</P>
+ For an example of various types of filled histograms see the
+ <a href="../Characteristics/GeneralGraph/areafillcolor/example2.htm">histogram example</a>.</P>
 <P>
-<a href="replotdata.htm"><img align="top" border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Replot data on a common scale</font></a><br>
-<a href="errorbars.htm"><img align="top" border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Error bars</font></a>
-</P>
+ <a href="replotdata.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Replot data on a common scale</font></a><br />
+ <a href="errorbars.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Error bars</font></a></P>
 </BODY>
 </HTML>

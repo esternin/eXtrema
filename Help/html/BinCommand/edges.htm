@@ -1,44 +1,30 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Edge defined bins</TITLE>
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="edge defined bins">
-	<PARAM NAME="Keyword" VALUE="\EDGES">
-</OBJECT>
-<P><font size=+2 color="green">Edge defined bins</font></P>
-<P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<P><font size="+2" color="green">Edge defined bins</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 BIN\EDGES x xbin xcount</CODE>
 </TD></TR>
-</TABLE></P>
+</TABLE>
 <P>
- By default, bins are defined by their centers. If the
- <CODE><font color="blue">\EDGES</font></CODE> qualifier is used, bins are
- defined by their edges. The bin edges must be given in vector
- <CODE><font color="blue">xbin</font></CODE>. The length of
- <CODE><font color="blue">xcount</font></CODE> will be one less than the
- length of <CODE><font color="blue">xbin</font></CODE>. A weight vector,
- <CODE><font color="blue">w</font></CODE>, may be specified if you use the
- <CODE><font color="blue">\WEIGHTS</font></CODE> qualifier.</P>
+ By default, bins are defined by their centers. If the <CODE>\EDGES</CODE> qualifier is used, bins are
+ defined by their edges. The bin edges must be given in vector <CODE>xbin</CODE>. The length of
+ <CODE>xcount</CODE> will be one less than the length of <CODE>xbin</CODE>. A weight vector,
+ <CODE>w</CODE>, may be specified if you use the <CODE>\WEIGHTS</CODE> qualifier.</P>
 <P>
- If <nobr><CODE><font color="blue">xbin</font>[<i>j</i>] &le;
- <font color="blue">x</font>[<i>i</i>] &lt;
- <font color="blue">xbin</font>[<i>j</i>+1]</CODE></nobr> then
- <CODE><font color="blue">xcount</font>[<i>j</i>]</CODE> is incremented
- either by <CODE>1</CODE>, or by the specified weight,
- <CODE><font color="blue">w</font>[<i>i</i>]</CODE>.</P>
+ If <CODE>xbin[j] &le; x[i] &lt; xbin[j+1]</CODE> then <CODE>xcount[j]</CODE> is incremented
+ either by <CODE>1</CODE>, or by the specified weight, <CODE>w[i]</CODE>.</P>
 <P>
-<a href="empty.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Count only if empty</font></a>
+ <a href="empty.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Count only if empty</font></a>
 </P>
 </body>
 </html>

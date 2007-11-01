@@ -1,42 +1,32 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Error bar example</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="error bar example">
-</OBJECT>
-
-<P><A NAME="grapherrorbarexample"></A>
-<font size=+2 color="green">Error bar example</font></P>
+<P><font size="+2" color="green">Error bar example</font></P>
 <P>
  The following script demonstrates the plotting of error bars. See
  the figure below.</P>
-
-<font color="blue"><PRE>
- X=[0:20]            ! generate some &quot;data&quot; 
- Y=X^2-20*X+50       !
- YEL=10*RAN(X)       ! lower error
- YEU=10*RAN(X)       ! upper error
- YES=20*RAN(X)       ! symmetric error
- SET PCHAR -1        ! set plotting symbol
- WINDOW 5            ! set window
- LABEL\X 'Asymmetric errors'
- GRAPH X Y YEL,,YEU  ! plot with asymmetric errors
- WINDOW 6            ! change windows
- LABEL\X 'Symmetric errors'
- GRAPH X Y YES       ! plot with symmetric errors
-</PRE></font>
-<P><center>
- <IMG WIDTH=661 HEIGHT=207 ALIGN=BOTTOM SRC="img1.gif">
-</center></P>
+<p>
+ <font color="blue"><PRE>
+ X=[0:20]                 ! generate some &quot;data&quot; 
+ Y=X^2-20*X+50            !
+ YEL=10*RAN(X)            ! lower error
+ YEU=10*RAN(X)            ! upper error
+ YES=20*RAN(X)            ! symmetric error
+ SET PLOTSYMBOL -1        ! set plotting symbol
+ WINDOW 5                 ! set window
+ SET XLABEL 'Asymmetric errors'
+ GRAPH X Y YEL,,YEU       ! plot with asymmetric errors
+ WINDOW 6                 ! change windows
+ SET XLABEL 'Symmetric errors'
+ GRAPH X Y YES            ! plot with symmetric errors
+ </PRE></font>
 <P>
-<a href="errorbars.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Error bars</font></a>
-</P>
+ <center><IMG SRC="img1.gif"></center></P>
+<P>
+ <a href="errorbars.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Error bars</font></a></P>
 </BODY>
 </HTML>

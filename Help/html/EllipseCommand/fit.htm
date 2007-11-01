@@ -1,54 +1,43 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>ELLIPSE command: fit an ellipse</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="ELLIPSE command">
-	<PARAM NAME="Keyword" VALUE="populate ellipse">
-	<PARAM NAME="Keyword" VALUE="fit ellipse">
-</OBJECT>
+<P><font size="+3" color="green"><B>Fit an ellipse</B></font></P>
 
-<P><font size=+3 color="green"><B>Fit an ellipse</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all>
+<TABLE border="1" cols="2">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>ELLIPSE\FIT xin yin</nobr><br>
-<nobr>ELLIPSE\FIT\NPTS xin yin n</nobr><br>
-<nobr>ELLIPSE\FIT\FRACTION xin yin frac</nobr><br>
-<nobr>ELLIPSE\FIT\FRACTION\NPTS xin yin frac n</nobr><br>
-<nobr>ELLIPSE\FIT\XYOUT xin yin xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\XYOUT\NPTS xin yin n xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\XYOUT\FRACTION xin yin frac xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\XYOUT\FRACTION\NPTS xin yin frac n xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS xin yin a b xc yc angle</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\NPTS xin yin a b xc yc angle n</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION xin yin frac a b xc yc angle</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION\NPTS xin yin frac a b xc yc angle n</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT xin yin a b xc yc angle xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\NPTS xin yin a b xc yc angle n xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION xin yin frac a b xc yc angle xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION\NPTS xin yin frac a b xc yc angle n xout yout</nobr></code>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+ELLIPSE\FIT xin yin<br />
+ELLIPSE\FIT\NPTS xin yin n<br />
+ELLIPSE\FIT\FRACTION xin yin frac<br />
+ELLIPSE\FIT\FRACTION\NPTS xin yin frac n<br />
+ELLIPSE\FIT\XYOUT xin yin xout yout<br />
+ELLIPSE\FIT\XYOUT\NPTS xin yin n xout yout<br />
+ELLIPSE\FIT\XYOUT\FRACTION xin yin frac xout yout<br />
+ELLIPSE\FIT\XYOUT\FRACTION\NPTS xin yin frac n xout yout<br />
+ELLIPSE\FIT\PARAMETERS xin yin a b xc yc angle<br />
+ELLIPSE\FIT\PARAMETERS\NPTS xin yin a b xc yc angle n<br />
+ELLIPSE\FIT\PARAMETERS\FRACTION xin yin frac a b xc yc angle<br />
+ELLIPSE\FIT\PARAMETERS\FRACTION\NPTS xin yin frac a b xc yc angle n<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT xin yin a b xc yc angle xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\NPTS xin yin a b xc yc angle n xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION xin yin frac a b xc yc angle xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION\NPTS xin yin frac a b xc yc angle n xout yout</code>
 </TD></TR>
 </TABLE>
 <p>
- If the <CODE><font color="blue">\FIT</font></CODE> qualifier is used, then the
- first two parameters, <CODE><font color="blue">xin</font></CODE> and
- <CODE><font color="blue">yin</font></CODE>, are assumed to be
+ If the <CODE>\FIT</CODE> qualifier is used, then the
+ first two parameters, <CODE>xin</CODE> and <CODE>yin</CODE>, are assumed to be
  vectors which contain data points to which an ellipse is to be fitted.</p>
-<h2>Parameter order</h2>
+<h3>Parameter order</h3>
 <p>
  The order in which the qualifiers appear is irrelevant. The order in which the
  command parameters appear is fixed:
- <nobr><CODE><font color="blue">{ fraction } { a b xc yc angle } { npts } { xout yout }</font></CODE></nobr></p>
-<h2>Method</h2>
+ <CODE>{ fraction } { a b xc yc angle } { npts } { xout yout }</CODE></p>
+<h3>Method</h3>
 <p>
  The major axis radius and the centre are found by least squares fitting a line
  through the data points. The ratio of the major axis radius to the minor axis
@@ -56,55 +45,56 @@
  axes. The minimum value of the major axis is found for each point so that the
  point will be inside the ellipse, then a value for the major axis is picked so
  as to be greater than or equal to the specified fraction of the values.</p>
-<h2>Fraction of points within ellipse</h2>
-<TABLE border=1 cols=2 frame=box rules=all>
+<h3>Fraction of points within ellipse</h3>
+<TABLE border="1" cols="2">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>ELLIPSE\FIT\FRACTION xin yin frac</nobr><br>
-<nobr>ELLIPSE\FIT\FRACTION\NPTS xin yin frac n</nobr><br>
-<nobr>ELLIPSE\FIT\XYOUT\FRACTION xin yin frac xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\XYOUT\FRACTION\NPTS xin yin frac n xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION xin yin frac a b xc yc angle</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION\NPTS xin yin frac a b xc yc angle n</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRAC xin yin frac a b xc yc angle xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRAC\NPTS xin yin frac a b xc yc angle n xout yout</nobr></code>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+ELLIPSE\FIT\FRACTION xin yin frac<br />
+ELLIPSE\FIT\FRACTION\NPTS xin yin frac n<br />
+ELLIPSE\FIT\XYOUT\FRACTION xin yin frac xout yout<br />
+ELLIPSE\FIT\XYOUT\FRACTION\NPTS xin yin frac n xout yout<br />
+ELLIPSE\FIT\PARAMETERS\FRACTION xin yin frac a b xc yc angle<br />
+ELLIPSE\FIT\PARAMETERS\FRACTION\NPTS xin yin frac a b xc yc angle n<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\FRAC xin yin frac a b xc yc angle xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\FRAC\NPTS xin yin frac a b xc yc angle n xout yout</code>
 </TD></TR>
 </TABLE>
 <p>
- <CODE><font color="blue">frac</font></CODE> defaults to <code>0.9</code>, so,
+ <CODE>frac</CODE> defaults to <code>0.9</code>, so,
  by default, the ellipse is fit to the data points so that it encloses 90% of
- the data points.  If the <CODE><font color="blue">\FRACTION</font></CODE>
- qualifier is used, then a scalar, <CODE><font color="blue">frac</font></CODE>,
+ the data points.  If the <CODE>\FRACTION</CODE>
+ qualifier is used, then a scalar, <CODE>frac</CODE>,
  representing the fraction of data points to be within the ellipse will be
  expected, <CODE>0 &lt frac &lt 1.</code></p>
-<h2>Output parameters</h2>
-<TABLE border=1 cols=2 frame=box rules=all>
+<h3>Output parameters</h3>
+<TABLE border="1" cols="2">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>ELLIPSE\FIT\PARAMETERS xin yin a b xc yc angle</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\NPTS xin yin a b xc yc angle n</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION xin yin frac a b xc yc angle</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION\NPTS xin yin frac a b xc yc angle n</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT xin yin a b xc yc angle xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\NPTS xin yin a b xc yc angle n xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION xin yin frac a b xc yc angle xout yout</nobr><br>
-<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION\NPTS xin yin frac a b xc yc angle n xout yout</nobr></code>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+ELLIPSE\FIT\PARAMETERS xin yin a b xc yc angle<br />
+ELLIPSE\FIT\PARAMETERS\NPTS xin yin a b xc yc angle n<br />
+ELLIPSE\FIT\PARAMETERS\FRACTION xin yin frac a b xc yc angle<br />
+ELLIPSE\FIT\PARAMETERS\FRACTION\NPTS xin yin frac a b xc yc angle n<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT xin yin a b xc yc angle xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\NPTS xin yin a b xc yc angle n xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION xin yin frac a b xc yc angle xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION\NPTS xin yin frac a b xc yc angle n xout yout</code>
 </TD></TR>
 </TABLE>
 <p>
- If the <CODE><font color="blue">\PARAMETERS</font></CODE> qualifier is used,
+ If the <CODE>\PARAMETERS</CODE> qualifier is used,
  output scalar names will be expected to receive the resulting ellipse
  parameters:</p>
 <table>
-<tr><td align="center"><code><font color="blue">a</font></code></td><td>major axis radius</td></tr>
-<tr><td align="center"><code><font color="blue">b</font></code></td><td>minor axis radius</td></tr>
-<tr><td align="center"><code><font color="blue">cx</font></code>, <code><font color="blue">cy</font></code>&nbsp;&nbsp;&nbsp;</td><td><i>x</i> and <i>y</i> coordinates of the centre</td></tr>
-<tr><td align="center"><code><font color="blue">angle</font></code></td><td>angle of the major axis,
-in degrees, measured counter-clockwise from the horizontal</td></tr></table>
+<tr><td align="center"><code>a</code></td><td>major axis radius</td></tr>
+<tr><td align="center"><code>b</code></td><td>minor axis radius</td></tr>
+<tr><td align="center"><code>cx</code>, <code>cy</code>&nbsp;&nbsp;&nbsp;</td>
+ <td><i>x</i> and <i>y</i> coordinates of the centre</td></tr>
+<tr><td align="center"><code>angle</code></td><td>angle of the major axis,
+ in degrees, measured counter-clockwise from the horizontal</td></tr></table>
 <P>
-<a href="explicit.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Ellipse explicitly defined</font></a>
-</P>
+ <a href="explicit.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Ellipse explicitly defined</font></a></P>
 </BODY>
 </HTML>

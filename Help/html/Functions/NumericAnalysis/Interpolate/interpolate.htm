@@ -1,77 +1,64 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Interpolation</TITLE>
 </HEAD>
-
 <BODY bgcolor="#FFFFFF" fgcolor="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="interpolation">
-  <PARAM NAME="Keyword" VALUE="INTERPOLATE function">
-  <PARAM NAME="Keyword" VALUE="SPLINTERP function">
-  <PARAM NAME="Keyword" VALUE="spline tension">
-  <PARAM NAME="Keyword" VALUE="TENSION characteristic">
-  <PARAM NAME="Keyword" VALUE="linear interpolation">
-  <PARAM NAME="Keyword" VALUE="Lagrange interpolation">
-  <PARAM NAME="Keyword" VALUE="cubic spline interpolation">
-  <PARAM NAME="Keyword" VALUE="Fritch-Carlson interpolation">
-  <PARAM NAME="Keyword" VALUE="2D interpolation">
-</OBJECT>
-<P><font size=+3 color="green"><B>Interpolation</B></font></P>
+<P><font size="+3" color="green"><B>Interpolation</B></font></P>
 <P>
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85%><CODE>
-vout = INTERPOLATE(x,y,xout,'SPLINE')<br>
-vout = INTERPOLATE(x,y,xout,'LINEAR')<BR>
-vout = INTERPOLATE(x,y,xout,'LAGRANGE')<BR>
-vout = INTERPOLATE(x,y,xout,'FC')<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = INTERPOLATE(x,y,xout,'SPLINE')<br />
+vout = INTERPOLATE(x,y,xout,'LINEAR')<BR />
+vout = INTERPOLATE(x,y,xout,'LAGRANGE')<BR />
+vout = INTERPOLATE(x,y,xout,'FC')<br />
 mout = SPLINTERP(x,y,n)</CODE>
 </TD></TR>
 </table></p>
 <p>
- The <CODE><font color="blue">INTERPOLATE</font></CODE> function interpolates
- the data contained in vector <CODE><font color="blue">x</font></CODE>, the
- independent variable, and vector <CODE><font color="blue">y</font></CODE>, the
- dependent variable.  <CODE><font color="blue">x</font></CODE> must be
+ The <CODE>INTERPOLATE</CODE> function interpolates
+ the data contained in vector <CODE>x</CODE>, the
+ independent variable, and vector <CODE>y</CODE>, the
+ dependent variable.  <CODE>x</CODE> must be
  strictly monotonically increasing. The interpolant locations are given in
- vector <CODE><font color="blue">xout</font></CODE>. The
- <CODE><font color="blue">INTERPOLATE</font></CODE> function will return the
+ vector <CODE>xout</CODE>. The
+ <CODE>INTERPOLATE</CODE> function will return the
  interpolated values as a vector with the same length as
- <CODE><font color="blue">xout</font></CODE>. The algorithm that is employed
+ <CODE>xout</CODE>. The algorithm that is employed
  depends on the keyword that is used.</P>
 <p>
- The <CODE><font color="blue">SPLINTERP</font></CODE> function interpolates
- the data contained in vector <CODE><font color="blue">x</font></CODE>, the
- independent variable, and vector <CODE><font color="blue">y</font></CODE>, the
+ The <CODE>SPLINTERP</CODE> function interpolates
+ the data contained in vector <CODE>x</CODE>, the
+ independent variable, and vector <CODE>y</CODE>, the
  dependent variable.  There are no restrictions on
- <CODE><font color="blue">x</font></CODE>, it doesn't even need to be
+ <CODE>x</CODE>, it doesn't even need to be
  increasing. The number of interpolant locations is given in scalar
- <CODE><font color="blue">n</font></CODE>, which must be greater than <code>1</code>.
- The output of the <CODE><font color="blue">SPLINTERP</font></CODE> function is a matrix
- with <CODE><font color="blue">n</font></CODE> rows and <code>2</code> columns. The first
- column will contain the output locations and the second column the interpolated values.</p>
+ <CODE>n</CODE>, which must be greater than <code>1</code>.
+ The output of the <CODE>SPLINTERP</CODE> function is a matrix
+ with <CODE>n</CODE> rows and <code>2</code> columns. The first
+ column will contain the output locations and the second column the interpolated values
+ at those locations.</p>
 <P>
  An interpolated curve will always pass through the original data points. If
  it is not important that the curve pass through the original data, use the
- <CODE><font color="blue"><a href="..\Smooth\smooth.htm">SMOOTH</a>
- </font></CODE> function, unless your independent variable is not monotonically
- increasing. In that case, use the <CODE><font color="blue">
- <a href="..\Smooth\splsmooth.htm">SPLSMOOTH</a></font></CODE> function.</P>
+ <CODE><a href="../Smooth/smooth.htm">SMOOTH</a></CODE> function, unless your independent
+ variable is not monotonically increasing. In that case, use the <CODE>
+ <a href="../Smooth/splsmooth.htm">SPLSMOOTH</a></CODE> function.</P>
 <p>
-<a href="linear.htm"><font size=+1 color="olive">Linear interpolation</font></a><br>
-<a href="spline.htm"><font size=+1 color="olive">Spline interpolation</font></a><br>
-<a href="lagrange.htm"><font size=+1 color="olive">Lagrange interpolation</font></a><br>
-<a href="fc.htm"><font size=+1 color="olive">Fritch-Carlson interpolation</font></a><br>
-<a href="splinterp.htm"><font size=+1 color="olive">SPLINTERP function</font></a><br>
-<a href="bivinterp.htm"><font size=+1 color="olive">2D interpolation</font></a>
+<a href="linear.htm"><font size="+1" color="olive">Linear interpolation</font></a><br />
+<a href="spline.htm"><font size="+1" color="olive">Spline interpolation</font></a><br />
+<a href="lagrange.htm"><font size="+1" color="olive">Lagrange interpolation</font></a><br />
+<a href="fc.htm"><font size="+1" color="olive">Fritch-Carlson interpolation</font></a><br />
+<a href="splinterp.htm"><font size="+1" color="olive">SPLINTERP function</font></a><br />
+<a href="bivinterp.htm"><font size="+1" color="olive">2D interpolation</font></a>
 </P>
 <P>
-<a href="..\Integral\integral.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Integration</font></a><br>
-<a href="..\Inverse\inverse.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Matrix inverse</font></a>
+ <a href="../Integral/integral.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Integration</font></a><br />
+ <a href="../Inverse/inverse.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Matrix inverse</font></a>
 </P>
 </BODY>
 </HTML>

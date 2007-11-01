@@ -1,55 +1,41 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Commands</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="syntax">
-	<PARAM NAME="Keyword" VALUE="command line">
-	<PARAM NAME="Keyword" VALUE="comma">
-	<PARAM NAME="Keyword" VALUE="blank">
-	<PARAM NAME="Keyword" VALUE="quote">
-	<PARAM NAME="Keyword" VALUE="parenthesis">
-	<PARAM NAME="Keyword" VALUE="field">
-	<PARAM NAME="Keyword" VALUE="string">
-	<PARAM NAME="Keyword" VALUE="qualifier">
-</OBJECT>
-
 <P><A NAME="commands"></A>
-<font size=+3 color="green"><B>Commands</B></font></P>
+<font size="+3" color="green"><B>Commands</B></font></P>
 
 <P>The general syntax for a
- <font size=-1 face="Arial black" color="red">EXTREMA</font> command line is:</P>
+ <font size="-1" face="Arial black" color="red">EXTREMA</font> command line is:</P>
 
-<font color="blue">
-<PRE>command\qualifier...\qualifier  p1\qualifier  p2\qualifier ... </PRE></font>
-
-<P>The parameter fields in a command line are separated by commas or blanks.  If
- a field starts with a quote, <font color="blue">`</font>, or an opening
- parenthesis, <font color="blue">(</font>, then commas and blanks are considered
- to be a part of that field, up to the end quote, <font color="blue">'</font>,
- or end parenthesis, <font color="blue">)</font>.
+<PRE>command\qualifier...\qualifier  p1\qualifier  p2\qualifier ... </PRE>
+<P>
+ The parameter fields in a command line are separated by commas or blanks.  If
+ a field starts with a quote, `, or an opening
+ parenthesis, (, then commas and blanks are considered
+ to be a part of that field, up to the end quote, ', or end parenthesis, ).
  Character strings are fields enclosed in quotes. For example, the command line:</P>
-
-<font color="blue"><Pre>command\qualifier p1 'a, test line' p3</Pre></font>
-
-<P>consists of four fields:
-<ol>
-<li><font color="blue"><code>command\qualifier</code></font>
-<li><font color="blue"><code>p1</CODE></font>
-<li><font color="blue"><code>a, test line</CODE></font>
-<li><font color="blue"><code>p3</CODE></font>
-</ol></P>
+<p>
+ <pre>
+ command\qualifier p1 'a, test line' p3
+ </pre></p>
 <P>
-<a href="qualifiers.htm"><font size=+1 color="olive">Qualifiers</font></a>
-</P>
+ consists of four fields:
+ <ol>
+ <li><code>command\qualifier</code>
+ <li><code>p1</CODE>
+ <li><code>a, test line</CODE>
+ <li><code>p3</CODE>
+ </ol></P>
 <P>
-<a href="gettingstarted.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Getting started</font></a><br>
-<a href="variables.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Variables</font></a>
+ <a href="qualifiers.htm"><font size="+1" color="olive">Qualifiers</font></a></P>
+<P>
+ <a href="gettingstarted.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Getting started</font></a><br>
+ <a href="variables.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Variables</font></a>
 </P>
 </BODY>
 </HTML>

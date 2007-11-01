@@ -503,4 +503,6 @@ SET YLABEL 'E<^>-0.1*T<_>sin(T)'
 set ylabelon 1
 set %xnumbersheight 2
 set %ynumbersheight 2
+set %xloweraxis 15
+set %yloweraxis 15
 GRAPH EXP(-0.1*T)*COS(T) EXP(-0.1*T)*SIN(T)

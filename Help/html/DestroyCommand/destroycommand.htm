@@ -1,46 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>DESTROY command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="DESTROY command">
-	<PARAM NAME="Keyword" VALUE="eliminate variables">
-	<PARAM NAME="Keyword" VALUE="delete variables">
-        <PARAM NAME="Keyword" VALUE="destory variables">
-</OBJECT>
+<P><font size="+3" color="green"><B>DESTROY command</B></font></P>
 
-<P><A NAME="destroycommand"></A>
-<font size=+3 color="green"><B>DESTROY command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-DESTROY { v1 v2 ... }</CODE>
-</TD></TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>DESTROY { v1 v2 ... }</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\EXPAND,</NOBR> <nobr>\SCALARS,</NOBR> <nobr>\VECTORS,</NOBR>
-<nobr>\MATRICES,</NOBR> <nobr>\TENSORS,</NOBR> <nobr>\TEXT,</NOBR>
-<nobr>\ALL</NOBR></CODE>
-</TD></TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\EXPAND, \SCALARS, \VECTORS, \MATRICES, \TEXT, \ALL</CODE></TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top">
-<CODE><NOBR>\-EXPAND</NOBR>
-</TD></TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\-EXPAND</code></TD></TR>
 </TABLE>
 <P>
- The <CODE><font color="blue">DESTROY</font></CODE> command eliminates subsets
- of vectors or string variables, or it destroys scalars, matrices and tensors.
- </p>
+ The <CODE>DESTROY</CODE> command eliminates subsets
+ of vectors or string variables, or it destroys scalars, matrices and tensors.</p>
 <P>
  When scalars, matrices or tensors are entered, they are completely destroyed.
  Index ranges are not allowed on scalars, matrices or tensors. These variables
@@ -51,10 +30,10 @@ DESTROY { v1 v2 ... }</CODE>
  Subsets of vectors or of string variables may be eliminated by including
  an index range.</P>
 <P>
-<a href="expand.htm"><font size=+1 color="olive">Expanded names</font></a><br>
-<a href="indexranges.htm"><font size=+1 color="olive">Index ranges</font></a><br>
-<a href="variableclasses.htm"><font size=+1 color="olive">Destroy entire classes of variables</font></a><br>
-<a href="examples.htm"><font size=+1 color="olive">Examples</font></a>
-</P>
+ <a href="expand.htm"><font size="+1" color="olive">Expanded names</font></a><br />
+ <a href="indexranges.htm"><font size="+1" color="olive">Index ranges</font></a><br />
+ <a href="variableclasses.htm"><font size="+1" color="olive">Destroy entire classes
+  of variables</font></a><br />
+ <a href="examples.htm"><font size="+1" color="olive">Examples</font></a></P>
 </BODY>
 </HTML>

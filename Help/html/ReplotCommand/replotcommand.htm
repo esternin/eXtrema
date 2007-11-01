@@ -1,62 +1,47 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>REPLOT command</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="clear graphics">
-	<PARAM NAME="Keyword" VALUE="REPLOT command">
-	<PARAM NAME="Keyword" VALUE="GRAPH command">
-</OBJECT>
+<P><font size="+3" color="green"><B>REPLOT command</B></font></P>
 
-<P><A NAME="replotcommand"></A>
-<font size=+3 color="green"><B>REPLOT command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-REPLOT { nw }<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+REPLOT { nw }<br />
 REPLOT\ALLWINDOWS</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers:</B></TD>
-<TD width=85% valign="top"><CODE>
-<NOBR>\AXES,</NOBR> <NOBR>\ALLWINDOWS,</NOBR> <NOBR>\TEXT</NOBR></CODE>
+<TD valign="top"><B>Qualifiers:</B></TD>
+<TD valign="top"><CODE>
+\AXES, \ALLWINDOWS, \TEXT</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults:</B></TD>
-<TD width=85% valign="top"><CODE>
-<NOBR>\AXES,</NOBR> <NOBR>\TEXT,</NOBR> nw = </CODE> current window number
+<TD valign="top"><B>Defaults:</B></TD>
+<TD valign="top"><CODE>
+\AXES, \TEXT, nw = </CODE> current window number
 </TD></TR>
 </TABLE>
 <P>
  By default, information pertaining to curves produced by the
- <a href="..\GraphCommand\graphcommand.htm"><CODE><font color="blue">GRAPH</font></CODE></a>
+ <a href="../GraphCommand/graphcommand.htm"><CODE>GRAPH</CODE></a>
  command, as well as an automatically plotted curve from the
- <a href="..\EllipseCommand\ellipsecommand.htm"><CODE><font color="blue">ELLIPSE</font></CODE></a>
+ <a href="../EllipseCommand/ellipsecommand.htm"><CODE>ELLIPSE</CODE></a>
  command, are saved in replot buffers.  When a set of axes is drawn and then
  data is overlayed on those axes, all of the data may not appear within the
- axis boundaries. You can use the <CODE><font color="blue">REPLOT</font></CODE>
+ axis boundaries. You can use the <CODE>REPLOT</CODE>
  command to have all of the data appear on a single autoscaled graph. The
- window number, <CODE><font color="blue">nw</font></CODE>, defaults to the
- current window number.  When the <CODE><font color="blue">\-AXES</font></CODE>
- qualifier is used, the data will be replotted but the graph axes will not be
- drawn.</P>
+ window number, <CODE>nw</CODE>, defaults to the
+ current window number.  When the <CODE>\-AXES</CODE>
+ qualifier is used, the data will be replotted but the graph axes will not be drawn.</P>
 <P>
-<a href="whatissaved.htm"><font size=+1 color="olive">What is saved</font></a><br>
-<a href="strings.htm"><font size=+1 color="olive">Strings</font></a><br>
-<a href="enabledisable.htm"><font size=+1 color="olive">Enable/disable</font></a><br>
-<a href="windows.htm"><font size=+1 color="olive">Windows</font></a><br>
-<a href="clearing.htm"><font size=+1 color="olive">Clearing the graphics</font></a><br>
-<a href="example1.htm"><font size=+1 color="olive">Example 1</font></a><br>
-<a href="example2.htm"><font size=+1 color="olive">Example 2</font></a>
-</P>
-
+ <a href="whatissaved.htm"><font size="+1" color="olive">What is saved</font></a><br />
+ <a href="strings.htm"><font size="+1" color="olive">Strings</font></a><br />
+ <a href="windows.htm"><font size="+1" color="olive">Windows</font></a><br />
+ <a href="clearing.htm"><font size="+1" color="olive">Clearing the graphics</font></a><br />
+ <a href="example1.htm"><font size="+1" color="olive">Example 1</font></a><br />
+ <a href="example2.htm"><font size="+1" color="olive">Example 2</font></a></P>
 </BODY>
 </HTML>

@@ -1,37 +1,27 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Single numeric value or fixed color name</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="AREAFILLCOLOR single value">
-  <PARAM NAME="Keyword" VALUE="GRAPH command">
-  <PARAM NAME="Keyword" VALUE="HISTOGRAMTYPE">
-  <PARAM NAME="Keyword" VALUE="fixed color">
-  <PARAM NAME="Keyword" VALUE="color name">
-  <PARAM NAME="Keyword" VALUE="COLORMAP">
-</OBJECT>
-
-<P><font size=+2 color="green">Single numeric value or fixed color name</font></P>
-<TABLE border=1 cols=2 frame=box rules=all width=572> <TR>
-<TD width=20% valign="top"><B>Syntax</B>:</TD>
-<TD width=80% valign="top"><CODE>
+<P><font size="+2" color="green">Single numeric value or fixed color name</font></P>
+<p>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572"> <TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
 SET AREAFILLCOLOR c<br>
 GET AREAFILLCOLOR { c }</CODE>
 </TD></TR>
-</TABLE>
+</TABLE></p>
 <p>
  The area under the curve or histogram will be filled with the solid color
- <CODE><font color="blue">c</font></CODE>. If <CODE><font color="blue">c</font></CODE> is
- a positive numeric scalar value, it represents the index of the color in the currently
- loaded <CODE><font color="blue"><a href="..\colormap.htm">COLORMAP</a></font></CODE>.
+ <CODE>c</CODE>.</p>
+<p>
+ If <CODE>c</CODE> is a positive numeric scalar value, it represents the index of the color in
+ the currently loaded <CODE><a href="../colormap.htm">COLORMAP</a></CODE>.</p>
+<p>
  A negative numeric scalar value represents the index of a fixed color. A string value
- should be one of the <a href="..\..\..\Introduction\colors.htm">fixed color names</a>.</p>
+ should be one of the <a href="../../../Introduction/colors.htm">fixed color names</a>.</p>
 <p>
  For example:</p>
 <p>
@@ -47,15 +37,17 @@ GET AREAFILLCOLOR { c }</CODE>
  </tr></table>
 </p>
 <p>
- If <CODE><font color="blue"><a href="..\..\PlottingSymbol\histogramtype.htm">HISTOGRAMTYPE</a>
- </font> = 2</code> (or <code>4</code>), then the
- <CODE><font color="blue"><a href="..\..\..\GraphCommand\graphcommand.htm">GRAPH</a></font></code>
- command produces a histogram profile with tails to <i>x=0</i> (or <i>y=0</i>).
- If <CODE><font color="blue">AREAFILLCOLOR</font></code> is set to a single numeric value
+ If <CODE><a href="../../PlottingSymbol/histogramtype.htm">HISTOGRAMTYPE</a> = 2</code> (or
+ <code>4</code>), then the <CODE><a href="../../../GraphCommand/graphcommand.htm">GRAPH</a></code>
+ command produces a histogram profile with tails to <i>x=0</i> (or <i>y=0</i>).</P>
+<p>
+ If <CODE>AREAFILLCOLOR</code> is set to a single numeric value
  or to a fixed color name, all the histogram bars will be filled with the same solid color.</p>
 <p>
-<a href="areafillcolor.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">AREAFILLCOLOR</font></a><br>
-<a href="vector.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Numeric vector</font></a>
+ <a href="areafillcolor.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">AREAFILLCOLOR</font></a><br />
+ <a href="vector.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Numeric vector</font></a>
 </P>
 </BODY>
 </HTML>

@@ -1,84 +1,69 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>BESTFIT command</TITLE>
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="BESTFIT command">
-</OBJECT>
+<P><font size="+3" color="green"><B>BESTFIT command</B></font></P>
 
-<P><font size=+3 color="green"><B>BESTFIT command</B></font></P>
-
-<TABLE border=1 cols=2 frame=box rules=all width=590>
+<TABLE border="1" cols="2" frame="box" rules="all" width="590">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-BESTFIT pmin pmax penalty error parm pout<br>
-BESTFIT\WEIGHTS w pmin pmax penalty error parm pout<br>
-BESTFIT\CYCLES n pmin pmax penalty error parm pout<br>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+BESTFIT pmin pmax penalty error parm pout<br />
+BESTFIT\WEIGHTS w pmin pmax penalty error parm pout<br />
+BESTFIT\CYCLES n pmin pmax penalty error parm pout<br />
 BESTFIT\WEIGHTS\CYCLES w n pmin pmax penalty error parm pout</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\WEIGHTS,</nobr> <nobr>\CYCLES</nobr></CODE>
+<TD width="15%" valign="top"><B>Qualifiers</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+\WEIGHTS, \CYCLES</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\-WEIGHTS,</nobr> <nobr>\-CYCLES</nobr></CODE>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+\-WEIGHTS, \-CYCLES</CODE>
 </TD></TR>
 </TABLE>
 <P>
-The <CODE><font color="blue">BESTFIT</font></CODE> command calculates parameters for
-a least squares fit to an error vector using adjustable parameters.  The parameter
-ranges, as well as the penalty function, must be vectors, with lengths equal to the
-number of parameters for the fit, <CODE><font color="blue">M</font></CODE>.  The error
-array must be a vector with length equal to the number of locations,
-<CODE><font color="blue">N</font></CODE>.  The influence function,
-<CODE><font color="blue">PARM</font></CODE>, must be a matrix
-with <CODE><font color="blue">N</font></CODE> rows and
-<CODE><font color="blue">M</font></CODE> columns.</P>
+ The <CODE>BESTFIT</CODE> command calculates parameters for
+ a least squares fit to an error vector using adjustable parameters.  The parameter
+ ranges, as well as the penalty function, must be vectors, with lengths equal to the
+ number, <CODE>M</CODE>, of parameters for the fit.  The error
+ array must be a vector with length equal to the number of locations,
+ <CODE>N</CODE>.  The influence function, <CODE>PARM</CODE>, must be a matrix
+ with <CODE>N</CODE> rows and <CODE>M</CODE> columns.</P>
 <P>
-Suppose you have an error vector, <CODE><font color="blue">ERROR</font></CODE>, with length
-<CODE><font color="blue">N</font></CODE>, and that you have
-<CODE><font color="blue">M</font></CODE> variable
-parameters.  The measured effect of a unit change for each of the parameters at
-each of the <CODE><font color="blue">N</font></CODE> locations is stored in a matrix,
-<CODE><font color="blue">PARM</font></CODE>, with
-<CODE><font color="blue">N</font></CODE> rows and
-<CODE><font color="blue">M</font></CODE> columns.
-Suppose you have a vector <CODE><font color="blue">PENALTY</font></CODE>, of length
-<CODE><font color="blue">M</font></CODE>, which represents the resistences
-to change of the <CODE><font color="blue">M</font></CODE> parameters,  that is, the larger
-<CODE><font color="blue">PENALTY[i]</font></CODE> the smaller will be
-the adjustment of the i_th parameter.  The optimal set of changes of the
-<CODE><font color="blue">M</font></CODE> parameters
-within their allowed range, <CODE><font color="blue">PMIN</font></CODE> to
-<CODE><font color="blue">PMAX</font></CODE>, will be determined in the
-'least-squares sense'. A vector, <CODE><font color="blue">POUT</font></CODE>, will
-be created with length <CODE><font color="blue">M</font></CODE> and filled with the
-parameter changes giving the "best" fit.</P>
+ Suppose you have an error vector, <CODE>ERROR</CODE>, with length
+ <CODE>N</CODE>, and that you have <CODE>M</CODE> variable
+ parameters.  The measured effect of a unit change for each of the parameters at
+ each of the <CODE>N</CODE> locations is stored in a matrix,
+ <CODE>PARM</CODE>, with <CODE>N</CODE> rows and <CODE>M</CODE> columns.
+ Suppose you have a vector <CODE>PENALTY</CODE>, of length
+ <CODE>M</CODE>, which represents the resistences
+ to change of the <CODE>M</CODE> parameters,  that is, the larger
+ <CODE>PENALTY[i]</CODE> the smaller will be
+ the adjustment of the <code>i</code><sup>th</sup> parameter.  The optimal set of changes of the
+ <CODE>M</CODE> parameters within their allowed range, <CODE>PMIN</CODE> to
+ <CODE>PMAX</CODE>, will be determined in the 'least-squares sense'. A vector, <CODE>POUT</CODE>, will
+ be created with length <CODE>M</CODE> and filled with the parameter changes giving the "best" fit.</P>
 <P>
-The <CODE><font color="blue">\CYCLES</font></CODE> qualifier allows the user to specify
-the maximum number of iteration steps for the fit.  When this maximum number is reached,
-the fit will stop.  The fit will also stop if the fit is successful before this maximum
-iteration number is reached.  If the <CODE><font color="blue">\WEIGHTS</font></code>
-qualifier is also used, the weight array comes before the iteration number in the
-parameter list.</P>
+ The <CODE>\CYCLES</CODE> qualifier allows the user to specify
+ the maximum number of iteration steps for the fit.  When this maximum number is reached,
+ the fit will stop.  The fit will also stop if the fit is successful before this maximum
+ iteration number is reached.  If the <CODE>\WEIGHTS</code>
+ qualifier is also used, the weight array comes before the iteration number in the
+ parameter list.</P>
 <P>
-If the <CODE><font color="blue">\WEIGHTS</font></CODE> qualifier is used, a weight vector,
-<CODE><font color="blue">w</font></CODE>, will be expected.  The weight vector should
-have length <CODE><font color="blue">N</font></CODE>, the length of the error vector.
-The weight, <CODE><font color="blue">w[i]</font></CODE>, corresponds to the 'importance'
-of reducing the initial error to zero at the i_th location.  The closer to zero the value
-of <CODE><font color="blue">w[i]</font></CODE>, the looser will be the fit at the i_th
-location. If the <CODE><font color="blue">\CYCLES</font></CODE> qualifier is also used,
-the weight array comes before the iteration number in the parameter list.</P>
+ If the <CODE>\WEIGHTS</CODE> qualifier is used, a weight vector,
+ <CODE>w</CODE>, will be expected.  The weight vector should
+ have length <CODE>N</CODE>, the length of the error vector.
+ The weight, <CODE>w[i]</CODE>, corresponds to the 'importance'
+ of reducing the initial error to zero at the <code>i</code><sup>th</sup> location.  The closer
+ to zero the value of <CODE>w[i]</CODE>, the looser will be the fit at the <code>i</code><sup>th</sup>
+ location. If the <CODE>\CYCLES</CODE> qualifier is also used, the weight array comes before the
+ iteration number in the parameter list.</P>
 </BODY>
 </HTML>

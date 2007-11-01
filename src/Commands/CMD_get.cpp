@@ -134,7 +134,7 @@ NEXTLINE:
   }
   else if( keyword==wxT("COLORMAP") || keyword==wxT("COLOURMAP") )
   {
-    if( percent )throw ECommandError( command+wxT("% is meaningless with COLORMAPNAME") );
+    if( percent )throw ECommandError( command+wxT("% is meaningless with COLORMAP") );
     svalue = GRA_colorControl::GetColorMapName();
     isaString = true;
   }

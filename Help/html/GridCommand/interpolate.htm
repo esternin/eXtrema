@@ -1,128 +1,103 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>INTERPOLATE</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject"
-        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="\INTERPOLATE qualifier">
-	<PARAM NAME="Keyword" VALUE="\XYOUT qualifier">
-	<PARAM NAME="Keyword" VALUE="\BOUNDS qualifier">
-	<PARAM NAME="Keyword" VALUE="Thiessen triangulation">
-	<PARAM NAME="Keyword" VALUE="interpolate matrix">
-	<PARAM NAME="Keyword" VALUE="matrix interpolation">
-</OBJECT>
-<P>
-<A NAME="gridcommandinterpolate"></A>
-<font size=+3 color="green"><B>INTERPOLATE</B></font>
-</P>
-<TABLE border=1 cols=2 frame=box rules=all width=600>
+<P><font size="+3" color="green"><B>INTERPOLATE</B></font></P>
+
+<TABLE border="1" cols="2" width="600">
 <TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
 GRID x y z m</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<NOBR>\SIZE,</NOBR> <NOBR>\XYOUT,</NOBR> <NOBR>\BOUNDS</NOBR></CODE>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>
+\SIZE, \XYOUT, \BOUNDS</CODE>
 </TD></TR>
 <TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\-SIZE,</nobr> <nobr>\-XYOUT,</nobr> <nobr>\-BOUNDS,</nobr>
-<nobr>matrix size = 5*sqrt(min(len(x),len(y),len(z))),</nobr>
-<nobr>range of grid interpolation is range of values of x and y</nobr></CODE>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>
+\-SIZE, \-XYOUT, \-BOUNDS,
+matrix size = 5*sqrt(min(len(x),len(y),len(z))),
+range of grid interpolation is range of values of x and y</CODE>
 </TD></TR>
 </TABLE>
 <P>
  The set of scattered data points is used to construct a Thiessen
- triangulation of the plane and a regular matrix,
- <CODE><font color="blue">m</font></CODE>, is interpolated.</p>
+ triangulation of the plane and a regular matrix, <CODE>m</CODE>, is interpolated.</p>
 <P>
-<font size=+1 color="green">SIZE</font></P>
-<TABLE border=1 cols=2 frame=box rules=all width=600>
-<TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-GRID\SIZE s x y z m<br>
-GRID\SIZE\XYOUT s x y z m xout yout<br>
-GRID\SIZE\BOUNDS s x y z m minx maxx miny maxy<br>
-GRID\SIZE\XYOUT\BOUNDS s x y z m xout yout minx maxx miny maxy</CODE>
-</TD></TR>
-<TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\-SIZE,</nobr> <nobr>\-XYOUT,</nobr> <nobr>\-BOUNDS,</nobr>
-<nobr>s = 5*sqrt(min(len(x),len(y),len(z)))</nobr></CODE>
-</TD></TR>
-</TABLE>
+ <font size="+1" color="green">SIZE</font></P>
+ <TABLE border="1" width="600">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ GRID\SIZE s x y z m<br />
+ GRID\SIZE\XYOUT s x y z m xout yout<br />
+ GRID\SIZE\BOUNDS s x y z m minx maxx miny maxy<br />
+ GRID\SIZE\XYOUT\BOUNDS s x y z m xout yout minx maxx miny maxy</CODE>
+ </TD></TR>
+ <TR>
+ <TD valign="top"><B>Defaults</B>:</TD>
+ <TD valign="top"><CODE>
+ \-SIZE, \-XYOUT, \-BOUNDS, s = 5*sqrt(min(len(x),len(y),len(z)))</CODE>
+ </TD></TR>
+ </TABLE>
 <P>
- By default, the interpolated matrix will be square, with row and column
- dimensions both equal to
- <nobr><CODE>5*sqrt(min(len(<font color="blue">x</font>),len(<font color="blue">y</font>),len(<font color="blue">z</font>)))</CODE>.</nobr> If another
- size, <CODE><font color="blue">s</font></CODE>, is desired, you must use the
- <CODE><font color="blue">\SIZE</font></CODE> qualifier, and the row and
- column dimensions will be both equal to <CODE><font color="blue">s</font></CODE>.</p>
+ By default, the interpolated matrix will be square, with row and column dimensions both equal to
+ <CODE>5*sqrt(min(len(x),len(y),len(z)))</CODE>. If another size, <CODE>s</CODE>, is desired, you must
+ use the <CODE>\SIZE</CODE> qualifier, and the row and column dimensions will be both equal to
+ <CODE>s</CODE>.</p>
 <P>
-<font size=+1 color="green">XYOUT</font></P>
-<TABLE border=1 cols=2 frame=box rules=all width=600>
-<TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-GRID\XYOUT x y z m xout yout<br>
-GRID\SIZE\XYOUT s x y z m xout yout<br>
-GRID\BOUNDS\XYOUT x y z m xout yout minx maxx miny maxy<br>
-GRID\SIZE\XYOUT\BOUNDS s x y z m xout yout minx maxx miny maxy</CODE>
-</TD></TR>
-<TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\-XYOUT</nobr></CODE>
-</TD></TR>
-</TABLE>
+ <font size="+1" color="green">XYOUT</font></P>
+ <TABLE border="1" width="600">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ GRID\XYOUT x y z m xout yout<br />
+ GRID\SIZE\XYOUT s x y z m xout yout<br />
+ GRID\BOUNDS\XYOUT x y z m xout yout minx maxx miny maxy<br />
+ GRID\SIZE\XYOUT\BOUNDS s x y z m xout yout minx maxx miny maxy</CODE>
+ </TD></TR>
+ <TR>
+ <TD valign="top"><B>Defaults</B>:</TD>
+ <TD valign="top"><CODE>
+ \-XYOUT</CODE>
+ </TD></TR>
+ </TABLE>
 <P>
- If output vectors, <CODE><font color="blue">xout</font></CODE> and
- <CODE><font color="blue">yout</font></CODE>, are desired, you must use the
- <CODE><font color="blue">\XYOUT</font></CODE> qualifier. The coordinates of output
- matrix element <CODE><font color="blue">m</font>[i,j]</CODE> will be
- <CODE>(<font color="blue">xout</font>[j],<font color="blue">yout</font>[i])</CODE>,
- where <CODE><font color="blue">xout</font></CODE> contains the <i>x</i>-coordinates
- of each column and <CODE><font color="blue">yout</font></CODE> contains the
- <i>y</i>-coordinates of each row.</p>
+ If output vectors, <CODE>xout</CODE> and <CODE>yout</CODE>, are desired, you must use the
+ <CODE>\XYOUT</CODE> qualifier. The coordinates of output matrix element <CODE>m[i,j]</CODE> will be
+ <CODE>(xout[j],yout[i])</CODE>, where <CODE>xout</CODE> contains the <i>x</i>-coordinates
+ of each column and <CODE>yout</CODE> contains the <i>y</i>-coordinates of each row.</p>
 <P>
-<font size=+1 color="green">BOUNDS</font></P>
-<TABLE border=1 cols=2 frame=box rules=all width=600>
-<TR>
-<TD width=15% valign="top"><B>Syntax</B>:</TD>
-<TD width=85% valign="top"><CODE>
-GRID\BOUNDS x y z m minx maxx miny maxy<br>
-GRID\BOUNDS\XYOUT x y z m xout yout minx maxx miny maxy<br>
-GRID\BOUNDS\SIZE\XYOUT s x y z m xout yout minx maxx miny maxy</CODE>
-</TD></TR>
-<TR>
-<TD width=15% valign="top"><B>Defaults</B>:</TD>
-<TD width=85% valign="top"><CODE>
-<nobr>\-BOUNDS,</nobr> <nobr>minx=min(x),</nobr> <nobr>maxx=max(x),</nobr>
-<nobr>miny=min(y),</nobr> <nobr>maxy=max(y)</nobr></CODE>
-</TD></TR>
-</TABLE>
+ <font size="+1" color="green">BOUNDS</font></P>
+ <TABLE border="1" width="600">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ GRID\BOUNDS x y z m minx maxx miny maxy<br />
+ GRID\BOUNDS\XYOUT x y z m xout yout minx maxx miny maxy<br />
+ GRID\BOUNDS\SIZE\XYOUT s x y z m xout yout minx maxx miny maxy</CODE>
+ </TD></TR>
+ <TR>
+ <TD valign="top"><B>Defaults</B>:</TD>
+ <TD valign="top"><CODE>
+ \-BOUNDS, minx=min(x), maxx=max(x), miny=min(y), maxy=max(y)</CODE>
+ </TD></TR>
+ </TABLE>
 <P>
  By default, the range of the grid interpolation is the range of values
- of the vectors <CODE><font color="blue">x</font></CODE> and
- <CODE><font color="blue">y</font></CODE>. If the
- <CODE><font color="blue">\BOUNDS</font></CODE> qualifier is used, this range
- is specified by the final four numbers, <CODE><font color="blue">minx</font></CODE>,
- <CODE><font color="blue">maxx</font></CODE>,
- <CODE><font color="blue">miny</font></CODE>, and
- <CODE><font color="blue">maxy</font></CODE>.</P>
+ of the vectors <CODE>x</CODE> and <CODE>y</CODE>. If the
+ <CODE>\BOUNDS</CODE> qualifier is used, this range
+ is specified by the final four numbers, <CODE>minx</CODE>, <CODE>maxx</CODE>, <CODE>miny</CODE>, and
+ <CODE>maxy</CODE>.</P>
 <P>
-<a href="gridcommand.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">GRID command</font></a><br>
-<a href="pattern.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">PATTERN</font></a>
-</P>
+ <a href="gridcommand.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">GRID command</font></a><br />
+ <a href="pattern.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">PATTERN</font></a></P>
 </BODY>
 </HTML>

@@ -1,76 +1,60 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Correlation and Covariance</TITLE>
 </HEAD>
-
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-	<PARAM NAME="Keyword" VALUE="fit">
-</OBJECT>
-
-<P><A NAME="fitccorrcov"></A>
-<font size=+2 color="green">Correlation and covariance</font>
-</P>
+<P><font size="+2" color="green">Correlation and covariance</font></P>
 <P>
  An indication of the accuracy of the fit is displayed in the output under the
- names <IMG WIDTH=24 HEIGHT=12 ALIGN=BOTTOM SRC="img63.gif">  and
- <IMG WIDTH=25 HEIGHT=12 ALIGN=BOTTOM SRC="img49.gif">.
-</P>
-<P> <IMG WIDTH=470 HEIGHT=106 ALIGN=BOTTOM SRC="img64.gif">
-</P>
+ names <IMG SRC="img63.gif">&nbsp;  and <IMG SRC="img49.gif">.</P>
+<P>
+ <IMG SRC="img64.gif"></P>
 <P>
  where <i>n</i> is the number of degrees of freedom, and
- where  <IMG WIDTH=56 HEIGHT=33 ALIGN=MIDDLE SRC="img65.gif">  are the
- diagonal elements of the inverse of the matrix
- <IMG WIDTH=14 HEIGHT=12 ALIGN=BOTTOM SRC="img28.gif">.
- <IMG WIDTH=33 HEIGHT=17 ALIGN=BOTTOM SRC="img66.gif">  is called
- the covariance matrix. The
- <IMG WIDTH=38 HEIGHT=28 ALIGN=MIDDLE SRC="img67.gif">  are called
- the root mean square statistical errors of estimate, while the
- <IMG WIDTH=38 HEIGHT=28 ALIGN=MIDDLE SRC="img68.gif">  are called the root
- mean square total errors of estimate, or standard errors.
-</P>
+ where  &nbsp;<IMG SRC="img65.gif">&nbsp;  are the
+ diagonal elements of the inverse of the matrix <IMG SRC="img28.gif">.</p>
+<p>
+ <IMG SRC="img66.gif">&nbsp; is called the covariance matrix.</p>
+<p>
+ The &nbsp;<IMG SRC="img67.gif">&nbsp; are called the root mean square statistical errors of estimate.</p>
+<p>
+ The &nbsp;<IMG SRC="img68.gif">&nbsp; are called the root mean square total errors of estimate, or
+ standard errors.</P>
 <P>
- The accuracy of the parameters in a linear fit is
- <IMG WIDTH=226 HEIGHT=28 ALIGN=MIDDLE SRC="img69.gif">. In the linear case,
- for the standard error  <IMG WIDTH=25 HEIGHT=12 ALIGN=BOTTOM SRC="img49.gif"> 
- to be correct, the weights
- <IMG WIDTH=20 HEIGHT=16 ALIGN=MIDDLE SRC="img44.gif">  must be proportional to
- <IMG WIDTH=34 HEIGHT=31 ALIGN=MIDDLE SRC="img70.gif">, where
- <IMG WIDTH=16 HEIGHT=16 ALIGN=MIDDLE SRC="img71.gif">  is the standard
- deviation of the probability distribution of
- <IMG WIDTH=16 HEIGHT=17 ALIGN=MIDDLE SRC="img9.gif">. In the nonlinear case,
- <IMG WIDTH=25 HEIGHT=12 ALIGN=BOTTOM SRC="img49.gif"> 
- does not have the same statistical significance.
-</P>
+ The accuracy of the parameters in a linear fit is</p>
+<p>
+ <IMG SRC="img69.gif"></p>
+<p>
+ In the linear case, for the standard error &nbsp;<IMG SRC="img49.gif">&nbsp; to be correct, the weights
+ <code>w<sub>k</sub></code> must be proportional to <code>1/&sigma;<sub>k</sub><sup>2</sup></code>,
+ where <code>&sigma;<sub>k</sub></code> is the standard deviation of the probability distribution of
+ <code>y<sub>k</sub></code>. In the nonlinear case, <IMG SRC="img49.gif">&nbsp; does not have the same
+ statistical significance.</P>
 <P>
- If the <font color="blue"><code>\COVMAT</code></font> qualifier is used, a
- matrix called
+ If the <code>\COVMAT</code> qualifier is used, a matrix called
  <font color="orange"><code>FIT$COVM</code></font> will be created which
- will contain <IMG WIDTH=33 HEIGHT=17 ALIGN=BOTTOM SRC="img66.gif">.  If the
- <font color="blue"><code>\CORRMAT</code></font> qualifier is used, a
- matrix with the name
- <font color="orange"><code>FIT$CORR</code></font> will be created which
- will contain the correlation
- matrix for the fit. The size of these matrices will be <i>M</i> by <i>M</i>.
- If the <font color="blue"><code>\E1</code></font> qualifier is used, then
- the root mean square
- statistical error for each fit parameter are output into an automatically
- created vector named <font color="orange"><code>FIT$E1</code></font>. If the
- <font color="blue"><code>\E2</code></font> qualifier is used, then the
- root mean square total error of estimate for each parameter are output
- into an automatically created vector named
- <font color="orange"><code>FIT$E2</code></font>. The values are
- stored in these vectors in the order corresponding to the order in which the
- parameters appeared in the expression.  The length of these vectors will be
- equal to the number of parameters in the fit expression.
-</P>
+ will contain <IMG SRC="img66.gif">&nbsp;.</p>
+<p>
+ If the <code>\CORRMAT</code> qualifier is used, a matrix with the name
+ <font color="orange"><code>FIT$CORR</code></font> will be created which will contain the correlation
+ matrix for the fit. The size of these matrices will be <i>M</i> by <i>M</i>.</p>
+<p>
+ If the <code>\E1</code> qualifier is used, then the root mean square statistical error for each fit
+ parameter are output into an automatically created vector named <font color="orange"><code>FIT$E1</code>
+ </font>.</p>
+<p>
+ If the <code>\E2</code> qualifier is used, then the root mean square total error of estimate for each
+ parameter are output into an automatically created vector named <font color="orange"><code>FIT$E2</code>
+ </font>.</p>
+<p>
+ The values are stored in these vectors in the order corresponding to the order in which the
+ parameters appeared in the expression.  The length of these vectors will be equal to the number of
+ parameters in the fit expression.</P>
 <P>
-<a href="tolerance.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Tolerance</font></a><br>
-<a href="confidencelevel.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Confidence level of the fit</font></a>
-</P>
+ <a href="tolerance.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Tolerance</font></a><br />
+ <a href="confidencelevel.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Confidence level of the fit</font></a></P>
 </BODY>
 </HTML>

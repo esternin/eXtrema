@@ -1,80 +1,66 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <HTML>
 <HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
 <TITLE>Histogram example</TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
-<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
-  <PARAM NAME="Keyword" VALUE="AREAFILLCOLOR histogram example">
-</OBJECT>
-<P><font size=+2 color="green">Histogram example</font></P>
+
+<P><font size="+2" color="green">Histogram example</font></P>
 <p>
  The script below illustrates how to fill the area under a histogram profile and how to
  fill the bars of a histogram with different colors.</p>
 <p>
  Note that the main script calls another script to do a repetitive task.</p>
 <p>
- <table>
- <tr>
-  <td><table cellpadding="0" cellspacing="0">
-    <td><code><nobr>X = [1.1:1.6:0.1]</nobr></code></td></tr><tr>
-    <td><code><nobr>Y = [2.2;2.4;2.6;3.1;4.5;5.1]</nobr></code></td></tr><tr>
-    <td><code><nobr>WINDOW 5</nobr></code></td></tr><tr>
-    <td><code><nobr>@sub</nobr></code></td></tr><tr>
-    <td><code><nobr>SET</nobr></code></td></tr><tr>
-    <td><code><nobr>&nbsp;HISTOGRAMTYPE 1</nobr></code></td></tr><tr>
-    <td><code><nobr>&nbsp;AREAFILLCOLOR RED</nobr></code></td></tr><tr>
-    <td>&nbsp;</td></tr><tr>
-    <td><code><nobr>GRAPH X Y</nobr></code></td></tr><tr>
-    <td><code><nobr>TEXT 'histogramtype = 1'</nobr></code></td></tr><tr>
-    <td><code><nobr>WINDOW 6</nobr></code></td></tr><tr>
-    <td><code><nobr>@sub</nobr></code></td></tr><tr>
-    <td><code><nobr>SET</nobr></code></td></tr><tr>
-    <td><code><nobr>&nbsp;HISTOGRAMTYPE 2</nobr></code></td></tr><tr>
-    <td><code><nobr>&nbsp;AREAFILLCOLOR [-1:-6:-1]</nobr></code></td></tr><tr>
-    <td>&nbsp;</td></tr><tr>
-    <td><code><nobr>GRAPH X Y</nobr></code></td></tr><tr>
-    <td><code><nobr>TEXT 'histogramtype = 2'</nobr></code></td></tr><tr>
-    <td><code><nobr>WINDOW 7</nobr></code></td></tr><tr>
-    <td><code><nobr>@sub</nobr></code></td></tr><tr>
-    <td><code><nobr>SET</nobr></code></td></tr><tr>
-    <td><code><nobr>&nbsp;HISTOGRAMTYPE 3</nobr></code></td></tr><tr>
-    <td><code><nobr>&nbsp;AREAFILLCOLOR blue</nobr></code></td></tr><tr>
-    <td>&nbsp;</td></tr><tr>
-    <td><code><nobr>GRAPH X Y</nobr></code></td></tr><tr>
-    <td><code><nobr>TEXT 'histogramtype = 3'</nobr></code></td></tr><tr>
-    <td><code><nobr>WINDOW 8</nobr></code></td></tr><tr>
-    <td><code><nobr>@sub</nobr></code></td></tr><tr>
-    <td><code><nobr>SET</nobr></code></td></tr><tr>
-    <td><code><nobr>&nbsp;HISTOGRAMTYPE 4</nobr></code></td></tr><tr>
-    <td><code><nobr>&nbsp;AREAFILLCOLOR [-7:-12:-1]</nobr></code></td></tr><tr>
-    <td>&nbsp;</td></tr><tr>
-    <td><code><nobr>GRAPH X Y</nobr></code></td></tr><tr>
-    <td><code><nobr>TEXT 'histogramtype = 4'</nobr></code></td></tr></table></td>
-  <td><img src="example2.jpg"></td>
- </tr></table></p>
+<font color="blue"><pre>
+X = [1.1:1.6:0.1]
+Y = [2.2;2.4;2.6;3.1;4.5;5.1]
+WINDOW 5
+@sub
+SET HISTOGRAMTYPE 1
+SET AREAFILLCOLOR RED
+GRAPH X Y
+TEXT 'histogramtype = 1'
+WINDOW 6
+@sub
+SET HISTOGRAMTYPE 2
+SET AREAFILLCOLOR [-1:-6:-1]
+GRAPH X Y
+TEXT 'histogramtype = 2'
+WINDOW 7
+@sub
+SET HISTOGRAMTYPE 3
+SET AREAFILLCOLOR blue
+GRAPH X Y
+TEXT 'histogramtype = 3'
+WINDOW 8
+@sub
+SET HISTOGRAMTYPE 4
+SET AREAFILLCOLOR [-7:-12:-1]
+GRAPH X Y
+TEXT 'histogramtype = 4'
+</pre></font></p>
+<img src="example2.jpg">
 <p>
  The auxiliary script, <code>sub.pcm</code>, is shown here.</p>
 <p>
- <pre>
+ <font color="blue"><pre>
   ! sub.pcm
   !
   DEFAULTS
-  SET
-   %XNUMBERHEIGHT 4
-   %YNUMBERHEIGHT 4
-   %XIMAGTICLENGTH 2
-   %XTEXTLOCATION 50
-   %YTEXTLOCATION 90
-   TEXTINTERACTIVE 0
-   TEXTALIGN 2
-   %TEXTHEIGHT 5
- 
- </pre></p>
+  SET %XNUMBERHEIGHT 4
+  SET %YNUMBERHEIGHT 4
+  SET %XIMAGTICLENGTH 2
+  SET %XTEXTLOCATION 50
+  SET %YTEXTLOCATION 90
+  SET TEXTINTERACTIVE 0
+  SET TEXTALIGN 2
+  SET %TEXTHEIGHT 5
+</pre></font></p>
 <P>
-<a href="example1.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Curve example</font></a><br>
-<a href="example3.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Area between two curves example</font></a>
+<a href="example1.htm"><img align="top" border="0" src="../../../shadow_left.gif">&nbsp;
+<font size="+1" color="olive">Curve example</font></a><br />
+<a href="example3.htm"><img align="top" border="0" src="../../../shadow_right.gif">&nbsp;
+<font size="+1" color="olive">Area between two curves example</font></a>
 </P>
 </BODY>
 </HTML>

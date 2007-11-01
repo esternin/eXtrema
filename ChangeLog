@@ -1,4 +1,4 @@
-12/10/2007  Joe Chuma <chuma@triumf.ca>
+01/11/2007  Joe Chuma <chuma@triumf.ca>
 
 	v4.2.10
 
@@ -6,6 +6,13 @@
 	when reading a matrix where the number of columns is not given, extrema was
 	returning 1000 columns, which is obviously wrong.  This has been fixed.
 
+	* modified all help files
+	removed extraneous Windows specific stuff from the html help files
+	and tried to fix up broken links and incorrect information
+
+	* modified src/Functions/FCN_integral
+	added trapezoid rule calculation. Syntax:   INTEGRAL(x,y,'TRAPEZOID')
+	
 05/10/2007  Joe Chuma <chuma@triumf.ca>
 
 	v4.2.9
