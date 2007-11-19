@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -136,7 +136,7 @@ void GRA_densityPlot::SetUp()
     {
       cartesianAxes->Make();
     }
-    catch (EGraphicsError &e)
+    catch (EGraphicsError const &e)
     {
       throw;
     }
@@ -306,7 +306,7 @@ void GRA_densityPlot::DrawProfiles( GRA_wxWidgets *graphicsOutput, wxDC &dc )
       cartesianAxes->Make();
       cartesianCurve->Make();
     }
-    catch ( EGraphicsError &e )
+    catch ( EGraphicsError const &e )
     {
       throw;
     }
@@ -344,7 +344,7 @@ void GRA_densityPlot::DrawProfiles( GRA_wxWidgets *graphicsOutput, wxDC &dc )
       cartesianAxes->Make();
       cartesianCurve->Make();
     }
-    catch ( EGraphicsError &e )
+    catch ( EGraphicsError const &e )
     {
       throw;
     }
@@ -402,7 +402,7 @@ void GRA_densityPlot::DrawAxes( GRA_wxWidgets *graphicsOutput, wxDC &dc,
   {
     axes->Make();
   }
-  catch (EGraphicsError &e)
+  catch (EGraphicsError const &e)
   {
     delete axes;
     throw;

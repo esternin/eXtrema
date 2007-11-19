@@ -10,8 +10,8 @@ generate\random r 1 1.2 50
 y=a*exp(-b*(x-c)^2)+r
 set
  plotsymbol -1
- %xnumbersheight 4
- %ynumbersheight 4
+ %xnumbersheight 3
+ %ynumbersheight 3
  
 graph x y
 scalar\fit a b c d
@@ -24,22 +24,23 @@ set
 graph\overlay x yf
 get
  %xloweraxis xlx
+ %xupperaxis xux
  %yupperaxis yux
 
 set
- %textheight 4
+ %textheight 3
  textfont 'Arial'
- %xtextlocation xlx
- %ytextlocation 98
- textalign 7
+ %xtextlocation 0.5*(xlx+xux)
+ %ytextlocation yux+1
+ textalign 2
  textinteractive 0
 
 yux = yux-2
 text 'Fit: y=a*e<^>-b*(x-c)<^>2<_><_> + d'
 set
- %textheight 3
  textfont 'Courier New'
  textalign 1
+ %textheight 2
  %xtextlocation 55
  %ytextlocation yux-5
 

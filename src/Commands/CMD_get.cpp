@@ -366,6 +366,13 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LINEWIDTH")));
     fvalue = static_cast<double>(axisLineWidth->Get());
   }
+  else if( keyword==wxT("POLARAXISLINEWIDTH") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARAXISLINEWIDTH") );
+    GRA_intCharacteristic *axisLineWidth =
+      static_cast<GRA_intCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("LINEWIDTH")));
+    fvalue = static_cast<double>(axisLineWidth->Get());
+  }
   else if( keyword==wxT("XAXISCOLOR") || keyword==wxT("XAXISCOLOUR") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XAXISCOLOR") );
@@ -380,12 +387,41 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("AXISCOLOR")));
     fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
   }
+  else if( keyword==wxT("POLARAXISCOLOR") || keyword==wxT("POLARAXISCOLOUR") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARAXISCOLOR") );
+    GRA_colorCharacteristic *color =
+      static_cast<GRA_colorCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("AXISCOLOR")));
+    fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
+  }
   else if( keyword==wxT("HISTOGRAMTYPE") || keyword==wxT("HISTYP") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with HISTOGRAMTYPE") );
     GRA_intCharacteristic *histType =
       static_cast<GRA_intCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("HISTOGRAMTYPE")));
     fvalue = static_cast<double>(histType->Get());
+  }
+  else if( keyword==wxT("POLARORIGINX") )
+  {
+    fvalue =
+        static_cast<GRA_distanceCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("XORIGIN")))->Get(percent);
+  }
+  else if( keyword==wxT("POLARORIGINY") )
+  {
+    fvalue =
+        static_cast<GRA_distanceCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("YORIGIN")))->Get(percent);
+  }
+  else if( keyword==wxT("POLARAXISLENGTH") )
+  {
+    fvalue =
+        static_cast<GRA_distanceCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("AXISLENGTH")))->Get(percent);
+  }
+  else if( keyword==wxT("POLARNAXES") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNAXES") );
+    GRA_intCharacteristic *naxes =
+      static_cast<GRA_intCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NAXES")));
+    fvalue = static_cast<double>(naxes->Get());
   }
   else if( keyword==wxT("XLOWERAXIS") || keyword==wxT("XLAXIS") )
   {
@@ -437,7 +473,22 @@ NEXTLINE:
   else if( keyword==wxT("XNUMBERSFONT") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XNUMBERSFONT") );
-    svalue = static_cast<GRA_fontCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSFONT")))->Get()->GetFontName();
+    svalue =
+        static_cast<GRA_fontCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSFONT")))->Get()->GetFontName();
+    isaString = true;
+  }
+  else if( keyword==wxT("YNUMBERSFONT") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with YNUMBERSFONT") );
+    svalue =
+        static_cast<GRA_fontCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSFONT")))->Get()->GetFontName();
+    isaString = true;
+  }
+  else if( keyword==wxT("POLARNUMBERSFONT") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNUMBERSFONT") );
+    svalue =
+        static_cast<GRA_fontCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NUMBERSFONT")))->Get()->GetFontName();
     isaString = true;
   }
   else if( keyword == wxT("XNUMBERSON") )
@@ -447,17 +498,18 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSON")));
     fvalue = static_cast<double>(static_cast<int>(numberson->Get()));
   }
-  else if( keyword==wxT("YNUMBERSFONT") )
-  {
-    if( percent )throw ECommandError( command+wxT("% is meaningless with YNUMBERSFONT") );
-    svalue = static_cast<GRA_fontCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSFONT")))->Get()->GetFontName();
-    isaString = true;
-  }
   else if( keyword == wxT("YNUMBERSON") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with YNUMBERSON") );
     GRA_boolCharacteristic *numberson =
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSON")));
+    fvalue = static_cast<double>(static_cast<int>(numberson->Get()));
+  }
+  else if( keyword == wxT("POLARNUMBERSON") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNUMBERSON") );
+    GRA_boolCharacteristic *numberson =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NUMBERSON")));
     fvalue = static_cast<double>(static_cast<int>(numberson->Get()));
   }
   else if( keyword==wxT("XNUMBEROFDIGITS") || keyword==wxT("NXDIG") )
@@ -474,6 +526,13 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBEROFDIGITS")));
     fvalue = static_cast<double>(ndig->Get());
   }
+  else if( keyword==wxT("POLARNUMBEROFDIGITS") || keyword==wxT("NPDIG") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNUMBEROFDIGITS") );
+    GRA_intCharacteristic *ndig =
+      static_cast<GRA_intCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NUMBEROFDIGITS")));
+    fvalue = static_cast<double>(ndig->Get());
+  }
   else if( keyword==wxT("XNUMBEROFDECIMALS") || keyword==wxT("NXDEC") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XNUMBEROFDECIMALS") );
@@ -488,6 +547,13 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBEROFDECIMALS")));
     fvalue = static_cast<double>(ndec->Get());
   }
+  else if( keyword==wxT("POLARNUMBEROFDECIMALS") || keyword==wxT("NPDEC") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNUMBEROFDECIMALS") );
+    GRA_intCharacteristic *ndec =
+      static_cast<GRA_intCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NUMBEROFDECIMALS")));
+    fvalue = static_cast<double>(ndec->Get());
+  }
   else if( keyword==wxT("XNUMBERSHEIGHT") || keyword==wxT("XNUMSZ") )
   {
     GRA_sizeCharacteristic *height =
@@ -500,6 +566,12 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSHEIGHT")));
     fvalue = height->Get( percent );
   }
+  else if( keyword==wxT("POLARNUMBERSHEIGHT") || keyword==wxT("PNUMSZ") )
+  {
+    GRA_sizeCharacteristic *height =
+      static_cast<GRA_sizeCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NUMBERSHEIGHT")));
+    fvalue = height->Get( percent );
+  }
   else if( keyword==wxT("XIMAGTICLENGTH") || keyword==wxT("XITICL") )
   {
     GRA_sizeCharacteristic *len =
@@ -510,6 +582,12 @@ NEXTLINE:
   {
     GRA_sizeCharacteristic *len =
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("IMAGTICLENGTH")));
+    fvalue = len->Get( percent );
+  }
+  else if( keyword==wxT("POLARIMAGTICLENGTH") || keyword==wxT("PITICL") )
+  {
+    GRA_sizeCharacteristic *len =
+      static_cast<GRA_sizeCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("IMAGTICLENGTH")));
     fvalue = len->Get( percent );
   }
   else if( keyword==wxT("XIMAGTICANGLE") || keyword==wxT("XITICA") )
@@ -526,6 +604,13 @@ NEXTLINE:
       static_cast<GRA_angleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("IMAGTICANGLE")));
     fvalue = angle->Get();
   }
+  else if( keyword==wxT("POLOARIMAGTICANGLE") || keyword==wxT("PITICA") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARTIMAGTICANGLE") );
+    GRA_angleCharacteristic *angle =
+      static_cast<GRA_angleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("IMAGTICANGLE")));
+    fvalue = angle->Get();
+  }
   else if( keyword==wxT("XNUMBERSANGLE") || keyword==wxT("XNUMA") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XNUMBERSANGLE") );
@@ -538,6 +623,13 @@ NEXTLINE:
     if( percent )throw ECommandError( command+wxT("% is meaningless with YNUMBERSANGLE") );
     GRA_angleCharacteristic *angle =
       static_cast<GRA_angleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NUMBERSANGLE")));
+    fvalue = angle->Get();
+  }
+  else if( keyword==wxT("POLARNUMBERSANGLE") || keyword==wxT("PNUMA") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNUMBERSANGLE") );
+    GRA_angleCharacteristic *angle =
+      static_cast<GRA_angleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NUMBERSANGLE")));
     fvalue = angle->Get();
   }
   else if( keyword==wxT("XPOWER") || keyword==wxT("XPOW") )
@@ -554,6 +646,13 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("POWER")));
     fvalue = power->Get();
   }
+  else if( keyword==wxT("POLARPOWER") || keyword==wxT("PPOW") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARPOWER") );
+    GRA_doubleCharacteristic *power =
+      static_cast<GRA_doubleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("POWER")));
+    fvalue = power->Get();
+  }
   else if( keyword==wxT("XPOWERAUTO") || keyword==wxT("XPAUTO") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XPOWERAUTO") );
@@ -568,10 +667,29 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("POWERAUTO")));
     fvalue = static_cast<double>(pauto->Get());
   }
+  else if( keyword==wxT("POLARPOWERAUTO") || keyword==wxT("PPAUTO") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARPOWERAUTO") );
+    GRA_intCharacteristic *pauto =
+      static_cast<GRA_intCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("POWERAUTO")));
+    fvalue = static_cast<double>(pauto->Get());
+  }
   else if( keyword==wxT("XLABELFONT") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XLABELFONT") );
     svalue = static_cast<GRA_fontCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LABELFONT")))->Get()->GetFontName();
+    isaString = true;
+  }
+  else if( keyword==wxT("YLABELFONT") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with YLABELFONT") );
+    svalue = static_cast<GRA_fontCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELFONT")))->Get()->GetFontName();
+    isaString = true;
+  }
+  else if( keyword==wxT("POLARLABELFONT") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARLABELFONT") );
+    svalue = static_cast<GRA_fontCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("LABELFONT")))->Get()->GetFontName();
     isaString = true;
   }
   else if( keyword == wxT("XLABEL") )
@@ -582,11 +700,41 @@ NEXTLINE:
     svalue = label->Get();
     isaString = true;
   }
+  else if( keyword == wxT("YLABEL") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with YLABEL") );
+    GRA_stringCharacteristic *label =
+      static_cast<GRA_stringCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABEL")));
+    svalue = label->Get();
+    isaString = true;
+  }
+  else if( keyword == wxT("POLARLABEL") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARLABEL") );
+    GRA_stringCharacteristic *label =
+      static_cast<GRA_stringCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("LABEL")));
+    svalue = label->Get();
+    isaString = true;
+  }
   else if( keyword==wxT("XLABELCOLOR") || keyword==wxT("XLABELCOLOUR") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XLABELCOLOR") );
     GRA_colorCharacteristic *color =
       static_cast<GRA_colorCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LABELCOLOR")));
+    fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
+  }
+  else if( keyword==wxT("YLABELCOLOR") || keyword==wxT("YLABELCOLOUR") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with YLABELCOLOR") );
+    GRA_colorCharacteristic *color =
+      static_cast<GRA_colorCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELCOLOR")));
+    fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
+  }
+  else if( keyword==wxT("POLARLABELCOLOR") || keyword==wxT("POLARLABELCOLOUR") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARLABELCOLOR") );
+    GRA_colorCharacteristic *color =
+      static_cast<GRA_colorCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("LABELCOLOR")));
     fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
   }
   else if( keyword==wxT("XNUMBERSCOLOR") || keyword==wxT("XNUMBERSCOLOUR") )
@@ -596,32 +744,18 @@ NEXTLINE:
       static_cast<GRA_colorCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSCOLOR")));
     fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
   }
-  else if( keyword==wxT("YLABELFONT") )
-  {
-    if( percent )throw ECommandError( command+wxT("% is meaningless with YLABELFONT") );
-    svalue = static_cast<GRA_fontCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELFONT")))->Get()->GetFontName();
-    isaString = true;
-  }
-  else if( keyword == wxT("YLABEL") )
-  {
-    if( percent )throw ECommandError( command+wxT("% is meaningless with YLABEL") );
-    GRA_stringCharacteristic *label =
-      static_cast<GRA_stringCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABEL")));
-    svalue = label->Get();
-    isaString = true;
-  }
-  else if( keyword==wxT("YLABELCOLOR") || keyword==wxT("YLABELCOLOUR") )
-  {
-    if( percent )throw ECommandError( command+wxT("% is meaningless with YLABELCOLOR") );
-    GRA_colorCharacteristic *color =
-      static_cast<GRA_colorCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELCOLOR")));
-    fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
-  }
   else if( keyword==wxT("YNUMBERSCOLOR") || keyword==wxT("YNUMBERSCOLOUR") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with YNUMBERSCOLOR") );
     GRA_colorCharacteristic *color =
       static_cast<GRA_colorCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("NUMBERSCOLOR")));
+    fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
+  }
+  else if( keyword==wxT("POLARNUMBERSCOLOR") || keyword==wxT("POLARNUMBERSCOLOUR") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNUMBERSCOLOR") );
+    GRA_colorCharacteristic *color =
+      static_cast<GRA_colorCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NUMBERSCOLOR")));
     fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
   }
   else if( keyword==wxT("XLABELHEIGHT") || keyword==wxT("XLABSZ") )
@@ -634,6 +768,12 @@ NEXTLINE:
   {
     GRA_sizeCharacteristic *height =
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELHEIGHT")));
+    fvalue = height->Get( percent );
+  }
+  else if( keyword==wxT("POLARLABELHEIGHT") || keyword==wxT("PLABSZ") )
+  {
+    GRA_sizeCharacteristic *height =
+      static_cast<GRA_sizeCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("LABELHEIGHT")));
     fvalue = height->Get( percent );
   }
   else if( keyword == wxT("XLABELON") )
@@ -650,6 +790,13 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LABELON")));
     fvalue = static_cast<double>(static_cast<int>(labelon->Get()));
   }
+  else if( keyword == wxT("POLARLABELON") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARLABELON") );
+    GRA_boolCharacteristic *labelon =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("LABELON")));
+    fvalue = static_cast<double>(static_cast<int>(labelon->Get()));
+  }
   else if( keyword==wxT("XLARGETICLENGTH") || keyword==wxT("XTICL") )
   {
     GRA_sizeCharacteristic *len =
@@ -660,6 +807,12 @@ NEXTLINE:
   {
     GRA_sizeCharacteristic *len =
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LARGETICLENGTH")));
+    fvalue = len->Get( percent );
+  }
+  else if( keyword==wxT("POLARLARGETICLENGTH") || keyword==wxT("PTICL") )
+  {
+    GRA_sizeCharacteristic *len =
+      static_cast<GRA_sizeCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("LARGETICLENGTH")));
     fvalue = len->Get( percent );
   }
   else if( keyword==wxT("XSMALLTICLENGTH") || keyword==wxT("XTICS") )
@@ -674,6 +827,12 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("SMALLTICLENGTH")));
     fvalue = len->Get( percent );
   }
+  else if( keyword==wxT("POLARSMALLTICLENGTH") || keyword==wxT("PTICS") )
+  {
+    GRA_sizeCharacteristic *len =
+      static_cast<GRA_sizeCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("SMALLTICLENGTH")));
+    fvalue = len->Get( percent );
+  }
   else if( keyword==wxT("XTICANGLE") || keyword==wxT("XTICA") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XTICANGLE") );
@@ -686,6 +845,13 @@ NEXTLINE:
     if( percent )throw ECommandError( command+wxT("% is meaningless with YTICANGLE") );
     GRA_angleCharacteristic *angle =
       static_cast<GRA_angleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("TICANGLE")));
+    fvalue = angle->Get();
+  }
+  else if( keyword==wxT("POLARTICANGLE") || keyword==wxT("PTICA") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARTICANGLE") );
+    GRA_angleCharacteristic *angle =
+      static_cast<GRA_angleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("TICANGLE")));
     fvalue = angle->Get();
   }
   else if( keyword==wxT("XFORCECROSS") || keyword==wxT("XCROSS") )
@@ -730,6 +896,13 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("MAX")));
     fvalue = max->Get();
   }
+  else if( keyword == wxT("POLARMAX") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARMAX") );
+    GRA_doubleCharacteristic *max =
+      static_cast<GRA_doubleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("MAX")));
+    fvalue = max->Get();
+  }
   else if( keyword==wxT("XVIRTUALMIN") || keyword==wxT("XVMIN") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XVIRTUALMIN") );
@@ -758,6 +931,13 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("VIRTUALMAX")));
     fvalue = max->Get();
   }
+  else if( keyword==wxT("POLARVIRTUALMAX") || keyword==wxT("PVMAX") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARVIRTUALMAX") );
+    GRA_doubleCharacteristic *max =
+      static_cast<GRA_doubleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("VIRTUALMAX")));
+    fvalue = max->Get();
+  }
   else if( keyword==wxT("XNLINCS") || keyword==wxT("NLXINC") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XNLINCS") );
@@ -770,6 +950,13 @@ NEXTLINE:
     if( percent )throw ECommandError( command+wxT("% is meaningless with YNLINCS") );
     GRA_intCharacteristic *nlincs =
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NLINCS")));
+    fvalue = static_cast<double>(nlincs->Get());
+  }
+  else if( keyword==wxT("POLARNLINCS") || keyword==wxT("NLPINC") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNLINCS") );
+    GRA_intCharacteristic *nlincs =
+      static_cast<GRA_intCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NLINCS")));
     fvalue = static_cast<double>(nlincs->Get());
   }
   else if( keyword==wxT("XNSINCS") || keyword==wxT("NSXINC") )
@@ -786,6 +973,13 @@ NEXTLINE:
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("NSINCS")));
     fvalue = static_cast<double>(nsincs->Get());
   }
+  else if( keyword==wxT("POLARNSINCS") || keyword==wxT("NSPINC") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNSINCS") );
+    GRA_intCharacteristic *nsincs =
+      static_cast<GRA_intCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("NSINCS")));
+    fvalue = static_cast<double>(nsincs->Get());
+  }
   else if( keyword == wxT("XTICSON") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XTICSON") );
@@ -798,6 +992,13 @@ NEXTLINE:
     if( percent )throw ECommandError( command+wxT("% is meaningless with YTICSON") );
     GRA_boolCharacteristic *ticson =
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("TICSON")));
+    fvalue = static_cast<double>(static_cast<int>(ticson->Get()));
+  }
+  else if( keyword == wxT("POLARTICSON") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARTICSON") );
+    GRA_boolCharacteristic *ticson =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("TICSON")));
     fvalue = static_cast<double>(static_cast<int>(ticson->Get()));
   }
   else if( keyword == wxT("XTICSBOTHSIDES") )
@@ -814,6 +1015,13 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("TICSBOTHSIDES")));
     fvalue = static_cast<double>(static_cast<int>(ticsbs->Get()));
   }
+  else if( keyword == wxT("POLARTICSBOTHSIDES") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARTICSBOTHSIDES") );
+    GRA_boolCharacteristic *ticsbs =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("TICSBOTHSIDES")));
+    fvalue = static_cast<double>(static_cast<int>(ticsbs->Get()));
+  }
   else if( keyword == wxT("XAXISON") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XAXIS") );
@@ -828,6 +1036,13 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("AXISON")));
     fvalue = static_cast<double>(static_cast<int>(axison->Get()));
   }
+  else if( keyword == wxT("POLARAXISON") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARAXIS") );
+    GRA_boolCharacteristic *axison =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("AXISON")));
+    fvalue = static_cast<double>(static_cast<int>(axison->Get()));
+  }
   else if( keyword==wxT("XGRID") || keyword==wxT("NXGRID") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XGRID") );
@@ -840,6 +1055,13 @@ NEXTLINE:
     if( percent )throw ECommandError( command+wxT("% is meaningless with YGRID") );
     GRA_intCharacteristic *n =
       static_cast<GRA_intCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("GRID")));
+    fvalue = static_cast<double>(n->Get());
+  }
+  else if( keyword==wxT("POLARGRID") || keyword==wxT("NPGRID") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARGRID") );
+    GRA_intCharacteristic *n =
+      static_cast<GRA_intCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("GRID")));
     fvalue = static_cast<double>(n->Get());
   }
   else if( keyword==wxT("XAXISANGLE") || keyword==wxT("XAXISA") )
@@ -863,19 +1085,19 @@ NEXTLINE:
       static_cast<GRA_doubleCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LOGBASE")));
     fvalue = logbase->Get();
   }
-  else if( keyword == wxT("XLOGSTYLE") )
-  {
-    if( percent )throw ECommandError( command+wxT("% is meaningless with XLOGSTYLE") );
-    GRA_boolCharacteristic *logstyle =
-      static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LOGSTYLE")));
-    fvalue = static_cast<double>(static_cast<int>(logstyle->Get()));
-  }
   else if( keyword==wxT("YLOGBASE") || keyword==wxT("YLOG") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with YLOGBASE") );
     GRA_doubleCharacteristic *logbase =
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LOGBASE")));
     fvalue = logbase->Get();
+  }
+  else if( keyword == wxT("XLOGSTYLE") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with XLOGSTYLE") );
+    GRA_boolCharacteristic *logstyle =
+      static_cast<GRA_boolCharacteristic*>(gw->GetXAxisCharacteristics()->Get(wxT("LOGSTYLE")));
+    fvalue = static_cast<double>(static_cast<int>(logstyle->Get()));
   }
   else if( keyword == wxT("YLOGSTYLE") )
   {
@@ -898,6 +1120,13 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("ZERO")));
     fvalue = static_cast<double>(static_cast<int>(zero->Get()));
   }
+  else if( keyword == wxT("POLARZERO") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARZERO") );
+    GRA_boolCharacteristic *zero =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("ZERO")));
+    fvalue = static_cast<double>(static_cast<int>(zero->Get()));
+  }
   else if( keyword == wxT("XMOD") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XMOD") );
@@ -910,6 +1139,13 @@ NEXTLINE:
     if( percent )throw ECommandError( command+wxT("% is meaningless with YMOD") );
     GRA_doubleCharacteristic *mod =
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("MOD")));
+    fvalue = mod->Get();
+  }
+  else if( keyword == wxT("POLARMOD") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARMOD") );
+    GRA_doubleCharacteristic *mod =
+      static_cast<GRA_doubleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("MOD")));
     fvalue = mod->Get();
   }
   else if( keyword==wxT("XLEADINGZEROS") || keyword==wxT("XLEADZ") )
@@ -926,6 +1162,13 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("LEADINGZEROS")));
     fvalue = static_cast<double>(static_cast<int>(lzeros->Get()));
   }
+  else if( keyword==wxT("POLARLEADINGZEROS") || keyword==wxT("PLEADZ") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARLEADINGZEROS") );
+    GRA_boolCharacteristic *lzeros =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("LEADINGZEROS")));
+    fvalue = static_cast<double>(static_cast<int>(lzeros->Get()));
+  }
   else if( keyword==wxT("XOFFSET") || keyword==wxT("XOFF") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XOFFSET") );
@@ -938,6 +1181,13 @@ NEXTLINE:
     if( percent )throw ECommandError( command+wxT("% is meaningless with YOFFSET") );
     GRA_doubleCharacteristic *offset =
       static_cast<GRA_doubleCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("OFFSET")));
+    fvalue = offset->Get();
+  }
+  else if( keyword==wxT("POLAROFFSET") || keyword==wxT("POFF") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLAROFFSET") );
+    GRA_doubleCharacteristic *offset =
+      static_cast<GRA_doubleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("OFFSET")));
     fvalue = offset->Get();
   }
   else if( keyword == wxT("XDROPFIRSTNUMBER") )
@@ -954,6 +1204,13 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("DROPFIRSTNUMBER")));
     fvalue = static_cast<double>(static_cast<int>(dropf->Get()));
   }
+  else if( keyword == wxT("POLARDROPFIRSTNUMBER") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARDROPFIRSTNUMBER") );
+    GRA_boolCharacteristic *dropf =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("DROPFIRSTNUMBER")));
+    fvalue = static_cast<double>(static_cast<int>(dropf->Get()));
+  }
   else if( keyword == wxT("XDROPLASTNUMBER") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with XDROPLASTNUMBER") );
@@ -966,6 +1223,13 @@ NEXTLINE:
     if( percent )throw ECommandError( command+wxT("% is meaningless with YDROPLASTNUMBER") );
     GRA_boolCharacteristic *dropl =
       static_cast<GRA_boolCharacteristic*>(gw->GetYAxisCharacteristics()->Get(wxT("DROPLASTNUMBER")));
+    fvalue = static_cast<double>(static_cast<int>(dropl->Get()));
+  }
+  else if( keyword == wxT("POLARDROPLASTNUMBER") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARDROPLASTNUMBER") );
+    GRA_boolCharacteristic *dropl =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("DROPLASTNUMBER")));
     fvalue = static_cast<double>(static_cast<int>(dropl->Get()));
   }
   else if( keyword == wxT("AUTOSCALE") )

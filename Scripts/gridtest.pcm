@@ -6,27 +6,16 @@ GRID\XYOUT X Y Z M XOUT YOUT
 window 0
 clear
 defaults
-!set
-! XLABEL 'DENSITY\BOXES\XPROFILE\YPROFILE XOUT YOUT M'
-! XLABELON 1
-! ylabel 'Some Y-axis label'
-! ylabelon 1
-! %xnumberheight 4
-! %ynumberheight 4
-! %xlabelheight 4
-!
-!
 DENSITY\BOXES\XPROFILE\YPROFILE XOUT YOUT M
-!
 pause 'four more box density plots'
 defaults
 clear
 !
 WINDOW\inherit 5 0
 set
- %xlabelheight 5
+ %xlabelheight 3
  XLABEL 'DENSITY\BOXES XOUT YOUT M'
- %ylabelheight 7.5
+ %ylabelheight 3
  ylabel 'Another y-axis label <alpha><beta><gamma>'
  ylabelcolor red
  areafillcolor cyan
@@ -65,8 +54,8 @@ window 1 20 20 80 80
 defaults
 set %yimagticlength 2
 clear
-set %xnumberheight 5
-set %ynumberheight 5
+set %xnumbersheight 5
+set %ynumbersheight 5
 set xdropfirstnumber 1
 set xdroplastnumber 1
 set ydropfirstnumber 1
@@ -113,7 +102,7 @@ x = r*cosd(t)
 y = r*sind(t)
 z = exp(-r/2)*cosd(180*(r-1))
 grid\xyout x y z m xout yout
-density\legend\dithering\dithervector d xout yout m
+density\dithering\dithervector d xout yout m
 !
 window 0
 destroy r t d x y z xout yout m

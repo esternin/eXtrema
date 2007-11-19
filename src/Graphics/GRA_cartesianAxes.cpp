@@ -29,9 +29,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_angleCharacteristic.h"
 #include "GRA_doubleCharacteristic.h"
 #include "GRA_stringCharacteristic.h"
+#include "GRA_colorCharacteristic.h"
+#include "GRA_sizeCharacteristic.h"
+#include "GRA_fontCharacteristic.h"
 #include "GRA_setOfCharacteristics.h"
 #include "ExGlobals.h"
 #include "UsefulFunctions.h"
+#include "GRA_drawableText.h"
 
 GRA_cartesianAxes::GRA_cartesianAxes( std::vector<double> const &x, std::vector<double> const &y,
                                       bool xOnTop, bool yOnRight )
@@ -56,30 +60,11 @@ GRA_cartesianAxes::GRA_cartesianAxes( std::vector<double> const &x, std::vector<
   double xuaxis = static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
   double yuaxis = static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
   bool graphBox = static_cast<GRA_boolCharacteristic*>(generalC->Get(wxT("GRAPHBOX")))->Get();
+  double const xlength = xuaxis - xlaxis;
+  double const ylength = yuaxis - ylaxis;
   //
   GRA_setOfCharacteristics xCharacteristics( *xAxisC );
   GRA_setOfCharacteristics yCharacteristics( *yAxisC );
-  double xlwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("XLOWERWINDOW")))->GetAsWorld();
-  double xuwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("XUPPERWINDOW")))->GetAsWorld();
-  double ylwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("YLOWERWINDOW")))->GetAsWorld();
-  double yuwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("YUPPERWINDOW")))->GetAsWorld();
-  double xminw, yminw, xmaxw, ymaxw;
-  ExGlobals::GetWorldLimits( xminw, yminw, xmaxw, ymaxw );
-  xCharacteristics.AddDistance( wxT("XLOWERWINDOW"), xlwind, false, xminw, xmaxw );
-  xCharacteristics.AddDistance( wxT("YLOWERWINDOW"), ylwind, false, yminw, ymaxw );
-  xCharacteristics.AddDistance( wxT("XUPPERWINDOW"), xuwind, false, xminw, xmaxw );
-  xCharacteristics.AddDistance( wxT("YUPPERWINDOW"), yuwind, false, yminw, ymaxw );
-  yCharacteristics.AddDistance( wxT("XLOWERWINDOW"), xlwind, false, xminw, xmaxw );
-  yCharacteristics.AddDistance( wxT("YLOWERWINDOW"), ylwind, false, yminw, ymaxw );
-  yCharacteristics.AddDistance( wxT("XUPPERWINDOW"), xuwind, false, xminw, xmaxw );
-  yCharacteristics.AddDistance( wxT("YUPPERWINDOW"), yuwind, false, yminw, ymaxw );
-  xCharacteristics.AddDistance(wxT("OLAXIS"),ylaxis,false,ylwind,yuwind);
-  xCharacteristics.AddDistance(wxT("OUAXIS"),yuaxis,false,ylwind,yuwind);
-  yCharacteristics.AddDistance(wxT("OLAXIS"),xlaxis,false,xlwind,xuwind);
-  yCharacteristics.AddDistance(wxT("OUAXIS"),xuaxis,false,xlwind,xuwind);
-  int gridLineType = static_cast<GRA_intCharacteristic*>(generalC->Get(wxT("GRIDLINETYPE")))->Get();
-  xCharacteristics.AddNumber(wxT("GRIDLINETYPE"),gridLineType);
-  yCharacteristics.AddNumber(wxT("GRIDLINETYPE"),gridLineType);
   //
   boxXAxis_ = 0;
   boxYAxis_ = 0;
@@ -90,23 +75,23 @@ GRA_cartesianAxes::GRA_cartesianAxes( std::vector<double> const &x, std::vector<
     static_cast<GRA_boolCharacteristic*>(boxSettings.Get(wxT("LABELON")))->Set(false);
     static_cast<GRA_boolCharacteristic*>(boxSettings.Get(wxT("NUMBERSON")))->Set(false);
     //
-    if( xOnTop )boxXAxis_ = new GRA_axis( xlaxis, ylaxis, &boxSettings );
+    if( xOnTop )boxXAxis_ = new GRA_axis( xlaxis, ylaxis, xlength, &boxSettings );
     else
     {
       double angle = static_cast<GRA_angleCharacteristic*>(xAxisC->Get(wxT("TICANGLE")))->Get();
       static_cast<GRA_angleCharacteristic*>(boxSettings.Get(wxT("TICANGLE")))->Set(-angle);
-      boxXAxis_ = new GRA_axis( xlaxis, yuaxis, &boxSettings );
+      boxXAxis_ = new GRA_axis( xlaxis, yuaxis, xlength, &boxSettings );
     }
     boxSettings = yCharacteristics;
     static_cast<GRA_intCharacteristic*>(boxSettings.Get(wxT("GRID")))->Set(0);
     static_cast<GRA_boolCharacteristic*>(boxSettings.Get(wxT("LABELON")))->Set(false);
     static_cast<GRA_boolCharacteristic*>(boxSettings.Get(wxT("NUMBERSON")))->Set(false);
-    if( yOnRight )boxYAxis_ = new GRA_axis( xlaxis, ylaxis, &boxSettings );
+    if( yOnRight )boxYAxis_ = new GRA_axis( xlaxis, ylaxis, ylength, &boxSettings );
     else
     {
       double angle = static_cast<GRA_angleCharacteristic*>(yAxisC->Get(wxT("TICANGLE")))->Get();
       static_cast<GRA_angleCharacteristic*>(boxSettings.Get(wxT("TICANGLE")))->Set(-angle);
-      boxYAxis_ = new GRA_axis( xuaxis, ylaxis, &boxSettings );
+      boxYAxis_ = new GRA_axis( xuaxis, ylaxis, ylength, &boxSettings );
     }
   }
   if( yOnRight )
@@ -115,11 +100,11 @@ GRA_cartesianAxes::GRA_cartesianAxes( std::vector<double> const &x, std::vector<
     double yitica = static_cast<GRA_angleCharacteristic*>(yCharacteristics.Get(wxT("IMAGTICANGLE")))->Get();
     static_cast<GRA_angleCharacteristic*>(yCharacteristics.Get(wxT("TICANGLE")))->Set(-ytica);
     static_cast<GRA_angleCharacteristic*>(yCharacteristics.Get(wxT("IMAGTICANGLE")))->Set(-yitica);
-    yAxis_ = new GRA_axis( xuaxis, ylaxis, &yCharacteristics );
+    yAxis_ = new GRA_axis( xuaxis, ylaxis, ylength, &yCharacteristics );
   }
   else
   {
-    yAxis_ = new GRA_axis( xlaxis, ylaxis, &yCharacteristics );
+    yAxis_ = new GRA_axis( xlaxis, ylaxis, ylength, &yCharacteristics );
   }
   if( xOnTop )
   {
@@ -127,11 +112,11 @@ GRA_cartesianAxes::GRA_cartesianAxes( std::vector<double> const &x, std::vector<
     double xitica = static_cast<GRA_angleCharacteristic*>(xCharacteristics.Get(wxT("IMAGTICANGLE")))->Get();
     static_cast<GRA_angleCharacteristic*>(xCharacteristics.Get(wxT("TICANGLE")))->Set(-xtica);
     static_cast<GRA_angleCharacteristic*>(xCharacteristics.Get(wxT("IMAGTICANGLE")))->Set(-xitica);
-    xAxis_ = new GRA_axis( xlaxis, yuaxis, &xCharacteristics );
+    xAxis_ = new GRA_axis( xlaxis, yuaxis, xlength, &xCharacteristics );
   }
   else
   {
-    xAxis_ = new GRA_axis( xlaxis, ylaxis, &xCharacteristics );
+    xAxis_ = new GRA_axis( xlaxis, ylaxis, xlength, &xCharacteristics );
   }
 }
 
@@ -165,9 +150,227 @@ void GRA_cartesianAxes::Make()
 void GRA_cartesianAxes::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   xAxis_->Draw( graphicsOutput, dc );
+  DrawXLabel( graphicsOutput, dc );
   yAxis_->Draw( graphicsOutput, dc );
+  DrawYLabel( graphicsOutput, dc );
   if( boxXAxis_ )boxXAxis_->Draw( graphicsOutput, dc );
   if( boxYAxis_ )boxYAxis_->Draw( graphicsOutput, dc );
+  //
+  GRA_window *gw = ExGlobals::GetGraphWindow();
+  GRA_setOfCharacteristics *generalC = gw->GetGeneralCharacteristics();
+  GRA_setOfCharacteristics *xAxisC = gw->GetXAxisCharacteristics();
+  GRA_setOfCharacteristics *yAxisC = gw->GetYAxisCharacteristics();
+  //
+  // draw the x-axis grid lines
+  // if xgrid is zero, no tic coordinates are recorded, so no grid lines will be drawn
+  //
+  std::vector<double> ticX, ticY;
+  xAxis_->GetTicCoordinates( ticX, ticY );
+  std::size_t size = ticX.size();
+  double const eps = 0.001;
+  //
+  int lineTypeSave = graphicsOutput->GetLineType();
+  int gridLineType = static_cast<GRA_intCharacteristic*>(generalC->Get(wxT("GRIDLINETYPE")))->Get();
+  graphicsOutput->SetLineType( gridLineType );
+  wxPen wxpen( dc.GetPen() );
+  wxpen.SetColour(
+   ExGlobals::GetwxColor( static_cast<GRA_colorCharacteristic*>(xAxisC->Get(wxT("AXISCOLOR")))->Get()) );
+  //
+  double xlaxis =
+      static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
+  double xuaxis =
+      static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
+  double ylaxis =
+      static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
+  double yuaxis =
+      static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
+  int ngrid = abs(static_cast<GRA_intCharacteristic*>(xAxisC->Get(wxT("GRID")))->Get());
+  for( std::size_t i=0; i<size; i+=ngrid )
+  {
+    double x = ticX[i];
+    double y = ticY[i];
+    if( fabs(x-xuaxis)>eps && fabs(x-xlaxis)>eps )
+    {
+      graphicsOutput->StartLine( x, y );
+      graphicsOutput->ContinueLine( x, y+(yuaxis-ylaxis), dc );
+    }
+  }
+  // draw the y-axis grid lines
+  // if ygrid is zero, no tic coordinates are recorded, so no grid lines will be drawn
+  //
+  yAxis_->GetTicCoordinates( ticX, ticY );
+  size = ticX.size();
+  //
+  wxpen.SetColour(
+   ExGlobals::GetwxColor( static_cast<GRA_colorCharacteristic*>(yAxisC->Get(wxT("AXISCOLOR")))->Get()) );
+  //
+  ngrid = abs(static_cast<GRA_intCharacteristic*>(yAxisC->Get(wxT("GRID")))->Get());
+  for( std::size_t i=0; i<size; i+=ngrid )
+  {
+    double x = ticX[i];
+    double y = ticY[i];
+    if( fabs(y-yuaxis)>eps && fabs(y-ylaxis)>eps )
+    {
+      graphicsOutput->StartLine( x, y );
+      graphicsOutput->ContinueLine( x+(xuaxis-xlaxis), y, dc );
+    }
+  }
+  graphicsOutput->SetLineType( lineTypeSave );
+}
+
+void  GRA_cartesianAxes::DrawXLabel( GRA_wxWidgets *graphicsOutput, wxDC &dc )
+{
+  GRA_window *gw = ExGlobals::GetGraphWindow();
+  GRA_setOfCharacteristics *generalC = gw->GetGeneralCharacteristics();
+  GRA_setOfCharacteristics *xAxisC = gw->GetXAxisCharacteristics();
+  GRA_setOfCharacteristics *yAxisC = gw->GetYAxisCharacteristics();
+  //
+  wxString label;
+  bool labelIsOn = static_cast<GRA_boolCharacteristic*>(xAxisC->Get(wxT("LABELON")))->Get();
+  if( labelIsOn )label = static_cast<GRA_stringCharacteristic*>(xAxisC->Get(wxT("LABEL")))->Get();
+  if( label.empty() )labelIsOn = false;
+  double power = static_cast<GRA_doubleCharacteristic*>(xAxisC->Get(wxT("POWER")))->Get();
+  if( static_cast<GRA_doubleCharacteristic*>(xAxisC->Get(wxT("LOGBASE")))->Get()<=1.0 &&
+      power != 0.0 &&
+      static_cast<GRA_intCharacteristic*>(xAxisC->Get(wxT("POWERAUTO")))->Get()!=2 &&
+      static_cast<GRA_boolCharacteristic*>(xAxisC->Get(wxT("NUMBERSON")))->Get() )
+  {
+    wxString powLabel(wxT("(x10<^><Z0.5%>"));
+    powLabel << power << wxT("<_>)");
+    label.empty() ? label=powLabel : label << wxT(" ") << powLabel;
+    labelIsOn = true;
+  }
+  //
+  // the axis label is composed of two parts:
+  //  a) the string found in the label
+  //  b) the factor by which all the numbers
+  //     labelling the axis should be multiplied to get the graph axis units
+  //
+  // if powerAuto_ = 2, calculate the power but do not draw it
+  //
+  if( labelIsOn )
+  {
+    double xminw, xmaxw, yminw, ymaxw;
+    ExGlobals::GetWorldLimits( xminw, yminw, xmaxw, ymaxw );
+    double sizlab = static_cast<GRA_sizeCharacteristic*>(xAxisC->Get(wxT("LABELHEIGHT")))->GetAsWorld();
+    double axisAngle = static_cast<GRA_angleCharacteristic*>(xAxisC->Get(wxT("AXISANGLE")))->Get();
+    double imagTicAngle = static_cast<GRA_angleCharacteristic*>(xAxisC->Get(wxT("IMAGTICANGLE")))->Get();
+    double imagTicLen = static_cast<GRA_sizeCharacteristic*>(xAxisC->Get(wxT("IMAGTICLENGTH")))->GetAsWorld();
+    double numHeight = static_cast<GRA_sizeCharacteristic*>(xAxisC->Get(wxT("NUMBERSHEIGHT")))->GetAsWorld();
+    GRA_font *labelFont = static_cast<GRA_fontCharacteristic*>(xAxisC->Get(wxT("LABELFONT")))->Get();
+    GRA_color *labelColor = static_cast<GRA_colorCharacteristic*>(xAxisC->Get(wxT("LABELCOLOR")))->Get();
+    double loAxis = static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
+    double upAxis = static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
+    double x1, y1, angle=0.0;
+    int align = 2;
+    double xOrigin, yOrigin;
+    xAxis_->GetOrigin( xOrigin, yOrigin );
+    //
+    // draw the label horizontally and centered on the x-axis
+    x1 = 0.5*(upAxis+loAxis);
+    if( imagTicAngle > 180.0 )
+    {
+      align = 8; // 8=top centre
+      y1 = yOrigin - 1.05*(imagTicLen+numHeight);
+    }
+    else
+    {
+      align = 2; // 2=bottom centre
+      y1 = yOrigin + 1.05*(imagTicLen+numHeight);
+    }
+    GRA_drawableText *dt = new GRA_drawableText(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
+    try
+    {
+      dt->Parse();
+    }
+    catch ( EGraphicsError const &e )
+    {
+      delete dt;
+      throw;
+    }
+    dt->Draw( graphicsOutput, dc );
+  }
+}
+
+void  GRA_cartesianAxes::DrawYLabel( GRA_wxWidgets *graphicsOutput, wxDC &dc )
+{
+  GRA_window *gw = ExGlobals::GetGraphWindow();
+  GRA_setOfCharacteristics *generalC = gw->GetGeneralCharacteristics();
+  GRA_setOfCharacteristics *xAxisC = gw->GetXAxisCharacteristics();
+  GRA_setOfCharacteristics *yAxisC = gw->GetYAxisCharacteristics();
+  //
+  wxString label;
+  bool labelIsOn = static_cast<GRA_boolCharacteristic*>(yAxisC->Get(wxT("LABELON")))->Get();
+  if( labelIsOn )label = static_cast<GRA_stringCharacteristic*>(yAxisC->Get(wxT("LABEL")))->Get();
+  if( label.empty() )labelIsOn = false;
+  double power = static_cast<GRA_doubleCharacteristic*>(yAxisC->Get(wxT("POWER")))->Get();
+  if( static_cast<GRA_doubleCharacteristic*>(yAxisC->Get(wxT("LOGBASE")))->Get()<=1.0 &&
+      power != 0.0 &&
+      static_cast<GRA_intCharacteristic*>(yAxisC->Get(wxT("POWERAUTO")))->Get()!=2 &&
+      static_cast<GRA_boolCharacteristic*>(yAxisC->Get(wxT("NUMBERSON")))->Get() )
+  {
+    wxString powLabel(wxT("(x10<^><Z0.5%>"));
+    powLabel << power << wxT("<_>)");
+    label.empty() ? label=powLabel : label << wxT(" ") << powLabel;
+    labelIsOn = true;
+  }
+  //
+  // the axis label is composed of two parts:
+  //  a) the string found in the label
+  //  b) the factor by which all the numbers
+  //     labelling the axis should be multiplied to get the graph axis units
+  //
+  // if powerAuto_ = 2, calculate the power but do not draw it
+  //
+  if( labelIsOn )
+  {
+    double xminw, xmaxw, yminw, ymaxw;
+    ExGlobals::GetWorldLimits( xminw, yminw, xmaxw, ymaxw );
+    double sizlab = static_cast<GRA_sizeCharacteristic*>(yAxisC->Get(wxT("LABELHEIGHT")))->GetAsWorld();
+    double axisAngle = static_cast<GRA_angleCharacteristic*>(yAxisC->Get(wxT("AXISANGLE")))->Get();
+    double imagTicAngle = static_cast<GRA_angleCharacteristic*>(yAxisC->Get(wxT("IMAGTICANGLE")))->Get();
+    double imagTicLen = static_cast<GRA_sizeCharacteristic*>(yAxisC->Get(wxT("IMAGTICLENGTH")))->GetAsWorld();
+    double numHeight = static_cast<GRA_sizeCharacteristic*>(yAxisC->Get(wxT("NUMBERSHEIGHT")))->GetAsWorld();
+    GRA_font *labelFont = static_cast<GRA_fontCharacteristic*>(yAxisC->Get(wxT("LABELFONT")))->Get();
+    GRA_color *labelColor = static_cast<GRA_colorCharacteristic*>(yAxisC->Get(wxT("LABELCOLOR")))->Get();
+    double loAxis = static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
+    double upAxis = static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
+    double x1, y1, angle=0.0;
+    int align = 2;
+    double xOrigin, yOrigin;
+    yAxis_->GetOrigin( xOrigin, yOrigin );
+    //
+    // draw the label vertically and centered on the y-axis
+    //
+    double xlwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("XLOWERWINDOW")))->GetAsWorld();
+    double xuwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("XUPPERWINDOW")))->GetAsWorld();
+    y1 = 0.5*(upAxis+loAxis);
+    double numWidth = yAxis_->GetMaxWidth();
+    if( yOnRight_ )
+    {
+      double xupAxis =
+          static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
+      x1 = xupAxis + 1.05*(imagTicLen+numWidth);
+      angle = 270.0;
+    }
+    else
+    {
+      double xloAxis = static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
+      x1 = xloAxis - 1.05*(imagTicLen+numWidth);
+      angle = 90.0;
+    }
+    GRA_drawableText *dt = new GRA_drawableText(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
+    try
+    {
+      dt->Parse();
+    }
+    catch ( EGraphicsError const &e )
+    {
+      delete dt;
+      throw;
+    }
+    dt->Draw( graphicsOutput, dc );
+  }
 }
 
 void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<double> const &y )

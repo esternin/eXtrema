@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_legend.h"
 #include "GRA_plotSymbol.h"
 #include "GRA_intCharacteristic.h"
+#include "GRA_doubleCharacteristic.h"
 #include "GRA_boolCharacteristic.h"
 #include "GRA_sizeCharacteristic.h"
 #include "GRA_angleCharacteristic.h"
@@ -41,12 +42,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_cartesianCurve.h"
 #include "ExGlobals.h"
 #include "VisualizationWindow.h"
+#include "GRA_polarAxes.h"
+#include "GRA_polarCurve.h"
 
 CMD_graph *CMD_graph::cmd_graph_ = 0;
 
 CMD_graph::CMD_graph() : Command( wxT("GRAPH") )
 {
   AddQualifier( wxT("POLAR"),     false );
+  AddQualifier( wxT("RADAR"),     false );
   AddQualifier( wxT("HISTOGRAM"), false );
   AddQualifier( wxT("REPLOT"),    true );
   AddQualifier( wxT("AXESONLY"),  false );
@@ -98,6 +102,7 @@ void CMD_graph::Execute( ParseLine const *p )
   //
   int ifld = 0;
   bool legendIsOn = static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("ON")))->Get();
+  if( qualifiers[wxT("POLAR")] || qualifiers[wxT("RADAR")] )legendIsOn = false;
   if( legendIsOn &&
       !qualifiers[wxT("AXESONLY")] && (p->GetNumberOfTokens()<2 || !p->IsString(1)) )
     throw ECommandError( command+wxT("expecting legend label") );
@@ -124,6 +129,13 @@ void CMD_graph::Execute( ParseLine const *p )
     {
       x.push_back( 0.0 );
       y.push_back( 0.0 );
+      if( qualifiers[wxT("POLAR")] || qualifiers[wxT("RADAR")] )
+      {
+        num = 2;
+        GRA_setOfCharacteristics *polarC = gw->GetPolarCharacteristics();
+        x.push_back( static_cast<GRA_doubleCharacteristic*>(polarC->Get(wxT("MAX")))->Get() );
+        y.push_back( 0.0 );
+      }
     }
     else throw ECommandError( command+wxT("expecting something to plot") );
   }
@@ -342,16 +354,7 @@ void CMD_graph::Execute( ParseLine const *p )
   if( yE1 && num < ye1.size() )ye1.resize( num );
   if( xE2 && num < xe2.size() )xe2.resize( num );
   if( yE2 && num < ye2.size() )ye2.resize( num );
-  if( qualifiers[wxT("POLAR")] )
-  {
-    for( std::size_t i=0; i<num; ++i )
-    {
-      double xtemp = x[i]*cos(y[i]*degToRad);
-      double ytemp = x[i]*sin(y[i]*degToRad);
-      x[i] = xtemp;
-      y[i] = ytemp;
-    }
-  }
+  //
   std::vector<double> x2(2), y2(2);
   x2[0] = std::numeric_limits<double>::max();
   x2[1] = -x2[0];
@@ -411,43 +414,74 @@ void CMD_graph::Execute( ParseLine const *p )
       if( x2[0] > x[i] )x2[0] = x[i];
     }
   }
-  GRA_cartesianAxes *cartesianAxes = 0;
-  GRA_cartesianCurve *cartesianCurve = 0;
-  try
+  wxClientDC dc( ExGlobals::GetwxWindow() );
+  if( qualifiers[wxT("POLAR")] || qualifiers[wxT("RADAR")] )
   {
-    if( !qualifiers[wxT("OVERLAY")] )
-      cartesianAxes = new GRA_cartesianAxes(x2,y2,qualifiers[wxT("XONTOP")],qualifiers[wxT("YONRIGHT")]);
-    if( !qualifiers[wxT("AXESONLY")] )
-      cartesianCurve = new GRA_cartesianCurve(x,y,xe1,ye1,xe2,ye2,qualifiers[wxT("SMOOTH")]);
-    wxClientDC dc( ExGlobals::GetwxWindow() );
-    if( cartesianAxes )
-    {
-      cartesianAxes->Make();
-      cartesianAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
-      gw->AddDrawableObject( cartesianAxes );
-    }
-    if( cartesianCurve )
-    {
-      cartesianCurve->Make();
-      cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
-      gw->AddDrawableObject( cartesianCurve );
-    }
-  }
-  catch ( EGraphicsError const &e )
-  {
-    delete cartesianAxes;
-    delete cartesianCurve;
-    throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
-  }
-  if( legendIsOn && !qualifiers[wxT("AXESONLY")] )
-  {
+    GRA_polarAxes *polarAxes = 0;
+    GRA_polarCurve *polarCurve = 0;
     try
     {
-      gw->GetGraphLegend()->AddEntry( legendLabel );
+      if( !qualifiers[wxT("OVERLAY")] )
+      {
+        polarAxes = new GRA_polarAxes( x2, y2, qualifiers[wxT("RADAR")] );
+        polarAxes->Make();
+        polarAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
+        gw->AddDrawableObject( polarAxes );
+      }
+      if( !qualifiers[wxT("AXESONLY")] )
+      {
+        polarCurve = new GRA_polarCurve( x, y );
+        polarCurve->Make();
+        polarCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
+        gw->AddDrawableObject( polarCurve );
+      }
     }
     catch (EGraphicsError const &e)
     {
+      delete polarAxes;
+      delete polarCurve;
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
+    }
+  }
+  else
+  {
+    GRA_cartesianAxes *cartesianAxes = 0;
+    GRA_cartesianCurve *cartesianCurve = 0;
+    try
+    {
+      if( !qualifiers[wxT("OVERLAY")] )
+        cartesianAxes = new GRA_cartesianAxes(x2,y2,qualifiers[wxT("XONTOP")],qualifiers[wxT("YONRIGHT")]);
+      if( !qualifiers[wxT("AXESONLY")] )
+        cartesianCurve = new GRA_cartesianCurve(x,y,xe1,ye1,xe2,ye2,qualifiers[wxT("SMOOTH")]);
+      if( cartesianAxes )
+      {
+        cartesianAxes->Make();
+        cartesianAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
+        gw->AddDrawableObject( cartesianAxes );
+      }
+      if( cartesianCurve )
+      {
+        cartesianCurve->Make();
+        cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
+        gw->AddDrawableObject( cartesianCurve );
+      }
+    }
+    catch ( EGraphicsError const &e )
+    {
+      delete cartesianAxes;
+      delete cartesianCurve;
+      throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
+    }
+    if( legendIsOn && !qualifiers[wxT("AXESONLY")] )
+    {
+      try
+      {
+        gw->GetGraphLegend()->AddEntry( legendLabel );
+      }
+      catch (EGraphicsError const &e)
+      {
+        throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
+      }
     }
   }
   histType->Set( hstyp );

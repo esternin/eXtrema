@@ -81,6 +81,8 @@ private:
   void DeleteStuff();
   void CopyStuff( GRA_cartesianAxes const & );
   void AutoScale( std::vector<double> const &, std::vector<double> const & );
+  void DrawXLabel( GRA_wxWidgets *, wxDC & );
+  void DrawYLabel( GRA_wxWidgets *, wxDC & );
   void GetActualValues( double &, double &, double );
   void ResetLogValue( double &, double );
   void FixupScales( bool, bool, double, double, double, int &, double &, double &, double &,

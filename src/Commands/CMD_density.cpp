@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -32,7 +32,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "UsefulFunctions.h"
 #include "NumericVariable.h"
 #include "GRA_thiessenTriangulation.h"
-#include "GRA_axis.h"
 #include "GRA_boxPlot.h"
 #include "GRA_diffusionPlot.h"
 #include "GRA_gradientPlot.h"
@@ -84,7 +83,7 @@ void CMD_density::Execute( ParseLine const *p )
   {
     SetUp( p, qualifiers );
   }
-  catch (ECommandError &e)
+  catch (ECommandError const &e)
   {
     throw;
   }
@@ -112,7 +111,7 @@ void CMD_density::Execute( ParseLine const *p )
       {
         NumericVariable::GetVector( p->GetString(1), wxT("dithering vector"), tmp );
       }
-      catch( EVariableError &e )
+      catch( EVariableError const &e )
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
@@ -156,7 +155,7 @@ void CMD_density::Execute( ParseLine const *p )
       {
         NumericVariable::GetVector( p->GetString(ifld), wxT("contour levels vector"), contourLevels );
       }
-      catch( EVariableError &e )
+      catch( EVariableError const &e )
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
@@ -204,7 +203,7 @@ void CMD_density::Execute( ParseLine const *p )
   {
     NumericVariable::GetVariable( namez, ndim, v1, z, dimSizes );
   }
-  catch (EVariableError &e)
+  catch (EVariableError const &e)
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
@@ -237,7 +236,7 @@ void CMD_density::Execute( ParseLine const *p )
     {
       NumericVariable::GetVector( namey, wxT("dependant variable vector"), y );
     }
-    catch( EVariableError &e )
+    catch( EVariableError const &e )
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -250,7 +249,7 @@ void CMD_density::Execute( ParseLine const *p )
     {
       NumericVariable::GetVariable( namez, ndim, v1, z, dimSizes );
     }
-    catch (EVariableError &e)
+    catch (EVariableError const &e)
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -295,7 +294,7 @@ void CMD_density::Execute( ParseLine const *p )
     {
       NumericVariable::GetScalar( p->GetString(ifld), wxT("p1"), fmin );
     }
-    catch (EVariableError &e)
+    catch (EVariableError const &e)
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -306,7 +305,7 @@ void CMD_density::Execute( ParseLine const *p )
       {
         NumericVariable::GetScalar( p->GetString(ifld), wxT("p2"), fmax );
       }
-      catch (EVariableError &e)
+      catch (EVariableError const &e)
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
@@ -317,7 +316,7 @@ void CMD_density::Execute( ParseLine const *p )
         {
           NumericVariable::GetScalar( p->GetString(ifld), wxT("q1"), qmin );
         }
-        catch (EVariableError &e)
+        catch (EVariableError const &e)
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -328,7 +327,7 @@ void CMD_density::Execute( ParseLine const *p )
           {
             NumericVariable::GetScalar( p->GetString(ifld), wxT("q2"), qmax );
           }
-          catch (EVariableError &e)
+          catch (EVariableError const &e)
           {
             throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
           }
@@ -341,7 +340,7 @@ void CMD_density::Execute( ParseLine const *p )
               {
                 NumericVariable::GetScalar( p->GetString(ifld), wxT("box size scale factor"), bscale );
               }
-              catch (EVariableError &e)
+              catch (EVariableError const &e)
               {
                 throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
               }
@@ -383,7 +382,7 @@ void CMD_density::Execute( ParseLine const *p )
       tt.Gradients( eps, nit );
       tt.Interpolate( ncol, ncol, xi, yi, array );
     }
-    catch (EExpressionError &e)
+    catch (EExpressionError const &e)
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -404,7 +403,7 @@ void CMD_density::Execute( ParseLine const *p )
       bp->Make();
       bp->Draw( ExGlobals::GetGraphicsOutput(), dc );
     }
-    catch (EGraphicsError &e)
+    catch (EGraphicsError const &e)
     {
       delete bp;
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
@@ -422,7 +421,7 @@ void CMD_density::Execute( ParseLine const *p )
     {
       dp->Draw( ExGlobals::GetGraphicsOutput(), dc );
     }
-    catch (EGraphicsError &e)
+    catch (EGraphicsError const &e)
     {
       delete dp;
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
@@ -444,7 +443,7 @@ void CMD_density::Execute( ParseLine const *p )
     {
       dp->Draw( ExGlobals::GetGraphicsOutput(), dc );
     }
-    catch (EGraphicsError &e)
+    catch (EGraphicsError const &e)
     {
       delete dp;
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
@@ -469,7 +468,7 @@ void CMD_density::Execute( ParseLine const *p )
         NumericVariable::PutVariable( name, dp->GetContourVec(), 0, p->GetInputLine() );
       }
     }
-    catch ( EVariableError &e )
+    catch ( EVariableError const &e )
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -486,7 +485,7 @@ void CMD_density::Execute( ParseLine const *p )
     {
       gp->Draw( ExGlobals::GetGraphicsOutput(), dc );
     }
-    catch (EGraphicsError &e)
+    catch (EGraphicsError const &e)
     {
       delete gp;
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );

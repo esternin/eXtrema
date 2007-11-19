@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<TITLE>POLARIMAGTICLENGTH</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>POLARIMAGTICLENGTH</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET POLARIMAGTICLENGTH h<br />
+SET %POLARIMAGTICLENGTH h<br />
+GET POLARIMAGTICLENGTH { n }<br />
+GET %POLARIMAGTICLENGTH { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>%POLARIMAGTICLENGTH = 1</CODE>
+</TD></TR></TABLE>
+<P>
+ <CODE>POLARIMAGTICLENGTH</CODE>, along with <CODE><A HREF="imagticangle.htm">POLARIMAGTICANGLE</a></CODE>,
+ controls the location of  the numbers labeling the polar axis at the large  tic marks. There are two forms:</p>
+<p>
+ <table>
+ <tr>
+ <td valign="top"><code>&nbsp;POLARIMAGTICLENGTH</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the distance, in world coordinate units, measured from the
+  base of each large tic mark on the polar axis, to the center of the
+  number labeling that tic mark</td>
+ </tr><tr>
+ <td valign="top"><code>%POLARIMAGTICLENGTH</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the distance, expressed as a percentage of the height of
+  the graphics sub-window, that is,
+  <CODE>POLARIMAGTICLENGTH = %POLARIMAGTICLENGTH
+  * (<a href="../GeneralGraph/yupperwindow.htm">YUPPERWINDOW</a>-
+  <a href="../GeneralGraph/ylowerwindow.htm">YLOWERWINDOW</a>)/100</CODE>.</td>
+  </tr></table></p>
+<P>
+ <a href="imagticangle.htm"><img border="0" src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">POLARIMAGTICANGLE</font></a><BR />
+ <a href="largeticlength.htm"><img border="0" src="../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">POLARLARGETICLENGTH</font></a>
+</P>
+</body>
+</html>

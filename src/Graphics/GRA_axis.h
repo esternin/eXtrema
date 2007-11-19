@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -34,7 +34,7 @@ class GRA_drawableText;
 class GRA_axis : public GRA_drawableObject
 {
 public:
-  GRA_axis( double, double, GRA_setOfCharacteristics const * );
+  GRA_axis( double, double, double, GRA_setOfCharacteristics const * );
 
   ~GRA_axis()
   { DeleteStuff(); }
@@ -59,10 +59,18 @@ public:
   void GetOrigin( double &xOrigin, double &yOrigin ) const
   { xOrigin=xOrigin_; yOrigin=yOrigin_; }
 
+  double GetMaxWidth() const
+  { return maxWidth_; }
+
   double GetLowerAxis() const;
   double GetUpperAxis() const;
+  double GetAngle() const;
+
+  void GetEndPoint( double &x, double &y ) const
+  { x=xEnd_; y=yEnd_; }
 
   bool Inside( double, double );
+
   void Make();
   void Draw( GRA_wxWidgets *, wxDC & );
 
@@ -106,7 +114,6 @@ private:
   void MakeLinearAxis();
   void MakeLogAxis();
   void MakeATic( double, double, double, double, double, double, double &, double & );
-  void MakeAxisLabel();
   //
   void NormalizeAngle( double &angle )
   {
@@ -119,8 +126,11 @@ private:
   std::vector<GRA_polyline*> polylines_;
   std::vector<GRA_drawableText*> textVec_;
   //
-  double xOrigin_, yOrigin_;  // origin coordinates of the axis
+  double xOrigin_, yOrigin_, length_;  // origin coordinates of the axis and its length
+  double xEnd_, yEnd_;                 // coordinates of axis end point
   std::vector<double> xTicCoordinates_, yTicCoordinates_;
+  double maxWidth_; // max width of axis numbers (world coordinates)
+                    // available only after the axis is drawn
 };
 
 #endif

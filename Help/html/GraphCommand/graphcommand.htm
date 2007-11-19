@@ -10,17 +10,19 @@
 <TR>
 <TD width="15%" valign="top"><B>Syntax</B>:</TD>
 <TD width="85%" valign="top"><CODE>
-GRAPH { 'legendtext' } x y { ye1 { xe1 { ye2 { xe2 }}}}</CODE>
+GRAPH { 'legendtext' } x y { ye1 { xe1 { ye2 { xe2 }}}}<br />
+GRAPH\POLAR r theta<br />
+GRAPH\RADAR r theta</CODE>
 </TD></TR>
 <TR>
 <TD valign="top"><B>Qualifiers:</B></TD>
 <TD valign="top"><CODE>
- \AXESONLY, \OVERLAY, \POLAR, \REPLOT, \HISTOGRAM, \YONRIGHT, \XONTOP, \SMOOTH</CODE>
+ \AXESONLY, \OVERLAY, \POLAR, \RADAR, \REPLOT, \HISTOGRAM, \YONRIGHT, \XONTOP, \SMOOTH</CODE>
 </TD></TR>
 <TR>
 <TD valign="top"><B>Defaults:</B></TD>
 <TD valign="top">
- axes drawn, <CODE>\REPLOT, \-POLAR, \-HISTOGRAM, \-YONRIGHT,
+ axes drawn, <CODE>\REPLOT, \-POLAR, \-RADAR, \-HISTOGRAM, \-YONRIGHT,
  \-XONTOP, \-SMOOTH,</CODE>&nbsp;&nbsp; legendtext ignored
 </TD></TR>
 <TR>
@@ -31,50 +33,42 @@ GRAPH 'legend entry' X Y YERR XERR<BR />
 GRAPH\OVERLAY X Y<br />
 GRAPH\OVERLAY\SMOOTH X Y<br />
 GRAPH\HISTOGRAM X Y<BR />
-GRAPH\POLAR RAD THETA</CODE>
-</TD></TR>
-</TABLE></P>
+GRAPH\POLAR R THETA</CODE>
+</TD></TR></TABLE>
 <P>
-<table border="0" cols="3" width="550">
-<TR>
-<TD></TD><TD></TD><TD><I>command</i></td>
-</tr><tr>
-<TD></TD><TD></TD><TD><hr></td>
-</tr><tr>
-<td>The <code>GRAPH</CODE> command draws:</td>
-<td>data with axes</td>
-<td><CODE>GRAPH</CODE></TD>
-</tr><tr>
-<td></td>
-<td>just the data</td>
-<td><CODE>GRAPH\OVERLAY</CODE></td>
-</tr><tr>
-<td></td>
-<td>just the axes</td>
-<td><CODE>GRAPH\AXESONLY</CODE></td>
-</tr><tr>
-<td></td>
-<td>y-axis on the right</td>
-<td><CODE>GRAPH\YONRIGHT</CODE></td>
-</tr><tr>
-<td></td>
-<td>x-axis on the top</td>
-<td><CODE>GRAPH\XONTOP</CODE></td>
-</tr><tr>
-<td></td>
-<td>smooth curve through the data</td>
-<td><CODE>GRAPH\SMOOTH</CODE></td>
-</tr></table></P>
+ By default, the <code>GRAPH</code> command draws Cartesian axes.</p>
+<p>
+ If the <code>\POLAR</code> or the <code>\RADAR</code> qualifier is used, the data is assumed to be
+ in polar coordinates, i.e., radius and angle (in degrees), and a polar plot will be drawn.</p>
+<p>
+ <table border="0" width="550">
+ <TR>
+ <TD><i>To draw:</i></TD><TD><I>use command:</i></td>
+ </tr><tr>
+ <TD colspan="2"><hr /></TD>
+ </tr><tr>
+ <td>data with axes</td><td><CODE>GRAPH</CODE></TD>
+ </tr><tr>
+ <td>just the data</td><td><CODE>GRAPH\OVERLAY</CODE></td>
+ </tr><tr>
+ <td>just the axes</td><td><CODE>GRAPH\AXESONLY</CODE></td>
+ </tr><tr>
+ <td><i>y</i>-axis on the right (Cartesian only)</td><td><CODE>GRAPH\YONRIGHT</CODE></td>
+ </tr><tr>
+ <td><i>x</i>-axis on the top (Cartesian only)</td><td><CODE>GRAPH\XONTOP</CODE></td>
+ </tr><tr>
+ <td>smooth curve through the data (Cartesian only)</td><td><CODE>GRAPH\SMOOTH</CODE></td>
+ </tr><tr>
+ <td>histograms (Cartesian only)</td><td><CODE>GRAPH\HISTOGRAM</CODE></td>
+ </tr></table></P>
 <P>
- The data curve may be a histogram. The parameters must be
- vectors, but can be vectors of length one. The input vectors can have
- different lengths as the minimum length of all of the input vectors will
- be used.</P>
+ The parameters can be vectors or scalars.  If input vectors have different lengths, a warning is
+ issued and the minimum length of all of the input vectors will be used.</P>
 <P>
+ <a href="polarcoords.htm"><font size="+1" color="olive">Polar plot</font></a><br />
  <a href="plotsymbol.htm"><font size="+1" color="olive">Plotting symbols</font></a><br />
  <a href="graphlegend.htm"><font size="+1" color="olive">Graph legend</font></a><br />
  <a href="axisscaling.htm"><font size="+1" color="olive">Axis scaling</font></a><br />
- <a href="polarcoords.htm"><font size="+1" color="olive">Polar coordinates</font></a><br />
  <a href="dataandaxes.htm"><font size="+1" color="olive">Plot data and axes</font></a><br />
  <a href="axesonly.htm"><font size="+1" color="olive">Plot axes only</font></a><br />
  <a href="dataonly.htm"><font size="+1" color="olive">Plot data only</font></a><br />

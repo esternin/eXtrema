@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -33,7 +33,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_window.h"
 #include "GRA_contour.h"
 #include "GRA_drawableText.h"
-#include "GRA_axis.h"
 #include "GRA_cartesianAxes.h"
 #include "GRA_rectangle.h"
 #include "GRA_sizeCharacteristic.h"
@@ -80,7 +79,7 @@ void CMD_contour::Execute( ParseLine const *p )
   {
     SetUp( p, qualifiers );
   }
-  catch( ECommandError &e )
+  catch( ECommandError const &e )
   {
     throw;
   }
@@ -113,7 +112,7 @@ void CMD_contour::Execute( ParseLine const *p )
       NumericVariable::GetScalar( p->GetString(1), wxT("interpolation size"), d );
       intrpx = int( d );
     }
-    catch (EVariableError &e)
+    catch (EVariableError const &e)
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -149,7 +148,7 @@ void CMD_contour::Execute( ParseLine const *p )
       {
         NumericVariable::GetVariable( p->GetString(ifld), ndm, d, doubles, dimSizes );
       }
-      catch( EVariableError &e )
+      catch( EVariableError const &e )
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
@@ -181,7 +180,7 @@ void CMD_contour::Execute( ParseLine const *p )
   {
     NumericVariable::GetVariable( p->GetString(ifld), ndm, d, doubles, dimSizes );
   }
-  catch( EVariableError &e )
+  catch( EVariableError const &e )
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
@@ -206,7 +205,7 @@ void CMD_contour::Execute( ParseLine const *p )
     {
       NumericVariable::GetVector( p->GetString(ifld), wxT("dependent variable"), yVector );
     }
-    catch( EVariableError &e )
+    catch( EVariableError const &e )
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -217,7 +216,7 @@ void CMD_contour::Execute( ParseLine const *p )
     {
       NumericVariable::GetVariable( p->GetString(ifld), ndm, d, zVector, dimSizes );
     }
-    catch( EVariableError &e )
+    catch( EVariableError const &e )
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -398,7 +397,7 @@ void CMD_contour::Execute( ParseLine const *p )
       {
         cartesianAxes->Make();
       }
-      catch (EGraphicsError &e)
+      catch (EGraphicsError const &e)
       {
         delete cartesianAxes;
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
@@ -445,8 +444,9 @@ void CMD_contour::Execute( ParseLine const *p )
           {
             tb->Parse();
           }
-          catch ( EGraphicsError &e )
+          catch ( EGraphicsError const &e )
           {
+            delete tb;
             throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
           }
           tb->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -465,8 +465,9 @@ void CMD_contour::Execute( ParseLine const *p )
         {
           tb->Parse();
         }
-        catch ( EGraphicsError &e )
+        catch ( EGraphicsError const &e )
         {
+          delete tb;
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
         tb->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -477,8 +478,9 @@ void CMD_contour::Execute( ParseLine const *p )
         {
           tb->Parse();
         }
-        catch ( EGraphicsError &e )
+        catch ( EGraphicsError const &e )
         {
+          delete tb;
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
         tb->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -542,7 +544,7 @@ void CMD_contour::Execute( ParseLine const *p )
       {
         NumericVariable::GetVariable( p->GetString(ifld), ndm, d, contourVector, dimSizes );
       }
-      catch( EVariableError &e )
+      catch( EVariableError const &e )
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
@@ -568,7 +570,7 @@ void CMD_contour::Execute( ParseLine const *p )
     {
       NumericVariable::GetScalar( p->GetString(ifld), wxT("number of contours"), dNumC );
     }
-    catch (EVariableError &e)
+    catch (EVariableError const &e)
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
@@ -675,7 +677,7 @@ void CMD_contour::Execute( ParseLine const *p )
         {
           UsefulFunctions::Scale1( zmins, zmaxs, zincs, numberOfContours, zmin, zmax );
         }
-        catch ( std::runtime_error &e )
+        catch ( std::runtime_error const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -870,7 +872,7 @@ void CMD_contour::Execute( ParseLine const *p )
         {
           dt->Parse();
         }
-        catch ( EGraphicsError &e )
+        catch ( EGraphicsError const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -915,7 +917,7 @@ void CMD_contour::Execute( ParseLine const *p )
       {
         contour->Make();
       }
-      catch (EGraphicsError &e)
+      catch (EGraphicsError const &e)
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }

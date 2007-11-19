@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -46,7 +46,7 @@ void CMD_text::Execute( ParseLine const *p )
   {
     SetUp( p, qualifiers );
   }
-  catch (ECommandError &e)
+  catch (ECommandError const &e)
   {
     throw;
   }
@@ -70,8 +70,9 @@ void CMD_text::Execute( ParseLine const *p )
     {
       dt->Parse();
     }
-    catch ( EGraphicsError &e )
+    catch ( EGraphicsError const &e )
     {
+      delete dt;
       throw ECommandError( Name()+wxT(": ")+wxString(e.what(),wxConvUTF8) );
     }
     if( static_cast<GRA_boolCharacteristic*>(gw->GetTextCharacteristics()->Get(wxT("INTERACTIVE")))->Get() )

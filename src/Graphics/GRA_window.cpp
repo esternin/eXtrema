@@ -56,6 +56,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_gradientPlot.h"
 #include "ExGlobals.h"
 #include "UsefulFunctions.h"
+#include "GRA_polarAxes.h"
+#include "GRA_polarCurve.h"
 
 void GRA_window::SetUp()
 {
@@ -73,6 +75,7 @@ void GRA_window::SetUp()
   CreateDataCurveCharacteristics( yl, yu );
   CreateGraphLegendCharacteristics( xl, yl, xu, yu );
   CreateTextCharacteristics( xl, yl, xu, yu );
+  CreatePolarCharacteristics( xl, yl, xu, yu );
   //
   xPrevious_ = yPrevious_ = 0.0;
 }
@@ -85,12 +88,14 @@ void GRA_window::DeleteCharacteristics()
   delete textCharacteristics_;
   delete graphLegendCharacteristics_;
   delete dataCurveCharacteristics_;
+  delete polarCharacteristics_;
   xAxisCharacteristics_ = 0;
   yAxisCharacteristics_ = 0;
   generalCharacteristics_ = 0;
   textCharacteristics_ = 0;
   graphLegendCharacteristics_ = 0;
   dataCurveCharacteristics_ = 0;
+  polarCharacteristics_ = 0;
 }
 
 GRA_setOfCharacteristics *GRA_window::GetXAxisCharacteristics()
@@ -110,6 +115,9 @@ GRA_setOfCharacteristics *GRA_window::GetGraphLegendCharacteristics()
 
 GRA_setOfCharacteristics *GRA_window::GetDataCurveCharacteristics()
 { return dataCurveCharacteristics_; }
+
+GRA_setOfCharacteristics *GRA_window::GetPolarCharacteristics()
+{ return polarCharacteristics_; }
 
 void GRA_window::SetXAxisCharacteristics( GRA_setOfCharacteristics const &c )
 { *xAxisCharacteristics_ = c; }
@@ -148,6 +156,10 @@ void GRA_window::CopyStuff( GRA_window const &rhs )
       p = new GRA_legend(*(static_cast<GRA_legend*>(*i)));
     else if( (*i)->IsaContour() )
       p = new GRA_contour(*(static_cast<GRA_contour*>(*i)));
+    else if( (*i)->IsaPolarAxes() )
+      p = new GRA_polarAxes(*(static_cast<GRA_polarAxes*>(*i)));
+    else if( (*i)->IsaPolarCurve() )
+      p = new GRA_polarCurve(*(static_cast<GRA_polarCurve*>(*i)));
     drawableObjects_.push_back( p );
   }
   *xAxisCharacteristics_ = *rhs.xAxisCharacteristics_;
@@ -156,6 +168,7 @@ void GRA_window::CopyStuff( GRA_window const &rhs )
   *generalCharacteristics_ = *rhs.generalCharacteristics_;
   *graphLegendCharacteristics_ = *rhs.graphLegendCharacteristics_;
   *dataCurveCharacteristics_ = *rhs.dataCurveCharacteristics_;
+  *polarCharacteristics_ = *rhs.polarCharacteristics_;
 }
 
 void GRA_window::Reset()
@@ -258,10 +271,6 @@ void GRA_window::InheritFrom( GRA_window const *w )
    static_cast<GRA_fontCharacteristic*>(w->xAxisCharacteristics_->Get(wxT("LABELFONT")))->Get() );
   static_cast<GRA_sizeCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent(
    static_cast<GRA_sizeCharacteristic*>(w->xAxisCharacteristics_->Get(wxT("LABELHEIGHT")))->GetAsPercent() );
-  static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELX")))->SetAsPercent(
-   static_cast<GRA_distanceCharacteristic*>(w->xAxisCharacteristics_->Get(wxT("LABELX")))->GetAsPercent() );
-  static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELY")))->SetAsPercent(
-   static_cast<GRA_distanceCharacteristic*>(w->xAxisCharacteristics_->Get(wxT("LABELY")))->GetAsPercent() );
   static_cast<GRA_boolCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSON")))->Set(
    static_cast<GRA_boolCharacteristic*>(w->xAxisCharacteristics_->Get(wxT("NUMBERSON")))->Get() );
   static_cast<GRA_colorCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set(
@@ -349,10 +358,6 @@ void GRA_window::InheritFrom( GRA_window const *w )
    static_cast<GRA_fontCharacteristic*>(w->yAxisCharacteristics_->Get(wxT("LABELFONT")))->Get() );
   static_cast<GRA_sizeCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent(
    static_cast<GRA_sizeCharacteristic*>(w->yAxisCharacteristics_->Get(wxT("LABELHEIGHT")))->GetAsPercent() );
-  static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELX")))->SetAsPercent(
-   static_cast<GRA_distanceCharacteristic*>(w->yAxisCharacteristics_->Get(wxT("LABELX")))->GetAsPercent() );
-  static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELY")))->SetAsPercent(
-   static_cast<GRA_distanceCharacteristic*>(w->yAxisCharacteristics_->Get(wxT("LABELY")))->GetAsPercent() );
   static_cast<GRA_boolCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSON")))->Set(
    static_cast<GRA_boolCharacteristic*>(w->yAxisCharacteristics_->Get(wxT("NUMBERSON")))->Get() );
   static_cast<GRA_colorCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set(
@@ -464,6 +469,93 @@ void GRA_window::InheritFrom( GRA_window const *w )
    static_cast<GRA_distanceCharacteristic*>(w->textCharacteristics_->Get(wxT("XLOCATION")))->GetAsPercent() );
   static_cast<GRA_distanceCharacteristic*>(textCharacteristics_->Get(wxT("YLOCATION")))->SetAsPercent(
    static_cast<GRA_distanceCharacteristic*>(w->textCharacteristics_->Get(wxT("YLOCATION")))->GetAsPercent() );
+  //
+  static_cast<GRA_distanceCharacteristic*>(polarCharacteristics_->Get(wxT("XORIGIN")))->SetAsPercent(
+   static_cast<GRA_distanceCharacteristic*>(w->polarCharacteristics_->Get(wxT("XORIGIN")))->GetAsPercent() );
+  static_cast<GRA_distanceCharacteristic*>(polarCharacteristics_->Get(wxT("YORIGIN")))->SetAsPercent(
+   static_cast<GRA_distanceCharacteristic*>(w->polarCharacteristics_->Get(wxT("YORIGIN")))->GetAsPercent() );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("AXISLENGTH")))->SetAsPercent(
+   static_cast<GRA_sizeCharacteristic*>(w->polarCharacteristics_->Get(wxT("AXISLENGTH")))->GetAsPercent() );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NAXES")))->Set(
+   static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("NAXES")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("AXISON")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("AXISON")))->Get() );
+  static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("AXISCOLOR")))->Set(
+   static_cast<GRA_colorCharacteristic*>(w->polarCharacteristics_->Get(wxT("AXISCOLOR")))->Get() );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("LINEWIDTH")))->Set(
+   static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("LINEWIDTH")))->Get() );
+  static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("AXISANGLE")))->Set(
+   static_cast<GRA_angleCharacteristic*>(w->polarCharacteristics_->Get(wxT("AXISANGLE")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MIN")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("MIN")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MAX")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("MAX")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("VIRTUALMIN")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("VIRTUALMIN")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("VIRTUALMAX")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("VIRTUALMAX")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("LOGBASE")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("LOGBASE")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("LOGSTYLE")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("LOGSTYLE")))->Get() );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NLINCS")))->Set(
+   static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("NLINCS")))->Get() );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NSINCS")))->Set(
+   static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("NSINCS")))->Get() );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("GRID")))->Set(
+   static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("GRID")))->Get() );
+  static_cast<GRA_stringCharacteristic*>(polarCharacteristics_->Get(wxT("LABEL")))->Set(
+   static_cast<GRA_stringCharacteristic*>(w->polarCharacteristics_->Get(wxT("LABEL")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("LABELON")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("LABELON")))->Get() );
+  static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("LABELCOLOR")))->Set(
+   static_cast<GRA_colorCharacteristic*>(w->polarCharacteristics_->Get(wxT("LABELCOLOR")))->Get() );
+  static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("LABELFONT")))->Set(
+   static_cast<GRA_fontCharacteristic*>(w->polarCharacteristics_->Get(wxT("LABELFONT")))->Get() );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent(
+   static_cast<GRA_sizeCharacteristic*>(w->polarCharacteristics_->Get(wxT("LABELHEIGHT")))->GetAsPercent() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSON")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("NUMBERSON")))->Get() );
+  static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set(
+   static_cast<GRA_colorCharacteristic*>(w->polarCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Get() );
+  static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSFONT")))->Set(
+   static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSFONT")))->Get() );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSHEIGHT")))->SetAsPercent(
+   static_cast<GRA_sizeCharacteristic*>(w->polarCharacteristics_->Get(wxT("NUMBERSHEIGHT")))->GetAsPercent() );
+  static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSANGLE")))->Set(
+   static_cast<GRA_angleCharacteristic*>(w->polarCharacteristics_->Get(wxT("NUMBERSANGLE")))->Get() );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set(
+   static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Get() );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set(
+   static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MOD")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("MOD")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("LEADINGZEROS")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("LEADINGZEROS")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("OFFSET")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("OFFSET")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("DROPFIRSTNUMBER")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("DROPFIRSTNUMBER")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("DROPLASTNUMBER")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("DROPLASTNUMBER")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("TICSON")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("TICSON")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("TICSBOTHSIDES")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("TICSBOTHSIDES")))->Get() );
+  static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("TICANGLE")))->Set(
+   static_cast<GRA_angleCharacteristic*>(w->polarCharacteristics_->Get(wxT("TICANGLE")))->Get() );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("LARGETICLENGTH")))->SetAsPercent(
+   static_cast<GRA_sizeCharacteristic*>(w->polarCharacteristics_->Get(wxT("LARGETICLENGTH")))->GetAsPercent() );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("SMALLTICLENGTH")))->SetAsPercent(
+   static_cast<GRA_sizeCharacteristic*>(w->polarCharacteristics_->Get(wxT("SMALLTICLENGTH")))->GetAsPercent() );
+  static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("IMAGTICANGLE")))->Set(
+   static_cast<GRA_angleCharacteristic*>(w->polarCharacteristics_->Get(wxT("IMAGTICANGLE")))->Get() );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("IMAGTICLENGTH")))->SetAsPercent(
+   static_cast<GRA_sizeCharacteristic*>(w->polarCharacteristics_->Get(wxT("IMAGTICLENGTH")))->GetAsPercent() );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("POWER")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("POWER")))->Get() );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("POWERAUTO")))->Set(
+   static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("POWERAUTO")))->Get() );
 }
 
 void GRA_window::Clear()
@@ -787,8 +879,6 @@ void GRA_window::CreateXAxisCharacteristics( double xl, double yl, double xu, do
   xAxisCharacteristics_->AddColor( wxT("LABELCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
   xAxisCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
   xAxisCharacteristics_->AddSize( wxT("LABELHEIGHT"), 3.0, true, yl, yu );
-  xAxisCharacteristics_->AddDistance( wxT("LABELX"), 50.0, true, xl, xu );
-  xAxisCharacteristics_->AddDistance( wxT("LABELY"), 0.5, true, yl, yu );
   xAxisCharacteristics_->AddBool( wxT("NUMBERSON"), true );
   xAxisCharacteristics_->AddColor( wxT("NUMBERSCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
   xAxisCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
@@ -836,8 +926,6 @@ void GRA_window::SetXAxisDefaults()
   static_cast<GRA_colorCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
   static_cast<GRA_fontCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
   static_cast<GRA_sizeCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent( 3.0 );
-  static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELX")))->SetAsPercent( 50.0 );
-  static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELY")))->SetAsPercent( 0.5 );
   static_cast<GRA_boolCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSON")))->Set( true );
   static_cast<GRA_colorCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
   static_cast<GRA_fontCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
@@ -887,8 +975,6 @@ void GRA_window::CreateYAxisCharacteristics( double xl, double yl, double xu, do
   yAxisCharacteristics_->AddColor( wxT("LABELCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
   yAxisCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
   yAxisCharacteristics_->AddSize( wxT("LABELHEIGHT"), 3.0, true, yl, yu );
-  yAxisCharacteristics_->AddDistance( wxT("LABELX"), 0.5, true, xl, xu );
-  yAxisCharacteristics_->AddDistance( wxT("LABELY"), 50.0, true, yl, yu );
   yAxisCharacteristics_->AddBool( wxT("NUMBERSON"), true );
   yAxisCharacteristics_->AddColor( wxT("NUMBERSCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
   yAxisCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
@@ -936,8 +1022,6 @@ void GRA_window::SetYAxisDefaults()
   static_cast<GRA_colorCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
   static_cast<GRA_fontCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
   static_cast<GRA_sizeCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent( 3.0 );
-  static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELX")))->SetAsPercent( 0.5 );
-  static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELY")))->SetAsPercent( 50.0 );
   static_cast<GRA_boolCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSON")))->Set( true );
   static_cast<GRA_colorCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
   static_cast<GRA_fontCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
@@ -1056,6 +1140,103 @@ void GRA_window::SetTextDefaults()
   static_cast<GRA_distanceCharacteristic*>(textCharacteristics_->Get(wxT("XLOCATION")))->SetAsPercent( 50.0 );
   static_cast<GRA_distanceCharacteristic*>(textCharacteristics_->Get(wxT("YLOCATION")))->SetAsPercent( 50.0 );
 }
+  
+void GRA_window::CreatePolarCharacteristics( double xl, double yl, double xu, double yu )
+{
+  polarCharacteristics_ = new GRA_setOfCharacteristics();
+  //
+  polarCharacteristics_->AddDistance( wxT("XORIGIN"), 50.0, true, xl, xu );
+  polarCharacteristics_->AddDistance( wxT("YORIGIN"), 50.0, true, yl, yu );
+  polarCharacteristics_->AddSize( wxT("AXISLENGTH"), 30.0, true, xl, xu );
+  polarCharacteristics_->AddNumber( wxT("NAXES"), 3 );
+  polarCharacteristics_->AddBool( wxT("AXISON"), true );
+  polarCharacteristics_->AddColor( wxT("AXISCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
+  polarCharacteristics_->AddNumber( wxT("LINEWIDTH"), 1 );
+  polarCharacteristics_->AddAngle( wxT("AXISANGLE"), 0.0 );
+  polarCharacteristics_->AddNumber( wxT("MIN"), 0.0 );
+  polarCharacteristics_->AddNumber( wxT("MAX"), 1.0 );
+  polarCharacteristics_->AddNumber( wxT("VIRTUALMIN"), 0.0 );
+  polarCharacteristics_->AddNumber( wxT("VIRTUALMAX"), 1.0 );
+  polarCharacteristics_->AddNumber( wxT("LOGBASE"), 0.0 );
+  polarCharacteristics_->AddBool( wxT("LOGSTYLE"), true );
+  polarCharacteristics_->AddNumber( wxT("NLINCS"), 0 );
+  polarCharacteristics_->AddNumber( wxT("NSINCS"), 0 );
+  polarCharacteristics_->AddNumber( wxT("GRID"), 0 );
+  polarCharacteristics_->AddString( wxT("LABEL"), wxString(wxT("")) );
+  polarCharacteristics_->AddBool( wxT("LABELON"), false );
+  polarCharacteristics_->AddColor( wxT("LABELCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
+  polarCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  polarCharacteristics_->AddSize( wxT("LABELHEIGHT"), 3.0, true, yl, yu );
+  polarCharacteristics_->AddBool( wxT("NUMBERSON"), true );
+  polarCharacteristics_->AddColor( wxT("NUMBERSCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
+  polarCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  polarCharacteristics_->AddSize( wxT("NUMBERSHEIGHT"), 3.0, true, yl, yu );
+  polarCharacteristics_->AddAngle( wxT("NUMBERSANGLE"), 0.0 );
+  polarCharacteristics_->AddNumber( wxT("NUMBEROFDIGITS"), 5 );
+  polarCharacteristics_->AddNumber( wxT("NUMBEROFDECIMALS"), -1 );
+  polarCharacteristics_->AddNumber( wxT("MOD"), 0.0 );
+  polarCharacteristics_->AddBool( wxT("LEADINGZEROS"), false );
+  polarCharacteristics_->AddNumber( wxT("OFFSET"), 0.0 );
+  polarCharacteristics_->AddBool( wxT("DROPFIRSTNUMBER"), false );
+  polarCharacteristics_->AddBool( wxT("DROPLASTNUMBER"), false );
+  polarCharacteristics_->AddBool( wxT("TICSON"), true );
+  polarCharacteristics_->AddBool( wxT("TICSBOTHSIDES"), false );
+  polarCharacteristics_->AddAngle( wxT("TICANGLE"), 90.0 );
+  polarCharacteristics_->AddSize( wxT("LARGETICLENGTH"), 2.0, true, yl, yu );
+  polarCharacteristics_->AddSize( wxT("SMALLTICLENGTH"), 1.0, true, yl, yu );
+  polarCharacteristics_->AddAngle( wxT("IMAGTICANGLE"), 270.0 );
+  polarCharacteristics_->AddSize( wxT("IMAGTICLENGTH"), 1.0, true, yl, yu );
+  polarCharacteristics_->AddNumber( wxT("POWER"), 0.0 );
+  polarCharacteristics_->AddNumber( wxT("POWERAUTO"), 1 );
+}
+
+void GRA_window::SetPolarDefaults()
+{
+  static_cast<GRA_distanceCharacteristic*>(polarCharacteristics_->Get(wxT("XORIGIN")))->SetAsPercent( 50.0 );
+  static_cast<GRA_distanceCharacteristic*>(polarCharacteristics_->Get(wxT("YORIGIN")))->SetAsPercent( 50.0 );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("AXISLENGTH")))->SetAsPercent( 30.0 );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NAXES")))->Set( 3 );
+
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("AXISON")))->Set( true );
+  static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("AXISCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("LINEWIDTH")))->Set( 1 );
+  static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("AXISANGLE")))->Set( 0.0 );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MIN")))->Set( 0.0 );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MAX")))->Set( 1.0 );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( 0.0 );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( 1.0 );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("LOGBASE")))->Set( 0.0 );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("LOGSTYLE")))->Set( true );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NLINCS")))->Set( 0 );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NSINCS")))->Set( 0 );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("GRID")))->Set( 0 );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("LABELON")))->Set( false );
+  static_cast<GRA_stringCharacteristic*>(polarCharacteristics_->Get(wxT("LABEL")))->Set( wxString(wxT("")) );
+  static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("LABELCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
+  static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent( 3.0 );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSON")))->Set( true );
+  static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
+  static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSHEIGHT")))->SetAsPercent( 3.0 );
+  static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSANGLE")))->Set( 0.0 );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 5 );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set( -1 );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MOD")))->Set( 0.0 );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("LEADINGZEROS")))->Set( false );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("OFFSET")))->Set( 0.0 );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("DROPFIRSTNUMBER")))->Set( false );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("DROPLASTNUMBER")))->Set( false );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("TICSON")))->Set( true );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("TICSBOTHSIDES")))->Set( false );
+  static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("TICANGLE")))->Set( 90.0 );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("LARGETICLENGTH")))->SetAsPercent( 2.0 );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("SMALLTICLENGTH")))->SetAsPercent( 1.0 );
+  static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("IMAGTICANGLE")))->Set( 270.0 );
+  static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("IMAGTICLENGTH")))->SetAsPercent( 1.0 );
+  static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("POWER")))->Set( 0.0 );
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("POWERAUTO")))->Set( 1 );
+}
 
 void GRA_window::WorldToPercent( double x, double y, double &xout, double &yout ) const
 {
@@ -1111,6 +1292,35 @@ void GRA_window::GraphToWorld( std::vector<double> const &xg, std::vector<double
   for( std::size_t i=1; i<size; ++i )GraphToWorld( xg[i], yg[i], xw[i], yw[i], false );
 }
 
+void GRA_window::PolarToWorld( double r, double theta, double &xw, double &yw, bool reset ) const
+{
+  // convert from polar graph units to world units
+  //
+  static double xorigin, yorigin, axisa, a;
+  if( reset )
+  {
+    axisa = static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("AXISANGLE")))->Get();
+    xorigin = static_cast<GRA_distanceCharacteristic*>(polarCharacteristics_->Get(wxT("XORIGIN")))->GetAsWorld();
+    yorigin = static_cast<GRA_distanceCharacteristic*>(polarCharacteristics_->Get(wxT("YORIGIN")))->GetAsWorld();
+    double const length =
+      static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("AXISLENGTH")))->GetAsWorld();
+    double const max = static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MAX")))->Get();
+    a = max!=0.0 ? length/max : 1.0;
+  }
+  if( axisa > 0.0 )theta += 90.0;
+  xw = xorigin + a*r*cos(theta*M_PI/180.);
+  yw = yorigin + a*r*sin(theta*M_PI/180.);
+}
+
+void GRA_window::PolarToWorld( std::vector<double> const &r, std::vector<double> const &theta,
+                               std::vector<double> &xw, std::vector<double> &yw ) const
+{
+  std::size_t const size = r.size();
+  xw.resize( size );
+  yw.resize( size );
+  for( std::size_t i=0; i<size; ++i )PolarToWorld( r[i], theta[i], xw[i], yw[i], false );
+}
+
 void GRA_window::WorldToGraph( double xw, double yw, double &xg, double &yg, bool reset ) const
 {
   // convert from world units to graph units
@@ -1160,8 +1370,8 @@ void GRA_window::GetValues( double &xlog, double &ylog, double &xlaxis, double &
   if( fabs(cosy) < eps )cosy = 0.0;
   if( fabs(sinx) < eps )sinx = 0.0;
   if( fabs(siny) < eps )siny = 0.0;
-  xmax!=xmin ? ax=(xuaxis-xlaxis)/(xmax-xmin) : ax=1.0;
-  ymax!=ymin ? ay=(yuaxis-ylaxis)/(ymax-ymin) : ay=1.0;
+  ax = xmax!=xmin ? (xuaxis-xlaxis)/(xmax-xmin) : 1.0;
+  ay = ymax!=ymin ? (yuaxis-ylaxis)/(ymax-ymin) : 1.0;
   bx = -ax*xmin;
   by = -ay*ymin;
 }
@@ -1380,6 +1590,7 @@ std::ostream &operator<<( std::ostream &out, GRA_window const &gw )
       << "<textc>\n" << *gw.textCharacteristics_ << "</textc>\n"
       << "<graphlegendc>\n" << *gw.graphLegendCharacteristics_ << "</graphlegendc>\n"
       << "<datacurvec>\n" << *gw.dataCurveCharacteristics_ << "</datacurvec>\n"
+      << "<polarc>\n" << *gw.polarCharacteristics_ << "</polarc>\n"
       << "<drawableobjects>\n";
   GRA_window::drawableVecIter end = gw.drawableObjects_.end();
   for( GRA_window::drawableVecIter i=gw.drawableObjects_.begin(); i!=end; ++i )

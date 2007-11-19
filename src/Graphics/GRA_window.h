@@ -82,6 +82,8 @@ public:
   GRA_setOfCharacteristics *GetTextCharacteristics();
   GRA_setOfCharacteristics *GetGraphLegendCharacteristics();
   GRA_setOfCharacteristics *GetDataCurveCharacteristics();
+  GRA_setOfCharacteristics *GetPolarCharacteristics();
+
   void SetXAxisCharacteristics( GRA_setOfCharacteristics const & );
   void SetYAxisCharacteristics( GRA_setOfCharacteristics const & );
 
@@ -93,6 +95,7 @@ public:
     SetTextDefaults();
     SetGraphLegendDefaults();
     SetDataCurveDefaults();
+    SetPolarDefaults();
   }
 
   void SetGeneralDefaults();
@@ -101,12 +104,17 @@ public:
   void SetTextDefaults();
   void SetGraphLegendDefaults();
   void SetDataCurveDefaults();
+  void SetPolarDefaults();
 
   void InheritFrom( GRA_window const * );
   
   void GraphToWorld( double, double, double &, double &, bool =false ) const;
   void GraphToWorld( std::vector<double> const &, std::vector<double> const &,
                      std::vector<double> &, std::vector<double> & ) const;
+  void PolarToWorld( double, double, double &, double &, bool =false ) const;
+  void PolarToWorld( std::vector<double> const &, std::vector<double> const &,
+                     std::vector<double> &, std::vector<double> & ) const;
+
   void WorldToGraph( double, double, double &, double &, bool =false ) const;
   void WorldToPercent( double, double, double &, double & ) const;
   void PercentToWorld( double, double, double &, double & ) const;
@@ -152,6 +160,7 @@ private:
   void CreateGraphLegendCharacteristics( double, double, double, double );
   void CreateDataCurveCharacteristics( double, double );
   void CreateTextCharacteristics( double, double, double, double );
+  void CreatePolarCharacteristics( double, double, double, double );
   //
   void GetValues( double &, double &, double &, double &, double &, double &,
                   double &, double &, double &, double &, double &, double &,
@@ -163,6 +172,7 @@ private:
   GRA_setOfCharacteristics *textCharacteristics_;
   GRA_setOfCharacteristics *graphLegendCharacteristics_;
   GRA_setOfCharacteristics *dataCurveCharacteristics_;
+  GRA_setOfCharacteristics *polarCharacteristics_;
   //
   double xLoP_, yLoP_, xHiP_, yHiP_;
   double xPrevious_, yPrevious_;

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -64,6 +64,8 @@ class TextPopup;
 class LegendPopup;
 class GraphicsPage;
 class GRA_legend;
+class GRA_polarAxes;
+class GRA_polarCurve;
 
 namespace ExGlobals
 {
@@ -292,6 +294,8 @@ namespace ExGlobals
   GRA_ditheringPlot *GetDitheringPlot( ExXML & );
   GRA_gradientPlot *GetGradientPlot( ExXML & );
   GRA_legend *GetGraphLegend( ExXML &, GRA_window * );
+  GRA_polarAxes *GetPolarAxes( ExXML &, wxString const & );
+  GRA_polarCurve *GetPolarCurve( ExXML & );
 }
 
 #endif

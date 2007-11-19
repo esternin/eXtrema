@@ -1194,6 +1194,10 @@
       <param name="Local" value="html/Characteristics/PlottingSymbol/plotsymbolsize.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
+      <param name="Name" value="polar plot">
+      <param name="Local" value="html/GraphCommand/polarcoords.htm">
+      </OBJECT>
+  <LI><OBJECT type="text/sitemap">
       <param name="Name" value="POLYGON command">
       <param name="Local" value="html/PolygonCommand/polygoncommand.htm">
       </OBJECT>

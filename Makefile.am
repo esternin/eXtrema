@@ -82,7 +82,7 @@ mygetcommanddir = $(myhelpdir)/html/GetCommand
 mygetcommand_DATA = ./Help/html/GetCommand/*.htm
 
 mygraphcommanddir = $(myhelpdir)/html/GraphCommand
-mygraphcommand_DATA = ./Help/html/GraphCommand/*.htm ./Help/html/GraphCommand/*.gif ./Help/html/GraphCommand/*.jpg
+mygraphcommand_DATA = ./Help/html/GraphCommand/*.htm ./Help/html/GraphCommand/*.gif ./Help/html/GraphCommand/*.jpg ./Help/html/GraphCommand/*.png
 
 mygridcommanddir = $(myhelpdir)/html/GridCommand
 mygridcommand_DATA = ./Help/html/GridCommand/*.htm
@@ -195,6 +195,8 @@ mycxadir = $(myhelpdir)/html/Characteristics/Xaxis
 mycxa_DATA = ./Help/html/Characteristics/Xaxis/*.htm
 mycyadir = $(myhelpdir)/html/Characteristics/Yaxis
 mycya_DATA = ./Help/html/Characteristics/Yaxis/*.htm
+mycpadir = $(myhelpdir)/html/Characteristics/Polar
+mycpa_DATA = ./Help/html/Characteristics/Polar/*.htm ./Help/html/Characteristics/Polar/*.png
 
 myintrodir = $(myhelpdir)/html/Introduction
 myintro_DATA = ./Help/html/Introduction/*.htm ./Help/html/Introduction/*.gif

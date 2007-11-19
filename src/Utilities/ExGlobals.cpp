@@ -84,6 +84,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "CurvePopup.h"
 #include "TextPopup.h"
 #include "LegendPopup.h"
+#include "GRA_polarAxes.h"
+#include "GRA_polarCurve.h"
 
 DECLARE_APP(extrema)
 
@@ -1688,6 +1690,16 @@ void RestoreSession( wxString &file )
         throw;
       }
 
+      xml.GetNextSibling(); // get <polarc>
+      try
+      {
+        SetCharacteristics( xml, gw->GetPolarCharacteristics(), wxT("polarc"), file );
+      }
+      catch (std::runtime_error const &e)
+      {
+        throw;
+      }
+
       xml.GetNextSibling(); // get <drawableobjects>
       if( xml.GetName() != wxT("drawableobjects") )
         throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("drawableobjects"),file) );
@@ -1748,6 +1760,18 @@ void RestoreSession( wxString &file )
         else if( xml.GetName() == wxT("cartesiancurve") )
         {
           GRA_cartesianCurve *curve = GetCartesianCurve( xml );
+          curve->Draw( graphicsOutput_, dc );
+          gw->AddDrawableObject( curve );
+        }
+        else if( xml.GetName() == wxT("polaraxes") )
+        {
+          GRA_polarAxes *axes = GetPolarAxes( xml, file );
+          axes->Draw( graphicsOutput_, dc );
+          gw->AddDrawableObject( axes );
+        }
+        else if( xml.GetName() == wxT("polarcurve") )
+        {
+          GRA_polarCurve *curve = GetPolarCurve( xml );
           curve->Draw( graphicsOutput_, dc );
           gw->AddDrawableObject( curve );
         }
@@ -2308,12 +2332,23 @@ GRA_cartesianAxes *GetCartesianAxes( ExXML &xml, wxString const &file )
   return axes;
 }
 
+GRA_polarAxes *GetPolarAxes( ExXML &xml, wxString const &file )
+{
+  xml.GetFirstChild(); // get <axis>
+  GRA_axis *axis = GetAxis( xml, 'P', file );
+  GRA_polarAxes *axes = new GRA_polarAxes();
+  axes->SetAxes( axis );
+  return axes;
+}
+
 GRA_axis *GetAxis( ExXML &xml, wxChar const type, wxString const &file )
 {
   double xOrigin;
   xml.GetPropertyValue(wxT("xorigin")).ToDouble( &xOrigin );
   double yOrigin;
   xml.GetPropertyValue(wxT("yorigin")).ToDouble( &yOrigin );
+  double length;
+  xml.GetPropertyValue(wxT("length")).ToDouble( &length );
 
   xml.GetFirstChild(); // get <ticcoordinates>
   long int tmp;
@@ -2332,40 +2367,23 @@ GRA_axis *GetAxis( ExXML &xml, wxChar const type, wxString const &file )
   GRA_setOfCharacteristics *generalC = gw->GetGeneralCharacteristics();
   GRA_setOfCharacteristics *xAxisC = gw->GetXAxisCharacteristics();
   GRA_setOfCharacteristics *yAxisC = gw->GetYAxisCharacteristics();
-  double const xlaxis = static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
-  double const ylaxis = static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
-  double const xuaxis = static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
-  double const yuaxis = static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
-  double const xlwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("XLOWERWINDOW")))->GetAsWorld();
-  double const xuwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("XUPPERWINDOW")))->GetAsWorld();
-  double const ylwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("YLOWERWINDOW")))->GetAsWorld();
-  double const yuwind = static_cast<GRA_distanceCharacteristic*>(generalC->Get(wxT("YUPPERWINDOW")))->GetAsWorld();
-  int const gridLineType = static_cast<GRA_intCharacteristic*>(generalC->Get(wxT("GRIDLINETYPE")))->Get();
+  GRA_setOfCharacteristics *polarC = gw->GetPolarCharacteristics();
   GRA_setOfCharacteristics axisc;
   switch (type)
   {
     case 'X':
     {
       axisc = *xAxisC;
-      axisc.AddDistance( wxT("XLOWERWINDOW"), xlwind, false, xminW_, xmaxW_ );
-      axisc.AddDistance( wxT("YLOWERWINDOW"), ylwind, false, yminW_, ymaxW_ );
-      axisc.AddDistance( wxT("XUPPERWINDOW"), xuwind, false, xminW_, xmaxW_ );
-      axisc.AddDistance( wxT("YUPPERWINDOW"), yuwind, false, yminW_, ymaxW_ );
-      axisc.AddDistance(wxT("OLAXIS"),ylaxis,false,ylwind,yuwind);
-      axisc.AddDistance(wxT("OUAXIS"),yuaxis,false,ylwind,yuwind);
-      axisc.AddNumber(wxT("GRIDLINETYPE"),gridLineType);
       break;
     }
     case 'Y':
     {
       axisc = *yAxisC;
-      axisc.AddDistance( wxT("XLOWERWINDOW"), xlwind, false, xminW_, xmaxW_ );
-      axisc.AddDistance( wxT("YLOWERWINDOW"), ylwind, false, yminW_, ymaxW_ );
-      axisc.AddDistance( wxT("XUPPERWINDOW"), xuwind, false, xminW_, xmaxW_ );
-      axisc.AddDistance( wxT("YUPPERWINDOW"), yuwind, false, yminW_, ymaxW_ );
-      axisc.AddDistance(wxT("OLAXIS"),xlaxis,false,ylwind,yuwind);
-      axisc.AddDistance(wxT("OUAXIS"),xuaxis,false,ylwind,yuwind);
-      axisc.AddNumber(wxT("GRIDLINETYPE"),gridLineType);
+      break;
+    }
+    case 'P':
+    {
+      axisc = *polarC;
       break;
     }
   }
@@ -2394,7 +2412,7 @@ GRA_axis *GetAxis( ExXML &xml, wxChar const type, wxString const &file )
   }
   xml.SetBackToParent();
 
-  GRA_axis *axis = new GRA_axis( xOrigin, yOrigin, &axisc );
+  GRA_axis *axis = new GRA_axis( xOrigin, yOrigin, length, &axisc );
   axis->SetTicCoordinates( xtics, ytics );
   axis->SetPolylines( polylines );
   axis->SetDrawableText( textVec );
@@ -2515,6 +2533,75 @@ GRA_cartesianCurve *GetCartesianCurve( ExXML &xml )
   curve->SetValues( histype, linetype, linewidth, linecolor, areafillcolor, xlaxis, ylaxis,
                     xuaxis, yuaxis, xmin, ymin, xmax, ymax, areaFillColors, xcurve, ycurve,
                     pen, symbols, errorbars );
+  return curve;
+}
+
+GRA_polarCurve *GetPolarCurve( ExXML &xml )
+{
+  long int tmp;
+  xml.GetPropertyValue(wxT("histype")).ToLong( &tmp );
+  int histype = static_cast<int>(tmp);
+  xml.GetPropertyValue(wxT("linetype")).ToLong( &tmp );
+  int linetype = static_cast<int>(tmp);
+  xml.GetPropertyValue(wxT("linewidth")).ToLong( &tmp );
+  int linewidth = static_cast<int>(tmp);
+  double xmax;
+  xml.GetPropertyValue(wxT("xmax")).ToDouble( &xmax );
+  xml.GetPropertyValue(wxT("linecolor")).ToLong( &tmp );
+  GRA_color *linecolor = GRA_colorControl::GetColor(static_cast<int>(tmp));
+  xml.GetPropertyValue(wxT("areafillcolor")).ToLong( &tmp );
+  int temp = static_cast<int>(tmp);
+  GRA_color *areafillcolor = 0;
+  if( temp != 0 )areafillcolor = GRA_colorControl::GetColor(temp);
+
+  xml.GetFirstChild(); // get <areafillcolors>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+  int size = static_cast<int>(tmp);
+  std::vector<GRA_color*> areaFillColors(size);
+  std::vector<int> ivec( GetIntData(xml.GetTextValue(),size) );
+  for( int j=0; j<size; ++j )areaFillColors[j] = GRA_colorControl::GetColor(ivec[j]);
+
+  xml.GetNextSibling(); // get <data>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+  size = static_cast<int>(tmp);
+  std::vector<double> x(size), y(size), data(GetDoubleData(xml.GetTextValue(),2*size));
+  for( int j=0; j<size; ++j )
+  {
+    x[j] = data[2*j];
+    y[j] = data[2*j+1];
+  }
+
+  xml.GetNextSibling(); // get <xycurve>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+  size = static_cast<int>(tmp);
+  std::vector<double> xcurve(size), ycurve(size), data2(GetDoubleData(xml.GetTextValue(),2*size));
+  for( int j=0; j<size; ++j )
+  {
+    xcurve[j] = data2[2*j];
+    ycurve[j] = data2[2*j+1];
+  }
+
+  xml.GetNextSibling(); // get <pen>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+  size = static_cast<int>(tmp);
+  std::vector<int> pen( GetIntData(xml.GetTextValue(),size) );
+
+  xml.GetNextSibling(); // get <plotsymbols>
+  xml.GetPropertyValue(wxT("size")).ToLong( &tmp );
+  size = static_cast<int>(tmp);
+  std::vector<GRA_plotSymbol*> symbols(size);
+  for( int j=0; j<size; ++j )
+  {
+    j==0 ? xml.GetFirstChild() : xml.GetNextSibling(); // get <plotsymbol>
+    symbols[j] = GetPlotSymbol( xml );
+  }
+  if( size > 0 )xml.SetBackToParent();
+
+  xml.SetBackToParent();
+
+  GRA_polarCurve *curve = new GRA_polarCurve( x, y );
+  curve->SetValues( histype, linetype, linewidth, xmax, linecolor, areafillcolor,
+                    areaFillColors, xcurve, ycurve, pen, symbols );
   return curve;
 }
 

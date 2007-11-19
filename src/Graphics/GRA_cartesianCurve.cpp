@@ -35,7 +35,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_window.h"
 #include "ExGlobals.h"
 #include "UsefulFunctions.h"
-#include "CurvePopup.h"
 
 GRA_cartesianCurve::~GRA_cartesianCurve()
 {

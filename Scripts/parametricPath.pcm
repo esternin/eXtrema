@@ -3,10 +3,6 @@ window 0
 defaults
 !
 define\constants
-!phi[1:100] = 0
-!do i = [2:100]
-!  phi[i] = phi[i-1]+sin(i/5)
-!enddo
 generate phi 0,,3*pi 100
 a=0.2
 b=0.5
@@ -19,8 +15,8 @@ c=int(f*csize/max(f)+0.99)
 scales\-messages min(x) max(x) min(y) max(y)
 set
  plotsymbol 0
- %xnumbersheight 4
- %ynumbersheight 4
+ %xnumbersheight 3
+ %ynumbersheight 3
  curvelinewidth 15
  %xupperaxis 80
  

@@ -595,4 +595,20 @@ bool GRA_drawableText::Inside( double x, double y )
   return false;
 }
 
+double GRA_drawableText::GetWidth() const
+{
+  std::vector<GRA_simpleText*>::const_iterator end = strings_.end();
+  double width = 0.0;
+  for( std::vector<GRA_simpleText*>::const_iterator i=strings_.begin(); i!=end; ++i )
+  {
+    int xlo, ylo, xhi, yhi;
+    (*i)->GetBoundary( xlo, ylo, xhi, yhi );
+    double xlow, ylow, xhiw, yhiw;
+    ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( xlo, ylo, xlow, ylow );
+    ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( xhi, yhi, xhiw, yhiw );
+    width += xhiw-xlow;
+  }
+  return width;
+}
+
 // end of file

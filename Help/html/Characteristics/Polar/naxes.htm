@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>POLARNAXES</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>POLARNAXES</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET POLARNAXES n<br />
+GET POLARNAXES { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+POLARNAXES = 3</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>POLARNAXES</CODE> controls the number of axes drawn on a
+ polar plot. The default value is 3.  The horizontal axis is drawn if
+ <CODE>POLARNAXES</CODE> is 1.  If <CODE>POLARNAXES</CODE>
+ is greater than 1, the horizontal axis is drawn and <CODE>POLARNAXES</CODE>-1
+ other axes are drawn equally spaced about 360<sup>&deg;</sup>, but without labels.  For example, if
+ <CODE>POLARNAXES</CODE> is 3, the horizontal axis is drawn and 2 other axes are drawn
+ at angles of 120<sup>&deg;</sup> and 240<sup>&deg;</sup>.</p>
+<p>
+ For example, the following picture shows a polar plot with 3 axes, i.e.,
+ <CODE>POLARNAXES = 3.</CODE>
+ <img src="polarexample1.png"></p>
+<p>
+ while the following picture shows a polar plot with  <CODE>POLARNAXES = 6.</CODE>
+ <img src="polarexample2.png"></p>
+<P>
+ <a href="axislength.htm"><img border="0" src="../../shadow_left.gif">&nbsp;
+ <font size=+1 color="olive">POLARAXISLENGTH</font></a><BR />
+ <a href="axiscolor.htm"><img border="0" src="../../shadow_right.gif">&nbsp;
+ <font size=+1 color="olive">POLARAXISCOLOR</font></a>
+</P>
+</body>
+</html>

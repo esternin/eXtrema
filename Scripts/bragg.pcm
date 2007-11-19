@@ -145,7 +145,7 @@ set
  textinteractive 0
  %xtextlocation 18
  %ytextlocation 18
- %textheight 6
+ %textheight 5
 
 text 'spread out Bragg peak'
 !

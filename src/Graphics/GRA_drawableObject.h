@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -28,7 +28,7 @@ protected:
   enum Type {UNKNOWN, POINT, POLYLINE, ELLIPSE, POLYGON, MULTILINEFIGURE,
              PLOTSYMBOL, DRAWABLETEXT, AXIS, CARTESIANCURVE, CARTESIANAXES,
              GRAPHLEGEND, CONTOUR, BOXPLOT, DIFFUSIONPLOT, DITHERINGPLOT,
-             GRADIENTPLOT, THREEDFIGURE, SURFACEPLOT };
+             GRADIENTPLOT, THREEDFIGURE, POLARAXES, POLARCURVE };
 public:
   GRA_drawableObject()
   { type_ = UNKNOWN; }
@@ -95,8 +95,11 @@ public:
   bool IsaThreeDFigure() const
   { return (type_ == THREEDFIGURE); }
 
-  bool IsaSurfacePlot() const
-  { return (type_ == SURFACEPLOT); }
+  bool IsaPolarAxes() const
+  { return (type_ == POLARAXES); }
+
+  bool IsaPolarCurve() const
+  { return (type_ == POLARCURVE); }
 
   virtual void Draw( GRA_wxWidgets *, wxDC & ) =0;
 

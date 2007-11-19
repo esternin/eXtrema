@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_colorControl.h"
 #include "GRA_font.h"
 #include "GRA_drawableText.h"
-#include "GRA_axis.h"
 #include "GRA_sizeCharacteristic.h"
 #include "GRA_fontCharacteristic.h"
 #include "GRA_distanceCharacteristic.h"
@@ -158,7 +157,7 @@ void GRA_contour::Make()
         {
           ContourA();
         }
-        catch (EGraphicsError &e)
+        catch (EGraphicsError const &e)
         {
           throw;
         }
@@ -182,7 +181,7 @@ void GRA_contour::Make()
         {
           ContourA();
         }
-        catch (EGraphicsError &e)
+        catch (EGraphicsError const &e)
         {
           throw;
         }
@@ -206,7 +205,7 @@ void GRA_contour::Make()
         {
           ContourA();
         }
-        catch (EGraphicsError &e)
+        catch (EGraphicsError const &e)
         {
           throw;
         }
@@ -230,7 +229,7 @@ void GRA_contour::Make()
         {
           ContourA();
         }
-        catch (EGraphicsError &e)
+        catch (EGraphicsError const &e)
         {
           throw;
         }
@@ -256,7 +255,7 @@ void GRA_contour::Make()
         {
           ContourA();
         }
-        catch (EGraphicsError &e)
+        catch (EGraphicsError const &e)
         {
           throw;
         }
@@ -291,7 +290,7 @@ void GRA_contour::ContourA()
         ContourB( xData_[irp], yData_[jrp], zData_[jrp][irp], xData_[isp],
                   yData_[jsp], zData_[jsp][isp] );
       }
-      catch (EGraphicsError &e)
+      catch (EGraphicsError const &e)
       {
         throw;
       }
@@ -345,7 +344,7 @@ void GRA_contour::ContourA()
       {
         ContourB( vx, vy, htm, xData_[isp], yData_[jsp],zData_[jsp][isp] );
       }
-      catch (EGraphicsError &e)
+      catch (EGraphicsError const &e)
       {
         throw;
       }
@@ -360,7 +359,7 @@ void GRA_contour::ContourA()
         {
           ContourB( vx, vy, htm, xData_[in], yData_[jn], zData_[jn][in] );
         }
-        catch (EGraphicsError &e)
+        catch (EGraphicsError const &e)
         {
           throw;
         }
@@ -377,7 +376,7 @@ void GRA_contour::ContourA()
           {
             ContourB( vx, vy, htm, xData_[inn], yData_[jnn], zData_[jnn][inn] );
           }
-          catch (EGraphicsError &e)
+          catch (EGraphicsError const &e)
           {
             throw;
           }
@@ -392,7 +391,7 @@ void GRA_contour::ContourA()
       {
         ContourB( xData_[irp], yData_[jrp], zData_[jrp][irp], vx, vy, htm );
       }
-      catch (EGraphicsError &e)
+      catch (EGraphicsError const &e)
       {
         throw;
       }
@@ -402,7 +401,7 @@ void GRA_contour::ContourA()
         {
           ContourB( xData_[inn], yData_[jnn], zData_[jnn][inn], vx, vy, htm );
         }
-        catch (EGraphicsError &e)
+        catch (EGraphicsError const &e)
         {
           throw;
         }
@@ -412,7 +411,7 @@ void GRA_contour::ContourA()
           {
             ContourB( xData_[in], yData_[jn], zData_[jn][in], vx, vy, htm );
           }
-          catch (EGraphicsError &e)
+          catch (EGraphicsError const &e)
           {
             throw;
           }
@@ -517,7 +516,7 @@ void GRA_contour::ContourB( double xrr, double yrr, double hr, double xss, doubl
         {
           dt->Parse();
         }
-        catch ( EGraphicsError &e )
+        catch ( EGraphicsError const &e )
         {
           // throw;
         }

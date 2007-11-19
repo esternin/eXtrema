@@ -40,9 +40,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "UsefulFunctions.h"
 #include "ExGlobals.h"
 
-GRA_axis::GRA_axis( double xOrigin, double yOrigin,
+GRA_axis::GRA_axis( double xOrigin, double yOrigin, double length,
                     GRA_setOfCharacteristics const *characteristics )
-    : GRA_drawableObject(wxT("AXIS")), xOrigin_(xOrigin), yOrigin_(yOrigin),
+    : GRA_drawableObject(wxT("AXIS")), xOrigin_(xOrigin), yOrigin_(yOrigin), length_(length),
       characteristics_( new GRA_setOfCharacteristics(*characteristics) )
 {}
 
@@ -62,6 +62,7 @@ void GRA_axis::CopyStuff( GRA_axis const &rhs )
   yTicCoordinates_.assign( rhs.yTicCoordinates_.begin(), rhs.yTicCoordinates_.end() );
   xOrigin_ = rhs.xOrigin_;
   yOrigin_ = rhs.yOrigin_;
+  length_ = rhs.length_;
 }
 
 void GRA_axis::DeleteStuff()
@@ -121,9 +122,8 @@ void GRA_axis::Make()
     {
       static_cast<GRA_doubleCharacteristic*>(characteristics_->Get(wxT("LOGBASE")))->Get()<=1.0 ?
           MakeLinearAxis() : MakeLogAxis();
-      MakeAxisLabel();
     }
-    catch (EGraphicsError &e)
+    catch (EGraphicsError const &e)
     {
       throw;
     }
@@ -137,142 +137,10 @@ void GRA_axis::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     (*i)->Draw( graphicsOutput, dc );
   std::vector<GRA_drawableText*>::const_iterator tEnd = textVec_.end();
   for( std::vector<GRA_drawableText*>::const_iterator i=textVec_.begin(); i!=tEnd; ++i )
+  {
     (*i)->Draw( graphicsOutput, dc );
-  //
-  // draw the grid lines, if requested
-  //
-  int lineTypeSave = graphicsOutput->GetLineType();
-  int gridLineType =
-      static_cast<GRA_intCharacteristic*>(characteristics_->Get(wxT("GRIDLINETYPE")))->Get();
-  graphicsOutput->SetLineType( gridLineType );
-  wxPen wxpen( dc.GetPen() );
-  wxpen.SetColour(
-   ExGlobals::GetwxColor(
-    static_cast<GRA_colorCharacteristic*>(characteristics_->Get(wxT("AXISCOLOR")))->Get()) );
-  //
-  double laxis =
-      static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("LOWERAXIS")))->GetAsWorld();
-  double uaxis =
-      static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("UPPERAXIS")))->GetAsWorld();
-  double olaxis =
-      static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("OLAXIS")))->GetAsWorld();
-  double ouaxis =
-      static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("OUAXIS")))->GetAsWorld();
-  double axisAngle =
-      static_cast<GRA_angleCharacteristic*>(characteristics_->Get(wxT("AXISANGLE")))->Get();
-  //
-  std::size_t size = xTicCoordinates_.size();
-  double const eps = 0.001;
-  //
-  // grid lines are drawn on every nxgrid_th (sic) long tic mark on the x-axis
-  //
-  for( std::size_t i=0; i<size; ++i )
-  {
-    double x = xTicCoordinates_[i];
-    double y = yTicCoordinates_[i];
-    if( axisAngle == 0.0 ) // draw the grid lines vertically parallel to the y-axis
-    {
-      if( fabs(x-uaxis)>eps && fabs(x-laxis)>eps )
-      {
-        graphicsOutput->StartLine( x, y );
-        graphicsOutput->ContinueLine( x, y+(ouaxis-olaxis), dc );
-      }
-    }
-    else
-    {
-      if( fabs(y-uaxis)>eps && fabs(y-laxis)>eps )
-      {
-        graphicsOutput->StartLine( x, y );
-        graphicsOutput->ContinueLine( x+(ouaxis-olaxis), y, dc );
-      }
-    }
-  }
-  graphicsOutput->SetLineType( lineTypeSave );
-}
-
-void GRA_axis::MakeAxisLabel()
-{
-  wxString label;
-  bool labelIsOn = static_cast<GRA_boolCharacteristic*>(characteristics_->Get(wxT("LABELON")))->Get();
-  if( labelIsOn )label = static_cast<GRA_stringCharacteristic*>(characteristics_->Get(wxT("LABEL")))->Get();
-  if( label.empty() )labelIsOn = false;
-  double power = static_cast<GRA_doubleCharacteristic*>(characteristics_->Get(wxT("POWER")))->Get();
-  if( static_cast<GRA_doubleCharacteristic*>(characteristics_->Get(wxT("LOGBASE")))->Get()<=1.0 &&
-      power != 0.0 &&
-      static_cast<GRA_intCharacteristic*>(characteristics_->Get(wxT("POWERAUTO")))->Get()!=2 &&
-      static_cast<GRA_boolCharacteristic*>(characteristics_->Get(wxT("NUMBERSON")))->Get() )
-  {
-    wxString powLabel(wxT("(x10<^><Z0.5%>"));
-    powLabel << power << wxT("<_>)");
-    //label.empty() ? label=powLabel : label+=wxString(wxT(" "))+powLabel;
-    label.empty() ? label=powLabel : label << wxT(" ") << powLabel;
-    labelIsOn = true;
-  }
-  //
-  // the axis label is composed of two parts:
-  //  a) the string found in the label
-  //  b) the factor by which all the numbers
-  //     labelling the axis should be multiplied to get the graph axis units
-  //
-  // if powerAuto_ = 2, calculate the power but do not draw it
-  //
-  if( labelIsOn )
-  {
-    double xminw, xmaxw, yminw, ymaxw;
-    ExGlobals::GetWorldLimits( xminw, yminw, xmaxw, ymaxw );
-    double sizlab = static_cast<GRA_sizeCharacteristic*>(characteristics_->Get(wxT("LABELHEIGHT")))->GetAsWorld();
-    double axisAngle = static_cast<GRA_angleCharacteristic*>(characteristics_->Get(wxT("AXISANGLE")))->Get();
-    double imagTicAngle = static_cast<GRA_angleCharacteristic*>(characteristics_->Get(wxT("IMAGTICANGLE")))->Get();
-    double imagTicLen = static_cast<GRA_sizeCharacteristic*>(characteristics_->Get(wxT("IMAGTICLENGTH")))->GetAsWorld();
-    double numHeight = static_cast<GRA_sizeCharacteristic*>(characteristics_->Get(wxT("NUMBERSHEIGHT")))->GetAsWorld();
-    GRA_font *labelFont = static_cast<GRA_fontCharacteristic*>(characteristics_->Get(wxT("LABELFONT")))->Get();
-    GRA_color *labelColor = static_cast<GRA_colorCharacteristic*>(characteristics_->Get(wxT("LABELCOLOR")))->Get();
-    double loAxis = static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("LOWERAXIS")))->GetAsWorld();
-    double upAxis = static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("UPPERAXIS")))->GetAsWorld();
-    double x1, y1, angle=0.0;
-    int align = 2;
-    if( axisAngle == 0.0 ) // draw the label horizontally and centered on the axis
-    {
-      x1 = 0.5*(upAxis+loAxis);
-      if( imagTicAngle > 180.0 )
-      {
-        align = 8; // 8=top centre
-        y1 = yOrigin_ - 1.5*(imagTicLen+numHeight);
-      }
-      else
-      {
-        align = 2; // 2=bottom centre
-        y1 = yOrigin_ + 1.1*(imagTicLen+numHeight);
-      }
-    }
-    else // draw the label vertically and centered on the axis
-    {
-      double xlwind = static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("XLOWERWINDOW")))->GetAsWorld();
-      double xuwind = static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("XUPPERWINDOW")))->GetAsWorld();
-      y1 = 0.5*(upAxis+loAxis);
-      if( imagTicAngle > 180.0 )
-      {
-        x1 = xlwind + 0.99*(xuwind-xlwind);
-        angle = 270.0;
-        align = 8;
-      }
-      else
-      {
-        x1 = xlwind + 0.01*(xuwind-xlwind);
-        angle = 90.0;
-        align = 8;
-      }
-    }
-    GRA_drawableText *dt = new GRA_drawableText(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
-    try
-    {
-      dt->Parse();
-    }
-    catch ( EGraphicsError &e )
-    {
-      throw;
-    }
-    textVec_.push_back( dt );
+    double width = (*i)->GetWidth();
+    if( maxWidth_ < width )maxWidth_ = width;
   }
 }
 
@@ -411,16 +279,10 @@ void GRA_axis::MakeLinearAxis()
   // plotted will have value "C" with format %numberOfDigits.numberOfDecimals f)
   // where "X" = "C" * 10^power
   //
-  double const uAxis =
-    static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("UPPERAXIS")))->GetAsWorld();
-  double const lAxis =
-    static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("LOWERAXIS")))->GetAsWorld();
-  double const dx = uAxis - lAxis;
-  //
   // ticSpacing = the spacing between the small tic marks of the axis
   //
   double xinc = (virtualMax-virtualMin)/numberOfLargeIncrements/numberOfSmallIncrements;
-  double slen = dx*(1+(axisMin-virtualMin + virtualMax-axisMax)/(axisMax-axisMin));
+  double slen = length_*(1+(axisMin-virtualMin + virtualMax-axisMax)/(axisMax-axisMin));
   double ticSpacing = slen/numberOfLargeIncrements/numberOfSmallIncrements;
   //
   int const lineWidth =
@@ -441,11 +303,13 @@ void GRA_axis::MakeLinearAxis()
   // draw the axis line
   //
   GRA_polyline *tmp = new GRA_polyline(xOrigin_,yOrigin_,lineWidth,lineType,color);
-  tmp->Add( xOrigin_+dx*cosAxisAngle, yOrigin_+dx*sinAxisAngle, 2 );
+  xEnd_ = xOrigin_+length_*cosAxisAngle;
+  yEnd_ = yOrigin_+length_*sinAxisAngle;
+  tmp->Add( xEnd_, yEnd_, 2 );
   polylines_.push_back( tmp );
   //
-  double x0 = xOrigin_ - (axisMin-virtualMin)/(axisMax-axisMin)*dx*cosAxisAngle;
-  double y0 = yOrigin_ - (axisMin-virtualMin)/(axisMax-axisMin)*dx*sinAxisAngle;
+  double x0 = xOrigin_ - (axisMin-virtualMin)/(axisMax-axisMin)*length_*cosAxisAngle;
+  double y0 = yOrigin_ - (axisMin-virtualMin)/(axisMax-axisMin)*length_*sinAxisAngle;
   //
   int alignment;
   if( fabs(axisAngle) <= 45.0 )
@@ -812,17 +676,14 @@ void GRA_axis::MakeLogAxis()
   GRA_font *numbersFont = static_cast<GRA_fontCharacteristic*>(characteristics_->Get(wxT("NUMBERSFONT")))->Get();
   GRA_color *numbersColor = static_cast<GRA_colorCharacteristic*>(characteristics_->Get(wxT("NUMBERSCOLOR")))->Get();
   //
-  double const uAxis =
-    static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("UPPERAXIS")))->GetAsWorld();
-  double const lAxis =
-    static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("LOWERAXIS")))->GetAsWorld();
-  double const dx = uAxis - lAxis;
-  double const gapLength = dx/(axisMax-axisMin);
+  double const gapLength = length_/(axisMax-axisMin);
   //
   // draw the axis line
   //
   GRA_polyline *tmp = new GRA_polyline(xOrigin_,yOrigin_,lineWidth,lineType,color);
-  tmp->Add( xOrigin_+dx*cosAxisAngle, yOrigin_+dx*sinAxisAngle, 2 );
+  xEnd_ = xOrigin_+length_*cosAxisAngle;
+  yEnd_ = yOrigin_+length_*sinAxisAngle;
+  tmp->Add( xEnd_, yEnd_, 2 );
   polylines_.push_back( tmp );
   //
   double xs, ys;
@@ -856,13 +717,13 @@ void GRA_axis::MakeLogAxis()
                          ((static_cast<int>(axisMax)-static_cast<int>(axisMin))==0);
   if( powMin < axisMin )
   {
-    double const vminLoc = lAxis - (axisMin-powMin)*gapLength;
+    double const vminLoc = (axisMin-powMin)*gapLength;
     for( int i=0; i<numberOfSmallTics; ++i )
     {
       double actualValue = actualPowMin*(i+2);
       if( actualMin<=actualValue && actualValue<=actualMax )
       {
-        double stic = fractionOfGap[i]*gapLength - lAxis + vminLoc; // distance from lAxis to tic mark
+        double stic = fractionOfGap[i]*gapLength - vminLoc; // distance from origin to tic mark
         MakeATic( stic, cosAxisAngle, sinAxisAngle, cosTicAngle, sinTicAngle, smallTicLength, xs, ys );
         if( grid < 0 )
         {
@@ -1343,16 +1204,18 @@ wxString GRA_axis::DoubleToString( double r, int power, int nPos, int nDec ) con
 }
 
 double GRA_axis::GetLowerAxis() const
-{ return static_cast<GRA_distanceCharacteristic*>(characteristics_->
-                                                  Get(wxT("LOWERAXIS")))->GetAsWorld(); }
+{ return static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("LOWERAXIS")))->GetAsWorld(); }
 
 double GRA_axis::GetUpperAxis() const
-{ return static_cast<GRA_distanceCharacteristic*>(characteristics_->
-                                                  Get(wxT("UPPERAXIS")))->GetAsWorld(); }
+{ return static_cast<GRA_distanceCharacteristic*>(characteristics_->Get(wxT("UPPERAXIS")))->GetAsWorld(); }
+
+double GRA_axis::GetAngle() const
+{ return static_cast<GRA_angleCharacteristic*>(characteristics_->Get(wxT("AXISANGLE")))->Get(); }
 
 std::ostream &operator<<( std::ostream &out, GRA_axis const &axis )
 {
-  out << "<axis xorigin=\"" << axis.xOrigin_ << "\" yorigin=\"" << axis.yOrigin_ << "\">\n";
+  out << "<axis xorigin=\"" << axis.xOrigin_ << "\" yorigin=\"" << axis.yOrigin_
+      << "\" length=\"" << axis.length_ << "\">\n";
   std::size_t size = axis.xTicCoordinates_.size();
   out << "<ticcoordinates size=\"" << size << "\">";
   for( std::size_t i=0; i<size; ++i )

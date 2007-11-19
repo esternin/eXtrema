@@ -51,6 +51,8 @@ libgraphics_la_SOURCES = \
 	  GRA_plotSymbol.cpp GRA_plotSymbol.h \
 	  GRA_plus.cpp GRA_plus.h \
 	  GRA_point.cpp GRA_point.h \
+	  GRA_polarAxes.cpp GRA_polarAxes.h \
+	  GRA_polarCurve.cpp GRA_polarCurve.h \
 	  GRA_polygon.cpp GRA_polygon.h \
 	  GRA_polyline.cpp GRA_polyline.h \
 	  GRA_postscript.cpp GRA_postscript.h \

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -40,7 +40,8 @@ GRA_drawableObject::GRA_drawableObject( wxChar const *type )
   else if( stype == wxT("DITHERINGPLOT") )  type_ = DITHERINGPLOT;
   else if( stype == wxT("GRADIENTPLOT") )   type_ = GRADIENTPLOT;
   else if( stype == wxT("THREEDFIGURE") )   type_ = THREEDFIGURE;
-  else if( stype == wxT("SURFACEPLOT") )    type_ = SURFACEPLOT;
+  else if( stype == wxT("POLARAXES") )      type_ = POLARAXES;
+  else if( stype == wxT("POLARCURVE") )     type_ = POLARCURVE;
 }
 
 // end of file

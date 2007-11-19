@@ -126,7 +126,9 @@ public:
 
   void Disconnect()
   { popup_ = false; }
-  
+
+  double GetWidth() const;
+
   friend std::ostream &operator<<( std::ostream &, GRA_drawableText const & );
   
 private:

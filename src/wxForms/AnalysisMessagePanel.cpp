@@ -64,18 +64,10 @@ CommandHistoryWindow::CommandHistoryWindow( AnalysisMessagePanel *amp )
     : wxTextCtrl( amp, ID_commandHistory, wxT(""), wxDefaultPosition, wxDefaultSize,
                   wxTE_MULTILINE|wxTE_READONLY|wxHSCROLL )
 {
-  SetToolTip( wxT("command history and message window\nright click to save to a file") );
+  SetToolTip( wxT("command history and message window\nright click to save to a file\nCTRL^C to copy selected to clipboard\nCTRL^A to select all") );
   wxTextAttr ta( GetDefaultStyle() );
 
   wxFont f( 10, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
-
-  //wxNativeFontInfo nfi;
-  //nfi.FromString( wxT("TERMINAL") );
-  //wxFont f( nfi );
-  //f.SetFamily( wxFONTFAMILY_DEFAULT );
-  //f.SetStyle( wxFONTSTYLE_NORMAL );
-  //f.SetWeight( wxFONTWEIGHT_NORMAL );
-  //f.SetPointSize( 10 );
 
   ta.SetFont( f );
   SetDefaultStyle( ta );
