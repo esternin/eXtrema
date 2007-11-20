@@ -568,7 +568,7 @@ std::ostream &operator<<( std::ostream &out, GRA_polarCurve const &cc )
   out << "<polarcurve histype=\"" << cc.histogramType_ << "\" linetype=\""
       << cc.lineType_ << "\" linewidth=\"" << cc.lineWidth_ << "\" linecolor=\""
       << GRA_colorControl::GetColorCode(cc.color_) << "\" areafillcolor=\""
-      << GRA_colorControl::GetColorCode(cc.areaFillColor_) << "\ xmax=\""
+      << GRA_colorControl::GetColorCode(cc.areaFillColor_) << "\" xmax=\""
       << cc.xmax_ << "\">\n";
   std::size_t size = cc.areaFillColors_.size();
   out << "<areafillcolors size=\"" << size << "\">";
