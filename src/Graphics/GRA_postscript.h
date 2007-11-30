@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/wx.h"
 
 class GRA_color;
+class GRA_font;
 class GRA_point;
 class GRA_polyline;
 class GRA_polygon;
@@ -35,6 +36,8 @@ class GRA_drawableObject;
 class GRA_axis;
 class GRA_cartesianAxes;
 class GRA_cartesianCurve;
+class GRA_polarAxes;
+class GRA_polarCurve;
 class GRA_legend;
 class GRA_contour;
 class GRA_densityPlot;
@@ -93,6 +96,8 @@ public:
   void Draw( GRA_axis * );
   void Draw( GRA_cartesianAxes * );
   void Draw( GRA_cartesianCurve * );
+  void Draw( GRA_polarAxes * );
+  void Draw( GRA_polarCurve * );
   void Draw( GRA_legend * );
   void Draw( GRA_contour * );
   void Draw( GRA_boxPlot * );
@@ -106,7 +111,8 @@ private:
   void SetUpTransformationMatrices( double, double, double, double );
   void GenerateOutput( double, double, int );
   void DrawProfiles( GRA_densityPlot * );
-
+  void DrawAngle( wxString &, double, double, double, double, GRA_color *, GRA_font * );
+  
   std::ofstream outFile_;
   wxString filename_;
   int r_, g_, b_;

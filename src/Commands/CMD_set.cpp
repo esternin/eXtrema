@@ -1076,6 +1076,45 @@ NEXTLINE:
       throw;
     }
   }
+  else if( keyword==wxT("POLARAXISANGLE") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    try
+    {
+      static_cast<GRA_angleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("AXISANGLE")))->
+          Set( GetValue(keyword) );
+    }
+    catch (ECommandError const &e)
+    {
+      throw;
+    }
+  }
+  else if( keyword==wxT("POLARCLOCKWISE") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    try
+    {
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("CLOCKWISE")))->
+          Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
+    }
+    catch (ECommandError const &e)
+    {
+      throw;
+    }
+  }
+  else if( keyword==wxT("POLARCOMPASSLABELS") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    try
+    {
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("COMPASSLABELS")))->
+          Set( static_cast<bool>(static_cast<int>(GetValue(keyword))) );
+    }
+    catch (ECommandError const &e)
+    {
+      throw;
+    }
+  }
   else if( keyword==wxT("XLOWERAXIS") || keyword==wxT("XLAXIS") )
   {
     try

@@ -25,15 +25,16 @@ GRAPH\RADAR r theta</CODE>
 <TD valign="top"><CODE>
 GRAPH\POLAR R THETA<BR />
 GRAPH\POLAR\OVERLAY R2 T2<br />
-GRAPH\POLAR\AXESONLY R T</CODE>
+GRAPH\RADAR\AXESONLY R T</CODE>
 </TD></TR></TABLE>
 <P>
  If either the <CODE>\POLAR</CODE> qualifier or the <code>\RADAR</code> qualifier is used, the input variables,
  <CODE>r</CODE> and <CODE>theta</CODE>, are assumed to represent polar coordinates, where <CODE>r</CODE>
  contains the radial components and <CODE>theta</CODE> contains the angular components, in degrees.</p>
 <P>
- A polar plot is always autoscaled.  The radial axis always begins at zero, and all 360<sup>&deg;</sup>
- are always displayed.  By default, three radial axes are drawn, but any number of axes can be drawn using
+ A polar plot is always autoscaled.  The radial axis at 0<sup>&deg;</sup> always has a minimum value of zero.
+ The maximum value of the radial axis is determined by the data. All 360<sup>&deg;</sup> are always displayed.
+ By default, four radial axes are drawn, but any number of axes can be drawn using
  the <code><a href="../Characteristics/Polar/naxes.htm">POLARNAXES</a></code> characteristic.  Only the
  radial axis at 0<sup>&deg;</sup> can have numeric labels and the optional text label.  Circular grid
  lines can be drawn, and are controlled by the
@@ -47,8 +48,6 @@ GRAPH\POLAR\AXESONLY R T</CODE>
 <p>
  Use the <code>\POLAR</code> qualifier if you would like 0<sup>&deg;</sup> to be horizontal through
  the origin.  Use the <code>\RADAR</code> qualifier if you would like 0<sup>&deg;</sup> to be vertical.
- The radial axis at 0<sup>&deg;</sup> always has a minimum value of zero.  The maximum value of the
- radial axis is determined by the data.
  <img src="polarradar.png"></p>
 <p>
  The user has control over the polar plot by means of the

@@ -1711,6 +1711,10 @@
                             <param name="Local" value="html/Characteristics/Xaxis/axiscolor.htm">
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="XAXISLINEWIDTH">
+                            <param name="Local" value="html/Characteristics/Xaxis/axislinewidth.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="XAXISANGLE">
                             <param name="Local" value="html/Characteristics/Xaxis/xaxisangle.htm">
                             </OBJECT>
@@ -1883,6 +1887,10 @@
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="YAXISCOLOR">
                             <param name="Local" value="html/Characteristics/Yaxis/axiscolor.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="YAXISLINEWIDTH">
+                            <param name="Local" value="html/Characteristics/Yaxis/axislinewidth.htm">
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="YAXISANGLE">
@@ -2071,8 +2079,20 @@
                             <param name="Local" value="html/Characteristics/Polar/naxes.htm">
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="POLARCOMPASSLABELS">
+                            <param name="Local" value="html/Characteristics/Polar/compasslabels.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="POLARCLOCKWISE">
+                            <param name="Local" value="html/Characteristics/Polar/clockwise.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="POLARAXISCOLOR">
                             <param name="Local" value="html/Characteristics/Polar/axiscolor.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="POLARAXISLINEWIDTH">
+                            <param name="Local" value="html/Characteristics/Polar/axislinewidth.htm">
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="POLARGRID">

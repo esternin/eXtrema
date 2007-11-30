@@ -44,7 +44,9 @@ GRA_axis::GRA_axis( double xOrigin, double yOrigin, double length,
                     GRA_setOfCharacteristics const *characteristics )
     : GRA_drawableObject(wxT("AXIS")), xOrigin_(xOrigin), yOrigin_(yOrigin), length_(length),
       characteristics_( new GRA_setOfCharacteristics(*characteristics) )
-{}
+{
+  nGrid_ = static_cast<GRA_intCharacteristic*>(characteristics_->Get(wxT("GRID")))->Get();
+}
 
 void GRA_axis::CopyStuff( GRA_axis const &rhs )
 {
@@ -200,8 +202,6 @@ void GRA_axis::MakeLinearAxis()
     static_cast<GRA_boolCharacteristic*>(characteristics_->Get(wxT("TICSON")))->Get();
   bool ticsBothSides =
     static_cast<GRA_boolCharacteristic*>(characteristics_->Get(wxT("TICSBOTHSIDES")))->Get();
-  int grid =
-    static_cast<GRA_intCharacteristic*>(characteristics_->Get(wxT("GRID")))->Get();
   //
   double ticAngle =
     static_cast<GRA_angleCharacteristic*>(characteristics_->Get(wxT("TICANGLE")))->Get();
@@ -331,7 +331,7 @@ void GRA_axis::MakeLinearAxis()
     double ticlen = modinc==0 ? largeTicLength : smallTicLength;
     if( modinc == 0 )
     {
-      if( grid != 0 )
+      if( nGrid_ != 0 )
       {
         xTicCoordinates_.push_back(xs);
         yTicCoordinates_.push_back(ys);
@@ -339,7 +339,7 @@ void GRA_axis::MakeLinearAxis()
     }
     else
     {
-      if( grid < 0 )
+      if( nGrid_ < 0 )
       {
         xTicCoordinates_.push_back(xs);
         yTicCoordinates_.push_back(ys);
@@ -400,7 +400,7 @@ void GRA_axis::MakeLinearAxis()
     double ticlen = modinc==0 ? largeTicLength : smallTicLength;
     if( modinc == 0 )
     {
-      if( grid != 0 )
+      if( nGrid_ != 0 )
       {
         xTicCoordinates_.push_back(xs);
         yTicCoordinates_.push_back(ys);
@@ -408,7 +408,7 @@ void GRA_axis::MakeLinearAxis()
     }
     else
     {
-      if( grid < 0 )
+      if( nGrid_ < 0 )
       {
         xTicCoordinates_.push_back(xs);
         yTicCoordinates_.push_back(ys);
@@ -517,7 +517,7 @@ void GRA_axis::MakeLinearAxis()
     double ticlen = modinc==0 ? largeTicLength : smallTicLength;
     if( modinc == 0 )
     {
-      if( grid != 0 )
+      if( nGrid_ != 0 )
       {
         xTicCoordinates_.push_back(xs);
         yTicCoordinates_.push_back(ys);
@@ -525,7 +525,7 @@ void GRA_axis::MakeLinearAxis()
     }
     else
     {
-      if( grid < 0 )
+      if( nGrid_ < 0 )
       {
         xTicCoordinates_.push_back(xs);
         yTicCoordinates_.push_back(ys);
@@ -641,7 +641,6 @@ void GRA_axis::MakeLogAxis()
     smallTicLength = 0.0;
   }
   bool ticsBothSides = static_cast<GRA_boolCharacteristic*>(characteristics_->Get(wxT("TICSBOTHSIDES")))->Get();
-  int grid = static_cast<GRA_intCharacteristic*>(characteristics_->Get(wxT("GRID")))->Get();
   double imagTicLength =
     static_cast<GRA_sizeCharacteristic*>(characteristics_->Get(wxT("IMAGTICLENGTH")))->GetAsWorld();
   //
@@ -725,7 +724,7 @@ void GRA_axis::MakeLogAxis()
       {
         double stic = fractionOfGap[i]*gapLength - vminLoc; // distance from origin to tic mark
         MakeATic( stic, cosAxisAngle, sinAxisAngle, cosTicAngle, sinTicAngle, smallTicLength, xs, ys );
-        if( grid < 0 )
+        if( nGrid_ < 0 )
         {
           xTicCoordinates_.push_back(xs);
           yTicCoordinates_.push_back(ys);
@@ -790,7 +789,7 @@ void GRA_axis::MakeLogAxis()
     //
     double const ltic = offset + (ipow-powMin)*gapLength; // distance from lAxis to large tic mark
     MakeATic( ltic, cosAxisAngle, sinAxisAngle, cosTicAngle, sinTicAngle, largeTicLength, xs, ys );
-    if( grid != 0 )
+    if( nGrid_ != 0 )
     {
       xTicCoordinates_.push_back(xs);
       yTicCoordinates_.push_back(ys);
@@ -863,7 +862,7 @@ void GRA_axis::MakeLogAxis()
       {
         double stic = fractionOfGap[j]*gapLength + ltic; // distance from lAxis to small tic mark
         MakeATic( stic, cosAxisAngle, sinAxisAngle, cosTicAngle, sinTicAngle, smallTicLength, xs, ys );
-        if( grid < 0 )
+        if( nGrid_ < 0 )
         {
           xTicCoordinates_.push_back(xs);
           yTicCoordinates_.push_back(ys);

@@ -11,7 +11,7 @@
 AC_PREREQ(2.59)
 
 # touch src/wxForms/VisualizationWindow.cpp to get the latest version number
-AC_INIT([extrema],[4.3.0],[Joseph L. Chuma chuma@triumf.ca])
+AC_INIT([extrema],[4.3.1],[Joseph L. Chuma chuma@triumf.ca])
 
 # automake < 1.9 will not be allowed
 # use gnu strictness

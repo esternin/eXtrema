@@ -77,6 +77,9 @@ public:
     boxY = boxYAxis_;
   }
   
+  int GetGridLineType() const
+  { return gridLineType_; }
+  
 private:
   void DeleteStuff();
   void CopyStuff( GRA_cartesianAxes const & );
@@ -90,6 +93,7 @@ private:
   int NumberOfDigits( double, double, double );
   void SetNumberOfIncrements( int &, double, double, GRA_setOfCharacteristics * );
   //
+  int gridLineType_;
   bool xOnTop_, yOnRight_;
   GRA_axis *xAxis_, *yAxis_, *boxXAxis_, *boxYAxis_;
 };

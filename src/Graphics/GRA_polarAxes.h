@@ -62,23 +62,36 @@ public:
 
   friend std::ostream &operator<<( std::ostream &, GRA_polarAxes const & );
 
-  void SetAxes( GRA_axis *axis )
+  void SetAxis( GRA_axis *axis )
   { axis_ = axis; }
 
-  void GetAxes( GRA_axis *&axis ) const
-  { axis = axis_; }
+  GRA_axis *GetAxis() const
+  { return axis_; }
+
+  std::vector<GRA_axis*> &GetOtherAxes()
+  { return otherAxes_; }
+  
+  int GetGridLineType() const
+  { return gridLineType_; }
+  
+  bool GetClockwise() const
+  { return clockwise_; }
+  
+  bool GetCompassLabels() const
+  { return compassLabels_; }
   
 private:
   void DeleteStuff();
   void CopyStuff( GRA_polarAxes const & );
   void DrawLabel( GRA_wxWidgets *, wxDC & );
   int NumberOfDigits( double, double, double );
-  void DrawAngle( wxString &, GRA_axis *, double, GRA_color *, GRA_font *, GRA_wxWidgets *, wxDC & );
+  void DrawAngle( wxString &, double, double, double, double, GRA_color *, GRA_font *, GRA_wxWidgets *, wxDC & );
   //
-  bool radar_;
   GRA_axis *axis_;
   std::vector<GRA_axis*> otherAxes_;
   double r0_, theta0_;
+  int gridLineType_;
+  bool clockwise_, compassLabels_;
 };
 
 #endif

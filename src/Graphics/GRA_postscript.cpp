@@ -45,6 +45,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_axis.h"
 #include "GRA_cartesianAxes.h"
 #include "GRA_cartesianCurve.h"
+#include "GRA_polarAxes.h"
+#include "GRA_polarCurve.h"
 #include "GRA_errorBar.h"
 #include "GRA_characteristic.h"
 #include "GRA_distanceCharacteristic.h"
@@ -689,53 +691,6 @@ void GRA_postscript::Draw( GRA_axis *axis )
   std::vector<GRA_drawableText*> &textVec( axis->GetDrawableText() );
   std::vector<GRA_drawableText*>::const_iterator tEnd = textVec.end();
   for( std::vector<GRA_drawableText*>::const_iterator i=textVec.begin(); i!=tEnd; ++i )Draw( *i );
-  //
-  // draw the grid lines, if requested
-  //
-  GRA_setOfCharacteristics *characteristics = axis->GetCharacteristics();
-  lineType_ = static_cast<GRA_intCharacteristic*>(characteristics->Get(wxT("GRIDLINETYPE")))->Get();
-  SetColor(
-    static_cast<GRA_colorCharacteristic*>(characteristics->Get(wxT("AXISCOLOR")))->Get() );
-  //
-  double laxis =
-    static_cast<GRA_distanceCharacteristic*>(characteristics->Get(wxT("LOWERAXIS")))->GetAsWorld();
-  double uaxis =
-    static_cast<GRA_distanceCharacteristic*>(characteristics->Get(wxT("UPPERAXIS")))->GetAsWorld();
-  double olaxis =
-    static_cast<GRA_distanceCharacteristic*>(characteristics->Get(wxT("OLAXIS")))->GetAsWorld();
-  double ouaxis =
-    static_cast<GRA_distanceCharacteristic*>(characteristics->Get(wxT("OUAXIS")))->GetAsWorld();
-  double axisAngle =
-    static_cast<GRA_angleCharacteristic*>(characteristics->Get(wxT("AXISANGLE")))->Get();
-  //
-  std::vector<double> xTicCoordinates, yTicCoordinates;
-  axis->GetTicCoordinates( xTicCoordinates, yTicCoordinates );
-  std::size_t size = xTicCoordinates.size();
-  double const eps = 0.001;
-  //
-  // grid lines are drawn on every nxgrid_th (sic) long tic mark on the x-axis
-  //
-  for( std::size_t i=0; i<size; ++i )
-  {
-    double x = xTicCoordinates[i];
-    double y = yTicCoordinates[i];
-    if( axisAngle == 0.0 ) // draw the grid lines vertically parallel to the y-axis
-    {
-      if( fabs(x-uaxis)>eps && fabs(x-laxis)>eps )
-      {
-        StartLine( x, y );
-        ContinueLine( x, y+(ouaxis-olaxis) );
-      }
-    }
-    else
-    {
-      if( fabs(y-uaxis)>eps && fabs(y-laxis)>eps )
-      {
-        StartLine( x, y );
-        ContinueLine( x+(ouaxis-olaxis), y );
-      }
-    }
-  }
 }
 
 void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
@@ -746,6 +701,192 @@ void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
   Draw( yAxis );
   if( boxXAxis )Draw( boxXAxis );
   if( boxYAxis )Draw( boxYAxis );
+  //
+  GRA_setOfCharacteristics *xAxisC = xAxis->GetCharacteristics();
+  GRA_setOfCharacteristics *yAxisC = yAxis->GetCharacteristics();
+  //
+  // draw the x-axis grid lines, if requested
+  //
+  lineType_ = cartesianAxes->GetGridLineType();
+  
+  SetColor( static_cast<GRA_colorCharacteristic*>(xAxisC->Get(wxT("AXISCOLOR")))->Get() );
+  
+  double xlaxis, ylaxis, xuaxis, yuaxis;
+  xAxis->GetOrigin( xlaxis, ylaxis );
+  xAxis->GetEndPoint( xuaxis, yuaxis );
+  int nGrid = xAxis->GetGrid();
+  double axisAngle = xAxis->GetAngle();
+  //
+  std::vector<double> xTicCoordinates, yTicCoordinates;
+  xAxis->GetTicCoordinates( xTicCoordinates, yTicCoordinates );
+  std::size_t size = xTicCoordinates.size();
+  double const eps = 0.001;
+  //
+  // grid lines are drawn on every nxgrid_th (sic) long tic mark on the x-axis
+  //
+  for( std::size_t i=0; i<size; i+=nGrid )
+  {
+    double x = xTicCoordinates[i];
+    double y = yTicCoordinates[i];
+    if( fabs(x-xuaxis)>eps && fabs(x-xlaxis)>eps ) // don't draw on top of y-axis
+    {
+      StartLine( x, y );
+      ContinueLine( x, y+(yuaxis-ylaxis) );
+    }
+  }
+  //
+  // draw the y-axis grid lines, if requested
+  //
+  SetColor( static_cast<GRA_colorCharacteristic*>(yAxisC->Get(wxT("AXISCOLOR")))->Get() );
+  
+  yAxis->GetOrigin( xlaxis, ylaxis );
+  yAxis->GetEndPoint( xuaxis, yuaxis );
+  nGrid = yAxis->GetGrid();
+  axisAngle = yAxis->GetAngle();
+  //
+  xTicCoordinates.clear();
+  yTicCoordinates.clear();
+  yAxis->GetTicCoordinates( xTicCoordinates, yTicCoordinates );
+  size = xTicCoordinates.size();
+  //
+  // grid lines are drawn on every nxgrid_th (sic) long tic mark on the x-axis
+  //
+  for( std::size_t i=0; i<size; i+=nGrid )
+  {
+    double x = xTicCoordinates[i];
+    double y = yTicCoordinates[i];
+    if( fabs(y-yuaxis)>eps && fabs(y-ylaxis)>eps ) // don't draw on top of x-axis
+    {
+      StartLine( x, y );
+      ContinueLine( x+(xuaxis-xlaxis), y );
+    }
+  }
+  // draw the x-axis automatic label
+  //
+  wxString label;
+  bool labelIsOn = static_cast<GRA_boolCharacteristic*>(xAxisC->Get(wxT("LABELON")))->Get();
+  if( labelIsOn )label = static_cast<GRA_stringCharacteristic*>(xAxisC->Get(wxT("LABEL")))->Get();
+  if( label.empty() )labelIsOn = false;
+  double power = static_cast<GRA_doubleCharacteristic*>(xAxisC->Get(wxT("POWER")))->Get();
+  if( static_cast<GRA_doubleCharacteristic*>(xAxisC->Get(wxT("LOGBASE")))->Get()<=1.0 &&
+      power != 0.0 &&
+      static_cast<GRA_intCharacteristic*>(xAxisC->Get(wxT("POWERAUTO")))->Get()!=2 &&
+      static_cast<GRA_boolCharacteristic*>(xAxisC->Get(wxT("NUMBERSON")))->Get() )
+  {
+    wxString powLabel(wxT("(x10<^><Z0.5%>"));
+    powLabel << power << wxT("<_>)");
+    label.empty() ? label=powLabel : label << wxT(" ") << powLabel;
+    labelIsOn = true;
+  }
+  //
+  // the axis label is composed of two parts:
+  //  a) the string found in the label
+  //  b) the factor by which all the numbers
+  //     labelling the axis should be multiplied to get the graph axis units
+  //
+  // if powerAuto_ = 2, calculate the power but do not draw it
+  //
+  if( labelIsOn )
+  {
+    double sizlab = static_cast<GRA_sizeCharacteristic*>(xAxisC->Get(wxT("LABELHEIGHT")))->GetAsWorld();
+    double imagTicAngle = static_cast<GRA_angleCharacteristic*>(xAxisC->Get(wxT("IMAGTICANGLE")))->Get();
+    double imagTicLen = static_cast<GRA_sizeCharacteristic*>(xAxisC->Get(wxT("IMAGTICLENGTH")))->GetAsWorld();
+    double numHeight = static_cast<GRA_sizeCharacteristic*>(xAxisC->Get(wxT("NUMBERSHEIGHT")))->GetAsWorld();
+    GRA_font *labelFont = static_cast<GRA_fontCharacteristic*>(xAxisC->Get(wxT("LABELFONT")))->Get();
+    GRA_color *labelColor = static_cast<GRA_colorCharacteristic*>(xAxisC->Get(wxT("LABELCOLOR")))->Get();
+    double x1, y1, angle=0.0;
+    int align = 2;
+    double xOrigin, yOrigin;
+    xAxis->GetOrigin( xOrigin, yOrigin );
+    //
+    // draw the label horizontally and centered on the x-axis
+    x1 = xOrigin + 0.5*xAxis->GetLength();
+    if( imagTicAngle > 180.0 )
+    {
+      align = 8; // 8=top centre
+      y1 = yOrigin - 1.05*(imagTicLen+numHeight);
+    }
+    else
+    {
+      align = 2; // 2=bottom centre
+      y1 = yOrigin + 1.05*(imagTicLen+numHeight);
+    }
+    GRA_drawableText *dt = new GRA_drawableText(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
+    try
+    {
+      dt->Parse();
+    }
+    catch ( EGraphicsError const &e )
+    {
+      delete dt;
+      throw;
+    }
+    Draw( dt );
+  }
+  //
+  // draw the y-axis automatic label
+  //
+  labelIsOn = static_cast<GRA_boolCharacteristic*>(yAxisC->Get(wxT("LABELON")))->Get();
+  label.clear();
+  if( labelIsOn )label = static_cast<GRA_stringCharacteristic*>(yAxisC->Get(wxT("LABEL")))->Get();
+  if( label.empty() )labelIsOn = false;
+  power = static_cast<GRA_doubleCharacteristic*>(yAxisC->Get(wxT("POWER")))->Get();
+  if( static_cast<GRA_doubleCharacteristic*>(yAxisC->Get(wxT("LOGBASE")))->Get()<=1.0 &&
+      power != 0.0 &&
+      static_cast<GRA_intCharacteristic*>(yAxisC->Get(wxT("POWERAUTO")))->Get()!=2 &&
+      static_cast<GRA_boolCharacteristic*>(yAxisC->Get(wxT("NUMBERSON")))->Get() )
+  {
+    wxString powLabel(wxT("(x10<^><Z0.5%>"));
+    powLabel << power << wxT("<_>)");
+    label.empty() ? label=powLabel : label << wxT(" ") << powLabel;
+    labelIsOn = true;
+  }
+  //
+  // the axis label is composed of two parts:
+  //  a) the string found in the label
+  //  b) the factor by which all the numbers
+  //     labelling the axis should be multiplied to get the graph axis units
+  //
+  // if powerAuto_ = 2, calculate the power but do not draw it
+  //
+  if( labelIsOn )
+  {
+    double sizlab = static_cast<GRA_sizeCharacteristic*>(yAxisC->Get(wxT("LABELHEIGHT")))->GetAsWorld();
+    double imagTicAngle = static_cast<GRA_angleCharacteristic*>(yAxisC->Get(wxT("IMAGTICANGLE")))->Get();
+    double imagTicLen = static_cast<GRA_sizeCharacteristic*>(yAxisC->Get(wxT("IMAGTICLENGTH")))->GetAsWorld();
+    GRA_font *labelFont = static_cast<GRA_fontCharacteristic*>(yAxisC->Get(wxT("LABELFONT")))->Get();
+    GRA_color *labelColor = static_cast<GRA_colorCharacteristic*>(yAxisC->Get(wxT("LABELCOLOR")))->Get();
+    double x1, y1, angle=0.0;
+    int align = 2;
+    double xOrigin, yOrigin;
+    yAxis->GetOrigin( xOrigin, yOrigin );
+    double numWidth = yAxis->GetMaxWidth();
+    //
+    // draw the label vertically and centered on the y-axis
+    //
+    y1 = yOrigin + 0.5*yAxis->GetLength();
+    if( imagTicAngle > 180.0 )
+    {
+      x1 = xOrigin + 1.05*(imagTicLen+numWidth);
+      angle = 270.0;
+    }
+    else
+    {
+      x1 = xOrigin - 1.05*(imagTicLen+numWidth);
+      angle = 90.0;
+    }
+    GRA_drawableText *dt = new GRA_drawableText(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
+    try
+    {
+      dt->Parse();
+    }
+    catch ( EGraphicsError const &e )
+    {
+      delete dt;
+      throw;
+    }
+    Draw( dt );
+  }
 }
 
 void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
@@ -885,7 +1026,7 @@ void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
       {
         if( xmin<=xCurve[i] && xCurve[i]<=xmax && ymin<=yCurve[i] && yCurve[i]<=ymax )
         {
-          plotsymbols[i]->SetLocation( xCurve[i], yCurve[i] );
+          //plotsymbols[i]->SetLocation( xCurve[i], yCurve[i] );
           Draw( plotsymbols[i] );
         }
       }
@@ -901,6 +1042,304 @@ void GRA_postscript::Draw( GRA_cartesianCurve *cartesianCurve )
       Draw( static_cast<GRA_multiLineFigure*>(*i) );
   }
   ExGlobals::ResetClippingBoundary();
+}
+
+void GRA_postscript::Draw( GRA_polarAxes *polarAxes )
+{
+  // draw the 0 degree radial axis
+  //
+  GRA_axis *axis = polarAxes->GetAxis();
+  Draw( axis );
+  //
+  // draw the automatic axis label 
+  //
+  GRA_setOfCharacteristics *axisC = axis->GetCharacteristics();
+  //
+  wxString label;
+  bool labelIsOn = static_cast<GRA_boolCharacteristic*>(axisC->Get(wxT("LABELON")))->Get();
+  if( labelIsOn )label = static_cast<GRA_stringCharacteristic*>(axisC->Get(wxT("LABEL")))->Get();
+  if( label.empty() )labelIsOn = false;
+  //
+  // if powerAuto_ = 2, calculate the power but do not draw it
+  //
+  double power = static_cast<GRA_doubleCharacteristic*>(axisC->Get(wxT("POWER")))->Get();
+  if( static_cast<GRA_intCharacteristic*>(axisC->Get(wxT("POWERAUTO")))->Get()!=2 &&
+      static_cast<GRA_boolCharacteristic*>(axisC->Get(wxT("NUMBERSON")))->Get() && power!=0.0 )
+  {
+    wxString powLabel(wxT("(x10<^><Z0.5%>"));
+    label << power << wxT("<_>)");
+    label = label.empty() ? powLabel : label+wxT(" ")+powLabel;
+    labelIsOn = true;
+  }
+  //
+  // the axis label is composed of two parts:
+  //  a) the string found in the label
+  //  b) the factor by which all the numbers
+  //     labelling the axis should be multiplied to get the graph axis units
+  //
+  if( labelIsOn )
+  {
+    double sizlab = static_cast<GRA_sizeCharacteristic*>(axisC->Get(wxT("LABELHEIGHT")))->GetAsWorld();
+    double imagTicAngle = static_cast<GRA_angleCharacteristic*>(axisC->Get(wxT("IMAGTICANGLE")))->Get();
+    double imagTicLen = static_cast<GRA_sizeCharacteristic*>(axisC->Get(wxT("IMAGTICLENGTH")))->GetAsWorld();
+    double numHeight = static_cast<GRA_sizeCharacteristic*>(axisC->Get(wxT("NUMBERSHEIGHT")))->GetAsWorld();
+    GRA_font *labelFont = static_cast<GRA_fontCharacteristic*>(axisC->Get(wxT("LABELFONT")))->Get();
+    GRA_color *labelColor = static_cast<GRA_colorCharacteristic*>(axisC->Get(wxT("LABELCOLOR")))->Get();
+    double xOrigin, yOrigin;
+    axis->GetOrigin( xOrigin, yOrigin );
+    double length = axis->GetLength();
+    double axisAngle = axis->GetAngle();
+    double x1, y1, angle;
+    int align;
+    //
+    // draw the label horizontally and centered on the axis
+    if( axisAngle == 0.0 )
+    {
+      x1 = xOrigin + 0.5*length;
+      y1 = yOrigin - 1.05*(imagTicLen+numHeight);
+      angle = 0.0;
+      align = 8; // 8=top centre
+    }
+    else
+    {
+      x1 = xOrigin + 1.1*(imagTicLen+axis->GetMaxWidth());
+      y1 = yOrigin + 0.5*length;
+      angle = 270.0;
+      align = 2; // bottom centre
+    }
+    GRA_drawableText dt(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
+    try
+    {
+      dt.Parse();
+    }
+    catch ( EGraphicsError const &e )
+    {
+      throw;
+    }
+    Draw( &dt );
+  }
+  //
+  // draw the other axes
+  //
+  std::vector<GRA_axis*> otherAxes( polarAxes->GetOtherAxes() );
+  std::size_t nAxes = otherAxes.size();
+  for( std::size_t i=0; i<nAxes; ++i )Draw( otherAxes[i] );
+  //
+  // draw the grid lines
+  // if nxgrid is zero, no tic coordinates are recorded, so no grid lines will be drawn
+  //
+  GRA_color *lineColor = static_cast<GRA_colorCharacteristic*>(axisC->Get(wxT("AXISCOLOR")))->Get();
+  double xorigin, yorigin;
+  axis->GetOrigin( xorigin, yorigin );
+  int gridLineType = polarAxes->GetGridLineType();
+  //
+  // grid circles are drawn at tic marks on the x-axis
+  //
+  std::vector<double> ticX, ticY;
+  axis->GetTicCoordinates( ticX, ticY );
+  double axisAngle = axis->GetAngle();
+
+  double cosAngle = cos(axisAngle*M_PI/180.0);
+  double sinAngle = sin(axisAngle*M_PI/180.0);
+  if( fabs(cosAngle) < 0.0001 )cosAngle = 0.0;
+  if( fabs(sinAngle) < 0.0001 )sinAngle = 0.0;
+
+  std::size_t ticSize = ticX.size();
+  std::vector<double> x, y;
+  std::vector<int> pen;
+  int ngrid = abs(axis->GetGrid());
+  for( std::size_t i=0; i<ticSize; i+=ngrid )
+  {
+    double radius = sqrt( (xorigin-ticX[i])*(xorigin-ticX[i]) +
+                          (yorigin-ticY[i])*(yorigin-ticY[i]) );
+    for( std::size_t j=0; j<101; ++j )
+    {
+      double angle = j*M_PI/50.;
+      x.push_back( xorigin+radius*cos(angle) );
+      y.push_back( yorigin+radius*sin(angle) );
+      pen.push_back( 2 );
+    }
+    GRA_polyline p( x, y, pen, 1, gridLineType, lineColor );
+    Draw( &p );
+    x.clear();
+    y.clear();
+  }
+  //
+  // draw the angles (or the compass directions) at the ends of the axes
+  //
+  double height = static_cast<GRA_sizeCharacteristic*>(axisC->Get(wxT("LABELHEIGHT")))->GetAsWorld();
+  if( height > 0.0 )
+  {
+    GRA_color *color = static_cast<GRA_colorCharacteristic*>(axisC->Get(wxT("LABELCOLOR")))->Get();
+    GRA_font *font = static_cast<GRA_fontCharacteristic*>(axisC->Get(wxT("LABELFONT")))->Get();
+    bool clockwise = polarAxes->GetClockwise();
+    double xend, yend, angle;
+    wxString label;
+    if( polarAxes->GetCompassLabels() && (nAxes==0||nAxes==1||nAxes==3||nAxes==7||nAxes==15) )
+    {
+      axis->GetEndPoint( xend, yend );
+      DrawAngle( label<<wxT("N"), xend, yend, axisAngle, height, color, font );
+      label.clear();
+      switch (nAxes)
+      {
+        case 1:  // N, S
+        {
+          otherAxes[0]->GetEndPoint( xend, yend );
+          angle = otherAxes[0]->GetAngle();
+          DrawAngle( label<<wxT("S"), xend, yend, angle, height, color, font );
+          label.clear();
+          break;
+        }
+        case 3:  // N, E, S, W
+        {
+          std::vector<wxString> labels(3);
+          labels[0] = wxT("E");
+          labels[1] = wxT("S");
+          labels[2] = wxT("W");
+          for( int i=0; i<3; ++i )
+          {
+            otherAxes[i]->GetEndPoint( xend, yend );
+            angle = otherAxes[i]->GetAngle();
+            if( clockwise )
+              DrawAngle( labels[2-i], xend, yend, angle, height, color, font );
+            else
+              DrawAngle( labels[i], xend, yend, angle, height, color, font );
+          }
+          break;
+        }
+        case 7:  // N, NE, E, SE, S, SW, W, NW
+        {
+          std::vector<wxString> labels(7);
+          labels[0] = wxT("NE");
+          labels[1] = wxT("E");
+          labels[2] = wxT("SE");
+          labels[3] = wxT("S");
+          labels[4] = wxT("SW");
+          labels[5] = wxT("W");
+          labels[6] = wxT("NW");
+          for( int i=0; i<7; ++i )
+          {
+            otherAxes[i]->GetEndPoint( xend, yend );
+            angle = otherAxes[i]->GetAngle();
+            if( clockwise )
+              DrawAngle( labels[6-i], xend, yend, angle, height, color, font );
+            else
+              DrawAngle( labels[i], xend, yend, angle, height, color, font );
+          }
+          break;
+        }
+        case 15:
+        {
+          std::vector<wxString> labels(15);
+          labels[0] = wxT("NNE");
+          labels[1] = wxT("NE");
+          labels[2] = wxT("ENE");
+          labels[3] = wxT("E");
+          labels[4] = wxT("ESE");
+          labels[5] = wxT("SE");
+          labels[6] = wxT("SSE");
+          labels[7] = wxT("S");
+          labels[8] = wxT("SSW");
+          labels[9] = wxT("SW");
+          labels[10] = wxT("WSW");
+          labels[11] = wxT("W");
+          labels[12] = wxT("WNW");
+          labels[13] = wxT("NW");
+          labels[14] = wxT("NNW");
+          for( int i=0; i<15; ++i )
+          {
+            otherAxes[i]->GetEndPoint( xend, yend );
+            angle = otherAxes[i]->GetAngle();
+            if( clockwise )
+              DrawAngle( labels[14-i], xend, yend, angle, height, color, font );
+            else
+              DrawAngle( labels[i], xend, yend, angle, height, color, font );
+          }
+          break;
+        }
+      }
+    }
+    else
+    {
+      axis->GetEndPoint( xend, yend );
+      DrawAngle( label<<wxT("0<degree>"), xend, yend, axisAngle, height, color, font );
+      label.clear();
+      for( std::size_t i=0; i<nAxes; ++i )
+      {
+        angle = otherAxes[i]->GetAngle();
+        double drawAngle = angle - axisAngle;
+        while( drawAngle < 0.0 )drawAngle += 360.0;
+        if( clockwise )drawAngle = 360.0 - drawAngle;
+        otherAxes[i]->GetEndPoint( xend, yend );
+        DrawAngle( label<<drawAngle<<wxT("<degree>"), xend, yend, angle, height, color, font );
+        label.clear();
+      }
+    }
+  }
+}
+
+    
+void GRA_postscript::DrawAngle( wxString &label, double xend, double yend, double angle, double height,
+                                GRA_color *color, GRA_font *font )
+{
+  int align = 4;
+  if( 45 < angle && angle < 135 )       align = 2;
+  else if( 135 <= angle && angle < 225 )align = 6;
+  else if( 225 <= angle && angle < 315 )align = 8;
+  //
+  double xoff = 0.2*cos(angle*M_PI/180.);
+  double yoff = 0.2*sin(angle*M_PI/180.);
+  GRA_drawableText dt( label, height, 0.0, xend+xoff, yend+yoff, align, font, color );
+  dt.Parse();
+  Draw( &dt );
+}
+
+void GRA_postscript::Draw( GRA_polarCurve *polarCurve )
+{
+  std::vector<double> xCurve, yCurve;
+  polarCurve->GetXYcurve( xCurve, yCurve );
+  GRA_color *areaFillColor = polarCurve->GetAreaFillColor();
+  if( areaFillColor )
+  {
+    // draw the filled region
+    // make sure polygon is closed, may have to add last point set to first point
+    //
+    bool test = false;
+    if( xCurve.front()!=xCurve.back() || yCurve.front()!=yCurve.back() )
+    {
+      test = true;
+      xCurve.push_back( xCurve.front() );
+      yCurve.push_back( yCurve.front() );
+    }
+    GRA_polygon p( xCurve, yCurve, polarCurve->GetColor(), areaFillColor, polarCurve->GetLineWidth() );
+    Draw( &p );
+    if( test )
+    {
+      xCurve.erase( xCurve.end()-1 );
+      yCurve.erase( yCurve.end()-1 );
+    }
+  }
+  // draw the data curve itself
+  //
+  SetLineType( polarCurve->GetLineType() );
+  SetColor( polarCurve->GetColor() );
+  SetLineWidth( polarCurve->GetLineWidth() );
+  std::vector<int> pen( polarCurve->GetPen() );
+  std::size_t size = xCurve.size();
+  for( std::size_t i=0; i<size; ++i )
+  {
+    pen[i]==2 ? ContinueLine( xCurve[i], yCurve[i] ) : StartLine( xCurve[i], yCurve[i] );
+  }
+  //
+  // draw the plot symbols at the data coordinates
+  //
+  double xmin, ymin, xmax, ymax;
+  ExGlobals::GetClippingBoundary( xmin, ymin, xmax, ymax );
+  std::vector<GRA_plotSymbol*> plotsymbols( polarCurve->GetPlotSymbols() );
+  for( std::size_t i=0; i<size; ++i )
+  {
+    if( xmin<=xCurve[i] && xCurve[i]<=xmax && ymin<=yCurve[i] && yCurve[i]<=ymax )Draw( plotsymbols[i] );
+  }
 }
 
 void GRA_postscript::Draw( GRA_legend *legend )
@@ -1759,6 +2198,9 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     double db = static_cast<double>(b)/255.0;
     //
     wxString fontName( (*i)->GetFont()->GetFontName() );
+
+    std::cout << "fontName = |" << fontName.mb_str(wxConvUTF8) << "|\n";
+
     ExGlobals::RemoveBlanks( fontName );
     ExGlobals::ToCapitalize( fontName );
     double height = dotsPerInch_*(*i)->GetHeight();
@@ -1773,6 +2215,9 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     {
       int j = static_cast<int>(text[i]);
       if( j < 0 )j += 256;
+
+      std::cout << "j = " << j << "\n";
+
       outFile_ << "\\" << std::setfill('0') << std::setw(3) << std::oct << j << std::dec << std::setw(0);
     }
     outFile_ << ")] put\n";

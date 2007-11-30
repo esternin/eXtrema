@@ -107,8 +107,8 @@ void GRA_polarCurve::SetUp()
   for( std::size_t i=0; i<rSize; ++i )plotsymbols_.push_back(
     new GRA_plotSymbol(symbols[i],sizes[i],angles[i],colors[i],lws[i]) );
   //
-  histogramType_ =
-    static_cast<GRA_intCharacteristic*>(curveC->Get(wxT("HISTOGRAMTYPE")))->Get();
+  histogramType_ = 0;
+  // histogramType_ = static_cast<GRA_intCharacteristic*>(curveC->Get(wxT("HISTOGRAMTYPE")))->Get();
   lineType_ =
     static_cast<GRA_intCharacteristic*>(curveC->Get(wxT("CURVELINETYPE")))->Get();
   lineWidth_ =
@@ -164,131 +164,36 @@ void GRA_polarCurve::CopyStuff( GRA_polarCurve const &rhs )
 
 void GRA_polarCurve::Make()
 {
-  switch ( histogramType_ )
-  {
-    case 1:
-    case 3:
-      MakeHistogramNoTails();
-      break;
-    case 2:
-    case 4:
-      MakeHistogramWithTails();
-      break;
-    default:
-      MakeNonHistogram();
-  }
+  MakeNonHistogram();
 }
 
 void GRA_polarCurve::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
-  switch ( histogramType_ )
-  {
-    case 1:
-    case 3:
-      DrawHistogramNoTails( graphicsOutput, dc );
-      break;
-    case 2:
-    case 4:
-      DrawHistogramWithTails( graphicsOutput, dc );
-      break;
-    default:
-      DrawNonHistogram( graphicsOutput, dc );
-  }
+  DrawNonHistogram( graphicsOutput, dc );
 }
 
 bool GRA_polarCurve::Inside( double x, double y )
 {
   std::vector<double> xp(4,0.0), yp(4,0.0);
-  if( histogramType_ == 0 )
+  double const eps = 0.05;
+  int size = xCurve_.size();
+  for( int i=1; i<size; ++i )
   {
-    double const eps = 0.05;
-    int size = xCurve_.size();
-    for( int i=1; i<size; ++i )
-    {
-      double L = sqrt((xCurve_[i]-xCurve_[i-1])*(xCurve_[i]-xCurve_[i-1])+
-                      (yCurve_[i]-yCurve_[i-1])*(yCurve_[i]-yCurve_[i-1]));
-      double cost = (xCurve_[i]-xCurve_[i-1])/L;
-      double sint = (yCurve_[i]-yCurve_[i-1])/L;
-      xp[0] = xCurve_[i-1] - eps*sint;
-      yp[0] = yCurve_[i-1] + eps*cost;
-      xp[1] = xCurve_[i-1] + eps*sint;
-      yp[1] = yCurve_[i-1] - eps*cost;
-      xp[2] = xCurve_[i] + (xCurve_[i-1]-xp[0]);
-      yp[2] = yCurve_[i] - (yp[0]-yCurve_[i-1]);
-      xp[3] = xCurve_[i] - (xCurve_[i-1]-xp[0]);
-      yp[3] = yCurve_[i] + (yp[0]-yCurve_[i-1]);
-      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
-    }
-    return false;
+    double L = sqrt((xCurve_[i]-xCurve_[i-1])*(xCurve_[i]-xCurve_[i-1])+
+                    (yCurve_[i]-yCurve_[i-1])*(yCurve_[i]-yCurve_[i-1]));
+    double cost = (xCurve_[i]-xCurve_[i-1])/L;
+    double sint = (yCurve_[i]-yCurve_[i-1])/L;
+    xp[0] = xCurve_[i-1] - eps*sint;
+    yp[0] = yCurve_[i-1] + eps*cost;
+    xp[1] = xCurve_[i-1] + eps*sint;
+    yp[1] = yCurve_[i-1] - eps*cost;
+    xp[2] = xCurve_[i] + (xCurve_[i-1]-xp[0]);
+    yp[2] = yCurve_[i] - (yp[0]-yCurve_[i-1]);
+    xp[3] = xCurve_[i] - (xCurve_[i-1]-xp[0]);
+    yp[3] = yCurve_[i] + (yp[0]-yCurve_[i-1]);
+    if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
   }
-  else if( histogramType_==1 || histogramType_==3 ) // no tails
-  {
-    double const eps = 0.05;
-    int size = xCurve_.size();
-    for( int i=0; i<size; i+=2 )
-    {
-      xp[0] = xCurve_[i] - eps;
-      yp[0] = yCurve_[i];
-      xp[1] = xCurve_[i] + eps;
-      yp[1] = yCurve_[i];
-      xp[2] = xCurve_[i+1] + eps;
-      yp[2] = yCurve_[i+1];
-      xp[3] = xCurve_[i+1] - eps;
-      yp[3] = yCurve_[i+1];
-      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
-      if( i+2 >= size )break;
-      xp[0] = xCurve_[i+1];
-      yp[0] = yCurve_[i+1] - eps;
-      xp[1] = xCurve_[i+1];
-      yp[1] = yCurve_[i+1] + eps;
-      xp[2] = xCurve_[i+2];
-      yp[2] = yCurve_[i+2] + eps;
-      xp[3] = xCurve_[i+2];
-      yp[3] = yCurve_[i+2] - eps;
-      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
-    }
-    return false;
-  }
-  else if( histogramType_==2 || histogramType_==4 ) // tails
-  {
-    double const eps = 0.05;
-    int size = xCurve_.size();
-    for( int i=0; i<size; i+=4 )
-    {
-      xp[0] = xCurve_[i] - eps;
-      yp[0] = yCurve_[i];
-      xp[1] = xCurve_[i] + eps;
-      yp[1] = yCurve_[i];
-      xp[2] = xCurve_[i+1] + eps;
-      yp[2] = yCurve_[i+1];
-      xp[3] = xCurve_[i+1] - eps;
-      yp[3] = yCurve_[i+1];
-      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
-      if( i+2 >= size )break;
-      xp[0] = xCurve_[i+1];
-      yp[0] = yCurve_[i+1] - eps;
-      xp[1] = xCurve_[i+1];
-      yp[1] = yCurve_[i+1] + eps;
-      xp[2] = xCurve_[i+2];
-      yp[2] = yCurve_[i+2] + eps;
-      xp[3] = xCurve_[i+2];
-      yp[3] = yCurve_[i+2] - eps;
-      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
-      if( i+3 >= size )break;
-      xp[0] = xCurve_[i+2] - eps;
-      yp[0] = yCurve_[i+2];
-      xp[1] = xCurve_[i+2] + eps;
-      yp[1] = yCurve_[i+2];
-      xp[2] = xCurve_[i+3] + eps;
-      yp[2] = yCurve_[i+3];
-      xp[3] = xCurve_[i+3] - eps;
-      yp[3] = yCurve_[i+3];
-      if( UsefulFunctions::InsidePolygon(x,y,xp,yp) )return true;
-    }
-    return false;
-  }
-  else
-    return false;
+  return false;
 }
 
 void GRA_polarCurve::MakeNonHistogram()
@@ -301,126 +206,6 @@ void GRA_polarCurve::MakeNonHistogram()
   }
   pen_[0] = 3;
   ExGlobals::GetGraphWindow()->PolarToWorld( r_, theta_, xCurve_, yCurve_ );
-}
-
-void GRA_polarCurve::MakeHistogramNoTails()
-{
-  std::vector<double> r, theta;
-  std::size_t const npt = r_.size();
-  if( npt == 1 )
-  {
-    r.push_back( 0.0 );
-    theta.push_back( 0.0 );
-    r.push_back( r_[0] );
-    theta.push_back( theta_[0] );
-  }
-  else
-  {
-    double dt = 0.5*fabs(theta_[1]-theta_[0]);
-    r.push_back( 0.0 );
-    theta.push_back( 0.0 );
-    //
-    r.push_back( r_[0] );
-    theta.push_back( theta_[0]-dt );
-    //
-    r.push_back( r_[0] );
-    theta.push_back( theta_[0]+dt );
-    //
-    double const eps = 0.01;
-    for( std::size_t i=1; i<npt-1; ++i )
-    {
-      double dt2 = std::min(0.5*fabs(theta_[i]-theta_[i-1]),0.5*fabs(theta_[i+1]-theta_[i]));
-      if( eps < (theta_[i]-theta_[i-1])-(dt+dt2) )
-      {
-        theta.push_back( theta_[i-1]+dt );
-        r.push_back( 0.0 );
-        theta.push_back( theta_[i]-dt2 );
-        r.push_back( 0.0 );
-      }
-      theta.push_back( theta_[i]-dt2 );
-      r.push_back( r_[i] );
-      //
-      theta.push_back( theta_[i]+dt2 );
-      r.push_back( r_[i] );
-      //
-      dt = dt2;
-    }
-    double dt2 = 0.5*fabs(theta_[npt-1]-theta_[npt-2]);
-    if( eps < (theta_[npt-1]-theta_[npt-2])-(dt+dt2) )
-    {
-      theta.push_back( theta_[npt-2]+dt );
-      r.push_back( 0.0 );
-      theta.push_back( theta_[npt-1]-dt2 );
-      r.push_back( 0.0 );
-    }
-    theta.push_back( theta_[npt-1]-dt2 );
-    r.push_back( r_[npt-1] );
-    //
-    theta.push_back( theta_[npt-1]+dt2 );
-    r.push_back( r_[npt-1] );
-    //
-    theta.push_back( theta_[npt-1]+dt2 );
-    r.push_back( 0.0 );
-  }
-  ExGlobals::GetGraphWindow()->PolarToWorld( r, theta, xCurve_, yCurve_ );
-}
-
-void GRA_polarCurve::MakeHistogramWithTails()
-{
-  std::vector<double> r, theta;
-  std::size_t npt = r_.size();
-  if( npt == 1 )
-  {
-    theta.push_back( 0.0 );
-    r.push_back( 0.0 );
-    //
-    theta.push_back( theta_[0] );
-    r.push_back( r_[0] );
-  }
-  else
-  {
-    double dt = 0.5*fabs(theta_[1]-theta_[0]);
-    theta.push_back( theta_[0]-dt );
-    r.push_back( 0.0 );
-    //
-    theta.push_back( theta_[0]-dt );
-    r.push_back( r_[0] );
-    //
-    theta.push_back( theta_[0]+dt );
-    r.push_back( r_[0] );
-    //
-    theta.push_back( theta_[0]+dt );
-    r.push_back( 0.0 );
-    //
-    for( std::size_t i=1; i<npt-1; ++i )
-    {
-      dt = std::min(0.5*fabs(theta_[i]-theta_[i-1]),0.5*fabs(theta_[i+1]-theta_[i]));
-      theta.push_back( theta_[i]-dt );
-      r.push_back( 0.0 );
-      //
-      theta.push_back( theta_[i]-dt );
-      r.push_back( r_[i] );
-      //
-      theta.push_back( theta_[i]+dt );
-      r.push_back( r_[i] );
-      //
-      theta.push_back( theta_[i]+dt );
-      r.push_back( 0.0 );
-    }
-    dt = 0.5*fabs(theta_[npt-1]-theta_[npt-2]);
-    theta.push_back( theta_[npt-1]-dt );
-    r.push_back( 0.0 );
-    //
-    theta.push_back( theta_[npt-1]-dt );
-    r.push_back( r_[npt-1] );
-    //
-    theta.push_back( theta_[npt-1]+dt );
-    r.push_back( r_[npt-1] );
-    //
-    theta.push_back( theta_[npt-1]+dt );
-    r.push_back( 0.0 );
-  }
-  ExGlobals::GetGraphWindow()->PolarToWorld( r, theta, xCurve_, yCurve_ );
 }
 
 void GRA_polarCurve::DrawNonHistogram( GRA_wxWidgets *graphicsOutput, wxDC &dc )
@@ -478,89 +263,6 @@ void GRA_polarCurve::DrawNonHistogram( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     }
   }
   graphicsOutput->SetLineType( lineTypeSave );
-}
-
-void GRA_polarCurve::DrawHistogramNoTails( GRA_wxWidgets *graphicsOutput, wxDC &dc )
-{
-  if( !areaFillColors_.empty() )
-  {
-    areaFillColor_ = areaFillColors_[0];
-    std::vector<GRA_color*>().swap( areaFillColors_ );
-  }
-  if( areaFillColor_ && xCurve_.size()>1 )
-  {
-    // draw the filled region
-    // make sure polygon is closed, add last point set to first point
-    //
-    xCurve_.push_back( xCurve_.front() );
-    yCurve_.push_back( yCurve_.front() );
-    GRA_polygon p( xCurve_, yCurve_, color_, areaFillColor_, lineWidth_ );
-    p.Draw( graphicsOutput, dc );
-    xCurve_.erase( xCurve_.end()-1 );
-    yCurve_.erase( yCurve_.end()-1 );
-  }
-  wxPen wxpen( dc.GetPen() );
-  wxpen.SetColour( ExGlobals::GetwxColor(color_) );
-  wxpen.SetWidth( lineWidth_ );
-  dc.SetPen( wxpen );
-  std::size_t size = xCurve_.size();
-  graphicsOutput->PenUp( xCurve_[0], yCurve_[0] );
-  for( std::size_t i=1; i<size; ++i )graphicsOutput->PenDown( xCurve_[i], yCurve_[i], dc );
-}
-
-void GRA_polarCurve::DrawHistogramWithTails( GRA_wxWidgets *graphicsOutput, wxDC &dc )
-{
-  std::size_t npt = r_.size();
-  if( npt > 1 )
-  {
-    std::vector<double> xp, yp;
-    bool areaFillColorVector = !areaFillColors_.empty();
-    for( std::size_t i=0; i<npt; ++i )
-    {
-      GRA_color *fillColor;
-      areaFillColorVector ? fillColor=areaFillColors_[i%areaFillColors_.size()] :
-                            fillColor=areaFillColor_;
-      if( fillColor )
-      {
-        std::size_t j = 4*i;
-        xp.push_back( xCurve_[j] );
-        yp.push_back( yCurve_[j] );
-        xp.push_back( xCurve_[j+1] );
-        yp.push_back( yCurve_[j+1] );
-        xp.push_back( xCurve_[j+2] );
-        yp.push_back( yCurve_[j+2] );
-        xp.push_back( xCurve_[j+3] );
-        yp.push_back( yCurve_[j+3] );
-        xp.push_back( xCurve_[j] );
-        yp.push_back( yCurve_[j] );
-        GRA_polygon p(xp,yp,color_,fillColor,lineWidth_);
-        p.Draw( graphicsOutput, dc );
-        std::vector<double>().swap( xp );
-        std::vector<double>().swap( yp );
-      }
-    }
-  }
-  wxPen wxpen( dc.GetPen() );
-  wxpen.SetColour( ExGlobals::GetwxColor(color_) );
-  wxpen.SetWidth( lineWidth_ );
-  dc.SetPen( wxpen );
-  if( npt == 1 )
-  {
-    graphicsOutput->PenUp( xCurve_[0], yCurve_[0] );
-    graphicsOutput->PenDown( xCurve_[1], yCurve_[1], dc );
-  }
-  else
-  {
-    for( std::size_t i=0; i<npt; ++i )
-    {
-      std::size_t j = 4*i;
-      graphicsOutput->PenUp( xCurve_[j], yCurve_[j] );
-      graphicsOutput->PenDown( xCurve_[j+1], yCurve_[j+1], dc );
-      graphicsOutput->PenDown( xCurve_[j+2], yCurve_[j+2], dc );
-      graphicsOutput->PenDown( xCurve_[j+3], yCurve_[j+3], dc );
-      graphicsOutput->PenDown( xCurve_[j],   yCurve_[j], dc );
-    }
-  }
 }
 
 std::ostream &operator<<( std::ostream &out, GRA_polarCurve const &cc )

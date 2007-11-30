@@ -486,6 +486,10 @@ void GRA_window::InheritFrom( GRA_window const *w )
    static_cast<GRA_intCharacteristic*>(w->polarCharacteristics_->Get(wxT("LINEWIDTH")))->Get() );
   static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("AXISANGLE")))->Set(
    static_cast<GRA_angleCharacteristic*>(w->polarCharacteristics_->Get(wxT("AXISANGLE")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("COMPASSLABELS")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("COMPASSLABELS")))->Get() );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("CLOCKWISE")))->Set(
+   static_cast<GRA_boolCharacteristic*>(w->polarCharacteristics_->Get(wxT("CLOCKWISE")))->Get() );
   static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MIN")))->Set(
    static_cast<GRA_doubleCharacteristic*>(w->polarCharacteristics_->Get(wxT("MIN")))->Get() );
   static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MAX")))->Set(
@@ -1148,9 +1152,11 @@ void GRA_window::CreatePolarCharacteristics( double xl, double yl, double xu, do
   polarCharacteristics_->AddDistance( wxT("XORIGIN"), 50.0, true, xl, xu );
   polarCharacteristics_->AddDistance( wxT("YORIGIN"), 50.0, true, yl, yu );
   polarCharacteristics_->AddSize( wxT("AXISLENGTH"), 30.0, true, xl, xu );
-  polarCharacteristics_->AddNumber( wxT("NAXES"), 3 );
+  polarCharacteristics_->AddNumber( wxT("NAXES"), 4 );
   polarCharacteristics_->AddBool( wxT("AXISON"), true );
   polarCharacteristics_->AddColor( wxT("AXISCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
+  polarCharacteristics_->AddBool( wxT("CLOCKWISE"), false );
+  polarCharacteristics_->AddBool( wxT("COMPASSLABELS"), false );
   polarCharacteristics_->AddNumber( wxT("LINEWIDTH"), 1 );
   polarCharacteristics_->AddAngle( wxT("AXISANGLE"), 0.0 );
   polarCharacteristics_->AddNumber( wxT("MIN"), 0.0 );
@@ -1195,10 +1201,11 @@ void GRA_window::SetPolarDefaults()
   static_cast<GRA_distanceCharacteristic*>(polarCharacteristics_->Get(wxT("XORIGIN")))->SetAsPercent( 50.0 );
   static_cast<GRA_distanceCharacteristic*>(polarCharacteristics_->Get(wxT("YORIGIN")))->SetAsPercent( 50.0 );
   static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("AXISLENGTH")))->SetAsPercent( 30.0 );
-  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NAXES")))->Set( 3 );
-
+  static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NAXES")))->Set( 4 );
   static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("AXISON")))->Set( true );
   static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("AXISCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("CLOCKWISE")))->Set( false );
+  static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("COMPASSLABELS")))->Set( false );
   static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("LINEWIDTH")))->Set( 1 );
   static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("AXISANGLE")))->Set( 0.0 );
   static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MIN")))->Set( 0.0 );
@@ -1297,6 +1304,7 @@ void GRA_window::PolarToWorld( double r, double theta, double &xw, double &yw, b
   // convert from polar graph units to world units
   //
   static double xorigin, yorigin, axisa, a;
+  static bool clockwise;
   if( reset )
   {
     axisa = static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("AXISANGLE")))->Get();
@@ -1306,10 +1314,12 @@ void GRA_window::PolarToWorld( double r, double theta, double &xw, double &yw, b
       static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("AXISLENGTH")))->GetAsWorld();
     double const max = static_cast<GRA_doubleCharacteristic*>(polarCharacteristics_->Get(wxT("MAX")))->Get();
     a = max!=0.0 ? length/max : 1.0;
+    clockwise = static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("CLOCKWISE")))->Get();
   }
-  if( axisa > 0.0 )theta += 90.0;
-  xw = xorigin + a*r*cos(theta*M_PI/180.);
-  yw = yorigin + a*r*sin(theta*M_PI/180.);
+  if( clockwise )theta *= -1.0;
+  double angle = (theta+axisa)*M_PI/180.0;
+  xw = xorigin + a*r*cos(angle);
+  yw = yorigin + a*r*sin(angle);
 }
 
 void GRA_window::PolarToWorld( std::vector<double> const &r, std::vector<double> const &theta,

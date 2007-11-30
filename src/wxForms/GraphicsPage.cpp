@@ -44,7 +44,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_diffusionPlot.h"
 #include "GRA_ditheringPlot.h"
 #include "GRA_gradientPlot.h"
-#include "GRA_cartesianAxes.h"
+#include "GRA_polarAxes.h"
+#include "GRA_polarCurve.h"
 #include "GRA_axis.h"
 #include "AxisPopup.h"
 #include "CurvePopup.h"
@@ -519,6 +520,8 @@ void GraphicsPage::SavePS( wxString const &filename )
         else if( (*j)->IsaDiffusionPlot() )ps.Draw( static_cast<GRA_diffusionPlot*>(*j) );
         else if( (*j)->IsaDitheringPlot() )ps.Draw( static_cast<GRA_ditheringPlot*>(*j) );
         else if( (*j)->IsaGradientPlot() )ps.Draw( static_cast<GRA_gradientPlot*>(*j) );
+        else if( (*j)->IsaPolarAxes() )ps.Draw( static_cast<GRA_polarAxes*>(*j) );
+        else if( (*j)->IsaPolarCurve() )ps.Draw( static_cast<GRA_polarCurve*>(*j) );
         //else if( (*j)->IsaAxis() )ps.Draw( static_cast<GRA_axis*>(*j) );
         //else if( (*j)->IsaThreeDFigure() )ps.Draw( static_cast<GRA_threeDFigure*>(*j) );
         //else if( (*j)->IsaSurfacePlot() )ps.Draw( static_cast<GRA_surfacePlot*>(*j) );

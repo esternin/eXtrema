@@ -416,6 +416,27 @@ NEXTLINE:
     fvalue =
         static_cast<GRA_distanceCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("AXISLENGTH")))->Get(percent);
   }
+  else if( keyword==wxT("POLARAXISANGLE") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARAXISANGLE") );
+    GRA_angleCharacteristic *angle =
+      static_cast<GRA_angleCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("AXISANGLE")));
+    fvalue = angle->Get();
+  }
+  else if( keyword == wxT("POLARCLOCKWISE") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARCLOCKWISE") );
+    GRA_boolCharacteristic *clockwise =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("CLOCKWISE")));
+    fvalue = static_cast<double>(static_cast<int>(clockwise->Get()));
+  }
+  else if( keyword == wxT("POLARCOMPASSLABELS") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with POLARCOMPASSLABELS") );
+    GRA_boolCharacteristic *compass =
+      static_cast<GRA_boolCharacteristic*>(gw->GetPolarCharacteristics()->Get(wxT("COMPASSLABELS")));
+    fvalue = static_cast<double>(static_cast<int>(compass->Get()));
+  }
   else if( keyword==wxT("POLARNAXES") )
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with POLARNAXES") );

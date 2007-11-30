@@ -69,6 +69,12 @@ public:
   std::vector<double> const &GetTheta()
   { return theta_; }
 
+  void GetXYcurve( std::vector<double> &x, std::vector<double> &y )
+  {
+    x.assign( xCurve_.begin(), xCurve_.end() );
+    y.assign( yCurve_.begin(), yCurve_.end() );
+  }
+
   friend std::ostream &operator<<( std::ostream &, GRA_polarCurve const & );
 
   void SetValues( int, int, int, double, GRA_color*, GRA_color*,
@@ -122,18 +128,20 @@ public:
 
   void Disconnect()
   { popup_ = false; }
+  
+  std::vector<int> &GetPen()
+  { return pen_; }
+
+  std::vector<GRA_plotSymbol*> &GetPlotSymbols()
+  { return plotsymbols_; }
 
 private:
   void SetUp();
   void DeleteStuff();
   void CopyStuff( GRA_polarCurve const & );
   //
-  void MakeHistogramNoTails();
-  void MakeHistogramWithTails();
   void MakeNonHistogram();
   //
-  void DrawHistogramNoTails( GRA_wxWidgets *, wxDC & );
-  void DrawHistogramWithTails( GRA_wxWidgets *, wxDC & );
   void DrawNonHistogram( GRA_wxWidgets *, wxDC & );
   //
   int histogramType_, lineType_, lineWidth_;

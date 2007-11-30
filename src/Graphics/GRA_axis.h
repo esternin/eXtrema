@@ -102,6 +102,12 @@ public:
   
   std::size_t GetNPoly()
   { return polylines_.size(); }
+
+  int GetGrid() const
+  { return nGrid_; }
+
+  double GetLength() const
+  { return length_; }
   
 private:
   void CopyStuff( GRA_axis const & );
@@ -114,23 +120,24 @@ private:
   void MakeLinearAxis();
   void MakeLogAxis();
   void MakeATic( double, double, double, double, double, double, double &, double & );
-  //
+  
   void NormalizeAngle( double &angle )
   {
     angle -= static_cast<int>(angle/360.)*360.;
-    if( angle < 0.0 )angle += 360.;
+    while( angle < 0.0 )angle += 360.;
   }
-  //
+  
   GRA_setOfCharacteristics *characteristics_;
-  //
+  
   std::vector<GRA_polyline*> polylines_;
   std::vector<GRA_drawableText*> textVec_;
-  //
+  
   double xOrigin_, yOrigin_, length_;  // origin coordinates of the axis and its length
   double xEnd_, yEnd_;                 // coordinates of axis end point
   std::vector<double> xTicCoordinates_, yTicCoordinates_;
   double maxWidth_; // max width of axis numbers (world coordinates)
                     // available only after the axis is drawn
+  int nGrid_;
 };
 
 #endif

@@ -2337,7 +2337,7 @@ GRA_polarAxes *GetPolarAxes( ExXML &xml, wxString const &file )
   xml.GetFirstChild(); // get <axis>
   GRA_axis *axis = GetAxis( xml, 'P', file );
   GRA_polarAxes *axes = new GRA_polarAxes();
-  axes->SetAxes( axis );
+  axes->SetAxis( axis );
   return axes;
 }
 
