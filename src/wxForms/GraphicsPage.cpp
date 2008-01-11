@@ -15,6 +15,15 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+
+#if __GNUC__ > 4 || \
+  (__GNUC__ == 4 && (__GNUC_MINOR__ > 3 || \
+    (__GNUC_MINOR__ == 3 && __GNUC_PATCHLEVEL__ >= 0)))
+#include <hash_map>
+#else
+#include <ext/hash_map>
+#endif
+
 #include "GraphicsPage.h"
 #include "EGraphicsError.h"
 #include "ExGlobals.h"

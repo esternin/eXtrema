@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2008 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "NVariableTable.h"
 #include "TVariableTable.h"
 #include "TextVariable.h"
+#include "Script.h"
 
 CMD_read *CMD_read::cmd_read_ = 0;
 
@@ -1336,7 +1337,11 @@ void CMD_read::ReadVectors( QualifierMap &qualifiers, bool const output )
       ++recordNumber;
       sc.clear();
       if( std::getline(inStream_,sc).fail() )break;
-      if( sc.empty() )continue; // the record is empty, nothing on the line
+      //
+      // if the record is empty or the first character is the comment character
+      // then just skip that record
+      //
+      if( sc.empty() || sc[0]==Script::GetCommentCharacter() )continue;
       format = sc.find(',')==sc.npos ? formatSP : formatCM;
       double vd[] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
                      0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
@@ -1415,7 +1420,11 @@ void CMD_read::ReadVectors( QualifierMap &qualifiers, bool const output )
         sc.clear();
         if( std::getline(inStream_,sc).fail() )break;
         bool readError = false;
-        if( sc.empty() )continue; // the record is empty, nothing on the line
+        //
+        // if the record is empty or the first character is the comment character
+        // then just skip that record
+        //
+        if( sc.empty() || sc[0]==Script::GetCommentCharacter() )continue;
         double vd[] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
                        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
                        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
@@ -1530,7 +1539,11 @@ void CMD_read::ReadVectors( QualifierMap &qualifiers, bool const output )
           std::size_t lTemp = sc.find_first_not_of( blank );
           if( lTemp != sc.npos )sc = sc.substr( lTemp, rTemp-lTemp+1 );
         }
-        if( sc.empty() )continue; // the record is empty, nothing on the line
+        //
+        // if the record is empty or the first character is the comment character
+        // then just skip that record
+        //
+        if( sc.empty() || sc[0]==Script::GetCommentCharacter() )continue;
         int const Classes[128] =
         {
           3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3,

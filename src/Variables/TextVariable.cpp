@@ -15,6 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include <limits>
+
 #include "TextVariable.h"
 #include "EVariableError.h"
 #include "TVariableTable.h"
@@ -240,7 +242,7 @@ void TextVariable::GetIndices( wxString &name, int &numberOfIndices,
     {
       if( bracketCntr-- == 1 )
       {
-        wxString idx = wxString(wxT("[")) + indices.substr(start,i-start) + wxString(wxT("]"));
+        wxString idx = wxString(wxT("[")) + wxString(indices.substr(start,i-start)) + wxString(wxT("]"));
         if( numberOfIndices == 0 ) // working on first set of indices
         {                          // could be array or character index
           ++numberOfIndices;

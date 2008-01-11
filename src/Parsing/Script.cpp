@@ -18,6 +18,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <sstream>
 #include <stdexcept>
 
+#if __GNUC__ > 4 || \
+  (__GNUC__ == 4 && (__GNUC_MINOR__ > 3 || \
+    (__GNUC_MINOR__ == 3 && __GNUC_PATCHLEVEL__ >= 0)))
+#include <hash_map>
+#else
+#include <ext/hash_map>
+#endif
+
 #include "Script.h"
 #include "ESyntaxError.h"
 #include "ParseToken.h"

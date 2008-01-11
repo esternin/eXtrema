@@ -17,6 +17,6 @@ set
  ylabel 'Y Axis Label'
  ylabelcolor brown
  ylabelon 1
- %xloweraxis 12
+ %xloweraxis 15
  
 graph x x^2

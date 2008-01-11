@@ -11,7 +11,8 @@ set
  graphbox 0
  %xnumbersheight 2
  %ynumbersheight 2
- %xupperaxis 90
+ %xloweraxis 15
+ %xupperaxis 85
  xlabelon 1
  xlabel 'This is the X axis label'
  ylabelon 1
@@ -54,7 +55,7 @@ graph\yonright x 1*RHSFunction      ! draw the other data curve (without axes)
 set
  %textheight 5
  %xtextlocation 50
- %ytextlocation 81
+ %ytextlocation 85
  textangle 0
  textalign 1
  textinteractive 0

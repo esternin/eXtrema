@@ -337,7 +337,7 @@ void LegendPopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   if( legend_ )legend_->Disconnect();
   //
   // close all child windows
-  //
+  /*
   wxWindowList children( GetChildren() );
   wxWindowListNode *node = children.GetFirst();
   while( node )
@@ -346,6 +346,7 @@ void LegendPopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     window->Close(true);
     node = node->GetNext();
   }
+  */
   Destroy();
   ExGlobals::ZeroLegendPopup();
 }

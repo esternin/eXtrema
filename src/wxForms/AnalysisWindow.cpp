@@ -164,7 +164,7 @@ void AnalysisWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   ExGlobals::DeleteStuff();
   //
   // close all child windows
-  //
+  /*
   wxWindowList children( GetChildren() );
   wxWindowListNode *node = children.GetFirst();
   while( node )
@@ -173,6 +173,7 @@ void AnalysisWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     window->Close(true);
     node = node->GetNext();
   }
+  */
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
@@ -207,7 +208,7 @@ void AnalysisWindow::OnAbout( wxCommandEvent &WXUNUSED(event) )
   textCtrl->SetDefaultStyle( ta2 );
   textCtrl->AppendText( wxString()<<wxT("version ")<<wxT(VERSION)<<wxT("\n") );
   textCtrl->AppendText( wxT(" \n") );
-  textCtrl->AppendText( wxT("Copyright 2006, 2007 by Joseph L. Chuma, TRIUMF\n") );
+  textCtrl->AppendText( wxT("Copyright 2006,...,2008 by Joseph L. Chuma, TRIUMF\n") );
   textCtrl->AppendText( wxT(" \n") );
   textCtrl->AppendText( wxT("Extrema comes with ABSOLUTELY NO WARRANTY\n") );
   textCtrl->AppendText( wxT("This is free software, distributed under the\n") );

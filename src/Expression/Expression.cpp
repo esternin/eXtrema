@@ -15,6 +15,16 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include <memory>
+
+#if __GNUC__ > 4 || \
+  (__GNUC__ == 4 && (__GNUC_MINOR__ > 3 || \
+    (__GNUC_MINOR__ == 3 && __GNUC_PATCHLEVEL__ >= 0)))
+#include <hash_map>
+#else
+#include <ext/hash_map>
+#endif
+
 #include "Expression.h"
 #include "EExpressionError.h"
 #include "ExprCodes.h"
@@ -145,8 +155,6 @@ void Expression::SetFitParameterValue( std::size_t i, double v, wxString const &
 
 void Expression::Evaluate()
 {
-  //std::cout << "string_= |" << string_.mb_str(wxConvUTF8) << "|\n";
-
   Workspace *w0 = (*levels_.find(0)).second;
   try
   {
@@ -157,29 +165,28 @@ void Expression::Evaluate()
   {
     throw;
   }
-
-  //std::cout << "Evaluate 1\n";
-
-REPROCESS:
-  bool doOver = false;
-  for( int level=highestLevel_; level>=1; --level )
+  bool doOver = true;
+  while( doOver )
   {
-    std::vector<Workspace*> wsv;
-    GetWorkspaces( level, wsv );
-    std::vector<Workspace*>::const_iterator end( wsv.end() );
-    for( std::vector<Workspace*>::const_iterator i=wsv.begin(); i!=end; ++i )
+    doOver = false;
+    for( int level=highestLevel_; level>=1; --level )
     {
-      Workspace *ws = *i;
-      if( ws->IsFinished() )continue;
-      if( ws->HandleFunctionsAndText() )
+      std::vector<Workspace*> wsv;
+      GetWorkspaces( level, wsv );
+      std::vector<Workspace*>::const_iterator end( wsv.end() );
+      for( std::vector<Workspace*>::const_iterator i=wsv.begin(); i!=end; ++i )
       {
-        doOver = true;
-        break;
+        Workspace *ws = *i;
+        if( ws->IsFinished() )continue;
+        if( ws->HandleFunctionsAndText() )
+        {
+          doOver = true;
+          break;
+        }
       }
+      if( doOver )break;
     }
-    if( doOver )break;
   }
-  if( doOver )goto REPROCESS;
   bool newWorkspaceMade;
   do
   {
@@ -212,12 +219,12 @@ REPROCESS:
                 std::deque<ExprCodes*> &tCodes = t->GetCodes();
                 sCodes.insert( sCodes.begin()+j, tCodes.begin(), tCodes.end() );
                 j += tCodes.size();
+                sCodesSize += tCodes.size() - 1;
                 sCodes.erase( sCodes.begin()+j );
                 std::deque<ExprCodes*>().swap( tCodes );
                 RemoveWorkspace( t );
                 delete t;
                 delete etmp;
-                s->SetFinished();
               }
             }
             else if( t->IsCharacter() )

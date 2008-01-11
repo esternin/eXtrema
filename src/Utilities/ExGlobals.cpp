@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include <limits>
 #include <stdexcept>
 #include <iostream>
 #include <iomanip>
@@ -991,7 +992,7 @@ bool HandleAlias( wxString &name, wxString &line, ParseLine &p )
   std::map<wxString,wxString>::const_iterator i = alias_.find( name );
   if( i != alias_.end() )
   {
-    line = line.size()>name.size() ? (*i).second+line.substr(name.size()) : (*i).second;
+    line = line.size()>name.size() ? (*i).second+wxString(line.substr(name.size())) : (*i).second;
     if( line[0] == Script::GetCommentCharacter() )return true;
     if( line[0] == executeCharacter_ )line = wxString()<<wxT("EXECUTE ")<<line.substr(1);
     ParseLine p2( line );

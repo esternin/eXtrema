@@ -342,7 +342,7 @@ void NumericVariable::GetIndices( wxString &name, int &numberOfIndices,
       if( cntr-- == 1 )
       {
         if( dimension == 3 )throw EVariableError( wxT("max number of dimensions = 3") );
-        Expression expr( wxString(wxT("["))+indices.substr(start,i-start)+wxString(wxT("]")) );
+        Expression expr( wxString(wxT("["))+wxString(indices.substr(start,i-start))+wxString(wxT("]")) );
         try
         {
           expr.Evaluate();
@@ -375,7 +375,7 @@ void NumericVariable::GetIndices( wxString &name, int &numberOfIndices,
     {
       if( dimension == 3 )throw EVariableError( wxT("max number of dimensions = 3") );
       wxString idx( wxT("[") );
-      idx += indices.substr( start, i-start ) + wxString(wxT("]"));
+      idx += wxString(indices.substr(start,i-start)) + wxString(wxT("]"));
       Expression expr( idx );
       try
       {

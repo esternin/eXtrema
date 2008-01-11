@@ -19,7 +19,7 @@ set
  
 text 'df(x)/dx'
 set
- %xtextlocation 55
+ %xtextlocation 40
  %ytextlocation 30
  textalign 1
  textcolor black

@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include <limits>
 #include <cmath>
 #include <algorithm>
 
@@ -629,41 +630,38 @@ void GRA_window::Replot()
       }
       else if( autoScale==wxT("Y") || autoScale==wxT("YVIRTUAL") )
       {
-        double xMin = static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Get();
-        double xMax = static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Get();
-        double xmn, xmx, ymn, ymx;
+        xmin = static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Get();
+        xmax = static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Get();
         if( static_cast<int>(xlog) > 1 )
         {
-          xmn = pow(xlog,xMin);
-          xmx = pow(xlog,xMax);
+          xmin = pow(xlog,xmin);
+          xmax = pow(xlog,xmax);
         }
-        else
-        {
-          xmn = xMin;
-          xmx = xMax;
-        }
-        cc->GetYMinMax( xmn, xmx, ymn, ymx );
+        double ymn, ymx;
+        cc->GetYMinMax( xmin, xmax, ymn, ymx );
         ymin = std::min( ymin, ymn );
         ymax = std::max( ymax, ymx );
       }
       else if( autoScale==wxT("X") || autoScale==wxT("XVIRTUAL") )
       {
-        double yMin = static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MIN")))->Get();
-        double yMax = static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MAX")))->Get();
-        double xmn, ymn, xmx, ymx;
+        ymin = static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MIN")))->Get();
+        ymax = static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MAX")))->Get();
         if( static_cast<int>(ylog) > 1 )
         {
-          ymn = pow(ylog,yMin);
-          ymx = pow(ylog,yMax);
+          ymin = pow(ylog,ymin);
+          ymax = pow(ylog,ymax);
         }
-        else
-        {
-          ymn = yMin;
-          ymx = yMax;
-        }
-        cc->GetXMinMax( ymn, ymx, xmn, xmx );
+        double xmn, xmx;
+        cc->GetXMinMax( ymin, ymax, xmn, xmx );
         xmin = std::min( xmin, xmn );
         xmax = std::max( xmax, xmx );
+      }
+      else if( autoScale==wxT("OFF") )
+      {
+        xmin = static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Get();
+        xmax = static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Get();
+        ymin = static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MIN")))->Get();
+        ymax = static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MAX")))->Get();
       }
       if( xmin > xmax ) // no data points within range
       {                 // can't allow min > max
@@ -770,24 +768,24 @@ void GRA_window::Replot()
       //
       static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("LOWERAXIS")))->SetAsPercent( xlp );
       static_cast<GRA_distanceCharacteristic*>(xAxisCharacteristics_->Get(wxT("UPPERAXIS")))->SetAsPercent( xup );
-      static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Set( xmax );
-      static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Set( xmin );
-      static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( xmax );
-      static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( xmin );
       static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NLINCS")))->Set( nlxinc );
       static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 7 );
       static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set( -1 );
       //
       static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("LOWERAXIS")))->SetAsPercent( ylp );
       static_cast<GRA_distanceCharacteristic*>(yAxisCharacteristics_->Get(wxT("UPPERAXIS")))->SetAsPercent( yup );
-      static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MAX")))->Set( ymax );
-      static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MIN")))->Set( ymin );
-      static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( ymax );
-      static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( ymin );
       static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NLINCS")))->Set( nlyinc );
       static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 7 );
       static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set( -1 );
     }
+    static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Set( xmax );
+    static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Set( xmin );
+    static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( xmax );
+    static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( xmin );
+    static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MAX")))->Set( ymax );
+    static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MIN")))->Set( ymin );
+    static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("VIRTUALMAX")))->Set( ymax );
+    static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("VIRTUALMIN")))->Set( ymin );
     GRA_cartesianAxes *cartesianAxes = 0;
     try
     {
@@ -1471,7 +1469,7 @@ void GRA_window::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     for( drawableVecIter i=drawableObjects_.begin(); i!=end; ++i )
       (*i)->Draw( graphicsOutput, dc );
   }
-  catch ( EGraphicsError &e )
+  catch( EGraphicsError const &e )
   {
     throw;
   }

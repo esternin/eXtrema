@@ -216,7 +216,7 @@ void CurvePopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   if( curve_ )curve_->Disconnect();
   //
   // close all child windows
-  //
+  /*
   wxWindowList children( GetChildren() );
   wxWindowListNode *node = children.GetFirst();
   while( node )
@@ -225,6 +225,7 @@ void CurvePopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     window->Close(true);
     node = node->GetNext();
   }
+  */
   Destroy();
   ExGlobals::ZeroCurvePopup();
 }

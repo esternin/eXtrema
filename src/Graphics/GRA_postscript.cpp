@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include <limits>
 #include <iomanip>
 
 #include "GRA_postscript.h"
@@ -2199,7 +2200,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     //
     wxString fontName( (*i)->GetFont()->GetFontName() );
 
-    std::cout << "fontName = |" << fontName.mb_str(wxConvUTF8) << "|\n";
+    //std::cout << "fontName = |" << fontName.mb_str(wxConvUTF8) << "|\n";
 
     ExGlobals::RemoveBlanks( fontName );
     ExGlobals::ToCapitalize( fontName );
@@ -2216,7 +2217,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
       int j = static_cast<int>(text[i]);
       if( j < 0 )j += 256;
 
-      std::cout << "j = " << j << "\n";
+      //std::cout << "j = " << j << "\n";
 
       outFile_ << "\\" << std::setfill('0') << std::setw(3) << std::oct << j << std::dec << std::setw(0);
     }

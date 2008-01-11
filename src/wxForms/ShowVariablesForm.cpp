@@ -123,7 +123,7 @@ void ShowVariablesForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   }
   //
   // close all child windows
-  //
+  /*
   wxWindowList children( GetChildren() );
   wxWindowListNode *node = children.GetFirst();
   while( node )
@@ -132,6 +132,7 @@ void ShowVariablesForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     window->Close(true);
     node = node->GetNext();
   }
+  */
   analysisWindow_->ZeroShowVariables();
   Destroy();
 }

@@ -15,6 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include <limits>
+
 #include "Workspace.h"
 #include "EExpressionError.h"
 #include "ExprCodes.h"
@@ -1504,9 +1506,17 @@ bool Workspace::HandleFunctionsAndText()
                   if( fcn->ArgTypeIsCharacter(argCounter-1) )
                   {
                     if( fcn->Name() == wxT("EVALUATE") )
-                      MakeNewWorkspace( j, k, NUMERIC );
+                    {
+                      type_ = NUMERIC;
+                      // remove the EVALUATE function
+                      for( std::size_t ii=i; ii<codes_.size()-1; ++ii )*codes_[ii] = *codes_[ii+1];
+                      delete codes_.back();
+                      codes_.erase( codes_.end()-1 );
+                    }
                     else
+                    {
                       MakeNewWorkspace( j, k, CHARACTER );
+                    }
                     madeNewWorkspace = true;
                     j = k+2;
                   }
@@ -1543,9 +1553,17 @@ bool Workspace::HandleFunctionsAndText()
                       // only extract a character argument into a Workspace
                       //
                       if( fcn->Name() == wxT("EVALUATE") )
-                        MakeNewWorkspace( j, k, NUMERIC );
+                      {
+                        type_ = NUMERIC;
+                        // remove the EVALUATE function
+                        for( std::size_t ii=i; ii<codes_.size()-1; ++ii )*codes_[ii] = *codes_[ii+1];
+                        delete codes_.back();
+                        codes_.erase( codes_.end()-1 );
+                      }
                       else
+                      {
                         MakeNewWorkspace( j, k, CHARACTER );
+                      }
                       madeNewWorkspace = true;
                       j = k+2;
                     }
@@ -1573,9 +1591,17 @@ bool Workspace::HandleFunctionsAndText()
                   if( fcn->ArgTypeIsCharacter( argCounter-1 ) )
                   {
                     if( fcn->Name() == wxT("EVALUATE") )
-                      MakeNewWorkspace( j, k, NUMERIC );
+                    {
+                      type_ = NUMERIC;
+                      // remove the EVALUATE function
+                      for( std::size_t ii=i; ii<codes_.size()-1; ++ii )*codes_[ii] = *codes_[ii+1];
+                      delete codes_.back();
+                      codes_.erase( codes_.end()-1 );
+                    }
                     else
+                    {
                       MakeNewWorkspace( j, k, CHARACTER );
+                    }
                     madeNewWorkspace = true;
                     j = k+2;
                   }

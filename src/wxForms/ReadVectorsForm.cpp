@@ -227,7 +227,7 @@ void ReadVectorsForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   }
   //
   // close all child windows
-  //
+  /*
   wxWindowList children( GetChildren() );
   wxWindowListNode *node = children.GetFirst();
   while( node )
@@ -236,6 +236,7 @@ void ReadVectorsForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     window->Close(true);
     node = node->GetNext();
   }
+  */
   analysisWindow_->ZeroLoadVectors();
   Destroy();
 }

@@ -73,7 +73,7 @@ void BasicColors::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     config->Write( wxT("/BasicColors/HEIGHT"), static_cast<long>(height) );
   }
   // close all child windows
-  //
+  /*
   wxWindowList children( GetChildren() );
   wxWindowListNode *node = children.GetFirst();
   while( node )
@@ -82,6 +82,7 @@ void BasicColors::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     window->Close(true);
     node = node->GetNext();
   }
+  */
   Destroy();
 }
 

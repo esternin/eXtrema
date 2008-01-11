@@ -28,20 +28,21 @@ set
 graph\overlay x yf
 set
  %xtextlocation 18
- %ytextlocation 87
- %textheight 4
+ %ytextlocation 91
+ %textheight 3
  textalign 1
  textinteractive 0
  
 text 'Fitted function y=a*sin(x+b)*exp(x/c)'
 set
  %xtextlocation 70
- %ytextlocation 87
+ %ytextlocation 85
+ %textheight 2
 
 text 'a = '//rchar(a)
-set %ytextlocation 82
+set %ytextlocation 80
 text 'b = '//rchar(b)
-set %ytextlocation 77
+set %ytextlocation 75
 text 'c = '//rchar(c)
 !set
 ! %xtextlocation 55

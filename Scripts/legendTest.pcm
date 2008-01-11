@@ -8,7 +8,7 @@ set
  legendon 1
  legendtitlecolor teal
  legendtitle 'The Legend Title'
- %legendframe 15 65 58 90
+ %legendframe 15 63 68 83
  legendframeon 1
  legendframecolor red
 

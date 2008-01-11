@@ -182,7 +182,7 @@ void PeakFindForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   }
   //
   // close all child windows
-  //
+  /*
   wxWindowList children( GetChildren() );
   wxWindowListNode *node = children.GetFirst();
   while( node )
@@ -191,7 +191,7 @@ void PeakFindForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     window->Close(true);
     node = node->GetNext();
   }
-  
+  */
   visualizationWindow_->ZeroPeakFindForm();
 
   Destroy();
