@@ -50,7 +50,7 @@ void CMD_hardcopy::Execute( ParseLine const *p )
   {
     SetUp( p, qualifiers );
   }
-  catch (ECommandError &e)
+  catch( ECommandError const &e )
   {
     throw;
   }
@@ -61,7 +61,7 @@ void CMD_hardcopy::Execute( ParseLine const *p )
   {
     TextVariable::GetVariable( p->GetString(1), true, filename );
   }
-  catch (EVariableError &e)
+  catch( EVariableError const &e )
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
@@ -101,7 +101,7 @@ void CMD_hardcopy::Execute( ParseLine const *p )
           NumericVariable::GetScalar( p->GetString(2), wxT("width"), v1 );
           NumericVariable::GetScalar( p->GetString(3), wxT("height"), v2 );
         }
-        catch ( EVariableError const &e )
+        catch( EVariableError const &e )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
@@ -118,7 +118,7 @@ void CMD_hardcopy::Execute( ParseLine const *p )
       {
         ExGlobals::GetVisualizationWindow()->SaveBitmap( xminM, yminM, xmaxM, ymaxM, filename, type );
       }
-      catch ( EGraphicsError &e )
+      catch( EGraphicsError const &e )
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
@@ -130,33 +130,21 @@ void CMD_hardcopy::Execute( ParseLine const *p )
       {
         ExGlobals::GetVisualizationWindow()->SavePS( filename );
       }
-      catch ( EGraphicsError &e )
+      catch( EGraphicsError const &e )
       {
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
     }
     else if( qualifiers[wxT("WMF")] )
     {
-#ifdef __WINDOWS__
-      //if( extension.empty() )filename += wxT(".wmf");
-      //std::auto_ptr<GRA_borlandMetafile> bm( new GRA_borlandMetafile(false,filename) );
-      //bm->DrawAndSave();
-#else
       throw ECommandError( command+wxT("windows metafiles are only available under windows") );
-#endif
     }
     else if( qualifiers[wxT("EMF")] ) // enhanced metafile
     {
-#ifdef __WINDOWS__
-      //if( extension.empty() )filename += wxT(".emf");
-      //std::auto_ptr<GRA_borlandMetafile> bm( new GRA_borlandMetafile(true,filename) );
-      //bm->DrawAndSave();
-#else
       throw ECommandError( command+wxT("windows metafiles are only available under windows") );
-#endif
     }
   }
-  catch (EGraphicsError &e)
+  catch( EGraphicsError const &e )
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }

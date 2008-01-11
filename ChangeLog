@@ -1,3 +1,11 @@
+11/01/2008  Joe Chuma <chuma@triumf.ca>
+
+	v4.3.4
+
+	* modified src/Expression/Expression.cpp, Workspace.cpp
+	the FIT command was failing when the fit expression was an evaluatable text string, e.g.,
+	FIT y=EVALUATE(f)  or  FIT y=1*f   where f is a string variable, this has been fixed
+
 08/01/2008  Joe Chuma <chuma@triumf.ca>
 
 	v4.3.3
@@ -18,16 +26,6 @@
 
 	* modified several source files to accomodate gcc v4.3 which "cleaned up" some
 	header dependencies.
-
-	* modified src/Graphics/GRA_window.cpp
-	the REPLOT command was failing when the axis min > max, now fixed
-
-	* modified src/Commands/CMD_read.cpp
-	when reading data from a file into vectors, a record in the data file which begins
-	with the comment character, default '!', will be ignored
-
-	* modified help files
-	attempting better explanation of expression variables in the Introduction
 	
 27/11/2007  Joe Chuma <chuma@triumf.ca>
 
