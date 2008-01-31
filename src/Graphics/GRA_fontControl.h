@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define GRA_FONTCONTROL
 
 #include <vector>
+#include <map>
 
 #include "wx/wx.h"
 
@@ -27,6 +28,7 @@ class GRA_font;
 namespace GRA_fontControl
 {
   extern std::vector<GRA_font*> fonts_;
+  extern std::map<wxString,wxString> psFontNames_;
   
   void Initialize();
   void DeleteStuff();
@@ -35,6 +37,7 @@ namespace GRA_fontControl
   GRA_font *GetFont( wxString const & );
   GRA_font *GetFont( int );
   int GetCount();
+  wxString GetPostScriptFontName( wxString const & );
 };
 
 #endif

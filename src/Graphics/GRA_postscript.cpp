@@ -41,6 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_plotSymbol.h"
 #include "GRA_bitmap.h"
 #include "GRA_font.h"
+#include "GRA_fontControl.h"
 #include "GRA_simpleText.h"
 #include "GRA_drawableText.h"
 #include "GRA_axis.h"
@@ -817,7 +818,7 @@ void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
     {
       dt->Parse();
     }
-    catch ( EGraphicsError const &e )
+    catch( EGraphicsError const &e )
     {
       delete dt;
       throw;
@@ -881,7 +882,7 @@ void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
     {
       dt->Parse();
     }
-    catch ( EGraphicsError const &e )
+    catch( EGraphicsError const &e )
     {
       delete dt;
       throw;
@@ -1113,7 +1114,7 @@ void GRA_postscript::Draw( GRA_polarAxes *polarAxes )
     {
       dt.Parse();
     }
-    catch ( EGraphicsError const &e )
+    catch( EGraphicsError const &e )
     {
       throw;
     }
@@ -1457,7 +1458,7 @@ void GRA_postscript::Draw( GRA_boxPlot *boxPlot )
     {
       axes->Make();
     }
-    catch (EGraphicsError &e)
+    catch( EGraphicsError const &e )
     {
       delete axes;
       throw;
@@ -1583,7 +1584,7 @@ void GRA_postscript::Draw( GRA_diffusionPlot *diffPlot )
   {
     diffPlot->SetUp();
   }
-  catch (EGraphicsError &e)
+  catch( EGraphicsError const &e )
   {
     throw;
   }
@@ -1595,7 +1596,7 @@ void GRA_postscript::Draw( GRA_diffusionPlot *diffPlot )
   {
     Draw( &bitmap );
   }
-  catch ( EGraphicsError const &e )
+  catch( EGraphicsError const &e )
   {
     throw;
   }
@@ -1617,7 +1618,7 @@ void GRA_postscript::Draw( GRA_diffusionPlot *diffPlot )
     {
       axes->Make();
     }
-    catch (EGraphicsError &e)
+    catch( EGraphicsError const &e )
     {
       delete axes;
       throw;
@@ -1680,7 +1681,7 @@ void GRA_postscript::Draw( GRA_ditheringPlot *dithPlot )
   {
     dithPlot->SetUp();
   }
-  catch ( EGraphicsError &e )
+  catch( EGraphicsError const &e )
   {
     throw;
   }
@@ -1742,7 +1743,7 @@ void GRA_postscript::Draw( GRA_ditheringPlot *dithPlot )
         {
           dt.Parse();
         }
-        catch ( EGraphicsError &e )
+        catch( EGraphicsError const &e )
         {
           throw;
         }
@@ -1764,7 +1765,7 @@ void GRA_postscript::Draw( GRA_ditheringPlot *dithPlot )
   {
     Draw( &bitmap );
   }
-  catch ( EGraphicsError const &e )
+  catch( EGraphicsError const &e )
   {
     throw;
   }
@@ -1786,7 +1787,7 @@ void GRA_postscript::Draw( GRA_ditheringPlot *dithPlot )
     {
       axes->Make();
     }
-    catch (EGraphicsError &e)
+    catch( EGraphicsError const &e )
     {
       delete axes;
       throw;
@@ -1850,7 +1851,7 @@ void GRA_postscript::Draw( GRA_gradientPlot *gradPlot )
   {
     gradPlot->SetUp();
   }
-  catch (EGraphicsError &e)
+  catch( EGraphicsError const &e )
   {
     throw;
   }
@@ -1891,7 +1892,7 @@ void GRA_postscript::Draw( GRA_gradientPlot *gradPlot )
         dt.Parse();
         dt2.Parse();
       }
-      catch ( EGraphicsError &e )
+      catch( EGraphicsError const &e )
       {
         throw;
       }
@@ -1912,7 +1913,7 @@ void GRA_postscript::Draw( GRA_gradientPlot *gradPlot )
   {
     Draw( &bitmap );
   }
-  catch ( EGraphicsError const &e )
+  catch( EGraphicsError const &e )
   {
     throw;
   }
@@ -1934,7 +1935,7 @@ void GRA_postscript::Draw( GRA_gradientPlot *gradPlot )
     {
       axes->Make();
     }
-    catch (EGraphicsError &e)
+    catch( EGraphicsError const &e )
     {
       delete axes;
       throw;
@@ -2044,7 +2045,7 @@ void GRA_postscript::DrawProfiles( GRA_densityPlot *densPlot )
         cartesianAxes->Make();
         cartesianCurve->Make();
       }
-      catch ( EGraphicsError &e )
+      catch( EGraphicsError const &e )
       {
         delete cartesianAxes;
         delete cartesianCurve;
@@ -2084,7 +2085,7 @@ void GRA_postscript::DrawProfiles( GRA_densityPlot *densPlot )
         cartesianAxes->Make();
         cartesianCurve->Make();
       }
-      catch ( EGraphicsError &e )
+      catch( EGraphicsError const &e )
       {
         delete cartesianAxes;
         delete cartesianCurve;
@@ -2163,7 +2164,7 @@ void GRA_postscript::Draw( GRA_bitmap *b )
                  << ExGlobals::IntToHex(b).mb_str(wxConvUTF8);
         //outFile_ << std::setfill('0') << std::setw(2) << std::hex << r << g << b << std::dec << std::setw(0);
       }
-      catch ( std::runtime_error const &e )
+      catch( std::runtime_error const &e )
       {
         throw EGraphicsError( wxT("invalid RGB codes in bitmap") );
       }
@@ -2199,6 +2200,15 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     double db = static_cast<double>(b)/255.0;
     //
     wxString fontName( (*i)->GetFont()->GetFontName() );
+    wxString psFontName;
+    try
+    {
+      psFontName = GRA_fontControl::GetPostScriptFontName( (*i)->GetFont()->GetFontName() );
+    }
+    catch( EGraphicsError const &e )
+    {
+      throw;
+    }
 
     //std::cout << "fontName = |" << fontName.mb_str(wxConvUTF8) << "|\n";
 
@@ -2209,7 +2219,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     double yshift = dotsPerInch_*(*i)->GetYShift();
     maxHeight = std::max( height, maxHeight );
     outFile_ << "TextBuffer " << counter << " [[" << dr << " " << dg << " " << db
-             << "] /" << fontName.mb_str(wxConvUTF8) << " " << height
+             << "] /" << psFontName.mb_str(wxConvUTF8) << " " << height
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
     for( size_t i=0; i<tEnd; ++i )

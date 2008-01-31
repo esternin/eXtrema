@@ -1,3 +1,25 @@
+30/01/2008  Joe Chuma <chuma@triumf.ca>
+
+	v4.3.5
+
+	* modified src/Graphics/GRA_window.cpp
+	the REPLOT command was failing for some cases of XLOGBASE or YLOGBASE > 1, this is fixed.
+
+	* modified src/Graphics/GRA_cartesianAxes.cpp
+	the GRAPH command was failing if autoscaling was on and a linear axis was drawn first,
+	with large max value, and then logbase set > 1, and GRAPH drawn again, this is fixed.
+
+	* modified src/Graphics/GRA_cartesianAxes.cpp, src/Commands/CMD_scales.cpp
+	setting the virtual min/max was not working properly when the number of large increments
+	was set to zero.  This is fixed.
+
+	* modified src/Graphics/GRA_postscript,GRA_font,GRA_fontControl
+	attempting to rationalize the linux and windows fonts. Now both version try to use
+	the same fonts.  Changed the font names used in PostScript output for better results.
+
+	* modified many files
+	to fix up unicode stream output when saving a session
+	
 11/01/2008  Joe Chuma <chuma@triumf.ca>
 
 	v4.3.4

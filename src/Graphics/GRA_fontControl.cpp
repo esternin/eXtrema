@@ -17,70 +17,38 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include "GRA_fontControl.h"
 #include "GRA_font.h"
+#include "EGraphicsError.h"
 
 namespace GRA_fontControl
 {
   std::vector<GRA_font*> fonts_;
+  std::map<wxString,wxString> psFontNames_;
 
   void Initialize()
   {
-    fonts_.push_back( new GRA_font(wxT("DECORATIVE")) );
-    fonts_.push_back( new GRA_font(wxT("DECORATIVEBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("DECORATIVEBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("DECORATIVEITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("ROMAN")) );
-    fonts_.push_back( new GRA_font(wxT("ROMANBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("ROMANBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("ROMANITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("SCRIPT")) );
-    fonts_.push_back( new GRA_font(wxT("SCRIPTBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("SCRIPTBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("SCRIPTITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("SWISS")) );
-    fonts_.push_back( new GRA_font(wxT("SWISSBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("SWISSBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("SWISSITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("MODERN")) );
-    fonts_.push_back( new GRA_font(wxT("MODERNBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("MODERNBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("MODERNITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("TELETYPE")) );
-    fonts_.push_back( new GRA_font(wxT("TELETYPEBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("TELETYPEBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("TELETYPEITALIC")) );
     fonts_.push_back( new GRA_font(wxT("ARIAL")) );
-    fonts_.push_back( new GRA_font(wxT("ARIALBLACK")) );
-    fonts_.push_back( new GRA_font(wxT("ARIALBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("ARIALBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("ARIALITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("BLACKCHANCERY")) );
-    fonts_.push_back( new GRA_font(wxT("COMICSANSMS")) );
-    fonts_.push_back( new GRA_font(wxT("COMICSANSMSBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("COURIERNEW")) );
-    fonts_.push_back( new GRA_font(wxT("COURIERNEWBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("COURIERNEWBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("COURIERNEWITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("GEORGIA")) );
-    fonts_.push_back( new GRA_font(wxT("GEORGIABOLD")) );
-    fonts_.push_back( new GRA_font(wxT("GEORGIABOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("GEORGIAITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("IMPACT")) );
-    fonts_.push_back( new GRA_font(wxT("MONOTYPE")) );
+    fonts_.push_back( new GRA_font(wxT("ARIAL BLACK")) );
+    fonts_.push_back( new GRA_font(wxT("ARIAL NARROW")) );
+    fonts_.push_back( new GRA_font(wxT("BOOK ANTIQUA")) );
+    fonts_.push_back( new GRA_font(wxT("BOOKMAN OLD STYLE")) );
+    fonts_.push_back( new GRA_font(wxT("CENTURY")) );
+    fonts_.push_back( new GRA_font(wxT("COURIER NEW")) );
+    fonts_.push_back( new GRA_font(wxT("GARAMOND")) );
     fonts_.push_back( new GRA_font(wxT("SYMBOL")) );
-    fonts_.push_back( new GRA_font(wxT("TIMESNEWROMAN")) );
-    fonts_.push_back( new GRA_font(wxT("TIMESNEWROMANBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("TIMESNEWROMANBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("TIMESNEWROMANITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("TREBUCHETMS")) );
-    fonts_.push_back( new GRA_font(wxT("TREBUCHETMSBOLD")) );
-    fonts_.push_back( new GRA_font(wxT("TREBUCHETMSBOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("TREBUCHETMSITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("VERDANA")) );
-    fonts_.push_back( new GRA_font(wxT("VERDANABOLD")) );
-    fonts_.push_back( new GRA_font(wxT("VERDANABOLDITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("VERDANAITALIC")) );
-    fonts_.push_back( new GRA_font(wxT("WEBDINGS")) );
+    fonts_.push_back( new GRA_font(wxT("TIMES NEW ROMAN")) );
     fonts_.push_back( new GRA_font(wxT("WINGDINGS")) );
+
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ARIAL")),wxString(wxT("ArialMT"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ARIAL BLACK")),wxString(wxT("Arial-Black"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ARIAL NARROW")),wxString(wxT("ArialNarrow"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("BOOK ANTIQUA")),wxString(wxT("BookAntiqua"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("BOOKMAN OLD STYLE")),wxString(wxT("BookmanOldStyle"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("CENTURY")),wxString(wxT("Century"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("COURIER NEW")),wxString(wxT("CourierNewPSMT"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("GARAMOND")),wxString(wxT("Garamond"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SYMBOL")),wxString(wxT("SymbolMT"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("TIMES NEW ROMAN")),wxString(wxT("TimesNewRomanPSMT"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("WINGDINGS")),wxString(wxT("Wingdings-Regular"))) );
   }
 
   void DeleteStuff()
@@ -127,6 +95,14 @@ namespace GRA_fontControl
 
   int GetCount()
   { return fonts_.size(); }
+
+  wxString GetPostScriptFontName( wxString const &name )
+  {
+    std::map<wxString,wxString>::iterator i = psFontNames_.find( name );
+    if( i == psFontNames_.end() )
+      throw EGraphicsError( wxString()<<wxT("unable to find PostScript font: ")<<name );
+    return (*i).second;
+  }
   
 } // end of GRA_fontControl namespace
 

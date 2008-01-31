@@ -103,6 +103,7 @@ xlow = xupr-(nstep-1)*abs(dx)
 !
 thresh = 0.01      ! lower limit of fit parameters
 itmax = 10         ! max. # of fit iterations
+destroy\-messages yf
 yf[1:npts] = ylev
 fit_again:
 fit\weight\itmax\-messages 10*(x1>xlow)*(x1<xupr) itmax yf=m<>params

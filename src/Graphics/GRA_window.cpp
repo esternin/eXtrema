@@ -660,8 +660,18 @@ void GRA_window::Replot()
       {
         xmin = static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Get();
         xmax = static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Get();
+        if( static_cast<int>(xlog) > 1 )
+        {
+          xmin = pow(xlog,xmin);
+          xmax = pow(xlog,xmax);
+        }
         ymin = static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MIN")))->Get();
         ymax = static_cast<GRA_doubleCharacteristic*>(yAxisCharacteristics_->Get(wxT("MAX")))->Get();
+        if( static_cast<int>(ylog) > 1 )
+        {
+          ymin = pow(ylog,ymin);
+          ymax = pow(ylog,ymax);
+        }
       }
       if( xmin > xmax ) // no data points within range
       {                 // can't allow min > max
@@ -777,6 +787,16 @@ void GRA_window::Replot()
       static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NLINCS")))->Set( nlyinc );
       static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 7 );
       static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDECIMALS")))->Set( -1 );
+    }
+    if( static_cast<int>(xlog) > 1 )
+    {
+      xmin = xmin<=0.0 ? std::numeric_limits<double>::min() : log(xmin)/log(xlog);
+      xmax = xmax<=0.0 ? std::numeric_limits<double>::min() : log(xmax)/log(xlog);
+    }
+    if( static_cast<int>(ylog) > 1 )
+    {
+      ymin = ymin<=0.0 ? std::numeric_limits<double>::min() : log(ymin)/log(ylog);
+      ymax = ymax<=0.0 ? std::numeric_limits<double>::min() : log(ymax)/log(ylog);
     }
     static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MAX")))->Set( xmax );
     static_cast<GRA_doubleCharacteristic*>(xAxisCharacteristics_->Get(wxT("MIN")))->Set( xmin );

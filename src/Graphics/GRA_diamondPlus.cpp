@@ -67,16 +67,16 @@ GRA_diamondPlus::GRA_diamondPlus( double xc, double yc, double side, double angl
 
 std::ostream &operator<<( std::ostream &out, GRA_diamondPlus const &mlf )
 {
-  out << wxT("<diamondplus xc=\"") << mlf.xc_ << wxT("\" yc=\"") << mlf.yc_
-      << wxT("\" xmin=\"") << mlf.xmin_ << wxT("\" ymin=\"") << mlf.ymin_
-      << wxT("\" xmax=\"") << mlf.xmax_ << wxT("\" ymax=\"") << mlf.ymax_
-      << wxT("\" linewidth=\"") << mlf.lineWidth_
-      << wxT("\" color=\"") << GRA_colorControl::GetColorCode(mlf.lineColor_) << wxT("\">\n");
+  out << "<diamondplus xc=\"" << mlf.xc_ << "\" yc=\"" << mlf.yc_
+      << "\" xmin=\"" << mlf.xmin_ << "\" ymin=\"" << mlf.ymin_
+      << "\" xmax=\"" << mlf.xmax_ << "\" ymax=\"" << mlf.ymax_
+      << "\" linewidth=\"" << mlf.lineWidth_
+      << "\" color=\"" << GRA_colorControl::GetColorCode(mlf.lineColor_) << "\">\n";
   std::size_t size = mlf.x_.size();
-  out << wxT("<data size=\"") << size << wxT("\">");
-  for( std::size_t i=0; i<size-1; ++i )out << mlf.x_[i] << wxT(" ") << mlf.y_[i] << wxT(" ") << mlf.pen_[i] << wxT(" ");
-  out << mlf.x_[size-1] << wxT(" ") << mlf.y_[size-1] << wxT(" ") << mlf.pen_[size-1] << wxT("</data>\n");
-  return out << wxT("</diamondplus>\n");
+  out << "<data size=\"" << size << "\">";
+  for( std::size_t i=0; i<size-1; ++i )out << mlf.x_[i] << " " << mlf.y_[i] << " " << mlf.pen_[i] << " ";
+  out << mlf.x_[size-1] << " " << mlf.y_[size-1] << " " << mlf.pen_[size-1] << "</data>\n";
+  return out << "</diamondplus>\n";
 }
 
 // end of file

@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_distanceCharacteristic.h"
 #include "GRA_setOfCharacteristics.h"
 #include "GRA_window.h"
+#include "UsefulFunctions.h"
 
 CMD_scales *CMD_scales::cmd_scales_ = 0;
 
@@ -50,7 +51,7 @@ void CMD_scales::Execute( ParseLine const *p )
   {
     SetUp( p, qualifiers );
   }
-  catch (ECommandError &e)
+  catch( ECommandError const &e )
   {
     throw;
   }
@@ -89,9 +90,14 @@ void CMD_scales::Execute( ParseLine const *p )
   double xmin = xAxisMin->Get();
   double xmax = xAxisMax->Get();
   int xnlinc = xAxisNlincs->Get();
+  double xvmin = xAxisVMin->Get();
+  double xvmax = xAxisVMax->Get();
   double ymin = yAxisMin->Get();
   double ymax = yAxisMax->Get();
   int ynlinc = yAxisNlincs->Get();
+  double yvmin = yAxisVMin->Get();
+  double yvmax = yAxisVMax->Get();
+  //
   if( p->GetNumberOfTokens() == 1 )
   {
     if( autoscale->Get()!=wxT("OFF") && output )ExGlobals::WriteOutput(wxT("graph autoscaling is off"));
@@ -117,6 +123,8 @@ void CMD_scales::Execute( ParseLine const *p )
       AddToStackLine( p->GetString(tcnt) );
       NumericVariable::GetScalar( p->GetString(++tcnt), wxT("number of x-axis major tic marks"), d );
       xnlinc = static_cast<int>(d);
+      xvmin = xmin;
+      xvmax = xmax;
       AddToStackLine( p->GetString(tcnt) );
       NumericVariable::GetScalar( p->GetString(++tcnt), wxT("y-axis minimum"), d );
       ymin = d;
@@ -126,6 +134,8 @@ void CMD_scales::Execute( ParseLine const *p )
       AddToStackLine( p->GetString(tcnt) );
       NumericVariable::GetScalar( p->GetString(++tcnt), wxT("number of y-axis major tic marks"), d );
       ynlinc = static_cast<int>(d);
+      yvmin = ymin;
+      yvmax = ymax;
       AddToStackLine( p->GetString(tcnt) );
     }
     else if( p->GetNumberOfTokens() == 5 )
@@ -138,27 +148,45 @@ void CMD_scales::Execute( ParseLine const *p )
       NumericVariable::GetScalar( p->GetString(++tcnt), wxT("x-axis maximum"), d );
       xmax = d;
       AddToStackLine( p->GetString(tcnt) );
-      xnlinc = 0;
+      xnlinc = 5;
+      double inc;
+      try
+      {
+        UsefulFunctions::Scale1( xvmin, xvmax, inc, xnlinc, xmin, xmax );
+      }
+      catch( std::runtime_error const &e )
+      {
+        throw ECommandError( Name()+wxT(": ")+wxString(e.what(),wxConvUTF8) );
+      }
+      xnlinc = static_cast<int>( (xvmax-xvmin)/inc+0.5 );
       NumericVariable::GetScalar( p->GetString(++tcnt), wxT("y-axis minimum"), d );
       ymin = d;
       AddToStackLine( p->GetString(tcnt) );
       NumericVariable::GetScalar( p->GetString(++tcnt), wxT("y-axis maximum"), d );
       ymax = d;
       AddToStackLine( p->GetString(tcnt) );
-      ynlinc = 0;
+      ynlinc = 5;
+      try
+      {
+        UsefulFunctions::Scale1( yvmin, yvmax, inc, ynlinc, ymin, ymax );
+      }
+      catch( std::runtime_error const &e )
+      {
+        throw ECommandError( Name()+wxT(": ")+wxString(e.what(),wxConvUTF8) );
+      }
+      ynlinc = static_cast<int>( (yvmax-yvmin)/inc+0.5 );
     }
-    else throw ECommandError( Name()+wxT(": ")+
-      wxT("expecting: xmin xmax nlxinc ymin ymax nlyinc  or  xmin xmax ymin ymax"));
+    else throw ECommandError( Name()+wxT(": expecting: xmin xmax nlxinc ymin ymax nlyinc  or  xmin xmax ymin ymax"));
     autoscale->Set(wxT("OFF"));
     xAxisMin->Set( xmin );
     xAxisMax->Set( xmax );
-    xAxisVMin->Set( xmin );
-    xAxisVMax->Set( xmax );
+    xAxisVMin->Set( xvmin );
+    xAxisVMax->Set( xvmax );
     xAxisNlincs->Set( xnlinc );
     yAxisMin->Set( ymin );
     yAxisMax->Set( ymax );
-    yAxisVMin->Set( ymin );
-    yAxisVMax->Set( ymax );
+    yAxisVMin->Set( yvmin );
+    yAxisVMax->Set( yvmax );
     yAxisNlincs->Set( ynlinc );
   }
   if( output )

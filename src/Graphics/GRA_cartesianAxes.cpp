@@ -591,7 +591,7 @@ void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<dou
       bool pointFound = false;
       for( std::size_t i=0; i<npt; ++i )
       {
-        if( x[i]>=xmin && x[i]<=xmax )
+        if( x[i]>=xminValue && x[i]<=xmaxValue )
         {
           pointFound = true;
           break;
@@ -610,7 +610,7 @@ void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<dou
       ymaxValue = -yminValue;
       for( std::size_t i=0; i<npt; ++i )
       {
-        if( (x[i]-xmin)*(xmax-x[i]) >= 0.0 )
+        if( (x[i]-xminValue)*(xmaxValue-x[i]) >= 0.0 )
         {
           if( y[i] < yminValue )yminValue = y[i];
           if( y[i] > ymaxValue )ymaxValue = y[i];
@@ -640,7 +640,7 @@ void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<dou
       bool pointFound = false;
       for( std::size_t i=0; i<npt; ++i )
       {
-        if( (y[i]-ymin)*(ymax-y[i]) >= 0.0 )
+        if( (y[i]-yminValue)*(ymaxValue-y[i]) >= 0.0 )
         {
           pointFound = true;
           break;
@@ -659,7 +659,7 @@ void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<dou
       xmaxValue = -xminValue;
       for( std::size_t i=0; i<npt; ++i )
       {
-        if( (y[i]-ymin)*(ymax-y[i]) >= 0.0 )
+        if( (y[i]-yminValue)*(ymaxValue-y[i]) >= 0.0 )
         {
           if( x[i] < xminValue )xminValue = x[i];
           if( x[i] > xmaxValue )xmaxValue = x[i];
@@ -695,7 +695,7 @@ void GRA_cartesianAxes::GetActualValues( double &minValue, double &maxValue, dou
   {
     ResetLogValue( minValue, logBase );
   }
-  catch ( EGraphicsError &e )
+  catch ( EGraphicsError const &e )
   {
     throw EGraphicsError(wxT("problem with axis log scales minimum value"));
   }
@@ -703,7 +703,7 @@ void GRA_cartesianAxes::GetActualValues( double &minValue, double &maxValue, dou
   {
     ResetLogValue( maxValue, logBase );
   }
-  catch ( EGraphicsError &e )
+  catch ( EGraphicsError const &e )
   {
     throw EGraphicsError(wxT("problem with axis log scales maximum value"));
   }
@@ -744,7 +744,11 @@ int GRA_cartesianAxes::NumberOfDigits( double mins, double maxs, double logBase 
 
 void GRA_cartesianAxes::ResetLogValue( double &value, double logBase )
 {
-  if( value*log(logBase) > log(std::numeric_limits<double>::max()) )throw EGraphicsError(wxT(" "));
+  if( value*log(logBase) > log(std::numeric_limits<double>::max()) )
+  {
+    value = 10.;
+    return;
+  }
   try
   {
     value = exp(value*log(logBase));

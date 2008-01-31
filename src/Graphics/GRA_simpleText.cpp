@@ -63,12 +63,12 @@ void GRA_simpleText::GetBoundary( int &xLo, int &yLo, int &xHi, int &yHi )
 
 std::ostream &operator<<( std::ostream &out, GRA_simpleText const &st )
 {
-  return out << wxT("<simpletext height=\"") << st.height_ << wxT("\" xshift=\"") << st.xShift_
-             << wxT("\" yshift=\"") << st.yShift_ << wxT("\" color=\"")
+  return out << "<simpletext height=\"" << st.height_ << "\" xshift=\"" << st.xShift_
+             << "\" yshift=\"" << st.yShift_ << "\" color=\""
              << GRA_colorControl::GetColorCode(st.color_)
-             << wxT("\" font=\"") << GRA_fontControl::GetFontCode(st.font_) << wxT("\">\n")
-             << wxT("<string><![CDATA[") << st.string_.mb_str(wxConvUTF8) << wxT("]]></string>\n")
-             << wxT("</simpletext>\n");
+             << "\" font=\"" << GRA_fontControl::GetFontCode(st.font_) << "\">\n"
+             << "<string><![CDATA[" << st.string_.mb_str(wxConvUTF8) << "]]></string>\n"
+             << "</simpletext>\n";
 }
 
 // end of file

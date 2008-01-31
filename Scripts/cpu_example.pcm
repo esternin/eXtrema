@@ -45,7 +45,7 @@ set
  plotsymbol -14
  plotsymbolcolour black
  legendon 1
- %legendframe 25 65 55 85
+ %legendframe 25 70 65 85
  
 graph\overlay 'VAX' y v
 set
@@ -67,3 +67,5 @@ set
  plotsymbol 0
  
 graph\overlay xx yd
+set legendon 1
+
