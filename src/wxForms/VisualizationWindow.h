@@ -94,11 +94,8 @@ public:
   void CloseEventHandler( wxCloseEvent & );
   void OnSize( wxSizeEvent & );
 
-  void OnImportPNG( wxCommandEvent &WXUNUSED(event) )
-  {}
-
-  void OnImportJPEG( wxCommandEvent &WXUNUSED(event) )
-  {}
+  void OnImportPNG( wxCommandEvent & );
+  void OnImportJPEG( wxCommandEvent & );
 
   void OnSavePS( wxCommandEvent & );
   void OnSavePNG( wxCommandEvent & );

@@ -91,13 +91,24 @@ void CommandTextCtrl::OnKeyDown( wxKeyEvent &event )
     case WXK_DOWN:
     {
       wxString s( GetNextCommand() );
-      s.empty() ? Clear() : SetValue(s);
+      if( s.empty() )Clear();
+      else
+      {
+        SetValue(s);
+        SetInsertionPointEnd();
+      }
+      
       break;
     }
     case WXK_UP:
     {
       wxString s( GetPreviousCommand() );
-      s.empty() ? Clear() : SetValue(s);
+      if( s.empty() )Clear();
+      else
+      {
+        SetValue(s);
+        SetInsertionPointEnd();
+      }
       break;
     }
     case WXK_RETURN:

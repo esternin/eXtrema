@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2008 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -37,6 +37,7 @@ bool extrema::OnInit()
   wxImage::AddHandler( new wxPNGHandler );
   wxImage::AddHandler( new wxJPEGHandler );
   wxImage::AddHandler( new wxGIFHandler );
+  ::wxInitAllImageHandlers();
   //
   wxFileConfig *config = new wxFileConfig( wxT("extrema") );
   if( !config )return false;

@@ -39,6 +39,7 @@ public:
   void OnNewPage( wxCommandEvent & );
   void OnRemovePage( wxCommandEvent & );
   void OnSetAspectRatio( wxCommandEvent & );
+  void OnImportDrawing( wxCommandEvent & );
 
   void OnDrawFigures( wxCommandEvent &WXUNUSED(event) )
   {
@@ -50,15 +51,6 @@ public:
     md->ShowModal();
   }
 
-  void OnImportDrawing( wxCommandEvent &WXUNUSED(event) )
-  {
-    wxMessageDialog *md =
-      new wxMessageDialog( (wxWindow*)this,
-                           wxT("Click here to import a drawing (coming soon)"),
-                           wxT("import a drawing"),
-                           wxOK|wxICON_INFORMATION );
-    md->ShowModal();
-  }
 
 private:
   VisualizationWindow *visualizationWindow_;

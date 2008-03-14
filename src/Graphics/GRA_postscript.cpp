@@ -2236,6 +2236,12 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
   outFile_ << "SetupText\n";
   double xLoc = dt->GetX();
   double yLoc = dt->GetY();
+
+  // apply fudge factor
+  double xminW, yminW, xmaxW, ymaxW;
+  ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
+  yLoc += 0.01*(ymaxW-yminW);
+
   if( dt->GetGraphUnits() ) // convert to world units
   {
     double xg=xLoc, yg=yLoc;

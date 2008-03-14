@@ -23,8 +23,8 @@ set
  %LEGENDFRAME 13 69 58 89
  %legendtitleheight 4
   legendtitlecolor blue
-  LEGENDTITLE `<^>16<_>O(<pi><^>+<_>,<pi><^>-<_><pi><^>+<_>)'
-  LEGENDTITLEON 1
+  LEGENDTITLE '<^>16<_>O(<pi><^>+<_>,<pi><^>-<_><pi><^>+<_>)'
+  LEGENDTITLEON 0
   ylogstyle 1
  %ynumbersheight 3
  %xnumbersheight 3
@@ -58,20 +58,25 @@ set
  CURVECOLOR BLACK
 
 GRAPH\OVERLAY 'This work' T4 ROCK2*7
-SET
- %TEXTHEIGHT 3
-  TEXTINTERACTIVE 0
-  TEXTALIGN 1
- %XTEXTLOCATION 10
- %YTEXTLOCATION 91
 
-TEXT '<sigma>(<mu>b)'
-SET
-  TEXTALIGN 3
- %XTEXTLOCATION 95
- %YTEXTLOCATION 2
-
-!TEXT 'T<H5%><V2%><_><pi><^><H3%><V1%> (MeV)'
-TEXT 'T<_><pi><^> (MeV)'
-REPLOT
+set %textheight 4
+set textcolor blue
+get %yupperaxis yux
+get %xupperaxis xux
+get %xloweraxis xlx
+set %xtextlocation 0.5*(xlx+xux)
+set %ytextlocation yux+1
+set textinteractive 0
+set textalign 2
+text '<^>16<_>O(<pi><^>+<_>,<pi><^>-<_><pi><^>+<_>)'
+set %textheight 3
+set  textalign 3
+set %xtextlocation xlx+2
+set %ytextlocation yux+1
+text '<sigma>(<mu>b)'
+set textalign 3
+set %xtextlocation xux
+set %ytextlocation 5
+text 'T<_><pi><^> (MeV)'
+replot
 !set legendon 0

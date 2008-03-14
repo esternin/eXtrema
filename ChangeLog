@@ -1,3 +1,11 @@
+06/02/2008  Joe Chuma <chuma@triumf.ca>
+
+	v4.3.6
+
+	* modified src/wxForms/CommandTextCtrl.cpp
+	the cursor is now positioned at the end of the command line on a command line recall
+	with the up/down arrow keys
+
 30/01/2008  Joe Chuma <chuma@triumf.ca>
 
 	v4.3.5

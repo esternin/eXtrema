@@ -28,6 +28,7 @@ libwxforms_la_SOURCES = \
           GraphForm.cpp GraphForm.h \
 	  GraphicsPage.cpp GraphicsPage.h \
 	  HintForm.cpp HintForm.h \
+	  ImportWindow.cpp ImportWindow.h \
 	  InquireYNDialog.cpp InquireYNDialog.h \
 	  InquireDialog.cpp InquireDialog.h \
           LegendPopup.cpp LegendPopup.h \

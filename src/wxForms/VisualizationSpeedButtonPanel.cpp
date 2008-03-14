@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "ExGlobals.h"
 #include "GRA_wxWidgets.h"
 #include "EGraphicsError.h"
+#include "ImportWindow.h"
 
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
@@ -127,7 +128,26 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
   
   SetSizer( sizer );
 }
-  
+
+void VisualizationSpeedButtonPanel::OnImportDrawing( wxCommandEvent &WXUNUSED(event) )
+{
+  wxString wildcard( wxT("PNG (*.png)|*.png|JPEG (*.jpeg,*.jpg)|*.jpeg;*.jpg") );
+  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose a PNG or JPEG file"), wxT(""), wxT(""),
+                                       wildcard,
+                                       wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
+  if( fd->ShowModal() != wxID_OK )return;
+  wxString filename( fd->GetFilename() );
+  if( filename.empty() )return;
+  wxString extension( ExGlobals::GetFileExtension(filename).MakeUpper() );
+  //
+  // open the png file and open a window to display it in
+  //
+  wxImage image = extension==wxT(".PNG") ? wxImage(filename,wxBITMAP_TYPE_PNG) :
+                                          wxImage(filename,wxBITMAP_TYPE_JPEG);
+  ImportWindow *importWindow = new ImportWindow( this, image );
+
+}
+
 void VisualizationSpeedButtonPanel::OnSaveDrawing( wxCommandEvent &WXUNUSED(event) )
 {
 #ifdef __WINDOWS__

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2008 Joseph L. Chuma, TRIUMF
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -34,6 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_drawableText.h"
 #include "GraphicsPage.h"
 #include "SetAspectRatioForm.h"
+#include "ImportWindow.h"
 
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
@@ -93,9 +94,9 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
 
   wxMenu *importMenu = new wxMenu();
   importMenu->Append( ID_importPNG, wxT("PNG"), wxT("import a PNG file") );
-  importMenu->Enable( ID_importPNG, false );
+  //importMenu->Enable( ID_importPNG, false );
   importMenu->Append( ID_importJPEG, wxT("JPEG"), wxT("import a JPEG file") );
-  importMenu->Enable( ID_importJPEG, false );
+  //importMenu->Enable( ID_importJPEG, false );
   fileMenu->Append( wxID_ANY, wxT("Import"), importMenu, wxT("import a graphics file") );
 
   wxMenu *saveMenu = new wxMenu();
@@ -439,6 +440,40 @@ void VisualizationWindow::OnSize( wxSizeEvent &event )
 {
   SetSize( event.GetSize() );
   ResetPages();
+}
+
+void VisualizationWindow::OnImportPNG( wxCommandEvent &WXUNUSED(event) )
+{
+  wxString wildcard( wxT("PNG (*.png)|*.png") );
+  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose a PNG file"), wxT(""), wxT(""),
+                                       wildcard,
+                                       wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
+  if( fd->ShowModal() != wxID_OK )return;
+  wxString filename( fd->GetFilename() );
+  if( filename.empty() )return;
+  //
+  // open the png file and open a window to display it in
+  //
+  wxImage image( filename, wxBITMAP_TYPE_PNG );
+  ImportWindow *importWindow = new ImportWindow( this, image );
+}
+
+void VisualizationWindow::OnImportJPEG( wxCommandEvent &WXUNUSED(event) )
+{
+  wxString wildcard( wxT("JPEG and JPG (*.jpeg;*.jpg)|*.jpeg;*.jpg") );
+  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose a JPEG file"), wxT(""), wxT(""),
+                                       wildcard,
+                                       wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
+  if( fd->ShowModal() != wxID_OK )return;
+  wxString filename( fd->GetFilename() );
+  if( filename.empty() )return;
+  //
+  wxString ext( ExGlobals::GetFileExtension(filename).MakeUpper() );
+  //
+  // open the file and open a window to display it in
+  //
+  wxImage image( filename, wxBITMAP_TYPE_JPEG );
+  ImportWindow *importWindow = new ImportWindow( this, image );
 }
 
 void VisualizationWindow::OnSavePS( wxCommandEvent &WXUNUSED(event) )
