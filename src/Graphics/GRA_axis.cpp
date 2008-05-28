@@ -66,6 +66,8 @@ void GRA_axis::CopyStuff( GRA_axis const &rhs )
   xOrigin_ = rhs.xOrigin_;
   yOrigin_ = rhs.yOrigin_;
   length_ = rhs.length_;
+  nGrid_ = rhs.nGrid_;
+  maxWidth_ = rhs.maxWidth_;
 }
 
 void GRA_axis::DeleteStuff()
@@ -139,6 +141,7 @@ void GRA_axis::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   for( std::vector<GRA_polyline*>::const_iterator i=polylines_.begin(); i!=pEnd; ++i )
     (*i)->Draw( graphicsOutput, dc );
   std::vector<GRA_drawableText*>::const_iterator tEnd = textVec_.end();
+  maxWidth_ = 0.0;
   for( std::vector<GRA_drawableText*>::const_iterator i=textVec_.begin(); i!=tEnd; ++i )
   {
     (*i)->Draw( graphicsOutput, dc );

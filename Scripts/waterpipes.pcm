@@ -23,7 +23,7 @@
 ! of the free parameters.
 !
 !
-FILE = 'HOUSES.DAT'
+FILE = 'houses.dat'
 LENGTH_GOAL = 5                       ! try to achieve this goal
 READ\-MESSAGES FILE X Y               ! read in the house positions
 SCALAR\FIT A B                        ! declare the free parameters

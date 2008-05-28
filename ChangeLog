@@ -6,6 +6,10 @@
 	the cursor is now positioned at the end of the command line on a command line recall
 	with the up/down arrow keys
 
+	* modified src/Utilities/UsefulFunctions.cpp
+	initial indexing for linear interpolation was off by one causing incorrect results in
+	some cases
+
 30/01/2008  Joe Chuma <chuma@triumf.ca>
 
 	v4.3.5

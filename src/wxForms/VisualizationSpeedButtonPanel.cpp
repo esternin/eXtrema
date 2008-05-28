@@ -143,9 +143,8 @@ void VisualizationSpeedButtonPanel::OnImportDrawing( wxCommandEvent &WXUNUSED(ev
   // open the png file and open a window to display it in
   //
   wxImage image = extension==wxT(".PNG") ? wxImage(filename,wxBITMAP_TYPE_PNG) :
-                                          wxImage(filename,wxBITMAP_TYPE_JPEG);
-  ImportWindow *importWindow = new ImportWindow( this, image );
-
+                                           wxImage(filename,wxBITMAP_TYPE_JPEG);
+  ImportForm *importForm = new ImportForm( this, image );
 }
 
 void VisualizationSpeedButtonPanel::OnSaveDrawing( wxCommandEvent &WXUNUSED(event) )

@@ -26,21 +26,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class DigitizeForm;
 class DigitizeInfo;
+class ImportWindow;
+class GetCoordinates;
 
-// The ImportWindow is created when a file (png, jpeg, etc.) is imported
-// (initiated from the VisualizationWindow). It contains the graphics canvas
-// as well as a speed button for digitizing.
+// The ImportForm is created when a file (png, jpeg, etc.) is imported
+// (initiated from the VisualizationWindow). It contains in ImportWindow,
+// the graphics canvas, as well as a button for digitizing.
 
-class ImportWindow : public wxFrame
+class ImportForm : public wxFrame
 {
 public:
-  ImportWindow( wxWindow *, wxImage & );
+  ImportForm( wxWindow *, wxImage & );
   
   void ZeroDigitizeForm();
+
   void StartDigitizing();
   void StopDigitizing();
-  void SetPoints( double, double );
+  bool IsDigitizing() const;
+  void SetDigitized( int, int );
+
   void StartPicking();
+  void StopPicking();
+  bool IsPicking() const;
+  void SetPicked( int, int );
+
+  void SetPoints( double, double );
 
   // event handlers
   void CloseEventHandler( wxCloseEvent & );
@@ -52,7 +62,7 @@ public:
 private:
   DigitizeForm *digitizeForm_;
   wxBitmap *bitmap_;
-  wxWindow *window_;
+  ImportWindow *window_;
 
   bool digitizing_, picking_;
 
@@ -62,10 +72,29 @@ private:
   DECLARE_EVENT_TABLE()
 };
 
+class ImportWindow : public wxWindow
+{
+public:
+  ImportWindow( ImportForm *, wxBitmap * );
+  
+  // event handlers
+  void CloseEventHandler( wxCloseEvent & );
+  void OnPaint( wxPaintEvent & );
+  void OnMouseLeftDown( wxMouseEvent & );
+  void SetPoints( double, double );
+
+private:
+  ImportForm *parent_;
+  GetCoordinates *getCoords_;
+  wxBitmap *bitmap_;
+
+  DECLARE_EVENT_TABLE()
+};
+
 class DigitizeForm : public wxFrame
 {
 public:
-  DigitizeForm( ImportWindow * );
+  DigitizeForm( ImportForm * );
   
   void StartPicking();
   void StartDigitizing();
@@ -83,7 +112,7 @@ public:
 private:
   void SetupCoordinateTransform();
   
-  ImportWindow *parent_;
+  ImportForm *parent_;
   DigitizeInfo *digitizeInfo_;
 
   wxButton *startStopB_;

@@ -2897,8 +2897,8 @@ void LinearInterpolate( std::vector<double> &x, std::vector<double> &y,
   //
   std::size_t nin = x.size();
   std::size_t nout = xout.size();
-  std::size_t nl = 1;
-  std::size_t nu = 2;
+  std::size_t nl = 0;
+  std::size_t nu = 1;
   for( std::size_t i=0; i<nout; ++i )
   {
     double xi = xout[i];

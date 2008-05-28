@@ -630,42 +630,53 @@ TextVariable *TextVariable::PutVariable( wxString name, wxString const &result,
     characterIndexUsed = true;
     if( preExisting )
     {
-      if( tv->data_.GetNumberOfDimensions() == 1 )
+      if( tv->data_.GetNumberOfDimensions() == 1 ) // is a vector
       {
         arrayIndexUsed = true;
         characterIndexUsed = false;
+        if( indexIsScalar[0] )
+        {
+          arrayIndex = static_cast<int>(indexVecs[0][0]);
+        }
+        else  // vector index used
+        {
+          throw EVariableError(wxString(wxT("Error in "))+inputLine+wxString(wxT(": array index must be scalar")));
+        }
       }
       else
       {
-        if( result.size() > 1 )
+        arrayIndexUsed = false;
+        characterIndexUsed = true;
+        if( indexIsScalar[0] )
         {
-          arrayIndexUsed = true;
-          characterIndexUsed = false;
+          characterIndex = static_cast<int>(indexVecs[0][0]);
+          scalarCharacterIndex = true;
+        }
+        else  // vector index used
+        {
+          characterIndex = static_cast<int>(indexVecs[0][0]);
+          std::size_t size = indexVecs[0].size();
+          for( std::size_t i=0; i<size; ++i )
+          {
+            int j = static_cast<int>(indexVecs[0][i]);
+            if( j > characterIndex )characterIndex = j;
+          }
+          scalarCharacterIndex = false;
         }
       }
     }
     else
     {
-      if( result.size() > 1 )
+      if( indexIsScalar[0] )
       {
         arrayIndexUsed = true;
         characterIndexUsed = false;
-      }
-    }
-    if( indexIsScalar[0] )
-    {
-      if( characterIndexUsed )
-      {
-        characterIndex = static_cast<int>(indexVecs[0][0]);
-        scalarCharacterIndex = true;
-      }
-      else
         arrayIndex = static_cast<int>(indexVecs[0][0]);
-    }
-    else  // vector index used
-    {
-      if( characterIndexUsed )
+      }
+      else  // vector index used
       {
+        arrayIndexUsed = false;
+        characterIndexUsed = true;
         characterIndex = static_cast<int>(indexVecs[0][0]);
         std::size_t size = indexVecs[0].size();
         for( std::size_t i=0; i<size; ++i )
@@ -675,8 +686,6 @@ TextVariable *TextVariable::PutVariable( wxString name, wxString const &result,
         }
         scalarCharacterIndex = false;
       }
-      else
-        throw EVariableError(wxString(wxT("Error in "))+inputLine+wxString(wxT(": array index must be scalar")));
     }
   }
   //

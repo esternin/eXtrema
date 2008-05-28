@@ -133,6 +133,7 @@ void GRA_cartesianAxes::DeleteStuff()
 
 void GRA_cartesianAxes::CopyStuff( GRA_cartesianAxes const &rhs )
 {
+  gridLineType_ = rhs.gridLineType_;
   xOnTop_ = rhs.xOnTop_;
   yOnRight_ = rhs.yOnRight_;
   //

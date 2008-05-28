@@ -28,15 +28,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
 //
-BEGIN_EVENT_TABLE( ImportWindow, wxFrame )
-  EVT_CLOSE( ImportWindow::CloseEventHandler )
-  EVT_BUTTON( ID_digitize, ImportWindow::OnDigitize )
-  EVT_BUTTON( wxID_CLOSE, ImportWindow::OnClose )
-  EVT_PAINT( ImportWindow::OnPaint )
-  EVT_LEFT_DOWN( ImportWindow::OnMouseLeftDown )
+BEGIN_EVENT_TABLE( ImportForm, wxFrame )
+  EVT_CLOSE( ImportForm::CloseEventHandler )
+  EVT_BUTTON( ID_digitize, ImportForm::OnDigitize )
+  EVT_BUTTON( wxID_CLOSE, ImportForm::OnClose )
 END_EVENT_TABLE()
 
-ImportWindow::ImportWindow( wxWindow *parent, wxImage &image )
+ImportForm::ImportForm( wxWindow *parent, wxImage &image )
     : wxFrame( parent,wxID_ANY,wxT("Import Window"),
                wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE )
 {
@@ -79,11 +77,7 @@ ImportWindow::ImportWindow( wxWindow *parent, wxImage &image )
   
   sizer->Add( panel, wxSizerFlags(0).Expand().Border(wxALL,1) );
   
-  window_ = new wxWindow( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE );
-  window_->SetBackgroundColour( *wxBLACK );
-  
-  window_->SetCursor( *wxCROSS_CURSOR );
-  window_->SetClientSize( width, height );
+  window_ = new ImportWindow( this, bitmap_ );
   
   sizer->Add( window_, wxSizerFlags(1).Expand().Border(wxALL,1) );
   SetSizer( sizer );
@@ -93,17 +87,10 @@ ImportWindow::ImportWindow( wxWindow *parent, wxImage &image )
   Show( true );
 }
 
-void ImportWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
-{
-  wxPaintDC dc( window_ );
-  dc.Clear();
-  dc.DrawBitmap( *bitmap_, 0, 0 );
-}
-
-void ImportWindow::OnClose( wxCommandEvent &WXUNUSED(event) )
+void ImportForm::OnClose( wxCommandEvent &WXUNUSED(event) )
 { Close(); }
 
-void ImportWindow::OnDigitize( wxCommandEvent &WXUNUSED(event) )
+void ImportForm::OnDigitize( wxCommandEvent &WXUNUSED(event) )
 {
   if( digitizeForm_ )digitizeForm_->Raise();
   else
@@ -113,50 +100,98 @@ void ImportWindow::OnDigitize( wxCommandEvent &WXUNUSED(event) )
   }
 }
 
-void ImportWindow::StartDigitizing()
+void ImportForm::StartDigitizing()
 { digitizing_ = true; }
 
-void ImportWindow::StopDigitizing()
+void ImportForm::StopDigitizing()
 { digitizing_ = false; }
 
-void ImportWindow::StartPicking()
+bool ImportForm::IsDigitizing() const
+{ return digitizing_; }
+
+void ImportForm::SetDigitized( int x, int y )
+{ digitizeForm_->SetDigitized( x, y ); }
+
+void ImportForm::StartPicking()
 { picking_ = true; }
 
-void ImportWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
+void ImportForm::StopPicking()
+{ picking_ = false; }
+
+bool ImportForm::IsPicking() const
+{ return picking_; }
+
+void ImportForm::SetPicked( int x, int y )
+{ digitizeForm_->SetPicked( x, y ); }
+
+void ImportForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
   delete bitmap_;
   Destroy();
 }
 
-void ImportWindow::ZeroDigitizeForm()
+void ImportForm::ZeroDigitizeForm()
 { digitizeForm_ = 0; }
+
+void ImportForm::SetPoints( double x, double y )
+{ if( digitizeForm_ )digitizeForm_->SetPoints(x,y); }
+
+BEGIN_EVENT_TABLE( ImportWindow, wxWindow )
+  EVT_CLOSE( ImportWindow::CloseEventHandler )
+  EVT_PAINT( ImportWindow::OnPaint )
+  EVT_LEFT_DOWN( ImportWindow::OnMouseLeftDown )
+END_EVENT_TABLE()
+
+ImportWindow::ImportWindow( ImportForm *parent, wxBitmap *bitmap )
+    : wxWindow( parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE ),
+      parent_(parent), bitmap_(bitmap)
+{
+  SetBackgroundColour( *wxBLACK );
+  
+  SetCursor( *wxCROSS_CURSOR );
+  int width = bitmap_->GetWidth() + 5;
+  int height = bitmap_->GetHeight() + 50;
+  SetClientSize( width, height );
+
+  getCoords_ = 0;
+}
 
 void ImportWindow::OnMouseLeftDown( wxMouseEvent &event )
 {
-
-  std::cout << "OnMouseLeftDown\n";
-
   long xl, yl;
   event.GetPosition( &xl, &yl );
   int x = static_cast<int>(xl);
   int y = static_cast<int>(yl);
-  if( picking_ )
+  if( parent_->IsPicking() )
   {
-    digitizeForm_->SetPicked( x, y );
-    picking_ = false;
-    std::auto_ptr<GetCoordinates> f( new GetCoordinates(this) );
+    parent_->SetPicked( x, y );
+    parent_->StopPicking();
+    getCoords_ = new GetCoordinates(this);
     int width, height;
-    f->GetSize( &width, &height );
-    f->SetSize( x, y, width, height );
+    getCoords_->GetSize( &width, &height );
+    getCoords_->SetSize( x, y, width, height );
   }
-  else if( digitizing_ )
+  else if( parent_->IsDigitizing() )
   {
-    digitizeForm_->SetDigitized( x, y );
+    parent_->SetDigitized( x, y );
   }
 }
 
+void ImportWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
+{
+  wxPaintDC dc( this );
+  dc.Clear();
+  dc.DrawBitmap( *bitmap_, 0, 0 );
+}
+
 void ImportWindow::SetPoints( double x, double y )
-{ if( digitizeForm_ )digitizeForm_->SetPoints(x,y); }
+{ parent_->SetPoints(x,y); }
+
+void ImportWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
+{
+  delete getCoords_;
+  Destroy();
+}
 
 BEGIN_EVENT_TABLE( DigitizeForm, wxFrame )
   EVT_CLOSE( DigitizeForm::CloseEventHandler )
@@ -164,7 +199,7 @@ BEGIN_EVENT_TABLE( DigitizeForm, wxFrame )
   EVT_BUTTON( ID_start, DigitizeForm::OnStartStop )
 END_EVENT_TABLE()
 
-DigitizeForm::DigitizeForm( ImportWindow *parent )
+DigitizeForm::DigitizeForm( ImportForm *parent )
     : wxFrame((wxWindow*)parent,wxID_ANY,wxT("Digitize Form"),
               wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE ),
       parent_(parent)
@@ -471,7 +506,7 @@ DigitizeInfo::DigitizeInfo( DigitizeForm *parent )
   infoSizer->Add( infoST_, wxSizerFlags(0).Left().Border(wxTOP,2) );
 
   abortB_ = new wxButton( this, ID_abort, wxT("Abort") );
-  mainSizer->Add( abortB_, wxSizerFlags(0).Centre().Border(wxTOP,10) );
+  mainSizer->Add( abortB_, wxSizerFlags(0).Centre().Border(wxALL,5) );
 
   wxString label( wxT("Click with the left mouse button on a location\n") );
   label += wxT("on the imported drawing where you know the coordinates\n");
@@ -567,6 +602,7 @@ GetCoordinates::GetCoordinates( ImportWindow *parent )
   mainSizer->Add( okB, wxSizerFlags(0).Centre().Border(wxTOP,10) );
 
   Show( true );
+  SetFocus();
 }
 
 void GetCoordinates::OnOK( wxCommandEvent &WXUNUSED(event) )
