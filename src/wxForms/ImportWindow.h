@@ -85,7 +85,6 @@ public:
 
 private:
   ImportForm *parent_;
-  GetCoordinates *getCoords_;
   wxBitmap *bitmap_;
 
   DECLARE_EVENT_TABLE()
@@ -155,7 +154,7 @@ private:
 class GetCoordinates : public wxFrame
 {
 public:
-  GetCoordinates( ImportWindow * );
+  GetCoordinates( ImportWindow *, int, int );
   
   void OnOK( wxCommandEvent & );
   void CloseEventHandler( wxCloseEvent & );

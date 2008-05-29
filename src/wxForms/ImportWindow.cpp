@@ -147,13 +147,10 @@ ImportWindow::ImportWindow( ImportForm *parent, wxBitmap *bitmap )
       parent_(parent), bitmap_(bitmap)
 {
   SetBackgroundColour( *wxBLACK );
-  
   SetCursor( *wxCROSS_CURSOR );
   int width = bitmap_->GetWidth() + 5;
   int height = bitmap_->GetHeight() + 50;
   SetClientSize( width, height );
-
-  getCoords_ = 0;
 }
 
 void ImportWindow::OnMouseLeftDown( wxMouseEvent &event )
@@ -165,11 +162,7 @@ void ImportWindow::OnMouseLeftDown( wxMouseEvent &event )
   if( parent_->IsPicking() )
   {
     parent_->SetPicked( x, y );
-    parent_->StopPicking();
-    getCoords_ = new GetCoordinates(this);
-    int width, height;
-    getCoords_->GetSize( &width, &height );
-    getCoords_->SetSize( x, y, width, height );
+    new GetCoordinates(this,x,y);
   }
   else if( parent_->IsDigitizing() )
   {
@@ -188,14 +181,10 @@ void ImportWindow::SetPoints( double x, double y )
 { parent_->SetPoints(x,y); }
 
 void ImportWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
-{
-  delete getCoords_;
-  Destroy();
-}
+{ Destroy(); }
 
 BEGIN_EVENT_TABLE( DigitizeForm, wxFrame )
   EVT_CLOSE( DigitizeForm::CloseEventHandler )
-  EVT_BUTTON( wxID_CLOSE, DigitizeForm::OnClose )
   EVT_BUTTON( ID_start, DigitizeForm::OnStartStop )
 END_EVENT_TABLE()
 
@@ -282,8 +271,9 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   numPanel->SetSizer( numSizer );
   wxStaticText *numText = new wxStaticText( numPanel, wxID_ANY, wxT("Number of digitized points :") );
   numText->SetFont( font );
+  numText->SetSize( 200, wxDefaultCoord );
   numSizer->Add( numText, wxSizerFlags(0).Left().Border(wxTOP,2) );
-  numST_ = new wxStaticText( tpPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxDefaultSize,
+  numST_ = new wxStaticText( numPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxDefaultSize,
                              wxALIGN_RIGHT|wxST_NO_AUTORESIZE );
   numST_->SetFont( font );
   numSizer->Add( numST_,wxSizerFlags(0).Left().Border(wxTOP,2) );
@@ -294,8 +284,9 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   lastPanel->SetSizer( lastSizer );
   wxStaticText *lastText = new wxStaticText( lastPanel, wxID_ANY, wxT("Last point digitized :") );
   lastText->SetFont( font );
+  lastText->SetSize( 200, wxDefaultCoord );
   lastSizer->Add( lastText, wxSizerFlags(0).Left().Border(wxTOP,2) );
-  lastST_ = new wxStaticText( tpPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxDefaultSize,
+  lastST_ = new wxStaticText( lastPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxDefaultSize,
                               wxALIGN_RIGHT|wxST_NO_AUTORESIZE );
   lastST_->SetFont( font );
   lastSizer->Add( lastST_,wxSizerFlags(0).Left().Border(wxTOP,2) );
@@ -327,17 +318,11 @@ void DigitizeForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   Destroy();
 }
 
-void DigitizeForm::OnClose( wxCommandEvent &WXUNUSED(event) )
-{ Close(); }
-
 void DigitizeForm::ZeroDigitizeInfo()
 { digitizeInfo_ = 0; }
 
 void DigitizeForm::OnStartStop( wxCommandEvent &WXUNUSED(event) )
 {
-
-  std::cout << "digitizing_ = " << digitizing_ << "\n";
-
   if( !digitizing_ )
   {
     nPick_ = 0;
@@ -351,14 +336,11 @@ void DigitizeForm::OnStartStop( wxCommandEvent &WXUNUSED(event) )
   }
   else
   {
-    parent_->StopDigitizing();
-    startStopB_->SetLabel( wxT("Start digitizing") );
-    digitizing_ = false;
-    if( !xTC_->GetLabel().empty() )
+    if( !xTC_->GetValue().empty() )
     {
       try
       {
-        NumericVariable::PutVariable( xTC_->GetLabel(), xd_, 0, wxT("from digitizing") );
+        NumericVariable::PutVariable( xTC_->GetValue(), xd_, 0, wxT("from digitizing") );
       }
       catch ( EVariableError const &e )
       {
@@ -368,11 +350,11 @@ void DigitizeForm::OnStartStop( wxCommandEvent &WXUNUSED(event) )
         return;
       }
     }
-    if( !yTC_->GetLabel().empty() )
+    if( !yTC_->GetValue().empty() )
     {
       try
       {
-        NumericVariable::PutVariable( yTC_->GetLabel(), yd_, 0, wxT("from digitizing") );
+        NumericVariable::PutVariable( yTC_->GetValue(), yd_, 0, wxT("from digitizing") );
       }
       catch ( EVariableError const &e )
       {
@@ -382,6 +364,7 @@ void DigitizeForm::OnStartStop( wxCommandEvent &WXUNUSED(event) )
         return;
       }
     }
+    Close();
   }
 }
 
@@ -390,18 +373,23 @@ void DigitizeForm::StartPicking()
 
 void DigitizeForm::StartDigitizing()
 {
+  //std::cout << "StartDigitizing\n";
+
   digitizing_ = true;
   startStopB_->SetLabel( wxT("Stop digitizing") );
   SetupCoordinateTransform();
   parent_->StartDigitizing();
   nDigitized_ = 0;
   numST_->SetLabel( wxString()<<nDigitized_ );
+  Layout();
   std::vector<double>().swap( xd_ );
   std::vector<double>().swap( yd_ );
 }
 
 void DigitizeForm::AbortDigitizing()
 {
+  //std::cout << "AbortDigitizing\n";
+
   startStopB_->SetLabel( wxT("Start digitizing") );
   std::vector<double>().swap( xd_ );
   std::vector<double>().swap( yd_ );
@@ -411,14 +399,18 @@ void DigitizeForm::SetPicked( int x, int y )
 {
   xImage_[nPick_] = x;
   yImage_[nPick_] = y;
+  if( nPick_ == 2 )parent_->StopPicking();
 }
 
 void DigitizeForm::SetDigitized( int x, int y )
 {
+  //std::cout << "SetDigitized\n";
+
   numST_->SetLabel( wxString()<<(++nDigitized_) );
   double xx = a_ + b_*x + c_*y;
   double yy = d_ + e_*x + f_*y;
   lastST_->SetLabel( wxString()<<wxT("(")<<xx<<wxT(",")<<yy<<wxT(")") );
+  Layout();
   xd_.push_back(xx);
   yd_.push_back(yy);
 }
@@ -439,6 +431,7 @@ void DigitizeForm::SetPoints( double x, double y )
       tpST_->SetLabel( s );
       break;
   }
+  Layout();
   xUser_[nPick_] = x;
   yUser_[nPick_] = y;
   ++nPick_;
@@ -482,9 +475,6 @@ DigitizeInfo::DigitizeInfo( DigitizeForm *parent )
               wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE ),
       parent_(parent)
 {
-
-  std::cout << "DigitizeInfo constructor\n";
-
   wxConfigBase *config = wxConfigBase::Get();
   int ulx = config->Read( wxT("/DigitizeInfo/UPPERLEFTX"), 10l );
   int uly = config->Read( wxT("/DigitizeInfo/UPPERLEFTY"), 10l );
@@ -514,11 +504,9 @@ DigitizeInfo::DigitizeInfo( DigitizeForm *parent )
   infoST_->SetLabel( label );
 
   nPoints_ = 0;
+  parent_->StartPicking();
 
   Show( true );
-
-  std::cout << "DigitizeInfo constructor finished\n";
-
 }
 
 void DigitizeInfo::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
@@ -552,12 +540,10 @@ void DigitizeInfo::Next()
     case 0:
       infoST_->SetLabel( wxString() << wxT("Next, click with the left mouse button on another\n")
                          << wxT("location on the imported drawing where you know the coordinates") );
-      parent_->StartPicking();
       break;
     case 1:
       infoST_->SetLabel( wxString() << wxT("Finally, click with the left mouse button on a\n")
               << wxT("non-colinear location on the imported drawing where you know the coordinates") );
-      parent_->StartPicking();
       break;
     case 2:
       infoST_->SetLabel( wxString() << wxT("Now, close this form and then digitize by clicking\n")
@@ -572,7 +558,7 @@ BEGIN_EVENT_TABLE( GetCoordinates, wxFrame )
   EVT_BUTTON( wxID_OK, GetCoordinates::OnOK )
 END_EVENT_TABLE()
 
-GetCoordinates::GetCoordinates( ImportWindow *parent )
+GetCoordinates::GetCoordinates( ImportWindow *parent, int x, int y )
     : wxFrame((wxWindow*)parent,wxID_ANY,wxT("Get Coordinates"),
               wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE ),
       parent_(parent)
@@ -599,7 +585,12 @@ GetCoordinates::GetCoordinates( ImportWindow *parent )
   ySizer->Add( yTC_, wxSizerFlags(0).Left().Border(wxALL,2) );
 
   wxButton *okB = new wxButton( this, wxID_OK, wxT("OK") );
-  mainSizer->Add( okB, wxSizerFlags(0).Centre().Border(wxTOP,10) );
+  mainSizer->Add( okB, wxSizerFlags(0).Centre().Border(wxALL,5) );
+
+  int width = 350;
+  int height = 130;
+  //GetSize( &width, &height );
+  SetSize( x, y, width, height );
 
   Show( true );
   SetFocus();
