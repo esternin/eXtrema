@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -17,6 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include <limits>
 #include <iomanip>
+#include <memory>
 
 #include "GRA_postscript.h"
 #include "GRA_window.h"
@@ -2126,6 +2127,66 @@ void GRA_postscript::DrawProfiles( GRA_densityPlot *densPlot )
     static_cast<GRA_boolCharacteristic*>(yAxisC->Get(wxT("TICSON")))->Set( ytics );
     static_cast<GRA_stringCharacteristic*>(generalC->Get(wxT("AUTOSCALE")))->Set( autoScale );  
   }
+}
+
+void GRA_postscript::DisplayBackground( GRA_window *gw )
+{
+  double xminw, yminw, xmaxw, ymaxw;
+  ExGlobals::GetWorldLimits( xminw, yminw, xmaxw, ymaxw );
+  double xlo, ylo, xhi, yhi;
+  gw->GetDimensions( xlo, ylo, xhi, yhi );
+  //
+  // calculate window coordinates in world units
+  //
+  double xl = xminw+xlo*(xmaxw-xminw)/100.0;
+  double yl = yminw+ylo*(ymaxw-yminw)/100.0;
+  double xu = xminw+xhi*(xmaxw-xminw)/100.0;
+  double yu = yminw+yhi*(ymaxw-yminw)/100.0;
+  //
+  GRA_color *bgcolor = static_cast<GRA_colorCharacteristic*>(gw->GetGeneralCharacteristics()->
+							     Get(wxT("BACKGROUNDCOLOR")))->Get();
+  wxString bgfile( static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->
+							  Get(wxT("BACKGROUNDFILE")))->Get() );
+  ExGlobals::SetClippingBoundary( xl, yl, xu, yu );
+  if( bgcolor )
+  {
+    std::auto_ptr<GRA_rectangle> rect( new GRA_rectangle(xl,yl,xu,yu,0.0,false,bgcolor,bgcolor) );
+    Draw( rect.get() );
+  }
+  else if( !bgfile.empty() )
+  {
+    wxImage image( bgfile, wxBITMAP_TYPE_PNG );
+    //
+    double xl1, yl1, xu1, yu1;
+    WorldToOutputType( xl, yl, xl1, yl1 );
+    WorldToOutputType( xu, yu, xu1, yu1 );
+    //
+    int dx = int(fabs(xu1-xl1));
+    int dy = int(fabs(yu1-yl1));
+    image.Rescale( dx, dy );
+    //
+    GRA_bitmap *bitmap = new GRA_bitmap( xl, yl, xu, yu,
+					 GRA_colorControl::GetColor(wxT("WHITE")), 0 );
+    int width = bitmap->GetWidth();
+    int height = bitmap->GetHeight();
+    std::vector<GRA_color*> tempColors( width*height );
+    for( int i=0; i<width; ++i )
+    {
+      for( int j=0; j<height; ++j )
+      {
+	int r = image.GetRed(i,height-1-j);
+	int g = image.GetGreen(i,height-1-j);
+	int b = image.GetBlue(i,height-1-j);
+	GRA_color *color = new GRA_color(r,g,b);
+	bitmap->SetPixelColor( i, j, color );
+	tempColors[i+j*width] = color;
+      }
+    }
+    Draw( bitmap );
+    delete bitmap;
+    for( int i=0; i<width*height; ++i )delete tempColors[i];
+  }
+  ExGlobals::ResetClippingBoundary();
 }
 
 void GRA_postscript::Draw( GRA_bitmap *b )

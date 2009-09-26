@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,7 +25,8 @@ class GRA_color;
 class GRA_arrow1 : public GRA_polygon
 {
 public:
-  GRA_arrow1( double, double, double, double, bool, GRA_color * =0, GRA_color * =0, int =1 );
+  GRA_arrow1( double, double, double, double, bool, GRA_color * =0,
+	      GRA_color * =0, int =1, double =1.0, double =1.0 );
 
   ~GRA_arrow1()
   {}

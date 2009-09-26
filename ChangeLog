@@ -1,3 +1,23 @@
+26/09/2009  Joe Chuma <joe.chuma@gmail.com>
+
+	v4.4.0
+
+	* modified the fit gui src/wxForms/FitForm
+	the parameter errors displayed on the resultant graph are now the more usual standard
+	errors (E1), instead of the so-called "reduced standard errors" (E2)
+	where E2 = E1/sqrt(chi-sq/#degrees_of_freedom).  I appologize for any confusion this
+	may have caused.
+
+	* added two new general characteristics: BACKGROUNDCOLOR and BACKGROUNDFILE
+	these control the background for each graphics sub-window.
+	BACKGROUNDFILE refers to a png image file.
+	The default background color is white.
+
+	* added two new general characteristics: ARROWHEADWIDTH and ARROWHEADLENGTH
+	these are scale factors which are applied to the width and length of any arrow
+	heads drawn with the FIGURE command, e.g., to double the width, SET ARROWHEADWIDTH 2
+	while to halve it, SET ARROWHEADWIDTH 0.5   The default for both characteristics is 1.0
+
 06/02/2008  Joe Chuma <chuma@triumf.ca>
 
 	v4.3.6

@@ -12,9 +12,9 @@ Getting ready to build
 
 Required:
 
-Extrema requires the wxGTK ( >= v2.6.3 ) package to be installed
-before installing extrema.  See http://www.wxwidgets.org/  for
-information on downloading and installing.  Specifically for
+Extrema requires the wxGTK ( >= v2.6.3, although > v2.8.0 is recommended )
+package to be installed before installing extrema.  See http://www.wxwidgets.org/
+for information on downloading and installing.  Specifically for
 extrema, wxGTK should be built with the following configure command:
 
 $ ./configure --enable-optimise --enable-exceptions --enable-unicode

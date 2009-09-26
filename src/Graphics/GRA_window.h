@@ -75,6 +75,7 @@ public:
   void Reset();
   void Clear();
   void Erase();
+  void DisplayBackground( GRA_wxWidgets *, wxDC & );
 
   GRA_setOfCharacteristics *GetXAxisCharacteristics();
   GRA_setOfCharacteristics *GetYAxisCharacteristics();

@@ -1,4 +1,4 @@
-# Copyright (C) 2007 Joseph L. Chuma <chuma@triumf.ca>
+# Copyright (C) 2005,...,2009 Joseph L. Chuma <joe.chuma@gmail.com>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 
@@ -11,7 +11,7 @@
 AC_PREREQ(2.59)
 
 # touch src/wxForms/VisualizationWindow.cpp to get the latest version number
-AC_INIT([extrema],[4.3.6],[Joseph L. Chuma chuma@triumf.ca])
+AC_INIT([extrema],[4.4.0],[Joseph L. Chuma joe.chuma@gmail.com])
 
 # automake < 1.9 will not be allowed
 # use gnu strictness

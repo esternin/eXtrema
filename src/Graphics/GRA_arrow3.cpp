@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -50,7 +50,7 @@ GRA_arrow3::GRA_arrow3( double xc, double yc, double side, double offset, double
 }
 
 GRA_arrow3::GRA_arrow3( double x1, double y1, double x2, double y2, bool heads,
-                        GRA_color *lineColor, int lineWidth )
+                        GRA_color *lineColor, int lineWidth, double widthFactor, double lengthFactor )
   : GRA_multiLineFigure(), headsBothEnds_(heads)
 {
   SetLineColor( lineColor );
@@ -64,8 +64,10 @@ GRA_arrow3::GRA_arrow3( double x1, double y1, double x2, double y2, bool heads,
   //double const headWidth = 0.3;
   //double const headLength = 0.3;
   double const temp = length - 15.;
-  double const headLength = 0.2+(temp/5.)*(temp/5.)*exp(-temp*temp/25.);
-  double const headWidth = 0.75*headLength;
+  double headLength = 0.2+(temp/5.)*(temp/5.)*exp(-temp*temp/25.);
+  double headWidth = 0.75*headLength;
+  headWidth *= widthFactor;
+  headLength *= lengthFactor;
   xc_ = 0.5*(x1+x2);
   yc_ = 0.5*(y1+y2);
   double const tan30 = tan(30.*M_PI/180.);

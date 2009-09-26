@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,6 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <limits>
 #include <cmath>
 #include <algorithm>
+#include <memory>
 
 #include "wx/wx.h"
 
@@ -59,6 +60,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "UsefulFunctions.h"
 #include "GRA_polarAxes.h"
 #include "GRA_polarCurve.h"
+#include "VisualizationWindow.h"
+#include "GRA_rectangle.h"
 
 void GRA_window::SetUp()
 {
@@ -135,6 +138,8 @@ void GRA_window::CopyStuff( GRA_window const &rhs )
   xPrevious_ = rhs.xPrevious_;
   yPrevious_ = rhs.yPrevious_;
   Clear();
+  wxClientDC dc( ExGlobals::GetVisualizationWindow()->GetPage() );
+  DisplayBackground( ExGlobals::GetGraphicsOutput(), dc );
   drawableVecIter end = rhs.drawableObjects_.end();
   GRA_drawableObject *p = 0;
   for( drawableVecIter i=rhs.drawableObjects_.begin(); i!=end; ++i )
@@ -177,6 +182,8 @@ void GRA_window::Reset()
   Clear();
   DeleteCharacteristics();
   SetUp();
+  wxClientDC dc( ExGlobals::GetVisualizationWindow()->GetPage() );
+  DisplayBackground( ExGlobals::GetGraphicsOutput(), dc );
 }
 
 void GRA_window::RemoveDrawableObject( GRA_drawableObject *object )
@@ -227,6 +234,14 @@ void GRA_window::InheritFrom( GRA_window const *w )
    static_cast<GRA_sizeCharacteristic*>(w->generalCharacteristics_->Get(wxT("CONTOURLABELHEIGHT")))->GetAsPercent() );
   static_cast<GRA_sizeCharacteristic*>(generalCharacteristics_->Get(wxT("CONTOURLABELSEPARATION")))->SetAsPercent(
    static_cast<GRA_sizeCharacteristic*>(w->generalCharacteristics_->Get(wxT("CONTOURLABELSEPARATION")))->GetAsPercent() );
+  static_cast<GRA_stringCharacteristic*>(generalCharacteristics_->Get(wxT("BACKGROUNDFILE")))->Set(
+   static_cast<GRA_stringCharacteristic*>(w->generalCharacteristics_->Get(wxT("BACKGROUNDFILE")))->Get() );
+  static_cast<GRA_colorCharacteristic*>(generalCharacteristics_->Get(wxT("BACKGROUNDCOLOR")))->Set(
+   static_cast<GRA_colorCharacteristic*>(w->generalCharacteristics_->Get(wxT("BACKGROUNDCOLOR")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(generalCharacteristics_->Get(wxT("ARROWHEADWIDTH")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->generalCharacteristics_->Get(wxT("ARROWHEADWIDTH")))->Get() );
+  static_cast<GRA_doubleCharacteristic*>(generalCharacteristics_->Get(wxT("ARROWHEADLENGTH")))->Set(
+   static_cast<GRA_doubleCharacteristic*>(w->generalCharacteristics_->Get(wxT("ARROWHEADLENGTH")))->Get() );
   //
   static_cast<GRA_boolCharacteristic*>(xAxisCharacteristics_->Get(wxT("AXISON")))->Set(
    static_cast<GRA_boolCharacteristic*>(w->xAxisCharacteristics_->Get(wxT("AXISON")))->Get() );
@@ -849,6 +864,10 @@ void GRA_window::CreateGeneralCharacteristics( double xl, double yl, double xu, 
   generalCharacteristics_->AddSize( wxT("LEGENDSIZE"), 3.0, true, yl, yu );
   generalCharacteristics_->AddSize( wxT("CONTOURLABELHEIGHT"), 2.0, true, yl, yu );
   generalCharacteristics_->AddSize( wxT("CONTOURLABELSEPARATION"), 50.0, true, yl, yu );
+  generalCharacteristics_->AddString( wxT("BACKGROUNDFILE"), wxString(wxT("")) );
+  generalCharacteristics_->AddColor( wxT("BACKGROUNDCOLOR"), 0 );
+  generalCharacteristics_->AddNumber( wxT("ARROWHEADWIDTH"), 1.0 );
+  generalCharacteristics_->AddNumber( wxT("ARROWHEADLENGTH"), 1.0 );
 }
 
 void GRA_window::SetGeneralDefaults()
@@ -873,6 +892,14 @@ void GRA_window::SetGeneralDefaults()
       SetAsPercent( 2.0 );
   static_cast<GRA_sizeCharacteristic*>(generalCharacteristics_->Get(wxT("CONTOURLABELSEPARATION")))->
       SetAsPercent( 50.0 );
+  static_cast<GRA_stringCharacteristic*>(generalCharacteristics_->Get(wxT("BACKGROUNDFILE")))->
+      Set( wxString(wxT("")) );
+  static_cast<GRA_colorCharacteristic*>(generalCharacteristics_->Get(wxT("BACKGROUNDCOLOR")))->
+      Set( reinterpret_cast<GRA_color*>(0) );
+  static_cast<GRA_doubleCharacteristic*>(generalCharacteristics_->Get(wxT("ARROWHEADWIDTH")))->
+      Set( 1.0 );
+  static_cast<GRA_doubleCharacteristic*>(generalCharacteristics_->Get(wxT("ARROWHEADLENGTH")))->
+      Set( 1.0 );
 }
   
 void GRA_window::CreateXAxisCharacteristics( double xl, double yl, double xu, double yu )
@@ -1481,8 +1508,46 @@ void GRA_window::ContinueLine( double x, double y, double *xw, double *yw, int &
   yPrevious_ = y;
 }
 
+void GRA_window::DisplayBackground( GRA_wxWidgets *graphicsOutput, wxDC &dc )
+{
+  double xminw, yminw, xmaxw, ymaxw;
+  ExGlobals::GetWorldLimits( xminw, yminw, xmaxw, ymaxw );
+  double xl = xminw+xLoP_*(xmaxw-xminw)/100.0;
+  double yl = yminw+yLoP_*(ymaxw-yminw)/100.0;
+  double xu = xminw+xHiP_*(xmaxw-xminw)/100.0;
+  double yu = yminw+yHiP_*(ymaxw-yminw)/100.0;
+  GRA_color *bgcolor =
+    static_cast<GRA_colorCharacteristic*>(generalCharacteristics_->Get(wxT("BACKGROUNDCOLOR")))->Get();
+  wxString bgfile(
+    static_cast<GRA_stringCharacteristic*>(generalCharacteristics_->Get(wxT("BACKGROUNDFILE")))->Get() );
+  ExGlobals::SetClippingBoundary( xl, yl, xu, yu );
+  if( bgcolor )
+  {
+    std::auto_ptr<GRA_rectangle> rect( new GRA_rectangle(xl,yl,xu,yu,0.0,false,bgcolor,bgcolor) );
+    rect->Draw( graphicsOutput, dc );
+  }
+  else if( !bgfile.empty() )
+  {
+    wxImage image( bgfile, wxBITMAP_TYPE_PNG );
+    //
+    int xl1, yl1, xu1, yu1;
+    graphicsOutput->WorldToOutputType( xl, yl, xl1, yl1 );
+    graphicsOutput->WorldToOutputType( xu, yu, xu1, yu1 );
+    //
+    int dx = abs(xu1-xl1);
+    int dy = abs(yu1-yl1);
+    image.Rescale( dx, dy );
+    wxBitmap *bitmap = new wxBitmap( image );
+    //
+    dc.DrawBitmap( *bitmap, xl1, std::min(yl1,yu1) );
+    delete bitmap;
+  }
+  ExGlobals::ResetClippingBoundary();
+}
+
 void GRA_window::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
+  DisplayBackground( graphicsOutput, dc );
   try
   {
     drawableVecIter end = drawableObjects_.end();

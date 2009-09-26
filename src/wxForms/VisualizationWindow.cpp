@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2008 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -224,13 +224,25 @@ void VisualizationWindow::ClearWindows()
   // destroy all drawableObjects in all graph windows on the current page
   //
   static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ClearWindows();
+  wxClientDC dc( notebook_->GetCurrentPage() );
+  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->
+    DisplayBackgrounds( ExGlobals::GetGraphicsOutput(), dc );
 }
 
 void VisualizationWindow::ReplotAllWindows()
-{ static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ReplotAllWindows(); }
+{
+  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ReplotAllWindows();
+}
 
 void VisualizationWindow::ReplotCurrentWindow( bool repaint )
-{ static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ReplotCurrentWindow(repaint); }
+{
+  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ReplotCurrentWindow(repaint);
+}
+
+void VisualizationWindow::DisplayBackgrounds( GRA_wxWidgets *graphicsOutput, wxDC &dc )
+{
+  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->DisplayBackgrounds( graphicsOutput, dc );
+}
 
 void VisualizationWindow::SetInteractiveText( GRA_drawableText *dt )
 {
@@ -371,10 +383,11 @@ void VisualizationWindow::DrawGraphWindows( GRA_wxWidgets *output, wxDC &dc )
 
 void VisualizationWindow::OnClearGraphicsPage( wxCommandEvent &WXUNUSED(event) )
 {
-  wxWindow *window = notebook_->GetCurrentPage();
-  wxClientDC dc( window );
+  wxWindow *page = notebook_->GetCurrentPage();
+  wxClientDC dc( page );
   dc.Clear();
-  static_cast<GraphicsPage*>(window)->ClearWindows();
+  static_cast<GraphicsPage*>(page)->ClearWindows();
+  static_cast<GraphicsPage*>(page)->DisplayBackgrounds( ExGlobals::GetGraphicsOutput(), dc );
   if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("CLEAR") );  
 }
 

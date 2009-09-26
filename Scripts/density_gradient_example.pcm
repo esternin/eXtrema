@@ -8,6 +8,7 @@ y = r*sind(t)
 z = exp(-r/2)*cosd(180*(r-1))
 grid\xyout\-messages x y z m xout yout
 window 0
+get backgroundcolor bgcolor
 defaults
 set
  %yimagticlength 2
@@ -20,6 +21,7 @@ set
  xticangle -90
  yticangle 90
  colormap topo256
+ backgroundcolor bgcolor
 
 scales\commensurate\-messages -4 4 -4 4 
 density\-reset xout yout m

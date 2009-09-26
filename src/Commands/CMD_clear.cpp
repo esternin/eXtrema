@@ -80,10 +80,7 @@ void CMD_clear::Execute( ParseLine const *p )
   if( n < 0 )throw ECommandError( Name()+wxT(": window number < 0") );
   if( n > static_cast<int>(ExGlobals::GetNumberOfWindows()) )
     throw ECommandError( command+wxT("window number > largest defined window number") );
-  GRA_window *gw = ExGlobals::GetGraphWindow( n );
-  gw->Erase();
-  if( qualifiers[wxT("REPLOT")] )gw->Clear();
-  ExGlobals::SetWindowNumber( n );
+  ExGlobals::ClearGraphicsWindow( qualifiers[wxT("REPLOT")], n );
   AddToStackLine( p->GetString(1) );
 }
 

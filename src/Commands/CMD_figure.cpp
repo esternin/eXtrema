@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,6 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_ellipse.h"
 #include "GRA_colorCharacteristic.h"
 #include "GRA_intCharacteristic.h"
+#include "GRA_doubleCharacteristic.h"
 #include "GRA_setOfCharacteristics.h"
 #include "EVariableError.h"
 #include "NumericVariable.h"
@@ -149,25 +150,27 @@ void CMD_figure::Execute( ParseLine const *p )
       x2w = x2;
       y2w = y2;
     }
+    double headWidth = static_cast<GRA_doubleCharacteristic*>(generalChars->Get(wxT("ARROWHEADWIDTH")))->Get();
+    double headLength = static_cast<GRA_doubleCharacteristic*>(generalChars->Get(wxT("ARROWHEADLENGTH")))->Get();
     switch (style)
     {
       case 1:
       {
-        GRA_arrow1 *arrow = new GRA_arrow1(x2w,y2w,x1w,y1w,headsBothEnds,cc,fc,lw);
+        GRA_arrow1 *arrow = new GRA_arrow1(x2w,y2w,x1w,y1w,headsBothEnds,cc,fc,lw,headWidth,headLength);
         arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( arrow );
         break;
       }
       case 2:
       {
-        GRA_arrow2 *arrow = new GRA_arrow2(x2w,y2w,x1w,y1w,headsBothEnds,cc,fc,lw);
+        GRA_arrow2 *arrow = new GRA_arrow2(x2w,y2w,x1w,y1w,headsBothEnds,cc,fc,lw,headWidth,headLength);
         arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( arrow );
         break;
       }
       case 3:
       {
-        GRA_arrow3 *arrow = new GRA_arrow3(x2w,y2w,x1w,y1w,headsBothEnds,cc,lw);
+        GRA_arrow3 *arrow = new GRA_arrow3(x2w,y2w,x1w,y1w,headsBothEnds,cc,lw,headWidth,headLength);
         arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( arrow );
       }

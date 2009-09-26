@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -16,6 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include <cmath>
+#include <sstream>
 
 #include "CMD_set.h"
 #include "ECommandError.h"
@@ -48,6 +49,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_stringCharacteristic.h"
 #include "GRA_setOfCharacteristics.h"
 #include "VisualizationWindow.h"
+#include "GraphicsPage.h"
 
 CMD_set *CMD_set::cmd_set_ = 0;
 
@@ -534,7 +536,7 @@ NEXTLINE:
   }
   else if( keyword==wxT("COLOR") || keyword==wxT("COLOUR") )
   {
-    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    if( percent )throw ECommandError( command+wxT(" % is meaningless") );
     try
     {
       GRA_color *color = GetColor( keyword );
@@ -563,6 +565,108 @@ NEXTLINE:
     {
       throw;
     }
+  }
+  else if( keyword==wxT("BACKGROUNDCOLOR") || keyword==wxT("BACKGROUNDCOLOUR") )
+  {
+    if( percent )throw ECommandError( command+wxT(" % is meaningless") );
+    wxString colorName;
+    try
+    {
+      TextVariable::GetVariable( p.GetString(valueIndex_), true, colorName );
+    }
+    catch (EVariableError &e)
+    {
+      throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
+    }
+    //
+    // first check to see if it is a named color, such as RED
+    //
+    GRA_color *bgcolor = GRA_colorControl::GetColor( colorName );
+    if( bgcolor )      // it was a recognized name
+    {
+      static_cast<GRA_colorCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDCOLOR")))->
+        Set( bgcolor );
+      static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
+        Set( wxString(wxT("")) );
+      //
+      wxWindow *wxw = ExGlobals::GetVisualizationWindow()->GetPage();
+      wxClientDC dc( wxw );
+      GraphicsPage *page = dynamic_cast<GraphicsPage*>(wxw);
+      page->EraseWindows();
+      page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
+    }
+    else             // it was not a recognized name
+    {
+      int ndim;
+      double dvalue;
+      std::vector<double> data;
+      int dimSizes[3];
+      try
+      {
+        NumericVariable::GetVariable( p.GetString(valueIndex_), ndim, dvalue, data, dimSizes );
+      }
+      catch (EVariableError &e)
+      {
+        throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
+      }
+      if( ndim == 0 )      // scalar
+      {
+        int ivalue = static_cast<int>(dvalue);
+        GRA_colorCharacteristic *bgchar =
+          static_cast<GRA_colorCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDCOLOR")));
+        ivalue==0 ? bgchar->Set(reinterpret_cast<GRA_color*>(0)) :
+                    bgchar->Set(GRA_colorControl::GetColor(ivalue));
+        static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
+          Set( wxString(wxT("")) );
+	//
+	wxWindow *wxw = ExGlobals::GetVisualizationWindow()->GetPage();
+	wxClientDC dc( wxw );
+	GraphicsPage *page = dynamic_cast<GraphicsPage*>(wxw);
+	page->EraseWindows();
+	page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
+      }
+      else
+      {
+        throw ECommandError( command+wxT("expecting scalar value") );
+      }
+    }
+    AddToStackLine( p.GetString(valueIndex_) );
+  }
+  else if( keyword==wxT("BACKGROUNDFILE") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    try
+    {
+      wxString bgfile( GetString(keyword) );
+      if( bgfile == wxT(" ") )
+      {
+        static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
+          Set( wxString(wxT("")) );
+        static_cast<GRA_colorCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDCOLOR")))->
+          Set( reinterpret_cast<GRA_color*>(0) );
+      }
+      else
+      {
+	std::ifstream inStream;
+	inStream.clear( std::ios::goodbit );
+	inStream.open( bgfile.mb_str(wxConvUTF8), std::ios_base::in );
+	if( !inStream.is_open() )throw ECommandError( command+wxT("could not open file: ")+bgfile );
+	inStream.close();
+	static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
+          Set( bgfile );
+	static_cast<GRA_colorCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDCOLOR")))->
+	  Set( reinterpret_cast<GRA_color*>(0) );
+      }
+    }
+    catch (EVariableError &e)
+    {
+      throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
+    }
+    wxWindow *wxw = ExGlobals::GetVisualizationWindow()->GetPage();
+    wxClientDC dc( wxw );
+    GraphicsPage *page = static_cast<GraphicsPage*>(wxw);
+    page->EraseWindows();
+    page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
   }
   else if( keyword==wxT("COLORMAPFILE") || keyword==wxT("COLOURMAPFILE") )
   {
@@ -2804,6 +2908,32 @@ NEXTLINE:
     {
       value = std::min(2.0,value);
       ExGlobals::ChangeSize( value );
+    }
+  }
+  else if( keyword == wxT("ARROWHEADWIDTH") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    try
+    {
+      static_cast<GRA_doubleCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("ARROWHEADWIDTH")))->
+          Set( GetValue(keyword) );
+    }
+    catch (ECommandError const &e)
+    {
+      throw;
+    }
+  }
+  else if( keyword == wxT("ARROWHEADLENGTH") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless") );
+    try
+    {
+      static_cast<GRA_doubleCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("ARROWHEADLENGTH")))->
+          Set( GetValue(keyword) );
+    }
+    catch (ECommandError const &e)
+    {
+      throw;
     }
   }
   else if( keyword == wxT("ASPECTRATIO") )

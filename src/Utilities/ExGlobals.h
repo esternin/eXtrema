@@ -210,6 +210,7 @@ namespace ExGlobals
   std::vector<GRA_window*> &GetGraphWindows();
   void AddGraphWindow( GRA_window * );
   void DrawGraphWindows( GRA_wxWidgets *, wxDC & );
+  void ClearGraphicsWindow( bool, int );
 
   void SetNHistory( int );
   int GetNHistory();

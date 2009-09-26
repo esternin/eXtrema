@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -142,6 +142,21 @@ NEXTLINE:
   {
     if( percent )throw ECommandError( command+wxT("% is meaningless with COLORMAPSIZE") );
     fvalue = static_cast<double>(GRA_colorControl::GetColorMapSize());
+  }
+  else if( keyword==wxT("BACKGROUNDCOLOR") || keyword==wxT("BACKGROUNDCOLOUR") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with BACKGROUNDCOLOR") );
+    GRA_colorCharacteristic *color =
+      static_cast<GRA_colorCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDCOLOR")));
+    fvalue = static_cast<double>(GRA_colorControl::GetColorCode(color->Get()));
+  }
+  else if( keyword == wxT("BACKGROUNDFILE") )
+  {
+    if( percent )throw ECommandError( command+wxT("% is meaningless with BACKGROUNDFILE") );
+    GRA_stringCharacteristic *bgfile =
+      static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")));
+    svalue = bgfile->Get();
+    isaString = true;
   }
   else if( keyword==wxT("EXTENSION") || keyword==wxT("SCRIPTEXTENSION") )
   {
@@ -1463,7 +1478,14 @@ NEXTLINE:
       static_cast<GRA_sizeCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("CONTOURLABELSEPARATION")));
     fvalue = sep->Get( percent );
   }
-
+  else if( keyword == wxT("ARROWHEADWIDTH") )
+  {
+    fvalue = static_cast<GRA_doubleCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("ARROWHEADWIDTH")))->Get();
+  }
+  else if( keyword == wxT("ARROWHEADLENGTH") )
+  {
+    fvalue = static_cast<GRA_doubleCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("ARROWHEADLENGTH")))->Get();
+  }
   else if( keyword == wxT("ASPECTRATIO") )
   {
     fvalue = ExGlobals::GetAspectRatio();

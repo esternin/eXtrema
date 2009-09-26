@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -28,7 +28,7 @@ class GRA_arrow3 : public GRA_multiLineFigure
 {
 public:
   GRA_arrow3( double, double, double, double, double, GRA_color * =0, int =1 );
-  GRA_arrow3( double, double, double, double, bool, GRA_color * =0, int =1 );
+  GRA_arrow3( double, double, double, double, bool, GRA_color * =0, int =1, double =1.0, double =1.0 );
 
 private:
   bool headsBothEnds_;

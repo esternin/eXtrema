@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2007...2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #else
 #include <ext/hash_map>
 #endif
+#include <memory>
 
 #include "GraphicsPage.h"
 #include "EGraphicsError.h"
@@ -60,6 +61,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "CurvePopup.h"
 #include "TextPopup.h"
 #include "LegendPopup.h"
+#include "GRA_stringCharacteristic.h"
+#include "GRA_bitmap.h"
+#include "GRA_colorControl.h"
 
 BEGIN_EVENT_TABLE( GraphicsPage, wxNotebookPage )
   EVT_PAINT( GraphicsPage::OnPaint )
@@ -261,6 +265,15 @@ void GraphicsPage::ResetWindows()
     (*i)->Reset();
 }
 
+void GraphicsPage::EraseWindows()
+{
+  // do not destroy any drawableObjects, just erase the window
+  //
+  std::vector<GRA_window*>::const_iterator gwEnd = graphWindows_.end();
+  for( std::vector<GRA_window*>::const_iterator i=graphWindows_.begin(); i!=gwEnd; ++i )
+    (*i)->Erase();
+}
+
 void GraphicsPage::ClearWindows()
 {
   // destroy all drawableObjects in all graph windows on this page
@@ -277,6 +290,13 @@ void GraphicsPage::SetWindowsDefaults()
   std::vector<GRA_window*>::const_iterator gwEnd = graphWindows_.end();
   for( std::vector<GRA_window*>::const_iterator i=graphWindows_.begin(); i!=gwEnd; ++i )
     (*i)->SetDefaults();
+}
+
+void GraphicsPage::DisplayBackgrounds( GRA_wxWidgets *graphicsOutput, wxDC &dc )
+{
+  std::vector<GRA_window*>::const_iterator gwEnd = graphWindows_.end();
+  for( std::vector<GRA_window*>::const_iterator i=graphWindows_.begin(); i!=gwEnd; ++i )
+    (*i)->DisplayBackground( graphicsOutput, dc );
 }
 
 void GraphicsPage::ReplotAllWindows()
@@ -510,6 +530,8 @@ void GraphicsPage::SavePS( wxString const &filename )
       currentWindowNumber_ =
         std::distance( graphWindows_.begin(),
                        std::find(graphWindows_.begin(),graphWindows_.end(),*i) );
+      ps.DisplayBackground( *i );
+      //
       std::vector<GRA_drawableObject*>::const_iterator endObj = (*i)->GetDrawableObjects().end();
       for( std::vector<GRA_drawableObject*>::const_iterator j=(*i)->GetDrawableObjects().begin();
            j!=endObj; ++j )

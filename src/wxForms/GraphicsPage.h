@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2007...2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -59,8 +59,10 @@ public:
   void DrawGraphWindows( GRA_wxWidgets *, wxDC & );
 
   void ResetWindows();
+  void EraseWindows();
   void ClearWindows();
   void SetWindowsDefaults();
+  void DisplayBackgrounds( GRA_wxWidgets *, wxDC & );
 
   void ReplotAllWindows();
   void ReplotCurrentWindow( bool );

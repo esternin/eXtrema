@@ -1388,8 +1388,8 @@ void FitForm::DoTheFit()
       }
     }
     pStrings_[i] += wxT(" = ") + ExGlobals::GetNiceNumber(pp[i]) +
-        wxT("  <pm> ") + ExGlobals::GetNiceNumber(e2[i]) + wxT("  ( ") +
-        ExGlobals::GetNiceNumber(fabs(e2[i]/pp[i]*100)) + wxT("% )");
+        wxT("  <pm> ") + ExGlobals::GetNiceNumber(e1[i]) + wxT("  ( ") +
+        ExGlobals::GetNiceNumber(fabs(e1[i]/pp[i]*100)) + wxT("% )");
   }
   std::vector<double> corr( nparam*nparam, 0.0 );
   for( std::size_t i=0; i<nparam; ++i )

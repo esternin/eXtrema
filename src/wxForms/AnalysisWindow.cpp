@@ -208,7 +208,7 @@ void AnalysisWindow::OnAbout( wxCommandEvent &WXUNUSED(event) )
   textCtrl->SetDefaultStyle( ta2 );
   textCtrl->AppendText( wxString()<<wxT("version ")<<wxT(VERSION)<<wxT("\n") );
   textCtrl->AppendText( wxT(" \n") );
-  textCtrl->AppendText( wxT("Copyright 2006,...,2008 by Joseph L. Chuma, TRIUMF\n") );
+  textCtrl->AppendText( wxT("Copyright 2005,...,2009 by Joseph L. Chuma\n") );
   textCtrl->AppendText( wxT(" \n") );
   textCtrl->AppendText( wxT("Extrema comes with ABSOLUTELY NO WARRANTY\n") );
   textCtrl->AppendText( wxT("This is free software, distributed under the\n") );

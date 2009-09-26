@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -45,6 +45,7 @@ class GRA_boxPlot;
 class GRA_diffusionPlot;
 class GRA_ditheringPlot;
 class GRA_gradientPlot;
+class GRA_window;
 
 class GRA_postscript
 {
@@ -84,6 +85,8 @@ public:
   void SetDefaultDrawLineTable();
   void DrawLineScale( int, double );
   void DrawLineScale( double );
+
+  void DisplayBackground( GRA_window * );
 
   void Draw( GRA_point * );
   void Draw( GRA_polyline * );

@@ -729,8 +729,19 @@ void ClearGraphicsMonitor()
 {
   wxClientDC dc( visualizationWindow_->GetPage() );
   dc.Clear();
+  visualizationWindow_->DisplayBackgrounds( graphicsOutput_, dc );
 }
 
+void ClearGraphicsWindow( bool replot, int n )
+{
+  GRA_window *gw = GetGraphWindow( n );
+  SetWindowNumber( n );
+  gw->Erase();
+  wxClientDC dc( visualizationWindow_->GetPage() );
+  gw->DisplayBackground( graphicsOutput_, dc );
+  if( replot )gw->Clear();
+}
+  
 void ClearHistory()
 { analysisWindow_->ClearOutput(); }
 
