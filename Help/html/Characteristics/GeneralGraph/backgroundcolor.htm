@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>BACKGROUNDCOLOR</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="setcbackgroundcolor"></A>
+<font size="+3" color="green"><B>BACKGROUNDCOLOR</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET BACKGROUNDCOLOR c<br />
+GET BACKGROUNDCOLOR { c }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+0</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ Use <CODE><font color="blue">SET BACKGROUNDCOLOR c</font></CODE> to change the background
+ of the current window to a solid color.  The default for all windows is to have solid white
+ background.</p>
+<p>
+ The parameter <CODE><font color="blue">c</font></CODE> can be
+ either a string or a numeric scalar. A positive numeric value represents
+ the index of the color in the currently loaded colormap. A negative number
+ represents the index of the fixed color.  A string value should be one of the
+ fixed color names. See <a href="../../Introduction/colors.htm">Colors</a> for more information.</p>
+<p>
+ Use <CODE><font color="blue">SET BACKGROUNDCOLOR 0</font></CODE> to set the background color to
+ white.</p>
+<p>
+ Examples:</p>
+<p>
+ <table><tr>
+ <td><CODE><font color="blue">SET BACKGROUNDCOLOR 2</font></CODE></td>
+ <td>uses the colormap index 2</td>
+ </tr><tr>
+ <td><CODE><font color="blue">SET BACKGROUNDCOLOR -2</font></CODE></td>
+ <td>uses the fixed color index 2</td>
+ </tr><tr>
+ <td><CODE><font color="blue">SET BACKGROUNDCOLOR RED</font></CODE></td>
+ <td>uses the fixed color name "<font color="red">RED"</font></td>
+ </tr></table>
+</p>
+<P>
+ Use <a href="backgroundfile.htm"><CODE><font color="blue">SET BACKGROUNDFILE</font></CODE></a> to set
+ the background for the current window to a PNG image.</p>
+<P>
+ <a href="autoscale.htm"><img border="0" src="../../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">AUTOSCALE</font></a><BR />
+ <a href="backgroundfile.htm"><img border="0" src="../../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">BACKGROUNDFILE</font></a>
+</P>
+</body>
+</html>

@@ -1493,6 +1493,14 @@
                             <param name="Local" value="html/Characteristics/GeneralGraph/autoscale.htm">
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="BACKGROUNDCOLOR">
+                            <param name="Local" value="html/Characteristics/GeneralGraph/backgroundcolor.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="BACKGROUNDFILE">
+                            <param name="Local" value="html/Characteristics/GeneralGraph/backgroundfile.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="COLOR">
                             <param name="Local" value="html/Characteristics/GeneralGraph/color.htm">
                             </OBJECT>
@@ -1581,6 +1589,14 @@
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="CONTOURLABELSEPARATION">
                             <param name="Local" value="html/Characteristics/GeneralGraph/contourlabelseparation.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="ARROWHEADWIDTH">
+                            <param name="Local" value="html/Characteristics/GeneralGraph/arrowheadwidth.htm">
+                            </OBJECT>
+                       <LI> <OBJECT type="text/sitemap">
+                            <param name="Name" value="ARROWHEADLENGTH">
+                            <param name="Local" value="html/Characteristics/GeneralGraph/arrowheadlength.htm">
                             </OBJECT>
                    </UL>
               <LI> <OBJECT type="text/sitemap">
