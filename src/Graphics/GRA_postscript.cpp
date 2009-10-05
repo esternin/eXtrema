@@ -261,7 +261,7 @@ void GRA_postscript::SetLineWidth( int i )
   if( lineWidth_ != i )
   {
     lineWidth_ = i;
-    outFile_ << static_cast<double>(i) << " setlinewidth\n";
+    outFile_ << "s\n" << static_cast<double>(i) << " setlinewidth\n";
   }
 }
 
