@@ -40,7 +40,11 @@ $ ./configure --enable-static --disable-shared
 Building
 ========
 
-If you have the MUD and MINUIT optional packages:
+First type the command:
+
+$ ./reconf
+
+Then, if you have the MUD and MINUIT optional packages:
 
 $ ./configure --with-wxGTK=<path_to_wx-config> --with-MUD=<path_to_mud>
 --with-MINUIT=<path_to_minuit>
