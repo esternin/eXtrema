@@ -1,4 +1,4 @@
-# Copyright (C) 2007 Joseph L. Chuma <chuma@triumf.ca>
+# Copyright (C) 2009 Joseph L. Chuma <joe.chuma@gmail.com>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 
@@ -14,7 +14,7 @@ EXTRA_DIST = reconf configure extrema.spec extrema.desktop extrema_icons.tar.bz2
 SUBDIRS = src
 
 myimagesdir = $(datadir)/extrema/Images
-myimages_DATA = ./Images/*.GIF
+myimages_DATA = ./Images/*.GIF ./Images/*.bmp
 
 myhelpdir = $(datadir)/extrema/Help
 myhelp_DATA = ./Help/extrema.hhc ./Help/extrema.hhk ./Help/extrema.hhp

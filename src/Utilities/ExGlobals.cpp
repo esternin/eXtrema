@@ -133,14 +133,13 @@ LegendPopup *legendPopup_;
 
 void Initialize()
 {
-  // EX_BINDIR is defined as $(prefix)/share
-  // EX_DATADIR is defined as $(prefix)
+  // EX_BINDIR is defined as $(prefix)
   //
   if( !wxGetEnv(wxT("EXTREMA_DIR"),&executablePath_) )
   {
     executablePath_ = wxT(EX_BINDIR);
-    imagePath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Images");
-    helpPath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Help");
+    imagePath_ = wxString(wxT(EX_BINDIR)) + wxT("/../share/extrema/Images");
+    helpPath_ = wxString(wxT(EX_BINDIR)) + wxT("/../share/extrema/Help");
   }
   else
   {
