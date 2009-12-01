@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<TITLE>AREAFILLCOLOR</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>AREAFILLCOLOR</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET AREAFILLCOLOR c<br>
+GET AREAFILLCOLOR { c }</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ <CODE>AREAFILLCOLOR</CODE> can be set to a scalar value or to a fixed color name, or to a numeric vector.</p>
+<p>
+ If it is set to the value zero, the default, then area fill color is turned off.</p>
+<p>
+ If it is set to a non-zero scalar value, or a fixed color name, or to a numeric vector,
+ then subsequent graphs, using the <CODE><a href="../Commands/Graph.htm">GRAPH</a>
+ </code> command, will have the area under the curve, or under the histogram, filled with solid color(s).</p>
+<p>
+ <table border="1" cols="2">
+ <tr>
+  <td valign="center"><CODE><a href="histogramtype.htm">HISTOGRAMTYPE</a></code></td>
+  <td align="center"><em>meaning</em></td></tr>
+ <tr>
+  <td align="center" valign="center">0</td>
+  <td>(default value) The <CODE>GRAPH</code> command produces normal line graphs. The area under a curve
+      can be filled with a solid color</td></tr>
+ <tr>
+  <td align="center" valign="center">1</td>
+  <td>The <CODE>GRAPH</code> command produces a horizontal histogram profile without tails.
+      The area under this profile can be filled with a solid color</td></tr>
+ <tr>
+  <td align="center" valign="center">2</td>
+  <td>The <CODE>GRAPH</code> command produces a horizontal histogram profile with tails to <i>x=0</i>.
+   The area of each individual histogram bar can be filled with a specific solid color</td></tr>
+ <tr>
+  <td align="center" valign="center">3</td>
+  <td>The <CODE>GRAPH</code> command produces a vertical histogram profile without tails.
+      The area under this profile can be filled with a solid color</td></tr>
+ <tr>
+  <td align="center" valign="center">4</td>
+  <td>The <CODE>GRAPH</code> command produces a vertical histogram profile with tails to <i>y=0</i>.
+   The area of each individual histogram bar can be filled with a specific solid color</td></tr>
+</table>
+<p>
+ <a href="areafillcolorS01.htm"><font size="+1" color="olive">Single numeric value or fixed color name</font></a><br />
+ <a href="areafillcolorS02.htm"><font size="+1" color="olive">Numeric vector</font></a><br />
+ <a href="areafillcolorS03.htm"><font size="+1" color="olive">Curve example</font></a><br />
+ <a href="areafillcolorS04.htm"><font size="+1" color="olive">Histogram example</font></a><br />
+ <a href="areafillcolorS05.htm"><font size="+1" color="olive">Area between two curves example</font></a><br /></P>
+<p>
+  <a href="colormapfile.htm"><img border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">COLORMAPFILE</font></a><br />
+  <a href="font.htm"><img border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">FONT</font></a>
+</P>
+</BODY>
+</HTML>

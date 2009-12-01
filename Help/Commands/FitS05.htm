@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Number of Iterations</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Number of iterations</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="cols" width="608">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top">
+<code>
+FIT\ITMAX n y=expression<br />
+FIT\WEIGHTS\ITMAX w n y=expression<br />
+FIT\WEIGHTS\ITMAX\TOLERANCE w n eps y=expression<br />
+FIT\ITMAX\TOLERANCE n eps y=expression</code>
+</TD></TR>
+</TABLE>
+<P>
+ The <code>\ITMAX</code> qualifier allows the user to specify the maximum
+ number of iteration steps for the fit. When this maximum number is reached,
+ the fit will stop, and the variable parameters will be updated to their last
+ values. The fit will also stop if the fit is successful before this maximum
+ iteration number is reached.  If the <code>\WEIGHT</code> qualifier is also
+ used, the weight array comes before the iteration number in the command
+ parameter list.</P>
+<P>
+ <a href="FitS04.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Confidence level of the fit</font></a><br />
+ <a href="FitS06.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Update after a fit</font></a></P>
+</BODY>
+</HTML>

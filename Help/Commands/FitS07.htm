@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>Normal Distribution</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Normal distribution</font></P>
+<P>
+ Assume that each data point, <code>y<sub>k</sub></code>, has an error that is
+ independently random and distributed as a normal distribution, that is,</P>
+<P>
+ <IMG SRC="FitS07I01.gif"></P>
+<P>
+ where <code>&sigma;<sup>2</sup></code> is the variance, and
+ <code><i>f</i>(x<sub>k</sub>,p)</code> is the expression that we want to fit.</P>
+<P>
+ <IMG SRC="FitS07I02.gif"></P>
+<P>
+ The goal is to minimize the <code>&chi;<sup>2</sup></code> function:</P>
+<P>
+ <IMG SRC="FitS07I03.gif"></P>
+<P>
+ where the weights are defined as: <code>w&equiv;1/&sigma;<sup>2</sup></code>.
+ Consider the Taylor expansion of <code>&chi;<sup>2</sup></code>:</P>
+<P>
+ <IMG SRC="FitS07I04.gif"></P>
+<P>
+ Define the arrays <IMG SRC="FitS01I04.gif">, <IMG SRC="FitS01I05.gif">&nbsp;
+ and <IMG SRC="FitS01I06.gif">:</P>
+<P>
+ <IMG SRC="FitS07I05.gif"></P>
+<P>
+ Linearize and the problem reduces to solving the matrix equation</p>
+<p>
+ <center><IMG SRC="FitS01I11.gif"></center></P>
+<P>
+ <a href="FitS07S01.htm"><font size="+1" color="olive">Chi-square and weights</font></a><br />
+ <a href="FitS07S02.htm"><font size="+1" color="olive">Hint for physicists</font></a><br />
+ <a href="FitS07S03.htm"><font size="+1" color="olive">Degrees of freedom</font></a></P>
+<P>
+ <a href="FitS06.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Update after a fit</font></a><br />
+ <a href="FitS08.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Poisson distribution</font></a>
+</P>
+</BODY>
+</HTML>

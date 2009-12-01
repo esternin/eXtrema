@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>XAXISCOLOR</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="xaxiscolor"></A>
+<font size="+3" color="green"><B>XAXISCOLOR</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET XAXISCOLOR n<br />
+SET XAXISCOLOR colorname<br>
+GET XAXISCOLOR { n }</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <em>Note:</em> The <CODE><font color="blue"><a href="../Commands/Get.htm">GET XAXISCOLOR</a>
+ </font></CODE> command always returns the color index, and not the color
+ name, even if <CODE>XAXISCOLOR</CODE> was set with a color name.</P>
+<p>
+ <CODE>XAXISCOLOR</CODE> controls the color of the <I>x</i>-axis. The parameter
+ <CODE>c</CODE> can be a numeric scalar or one of the fixed color names.</p>
+<p>
+ For example:</p>
+<p>
+ <CODE><font color="blue">SET XAXISCOLOR 2</font></CODE> uses the colormap index 2<br />
+ <CODE><font color="blue">SET XAXISCOLOR RED</font></CODE> uses the fixed color name
+ "<font color="red">RED</font>"</p>
+</body>
+</html>

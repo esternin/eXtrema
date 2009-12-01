@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>Alternate method</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Alternate method</font></P>
+<P>
+ Choosing a window with the <CODE>WINDOW</CODE> command, which has its lower left corner at
+ <CODE>(lowx,lowy)</CODE> and its upper right corner at <CODE>(upx,upy)</CODE>,
+ is equivalent to choosing the graphics sub-window with the
+ <a href="Set.htm"><CODE>SET</CODE></a> command. That is, the following command:</P>
+<P>
+ <code>WINDOW n lowx lowy upx upy</code></P>
+<P>
+ is equivalent to the following:</P>
+<p>
+ <PRE>
+ SET %XLOWERWINDOW lowx
+ SET %YLOWERWINDOW lowy
+ SET %XUPPERWINDOW upx
+ SET %YUPPERWINDOW upy
+ </PRE></p>
+<P>
+ Using the <CODE>SET</CODE> command to define a window is <EM>not</EM> recommended. When the
+ <a href="Clear.htm"><CODE>CLEAR</CODE></a>
+ command is entered, the window chosen with the last
+ <CODE>WINDOW</CODE> command is set up, and the values of
+ <A HREF="../Characteristics/xlowerwindow.htm"><CODE>XLOWERWINDOW</CODE></a>,
+ <A HREF="../Characteristics/xupperwindow.htm"><CODE>XUPPERWINDOW</CODE></a>,
+ <A HREF="../Characteristics/ylowerwindow.htm"><CODE>YLOWERWINDOW</CODE></a>, and
+ <A HREF="../Characteristics/yupperwindow.htm"><CODE>YUPPERWINDOW</CODE></a>
+ are changed. Thus, if their values had been re-defined with the
+ <CODE>SET> command, these values would be lost when the <CODE>CLEAR</CODE> command is entered.</P>
+<P>
+  <a href="WindowS04.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">Pre-defined windows</font></a><br />
+  <a href="WindowS06.htm"><img src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">Multiple window creation</font></a></P>
+</BODY>
+</HTML>

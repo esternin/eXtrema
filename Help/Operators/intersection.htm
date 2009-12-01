@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>INTERSECTION</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="intersection"></A>
+<font size="+3" color="green"><B>INTERSECTION</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = v1 /&amp; v2</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The intersection operator, <code>/&amp;</code>, is a binary operator that only accepts vectors
+ as operands, and returns a vector which contains the intersection of the elements of
+ these two vectors.</p>
+<p>
+ All vectors have an order property. Vectors are either in ascending order, descending
+ order, or un-ordered.  The type is displayed in the 
+ <CODE><a href="../Commands/Show.htm">SHOW</a></CODE>
+ command. For now, being ordered only has an affect on the vector union,
+ <CODE>/|</CODE>, and the vector intersection, <CODE>/&amp;</CODE>.  These operations are
+ much faster if the vector operands are ordered.  The
+ <CODE><a href="../Functions/Where/where.htm">WHERE</a></CODE>
+ function produces an ascending order vector, as does the
+ <CODE><a href="../Commands/Sort.htm">SORT/UP</a></CODE>
+ command.  The <CODE>SORT/DOWN</CODE> command produces a
+ descending order vector.  This vector property will be utilized more in the future to
+ enhance speed and efficiency.</P>
+<p>
+ <font size="+1" color="green">Example</font></p>
+<p>
+ To illustrate vector intersection, suppose you have two vectors:</p>
+<p>
+ <CODE>X = [1;2;3;4;5;6;7]</CODE> and <CODE>Y = [-2;-1;0;1;2]</CODE></p>
+<p>
+ Then: <CODE>X/&amp;Y = [1;2]</CODE></p>
+</BODY>
+</HTML>
+
+
+

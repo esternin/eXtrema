@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>INDEX</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="index"></A>
+<font size="+3" color="green"><B>INDEX</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+scalar = INDEX(string1,string2)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>INDEX</CODE> function accepts two strings as arguments.
+ If <CODE>string2</CODE> is a subset of
+ <CODE>string1</CODE>, it returns the substring's starting position. If
+ <CODE>string2</CODE> occurs more than once in
+ <CODE>string1</CODE>, the starting position of the first (leftmost) occurrence is
+ returned. If <CODE>string2</CODE> does not occur in
+ <CODE>string1</CODE>, the value zero (0) is returned. Neither string
+ argument will be modified.</p>
+<p>
+ <font size="+1" color="green">Examples</font></p>
+<p>
+<table>
+<tr>
+ <td align="center" bgcolor="#CCFFFF"><em>function</em></td>
+ <td bgcolor="#FF9966"><em>result</em></td>
+</tr><tr>
+ <td><CODE>INDEX('abc','abc')</CODE></td>
+ <td align="center"><font color="orange">1</font></td>
+</tr><tr>
+ <td><CODE>INDEX('abcd','abc')</CODE></td>
+ <td align="center"><font color="orange">1</font></td>
+</tr><tr>
+ <td><CODE>INDEX('abc','abcd')</CODE></td>
+ <td align="center"><font color="orange">0</font></td>
+</tr><tr>
+ <td><CODE>INDEX('xxabcabc','abc')</CODE></td>
+ <td align="center"><font color="orange">3</font></td>
+</tr></table></p>
+</BODY>
+</HTML>

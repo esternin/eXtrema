@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE>FIT command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>FIT command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="608">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+FIT y = { expression }<br />
+FIT\UPDATE yout</CODE></TD>
+</TR><TR>
+<TD valign="top"><B>Qualifiers:</B></TD>
+<TD valign="top"><CODE>
+\NORMAL, \POISSON, \UPDATE, \ITMAX, \WEIGHTS, \TOLERANCE, \ZEROS, \CHISQ,
+ \VARNAMES, \CORRMAT, \COVMAT, \CL, \E1, \E2, \FREE, \RESET, \MESSAGES</CODE></TD>
+</TR><TR>
+<TD valign="top"><B>Defaults:</B></TD>
+<TD valign="top"><CODE>
+\NORMAL, \-ITMAX, \-WEIGHTS, \-TOLERANCE, \ZEROS, \-CHISQ, \-CL, \-VARNAMES,
+ \-CORRMAT, \-COVMAT, \-E1, \-E2, \-RESET, \-FREE, \MESSAGES</CODE></TD>
+</TR><TR>
+<TD valign="top"><B>Examples:</B></TD>
+<TD valign="top"><CODE>
+FIT Y=A*X+B<br />
+FIT\CHISQ\CL\ITMAX\WEIGHTS\TOLERANCE W 3 0.001 Y=A*EXP(-B*X)+C<br />
+FIT\UPDATE YF</CODE></TD>
+</TR>
+</TABLE>
+<P>
+ By default, or if the <code>\NORMAL</code> qualifier is used,
+ it is assumed that each data point has an error that is distributed as a normal distribution,</p>
+<P>
+<center><IMG SRC="FitI01.gif"></center></P>
+<p>
+ where <IMG SRC="FitI02.gif">&nbsp; is the mean and <IMG SRC="FitI03.gif">&nbsp;
+ is the standard deviation of the distribution. The weight is defined as:
+ <IMG SRC="FitI04.gif"></P>
+<P>
+ If the <code>\POISSON</code> qualifier is used, the
+ data errors are assumed to be distributed as a Poisson distribution,</P>
+<P>
+<CENTER><IMG SRC="FitI05.gif"></CENTER></P>
+<P>
+ where <IMG SRC="FitI06.gif">&nbsp; is the mean and the variance of the distribution.</P>
+<P>
+ <font size="+2" color="green">Expression and parameters</font></P>
+<P>
+ The <code>expression</code> must result in a vector with the same length as
+ the data vector, <code>y</code>. A maximum of twenty-five (<CODE>25</CODE>) fitting parameters are
+ allowed in the <code>expression</code>. The fitting parameter values are altered during the fit.
+ Fit parameters are created with the <code><a href="ScalarS01.htm">SCALAR\FIT</a></code>
+ command, and can be converted to fixed value scalars with the <code>SCALAR</code> command.  If you use
+ the <code>\RESET</code> qualifier, the fitting parameters will be reset to their original values
+ after an unsuccessful fit.</P>
+<P>
+ If the <code>\VARNAMES</code> qualifier is used with the <code>FIT</code> command, a string array
+ variable named <font color="orange"><code>FIT$VAR</code></font> will be made which will contain the
+ names of the fitting parameter variables.  The array length of <font color="orange"><code>FIT$VAR</code>
+ </font> will be equal to the number of fit parameters.</P>
+<P>
+ <font size="+2" color="green">Informational messages</font></P>
+<P>
+ By default, information on the progress of the fit, as well as the results,
+ are displayed on the monitor screen. If the 
+ <CODE>\-MESSAGES</CODE> qualifier is used, these informational messages will be suppressed.</P>
+<P>
+ <a href="FitS01.htm"><font size="+1" color="olive">Method</font></a><br />
+ <a href="FitS02.htm"><font size="+1" color="olive">Tolerance</font></a><br />
+ <a href="FitS03.htm"><font size="+1" color="olive">Correlation and covariance</font></a><br />
+ <a href="FitS04.htm"><font size="+1" color="olive">Confidence level</font></a><br />
+ <a href="FitS05.htm"><font size="+1" color="olive">Number of iterations</font></a><br />
+ <a href="FitS06.htm"><font size="+1" color="olive">Update after a fit</font></a><br />
+ <a href="FitS07.htm"><font size="+1" color="olive">Normal distribution</font></a><br />
+ <a href="FitS08.htm"><font size="+1" color="olive">Poisson distribution</font></a></P>
+</BODY>
+</HTML>

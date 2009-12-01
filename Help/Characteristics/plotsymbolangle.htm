@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>PLOTSYMBOLANGLE</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="plotsymbolangle"></A>
+<font size="+3" color="green"><B>PLOTSYMBOLANGLE</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET PLOTSYMBOLANGLE n<br>
+GET PLOTSYMBOLANGLE { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+PLOTSYMBOLANGLE = 0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>PLOTSYMBOLANGLE</CODE> controls the angle of the plotting symbols drawn when the <CODE>
+ <a href="../Commands/Graph.htm">GRAPH</a></CODE> command is entered.
+ <CODE>PLOTSYMBOLANGLE</CODE> is the angle, in degrees, measured counterclockwise, between
+ the <i>x</i>-axis and a plotting symbol.  The parameter <CODE>n</CODE> can be
+ either a scalar or a vector.</p>
+<p>
+ If <CODE>n</CODE> is a scalar, every symbol will have the same angle.</p>
+<p>
+ If <CODE>n</CODE> is a vector, the <CODE>i</CODE><sup>th</sup> symbol will have angle given by
+ <CODE>n[i]</CODE>. In this case, the length of <CODE>n</CODE> must be the same as the length of 
+ the data vectors being plotted.</p>
+<P>
+  <a href="plotsymbol.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">PLOTSYMBOL</font></a><br />
+  <a href="plotsymbolcolor.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">PLOTSYMBOLCOLOR</font></a>
+</P>
+</body>
+</html>

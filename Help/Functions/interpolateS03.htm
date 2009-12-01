@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Lagrange interpolation</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="interpolate"></A>
+<font size="+3" color="green"><B>Lagrange interpolation</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = INTERPOLATE(x,y,xout,'LAGRANGE')</CODE>
+</TD></TR>
+</table></p>
+<p>
+ If the <CODE>LAGRANGE</CODE> keyword is used, the
+ interpolating method used is general Lagrange interpolation.  The degree of
+ the interpolating polynomial depends on the number of input data points.</P>
+<P>
+ Suppose that <CODE>N</CODE> is the number of points, equal to the lengths of
+ <CODE>x</CODE> and <CODE>y</CODE>. If <CODE>N = 2</CODE>,
+ then a simple straight line is used for interpolating. If <CODE>N = 3</CODE>
+ or <CODE>N = 4</CODE>, then a quadratic is used. If <CODE>N &ge; 5</CODE>,
+ then a polynomial of degree <CODE>4</CODE> is used for the interpolation.</P>
+<P>
+  <a href="interpolateS02.htm"><img align=middle border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">Spline interpolation</font></a><br />
+  <a href="interpolateS04.htm"><img align=middle border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">Fritch-Carlson interpolation</font></a>
+</P>
+</BODY>
+</HTML>

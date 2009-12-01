@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>Expressions</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="expression"></A>
+<font size="+3" color="green"><B>Expressions</B></font></P>
+<P>
+ An expression is some combination of constants, variables, functions, and operators.  For example:</P>
+<p>
+ <font color="blue"><PRE>
+ A*COSD(X/10)+3.5*SIND(X/12)+C*EXP(-X)</PRE></font></p>
+<P>
+ Input is limited to <code>255</code> characters, so to have expressions
+ that are longer, use character variables to store its pieces and the <code>
+ <a href="../Functions/eval.htm">EVALUATE</a></code> function to 
+ evaluate the expression numerically. For example:</P>
+
+<font color="blue"><PRE>
+F1 = '2.5*COS(X/10)+3.5*SIN(X/12)+63.7*EXP(X/45)'
+F2 = '1.234567*MOD(X,100)+SIN(X/1000)*EXP(X/200)'
+F3 = '3.56789*X^2-2.34567*X+23.456'
+F = 'F1+F2+F3'
+Y = EVALUATE(F)
+</PRE></font>
+<p>
+ You can use the <code><a href="../Functions/expand.htm">EXPAND</a></code>
+ function to expand all the parts of a string.  For example, with the above variable definitions,
+ <font color="blue"><CODE>=EXPAND(F)</CODE></font> will display:</P>
+
+<font color="blue"><PRE>
+(2.5*COS(X/10)+3.5*SIN(X/12)+63.7*EXP(X/45))+(1.234567*MOD(X,100)+SIN(X/1000)*EXP(X/200))+(3.56789*X^2-2.34567*X+23.456)
+</PRE></font>
+<P>
+  <a href="ExpressionS01.htm"><font size="+1" color="olive">Assignments</font></a><br />
+  <a href="ExpressionS02.htm"><font size="+1" color="olive">String assignments</font></a><br />
+  <a href="ExpressionS03.htm"><font size="+1" color="olive">String arrays</font></a><br />
+  <a href="ExpressionS04.htm"><font size="+1" color="olive">Evaluations</font></a>
+</P>
+<P>
+  <a href="Indices.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">Indices</font></a><br />
+  <a href="Colors.htm"><img src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">Colors</font></a>
+</P>
+</BODY>
+</HTML>

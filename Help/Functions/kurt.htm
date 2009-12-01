@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>KURT function</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><font size="+3" color="green"><B>Kurtosis</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>s = KURT(x)</CODE><br />
+              <CODE>s = KURT(w,x)</CODE></TD></TR>
+</table></p>
+<p>
+ The <code>KURT</code> function only accepts one or two vector arguments.
+ If only one vector is entered, the function returns the kurtosis of that vector's data. If two
+ vectors are entered, the first vector holds the weights and the second vector holds the data.  The result is
+ always a scalar value.</p>
+<p>
+ Suppose that <i>x</i> is a vector with <i>N</i> elements.</P>
+<P>
+ A weight vector, <i>w</i>, may be entered as the first argument. The
+ length of <i>w</i> is assumed to also be <i>N</i>. If no weights are entered,
+ let <IMG WIDTH=17 HEIGHT=17 ALIGN=MIDDLE SRC="kurtI01.gif">&nbsp; default to
+ <CODE>1</CODE>, for <IMG WIDTH=98 HEIGHT=25 ALIGN=MIDDLE SRC="kurtI02.gif">.
+ Define the total weight: <IMG WIDTH=108 HEIGHT=36 ALIGN=MIDDLE SRC="kurtI03.gif"></p>
+<P>
+ The mean value, <IMG WIDTH=8 HEIGHT=11 ALIGN=BOTTOM SRC="kurtI04.gif">, is
+ defined by</p>
+<p>
+ <IMG WIDTH=139 HEIGHT=36 ALIGN=MIDDLE SRC="kurtI05.gif"></p>
+<P>
+ The kurtosis, <i>kurt</i>, is a nondimensional quantity which measures the
+ relative peakedness or flatness of a distribution, relative to a normal
+ distribution. A distribution with positive kurtosis is termed leptokurtic;
+ a distribution with negative kurtosis is termed platykurtic. An in-between
+ distribution is termed mesokurtic. The kurtosis is defined by:</P>
+<P>
+ <IMG WIDTH=362 HEIGHT=56 ALIGN=BOTTOM SRC="kurtI06.gif"></p>
+<P>
+ where the <i>-3</i> term makes the value zero for a normal distribution.</p>
+</BODY>
+</HTML>

@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<TITLE>PLOTSYMBOL</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="plotsymbol"></A>
+<font size="+3" color="green"><B>PLOTSYMBOL</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+SET PLOTSYMBOL n<br>
+GET PLOTSYMBOL { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Default</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+PLOTSYMBOL = 0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>PLOTSYMBOL</CODE> controls which plotting symbols to use when the
+ <CODE><a href="../Commands/Graph.htm">GRAPH</a></CODE> command is entered.
+ The parameter <CODE>n</CODE> can be either a scalar or a vector.</P>
+<P>
+ If <CODE>n</CODE> is a scalar, every data point will have the same plotting symbol.</p>
+<p>
+ If <CODE>n</CODE> is a vector, symbol <CODE>n[i]</CODE> will be drawn at
+ data point <CODE>(x[i],y[i])</CODE>.  In this case, the length of 
+ <CODE>n</CODE> must be the same as the lengths of <CODE>x</CODE> and <CODE>y</CODE>.</p>
+<P>
+ <CODE><font color="blue"><a href="../Commands/Get.htm">GET PLOTSYMBOL</a>
+ </font></CODE> returns the plotting symbol value or array. The type of output variable that
+ is returned depends on the type of variable used in the <CODE>
+ <font color="blue"><a href="../Commands/Set.htm">SET PLOTSYMBOL</a>
+ </font></CODE> command.</P>
+<P>
+ <font size="+2" color="green"><B>Symbols</B></font></P>
+<p>
+ The symbols that will be plotted at the point <CODE>(x[i],y[i])</CODE> are dependent on
+ the value of <code>PLOTSYMBOL</code> and are shown below.</p>
+<p>
+<table cols="2" border="1">
+<tr>
+<td><CODE>PLOTSYMBOL</code></td><td align="center"><em>meaning</em></td></tr>
+<tr>
+<td align="center" valign="center">0</td><td>no symbol at <CODE>(x[i],y[i])</CODE>, but connect that
+ point to previous point <CODE>(x[i-1],y[i-1])</CODE></td></tr>
+<tr>
+<td align="center" valign="center">&gt; 0</td><td><CODE>PLOTSYMBOL</CODE> at
+ <code>(x[i],y[i])</code> connected
+ to point previous point <CODE>(x[i-1],y[i-1])</CODE></td></tr>
+<tr>
+<td align="center" valign="center">&lt; 0</td><td><CODE>PLOTSYMBOL</CODE> at
+ <code>(x[i],y[i])</code> not
+ connected to previous point <CODE>(x[i-1],y[i-1])</CODE></td></tr></table>
+<p>
+ There are 18 special plotting symbols. These symbols (except for symbol 12) are centred
+ at the data points. Note that symbol 11 is a dot, and symbol 12 is an arrow starting at the
+ data point while symbol 13 is an arrow centred at the data point.</p>
+<center><img src="plotsymbolI01.png"></center>
+<P>
+ The size of the plotting symbols can be controlled with the
+ <CODE><a href="plotsymbolsize.htm">PLOTSYMBOLSIZE</a></CODE> characteristic, the
+ angle with the <CODE><a href="plotsymbolangle.htm">PLOTSYMBOLANGLE</a></CODE> characteristic,
+ the color with the <CODE><a href="plotsymbolcolor.htm">PLOTSYMBOLCOLOR</a></CODE> characteristic,
+ and the line width with the <CODE><a href="plotsymbollinewidth.htm">PLOTSYMBOLLINEWIDTH</a></CODE>
+ characteristic.</P>
+<P>
+  <a href="curvelinetype.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">CURVELINETYPE</font></a><BR />
+  <a href="plotsymbolangle.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;
+    <font size=+1 color="olive">PLOTSYMBOLANGLE</font></a>
+</P>
+</BODY>
+</HTML>

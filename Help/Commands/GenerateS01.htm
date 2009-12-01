@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Increment and number of points</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Increment and number of points</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+GENERATE x min inc ,, npts</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ If the increment and the number of points are given, the formula:</p>
+<p>
+ <center><CODE>x[i] = min+(i-1)*inc</CODE> &nbsp;&nbsp; for &nbsp;&nbsp; <CODE> 1 &le; i &le; npts</CODE>
+ </center></p>
+<p>
+ is applied directly.</p>
+<p>
+ For example, after the command:</p>
+<p>
+ <font color="blue"><CODE>GENERATE X -1 .5 ,, 4</CODE></font></p>
+<p>
+ the vector <code>X</code> will be <CODE>[-1; -0.5; 0; 0.5]</CODE></p>
+<P>
+ <a href="Generate.htm"><img src="../shadow_left.gif">&nbsp;
+   <font size="+1" color="olive">GENERATE command</font></a><br />
+ <a href="GenerateS02.htm"><img src="../shadow_right.gif">&nbsp;
+   <font size="+1" color="olive">Maximum and number of points</font></a>
+</P>
+</BODY>
+</HTML>

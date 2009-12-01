@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<TITLE>STACK command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>STACK command</B></font></P>
+
+<TABLE border="1" width="608">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+STACK filename<BR />
+STACK OFF<BR />
+STACK ON</CODE></TD>
+</TR><TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\APPEND</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><code>\-APPEND</code></TD></TR>
+</TABLE>
+<P>
+ After the <CODE>STACK</code> command is entered, all subsequently
+ entered commands, and most of the actions performed on gui forms, will be written to the stack file.
+ This stack file can later be executed with the
+ <CODE><a href="Execute.htm">@filename</a></CODE>
+ command.  Thus, the <CODE>STACK</CODE> command is a way of interactively creating a script
+ command file.  To turn off the stacking feature, use the <CODE>STACK OFF</CODE> command.  To turn stacking
+ back on, using the same stack file, enter the <CODE>STACK ON</CODE> command,
+ and subsequent commands will be appended to the previously opened stack file.</p>
+<P>
+ Use the <CODE>\APPEND</CODE> qualifier to append subsequent commands to the specified file.</P>
+<P>
+ By default, if no extension is supplied on the filename, the value of the characteristic
+ <CODE><a href="../Characteristics/stackextension.htm">STACKEXTENSION</a></CODE>
+ will be appended to the file name.  The default value of <code>STACKEXTENSION</code> is
+ <code>stk</code>.</P>
+</BODY>
+</HTML>

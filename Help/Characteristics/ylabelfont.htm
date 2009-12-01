@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<TITLE>YLABELFONT</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="ylabelfont"></A>
+<font size="+3" color="green"><B>YLABELFONT</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YLABELFONT s<br />
+GET YLABELFONT { s }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+YLABELFONT =</CODE> ARIAL
+</TD></TR>
+</TABLE>
+<p>
+ <em>Note:</em> The value of the <CODE>YLABELFONT</CODE>
+ characteristic is a string instead of a numeric value. So, if
+ you enter: <CODE><font color="blue"><a href="../Commands/Get.htm">GET YLABELFONT X</a>
+ </font></CODE>, the variable <CODE>X</CODE> will be a string variable.</P>
+<p>
+ <CODE>YLABELFONT</CODE> controls the font of the automatic <i>y</i>-axis text label. The parameter
+ <CODE>f</CODE> should be the font name. If the font name is composed of more than one word, enclose
+ the font name in quotes.</P>
+<p>
+ Examples:</p>
+<p>
+ <CODE><font color="blue">SET YLABELFONT ARIAL</font></CODE><br />
+ <CODE><font color="blue">SET YLABELFONT 'ARIAL BOLD'</font></CODE></p>
+</body>
+</html>

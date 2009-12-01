@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>Plot parametric functions</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<p>
+ Plot <code>y = sin(x)</code> for <code>-10 &lt; x &lt; 10</code> with the axes
+ reversed, i.e., <code>y</code> as the horizontal axis and <code>x</code> as the
+ vertical axis.</p>
+<P>
+ <font color="blue"><pre>
+ generate x -10,,10 100
+ set xlabel 'sin(x)'
+ set ylabel 'x'
+ graph sin(x) x
+ </pre></font></P>
+<P>
+ <img src="BasicTasksS15I01.gif"></P>
+<P>
+ Plot <code>(x(t),y(t))</code> for <code>0 &lt; t &lt; 20</code>, where
+ <code>x(t) = exp(-0.1*t)*cos(t)</code> and <code>y(t) = exp(-0.1*t)*sin(t)</code>.</P>
+<P>
+ <font color="blue"><pre>
+ generate t 0,,20 100
+ set xlabel 'e&lt;^&gt;-0.1*t&lt;_&gt;cos(t)'
+ set ylabel 'e&lt;^&gt;-0.1*t&lt;_&gt;sin(t)'
+ graph exp(-0.1*t)*cos(t) exp(-0.1*t)*sin(t)
+ </pre></font></P>
+<P>
+ <img src="BasicTasksS15I02.gif"></P>
+<P>
+ <a href="BasicTasksS14.htm"><img src="shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Display array data as contours and density plot</font></a><br />
+ <a href="BasicTasksS16.htm"><img src="shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Write data to a file</font></a>
+</P>
+</BODY>
+</HTML>

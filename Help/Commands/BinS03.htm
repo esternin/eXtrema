@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>Lagrange</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Lagrange</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+BIN\LAGRANGE x xbin xcount</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ If the <CODE>\LAGRANGE</CODE> qualifier is used, <CODE>\WEIGHTS, \EDGES, \AVERAGES,</CODE> and
+ <CODE>\EMPTY</CODE> are not allowed.</P>
+<P>
+ If <CODE>n = <a href="Functions/Len.htm">LEN</a>(xbin)</CODE>, define the
+ bin ranges, <CODE>r<sub>i</sub></CODE></P>
+<P>
+ <CODE>r<sub>1</sub> = xbin[1] - (xbin[2] -  xbin[1])/2</CODE></P>
+<P>
+ <CODE>r<sub>i</sub> = xbin[i] - (xbin[i] - xbin[i-1])/2</CODE>&nbsp; for&nbsp;
+ <CODE>i = 2, 3, ..., n</CODE></P>
+<P>
+ <CODE>r<sub>n+1</sub> = xbin[n] + (xbin[n] - xbin[n-1])/2</CODE></P>
+<P>
+ For each&nbsp; <CODE>i = 1, 2, ..., LEN(x)</CODE>&nbsp; find <CODE>j</CODE> so that&nbsp;
+ <CODE>r<sub>j</sub> &le; x[i] &lt; r<sub>j+1</sub></CODE>&nbsp; for some&nbsp;
+ <CODE>j = 1, 2, ..., n</CODE>.&nbsp; If&nbsp; <CODE>j = n</CODE>, then
+ <CODE>xcount[n]</CODE> is incremented by <CODE>1</CODE>, otherwise, let
+ <CODE>w = (x[i]-xbin[j])/(r<sub>j+1</sub>+r<sub>j</sub>)/2</CODE> then
+ <CODE>xcount[j]</CODE> is incremented by <CODE>1 - w</CODE> and <CODE>xcount[j+1]</CODE> is incremented by
+ <CODE>w</CODE>.</P>
+<P>
+ <a href="BinS02.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Number of bins</font></a><br />
+ <a href="BinS04.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Average</font></a>
+</P>
+</body>
+</html>

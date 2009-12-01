@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>YGRID</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="ygrid"></A>
+<font size="+3" color="green"><B>YGRID</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YGRID n<br />
+GET YGRID { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+YGRID = 0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>YGRID</CODE> controls the number of grid lines parallel to the <i>x</i>-axis.
+ <CODE>YGRID</CODE> specifies the number of large, labeled, <i>y</i>-axis tic marks between
+ each grid line.</P>
+<P>
+ <table cols="2" border="1">
+ <tr>
+ <td valign="center" align="center" width="20%"><CODE>YGRID</code></td>
+ <td valign="center" align="center"><em>meaning</em></td>
+ </tr><tr>
+ <td valign="center" align="center">&gt; 0</td>
+ <td valign="top">draw a grid line parallel to the <i>x</i>-axis at 
+  every <CODE>YGRID</CODE> large tic mark, starting with the first.</td>
+ </tr><tr>
+ <td valign="center" align="center">= 0</td>
+ <td valign="top">suppress all grid lines parallel to the <i>x</i>-axis.</td>
+ </tr><tr>
+ <td valign="center" align="center">= -1</td>
+ <td valign="top">draw a grid line parallel to the <i>x</i>-axis at every
+  <i>y</i>-axis tic mark, large and small. This option applies only if the
+  axes are orthogonal.</td>
+ </tr></table></p>
+<p>
+ See <code><a href="gridlinetype.htm">GRIDLINETYPE</a></code> for information on
+ changing the line type for the grid lines.</p>
+</body>
+</html>

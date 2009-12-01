@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<TITLE>SHOW command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>SHOW command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+SHOW v1 { v2 ... }</CODE>
+</TD></TR>
+<TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>
+\SCALARS, \VECTORS, \MATRICES, \TEXT, \FIXED, \FIT</CODE>
+</TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top">
+all variables displayed
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE>SHOW</CODE> command displays:
+ the current scalars, their values and histories; the current vectors, their
+ lengths and histories; the current matrices, their dimensions and histories;
+ and the current text variables, their lengths and contents.</p>
+<p>
+ If a variable name is entered, only the information about that variable is listed.</p>
+<p>
+ Valid wildcard usages are (where x represents one or more characters):
+ <table>
+ <tr>
+ <td><CODE>*x</CODE></td><td>&rarr;</td><td>all variables that end with <CODE>x</CODE></td>
+ </tr><tr>
+ <td><CODE>x*</CODE></td><td>&rarr;</td><td>all variables that start with <CODE>x</CODE></td>
+ </tr><tr>
+ <td><CODE>*x*</CODE></td><td>&rarr;</td><td>all variables that contain <CODE>x</CODE></td>
+ </tr></table></p>
+<p><font size="+1" color="green">Qualifiers</font></p>
+<p>
+ If the <CODE>\VECTORS</CODE> qualifier is used, vectors will be listed.</p>
+<p>
+ If the <CODE>\MATRICES</CODE> qualifier is used, matrix variables will be listed.</p>
+<p>
+ If the <CODE>\TEXT</CODE> qualifier is used, text variables will be listed.</p>
+<p>
+ If the <CODE>\SCALARS</CODE> qualifier is used, scalar variables will be listed.</p>
+<p>
+ The following qualifiers are <em>only</em> valid when used with <CODE>\SCALARS</CODE>.</p>
+<p>
+ <table><tr>
+ <td><CODE>\-FIXED</CODE></td><td> --> </td>
+ <td>do not show scalars that are fixed (with respect to fitting)</td>
+ </tr><tr>
+ <td><CODE>\-FIT</CODE></td><td> --> </td>
+ <td>do not show scalars allowed to vary in a fit</td>
+ </tr></table></p>
+</BODY>
+</HTML>

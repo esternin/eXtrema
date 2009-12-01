@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<TITLE>Plot axes only</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Plot axes only</font></P>
+<P>
+ If the <CODE>GRAPH\AXESONLY</CODE> command is entered with no parameters, autoscaling does not apply.
+ The minima, maxima, and number of increments will be the same as the last set of axes drawn.
+ The axes scales can be set up before entering the <CODE>GRAPH\AXESONLY</CODE> command, using the
+ <a href="Scales.htm"><CODE>SCALES</CODE></a> command. Autoscaling may apply
+ if two parameters, <CODE>x</CODE> and <CODE>y</CODE>, are entered. For example:</P>
+<p>
+ <font color="blue"><PRE>
+ SET AUTOSCALE ON       ! turn on autoscaling
+ GRAPH\AXESONLY X Y     ! plot axes autoscaled to the data
+
+ SCALES -5 5 0 10 20 0  ! -5 &lt;= x &lt;= 5  and  10 &lt;= y &lt;= 20
+ GRAPH\AXESONLY         ! plot the axes only
+ </PRE></font></p>
+<P>
+ <a href="GraphS05.htm"><img src="../shadow_left.gif">&nbsp;
+   <font size="+1" color="olive">Plot data and axes</font></a><br />
+ <a href="GraphS07.htm"><img src="../shadow_right.gif">&nbsp;
+   <font size="+1" color="olive">Plot data only</font></a></P>
+</BODY>
+</HTML>

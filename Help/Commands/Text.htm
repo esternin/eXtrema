@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>TEXT command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="textcommand"></A>
+<font size="+3" color="green"><B>TEXT command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>TEXT 'string'</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\GRAPHUNITS, \ERASE</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\-GRAPHUNITS, \-ERASE</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Examples</B>:</TD>
+<TD valign="top"><CODE>
+TEXT 'This is a string'<br />
+TEXT 'The value of A is '//RCHAR(A)//' and B = '//RCHAR(B)<BR />
+TEXT TIME//DATE<BR />
+TEXT\ERASE<br />
+TEXT 'theta squared &lt;theta&gt;&lt;^&gt;2'</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ By default, the <CODE>TEXT</CODE> command draws character strings.</P>
+<p>
+ <table><tr>
+ <td valign="top"><a href="../Characteristics/textinteractive.htm"><CODE>
+  TEXTINTERACTIVE</CODE></a></td>
+ <td>controls whether the graphics cursor is used to interactively place the character
+  strings that are drawn when using the <CODE>TEXT</CODE> command.</td>
+ </tr><tr>
+ <td valign="top"><a href="../Characteristics/textalign.htm"><CODE>TEXTALIGN</CODE></a></td>
+ <td>controls the alignment or justification of the character strings that are drawn when using the
+  <CODE>TEXT</CODE> command.  The origin of the text string is always the lower left corner of the string.
+  The alignment determines where this origin is placed with respect to a reference point.</td>
+ </tr><tr>
+ <td valign="top"><a href="../Characteristics/textcolor.htm"><CODE>TEXTCOLOR</CODE></A></td>
+ <td>is the color of the drawn text string.</td>
+ </tr><tr>
+ <td valign="top"><a href="../Characteristics/textfont.htm"><CODE>TEXTFONT</CODE></A></td>
+ <td>is the font name used for drawing the text string.</td>
+ </tr><tr>
+ <td valign="top"><a href="../Characteristics/textangle.htm"><CODE>TEXTANGLE</CODE></A></td>
+ <td>is the angle, in degrees, measured counterclockwise, between the base line of the text string and
+  a horizontal line.</td>
+ </tr><tr>
+ <td valign="top"><a href="../Characteristics/textheight.htm"><CODE>TEXTHEIGHT</CODE></A></td>
+ <td>controls the text height.</td>
+ </tr><tr>
+ <td valign="top"><a href="../Characteristics/xtextlocation.htm">
+  <CODE>XTEXTLOCATION</CODE></A></td>
+ <td>is the horizontal reference position of a text string. This reference point is used for alignment.</td>
+ </tr><tr>
+ <td valign="top"><a href="../Characteristics/ytextlocation.htm">
+  <CODE>YTEXTLOCATION</CODE></A></td>
+ <td>is the vertical reference position of a text string. This reference point is used for alignment.</td>
+ </tr></table></P>
+<p>
+ <a href="TextS01.htm"><font size="+1" color="olive">Appending numeric values</font></a><br />
+ <a href="TextS02.htm"><font size="+1" color="olive">GRAPHUNITS</font></a><br />
+ <a href="TextS03.htm"><font size="+1" color="olive">ERASE</font></a><br />
+ <a href="TextS04.htm"><font size="+1" color="olive">Alignment and location</font></a><br />
+ <a href="TextS05.htm"><font size="+1" color="olive">Formatting</font></a><br />
+ <a href="TextS06.htm"><font size="+1" color="olive">Date and time</font></a><br />
+ <a href="TextS07.htm"><font size="+1" color="olive">Examples</font></a>
+</p>
+</BODY>
+</HTML>

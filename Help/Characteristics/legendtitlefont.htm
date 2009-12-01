@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>LEGENDTITLEFONT</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="legendtitlefont"></A>
+<font size="+3" color="green"><B>LEGENDTITLEFONT</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET LEGENDTITLEFONT s<br>
+GET LEGENDTITLEFONT { s }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+LEGENDTITLEFONT</CODE> = ARIAL
+</TD></TR>
+</TABLE>
+<p>
+ <em>Note:</em> The value of the <CODE>LEGENDTITLEFONT</CODE>
+ characteristic is a string and not a numeric value. So, if you enter:
+ <CODE><font color="blue"><a href="../Commands/Get.htm">GET LEGENDTITLEFONT X</a></font></CODE>,
+ the variable <CODE>X</CODE> will be a string variable.</P>
+<P>
+ <CODE>LEGENDTITLEFONT</CODE> controls the font of the graph legend title. The parameter
+ <CODE>f</CODE> should be the font name. If the font name is composed of more than one word, enclose
+ the font name in quotes.</P>
+<p>
+ Examples:</p>
+<p>
+ <CODE><font color="blue">SET LEGENDTITLEFONT ARIAL</font></CODE><br>
+ <CODE><font color="blue">SET LEGENDTITLEFONT 'ARIAL BOLD'</font></CODE></p>
+<P>
+  <a href="legendtitlecolor.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">LEGENDTITLECOLOR</font></a><br />
+  <a href="legendstatus.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">LEGENDSTATUS</font></a>
+</P>
+</body>
+</html>

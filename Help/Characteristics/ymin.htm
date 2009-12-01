@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<TITLE>YMIN</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="ymin"></A>
+<font size="+3" color="green"><B>YMIN</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YMIN n<br />
+GET YMIN { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+YMIN = 0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>YMIN</CODE> controls the minimum value to be displayed on the <i>y</i>-axis.</P>
+<P>
+ If <CODE>|<a href="ylogbase.htm">YLOGBASE</a>| &gt; 1.0</CODE>, then
+ <CODE>YMIN</CODE> is assumed to be the exponent for the minimum value on the <i>y</i>-axis.
+ The minimum value displayed on the <i>y</i>-axis is
+ <CODE>|YLOGBASE|<SUP>YMIN</SUP></CODE>.  Integer exponents are always used for
+ the axis numbering, so the <i>y</I>-axis may not begin on a large tic
+ mark.</p>
+<p>
+ If <CODE>|YLOGBASE| &le; 1.0</CODE>, <CODE>YMIN</CODE> is the actual minimum value for
+ the <i>y</i>-axis, and the <i>y</i>-axis always begins on a large tic
+ mark.</P>
+</BODY>
+</HTML>

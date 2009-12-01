@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<TITLE>Vector variables</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="variablevector"></A>
+<font size="+2" color="green">Vector variables</font></P>
+<P>
+ A vector is a one dimension array of double precision real numbers.  A
+ vector can be thought of as a list of numbers. There is no maximum length
+ for vectors.</P>
+<P>
+ A literal vector can be a list of numbers, such as,
+ <code>[3;4.2;.456;-8]</code>, or a range of numbers, such as,
+ <code>[3:21:2]</code>, or an expression that results in a list of
+ numbers, such as <code>3*[2:5]^2</code>.</p>
+<p>
+ Elements of a list are separated
+ by semicolons, <CODE>;</CODE>, while the colon, <CODE>:</CODE>, is used as
+ the range element separator.</P>
+<P>
+ The following table shows the possible ways that
+ variables can be considered to be equivalent to vectors, that is, can be
+ used wherever vectors are expected.</P>
+<p>
+ <center>
+ <table border="1" cols="1" width="70%">
+ <tr><td bgcolor="#FFCCCC">Let <code>a</code> be a scalar and let <code>x</code> be a vector<br />
+ Suppose that <code>M</code> is a matrix and <code>V</code> is a vector</td>
+ </tr><tr>
+ <td><table cellpadding="2" cols="4">
+  <tr>
+  <td><code>V</code></td><td>=</td><td><code>V[i]</code></td><td>for <code>i = 1, ..., LEN(V)</code></td>
+  </tr><tr>
+  <td><code>V[x]</code></td><td>=</td><td><code>V[i]</code></td>
+   <td>for <code>i = x[1], x[2], ..., x[#]</code></td>
+  </tr><tr>
+  <td><code>M[x,b]</code></td><td>=</td><td><code>M[i,a]</code></td>
+   <td>for <code>i = x[1], x[2], ..., x[#]</code></td>
+  </tr><tr>
+  <td><code>M[a,x]</code></td><td>=</td><td><code>M[a,j]</code></td>
+   <td>for <code>j = x[1], x[2], ..., x[#]</code></td>
+  </table></td></tr>
+ </table></center></P>
+<P>
+ All vectors have an order property. Vectors are either in ascending order,
+ descending order, or un-ordered.  The type is displayed in the
+ <a href="../Commands/Show.htm"><CODE>SHOW</CODE></a>
+ command, where <code>+O</code> means ascending
+ order, <code>-O</code> means descending order, and no symbol means
+ un-ordered.  For now, being ordered only has an affect on the vector
+ <a href="../Operators/union.htm">union</a>, <code>/|</code>, and the vector
+ <a href="../Operators/intersection.htm">intersection</a>, <code>/&amp;</code>, operators.
+ These operations are much faster if the vector operands are ordered.  The
+ <a href="../Functions/where.htm"><CODE>WHERE</CODE></a>
+ function produces an ascending order vector, as does the
+ <a href="../Commands/Sort.htm"><CODE>SORT/UP</CODE></a> command.  The
+ <CODE>SORT/DOWN</CODE> command produces a descending order vector.</P>
+<P>
+  <a href="VariablesS02.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size=+1 color="olive">Scalar variables</font></a><br>
+  <a href="VariablesS04.htm"><img src="../shadow_right.gif">&nbsp;
+    <font size=+1 color="olive">Matrix variables</font></a>
+</P>
+</body>
+</html>

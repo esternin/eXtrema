@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>POLARLABELCOLOR</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>POLARLABELCOLOR</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET POLARLABELCOLOR n<br />
+SET POLARLABELCOLOR colorname<br />
+GET POLARLABELCOLOR { n }</CODE>
+</TD></TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>POLARLABELCOLOR =</CODE> black
+</TD></TR></TABLE>
+<P>
+ <em>Note:</em> The <CODE>GET POLARLABELCOLOR</CODE>
+ command always returns the color index, and not the color
+ name, even if <CODE>POLARLABELCOLOR</CODE> was set with a color name.</P>
+<p>
+ <CODE>POLARLABELCOLOR</CODE> controls the color of the automatic polar axis text label. The parameter
+ <CODE>c</CODE> can be a numeric scalar or one of the fixed color names.
+ A positive numeric value represents the index of the
+ color in the currently loaded colormap. A negative number represents the index of
+ the fixed color.  A string value should be one of the fixed color names.</p>
+<p>
+ For example:</p>
+<p>
+ <CODE><font color="blue">SET POLARLABELCOLOR 2</font></CODE> uses the colormap index 2<br>
+ <CODE><font color="blue">SET POLARLABELCOLOR -2</font></CODE> uses the fixed color index 2<br>
+ <CODE><font color="blue">SET POLARLABELCOLOR RED</font></CODE> uses the fixed color
+  name "<font color="red">RED</font>"</p>
+<P>
+  <a href="polarlabelon.htm"><img border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">POLARLABELON</font></a><BR />
+  <a href="polarlabelfont.htm"><img border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">POLARLABELFONT</font></a></P>
+</body>
+</html>

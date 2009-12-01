@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<TITLE>Inverse fast Fourier transform</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><font size="+3" color="green"><B>Inverse fast Fourier transform</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+y = IFFT(m)<br />
+y = IFFT(m,'AMP&PHASE')<br />
+y = IFFT(m,'COS&SIN')</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>IFFT</CODE> function calculates the
+ inverse discrete Fourier transform of the two column input matrix. This matrix is
+ usually calculated by the <CODE><a href="fft.htm">FFT</a></CODE> function, thus
+ reconstructing the original data.</p>
+<p>
+ By default, <CODE>IFFT</CODE> expects amplitudes and phases,
+ where the phases are in degrees. The first column of the matrix should contain the amplitudes
+ and the second column the phases.  If the <CODE>COS&SIN</CODE>
+ keyword is used, <CODE>IFFT</CODE> expects the Fourier coefficients,
+ that is, the cosine coefficients in the first column and the sine coefficients in the second
+ column. If the input matrix has <code>N</code> rows, the function returns a vector with
+ length <code>2(N-1)</code>.</p>
+<p>
+ The principle usage of the <CODE>IFFT</CODE> function is to
+ modify some of the amplitudes returned from the <CODE>FFT</CODE>
+ function and note their effect on the original data. A typical application would be
+ one of data smoothing, in which the user would zero out the amplitudes of the higher order
+ harmonics.</p>
+</HTML>

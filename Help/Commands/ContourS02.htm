@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>Contour level color</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Contour level color</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="cols" width="608">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+CONTOUR\COLORS colr { x y } v nctr { min { incr }}<br />
+CONTOUR\INTERP/COLORS colr ntrp { x y } v num { min { incr }}<br />
+CONTOUR\SPECIFIC\COLORS colr { x y } v lvls<br />
+CONTOUR\SPECIFIC\INTERP/COLORS colr ntrp { x y } v lvls</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ Contours in color can be obtained using the <code>\COLOR</code> qualifier. A color
+ vector, <CODE>colr</CODE>, is expected as the first parameter.  The length of
+ <CODE>colr</CODE> should be the same as the
+ number of contours requested.  A positive numeric value represents the index of the
+ color in the currently loaded colormap. A negative number represents the index of
+ the fixed color.</p>
+<P>
+ <a href="ContourS01.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Contour level selection</font></a><br />
+ <a href="ContourS03.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Labels</font></a>
+</P>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<TITLE>Diffusion</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Diffusion</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+DENSITY\DIFFUSION { x y } z { p1 p2 }</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Qualifiers</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+\PARTIAL, \XPROFILE, \YPROFILE, \BORDER, \AXES, \RESET</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+if <CODE>z</CODE> is a matrix:
+<CODE>x=[1;2;3;...], y=[1;2;3;...],</CODE>
+<CODE>p1=0, p2=1,</CODE>
+\-PARTIAL, \-XPROFILE, \-YPROFILE, \BORDER, \AXES, \RESET</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ Diffusion is a form of digital halftoning.  A threshold is fixed at
+ &frac12;. Data values are interpolated at each pixel location, and then
+ normalized to be between <CODE>0</CODE> (white) and <CODE>1</CODE> (black). The
+ resulting binary output value is compared with the original grey level value. The
+ difference is called the error for that location. The signal consisting of past error
+ values is passed through an error filter to produce a correction factor to be added to
+ future input values. Thus, errors are diffused over a weighted neighborhood.</p>
+<P>
+ <font size="+1" color="green">Input variables</font></P>
+<P>
+ If <CODE>z</CODE> is a vector, the parameters <CODE>x</CODE> and <CODE>y</CODE>
+ are expected and must be vectors. <CODE>x</CODE> and <CODE>y</CODE> are assumed to represent a scattered set
+ of points, where <CODE>z[i]</CODE> is the altitude corresponding to the location
+ <CODE>(x[i],y[i])</CODE>. A matrix is interpolated on these scattered points by means of a Thiessen
+ triangulation of the plane. The three vectors must be the same length.</p>
+<p>
+ If <CODE>z</CODE> is a matrix, the parameters <CODE>x</CODE> and <CODE>y</CODE> default to
+ <CODE>[1;2;3;...]</CODE>, but if entered they must be vectors. Each matrix element,
+ <CODE>z[i,j]</CODE>, is associated with the coordinates <CODE>(x[j],y[i])</CODE>.  The
+ length of <CODE>x</CODE> must be equal to the number of columns of <CODE>z</CODE> and the length of
+ <CODE>y</CODE> must be equal to the number of rows. The vectors <CODE>x</CODE> and
+ <CODE>y</CODE> are used for scaling the axes.</p>
+<p>
+ <font size="+1" color="green">Changing the range of values</font></p>
+<p>
+ The optional parameters <CODE>p1</CODE> and <CODE>p2</CODE> can be used to broaden or shrink
+ the range of data values. If <CODE>z<sub>max</sub></CODE> is the maximum value of the data and
+ <CODE>z<sub>min</sub></CODE> is the minimum value of the data, the full colour range will be from
+ a minimum of <CODE>min = p1*(z<sub>max</sub>-z<sub>min</sub>)+z<sub>min</sub></CODE>
+ to a maximum of <CODE>max = p2*(z<sub>max</sub>-z<sub>min</sub>)+z<sub>min</sub></CODE>.
+ If <CODE>z</CODE> is a data value and if
+ <CODE>z &lt; p1*(z<sub>max</sub>-z<sub>min</sub>)+z<sub>min</sub></CODE>,
+ that data value is treated as <CODE>z<sub>min</sub></CODE>.
+ If <CODE>z &gt; p1*(z<sub>max</sub>-z<sub>min</sub>)+z<sub>min</sub></CODE>,
+ that data value is treated as <CODE>z<sub>max</sub></CODE>.
+ The default values are: <CODE>p1=0</CODE> and <CODE>p2=1</CODE>.</p>
+<p>
+ <font size="+1" color="green">Example</font></P>
+<p>
+ These examples use the following vectors.</p>
+<pre>
+ X=[  1;  0;  1;  0;   .2; .3;   .5;  .8]
+ Y=[  5;  5;  0;  0;    1;1.5;  2.5;   4]
+ Z=[ 10; 10; 10; 10; -100; 10; -100; 500]
+</PRE>
+<table>
+<tr>
+<td><font color="blue"><CODE>DENSITY\DIFFUSION X Y Z</CODE></font></td>
+<td><img src="DensityS03I01.png"></td>
+</tr><tr>
+<td><font color="blue"><CODE>DENSITY\DIFF\XPRO\YPRO X Y Z</CODE></font></td>
+<td><img src="DensityS03I02.png"></td>
+</tr></table>
+<p>
+ <a href="DensityS02.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">DITHERING</font></a><br />
+ <a href="DensityS04.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">BOXES</font></a></P>
+</BODY>
+</HTML>

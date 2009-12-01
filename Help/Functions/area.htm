@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Area function</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><font size="+3" color="green"><B>Area function</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+a = AREA(x,y)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>AREA</CODE> function calculates the area
+ enclosed in the polygon specified by the vertex coordinates given in the vector
+ arguments <code>x</code> and <code>y</code>.  Both vector arguments must be of the
+ same length.  The polygon need not be closed, that is, the last point will be
+ assumed to connect to the first point.</p>
+<P>
+ <font size="+1" color="green">Example</font></P>
+<p>
+ The following code produces the picture below.</P>
+<P>
+ <font color="blue"><pre>
+ GENERATE THETA 0 .25 360
+ R[1:LEN(THETA)] = 1
+ SET AUTOSCALE COMMENSURATE
+ GRAPH R*COSD(THETA) R*SIND(THETA)
+ PIC = AREA(R*COSD(THETA),R*SIND(THETA))
+ SET TEXTALIGN 2
+ SET %XTEXTLOCATION 50
+ SET %YTEXTLOCATION 90
+ SET TEXTINTERACTIVE 0
+ TEXT 'Calculated <pi> = '//RCHAR(PIC)//', acos(-1) = '//RCHAR(ACOS(-1))
+ </pre></font></P>
+<P>
+ <center><IMG SRC="areaI01.png"></center></P>
+</BODY>
+</HTML>

@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>YNLINCS</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="ynlincs"></A>
+<font size="+3" color="green"><B>YNLINCS</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YNLINCS n<br />
+GET YNLINCS { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+YNLINCS = 5</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>YNLINCS</CODE> controls the number of
+ large, labeled, tic marks to be displayed on the <i>y</i>-axis.</P>
+<P>
+ <table border="1" cols="2">
+ <tr>
+ <td valign="center" align="center" width="15%"><code>YNLINCS</code></td>
+ <td valign="center" align="center"><em>meaning</em></td>
+ </tr><tr>
+ <td valign="center" align="center">&lt; 0</td>
+ <td valign="top">the number of large tic marks on the <i>y</i>-axis will 
+  be <CODE>YNLINCS + 1</CODE>. If <CODE><a href="ylogbase.htm">YLOGBASE</a> &gt; 1</CODE>,
+  logarithmic <i>y</i>-axis, <CODE>YNLINCS</CODE> may be changed to avoid
+  fractional powers. If <CODE>YLOGBASE &lt; 1</CODE>, linear <i>y</i>-axis, the
+  <i>y</i>-axis minimum and maximum will not be labeled with numbers.</td>
+ </tr><tr>
+ <td valign="center" align="center">= 0</td>
+ <td valign="top">the number of large tic marks on the <i>y</i>-axis will
+  be automatically determined for the user. The virtual <i>y</i>-axis minimum
+  and maximum will be determined, so the <i>y</i>-axis may not begin or end
+  at a large tic mark.</td>
+ </tr><tr>
+ <td valign="center" align="center">&gt; 0</td>
+ <td valign="top">the number of large tic marks on the <i>y</i>-axis will 
+  be <CODE>YNLINCS + 1</CODE>. If <CODE>YLOGBASE &gt; 1</CODE>, logarithmic
+  <i>y</i>-axis, <CODE>YNLINCS</CODE> may be changed to avoid fractional powers. If
+  <CODE>YLOGBASE &lt; 1</CODE>, linear <i>y</i>-axis, <CODE>YNLINCS</CODE>
+  will not be changed.</td>
+ </tr></table></p>
+</BODY>
+</HTML>

@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>POLARNUMBERSHEIGHT</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>POLARNUMBERSHEIGHT</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET POLARNUMBERSHEIGHT n<br />
+SET %POLARNUMBERSHEIGHT n<br />
+GET POLARNUMBERSHEIGHT { n }<br />
+GET %POLARNUMBERSHEIGHT { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+%POLARNUMBERSHEIGHT = 3</CODE>
+</TD></TR></TABLE>
+<P>
+ <CODE>POLARNUMBERSHEIGHT</CODE> controls the size of the
+ numbers labeling the polar axis. There are two forms:</p>
+<p>
+ <table>
+ <tr>
+ <td valign="top"><code>&nbsp;POLARNUMBERSHEIGHT</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the height, in world coordinate units, of the numbers labeling
+  the polar axis</td>
+ </tr><tr>
+ <td valign="top"><code>%POLARNUMBERSHEIGHT</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the height, expressed as a percentage of the height of the graphics sub-window,
+  that is, <CODE>POLARNUMBERSHEIGHT = %POLARNUMBERHEIGHT
+  * (<a href="yupperwindow.htm">YUPPERWINDOW</a>-
+  <a href="ylowerwindow.htm">YLOWERWINDOW</a>)/100</CODE>.</td>
+  </tr></table></p>
+<P>
+  <a href="polarnumbersfont.htm"><img border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">POLARNUMBERSFONT</font></a><BR />
+  <a href="polarnumbersangle.htm"><img border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">POLARNUMBERSANGLE</font></a></P>
+</body>
+</html>

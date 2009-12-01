@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>DESTROY command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>DESTROY command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>DESTROY { v1 v2 ... }</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\EXPAND, \SCALARS, \VECTORS, \MATRICES, \TEXT, \ALL</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\-EXPAND</code></TD></TR>
+</TABLE>
+<P>
+ The <CODE>DESTROY</CODE> command eliminates subsets
+ of vectors or string variables, or it destroys scalars, matrices and tensors.</p>
+<P>
+ When scalars, matrices or tensors are entered, they are completely destroyed.
+ Index ranges are not allowed on scalars, matrices or tensors. These variables
+ are simply eliminated.  By default, variable names are not constructed or
+ expanded.</P>
+<P>
+ If vectors are entered with no index ranges, they are entirely eliminated.
+ Subsets of vectors or of string variables may be eliminated by including
+ an index range.</P>
+<P>
+ <a href="DestroyS01.htm"><font size="+1" color="olive">Expanded names</font></a><br />
+ <a href="DestroyS02.htm"><font size="+1" color="olive">Index ranges</font></a><br />
+ <a href="DestroyS03.htm"><font size="+1" color="olive">Destroy entire classes
+  of variables</font></a><br />
+ <a href="DestroyS04.htm"><font size="+1" color="olive">Examples</font></a></P>
+</BODY>
+</HTML>

@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>Saving contour levels and coordinates</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Saving contour levels and coordinates</font></P>
+<P>
+ The contour levels are automatically stored in a vector named
+ <CODE><font color="orange">CCONT</font></CODE>. If the
+ <CODE>\COORDINATES</CODE> qualifier is used, the
+ <i>x</i> and <i>y</i> coordinates of each contour level are stored in
+ matrices named <CODE><font color="orange">XCNT</font></CODE> and
+ <CODE><font color="orange">YCNT</font></CODE>. The number of points stored
+ for each level is the first element of each column. For example,
+ <code><font color="orange">XCNT</font>[1,nc] (=n1)</code> is the number of
+ points making up contour number <CODE>nc</CODE>, while
+ <code><font color="orange">XCNT</font>[2:n1+1,nc]</code> and
+ <code><font color="orange">YCNT</font>[2:n1+1,nc]</code> would contain the
+ <i>x</i> and <i>y</i> coordinates of the <CODE>nc</CODE><sup>th</sup> contour
+ level. These vectors are then available to the user for plotting and/or
+ manipulation. Each time the <CODE>CONTOUR</CODE>
+ command is entered, these vectors are emptied and replaced, so if you wish
+ to keep them, they should be renamed or copied into other vectors.</P>
+<P>
+ <a href="ContourS03.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Labels</font></a><br />
+ <a href="ContourS05.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Legend</font></a>
+</P>
+</body>
+</html>

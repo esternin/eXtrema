@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>ELLIPSE command: ellipse explicitly defined </TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Ellipse explicitly defined</B></font></P>
+
+<TABLE border="1" cols="2">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+ELLIPSE a b xc yc angle<br />
+ELLIPSE\POPULATE a b xc yc angle<br />
+ELLIPSE\POPULATE\NPTS a b xc yc angle n<br />
+ELLIPSE\POPULATE\XYOUT a b xc yc angle xout yout<br />
+ELLIPSE\POPULATE\XYOUT\NPTS a b xc yc angle n xout yout</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ By default, the input parameters are assumed to be scalars representing the
+ major axis radius, <CODE>a</CODE>, the minor axis radius, <CODE>b</CODE>, the coordinates of the centre,
+ <CODE>cx</CODE> and <CODE>cy</CODE>, and the angle of the ellipse, <CODE>angle</CODE>, in degrees, measured
+ counter-clockwise from the horizontal.</p>
+<h3>Parameter order</h3>
+<p>
+ The order in which the qualifiers appear is irrelevant. The order in which the
+ command parameters appear is fixed:
+ <CODE>a b xc yc angle { npts } { xout yout }</CODE></p>
+<P>
+ <a href="EllipseS02.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Number of points</font></a><br />
+ <a href="EllipseS04.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Fit an ellipse</font></a></P>
+</BODY>
+</HTML>

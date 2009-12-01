@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>YLARGETICLENGTH</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="ylargeticlength"></A>
+<font size="+3" color="green"><B>YLARGETICLENGTH</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YLARGETICLENGTH n<br />
+SET %YLARGETICLENGTH n<br />
+GET YLARGETICLENGTH { n }<br />
+GET %YLARGETICLENGTH { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+%YLARGETICLENGTH = 2</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>YLARGETICLENGTH</CODE> controls the
+ length of the large, labeled, tic marks on the <I>y</I>-axis. There are two forms:</p>
+<p>
+ <table cols="3">
+ <tr>
+ <td valign="top"><code>&nbsp;YLARGETICLENGTH</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the length, in world coordinate units, of the large
+  tic marks on the <i>y</i>-axis</td>
+ </tr><tr>
+ <td valign="top"><code>%YLARGETICLENGTH</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the length, expressed as a percentage of the height of
+  the graphics sub-window, that is, <CODE>YLARGETICLENGTH = %YLARGETICLENGTH<br />
+  * (<a href="yupperwindow.htm">YUPPERWINDOW</a> -
+  <a href="ylowerwindow.htm">YLOWERWINDOW</a>)/100</CODE>.</td>
+ </tr></table></p>
+</body>
+</html>

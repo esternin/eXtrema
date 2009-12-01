@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>TEXTHEIGHT</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="textheight"></A>
+<font size="+3" color="green"><B>TEXTHEIGHT</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET TEXTHEIGHT n<br>
+SET %TEXTHEIGHT n<br>
+GET TEXTHEIGHT { n }<br>
+GET %TEXTHEIGHT { n }</CODE>
+<td></tr>
+<TR>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+%TEXTHEIGHT = 3</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ <CODE>TEXTHEIGHT</CODE> controls the height of text to be drawn,
+ when using the <CODE><a href="../Commands/Text.htm">TEXT</a></CODE> command.</P>
+<p>
+ There are two ways to specify the text height:</P>
+<p>
+<table border=0>
+<tr>
+<td valign="top"><CODE>&nbsp;TEXTHEIGHT</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">specifies the height of the text in world units</td>
+</tr><tr>
+<td valign="top"><CODE>%TEXTHEIGHT</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">specifies the height as a percentage of the height of the graphics
+ sub-window, that is,<BR />
+ <CODE>TEXTHEIGHT</font> = %TEXTHEIGHT *
+ (<a href="yupperwindow.htm">YUPPERWINDOW</a>-
+ <a href="ylowerwindow.htm">YLOWERWINDOW</a>)/100</CODE></td>
+</tr></table>
+</p>
+<P>
+  <a href="textfont.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">TEXTFONT</font></a><BR />
+  <a href="textinteractive.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">TEXTINTERACTIVE</font></a>
+</P>
+</body>
+</html>

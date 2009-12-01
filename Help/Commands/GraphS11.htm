@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Replot data on a common scale</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Replotting data on a common scale</font></P>
+<P>
+ By default, the graph will be stored for replotting. If the <CODE>\-REPLOT</CODE> qualifier is used, the
+ graph will not be saved for replotting.  The default is <CODE>\REPLOT</CODE>.</P>
+<P>
+ To redraw a graph with multiple data sets so that all the data will appear within the axis boundaries,
+ use the <a href="Replot.htm"><CODE>REPLOT</CODE></a>
+ command in association with the
+ <a href="../Characteristics/autoscale.htm"><CODE>AUTOSCALE</CODE></a>
+ characteristic. For example:</P>
+<p>
+ <font color="blue"><PRE>
+ SET AUTOSCALE ON      ! turn on autoscaling
+ SET PLOTSYMBOL -1     ! set plotting character to `box'
+ GRAPH X Y             ! plot data with axes
+ SET PLOTSYMBOL -2     ! set plotting character to `cross' 
+ GRAPH\OVERLAY U V     ! overlay another data curve
+ CLEAR\-REPLOT         ! clears graphics but not the replot buffers
+ REPLOT                ! replot both data sets on common scale
+ </PRE></font>
+<P>
+ Refer to the <a href="Replot.htm"><CODE>REPLOT</CODE></a>
+ command for more information.</P>
+<P>
+ <a href="GraphS10.htm"><img src="../shadow_left.gif">&nbsp;
+   <font size="+1" color="olive">Draw the x-axis on the top</font></a><br />
+ <a href="GraphS12.htm"><img src="../shadow_right.gif">&nbsp;
+   <font size="+1" color="olive">Histograms</font></a></P>
+</BODY>
+</HTML>

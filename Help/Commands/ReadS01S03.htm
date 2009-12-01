@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+<TITLE>Example 3</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Example 3</B></font></P>
+
+<TABLE border="0" width="548">
+<TR>
+<TD width="29%"></TD>
+<TD width="71%" valign="top">The macro below reads data into vectors allowing</TD>
+</TR><TR>
+<TD valign="top"><CODE>DUM.DAT</CODE> is below</TD>
+<TD valign="top">the user to choose when to stop reading</TD>
+</TR><TR>
+<TD valign="center">
+<CODE>---------------</CODE></TD>
+<TD valign="center">
+<CODE>---------------------------------------------</CODE></TD>
+</TR><TR>
+<TD valign="top"><CODE>
+10 20 30<br />
+40 50 60<BR />
+70 80 90<BR />
+this is a test<BR />
+100 200 300<BR />
+400 500 600<BR />
+700 800 900<BR />
+test line two<BR />
+-10 -20 -30<BR />
+-40 -50 -60<BR />
+-70 -80 -90</CODE></TD>
+<TD valign="top"><font color="blue"><CODE>
+LNUM = 1<BR />
+START:<BR />
+READ DUM.DAT\LNUM X Y Z<BR />
+IF ~EXIST('X') THEN GOTO DONE  ! end of file<BR />
+LIST X Y Z<BR />
+ANS='Y'<BR />
+INQUIRE 'read again ? (Y|n)' ANS<BR />
+IF NES(UCASE(ANS),'Y') THEN GOTO DONE<BR />
+LNUM = LEN(X)+LNUM+1<BR />
+GOTO START<BR />
+DONE:</CODE></font></TD>
+</TR>
+</TABLE>
+<P>
+ <a href="ReadS01S02.htm"><img src="../shadow_left.gif">&nbsp;
+   <font size="+1" color="olive">Example 2</font></a><br />
+ <a href="ReadS01.htm"><img src="../shadow_left.gif">&nbsp;
+   <font size="+1" color="olive">Read vectors</font></a>
+</P>
+</BODY>
+</HTML>

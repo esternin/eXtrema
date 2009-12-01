@@ -1,0 +1,310 @@
+<HTML>
+<HEAD>
+<TITLE>STATISTICS command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<p><font size="+3" color="green"><B>STATISTICS command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+STATISTICS x { s1\keyword { s2\keyword ... }}<br />
+STATISTICS\PEARSON x y { rcof prob }<br />
+STATISTICS\MOMENTS w x n { sout }</CODE>
+</TD></TR>
+<TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\MESSAGES, \WEIGHTS, \MOMENTS, \PEARSON</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\MESSAGES, \-WEIGHTS</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Examples</B>:</TD>
+<TD valign="top"><CODE>
+STATISTICS X<br />
+STATISTICS\-MESS X XMED\MEDIAN XMEAN\XMEAN<BR />
+STATISTICS\WEIGHTS W X XVAR\VARIANCE XSUM\SUM<BR />
+STATISTICS\MOMENTS Y X 3 M3</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE>STATISTICS</CODE> command calculates various statistics
+ for the input variable <CODE>x</CODE>, which can be
+ a vector or a matrix. Specific statistics are chosen with qualifier keywords
+ which are appended to the output parameters with the backslash, \. All
+ vectors must be the same size.</P>
+<P>
+ Table 1 below shows the parameter qualifier keywords and corresponding output values for extrema.
+ Table 2 shows the parameter qualifier keywords and corresponding output values for central measures.
+ Table 3 shows the parameter qualifier keywords and corresponding output values for dispersion and
+ skewness.</p>
+<p>
+ <center><table border="1" width="400">
+ <tr>
+ <td><i>Keyword</i></td>
+ <td><i>Output Value</i></td>
+ </tr><tr>
+ <td><CODE>\MAX</CODE></td>
+ <td>maximum value of <CODE>x</CODE></td>
+ </tr><tr>
+ <td><CODE>\IMAX</CODE></td>
+ <td>index of the maximum if <CODE>x</CODE> is a vector<br />
+  row index of the maximum if <CODE>x</CODE> is a matrix</td>
+ </tr><tr>
+ <td><CODE>\JMAX</CODE></td>
+ <td>column index of the maximum if <CODE>x is a matrix</CODE></td>
+ </tr><tr>
+ <td><CODE>\MIN</CODE></td>
+ <td>minimum value of <CODE>x</CODE></td>
+ </tr><tr>
+ <td><CODE>\IMIN</CODE></td>
+ <td>index of the minimum if <CODE>x</CODE> is a vector<br />
+  row index of the minimum if <CODE>x</CODE> is a matrix</td>
+ </tr><tr>
+ <td><CODE>\JMIN</CODE></td>
+ <td>column index of the minimum value if <CODE>x</CODE> is a matrix</td>
+ </tr></table>
+ <table width="400" border="0">
+ <tr><td align="center"><b>Table 1:</b> Extrema keywords</td>
+ </tr></table></center></p>
+<p>
+ <center><table border="1" width="400">
+ <tr>
+ <td><i>Keyword</i></td><td><i>Output Value</i></td>
+ </tr><tr>
+ <td><CODE>\SUM</CODE></td><td>arithmetic sum (unweighted)</td>
+ </tr><tr>
+ <td><CODE>\MEAN</CODE></td><td>arithmetic mean</td>
+ </tr><tr>
+ <td><CODE>\GMEAN</CODE></td><td>geometric mean</td>
+ </tr><tr>
+ <td><CODE>\MEDIAN</CODE></td><td>median value</td>
+ </tr><tr>
+ <td><CODE>\RMS</CODE></td><td>root-mean-square</td>
+ </tr></table>
+ <table width="400" border="0">
+ <tr><td align="center"><b>Table 2:</b> Central measure keywords</td>
+ </td></table></center></p>
+<p>
+ <center><table border="1" width="400">
+ <tr>
+ <td><i>Keyword</i></td><td><i>Output Value</i></td>
+ </tr><tr>
+ <td><CODE>\VARIANCE</CODE></td><td>variance</td>
+ </tr><tr>
+ <td><CODE>\SDEV</CODE></td><td>standard deviation</td>
+ </tr><tr>
+ <td><CODE>\ADEV</CODE></td><td>average deviation</td>
+ </tr><tr>
+ <td><CODE>\KURTOSIS</CODE></td><td>kurtosis</td>
+ </tr><tr>
+ <td><CODE>\SKEWNESS</CODE></td><td>skewness</td>
+ </tr></table>
+ <table width="400" border="0">
+ <tr><td align="center"><b>Table 3:</b> Dispersion and skewness keywords</td>
+ </tr></table></center></p>
+<p>
+ <font size="+2" color="green">Informational messages</font></p>
+<p>
+ The default is to display all the calculated statistics. If the
+ <CODE>\-MESSAGES</CODE> command qualifier is used, and if at least one output scalar is entered,
+ then the statistics values will not be displayed.</p>
+<p>
+ <font size="+2" color="green">Weights</font></p>
+<p>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ STATISTICS\WEIGHTS w x { s1\keyword { s2\keyword ... }}</CODE>
+ </TD></TR></TABLE></p>
+<p>
+ You <EM>must</EM> use the <CODE>\WEIGHTS</CODE>
+ qualifier to indicate that a weight vector is present. Weights cannot be
+ applied to matrix data.</p>
+<P>
+ A weighting factor, <CODE>w[i] &ge; 0</CODE>,
+ could be the frequency, the probability, the mass, the reliability, or some
+ other multiplier. The lengths of <CODE>w</CODE> and <CODE>x</CODE> must be equal.</p>
+<p>
+ <font size="+2" color="green">Definitions</font></p>
+<p>
+ Suppose that <code>x</code> is a vector with <code>N</code> elements.</P>
+<P>
+ If a weight vector, <code>w</code>, is entered, remember to use the
+ <CODE>\WEIGHTS</CODE> command qualifier. The
+ length of <code>w</code> is assumed to also be <code>N</code>. If no weights are entered,
+ let <code>w<sub>i</sub></code> default to <CODE>1</CODE>, for <code>i = 1,2,...,N</code>.
+ Define the total weight: <code>W = w<sub>1</sub> + w<sub>2</sub> + ... + w<sub>N</sub></code></p>
+<P>
+ <font size="+1" color="green">Sum</font></p>
+<P>
+ The sum is defined by <code>x<sub>1</sub> + x<sub>2</sub> + ... + x<sub>N</sub></code></p>
+<P>
+ <font size="+1" color="green">Mean value</font></p>
+<P>
+ The mean value, <code>M</code>, is defined by</p>
+<p>
+ <center><code>M = (1/W)*[w<sub>1</sub>x<sub>1</sub> + 
+ w<sub>2</sub>x<sub>2</sub> + ... + w<sub>N</sub>x<sub>N</sub>]</code></center></p>
+<P>
+ <font size="+1" color="green">Geometric mean</font></p>
+<P>
+ The geometric mean, <code>G<sub>x</sub></code>, is defined if each <code>x<sub>i</sub> &ge; 0</code>
+ by:</p>
+<p>
+ <center><code>G<sub>x</sub> = exp(1/W)*[w<sub>1</sub>log(x<sub>1</sub>) +
+ w<sub>2</sub>log(x<sub>2</sub>) + ... +
+ w<sub>N</sub>log(x<sub>N</sub>)]</code></center></p> 
+<P>
+ <font size="+1" color="green">Median</font></p>
+<P>
+ The median is the element of <code>x</code> which has equal numbers of values above
+ it and below it. If <code>N</code> is even, the median is the average of the unique
+ two central values.</p>
+<P>
+ <font size="+1" color="green">Root-mean-square</font></p>
+<P>
+ The root-mean-square, <code>RMS</code>, is defined by</p>
+<p>
+ <center><code>RMS = sqrt([1/W]*[w<sub>1</sub>x<sub>1</sub><sup>2</sup> +
+ w<sub>2</sub>x<sub>2</sub><sup>2</sup>
+ + ... + w<sub>N</sub>x<sub>N</sub><sup>2</sup>])</code></center></p>
+<P>
+ <font size="+1" color="green">Variance</font></p>
+<P>
+ The variance, <code>&mu;</code>, is defined by</p>
+<p>
+ <center><code>&mu; = [N/W(N-1)]*[w<sub>1</sub>(x<sub>1</sub>-M)<sup>2</sup> + 
+ w<sub>2</sub>(x<sub>2</sub>-M)<sup>2</sup> + ... +
+ w<sub>N</sub>(x<sub>N</sub>-M)<sup>2</sup>]</code></center></p>
+<P>
+ <font size="+1" color="green">Standard deviation</font></p>
+<P>
+ The standard deviation, <code>&sigma;</code>, is defined by <code>&sigma; = sqrt(&mu;)</code></p>
+<P>
+ <font size="+1" color="green">Average deviation</font></p>
+<P>
+ The average deviation, or mean deviation, <code>&delta;</code>, is defined by</p>
+<p>
+ <center><code>&delta; = (1/W)*[w<sub>1</sub>|x<sub>1</sub>-M| + w<sub>2</sub>|x<sub>2</sub>-M| + ... +
+ w<sub>N</sub>|x<sub>N</sub>-M|]</code></center></p>
+<P>
+ <font size="+1" color="green">Skewness</font></p>
+<P>
+ The skewness, or third moment, <code>skew</code>, is a nondimensional quantity that
+ characterizes the degree of asymmetry of a distribution around its mean. The
+ skewness is a pure number that characterizes only the shape of the
+ distribution, and is defined by</p>
+<p>
+ <center><code>skew = (1/W)*{w<sub>1</sub>[(x<sub>1</sub>-M)/&sigma;]<sup>3</sup> + 
+ w<sub>2</sub>[(x<sub>2</sub>-M)/&sigma;]<sup>3</sup> + ... +
+ w<sub>N</sub>[(x<sub>N</sub>-M)/&sigma;]<sup>3</sup>}</code></center></p>
+<P>
+ A positive value of skewness signifies a distribution with an asymmetric tail
+ extending out towards more positive <i>x</i>; a negative value signifies a
+ distribution whose tail extends out towards more negative <i>x</i>.</p>
+<P>
+ <font size="+1" color="green">Kurtosis</font></p>
+<P>
+ The kurtosis, <code>kurt</code>, is a nondimensional quantity which measures the
+ relative peakedness or flatness of a distribution, relative to a normal
+ distribution. A distribution with positive kurtosis is termed leptokurtic;
+ a distribution with negative kurtosis is termed platykurtic. An in-between
+ distribution is termed mesokurtic. The kurtosis is defined by</p>
+<p>
+ <center><code>kurt = 
+ w<sub>1</sub>[(x<sub>1</sub>-M)/&sigma;]<sup>4</sup> +
+ w<sub>2</sub>[(x<sub>2</sub>-M)/&sigma;]<sup>4</sup> + ... +
+ w<sub>N</sub>[(x<sub>N</sub>-M)/&sigma;]<sup>4</sup> - 3</code></center></P>
+<P>
+ where the <i>-3</i> term makes the value zero for a normal distribution.</p>
+<p>
+ <font size="+2" color="green">Moments</font></p>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+STATISTICS\MOMENTS w x n { s }</CODE>
+</TD></TR></TABLE>
+<p>
+ If the <CODE>\MOMENTS</CODE> command qualifier is used, the <CODE>n</CODE><sup>th</sup>
+ moment of vector <CODE>x</CODE>, with weight <CODE>w</CODE>, is calculated and optionally
+ stored in output scalar <CODE>s</CODE>. The moment number, <CODE>n</CODE>, can be any integer
+ <code>&gt; 0</code>.</p>
+<P>
+ <center><code>s = (1/W)*[w<sub>1</sub>x<sub>1</sub><sup>n</sup> +
+ w<sub>2</sub>x<sub>2</sub><sup>n</sup> + ... +
+ w<sub>N</sub>x<sub>N</sub><sup>n</sup>]</code></center></p>
+<P>
+<font size="+2" color="green">Linear correlation coefficient</font></p>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+STATISTICS\PEARSON x y { r p }</CODE>
+</TD></TR></TABLE>
+<p>
+ Pearson's <code>r</code>, or the linear correlation coefficient, is widely used as
+ a measure of association between variables that are continuous.  For pairs
+ of quantities <code>(x<sub>i</sub>,y<sub>i</sub>)</code>, for <code>i = 1,2,...,N</code>, the
+ linear correlation coefficient <code>r</code> is given by the formula:</p>
+<P>
+ <IMG SRC="StatisticsI01.gif"></P>
+<P>
+ where &nbsp;<IMG SRC="StatisticsI02.gif">&nbsp; is the mean of <code>x</code>, and
+ &nbsp;<IMG SRC="StatisticsI03.gif">&nbsp; is the mean of <code>y</code>.</p>
+<P>
+ The value of <i>r</i> lies between <i>-1</i> and <i>+1</i>, inclusive. It
+ takes on a value of <i>+1</i> when the data points lie on a straight line
+ with positive slope, <code>x</code> and <code>y</code> increase together. The value
+ <i>+1</i> holds independent of the magnitude of this slope. If the data
+ points lie on a straight line with negative slope, <code>y</code> decreases as
+ <code>x</code> increases, then <code>r</code> has the value <i>-1</i>. A value of
+ <code>r</code> near zero indicates that the variables <code>x</code> and <code>y</code> are
+ uncorrelated.</p>
+<P>
+ <code>r</code> is a way of summarizing the strength of a correlation which is
+ known to be significant, but it is a poor statistic for deciding whether an
+ observed correlation is statistically significant, and/or whether one observed
+ correlation is significantly stronger than another. The reason is that
+ <code>r</code> is ignorant of the individual distributions of <code>x</code> and
+ <code>y</code>, so there is no universal way to compute its distribution in the
+ case of the null hypothesis.</p>
+<P>
+ The <CODE>STATISTICS\PEARSON</CODE> command returns Pearson's <code>r</code> in the scalar variable
+ <CODE>r</CODE>. It also returns scalar <CODE>p</CODE>, the significance
+ level at which the null hypothesis of zero correlation is disproved.
+ A small value of <CODE>p</CODE> indicates a significant correlation.</p>
+<P>
+ <IMG SRC="StatisticsI04.gif"></P>
+<P>
+ where <code>I</code> is the incomplete Beta function and <code>t</code> is defined by:</p>
+<p> 
+ <center><IMG SRC="StatisticsI05.gif"></center></P>
+<P>
+ <font size="+1" color="green">Examples</font></p>
+<p>
+ Suppose you have a vector <code>X=[1.2;2.1;3.2;4.5;5;6;7]</code>. Entering
+ <code><font color="blue">STATISTICS X</font></code> produces the following display:</P>
+<p>
+ <IMG SRC="StatisticsI06.png"></p>
+<p>
+ If you want to use the values for the maximum, minimum and mean of <TT>X</TT>,
+ enter:</p>
+<P>
+ <code><font color="blue">STATISTICS X XMEAN\MEAN XMIN\MIN XMAX\MAX</font></code></p>
+<P>
+ and you will have the scalars: <code>XMAX=7</code>, <code>XMIN=1.2</code>, and
+ <code>XMEAN=4.142857</code></p>
+<P>
+ If you also want the index values for the maximum and the minimum of
+ <TT>X</TT>, enter:</p>
+<P>
+ <code><font color="blue">STATISTICS X XMEAN\MEAN XMIN\MIN XMAX\MAX IMX\IMAX IMN\IMIN</font></code></p>
+<P>
+ and you will also have scalars: <code>IMX=7</code> and <code>IMN=1</code>.</p>
+</BODY>
+</HTML>

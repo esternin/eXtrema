@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Median filters</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<font size="+2" color="green">Median filters</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+FILTER x f npt<br />
+FILTER\MEDIAN x f npt</CODE>
+</TD></TR>
+</table>
+<P>
+ The default is <CODE>\MEDIAN</CODE>, that is, to use a running median filter. The data array,
+ <CODE>x</CODE>, is filtered through a window <CODE>npt</CODE> points in width.
+ <CODE>npt</CODE> must be <CODE>&gt;2</CODE>.</P>
+<P>
+ The median filter is particularly good at removing 'spikes' from data. The
+ median filter moves a window over the data and outputs the median value of
+ the data points within each window placement. The window butts up against
+ the ends. When <CODE>npt</CODE> is even, the
+ filter is applied twice, first skewed left then skewed right, and the
+ results are averaged.</P>
+<P>
+ <a href="Filter.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">FILTER command</font></a><br />
+ <a href="FilterS02.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Mean filters</font></a></P>
+</BODY>
+</HTML>

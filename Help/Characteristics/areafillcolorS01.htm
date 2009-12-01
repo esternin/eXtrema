@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>Single numeric value or fixed color name</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Single numeric value or fixed color name</font></P>
+<p>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572"> <TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET AREAFILLCOLOR c<br>
+GET AREAFILLCOLOR { c }</CODE>
+</TD></TR>
+</TABLE></p>
+<p>
+ The area under the curve or histogram will be filled with the solid color
+ <CODE>c</CODE>.</p>
+<p>
+ If <CODE>c</CODE> is a positive numeric scalar value, it represents the index of the color in
+ the currently loaded <CODE><a href="colormap.htm">COLORMAP</a></CODE>.</p>
+<p>
+ A negative numeric scalar value represents the index of a fixed color. A string value
+ should be one of the <a href="../Introduction/Colors.htm">fixed color names</a>.</p>
+<p>
+ For example:</p>
+<p>
+ <table><tr>
+ <td><CODE><font color="blue">SET AREAFILLCOLOR 2</font></CODE></td>
+ <td>uses the colormap index 2</td>
+ </tr><tr>
+ <td><CODE><font color="blue">SET AREAFILLCOLOR -2</font></CODE></td>
+ <td>uses the fixed color index 2 ("<font color="red">RED"</font>)</td>
+ </tr><tr>
+ <td><CODE><font color="blue">SET AREAFILLCOLOR RED</font></CODE></td>
+ <td>uses the fixed color name "<font color="red">RED"</font></td>
+ </tr></table>
+</p>
+<p>
+ If <CODE><a href="histogramtype.htm">HISTOGRAMTYPE</a> = 2</code> (or
+ <code>4</code>), then the <CODE><a href="../Commands/Graph.htm">GRAPH</a></code>
+ command produces a histogram profile with tails to <i>x=0</i> (or <i>y=0</i>).</P>
+<p>
+ If <CODE>AREAFILLCOLOR</code> is set to a single numeric value
+ or to a fixed color name, all the histogram bars will be filled with the same solid color.</p>
+<p>
+  <a href="areafillcolor.htm"><img align="top" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">AREAFILLCOLOR</font></a><br />
+  <a href="areafillcolorS02.htm"><img align="top" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">Numeric vector</font></a>
+</P>
+</BODY>
+</HTML>

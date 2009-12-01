@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>Matrix inverse</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P>
+<font size="+3" color="green"><B>Matrix inverse</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+x = INVERSE(m)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The function <CODE>INVERSE(m)</code> returns the inverse
+ of the matrix <CODE>m</code>, which <i>must</i> be a
+ square matrix. The output is a matrix with the same shape as the argument. The
+ answer can be checked by using the inner product operator, for example:</p>
+<p>
+ <font color="blue"><pre>
+ invm=INVERSE(m) ! find the inverse of m
+ =m&lt;&gt;invm        ! this should be close to the identity matrix
+ </pre></font></p>
+<p>
+ <font size="+1" color="green">Method</font></P>
+<p>
+ Suppose that the matrix <i>A</i> has <i>n</i> rows and <i>n</i> columns.
+ Let <i>X</i> represent the inverse of <i>A</i>, and let <i>I</i> be the
+ identity matrix:</p>
+<p>
+ <IMG ALIGN="top" SRC="inverseI01.png"></p>
+<p>
+ The LU decomposition method is used for finding the inverse matrix <i>X</i>.
+ Write <i>A</i> as the product of two matrices: <i>A = L&lt;&gt;U</i> where
+ <i>L</i> is lower triangular and <i>U</i> is upper triangular.  A lower
+ triangular matrix has elements only on the diagonal and below, while an upper
+ triangular matrix has elements only on the diagonal and above. This decomposition
+ is used to solve <i>n</i> sets of <i>n</i> linear equations. The matrix subscript
+ <i>*,j</i> represents the entire <i>j</i><sub>th</sub> column of that matrix.</p>
+<p>
+ <IMG ALIGN="top" SRC="inverseI02.png"></p>
+<p>
+ Solve for the <i>y</i> vectors, there will be <i>n</i> of them, such that
+ <i>L&lt;&gt;y = I<sub>*,j</sub></i> and then solve for the <i>j</i><sub>th</sub>
+ column of <i>X</i>:</p>
+<p>
+ <i>U&lt;&gt;X<sub>*,j</sub> = y</i>&nbsp; for each &nbsp;<i>j=1,2,...,n</i></p>
+<p>
+ Since <i>L</i> and <i>U</i> are triangular</p>
+<p>
+ <IMG ALIGN="top" SRC="inverseI03.png"></p>
+<p>
+ and</p>
+<p>
+ <IMG ALIGN="top" SRC="inverseI04.png"></p>
+</BODY>
+</HTML>

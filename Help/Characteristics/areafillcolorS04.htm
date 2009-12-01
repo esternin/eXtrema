@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE>Histogram example</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Histogram example</font></P>
+<p>
+ The script below illustrates how to fill the area under a histogram profile and how to
+ fill the bars of a histogram with different colors.</p>
+<p>
+ Note that the main script calls another script to do a repetitive task.</p>
+<p>
+<font color="blue"><pre>
+X = [1.1:1.6:0.1]
+Y = [2.2;2.4;2.6;3.1;4.5;5.1]
+WINDOW 5
+@sub
+SET HISTOGRAMTYPE 1
+SET AREAFILLCOLOR RED
+GRAPH X Y
+TEXT 'histogramtype = 1'
+WINDOW 6
+@sub
+SET HISTOGRAMTYPE 2
+SET AREAFILLCOLOR [-1:-6:-1]
+GRAPH X Y
+TEXT 'histogramtype = 2'
+WINDOW 7
+@sub
+SET HISTOGRAMTYPE 3
+SET AREAFILLCOLOR blue
+GRAPH X Y
+TEXT 'histogramtype = 3'
+WINDOW 8
+@sub
+SET HISTOGRAMTYPE 4
+SET AREAFILLCOLOR [-7:-12:-1]
+GRAPH X Y
+TEXT 'histogramtype = 4'
+</pre></font></p>
+<img src="areafillcolorS04I01.jpg">
+<p>
+ The auxiliary script, <code>sub.pcm</code>, is shown here.</p>
+<p>
+ <font color="blue"><pre>
+  ! sub.pcm
+  !
+  DEFAULTS
+  SET %XNUMBERHEIGHT 4
+  SET %YNUMBERHEIGHT 4
+  SET %XIMAGTICLENGTH 2
+  SET %XTEXTLOCATION 50
+  SET %YTEXTLOCATION 90
+  SET TEXTINTERACTIVE 0
+  SET TEXTALIGN 2
+  SET %TEXTHEIGHT 5
+</pre></font></p>
+<P>
+  <a href="areafillcolorS03.htm"><img align="top" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">Curve example</font></a><br />
+  <a href="areafillcolorS05.htm"><img align="top" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">Area between two curves example</font></a>
+</P>
+</BODY>
+</HTML>

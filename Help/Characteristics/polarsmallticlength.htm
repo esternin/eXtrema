@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>POLARSMALLTICLENGTH</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>POLARSMALLTICLENGTH</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET POLARSMALLTICLENGTH n<br />
+SET %POLARSMALLTICLENGTH n<br />
+GET POLARSMALLTICLENGTH { n }<br />
+GET %POLARSMALLTICLENGTH { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>%POLARSMALLTICLENGTH = 0.5</CODE>
+</TD></TR></TABLE>
+<P>
+ <CODE>POLARSMALLTICLENGTH</CODE> controls the length of the optional small tic marks on the polar
+ axis. These are the unlabeled tic marks between the large, numbered, tic marks. There are two forms:</p>
+<p>
+ <table>
+ <tr>
+ <td valign="top"><code>&nbsp;POLARSMALLTICLENGTH</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the length, in world coordinate units, of the small tic marks on the polar axis</td>
+ </tr><tr>
+ <td valign="top"><code>%POLARSMALLTICLENGTH</code></td>
+ <td valign="top"> &rarr;</td>
+ <td valign="top">the length, expressed as a percentage of the height of the graphics sub-window, that is,
+  <CODE>POLARSMALLTICLENGTH = %POLARSMALLTICLENGTH
+  * (<a href="yupperwindow.htm">YUPPERWINDOW</a>-
+  <a href="ylowerwindow.htm">YLOWERWINDOW</a>)/100</CODE>.</td>
+  </tr></table></p>
+<P>
+  <a href="polarlargeticlength.htm"><img border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">POLARLARGETICLENGTH</font></a><BR />
+  <a href="polarlabel.htm"><img border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">POLARLABEL</font></a></P>
+</body>
+</html>

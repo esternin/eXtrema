@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE>Write a character string</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Write a character string</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+WRITE\TEXT file txtvar<br />
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Qualifiers</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+\APPEND</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Examples</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+WRITE\TEXT FILE.DAT T<br />
+WRITE\TEXT\APPEND FILE.DAT T
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE>WRITE\TEXT</CODE> command writes writes a
+ character string to a file. If <CODE>\APPEND</CODE> is used, and
+ if the output file already exists, the string will be appended onto the end of the file.</P>
+<P>
+ <font size="+1" color="green">Example 1</font></p>
+<p>
+ The values of scalar variables can be written by using the
+ <a href="../Functions/rchar.htm"><CODE>RCHAR</CODE></a> function
+ and the <a href="../Operators/append.htm">append</a> operator, <code>//</code>.  For example:</p>
+<p>
+ <font color="blue"><pre>
+ WRITE\TEXT FILE.EXT `The value of A is '//RCHAR(A)
+ WRITE\TEXT FILE.EXT `The value of X['//RCHAR(J)//`] = '//RCHAR(X[J])
+ </pre></font></p>
+<P>
+ <font size="+1" color="green">Example 2</font></p>
+<p>
+ Suppose you want to write a header line to a file and then write some
+ data stored in vectors to that file. For example:</p>
+<p>
+ <font color="blue"><pre>
+ WRITE\TEXT FILE.DAT `This is a header line'
+ WRITE\APPEND FILE.DAT X Y Z
+ </pre></font></p>
+<p>
+ Suppose <CODE>X</CODE> is a vector, <CODE>X = [ 1.1; 2.2; 3.3; 4.4 ],</CODE>
+ and you  want to write the values of <CODE>X</CODE> to a file, with some text.
+ For example:</p>
+<p>
+ <font color="blue"><pre>
+ DO J = 1, LEN(X)
+  WRITE\TEXT\APPEND FILE.DAT `X['//RCHAR(J)//`] = '//RCHAR(X[J])
+ ENDDO
+ </pre></font></p>
+<P>
+  <a href="WriteS02.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">Write a matrix</font></a></P>
+</BODY>
+</HTML>

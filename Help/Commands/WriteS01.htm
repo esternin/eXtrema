@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>Write scalars</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Write scalars</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+WRITE\SCALAR file s1 { s2 ... }<br />
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Qualifiers</B>:</TD>
+<TD width="85%" valign="top"><CODE>\APPEND</CODE></TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Examples</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+WRITE\SCALAR FILE.DAT A B C<br />
+WRITE\SCALAR\APPEND FILE.DAT A B C</TD></TR>
+</TABLE>
+<P>
+ The <CODE>WRITE\SCALAR</CODE> command writes scalars to a file.
+ If <CODE>\APPEND</CODE> is used, and
+ if the output file already exists, the data will be appended onto the end
+ of the file.  One line will be written to the file which will contain
+ columns of data, where the <CODE>I</CODE><sup>th</sup> column will be scalar
+ <CODE>sI</CODE>. A maximum of <CODE>29</CODE> scalars can be written with one
+ <CODE>WRITE\SCALAR</CODE> command.</p>
+<p>
+ <font size="+1" color="green">Example</font></p>
+<p>
+ To write scalars <CODE>A</CODE> and <CODE>B</CODE> to file <CODE>FILE.DAT</CODE>
+ and then to append to the file the vectors <CODE>X</CODE>, <CODE>Y</CODE> and <CODE>Z</CODE>,
+ enter:</p>
+<p>
+ <font color="blue"><pre>
+ WRITE\SCALAR FILE.DAT A B
+ WRITE\APPEND FILE.DAT X Y Z
+ </pre></font></p>
+<P>
+  <a href="Write.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">WRITE command</font></a><br />
+  <a href="WriteS02.htm"><img src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">Write a matrix</font></a></P>
+</BODY>
+</HTML>

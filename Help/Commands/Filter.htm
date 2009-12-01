@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<TITLE>FILTER command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>FILTER command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+FILTER\MEDIAN x f npt<br />
+FILTER\MEAN x f npt<br />
+FILTER\-RECURSIVE x f c<br />
+FILTER\RECURSIVE x f c d</CODE>
+</TD></TR>
+<TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\MEDIAN, \MEAN, \RECURSIVE</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\-RECURSIVE</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Examples</B>:</TD>
+<TD valign="top"><CODE>
+FILTER\MEDIAN X XF 5<br />
+FILTER\-RECURSIVE X XF [1;-2;1]<br />
+FILTER\MEAN X XF -5<br />
+FILTER\RECURSIVE X XF [.3584;1.2832;.3584;0;0] [0;1]</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ A digital filter is a linear combination of the input data,
+ <IMG SRC="FilterI01.gif">, and possibly the output data, <IMG SRC="FilterI02.gif">. The
+ input data is assumed to be <em>equally spaced</em> samples of some
+ continuously varying quantity; and any error or noise is in the measurements. In this
+ implementation of filters, the input data is assumed to have unit spacing, so a scale
+ factor may have to be applied to produce the correctly scaled output data.</P>
+<P>
+ The simplest kinds of filters are the nonrecursive filters defined by the
+ convolution formula:</P>
+<P>
+ <center><IMG SRC="FilterI03.gif"></center></P>
+<P>
+ The coefficients <IMG SRC="FilterI04.gif"> are
+ the constants of the filter, the <IMG SRC="FilterI05.gif"> are the input
+ data, and the <IMG SRC="FilterI06.gif"> are the outputs. When values of the output as well as the data
+ values are used to compute the output values, the filter is called a recursive filter. It is
+ usual to limit the range of nonzero coefficients to current and past values
+ of the data <IMG SRC="FilterI07.gif"> and to only past values of the output
+ <IMG SRC="FilterI06.gif">. This type of filter is called causal recursive and can be defined by the
+ convolution formula:</P>
+<P>
+ <center><IMG SRC="FilterI08.gif"></center></P>
+<P>
+ Nonrecursive or recursive filters using constant coefficients
+ <IMG SRC="FilterI04.gif">&nbsp; and <IMG SRC="FilterI09.gif">&nbsp; are called time-invariant filters.</P>
+<P>
+ It can be shown that the sum of the squares of the filter
+ coefficients measures the noise amplification of the filtering process. Thus,
+ the variance, <IMG SRC="FilterI10.gif">, will be
+ amplified by <IMG SRC="FilterI11.gif">.</P>
+<P>
+ <a href="FilterS01.htm"><font size="+1" color="olive">Median filters</font></a><br />
+ <a href="FilterS02.htm"><font size="+1" color="olive">Mean filters</font></a><br />
+ <a href="FilterS03.htm"><font size="+1" color="olive">Nonrecursive filters</font></a><br />
+ <a href="FilterS04.htm"><font size="+1" color="olive">Recursive filters</font></a><br />
+ <a href="FilterS05.htm"><font size="+1" color="olive">Examples</font></a></P>
+</BODY>
+</HTML>

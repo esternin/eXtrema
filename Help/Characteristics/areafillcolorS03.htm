@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>Curve example</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Curve example</font></P>
+<p>
+ The script below, <code>curvefill.pcm</code>, will fill the area under a curve with a
+ solid color, it will fill the area bounded by the curve and a horizontal line through the origin. It
+ expects parameters which are the vector names containing the data, with the independent vector
+ first and the dependent vector second. The third parameter the script expects is the name
+ of the fixed color to use for filling.</p>
+<p><font color="blue">
+ <pre>
+  ! curvefill.pcm
+  !
+  XO = ?1
+  YO = ?2
+  SET AREAFILLCOLOR STRING(?3)
+  L = LEN(XO)
+  XO[2:L+1] = XO[1:L]
+  XO[L+2] = XO[L+1]
+  YO[2:L+1] = YO[1:L]
+  YO[1] = 0
+  YO[L+2] = 0
+  GRAPH XO YO
+  ZEROLINES\HORIZONTAL ! draw horizontal line thru (0,0)
+  DEFAULTS
+ </pre></font></p>
+<p>
+ The following commands generate some data and call <code>curvefill.pcm</code>, producing
+ the figure below.</p>
+<p>
+<font color="blue"><pre>
+GENERATE X -5,,5 50
+Y=X^2+3*X-2
+@CURVEFILL X Y RED
+</pre></font>
+</p>
+<img src="areafillcolorS03I01.jpg">
+<P>
+  <a href="areafillcolorS02.htm"><img align="top" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">Numeric vector</font></a><br />
+  <a href="areafillcolorS04.htm"><img align="top" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">Histogram example</font></a>
+</P>
+</BODY>
+</HTML>

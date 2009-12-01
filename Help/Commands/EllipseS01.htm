@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<TITLE>ELLIPSE command: output vectors</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Output vectors</B></font></P>
+
+<TABLE border="1">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+ELLIPSE\FIT\XYOUT xin yin xout yout<br />
+ELLIPSE\FIT\XYOUT\NPTS xin yin n xout yout<br />
+ELLIPSE\FIT\XYOUT\FRACTION xin yin frac xout yout<br />
+ELLIPSE\FIT\XYOUT\FRACTION\NPTS xin yin frac n xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT xin yin a b xc yc angle xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\NPTS xin yin a b xc yc angle n xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION xin yin frac a b xc yc angle xout yout<br />
+ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION\NPTS xin yin frac a b xc yc angle n xout yout<br />
+ELLIPSE\POPULATE\XYOUT a b xc yc angle xout yout<br />
+ELLIPSE\POPULATE\XYOUT\NPTS a b xc yc angle n xout yout</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ By default, the ellipse perimeter will be plotted automatically. It is assumed that
+ a graph has been drawn already. The ellipse will be overlayed on this graph, with
+ no plotting symbol.</p>
+<p>
+ If the <CODE>\XYOUT</CODE> qualifier is used, then two
+ output vector names, <CODE>xout</CODE> and <CODE>yout</CODE>,
+ are expected. No automatic plotting is done, and the horizontal and vertical
+ coordinates of the ellipse perimeter will be placed in these two vectors.</p>
+<P>
+ <a href="Ellipse.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">ELLIPSE command</font></a><br />
+ <a href="EllipseS02.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Number of points</font></a></P>
+</BODY>
+</HTML>

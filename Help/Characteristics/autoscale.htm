@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<TITLE>AUTOSCALE</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="autoscale"></A>
+<font size="+3" color="green"><B>AUTOSCALE</B></font></P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET AUTOSCALE ON<br>
+SET AUTOSCALE ON\VIRTUAL<BR>
+SET AUTOSCALE OFF<BR>
+SET AUTOSCALE COMMENSURATE<BR>
+SET AUTOSCALE X<BR>
+SET AUTOSCALE X\VIRTUAL<BR>
+SET AUTOSCALE Y<BR>
+SET AUTOSCALE Y\VIRTUAL<br>
+GET AUTOSCALE { s }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+ON</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <em>Note:</em> The value of the <CODE>AUTOSCALE</CODE> characteristic is a string instead of
+ a numeric value. So, if you enter: <CODE><font color="blue">
+ <a href="../Commands/Get.htm">GET AUTOSCALE X</a></font></CODE>, the variable <CODE>X</CODE>
+ will be a string variable.</P>
+<P>
+ <CODE>AUTOSCALE</CODE> controls the autoscaling for the graph axes.  Autoscaling means to
+ automatically choose the minimum and maximum values for the axes, as well as the number of large,
+ numbered, tic marks for the axes.  Autoscaling affects commands that draw axes.  The type of autoscaling
+ that is done depends on the keyword that is used.</p>
+<p>
+ <table border="1" cols="2" frame="box" rules="all">
+ <tr>
+ <td align="center" valign="top"><i>keyword</i></td>
+ <td align="center" valign="top"><i>result</i></td>
+ </tr><tr>
+ <td align="center"><code>ON</code></td><td>autoscale the horizontal and the vertical axes</td>
+ </tr><tr>
+ <td align="center"><code>OFF</code></td><td>turn off all autoscaling<br />
+  the axes will remain as they are currently set</td>
+ <tr></tr>
+ <td align="center"><code>COMMENSURATE</code></td><td>autoscale the horizontal and vertical axes and<br />
+  change the lengths of the axes to be commensurate</td>
+ </tr><tr>
+ <td align="center"><code>X</code></td><td>autoscale the horizontal axis only<br />
+  the vertical axis will remain as currently set</td>
+ </tr><tr>
+ <td align="center"><code>Y</code></td><td>autoscale the vertical axis only<br />
+  the horizontal axis will remain as currently set</td>
+ </tr></table></p>
+<p>
+ Autoscaling remains in effect until changed with <CODE>
+ <a href="../Commands/Set.htm">SET AUTOSCALE</a></CODE> or the
+ <a href="../Commands/Scales.htm"><code>SCALES</code></a>
+ command is entered.  The default is <code>AUTOSCALE ON</code>.</p>
+<p>
+ When the <code>/VIRTUAL</code> qualifier is used, the virtual minima and maxima for the
+ axes will be determined, so that the axes may not begin or end at a large tic mark.
+ If <code>ON\VIRTUAL</CODE> is used, both the <i>x</i> and <i>y</i>-axes will have virtual
+ minima and maxima.  If <code>X\VIRTUAL</code> is used, only the <i>x</i>-axis will have
+ virtual minimum and maximum.  If <code>Y\VIRTUAL</code> is used, only the <i>y</i>-axis
+ will have virtual minimum and maximum.</p>
+<p>
+  <a href="tension.htm"><img border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">TENSION</font></a><BR />
+  <a href="backgroundcolor.htm"><img border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">BACKGROUNDCOLOR</font></a>
+</P>
+</body>
+</html>

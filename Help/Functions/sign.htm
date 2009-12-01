@@ -1,0 +1,60 @@
+!<HTML>
+<HEAD>
+<TITLE>SIGN</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="sign"></A>
+<font size="+3" color="green"><B>SIGN</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = SIGN( v1, v2 )</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>SIGN</CODE> function is an element by element function that
+ requires two (2) arguments. The arguments can be scalars, vectors, matrices or tensors, but vectors,
+ matrices and tensors cannot be mixed, and all arrays must be the same size. Scalar arguments result
+ in a scalar. A vector argument result in a vector with the same length as the argument, and matrix
+ (tensor) arguments result in a matrix (tensor) with the same dimensions as the arguments.</p>
+<p>
+<center><table border="0" cols="5" cellspacing="0">
+<tr>
+ <td bgcolor="#FFCCCC"><em>arg 1</em>&nbsp;</td>
+ <td bgcolor="#FFCCCC"><em>arg 2</em>&nbsp;</td>
+ <td bgcolor="#FFCCCC"><em>result</em>&nbsp;</td>
+ <td align="center" colspan="2" bgcolor="#FFCCCC"><em>definition</em></td>
+</tr><tr>
+ <td>scalar</td><td>scalar</td><td>scalar</td>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>SIGN(a,b)</CODE></td>
+ <td bgcolor="#FFFFCC"><CODE>= |a|*(sign of b)</CODE></td>
+</tr><tr>
+ <td>vector</td><td>vector</td><td>vector</td>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>SIGN(x,y)[j]</CODE></td>
+ <td bgcolor="#FFFFCC"><CODE>= |x[j]|*(sign of y[j])</CODE></td>
+</tr><tr>
+ <td>scalar</td><td>vector</td><td>vector</td>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>SIGN(a,x)[j]</CODE></td>
+ <td bgcolor="#FFFFCC"><CODE>= |a|*(sign of x[j])</CODE></td>
+</tr><tr>
+ <td>vector</td><td>scalar</td><td>vector</td>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>SIGN(x,a)[j]</CODE></td>
+ <td bgcolor="#FFFFCC"><CODE>= |x[j]|*(sign of a)</CODE></td>
+</tr><tr>
+ <td>matrix</td><td>matrix</td><td>matrix</td>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>SIGN(m1,m2)[i,j]</CODE></td>
+ <td bgcolor="#FFFFCC"><CODE>= |m1[i,j]|*(sign of m2[i,j])</CODE></td>
+</tr><tr>
+ <td>scalar</td><td>matrix</td><td>matrix</td>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>SIGN(a,m)[i,j]</CODE></td>
+ <td bgcolor="#FFFFCC"><CODE>= |a|*(sign of m[i,j])</CODE></td>
+</tr><tr>
+ <td>matrix</td><td>scalar</td><td>matrix</td>
+ <td bgcolor="#FFFFCC">&nbsp;<CODE>SIGN(m,a)[i,j]</CODE></td>
+ <td bgcolor="#FFFFCC"><CODE>= |m[i,j]|*(sign of a)</CODE></td>
+</tr></table></center></p>
+</BODY>
+</HTML>

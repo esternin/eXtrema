@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>Increment and maximum</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Increment and maximum</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+GENERATE x min inc max</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ If the increment and the maximum value are given, the number of points
+ will be ignored. The formula:</p>
+<p>
+ <center><CODE>x[i] = min+(i-1)*inc</CODE> &nbsp;&nbsp; for &nbsp;&nbsp; <CODE>i=[1;2;3;...]
+ </CODE></center></p>
+<p>
+ will be applied until the next value would be greater than the specified maximum. If the calculated
+ maximum is different than the given maximum, a warning message will be displayed. The calculated maximum
+ will be the last value stored in the vector.</p>
+<p>
+ For example, suppose you enter the command:</p>
+<p>
+ <CODE><font color="blue">GENERATE X -1 .41 1</font></CODE></p>
+<p>
+ the vector <code>X</code> will be <CODE>[-1;-0.59;-0.18;0.23;0.64]</CODE>.  The warning message:<br />
+ <font color="orange"><pre>
+       GENERATE warning: calculated maximum = 0.64000000E+00
+                              given maximum = 0.10000000E+01
+ </pre></font>
+ will be displayed.</p>
+<P>
+ <a href="GenerateS02.htm"><img src="../shadow_left.gif">&nbsp;
+   <font size="+1" color="olive">Maximum and number of points</font></a><br />
+ <a href="GenerateS04.htm"><img src="../shadow_right.gif">&nbsp;
+   <font size="+1" color="olive">Random values</font></a>
+</P>
+</BODY>
+</HTML>

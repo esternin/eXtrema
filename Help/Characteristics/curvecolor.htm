@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>CURVECOLOR</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="curvecolor"></A>
+<font size="+3" color="green"><B>CURVECOLOR</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET CURVECOLOR n<br>
+SET CURVECOLOR colorname<br>
+GET CURVECOLOR { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+CURVECOLOR =</CODE> black
+</TD></TR>
+</TABLE>
+<P>
+ <em>Note:</em> The <CODE><font color="blue"><a href="../Commands/Get.htm">
+ GET CURVECOLOR</a></font></CODE> command always returns the color index, and not the color
+ name, even if <CODE>CURVECOLOR</CODE> was set with a color name.</P>
+<p>
+ <CODE>CURVECOLOR</CODE> controls the color of the data curve drawn when the <CODE>
+ <a href="../Commands/Graph.htm">GRAPH</a></font></CODE>
+ command is entered. The parameter can be a numeric scalar or one of the fixed
+ color names.</p>
+<p>
+ For example:</p>
+<p>
+ <CODE><font color="blue">SET CURVECOLOR 2</font></CODE> uses the colormap index 2<br \>
+ <CODE><font color="blue">SET CURVECOLOR RED</font></CODE> uses the fixed color name
+ "<font color="red">RED</font>"</p>
+<P>
+  <a href="histogramtype.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">HISTOGRAMTYPE</font></a><br />
+  <a href="curvelinewidth.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">CURVELINEWIDTH</font></a>
+</P>
+</body>
+</html>

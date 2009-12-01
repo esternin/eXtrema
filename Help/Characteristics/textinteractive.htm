@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>TEXTINTERACTIVE</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="textinteractive"></A>
+<font size="+3" color="green"><B>TEXTINTERACTIVE</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET TEXTINTERACTIVE n<br>
+GET TEXTINTERACTIVE { n }</CODE>
+<td></tr>
+<TR>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+TEXTINTERACTIVE = 1</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ If <CODE>TEXTINTERACTIVE &ne; 0</CODE>, then 
+ the graphics cursor is used to interactively place a text string when
+ drawn by the <CODE><a href="../Commands/Text.htm">TEXT</a></CODE> command.</P>
+<p>
+ If <CODE>TEXTINTERACTIVE = 0</CODE>, then
+ <a href="xtextlocation.htm"><CODE>XTEXTLOCATION</CODE></a> and 
+ <a href="ytextlocation.htm"><CODE>YTEXTLOCATION</CODE></a> will be used
+ to determine the reference point for the character string.</p>
+<p>
+ In either case, the justification will be determined by the value of
+ <a href="textalign.htm"><CODE>TEXTALIGN</CODE></a>.</P>
+<P>
+  <a href="textheight.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">TEXTHEIGHT</font></a><BR />
+  <a href="xtextlocation.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">XTEXTLOCATION</font></a>
+</P>
+</body>
+</html>

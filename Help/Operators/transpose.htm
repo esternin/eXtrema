@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>TRANSPOSE</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="transpose"></A>
+<font size="+3" color="green"><B>TRANSPOSE</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = &lt;&minus;v</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The transpose operator, <code>&lt;&minus;</code>, is a unary operator
+ that produces the transpose of a matrix, that is, the rows and columns are
+ interchanged.</p>
+<p>
+ Suppose the matrix <code>M</code> has M rows and N columns. Then 
+ <code>&lt;-M</code> has N rows and M columns, where <code>(&lt;-M)[i,j] = M[j,i]</code> for
+ <code>i = 1,2,...,N</code> and <code>j = 1,2,...,M</code>.</p>
+<P>
+ <font size="+1" color="green">Example</font></p>
+<P>
+ Let
+ <pre>
+     |  1  2  3 |
+ M = |  4  5  6 |
+     |  7  8  9 |
+     | 10 11 12 |
+ </pre>
+ then
+ <pre>
+       |  1  4  7 10 |
+ &lt;-M = |  2  5  8 11 |
+       |  3  6  9 12 |
+ </pre></p>
+</BODY>
+</HTML>

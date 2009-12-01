@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<TITLE>Multiple window creation</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green">Multiple window creation</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>WINDOW\TILE nx ny nstart</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>nstart = 1</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE>WINDOW\TILE</CODE> command divides the graphics page up into <CODE>nx</CODE>
+ horizontal by <CODE>ny</CODE> vertical windows, giving the first window the number
+ <CODE>nstart</CODE>, which must be <CODE>&gt; 0</CODE>. The total number of windows just defined will be
+ <code>nx*ny</code>. The window numbered <CODE>nstart</CODE> will be in the
+ upper left corner of the page, while the window numbered
+ <code>nx*ny-nstart+1</code> will be in the lower right corner.</P>
+<P>
+  <a href="WindowS05.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">Alternate method</font></a></P>
+</BODY>
+</HTML>

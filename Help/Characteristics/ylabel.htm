@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<TITLE>YLABEL</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="ylabel"></A>
+<font size="+3" color="green"><B>YLABEL</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YLABEL s<br />
+GET YLABEL { s }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+YLABEL</CODE> is blank
+</TD></TR>
+</TABLE>
+<p>
+ <em>Note:</em> The value of the <CODE>YLABEL</CODE>
+ characteristic is a string instead of a numeric value. So, if
+ you enter: <CODE><font color="blue"><a href="../Commands/Get.htm">GET YLABEL X</a>
+ </font></CODE>, the variable <CODE>X</CODE> will be a string variable.</P>
+<P>
+ The <CODE>YLABEL</CODE> characteristic controlls the automatic <i>y</I>-axis text label.
+ Setting the label also turns it on. Use the <CODE><A HREF="ylabelon.htm">YLABELON</A></CODE>
+ characteristic to toggle off/on drawing the <i>y</i>-axis text label. The axis text labels
+ are drawn only when the axes are drawn. The character string may contain format commands.
+ Change the sizes of the text label with <CODE><a href="ylabelheight.htm">YLABELHEIGHT</A></CODE>
+ or <CODE>%YLABELHEIGHT</CODE> characteristic. The <i>y</i>-axis text label is drawn, centred,
+ to the left of the <i>y</i>-axis.</P> 
+</body>
+</html>

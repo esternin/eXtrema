@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<TITLE>Hint for Physicists</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Hint for physicists</font></P>
+<P>
+ Very often, the data to be fitted is a histogram of physical events. In that
+ case, since each bin would follow a multinomial distribution, the error is
+ equal to <code>&radic;<i>f</i></code>, where <i>f</i> is the expression you are trying to fit.
+ Of course, since you don't know the parameter values yet, you don't actually
+ know <i>f</i>, so you approximate by using the <i>y</i> data values.  In the
+ limit, these results are the same. In the case of a large number of bins, the
+ variance can be approximated by <code>&radic;y</code>. Hence, the correct
+ weighting factor that will give properly normalized errors is <i>w = 1/y</i>,
+ and the corresponding one standard deviation error,
+ <font size="+1"><code>&sigma; = E1</code></font>.</p>
+<p>
+ <font size="+1"><code>E2 = E1*sqrt(&chi;<sup>2</sup>/n)</code></font>, where
+ <code>E1</code> is the standard error and <code>n</code> is the number of degrees of freedom, usually
+ equal to the number of data points minus the number of parameters,
+ <code>(N-M)</code>.</P>
+<P>
+ <a href="FitS07S01.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Chi-square and weights</font></a><br />
+ <a href="FitS07S03.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Degrees of freedom</font></a>
+</P>
+</BODY>
+</HTML>

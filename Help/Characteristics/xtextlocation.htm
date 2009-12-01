@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<TITLE>XTEXTLOCATION</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="xtextlocation"></A>
+<font size="+3" color="green"><B>XTEXTLOCATION</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET XTEXTLOCATION n<br>
+SET %XTEXTLOCATION n<br>
+GET XTEXTLOCATION { n }<br>
+GET %XTEXTLOCATION { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+%XTEXTLOCATION = 50</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>XTEXTLOCATION</CODE> controls the horizontal reference
+ position of a character string drawn using the <CODE>
+ <a href="../Commands/Text.htm">TEXT</a></CODE> command. This
+ reference point is used for text alignment.  See the explanation of
+ <A HREF="textalign.htm"><CODE>TEXTALIGN</CODE></a> for how
+ <CODE>XTEXTLOCATION</CODE> will be used.</p>
+<p>
+ <CODE>XTEXTLOCATION</CODE> will be used if
+ <A HREF="textinteractive.htm"><CODE>TEXTINTERACTIVE</A> &ne; 0</CODE>.</P>
+<p>
+ There are two forms for <CODE>XTEXTLOCATION</CODE>:
+<table border="0" cols="3">
+<tr>
+<td valign="top"><code>&nbsp;XTEXTLOCATION</code></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the horizontal coordinate, in world coordinate units, of the reference point</td>
+</tr><tr>
+<td valign="top"><code>%XTEXTLOCATION</code></td>
+<td valign="top">&rarr;</td>
+<td valign="top">the horizontal coordinate, expressed as a percentage of the width of the
+ graphics sub-window, that is,<BR />
+ <CODE>XTEXTLOCATION = %XTEXTLOCATION *
+ (<a href="xupperwindow.htm">XUPPERWINDOW</a>-
+ <a href="xlowerwindow.htm">XLOWERWINDOW</a>)/100</CODE></td>
+</tr></table>
+</p>
+<P>
+  <a href="textinteractive.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">TEXTINTERACTIVE</font></a><BR />
+  <a href="ytextlocation.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">YTEXTLOCATION</font></a>
+</P>
+</body>
+</html>

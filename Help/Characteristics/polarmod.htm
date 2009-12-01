@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>POLARMOD</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>POLARMOD</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET POLARMOD n<br />
+GET POLARMOD { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>POLARMOD = 0</CODE>
+</TD></TR></TABLE>
+<P>
+ <CODE>POLARMOD</CODE> is another control on the numbering for the polar axis.</P>
+<P>
+ If <code>POLARMOD &gt; 1</CODE> the numbers displayed on the polar axis are modulo
+ <CODE>POLARMOD</CODE> and positive. If the number to be displayed on the axis is <CODE>N</CODE> then
+ the number that is actually displayed is
+ <CODE>|N-POLARMOD*(N/POLARMOD)|+<A HREF="polaroffset.htm">POLAROFFSET</a></CODE></P>
+<P>
+ If <CODE>|POLARMOD| &le; 1</CODE> the numbers will be displayed normally.</p>
+<p>
+ If <CODE>POLARMOD &lt; -1</CODE> the numbers will be modulo <CODE>|POLARMOD|</CODE>
+ and may be negative.</p>
+<P>
+  <a href="polarnumberofdecimals.htm"><img border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">POLARNUMBEROFDECIMALS</font></a><BR />
+  <a href="polarleadingzeros.htm"><img border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">POLARLEADINGZEROS</font></a></P>
+</BODY>
+</HTML>

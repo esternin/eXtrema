@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<TITLE>STRING</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="string"></A>
+<font size="+3" color="green"><B>STRING</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+quote_string = STRING(string)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>STRING</CODE> function is useful in command scripts,
+ where you want to pass a string to the script as a parameter, without enclosing it in quotes.
+ For example, <CODE>@script test</CODE> where <CODE>script.pcm</CODE>
+ is as follows:</p>
+<p>
+ <font color="blue"><pre>
+ x = string(?1)//' is a quote string'
+ display x
+ </pre></font></p>
+<p>
+ would display &nbsp;&nbsp;&nbsp;<font color="orange">test is a quote string</font></p>
+<p>
+ The key element here is that the user does not have to supply the quotes around the
+ parameter <CODE>test</CODE>.</p>
+<p>
+ <font size="+1" color="green">Examples</font></P>
+<p>
+<table>
+<tr>
+ <td align="center" bgcolor="#CCFFFF"><em>input</em></td>
+ <td align="center" bgcolor="#FF9966"><em>result</em></td>
+</tr><tr>
+ <td><CODE>STRING(test case)</CODE></td>
+ <td><font color="orange">'test case'</font></td>
+</tr><tr>
+ <td><CODE>STRING(test)</CODE></td>
+ <td><font color="orange">'test'</font></td>
+</tr><tr>
+ <td><CODE>STRING('test')</CODE></td>
+ <td><font color="orange">'test'</font></td>
+</tr></table></p>
+</BODY>
+</HTML>

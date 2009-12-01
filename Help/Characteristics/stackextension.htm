@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>STACKEXTENSION</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="stkextension"></A>
+<font size="+3" color="green"><B>STACKEXTENSION</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET STACKEXTENSION s<BR>
+GET STACKEXTENSION { s }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+STACKEXTENSION = stk</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ <em>Note:</em> The value of the <CODE>STACKEXTENSION</CODE>
+ characteristic is a string and not a numeric value. So, if you
+ enter:</p>
+<p>
+ <CODE><font color="blue"><a href="../Commands/Get.htm">GET STACKEXTENSION X</a>
+ </font></CODE>, the variable <CODE>X</CODE> will be a string variable.</P>
+<p>
+ The <CODE><font color="blue"><a href="../Commands/Set.htm">SET STACKEXTENSION</a>
+ </font></CODE> command is used to
+ redefine the default file extension for stack files.  The default file extension is
+ <CODE>stk</CODE>. This file extension applies to the
+ <CODE><a href="../Commands/Stack.htm">STACK</a></CODE>
+ command only. If you enter a file name without a file extension to the <CODE>STACK</CODE>
+ command, the default extension will be automatically appended to the file name.</P>
+<p>
+ The case of the extension is kept as entered.</P>
+<p>
+ <font size="+2" color="green"><B>Examples</B></font></P>
+<p>
+ If you enter the command <CODE><font color="blue">STACK some_file</font></code>, the
+ value of <CODE>STACKEXTENSION</code> will be automatically appended to the
+ file name, so, unless you have changed the <CODE>STACKEXTENSION</code>, your stack file will
+ be <CODE>some_file.stk</code>.</p>
+<p>
+ If you enter the command <CODE><font color="blue">STACK some_file.xxx</font></code>,
+ your stack file name will be left as <CODE>some_file.xxx</code>.</P>
+<P>
+ If you have a stack file named <CODE>stack_file.stk</CODE>, you can execute
+ this file with the command<br>
+ <font color="blue">@<CODE>stack_file</CODE></font> or with
+ <font color="blue">@<CODE>stack_file.stk</CODE></font></p>
+<P>
+  <a href="extension.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">SCRIPTEXTENSION</font></a>
+</P>
+</body>
+</html>

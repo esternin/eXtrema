@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>JOIN function</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><font size="+3" color="green"><B>JOIN function</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+m = JOIN(x,y)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The arguments of the <CODE>JOIN</CODE> function must both be
+ vectors. <CODE>JOIN</CODE> produces a matrix with 3
+ columns. The first column is the intersection of <CODE>x</CODE>
+ and <CODE>y</CODE>, that is, if you enter
+ <CODE><font color="blue">m=JOIN(x,y)</font></CODE> then <code>m[*,1]</code> is the same
+ as <code>x/&y</code>, where /& is the
+ <a href="../Operators/intersection.htm">intersection</a> operator.
+ &nbsp;&nbsp;<code>m[i,2]</code> is the index of
+ <CODE>x</CODE> from which <code>m[i,1]</code> was
+ taken, and <code>m[i,3]</code> is the index of <CODE>y</CODE>
+ from which <code>m[i,1]</code> was taken. If the vector arguments
+ are ordered, the <CODE>JOIN</CODE> function will proceed much faster than if they are unordered.</p>
+<p><font color="green" size="+1">Example</font></p>
+<p>
+ Suppose that you have two vectors:</p>
+<p>
+ <code>X = [0;1;2;3;4;5;6;7;8;9;10], Y = [1;3;5;7;9]</code></p>
+<p>
+ <table>
+ <tr>
+ <td bgcolor="#FFCCCC"><i>function</i></td><td bgcolor="#FFCCCC"><i>result</i></td>
+ </tr><tr>
+ <td valign="middle"><CODE><font color="blue">JOIN(X,Y)</font></CODE></td>
+ <td bgcolor="#FFFFCC">
+ <table cellspacing="0" cellpadding="0">
+  <tr><td><code>| 1&nbsp; &nbsp;2 &nbsp;1&nbsp;|</code></td></tr>
+  <tr><td><code>| 3&nbsp; &nbsp;4 &nbsp;2&nbsp;|</code></td></tr>
+  <tr><td><code>| 5&nbsp; &nbsp;6 &nbsp;3&nbsp;|</code></td></tr>
+  <tr><td><code>| 7&nbsp; &nbsp;8 &nbsp;4&nbsp;|</code></td></tr>
+  <tr><td><code>| 9&nbsp; 10 &nbsp;5&nbsp;|</code></td></tr></table></td>
+ </tr></table></p>
+</BODY>
+</HTML>

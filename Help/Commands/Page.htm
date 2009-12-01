@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>PAGE command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>PAGE command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+PAGE n<BR />
+PAGE\INHERIT n m</CODE>
+</TD></TR>
+<TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\INHERIT</CODE>
+</TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\-INHERIT</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE>PAGE</CODE> command creates a new blank graphics page and brings
+ it to the front, or brings an existing page to the front.</P>
+<p>
+ <ul>
+ <li>If the page number <code>n</CODE> is greater than the current maximum
+ page number, a new blank graphics page will be created.</li>
+ <li>If <code>n</CODE> is greater than the current maximum page number plus one, the
+ intermediate pages will also be created.</li>
+ <li>If <code>n</CODE> is less than or equal to the current maximum
+ page number, that page will be brought to the front.</li></ul></p>
+<P>
+ Every page has its own set of graph windows, each of which has its own set of characteristics,
+ such as plot symbols, line widths, etc.
+ If the <CODE>\INHERIT</CODE> qualifier is used, page number
+ <CODE>n</CODE> will be chosen, and the graph windows for page
+ <CODE>n</CODE> will be copies of the graph windows from page
+ <CODE>m</CODE>. Any objects drawn on the graph windows on page 
+ <CODE>m</CODE> are not copied, just the characteristics.</p>
+<p>
+ The graphics page that is visible is the active page.  Commands which involve graphics,
+ such as <code><a href="Graph.htm">GRAPH</a></CODE>,
+ <code><a href="Density.htm">DENSITY</a></CODE>,
+ <code><a href="Contour.htm">CONTOUR</a></CODE>,
+ <code><a href="Figure.htm">FIGURE</a></CODE>, 
+ <code><a href="Hardcopy.htm">HARDCOPY</a></CODE>, etc. will draw to
+ or process the active page.</p>
+</BODY>
+</HTML>

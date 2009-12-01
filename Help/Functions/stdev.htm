@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>STDEV function</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><font size="+3" color="green"><B>Standard deviation</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>s = STDEV(x)</CODE><br />
+              <CODE>s = STDEV(w,x)</CODE></TD></TR>
+</table></p>
+<p>
+ The <code>STDEV</code> function only accepts one or two vector arguments.
+ If only one vector is entered, the function returns the standard deviation of that vector's data. If two
+ vectors are entered, the first vector holds the weights and the second vector holds the data.  The result is
+ always a scalar value.</p>
+<p>
+ Suppose that <i>x</i> is a vector with <i>N</i> elements.</P>
+<P>
+ A weight vector, <i>w</i>, may be entered as the first argument. The
+ length of <i>w</i> is assumed to also be <i>N</i>. If no weights are entered,
+ <IMG WIDTH=17 HEIGHT=17 ALIGN=MIDDLE SRC="stdevI01.gif">&nbsp; defaults to
+ <CODE>1</CODE>, for <IMG WIDTH=98 HEIGHT=25 ALIGN=MIDDLE SRC="stdevI02.gif">.
+ Define the total weight:</p>
+<p>
+ <IMG WIDTH=108 HEIGHT=36 ALIGN=MIDDLE SRC="stdevI03.gif"></p>
+<P>
+ The mean value, <IMG WIDTH=8 HEIGHT=11 ALIGN=BOTTOM SRC="stdevI04.gif">, is
+ defined by</p>
+<p>
+ <IMG WIDTH=139 HEIGHT=36 ALIGN=MIDDLE SRC="stdevI05.gif"></p>
+<P>
+ The variance, <IMG WIDTH=11 HEIGHT=17 ALIGN=MIDDLE SRC="stdevI06.gif">, is
+ defined by</p>
+<p>
+ <IMG WIDTH=237 HEIGHT=36 ALIGN=MIDDLE SRC="stdevI07.gif"></p>
+<P>
+ The standard deviation, <IMG WIDTH=9 HEIGHT=8 ALIGN=BOTTOM SRC="stdevI08.gif">,
+ is defined by <IMG WIDTH=60 HEIGHT=26 ALIGN=MIDDLE SRC="stdevI09.gif"></p> 
+<p>
+ <font size="+1" color="green"><B>Examples</B></font></P>
+<p>
+ Suppose <code>X = [1;2;3;4;5;6;7;8;9;10]</code>, then <code>A = STDEV(X)</code> returns
+ scalar <code>A</code> with the value <code>3.02765</code>.</p>
+<p>
+ Suppose <code>W = [1;1;1;5;5;5;5;1;1;1]</code>, then <code>A = STDEV(W,X)</code> returns
+ scalar <code>A</code> with the value <code>2.09293</code>.</p>
+</BODY>
+</HTML>

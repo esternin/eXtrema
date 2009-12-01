@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>YVIRTUALMIN</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="yvirtualmin"></A>
+<font size="+3" color="green"><B>YVIRTUALMIN</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YVIRTUALMIN n<br />
+GET YVIRTUALMIN { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+YVIRTUALMIN = YMIN</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>YVIRTUALMIN</CODE> controls the virtual minimum value for the <I>y</I>-axis.</p>
+<p>
+ If <CODE>YVIRTUALMIN</CODE> is less than <CODE><A HREF="ymin.htm">YMIN</a></CODE>,
+ the actual <i>y</i>-axis minimum value will be <CODE>YMIN</CODE>, while the large, numbered,
+ tic marks will begin at <CODE>YVIRTUALMIN</CODE>, which may be 'off the end' of the <I>y</I>-axis.</p>
+<p>
+ <CODE>YVIRTUALMIN</CODE> is always set to <CODE>YMIN</CODE> whenever <CODE>YMIN<CODE> is set,
+ so you must set <CODE>YVIRTUALMIN</CODE> after <CODE>YMIN</CODE>.</P>
+</BODY>
+</HTML>

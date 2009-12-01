@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<TITLE>POLARPOWERAUTO</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>POLARPOWERAUTO</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET POLARPOWERAUTO n<br />
+GET POLARPOWERAUTO { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>POLARPOWERAUTO = 1</CODE>
+</TD></TR></TABLE>
+<P>
+ <CODE>POLARPOWERAUTO</CODE>, along with <CODE><a href="polarpower.htm">POLARPOWER</A></CODE>,
+ controls the polar axis scale value that is appended to the polar axis text label.  This scale value
+ is needed when there are not enough digits allowed for the numbers labeling the polar axis.</P>
+<P>
+ <CODE>POLARPOWERAUTO = 2</CODE> means determine <CODE>POLARPOWER</CODE>, but do not append the
+ scale value to the text label, even if it is needed.</p>
+<p>
+ <CODE>POLARPOWERAUTO = 1</CODE> means determine <CODE>POLARPOWER</CODE>, and append the scale
+ value to the text label.</p>
+<p>
+ <CODE>POLARPOWERAUTO = 0</CODE> means use the present value of <CODE>POLARPOWER</CODE>, and append
+ the scale value to the text label.</p>
+<P>
+ If the user wishes to completely specify the appearance of the polar axis, <CODE>POLARPOWERAUTO</CODE>
+ must be set to <CODE>0</CODE>, otherwise the number of digits and decimal places,
+ <CODE><A HREF="polarnumberofdigits.htm">POLARNUMBEROFDIGITS</A></CODE> and
+ <CODE><A HREF="polarnumberofdecimals.htm">POLARNUMBEROFDECIMALS</A></CODE>, may be changed.</P>
+<P>
+  <a href="polarpower.htm"><img border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">POLARPOWER</font></a></P>
+</body>
+</html>

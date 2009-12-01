@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<TITLE>Rebin a vector</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Rebin a vector</font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+REBIN x y n</CODE>
+</TD></TR>
+</TABLE></P>
+<P>
+ Suppose that the length of vector <CODE>x</CODE> is <i>N</i> then:</p>
+<p>
+ <center><img src="RebinS01I01.png"></center></p>
+<p>
+ that is, the length of <CODE>y</CODE> will be
+ <i>N</i><code>/n</CODE>, and</p>
+<p>
+ <center><img src="RebinS01I02.png"></center></p>
+<p>
+ If &nbsp;<img align="top" src="RebinS01I03.png">&nbsp; is not equal to <i>N</i>, then the last
+ element of <CODE>y</CODE> will be incomplete. For example, if
+ <i>N</i> <code>= 10</code> and <i>n</i> <coce>= 3</code> then
+ <CODE>y</CODE> will have <code>3</code> elements:</p>
+<p>
+ <pre>
+   y[1] = x[1] + x[2] + x[3]
+   y[2] = x[4] + x[5] + x[6]
+   y[3] = x[7] + x[8] + x[9]
+ </pre></p>
+<p>
+ and <code>x[10]</code> will not be included in <CODE>y</CODE>.</p>
+<p>
+ <font size="+1" color="green">Examples</font></p>
+<p>
+ Suppose that vector <code>X</code> has <code>20</code> elements and vector <code>DATA</code> has
+ <code>1000</code> elements.</p>
+<p>
+ <table>
+ <tr>
+ <td bgcolor="#FFCCCC"><i>command</i></td><td bgcolor="#FFCCCC"><i>result</i></td>
+ </tr><tr>
+ <td valign="middle"><CODE><font color="blue">REBIN X XOUT 2</font></CODE></td>
+ <td bgcolor=#FFFFCC><table>
+  <tr><td><CODE>XOUT[ 1]</CODE></td><td><CODE>=</CODE></td><td><CODE>X[ 1] + X[ 2]</CODE></td></tr>
+  <tr><td><CODE>XOUT[ 2]</CODE></td><td><CODE>=</CODE></td><td><CODE>X[ 3] + X[ 4]</CODE></td></tr>
+  <tr><td><CODE>XOUT[ 3]</CODE></td><td><CODE>=</CODE></td><td><CODE>X[ 5] + X[ 6]</CODE></td></tr>
+  <tr><td></td><td><CODE>...</CODE></td><td></td></tr>
+  <tr><td><CODE>XOUT[10]</CODE></td><td><code>=</CODE></td><td><CODE>X[19] + X[20]</CODE></td></tr>
+  </table></td>
+ </tr><tr>
+ <td valign="middle"><CODE><font color="blue">REBIN DATA DOUT 3</font></CODE></td>
+ <td bgcolor=#FFFFCC><table>
+  <tr><td><CODE>DOUT[  1]</CODE></td><td><CODE>=</CODE></td><td><CODE>DATA[  1] + DATA[  2] + DATA[  3]</CODE></td></tr>
+  <tr><td><CODE>DOUT[  2]</CODE></td><td><CODE>=</CODE></td><td><CODE>DATA[  4] + DATA[  5] + DATA[  6]</CODE></td></tr>
+  <tr><td><CODE>DOUT[  3]</CODE></td><td><CODE>=</CODE></td><td><CODE>DATA[  7] + DATA[  8] + DATA[  9]</CODE></td></tr>
+  <tr><td></td><td><CODE>...</CODE></td><td></td></tr>
+  <tr><td><CODE>DOUT[333]</CODE></td><td><CODE>=</CODE></td><td><CODE>DATA[997] + DATA[998] + DATA[999]</CODE></td></tr>
+  </table></td>
+ </tr></table></P>
+<p>
+ A warning will be given that the length of <CODE>DATA</CODE> is not
+ evenly divisible by <CODE>3</CODE> and so the last bin is incomplete.</p>
+<P>
+  <a href="Rebin.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">REBIN command</font></a><br />
+  <a href="RebinS02.htm"><img src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">Rebin a matrix</font></a>
+</P>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<TITLE>PAUSE command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>PAUSE command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+PAUSE { 'string' }</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+'string' =</CODE> type the &lt;ENTER&gt; key to continue the script'
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Examples</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+PAUSE<BR />
+PAUSE 'display this message'</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ If the <CODE>PAUSE</CODE> command is encountered in a
+ <font size=-1 face="Arial black" color="red">EXTREMA</font> script that is being
+ executed, interactive control is passed back to the user. Commands can
+ then be entered interactively. To continue execution of the script, type the
+ <CODE>&lt;ENTER&gt;</CODE> key, with focus in the command entry area, without
+ entering anything. The script will then
+ continue execution with the command immediately following the
+ <CODE>PAUSE</CODE> command.</p>
+<p>
+ By default, the message <font color="orange">'type the &lt;ENTER&gt; key to continue the script'</font>
+ will be displayed. You can specify the message by entering a character string with the command.</p>
+</BODY>
+</HTML>

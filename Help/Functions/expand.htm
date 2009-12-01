@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<TITLE>EXPAND</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="expandfunction"></A>
+<font size="+3" color="green"><B>EXPAND</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+string = EXPAND(string)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>EXPAND</CODE> function accepts a string as argument.
+ The result is also a character string. It parses the argument, expanding any expression
+ variables it finds. If an expression variable, contained in the argument, also contains
+ expression variables then they are also expanded, and so on until all such expression
+ variables have been expanded. Syntax checking is done during the expansion.</p>
+<p>
+ <font size="+1" color="green">Example</font></p>
+<p>
+ <font color="blue"><pre>
+ A=2             ! define a scalar A
+ B=3             ! define a scalar B
+ FC1='(A+B)/A'   ! define a string variable FC1
+ FC2='SQRT(A/B)' ! define a string variable FC2
+ FC3='FC1*FC2'   ! define a string variable FC3
+ FC4='FC3+4*FC2' ! define a string variable FC4
+ =FC4            ! displays 'FC3+4*FC2'
+ =EXPAND(FC4)    ! displays '(((A+B)/A)*(SQRT(A/B)))+4*(SQRT(A/B))'
+ =EVALUATE(FC4)  ! displays 5.3073
+ </pre></font></p>
+</BODY>
+</HTML>

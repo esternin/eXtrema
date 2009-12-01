@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>Method</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><font size="+3" color="green"><B>Method</B></font></P>
+<p>
+ A nonrecursive filter is defined by the convolution formula:</p>
+<p><center><img align="top" src="savgolI01.png"></center></p>
+<p>
+ The &nbsp;<img align="bottom" src="savgolI02.png">&nbsp;'s are the coefficients of the filter, the
+ &nbsp;<img align="bottom" src="savgolI03.png">&nbsp;'s are the input data, and the
+ &nbsp;<img align="bottom" src="savgolI04.png">&nbsp;'s are the
+ outputs. The set of points &nbsp;<img align="bottom" src="savgolI05.png">&nbsp; to
+ &nbsp;<img align="bottom" src="savgolI06.png">&nbsp; define the moving window of the filter, of width
+ &nbsp;<img align="bottom" src="savgolI07.png">, where
+ &nbsp;<img align="bottom" src="savgolI08.png">&nbsp; and
+ &nbsp;<img align="bottom" src="savgolI09.png">. The
+ Savitzky-Golay smoothing method finds filter coefficients
+ that preserve the zeroth, the first, the second, and higher moments. The idea is to approximate the
+ underlying function within a moving filter window by a polynomial of order <code>2</code>, or
+ of order <code>4</code>. For each data point, &nbsp;<img align="bottom" src="savgolI10.png">,
+ least-squares fit a polynomial to all &nbsp;<img align="bottom" src="savgolI11.png">&nbsp; points
+ within the filter window, and then set &nbsp;<img align="bottom" src="savgolI12.png">&nbsp; to be the
+ value of that polynomial at position &nbsp;<img align="bottom" src="savgolI13.png">.
+ No use is made of the value of that polynomial at any other point. For the next point,
+ &nbsp;<img align="bottom" src="savgolI14.png">, a whole new least-squares fit is done using the
+ shifted window.</p>
+<p>
+ Since the process of least-squares fitting involves only a linear matrix inversion, the
+ coefficients of a fitted polynomial are themselves linear in the values of the data. All the
+ least-squares fitting can be done in advance, for fictitious data consisting of all zeros except
+ for a single <code>1</code>, and then the fits on the real data are done by taking linear
+ combinations. Thus, there are particular sets of filter coefficients,
+ &nbsp;<img align="bottom" src="savgoI13.png">, for which the
+ convolution formula automatically accomplishes the process of polynomial least-squares fitting
+ inside a moving window.</p>
+<p>
+ The Savitzky-Golay filters provide smoothing without loss of resolution when the underlying
+ function can be locally well fitted by a polynomial. This is true for smooth line profiles
+ not too much narrower than the filter width. When this is not true, these filters have no
+ advantage over other smoothing methods.</p>
+<p>
+ If the data is irregularly sampled, that is, the &nbsp;<img align="bottom" src="savgoI14.png">&nbsp;
+ values are not equally spaced, one can
+ pretend that the data points are equally spaced. This amounts to virtually shifting, within
+ each moving window, the data points to equally spaced positions. Such a shift introduces
+ the equivalent of an additional source of noise into the function values. In those cases where
+ smoothing is useful, this noise will often be much smaller than the noise already present.
+ Specifically, if the location of the points is approximately random within the window, then
+ a rough criterion is this: If the change in &nbsp;<img align="bottom" src="savgoI14.png">&nbsp;
+ across the full width of the window, &nbsp;<img align="bottom" src="savgolI11.png">, is less
+ than &nbsp;<img align="bottom" src="savgoI15.png">&nbsp; times the measurement noise on a single
+ point, then this implementation of the Savitzky-Golay filter can be used.</p>
+<P>
+  <a href="savgol.htm"><img align="top" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">SAVGOL function</font></a></P>
+</BODY>
+</HTML>

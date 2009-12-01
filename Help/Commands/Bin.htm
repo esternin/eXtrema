@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+<TITLE>BIN command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>BIN command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+BIN x xbin xcount<br />
+BIN\NBINS x xbin xcount n { xmin xmax }</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Qualifiers</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+\WEIGHTS, \EDGES, \NBINS, \DISCARD, \EMPTY, \AVERAGE, \LAGRANGE</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+\-WEIGHTS, \-EDGES, \-NBINS, \-DISCARD, \-EMPTY, \-AVERAGE, \LAGRANGE, xmin = min(x), xmax = max(x)</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE>BIN</CODE> command sorts an input vector,
+ <CODE>x</CODE>, into a grid of bins and accumulates
+ the counts per bin into an output vector,
+ <CODE>xcount</CODE>. Each element of <CODE>x</CODE> is considered only once, so elements
+ are never counted as being in more than one bin. By default, the bins are
+ defined by their centers, given in vector <CODE>xbin</CODE>, which must be strictly
+ monotonically increasing. If <CODE><i>n</i> =
+ <a href="Functions/Len.htm">LEN</a>(xbin)</CODE>,
+ define the bin ranges, <CODE><i>r<sub>i</sub></i></CODE></P>
+<P>
+ <CODE><i>r</i><sub>1</sub> = xbin[1] - (xbin[2] - xbin[1])/2</CODE></P>
+<P>
+ <CODE><i>r<sub>i</sub></i> = xbin[<i>i</i>] - (xbin[<i>i</i>] - xbin[<i>i</i>-1])/2</CODE>&nbsp; for&nbsp;
+ <CODE><i>i</i> = 2, 3, ..., <i>n</i></CODE></P>
+<P>
+ <CODE><i>r</i><sub><i>n</i>+1</sub> = xbin[<i>n</i>] + (xbin[<i>n</i>] - xbin[<i>n</i>-1])/2</CODE></P>
+<P>
+ For each
+ <CODE><i>i</i> = 1, 2, ..., LEN(x)</CODE>, if <CODE><i>r<sub>j</sub></i> &le; x[<i>i</i>]
+ &lt; <i>r<sub>j+1</sub></i></CODE>&nbsp; for some
+ <CODE><i>j</i> = 1, 2, ..., <i>n</i></CODE>&nbsp; then
+ <CODE>xcount[<i>j</i>]</CODE> is
+ incremented by <CODE>1</CODE>, or by the weight,
+ <CODE>w[<i>i</i>]</CODE>. By default, events below <CODE><i>r</i><sub>1</sub></CODE> will be placed in
+ the first bin, and events above <CODE><i>r</i><sub><i>n</i>+1</sub></CODE> will be placed in
+ the last bin. If the <CODE>\DISCARD</CODE> qualifier is used, events outside this
+ range will be discarded.</P>
+<P>
+<a href="BinS01.htm"><font size="+1" color="olive">Weights</font></a><br />
+<a href="BinS02.htm"><font size="+1" color="olive">Number of bins</font></a><br />
+<a href="BinS03.htm"><font size="+1" color="olive">Lagrange</font></a><br />
+<a href="BinS04.htm"><font size="+1" color="olive">Average</font></a><br />
+<a href="BinS05.htm"><font size="+1" color="olive">Count only if empty</font></a><br />
+<a href="BinS06.htm"><font size="+1" color="olive">Edge defined bins</font></a>
+</P>
+</BODY>
+</HTML>

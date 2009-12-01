@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>XLOWERAXIS</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="xloweraxis"></A>
+<font size="+3" color="green"><B>XLOWERAXIS</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET XLOWERAXIS n<br />
+SET %XLOWERAXIS n<br />
+GET XLOWERAXIS { n }<br />
+GET %XLOWERAXIS { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+%XLOWERAXIS = 10</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>XLOWERAXIS</CODE> controls the position of the left, or
+ lower, end of the <i>x</i>-axis. This is also the horizontal coordinate of the lower left
+ hand corner of the graph box, if
+ <CODE><A HREF="graphbox.htm">GRAPHBOX</a> = 1</CODE>. There
+ are two forms:</P>
+<p>
+ <table border="0" cols="3">
+ <tr>
+ <td valign="top"><code>&nbsp;XLOWERAXIS</code></td>
+ <td valign="top">&rarr;</td>
+ <td valign="top">the horizontal coordinate, in world coordinate units, of the left
+  end of the <i>x</i>-axis</td>
+ </tr><tr>
+ <td valign="top"><code>%XLOWERAXIS</code></td>
+ <td valign="top">&rarr;</td>
+ <td valign="top">the horizontal coordinate, expressed as a percentage of the width of the
+  graphics sub-window, that is, <CODE>XLOWERAXIS = %XLOWERAXIS *
+ (<a href="xupperwindow.htm">XUPPERWINDOW</a>-
+ <a href="xlowerwindow.htm">XLOWERWINDOW</a>)/100</CODE>.</td>
+ </tr></table>
+</p>
+</body>
+</html>

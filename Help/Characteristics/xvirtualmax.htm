@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>XVIRTUALMAX</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="xvirtualmax"></A>
+<font size="+3" color="green"><B>XVIRTUALMAX</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET XVIRTUALMAX n<br>
+GET XVIRTUALMAX { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+XVIRTUALMAX = XMAX</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>XVIRTUALMAX</CODE> controls the virtual maximum value for the <I>x</I>-axis.  If
+ <CODE>XVIRTUALMAX</CODE> is greater than <CODE><A HREF="xmax.htm">XMAX</a></CODE>,
+ the actual <i>x</i>-axis maximum value will be <CODE>XMAX</CODE>, while the large, numbered,
+ tic marks will end at <CODE>XVIRTUALMAX</CODE>, which may
+ be 'off the end' of the <I>x</I>-axis.</p>
+<p>
+ <CODE>XVIRTUALMAX</CODE> is always set to <CODE>XMAX</CODE> whenever
+ <CODE>XMAX<CODE> is set, so you must set <CODE>XVIRTUALMAX</CODE> after
+ <CODE>XMAX</CODE>.</P>
+</BODY>
+</HTML>

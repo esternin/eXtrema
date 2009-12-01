@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>APPEND</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><font size="+3" color="green"><B>APPEND</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = v1 // v2</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The append operator, <CODE>//</CODE>, is a binary operator that only accepts vectors,
+ scalars, literal quote strings, or string variables as operands.</p>
+<p>
+ The meaning of the append operator depends on its operands. If
+ the operands are both numeric, the second vector or scalar is appended to the first
+ vector or scalar. If the operands are strings, the second string is appended to the first.</p>
+<p>
+ <font size="+1" color="green">Examples</font></p>
+<p>
+ To illustrate appending numeric variables, suppose you have two vectors:</p>
+<p>
+ <CODE>X = [3;5;7]</CODE> and <CODE>Y = [-2;-4;-5]</CODE></p>
+<p>
+ <CODE>X//Y</CODE>&nbsp;&nbsp; is &nbsp;&nbsp;<nobr><CODE>[3;5;7;-2;-4;-5]</CODE></nobr></p>
+<p>
+ <CODE>0//X//1</CODE>&nbsp;&nbsp; is &nbsp;&nbsp;<nobr><CODE>[0;3;5;7;1]</CODE></nobr></p>
+<p>
+ <em>Note</em>: <CODE>-1//X</CODE>&nbsp;&nbsp; is
+ &nbsp;&nbsp;<nobr><CODE>[-1;-3;-5;-7]</CODE></nobr>&nbsp;&nbsp; while
+ <nobr><code>(-1)//X</code></nobr>&nbsp;&nbsp; is
+ &nbsp;&nbsp;<nobr><code>[-1;3;5;7]</code></nobr></p>
+<p>
+ To illustrate appending strings, suppose you have a string variable:</p>
+<p>
+ <CODE>T = 'this is a string'</CODE></p>
+<p>
+ Then: <nobr><CODE>T//' and another'</CODE></nobr>&nbsp;&nbsp; is
+ &nbsp;&nbsp;<nobr><CODE>'this is a string and another'</CODE>.</nobr>
+</BODY>
+</HTML>
+
+
+

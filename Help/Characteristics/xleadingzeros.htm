@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>XLEADINGZEROS</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="xleadingzeros"></A>
+<font size="+3" color="green"><B>XLEADINGZEROS</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET XLEADINGZEROS n<br />
+GET XLEADINGZEROS { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+XLEADINGZEROS = 0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>XLEADINGZEROS</CODE> controls whether leading
+ zeros are displayed on the <i>x</i>-axis numbers.</P>
+<P>
+ <table border="1" cols="2">
+ <tr>
+ <td align="center"><code>XLEADINGZEROS</code></td>
+ <td align="center"><em>meaning</em></td>
+ </tr><tr>
+ <td valign="center" align="center">= 0</td>
+ <td valign="top">numbers displayed on the <i>x</i>-axis will not have leading zeros
+  if they are between 0 and 1</TD>
+ </tr><tr>
+ <td valign="center" align="center">&ne; 0</td>
+ <td valign="top">numbers displayed on the <i>x</i>-axis will have leading zeros if
+  they are between 0 and 1</td>
+ </tr></table></p>
+<P>
+ The default is to not display these leading zeros, but numbers that
+ are between -1 and 0 always have the leading zero displayed.</P>
+</BODY>
+</HTML>

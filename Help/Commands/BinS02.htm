@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<TITLE>Number of bins</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Number of bins</font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+BIN\NBINS x xbin xcount n { xmin xmax }</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top"><CODE>xmin = min(x), xmax = max(x)</CODE></TD></TR>
+</TABLE></P>
+<P>
+ By default, the bins are defined by their centers, given in vector
+ <CODE>xbin</CODE>, which must be strictly monotonically increasing. If the <CODE>\NBINS</CODE>
+ qualifier is used, the number of bins, <CODE>n</CODE>, is expected. A new vector,
+ <CODE>xbin</CODE>, will be created which will have <CODE>n</CODE> elements. If the numbers
+ <CODE>xmin</CODE> and <CODE>xmax</CODE> are not entered, they default to the minimum and maximum of vector
+ <CODE>x</CODE>.</P>
+<P>
+ <CODE>xbin[i] = xmin + (i - 1/2)(xmax - xmin) = n</CODE>&nbsp; for&nbsp;
+ <CODE>i = 1, 2, ..., n</CODE>.</P>
+<P>
+ <a href="BinS01.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Weights</font></a><br />
+ <a href="BinS03.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Lagrange</font></a>
+</P>
+</body>
+</html>

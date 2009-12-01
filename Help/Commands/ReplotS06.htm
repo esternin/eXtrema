@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<TITLE>Example 2</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Example 2</font></P>
+<P>
+ Suppose that you have plotted a graph of vectors <TT>Y1</TT> vs. <TT>X1</TT>
+ in window number <CODE>5</CODE>; a graph of vectors <TT>Y2</TT> vs.
+ <TT>X2</TT> in window number <CODE>7</CODE>, and overlain a plot of
+ <TT>Y3</TT> vs. <TT>X3</TT> also in window <CODE>7</CODE>. To
+ replot both windows, use the
+ <CODE><font color="blue">REPLOT\ALLWINDOWS</font></CODE> command.</P>
+<p>
+ <font color="blue"><PRE>
+ WINDOW 5                   ! choose window
+ GRAPH X1 Y1                ! plot data and axes
+ WINDOW 7                   ! choose window
+ GRAPH X2 Y2                ! plot data and axes
+ GRAPH\OVERLAY X3 Y3        ! overlay a curve
+ CLEAR\-REPLOT              ! clear graphics but not replot buffers
+ REPLOT\ALL                 ! replot window 5 and window 7
+ </PRE></font></p>
+<P>
+  <a href="ReplotS05.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">Example 1</font></a></P>
+</body>
+</html>

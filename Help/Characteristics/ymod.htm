@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<TITLE>YMOD</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="ymod"></A>
+<font size="+3" color="green"><B>YMOD</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YMOD n<br />
+GET YMOD { n }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+YMOD = 0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE>YMOD</CODE> is another control on the numbering for the <i>y</i>-axis.</P>
+<P>
+ <table border="1" cols="2">
+ <tr>
+ <td width="20%" align="center"><em>value</em></td><td align="center"><em>meaning</em></td>
+ </tr><tr>
+ <td valign="center" align="center"><CODE>&nbsp;YMOD&nbsp; &gt; &nbsp;1</CODE></td>
+ <td valign="top">the numbers displayed on the <i>y</i>-axis are modulo
+  <CODE>YMOD</CODE> and positive. If the number
+  to be displayed on the axis is <CODE>N</CODE> then the number that is
+  actually displayed is <CODE>|N-YMOD*(N/YMOD)|+<A HREF="yoffset.htm">YOFFSET</a></CODE></TD>
+ </tr><tr>
+ <td valign="center" align="center"><CODE>|YMOD| &le; &nbsp;1</CODE></td>
+ <td valign="top">the numbers will be displayed normally</td>
+ </tr><tr>
+ <td valign="center" align="center"><CODE>&nbsp;YMOD&nbsp; &lt; -1</CODE></td>
+ <td valign="top">the numbers will be modulo <CODE>|YMOD|</CODE> and may be negative</td>
+ </tr></table></p>
+</BODY>
+</HTML>

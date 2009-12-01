@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>ATAN2</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="atan2"></A>
+<font size="+3" color="green"><B>ATAN2</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = ATAN2( v1, v2 )</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>ATAN2(v1,v2)</CODE> function returns the
+ Arc Tangent of <CODE>v1/v2</CODE>, with
+ -&pi; <CODE>&lt; ATAN2(v1,v2) &le;</CODE> &pi;.</p>
+<p>
+<ul>
+<li>If <CODE>v1 &gt; 0</CODE>, the result is positive.</li>
+<li>If <CODE>v1 = 0</CODE>, the result is zero if
+ <CODE>v2 &gt; 0</CODE> and &pi; if
+ <CODE>v2 &lt; 0</CODE>.</li>
+<li>If <CODE>v1 &lt; 0</CODE>, the result is negative. If the value of
+ the second argument is zero, the absolute value of the result is &pi;<CODE>/2</CODE>.</li>
+</ul></p>
+<p>
+ Both arguments must not have the value zero.</p>
+</BODY>
+</HTML>

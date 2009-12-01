@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<TITLE>MATRIX command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>MATRIX command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+MATRIX m1 { m2 ... } nrow ncol</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ This command defines <CODE>m1</CODE> to be a matrix
+ with <CODE>nrow</CODE> rows and <CODE>ncol</CODE> columns, where
+ <CODE>nrow &gt; 0</CODE> and <CODE>ncol &gt; 0</CODE> must be scalar values.
+ Other variable names, <CODE>m2 ...</CODE>, may
+ be included, and they will also be defined to be matrices with the same
+ number of rows and columns.</P>
+<P>
+ If <CODE>mI</CODE> already is a matrix, it will
+ either be trimmed down to the specified dimensions or zero filled to expand it.</P>
+<P>
+ If <CODE>mI</CODE> is an existing variable, but not a matrix, it will be destroyed first.</P>
+<P>
+ If <CODE>mI</CODE> does not exist, it will be created and zero filled.</P>
+</BODY>
+</HTML>

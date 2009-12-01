@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>YNUMBERSFONT</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="ynumbersfont"></A>
+<font size="+3" color="green"><B>YNUMBERSFONT</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET YNUMBERSFONT s<br />
+GET YNUMBERSFONT { s }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+YLABELFONT =</CODE> ARIAL
+</TD></TR>
+</TABLE>
+<p>
+ <em>Note:</em> The value of the <CODE>YNUMBERSFONT</CODE>
+ characteristic is a string instead of a numeric value. So, if
+ you enter: <CODE><font color="blue"><a href="../Commands/Get.htm">GET YNUMBERSFONT X</a>
+ </font></CODE>, the variable <CODE>X</CODE> will be a string variable.</P>
+<p>
+ <CODE>YNUMBERSFONT</CODE> controls the font of
+ the numbers labeling the y-axis. The parameter
+ <CODE>f</CODE> should be the font name. If the font name is composed of more than one word, enclose
+ the font name in quotes.</P>
+<p>
+ Examples:</p>
+<p>
+ <CODE><font color="blue">SET YNUMBERSFONT ARIAL</font></CODE><br />
+ <CODE><font color="blue">SET YNUMBERSFONT 'ARIAL BOLD'</font></CODE></p>
+</body>
+</html>

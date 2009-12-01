@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<TITLE>Example 1</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Example 1</B></font></P>
+
+<TABLE border=0 cols=2 frame=box rules=all width=591>
+<TR>
+<TD width=39% valign="center">Suppose ASCII file <code>DUM.DAT</code> is:</TD>
+<TD width=61% valign="top"><pre>
+ 1  2  3  4  5  6
+ 7  8  9 10 11 12
+13 14 15 16 17 18</pre>
+</TD></TR>
+</TABLE>
+
+<p><CODE><font color="blue">READ DUM.DAT 3X 2Y Z</font></CODE></P>
+
+<TABLE border="0" width="591">
+<TR>
+<TD width="15%" valign="top">results in:</TD>
+<TD width="85%" valign="top"><CODE>
+X = [ 1; 2; 3; 7; 8; 9; 13; 14; 15 ]<br />
+Y = [ 4; 5; 10; 11; 16; 17 ]<br />
+Z = [ 6; 12; 18]</CODE>
+</TD></TR>
+</TABLE>
+
+<P><CODE><font color="blue">READ DUM.DAT X X X</font></CODE></P>
+
+<TABLE border="0" width="591">
+<TR>
+<TD width="15%" valign="center">results in:</TD>
+<TD width="85%"><CODE>
+X = [1;2;3;7;8;9;13;14;15]</CODE>
+</TD></TR>
+</TABLE>
+
+<P><CODE><font color="blue">READ DUM.DAT 6X</font></CODE></P>
+
+<TABLE border="0" width="591">
+<TR>
+<TD width="15%" valign="center">results in:</TD>
+<TD width="85%" valign="top"><CODE>
+X = [1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18]</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <a href="ReadS01.htm"><img src="../shadow_left.gif">&nbsp;
+   <font size="+1" color="olive">Read vectors</font></a><br />
+ <a href="ReadS01S02.htm"><img src="../shadow_right.gif">&nbsp;
+   <font size="+1" color="olive">Example 2</font></a>
+</P>
+</BODY>
+</HTML>

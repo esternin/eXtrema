@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>Interpolation</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><font size="+3" color="green"><B>Interpolation</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+vout = INTERPOLATE(x,y,xout,'SPLINE')<br />
+vout = INTERPOLATE(x,y,xout,'LINEAR')<BR />
+vout = INTERPOLATE(x,y,xout,'LAGRANGE')<BR />
+vout = INTERPOLATE(x,y,xout,'FC')<br />
+mout = SPLINTERP(x,y,n)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>INTERPOLATE</CODE> function interpolates
+ the data contained in vector <CODE>x</CODE>, the
+ independent variable, and vector <CODE>y</CODE>, the
+ dependent variable.  <CODE>x</CODE> must be
+ strictly monotonically increasing. The interpolant locations are given in
+ vector <CODE>xout</CODE>. The
+ <CODE>INTERPOLATE</CODE> function will return the
+ interpolated values as a vector with the same length as
+ <CODE>xout</CODE>. The algorithm that is employed
+ depends on the keyword that is used.</P>
+<p>
+ The <CODE>SPLINTERP</CODE> function interpolates
+ the data contained in vector <CODE>x</CODE>, the
+ independent variable, and vector <CODE>y</CODE>, the
+ dependent variable.  There are no restrictions on
+ <CODE>x</CODE>, it doesn't even need to be
+ increasing. The number of interpolant locations is given in scalar
+ <CODE>n</CODE>, which must be greater than <code>1</code>.
+ The output of the <CODE>SPLINTERP</CODE> function is a matrix
+ with <CODE>n</CODE> rows and <code>2</code> columns. The first
+ column will contain the output locations and the second column the interpolated values
+ at those locations.</p>
+<P>
+ An interpolated curve will always pass through the original data points. If
+ it is not important that the curve pass through the original data, use the
+ <CODE><a href="smooth.htm">SMOOTH</a></CODE> function, unless your independent
+ variable is not monotonically increasing. In that case, use the <CODE>
+ <a href="smooth.htm">SPLSMOOTH</a></CODE> function.</P>
+<p>
+<a href="interpolateS01.htm"><font size="+1" color="olive">Linear interpolation</font></a><br />
+<a href="interpolateS02.htm"><font size="+1" color="olive">Spline interpolation</font></a><br />
+<a href="interpolateS03.htm"><font size="+1" color="olive">Lagrange interpolation</font></a><br />
+<a href="interpolateS04.htm"><font size="+1" color="olive">Fritch-Carlson interpolation</font></a><br />
+<a href="interpolateS05.htm"><font size="+1" color="olive">SPLINTERP function</font></a><br />
+<a href="interpolateS06.htm"><font size="+1" color="olive">2D interpolation</font></a>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Analyze data using FFT</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P>
+ Read sunspot data s from file <a href="BasicTasksS13D01.dat">sunspot.dat</a>,
+ calculate the FFT of s, and graph the amplitudes and phases<br />
+<P>
+ <font color="blue"><pre>
+ read sunspot.dat year s
+ window 5
+ set xlabel 'year'
+ set ylabel 's'
+ graph year s
+ m = fft(s)
+ window 6
+ set ylabel 'amplitudes'
+ graph m[*,2]
+ window 7
+ set ylabel 'phases'
+ graph m[*,1]
+ </pre></font></P>
+<P>
+ <img src="BasicTasksS13I01.gif"></p>
+<P>
+ <a href="BasicTasksS12.htm"><img src="shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Define and plot a function</font></a><br />
+ <a href="BasicTasksS14.htm"><img src="shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Display array data as contours and density plot</font></a>
+</P>
+</BODY>
+</HTML>

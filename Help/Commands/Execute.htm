@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>EXECUTE command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="executecommand"></A>
+<font size="+3" color="green"><B>EXECUTE command</B></font></P>
+
+<TABLE border="1" cols="2" width="608">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+EXECUTE filename { p1 p2 ... }<BR />
+@filename { p1 p2 ... }</CODE></TD>
+</TR><TR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top">the default filename extension is 
+<CODE>.pcm</CODE></TD>
+</TR><TR>
+<TD width="15%" valign="top"><B>Examples:</B></TD>
+<TD width="85%" valign="top"><CODE>
+EXECUTE somefile.pcm<BR />
+@somefile 1.2 'Character string' X Y</CODE></TD>
+</TR>
+</TABLE>
+<P>
+ This command causes program input to come from a command script file,
+ instead of from the keyboard. When the end of file is reached, input will
+ again be expected to be entered from the keyboard, or from a calling script
+ file. You may have up to <CODE>20</CODE> nested script files. The 'at'
+ sign, <CODE>@</CODE>, is equivalent to '<CODE>EXECUTE</CODE>'. Within script
+ files, it is possible to have labels, <CODE>GOTO</CODE> statements,
+ <CODE>IF...THEN</CODE> blocks, and <CODE>DO</CODE> loops.</P>
+<P>
+ Numbered parameter zero, that is, <CODE>?0</CODE>,
+ in a script always is replaced by the file name of the script.  Use the
+ <CODE><a href="Functions/string.htm">STRING</a></CODE> function to
+ convert it to a quote string. For example:</P>
+
+ <font color="blue"><PRE>DISPLAY 'executing script file = '//STRING(?0)</PRE></font>
+<P>
+ If the file name is entered without a filename extension, the current
+ extension is automatically appended to the filename. The default script
+ file extension is <CODE>.pcm</CODE>&nbsp;&nbsp;
+ The <a href="../Characteristics/extension.htm"><CODE>SCRIPTEXTENSION</CODE></a>
+ characteristic controls the file extension.</P>
+<P>
+ If <CODE>filename</CODE> is a text variable, it is first replaced by its value.</P>
+<P>
+<a href="ExecuteS01.htm"><font size="+1" color="olive">Comments</font></a><br />
+<a href="ExecuteS02.htm"><font size="+1" color="olive">Keyboard Input</font></a><br />
+<a href="ExecuteS03.htm"><font size="+1" color="olive">Abort</font></a><br />
+<a href="ExecuteS04.htm"><font size="+1" color="olive">Parameters</font></a><br />
+<a href="ExecuteS05.htm"><font size="+1" color="olive">Branching</font></a><br />
+<a href="ExecuteS06.htm"><font size="+1" color="olive">Looping</font></a><br />
+<a href="ExecuteS07.htm"><font size="+1" color="olive">Conditional statements</font></a>
+</P>
+</BODY>
+</HTML>

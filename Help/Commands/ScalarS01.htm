@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Fitting parameters</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>Fitting parameters</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+SCALAR\FIT s1 { s2 ... }<br />
+SCALAR\FIT s1[s1min:s1max] { s2[s2min:s2max] ... }</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE>SCALAR\FIT</CODE> command defines <CODE>sI</CODE> to be a scalar variable and
+ allows <CODE>sI</CODE>
+ to vary for a <CODE><a href="Fit.htm">FIT</a></CODE> command or a
+ <CODE><a href="Minuit.htm">MINUIT</a></CODE> command. If
+ <CODE>sI</CODE> already is a scalar, the value of <CODE>sI</CODE> will be
+ unchanged. If <CODE>sI</CODE> is an existing variable, but not a scalar, it will be destroyed first. If
+ <CODE>sI</CODE> does not exist, it will be created and initialized to <CODE>1</CODE>.</P>
+<P>
+ Use the <CODE>SCALAR</CODE> command with no
+ qualifier to fix a scalar, that is, to not allow it to vary in a fitting procedure.</P>
+<P>
+ The <CODE>SCALAR</code> command allows for limits to be placed
+ on a fitting parameter.  Use the <CODE>a[amin:amax]</code>
+ syntax to create fit parameter <CODE>a</code> with lower limit
+ <CODE>amin</code> and upper limit
+ <CODE>amax</code>. To set an upper limit only, use
+ <CODE>a[:amax]</code>, and to set a lower limit only, use
+ <CODE>a[amin:]</code>. These limits are only used by the
+ <CODE>MINUIT</code> command and are ignored by the
+ <CODE>FIT</code> command.</P>
+<P>
+  <a href="Scalar.htm"><img src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">SCALAR command</font></a></P>
+</BODY>
+</HTML>

@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>2D interpolation</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="bivinterp"></A>
+<font size="+3" color="green"><B>2D interpolation</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+w = BIVINTERP(x,y,z,u,v)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ This function interpolates, from values of the function given at input grid
+ points in an <i>x</i>-<i>y</i> plane and for a given set of points in the plane, the values
+ of a single-valued bivariate function <i>z = z(x,y)</i>. The method is based on a
+ piece-wise function composed of a set of bicubic polynomials in <i>x</i> and <i>y</i>.
+ Each polynomial is applicable to a rectangle of the input grid in the <i>x</i>-<i>y</i>
+ plane.  Each polynomial is determined locally.</P>
+<P>
+ The first two input parameters are vectors. Vector <code>x</code> contains the <i>x</i>-coordinates
+ of the input grid points, in ascending order. Vector <code>y</code> contains the
+ <i>y</i>-coordinates of the input grid points, in ascending order.  Both <code>x</code> and
+ <code>y</code> must be monotonically increasing.  The third parameter is a matrix, <code>z</code>,
+ which contains the values of the function at the input grid points, <code>z[i][j]</code> is the
+ data value at <code>(x[i],y[j])</code>.  The last two parameters are vectors. Vector
+ <code>u</code> contains the <i>x</i>-coordinates of the desired
+ points, and vector <code>v</code> contains the <i>y</i>-coordinates of the desired points. Vectors
+ <code>u</code> and <code>v</code> must have the same number of elements.  The output is a vector,
+ <code>w</code>, containing the interpolated values, <code>w[i]</code> is the interpolated value at the
+ location <code>(u[i],v[i])</code>.</P>
+<P>
+ Algorithm derived from an article by Hiroshi Akima, <b>Communications of the ACM</b>, volume 17, number 1,
+ January 1974, pp. 26-31.</P>
+<P>
+  <a href="interpolateS05.htm"><img align="top" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">SPLINTERP function</font></a>
+</P>
+</BODY>
+</HTML>

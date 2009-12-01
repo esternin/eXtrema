@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>Correlation and Covariance</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Correlation and covariance</font></P>
+<P>
+ An indication of the accuracy of the fit is displayed in the output under the
+ names <IMG SRC="FitS03I01.gif">&nbsp;  and <IMG SRC="FitS03I02.gif">.</P>
+<P>
+ <IMG SRC="FitS03I03.gif"></P>
+<P>
+ where <i>n</i> is the number of degrees of freedom, and
+ where  &nbsp;<IMG SRC="FitS03I04.gif">&nbsp;  are the
+ diagonal elements of the inverse of the matrix <IMG SRC="FitS01I05.gif">.</p>
+<p>
+ <IMG SRC="FitS03I05.gif">&nbsp; is called the covariance matrix.</p>
+<p>
+ The &nbsp;<IMG SRC="FitS03I06.gif">&nbsp; are called the root mean square statistical errors of estimate.</p>
+<p>
+ The &nbsp;<IMG SRC="FitS03I07.gif">&nbsp; are called the root mean square total errors of estimate, or
+ standard errors.</P>
+<P>
+ The accuracy of the parameters in a linear fit is</p>
+<p>
+ <IMG SRC="FitS03I08.gif"></p>
+<p>
+ In the linear case, for the standard error &nbsp;<IMG SRC="FitS03I02.gif">&nbsp; to be correct, the weights
+ <code>w<sub>k</sub></code> must be proportional to <code>1/&sigma;<sub>k</sub><sup>2</sup></code>,
+ where <code>&sigma;<sub>k</sub></code> is the standard deviation of the probability distribution of
+ <code>y<sub>k</sub></code>. In the nonlinear case, <IMG SRC="FitS03I02.gif">&nbsp; does not have the same
+ statistical significance.</P>
+<P>
+ If the <code>\COVMAT</code> qualifier is used, a matrix called
+ <font color="orange"><code>FIT$COVM</code></font> will be created which
+ will contain <IMG SRC="FitS03I05.gif">&nbsp;.</p>
+<p>
+ If the <code>\CORRMAT</code> qualifier is used, a matrix with the name
+ <font color="orange"><code>FIT$CORR</code></font> will be created which will contain the correlation
+ matrix for the fit. The size of these matrices will be <i>M</i> by <i>M</i>.</p>
+<p>
+ If the <code>\E1</code> qualifier is used, then the root mean square statistical error for each fit
+ parameter are output into an automatically created vector named <font color="orange"><code>FIT$E1</code>
+ </font>.</p>
+<p>
+ If the <code>\E2</code> qualifier is used, then the root mean square total error of estimate for each
+ parameter are output into an automatically created vector named <font color="orange"><code>FIT$E2</code>
+ </font>.</p>
+<p>
+ The values are stored in these vectors in the order corresponding to the order in which the
+ parameters appeared in the expression.  The length of these vectors will be equal to the number of
+ parameters in the fit expression.</P>
+<P>
+ <a href="FitS02.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Tolerance</font></a><br />
+ <a href="FitS04.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Confidence level of the fit</font></a></P>
+</BODY>
+</HTML>

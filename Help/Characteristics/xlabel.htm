@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>XLABEL</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="xlabel"></A>
+<font size="+3" color="green"><B>XLABEL</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET XLABEL s<br>
+GET XLABEL { s }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default value</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+XLABEL</CODE> is blank
+</TD></TR>
+</TABLE>
+<p>
+ <em>Note:</em> The value of the <CODE>XLABEL</CODE> characteristic is a string instead of
+ a numeric value. So, if you enter: <CODE><font color="blue">
+ <a href="../Commands/Get.htm">GET XLABEL X</a></font></CODE>, the variable
+ <CODE>X</CODE> will be a string variable.</P>
+<P>
+ <CODE>XLABEL</CODE> is the automatic <I>x</I>-axis text label. Setting the label also turns it on.
+ Use the <CODE><font color="blue"><a href="xlabelon.htm">XLABELON</A></CODE> characteristic to
+ toggle off/on drawing the <i>x</i>-axis text label. The axis text labels are drawn only when the axes are
+ drawn. The character string may contain format commands. The size of the text label is
+ controlled with <CODE><a href="xlabelheight.htm">XLABELHEIGHT</A></CODE> or <CODE>%XLABELHEIGHT</CODE>.
+ The <i>x</i>-axis text label is drawn, centred, below the <i>x</i>-axis.</P>
+</body>
+</html>

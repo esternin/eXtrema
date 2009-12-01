@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<TITLE>DATE</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P><A NAME="date"></A>
+<font size="+3" color="green"><B>DATE</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+string = DATE<br />
+string = DATE('format')</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>DATE</CODE> function can have one argument or no arguments.
+ If no argument is given, it returns a string which contains the current date with the format
+ <CODE>dd/mm/yyyy</CODE>. A format argument can be provided, as shown in the table
+ below. The seperator used in the format will be used in the output string.</p>
+<p>
+<center><table cols=2 border=1>
+<tr>
+<td><i>specifier</i></td><td><i>displays</i></td>
+</tr><tr>
+<td><CODE><font color="blue">d</font></CODE></td>
+<td>Displays the day as a number without a leading zero (1-31)</td>
+</tr><tr>
+<td><CODE><font color="blue">dd</font></CODE></td>
+<td>Displays the day as a number with a leading zero (01-31)</td>
+</tr><tr>
+<td><CODE><font color="blue">ddd</font></CODE></td>
+<td>Displays the day as an abbreviation (Sun-Sat)</td>
+</tr><tr>
+<td><CODE><font color="blue">dddd</font></CODE></td>
+<td>Displays the day as a full name (Sunday-Saturday)</td>
+</tr><tr>
+<td><CODE><font color="blue">m</font></CODE></td>
+<td>Displays the month as a number without a leading zero (1-12)</td>
+</tr><tr>
+<td><CODE><font color="blue">mm</font></CODE></td>
+<td>Displays the month as a number with a leading zero (01-12)</td>
+</tr><tr>
+<td><CODE><font color="blue">mmm</font></CODE></td>
+<td>Displays the month as an abbreviation (Jan-Dec)</td>
+</tr><tr>
+<td><CODE><font color="blue">mmmm</font></CODE></td>
+<td>Displays the month as a full name (January-December)</td>
+</tr><tr>
+<td><CODE><font color="blue">yy</font></CODE></td>
+<td>Displays the year as a two-digit number (00-99)</td>
+</tr><tr>
+<td><CODE><font color="blue">yyyy</font></CODE></td>
+<td>Displays the year as a four-digit number (0000-9999)</td>
+</tr></table></center></p>
+<p>
+ <font size="+1" color="green">Examples</font></P>
+<p>
+<table border="0" cols=2>
+<tr>
+ <td align="center" bgcolor="#CCFFFF"><em>function</em></td>
+ <td align="center" bgcolor="#FF9966"><em>result</em></td>
+</tr><tr>
+ <td><CODE><font color="blue">DATE</font></CODE></td>
+ <td>&nbsp;<font color="orange">23/05/2002</font></td>
+</tr><tr>
+ <td><CODE><font color="blue">DATE('mmmm d yyyy')</font></CODE></td>
+ <td>&nbsp;<font color="orange">May 23 2002</font></td>
+</tr><tr>
+ <td><CODE><font color="blue">DATE('dd-mm-yy')</font></CODE></td>
+ <td>&nbsp;<font color="orange">23-05-02</font></td>
+</tr></table></p>
+</BODY>
+</HTML>

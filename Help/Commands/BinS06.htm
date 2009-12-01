@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>Edge defined bins</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Edge defined bins</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+BIN\EDGES x xbin xcount</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ By default, bins are defined by their centers. If the <CODE>\EDGES</CODE> qualifier is used, bins are
+ defined by their edges. The bin edges must be given in vector <CODE>xbin</CODE>. The length of
+ <CODE>xcount</CODE> will be one less than the length of <CODE>xbin</CODE>. A weight vector,
+ <CODE>w</CODE>, may be specified if you use the <CODE>\WEIGHTS</CODE> qualifier.</P>
+<P>
+ If <CODE>xbin[j] &le; x[i] &lt; xbin[j+1]</CODE> then <CODE>xcount[j]</CODE> is incremented
+ either by <CODE>1</CODE>, or by the specified weight, <CODE>w[i]</CODE>.</P>
+<P>
+ <a href="BinS05.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Count only if empty</font></a>
+</P>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<TITLE>FIGURE command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>FIGURE command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+FIGURE ARROW style nheads x1 y1 x2 y2<br />
+FIGURE RECTANGLE x1 y1 x2 y2<br />
+FIGURE TRIANGLE x1 y1 x2 y2 x3 y3<br />
+FIGURE ELLIPSE x1 y1 x2 y2</CODE>
+</TD></TR>
+<TR>
+<TD valign="top"><B>Qualifiers</B>:</TD>
+<TD valign="top"><CODE>\WORLD, \GRAPH, \PERCENT</CODE></TD></TR>
+<TR>
+<TD valign="top"><B>Defaults</B>:</TD>
+<TD valign="top"><CODE>\WORLD</CODE></TD></TR>
+</TABLE>
+<P>
+ This command is used to draw geometric figures. The figure type is chosen with the keyword
+ (<CODE>ARROW</code>, <CODE>RECTANGLE</code>, <CODE>TRIANGLE</code>, or <CODE>ELLIPSE</code>).</p>
+<P>
+ <font size="+1" color="green"><B>Fillable figures</B></font></P>
+<p>
+ The figures are fillable, except for style 3 arrows. The
+ <CODE><a href="../Characteristics/areafillcolor.htm">AREAFILLCOLOR</a></code>
+ characteristic controls the fill color.  Set it before drawing the figure.</p>
+<P>
+ <font size="+1" color="green"><B>Units</B></font></P>
+<p>
+ The numeric location parameters may be expressed in three types of units, which are chosen by
+ command qualifier. The default is <CODE>/WORLD</code>.</p>
+<p>
+ <table border="1"><tr>
+ <td><i>qualifier</i></td>
+ <td><center><i>Interpretation of the coordinates</i></center></td>
+ </tr><tr>
+ <td><CODE>\WORLD</code></td>
+ <td>centimeters</td>
+ </tr><tr>
+ <td><CODE>\PERCENT</code></td>
+ <td>percentages of the current window, as chosen with the
+ <CODE><a href="Window.htm">WINDOW</a></code> command.</td>
+ </tr><tr>
+ <td><CODE>\GRAPH</code></td>
+ <td>graph units, that is, the units defined by the minimum and maximum
+ values for the last graph drawn in the active window. If no graph has been drawn yet, the defaults
+ are <code>-1 &le; x &le; 1</code> and <code>-1 &le; y &le; 1</code></td>
+ </tr></table></p>
+<p>
+ For example, if the <CODE>\PERCENT</code> qualifier is used, then a location of <code>(50,50)</code>
+ represents the center of the active window. If the <CODE>\WORLD</code> qualifier is used, the
+ coordinates are in units of the world coordinate system, the plotting units. The default world
+ coordinate system units are centimeters.</p>
+<P>
+ <font size="+1" color="green"><B>Arrows</B></font></P>
+<p>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ FIGURE ARROW style nheads x1 y1 x2 y2<code></td>
+ </tr></table></p>
+<p>
+ The <CODE>FIGURE ARROW</code> command draws an arrow with base at <code>(x1,y1)</code> and end point
+ at <code>(x2,y2)</code>.</p>
+<p>
+ There are three styles of arrow:</p>
+ <center><img src="FigureI01.png"></center>
+<p>
+ The parameter <CODE>nheads</code> can be either <code>1</code>, for single headed arrows, or
+ <code>2</code>, for arrows with heads on both ends.</p>
+<P>
+ <font size="+1" color="green"><B>Rectangles</B></font></P>
+<p>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ FIGURE RECTANGLE x1 y1 x2 y2<code></td>
+ </tr></table></p>
+<p>
+ The <CODE>FIGURE RECTANGLE</code> command draws a rectangle with one corner at <code>(x1,y1)</code>
+ and the opposite corner at <code>(x2,y2)</code>.</p> 
+<P>
+ <font size="+1" color="green"><B>Triangles</B></font></P>
+<p>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ FIGURE RECTANGLE x1 y1 x2 y2 x3 y3<code></td>
+ </tr></table></p>
+<p>
+ The <CODE>FIGURE TRIANGLE</code> command draws a triangle with corners at <code>(x1,y1)</code>,
+ <code>(x2,y2)</code>, and <code>(x3,y3)</code>.</p> 
+<P>
+ <font size="+1" color="green"><B>Rectangles</B></font></P>
+<p>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width="15%" valign="top"><B>Syntax</B>:</TD>
+ <TD width="85%" valign="top"><CODE>
+ FIGURE ELLIPSE x1 y1 x2 y2<code></td>
+ </tr></table></p>
+<p>
+ The <CODE>FIGURE ELLIPSE</code> command draws the ellipse which fits within the rectangle with
+ one corner at <code>(x1,y1)</code> and the opposite corner at <code>(x2,y2)</code>.</p>
+</BODY>
+</HTML>

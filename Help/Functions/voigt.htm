@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>Voigt profile</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P>
+<font size="+3" color="green"><B>Voigt profile</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+y = VOIGT(a,b,c,d)</code>
+</TD></TR>
+</table></p>
+<p>
+ The Voigt profile function is the convolution integral of a Gaussian and
+ a Lorentzian function. We wish to evaluate</p>
+<p>
+ <center><img align="bottom" src="voigtI01.png"></center></p>
+<p>
+ where <i>f(E)</i> is the Gaussian function:
+ &nbsp;&nbsp;<img align="bottom" src="voigtI02.png"></p>
+<p>
+ and <i>g(E)</i> is the Lorentzian: &nbsp;&nbsp;<img align="middle" src="voigtI03.png"></p>
+<p>
+ Putting</p>
+<p>
+ <img align="bottom" src="voigtI04.png"></p>
+<p>
+ This integral has been evaluated for <i>b &gt; 0</i> in terms of the complex
+ error function &nbsp;<img align="top" src="voigtI05.png">.</p>
+<p>
+ <img align="bottom" src="voigtI06.png"></p>
+<p>
+ The Voigt function implemented here is: &nbsp;&nbsp;<img align="bottom" src="voigtI07.png"></p>
+</BODY>
+</HTML>

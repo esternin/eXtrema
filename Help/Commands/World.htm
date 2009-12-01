@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>WORLD command</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+3" color="green"><B>WORLD command</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+WORLD vxin vyin { vxout vyout }</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Qualifiers</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+\PERCENT</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Defaults</B>:</TD>
+<TD width="85%" valign="top">
+absolute coordinates returned
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE>WORLD</CODE> command converts graph coordinates into world coordinates (centimeters), or
+ into percentages if the <CODE>\PERCENT</CODE> qualifier is used.</P>
+<P>
+ The variables <CODE>vxin</CODE> and <CODE>vyin</CODE> may be scalars or vectors, but
+ they must both be the same type. The resultant values are displayed on the
+ monitor screen. If output variables <CODE>vxout</CODE> and <CODE>vyout</CODE> are present, the values are
+ stored there. The type of variable created depends on the variable type of <CODE>vxin</CODE> and
+ <CODE>vyin</CODE>.</P>
+</BODY>
+</HTML>

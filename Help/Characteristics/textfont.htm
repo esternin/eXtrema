@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>TEXTFONT</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><A NAME="textfont"></A>
+<font size="+3" color="green"><B>TEXTFONT</B></font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="20%" valign="top"><B>Syntax</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+SET TEXTFONT s<br>
+GET TEXTFONT { s }</CODE>
+</TD></TR>
+<TR>
+<TD width="20%" valign="top"><B>Default</B>:</TD>
+<TD width="80%" valign="top"><CODE>
+TEXTFONT =</CODE> ARIAL
+</TD></TR>
+</TABLE>
+<p>
+ <em>Note:</em> The value of the <CODE>TEXTFONT</CODE>
+ characteristic is a string instead of a numeric value. So, if
+ you enter: <CODE><font color="blue"><a href="../Commands/Get.htm">GET TEXTFONT X</a>
+ </font></CODE>, the variable <CODE>X</CODE> will be a string variable.</P>
+<P>
+ <CODE>TEXTFONT</CODE> controls the font of
+ the text string drawn with the <CODE><a href="../Commands/Text.htm">TEXT</a></CODE>
+ command.</P>
+<P>
+ The parameter <CODE>f</CODE> should be
+ the font name. If the font name is composed of more than one word, enclose
+ the font name in quotes.</P>
+<p>
+ Examples:</p>
+<p>
+ <CODE><font color="blue">SET TEXTFONT ARIAL</font></CODE><br>
+ <CODE><font color="blue">SET TEXTFONT 'ARIAL BOLD'</font></CODE></p>
+<P>
+  <a href="textcolor.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;
+    <font size="+1" color="olive">TEXTCOLOR</font></a><BR />
+  <a href="textheight.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;
+    <font size="+1" color="olive">TEXTHEIGHT</font></a>
+</P>
+</body>
+</html>

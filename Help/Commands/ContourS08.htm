@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>Scattered points</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<P><font size="+2" color="green">Scattered points</font></P>
+
+<TABLE border="1" cols="2" frame="box" rules="all" width="608">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%" valign="top"><CODE>
+CONTOUR x y v nctr { min { incr }}<br />
+CONTOUR\COLOURS colr x y v nctr { min { incr }}<br />
+CONTOUR\SPECIFIC x y v lvls<br />
+CONTOUR\SPECIFIC\COLOURS colr x y v lvls</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Qualifiers:</B></TD>
+<TD width="85%" valign="top"><CODE>
+\SPECIFIC, \POLAR, \LEGEND, \COLOURS, \PARTIAL, \RESET, \BORDER, \AXES, \COORDINATES</CODE>
+</TD></TR>
+<TR>
+<TD width="15%" valign="top"><B>Defaults:</B></TD>
+<TD width="85%" valign="top"><CODE>
+\-SPECIFIC, \-POLAR, \-LEGEND, \-COLOURS, \-RESET, \BORDER, \AXES, \-COORDINATES</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ If <CODE>z</CODE> is a vector, the vectors <CODE>x</CODE> and <CODE>y</CODE> are assumed to represent a
+ scattered set of coordinates, where <code>z[i]</code> is the altitude corresponding to the
+ coordinate location <code>(x[i],y[i])</code>. The vectors <CODE>x</CODE> and <CODE>y</CODE> must
+ be entered if <CODE>z</CODE> is a vector.</P>
+<P>
+ Contours are computed by successive solution of quintic polynomial equations.
+ The irregularly distributed data points are organized as triangles and the
+ partial derivatives at each point are estimated from the function values of
+ the neighboring points.</P>
+<P>
+ Areas and volumes cannot be calculated from scattered data.</P>
+<P>
+ <a href="ContourS07.htm"><img src="../shadow_left.gif">&nbsp;
+ <font size="+1" color="olive">Axes</font></a><br />
+ <a href="ContourS09.htm"><img src="../shadow_right.gif">&nbsp;
+ <font size="+1" color="olive">Matrix data</font></a>
+</P>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>Volume function</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<P>
+<font size="+3" color="green"><B>Volume function</B></font></P>
+<P>
+<TABLE border="1" cols="2" frame="box" rules="all" width="572">
+<TR>
+<TD width="15%" valign="top"><B>Syntax</B>:</TD>
+<TD width="85%"><CODE>
+a = VOLUME(x,y,z)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE>VOLUME</CODE> function calculates the
+ volume under the scattered points given by vectors <CODE>x</CODE>,
+ <CODE>y</CODE> and <CODE>z</CODE> = f(<CODE>x</CODE>,<CODE>y</CODE>).
+ The function returns the volume as a scalar. The region given by
+ <CODE>x</CODE> and <CODE>y</CODE> is
+ first triangulated, using a Thiessen triangulation, then the integral is approximated by
+ integrating the piecewise linear interpolants of the data values. The lengths of the three
+ vectors must be equal.</p>
+<p>
+ If <CODE>z</CODE> is a matrix, the grid region is triangulated.
+ The volume is approximated by summing the averages of the matrix values at the triangle
+ vertices multiplied by the area of each triangle. The length of
+ <CODE>x</code> must be equal to the number of columns of the matrix <CODE>z</code>, and the length of
+ <CODE>y</code> must be equal to the number of rows of <CODE>z</code>.</p>
+</BODY>
+</HTML>
