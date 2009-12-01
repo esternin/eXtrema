@@ -356,36 +356,28 @@ void CMD_graph::Execute( ParseLine const *p )
   if( xE2 && num < xe2.size() )xe2.resize( num );
   if( yE2 && num < ye2.size() )ye2.resize( num );
   //
-  std::vector<double> x2(2), y2(2);
-  x2[0] = std::numeric_limits<double>::max();
-  x2[1] = -x2[0];
-  y2[0] = x2[0];
-  y2[1] = x2[1];
+  std::vector<double> x2(x), y2(y);
   if( yE1 )
   {
     if( yE2 )
     {
       for( std::size_t i=0; i<num; ++i )
       {
-        if( y2[1] < y[i]+ye2[i] )y2[1] = y[i]+ye2[i];
-        if( y2[0] > y[i]-ye1[i] )y2[0] = y[i]-ye1[i];
+        y2.push_back( y[i]+ye2[i] );
+        x2.push_back( x[i] );
+        y2.push_back( y[i]-ye1[i] );
+        x2.push_back( x[i] );
       }
     }
     else
     {
       for( std::size_t i=0; i<num; ++i )
       {
-        if( y2[1] < y[i]+ye1[i] )y2[1] = y[i]+ye1[i];
-        if( y2[0] > y[i]-ye1[i] )y2[0] = y[i]-ye1[i];
+        y2.push_back( y[i]+ye1[i] );
+        x2.push_back( x[i] );
+        y2.push_back( y[i]-ye1[i] );
+        x2.push_back( x[i] );
       }
-    }
-  }
-  else
-  {
-    for( std::size_t i=0; i<num; ++i )
-    {
-      if( y2[1] < y[i] )y2[1] = y[i];
-      if( y2[0] > y[i] )y2[0] = y[i];
     }
   }
   if( xE1 )
@@ -394,25 +386,21 @@ void CMD_graph::Execute( ParseLine const *p )
     {
       for( std::size_t i=0; i<num; ++i )
       {
-        if( x2[1] < x[i]+xe2[i] )x2[1] = x[i]+xe2[i];
-        if( x2[0] > x[i]-xe1[i] )x2[0] = x[i]-xe1[i];
+        y2.push_back( y[i] );
+        x2.push_back( x[i]+xe2[i] );
+        y2.push_back( y[i] );
+        x2.push_back( x[i]-xe1[i] );
       }
     }
     else
     {
       for( std::size_t i=0; i<num; ++i )
       {
-        if( x2[1] < x[i]+xe1[i] )x2[1] = x[i]+xe1[i];
-        if( x2[0] > x[i]-xe1[i] )x2[0] = x[i]-xe1[i];
+        y2.push_back( y[i] );
+        x2.push_back( x[i]+xe1[i] );
+        y2.push_back( y[i] );
+        x2.push_back( x[i]-xe1[i] );
       }
-    }
-  }
-  else
-  {
-    for( std::size_t i=0; i<num; ++i )
-    {
-      if( x2[1] < x[i] )x2[1] = x[i];
-      if( x2[0] > x[i] )x2[0] = x[i];
     }
   }
   wxClientDC dc( ExGlobals::GetwxWindow() );
