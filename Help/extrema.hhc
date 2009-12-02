@@ -67,11 +67,11 @@
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="Scalar variables">
-                            <param name="Local" value="Introduction/VariableS02.htm">
+                            <param name="Local" value="Introduction/VariablesS02.htm">
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="Vector variables">
-                            <param name="Local" value="Introduction/VariableS03.htm">
+                            <param name="Local" value="Introduction/VariablesS03.htm">
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="Matrix variables">
