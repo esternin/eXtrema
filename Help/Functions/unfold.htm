@@ -26,6 +26,13 @@ vector = UNFOLD( matrix )</CODE>
 <P>
  <font size="+1" color="green">Examples</font></P>
 <P>
+ If <CODE>X</CODE> is a vector and <CODE>N</CODE> is a scalar such than
+ <CODE>LEN(X)</CODE> is divisible by <CODE>N</CODE>, then
+ <CODE>UNFOLD(FOLD(X,N))</code> is equal to <code>X</CODE></p>
+ <p>
+ If <CODE>M</CODE> is a matrix with <CODE>R</CODE> rows, then
+ <CODE>FOLD(UNFOLD(M),R)</code> is equal to <code>M</CODE></P>
+<P>
  Suppose that 
  <pre>
        | 1  4  7 10 |
@@ -38,17 +45,6 @@ vector = UNFOLD( matrix )</CODE>
  </tr><tr>
  <td><CODE><font color="blue">UNFOLD(M)</font></CODE></td>
  <td bgcolor="#FFFFCC"><CODE>[1;2;3;4;5;6;7;8;9;10;11;12]</CODE></td>
- </tr></table></P>
-<P>
- <table><tr>
- <td valign=top>Note:</td>
- <td>if <CODE>X</CODE> is a vector and <CODE>N</CODE> is a scalar such than
- <CODE>LEN(X)</CODE> is divisible by <CODE>N</CODE>, then<br />
- <CODE>UNFOLD(FOLD(X,N))</code> is equal to <code>X</CODE></td>
- </tr><tr>
- <td></td>
- <td>if <CODE>M</CODE> is a matrix with <CODE>R</CODE> rows, then<br />
- <CODE>FOLD(UNFOLD(M),R)</code> is equal to <code>M</CODE></td>
  </tr></table></P>
 </BODY>
 </HTML>

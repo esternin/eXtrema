@@ -11,7 +11,7 @@
 AC_PREREQ(2.59)
 
 # touch src/wxForms/AnalysisWindow.cpp to get the latest version number
-AC_INIT([extrema],[4.4.1],[Joseph L. Chuma joe.chuma@gmail.com])
+AC_INIT([extrema],[4.4.2],[Joseph L. Chuma joe.chuma@gmail.com])
 
 # automake < 1.9 will not be allowed
 # use gnu strictness

@@ -71,12 +71,11 @@
  variable can be considered to be equivalent to a single string, that is,
  can be used wherever a string is expected.</P>
 <p>
+ Let <code>a</code> be a scalar and let <code>x</code> be a vector.
+ Suppose that <code>TA</code> is a string array variable and <code>T</code> is a string variable.</p>
+<p>
  <center>
- <table border="1" width="80%">
- <tr><td bgcolor="#FFCCCC">Let <code>a</code> be a scalar and let <code>x</code> be a vector<br />
- Suppose that <code>TA</code> is a string array variable and <code>T</code> is a string variable</td>
- </tr><tr>
- <td><table cellpadding="2" cols="4">
+ <table cellpadding="2" cols="4">
   <tr>
   <td valign="top"><code>T</code></td><td valign="top">=</td>
    <td valign="top"><code>T[i]</code></td>
@@ -93,8 +92,7 @@
   <td valign="top"><code>TA[a][x]</code></td><td valign="top">=</td>
    <td valign="top"><code>TA[a][i]</code></td>
    <td valign="top">for <code>i = x[1], x[2], ..., x[#]</code></td>
-  </table></td></tr>
- </table></center></P>
+  </table></center></P>
 <P>
  Strings may be appended together using the <a href="../Operators/append.htm">append</a> operator,
  <CODE>//</CODE></a>. For example, suppose that <code>T</code> is a string variable with the value

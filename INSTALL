@@ -13,7 +13,7 @@ Getting ready to build
 Required:
 
 Extrema requires the wxGTK ( >= v2.6.3, although > v2.8.0 is recommended )
-package to be installed before installing extrema.  See http://www.wxwidgets.org/
+package to be installed before installing extrema.  See http://www.wxwidgets.org
 for information on downloading and installing.  Specifically for
 extrema, wxGTK should be built with the following configure command:
 
@@ -40,7 +40,15 @@ $ ./configure --enable-static --disable-shared
 Building
 ========
 
-First type the command:
+Untar the distribution:
+
+$ tar zxf extrema-x.y.z.tar.gz
+
+which will create a directory named extrema-x.y.z.  
+
+$ cd extrema-x.y.z
+
+Then type the command:
 
 $ ./reconf
 
@@ -54,13 +62,43 @@ If you do not have the optional packages:
 $ ./configure --with-wxGTK=<path_to_wx-config> 
 
 or if wx-config is located in your PATH, it is no longer necessary to mention
-it specifically with the configure command:
+it specifically, so just enter:
 
 $ ./configure
 
-Then type
+One configure option to consider is --prefix=DIR, which specifies the location
+where the program and associated files will be installed.  By default, the prefix
+directory is /usr/local, so the extrema executable will be placed in /usr/local/bin
+and the help and image files will be placed in /usr/local/share/extrema.  You
+can specify a different location via the --prefix=DIR configure option, e.g.,
+
+$ ./configure --prefix=/usr
+
+which will cause the extrema executable to be installed in /usr/bin, and the
+help and image files in /usr/share/extrema.
+
+To compile and link the program, type
 
 $ make
+
+To install the program, type
+
+$ sudo make install
+
+then to run extrema, type
+
+$ extrema
+
+NOTE:
+   If you do not have root privilege, or just do not want to install extrema,
+   you should create an environment variable pointing to the location of the
+   extrema Help folder, e.g.,
+
+   $ export EXTREMA_DIR=~/extrema-x.y.z
+
+   and to run extrema, type
+
+   $ $EXTREMA_DIR/src/extrema
 
 
 Basic Installation

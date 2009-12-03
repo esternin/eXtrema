@@ -1,16 +1,16 @@
-28/11/2009  Joe Chuma <joe.chuma@gmail.com>
+03/12/2009  Joe Chuma <joe.chuma@gmail.com>
 
 	v4.4.2
 
-	* modified the entire Help file structure, reorganizing and simplifying (and correcting
-	in some cases).
+	* modified the entire Help file structure, reorganizing and simplifying (and
+	correcting in some cases).
 
 	* modified src/Commands/CMD_graph
 	Autoscaling one axis while the other was fixed, was causing problems.  This has been fixed.
-	
-	* added gui for drawing figures (arrows, rectangles, ellipses, stars).
-	
 
+	* modified src/Utilities/ExGlobals
+	The locations of the Help and Images directories have finally been rationalized.
+	
 05/10/2009  Joe Chuma <joe.chuma@gmail.com>
 
 	v4.4.1

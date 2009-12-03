@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2009 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -133,16 +133,27 @@ LegendPopup *legendPopup_;
 
 void Initialize()
 {
-  // EX_BINDIR is defined as $(prefix)
-  //
   if( !wxGetEnv(wxT("EXTREMA_DIR"),&executablePath_) )
   {
+    //
+    // EX_BINDIR is defined as $(prefix)/bin which is /usr/local/bin by default
+    // EX_DATADIR is defined as $(prefix)/share  which is /usr/local/share by default
+    //
+
+    //std::cout << "EX_BINDIR = " << EX_BINDIR << "\n"
+    //          << "EX_DATADIR = " << EX_DATADIR << "\n";        
+    
     executablePath_ = wxT(EX_BINDIR);
-    imagePath_ = wxString(wxT(EX_BINDIR)) + wxT("/../share/extrema/Images");
-    helpPath_ = wxString(wxT(EX_BINDIR)) + wxT("/../share/extrema/Help");
+    imagePath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Images");
+    helpPath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Help");
   }
   else
   {
+    // extrema is not installed, so must define environment variable EXTREMA_DIR,
+    // pointing to the extrema executable, e.g.,
+    //
+    // $ export EXTREMA_DIR=~/extrema-x.y.z
+    //
     imagePath_ = executablePath_ + wxT("/Images");
     helpPath_ = executablePath_ + wxT("/Help");
   }

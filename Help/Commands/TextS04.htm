@@ -13,6 +13,15 @@
  See the figure and the table below. The default value of 
  <CODE>TEXTALIGN</CODE> is 1 (the origin is the same as the reference point).</P>
 <P>
+ If <CODE><a href="../Characteristics/textinteractive.htm">TEXTINTERACTIVE</a> &ne; 0</CODE>,
+ then the graphics cursor is used to interactively determine the reference point to place a
+ text string when drawn by the <CODE>TEXT</CODE> command.</P>
+<P>
+ If <CODE>TEXTINTERACTIVE = 0</CODE>, then
+ <CODE><a href="../Characteristics/xtextlocation.htm">XTEXTLOCATION</a></CODE> and 
+ <CODE><a href="../Characteristics/ytextlocation.htm">YTEXTLOCATION</a></CODE> will
+ be used to determine the reference point for the character string.</p>
+<P>
  <center><img src="TextS04I01.png"></center></p>
 <P>
  <center><table cellpadding="3" cols="3" width="450"><tr>
@@ -83,17 +92,7 @@
  <td>x<sub>0</sub> = x<sub>ref</sub>&nbsp;-&nbsp;L/2</td>
  <td>y<sub>0</sub> = y<sub>ref</sub>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a = 90&deg;</td>
- </tr></table></center>
-</P>
-<P>
- If <CODE><a href="../Characteristics/textinteractive.htm">TEXTINTERACTIVE</a> &ne; 0</CODE>,
- then the graphics cursor is used to interactively determine the reference point to place a
- text string when drawn by the <CODE>TEXT</CODE> command.</P>
-<P>
- If <CODE>TEXTINTERACTIVE = 0</CODE>, then
- <CODE><a href="../Characteristics/xtextlocation.htm">XTEXTLOCATION</a></CODE> and 
- <CODE><a href="../Characteristics/ytextlocation.htm">YTEXTLOCATION</a></CODE> will
- be used to determine the reference point for the character string.</p>
+ </tr></table></center></P>
 <P>
   <a href="TextS03.htm"><img src="../shadow_left.gif">&nbsp;
     <font size="+1" color="olive">ERASE</font></a><br />

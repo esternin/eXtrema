@@ -33,7 +33,7 @@
  least-squares fitting can be done in advance, for fictitious data consisting of all zeros except
  for a single <code>1</code>, and then the fits on the real data are done by taking linear
  combinations. Thus, there are particular sets of filter coefficients,
- &nbsp;<img align="bottom" src="savgoI13.png">, for which the
+ &nbsp;<img align="bottom" src="savgolI13.png">, for which the
  convolution formula automatically accomplishes the process of polynomial least-squares fitting
  inside a moving window.</p>
 <p>
@@ -42,16 +42,16 @@
  not too much narrower than the filter width. When this is not true, these filters have no
  advantage over other smoothing methods.</p>
 <p>
- If the data is irregularly sampled, that is, the &nbsp;<img align="bottom" src="savgoI14.png">&nbsp;
+ If the data is irregularly sampled, that is, the &nbsp;<img align="bottom" src="savgolI14.png">&nbsp;
  values are not equally spaced, one can
  pretend that the data points are equally spaced. This amounts to virtually shifting, within
  each moving window, the data points to equally spaced positions. Such a shift introduces
  the equivalent of an additional source of noise into the function values. In those cases where
  smoothing is useful, this noise will often be much smaller than the noise already present.
  Specifically, if the location of the points is approximately random within the window, then
- a rough criterion is this: If the change in &nbsp;<img align="bottom" src="savgoI14.png">&nbsp;
+ a rough criterion is this: If the change in &nbsp;<img align="bottom" src="savgolI14.png">&nbsp;
  across the full width of the window, &nbsp;<img align="bottom" src="savgolI11.png">, is less
- than &nbsp;<img align="bottom" src="savgoI15.png">&nbsp; times the measurement noise on a single
+ than &nbsp;<img align="bottom" src="savgolI15.png">&nbsp; times the measurement noise on a single
  point, then this implementation of the Savitzky-Golay filter can be used.</p>
 <P>
   <a href="savgol.htm"><img align="top" border="0" src="../shadow_left.gif">&nbsp;
