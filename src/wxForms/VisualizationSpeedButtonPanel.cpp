@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 BEGIN_EVENT_TABLE( VisualizationSpeedButtonPanel, wxPanel )
   EVT_BUTTON( ID_clearGraphicsPage, VisualizationSpeedButtonPanel::OnClearGraphicsPage )
   EVT_BUTTON( ID_drawGraph, VisualizationSpeedButtonPanel::OnDrawGraph )
+  EVT_BUTTON( ID_3dplot, VisualizationSpeedButtonPanel::On3DPlot )
   EVT_BUTTON( ID_drawText, VisualizationSpeedButtonPanel::OnDrawText )
   EVT_BUTTON( ID_peakFind, VisualizationSpeedButtonPanel::OnPeakFind )
   EVT_BUTTON( ID_drawFigures, VisualizationSpeedButtonPanel::OnDrawFigures )
@@ -63,6 +64,12 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
                         wxBitmap(imageDir+wxT("/drawgraph.GIF"),wxBITMAP_TYPE_GIF) );
   drawGraphButton->SetToolTip( wxT("draw a graph") );
   sizer->Add( drawGraphButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
+
+  wxBitmapButton *threeDPlotButton =
+    new wxBitmapButton( (wxWindow*)this, ID_3dplot,
+                        wxBitmap(imageDir+wxT("/3dplot.bmp"),wxBITMAP_TYPE_BMP) );
+  drawGraphButton->SetToolTip( wxT("draw a 3D graph") );
+  sizer->Add( threeDPlotButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
   wxBitmapButton *drawTextButton =
     new wxBitmapButton( (wxWindow*)this, ID_drawText,
@@ -260,6 +267,9 @@ void VisualizationSpeedButtonPanel::OnClearGraphicsPage( wxCommandEvent &event )
   
 void VisualizationSpeedButtonPanel::OnDrawGraph( wxCommandEvent &event )
 { visualizationWindow_->OnDrawGraph( event ); }
+  
+void VisualizationSpeedButtonPanel::On3DPlot( wxCommandEvent &event )
+{ visualizationWindow_->On3DPlot( event ); }
   
 void VisualizationSpeedButtonPanel::OnDrawText( wxCommandEvent &event )
 { visualizationWindow_->OnDrawText( event ); }

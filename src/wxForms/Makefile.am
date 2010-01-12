@@ -42,6 +42,7 @@ libwxforms_la_SOURCES = \
 	  StackDialog.cpp StackDialog.h \
           TextForm.cpp TextForm.h \
           TextPopup.cpp TextPopup.h \
+	  ThreeDPlotForm.cpp ThreeDPlotForm.h \
           VarInfoForm.cpp VarInfoForm.h \
 	  VisualizationSpeedButtonPanel.cpp VisualizationSpeedButtonPanel.h \
 	  VisualizationWindow.cpp VisualizationWindow.h \

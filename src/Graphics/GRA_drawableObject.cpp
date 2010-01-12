@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -42,6 +42,7 @@ GRA_drawableObject::GRA_drawableObject( wxChar const *type )
   else if( stype == wxT("THREEDFIGURE") )   type_ = THREEDFIGURE;
   else if( stype == wxT("POLARAXES") )      type_ = POLARAXES;
   else if( stype == wxT("POLARCURVE") )     type_ = POLARCURVE;
+  else if( stype == wxT("THREEDPLOT") )     type_ = THREEDPLOT;
 }
 
 // end of file

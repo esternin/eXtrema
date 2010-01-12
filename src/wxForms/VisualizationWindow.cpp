@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2009 Joseph L. Chuma
+Copyright (C) 2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GraphicsPage.h"
 #include "SetAspectRatioForm.h"
 #include "ImportWindow.h"
+#include "ThreeDPlotForm.h"
 
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
@@ -49,6 +50,7 @@ BEGIN_EVENT_TABLE( VisualizationWindow, wxFrame )
   EVT_MENU( ID_clearGraphicsPage, VisualizationWindow::OnClearGraphicsPage )
   EVT_MENU( ID_clearWindow, VisualizationWindow::OnClearWindow )
   EVT_MENU( ID_drawGraph, VisualizationWindow::OnDrawGraph )
+  EVT_MENU( ID_3DPlot, VisualizationWindow::On3DPlot )
   EVT_MENU( ID_drawText, VisualizationWindow::OnDrawText )
   EVT_MENU( ID_replotAll, VisualizationWindow::OnReplotAll )
   EVT_MENU( ID_replotCurrent, VisualizationWindow::OnReplotCurrent )
@@ -72,6 +74,7 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
                wxDEFAULT_FRAME_STYLE&~wxCLOSE_BOX )
 {
   graphForm_ = 0;
+  threeDPlotForm_ = 0;
   textForm_ = 0;
   peakFindForm_ = 0;
   textToPlace_ = 0;
@@ -121,6 +124,7 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   drawingMenu->Append( wxID_ANY, wxT("Clear"), clearMenu, wxT("clear the graphics") );
   
   drawingMenu->Append( ID_drawGraph, wxT("Draw a graph"), wxT("draw a graph") );
+  drawingMenu->Append( ID_3DPlot, wxT("Draw a 3D graph"), wxT("draw a 3D graph") );
   drawingMenu->Append( ID_drawText, wxT("Draw text"), wxT("draw text") );
 
   wxMenu *replotMenu = new wxMenu();
@@ -641,6 +645,15 @@ GraphForm *VisualizationWindow::GetGraphForm()
 void VisualizationWindow::SetGraphForm( GraphForm *graphForm )
 { graphForm_ = graphForm; }
 
+void VisualizationWindow::ZeroThreeDPlotForm()
+{ threeDPlotForm_ = 0; }
+
+ThreeDPlotForm *VisualizationWindow::GetThreeDPlotForm()
+{ return threeDPlotForm_; }
+
+void VisualizationWindow::SetThreeDPlotForm( ThreeDPlotForm *threeDPlotForm )
+{ threeDPlotForm_ = threeDPlotForm; }
+
 void VisualizationWindow::ZeroTextForm()
 { textForm_ = 0; }
 
@@ -676,6 +689,16 @@ void VisualizationWindow::OnDrawGraph( wxCommandEvent &WXUNUSED(event) )
   {
     graphForm_ = new GraphForm( this );
     graphForm_->Show();
+  }
+}
+
+void VisualizationWindow::On3DPlot( wxCommandEvent &WXUNUSED(event) )
+{
+  if( threeDPlotForm_ )threeDPlotForm_->Raise();
+  else
+  {
+    threeDPlotForm_ = new ThreeDPlotForm( this );
+    threeDPlotForm_->Show();
   }
 }
 

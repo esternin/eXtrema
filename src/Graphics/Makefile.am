@@ -63,6 +63,7 @@ libgraphics_la_SOURCES = \
 	  GRA_star5pt.cpp GRA_star5pt.h \
 	  GRA_stringCharacteristic.cpp GRA_stringCharacteristic.h \
 	  GRA_thiessenTriangulation.cpp GRA_thiessenTriangulation.h \
+	  GRA_threeDPlot.cpp GRA_threeDPlot.h \
 	  GRA_triangle.cpp GRA_triangle.h \
 	  GRA_window.cpp GRA_window.h \
 	  GRA_wxWidgets.cpp GRA_wxWidgets.h \

@@ -62,6 +62,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_polarCurve.h"
 #include "VisualizationWindow.h"
 #include "GRA_rectangle.h"
+#include "ThreeDPlotForm.h"
+#include "GRA_threeDPlot.h"
 
 void GRA_window::SetUp()
 {
@@ -585,7 +587,13 @@ void GRA_window::Clear()
   //
   while ( !drawableObjects_.empty() )
   {
-    delete drawableObjects_.back();
+    GRA_drawableObject *obj = drawableObjects_.back();
+    if( obj->IsaThreeDPlot() )
+    {
+      ThreeDPlotForm *form = dynamic_cast<GRA_threeDPlot*>(obj)->GetForm();
+      if( form )form->ZeroPlot();
+    }
+    delete obj;
     drawableObjects_.pop_back();
   }
 }

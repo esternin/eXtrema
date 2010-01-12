@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -32,6 +32,7 @@ public:
   
   void OnClearGraphicsPage( wxCommandEvent & );
   void OnDrawGraph( wxCommandEvent & );
+  void On3DPlot( wxCommandEvent & );
   void OnDrawText( wxCommandEvent & );
   void OnPeakFind( wxCommandEvent & );
   void OnSaveDrawing( wxCommandEvent & );
@@ -66,7 +67,8 @@ private:
       ID_printDrawing,
       ID_newPage,
       ID_removePage,
-      ID_aspectRatio
+      ID_aspectRatio,
+      ID_3dplot
   };
   
   DECLARE_EVENT_TABLE()

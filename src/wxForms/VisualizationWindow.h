@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005...2009 Joseph L. Chuma
+Copyright (C) 2005...2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -35,6 +35,7 @@ class MyStatusBar;
 class GRA_window;
 class SetAspectRatioForm;
 class GraphicsPage;
+class ThreeDPlotForm;
 
 // The VisualizationWindow is the main extrema graphics window. It contains the
 // graphics canvas as well as various menus and speed buttons.
@@ -47,6 +48,10 @@ public:
   void ZeroGraphForm();
   GraphForm *GetGraphForm();
   void SetGraphForm( GraphForm * );
+
+  void ZeroThreeDPlotForm();
+  ThreeDPlotForm *GetThreeDPlotForm();
+  void SetThreeDPlotForm( ThreeDPlotForm * );
 
   MyStatusBar *GetStatusBar();
 
@@ -102,6 +107,7 @@ public:
   void OnSavePNG( wxCommandEvent & );
   void OnSaveJPEG( wxCommandEvent & );
   void OnDrawGraph( wxCommandEvent & );
+  void On3DPlot( wxCommandEvent & );
   void OnDrawText( wxCommandEvent & );
 
   void OnPeakFind( wxCommandEvent & );
@@ -130,6 +136,7 @@ public:
   
 private:
   GraphForm *graphForm_;
+  ThreeDPlotForm *threeDPlotForm_;
   TextForm *textForm_;
   SetAspectRatioForm  *setAspectRatioForm_;
   PeakFindForm *peakFindForm_;
@@ -148,6 +155,7 @@ private:
       ID_clearGraphicsPage,
       ID_clearWindow,
       ID_drawGraph,
+      ID_3DPlot,
       ID_drawText,
       ID_replotAll,
       ID_replotCurrent,

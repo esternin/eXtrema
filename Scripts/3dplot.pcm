@@ -1,0 +1,6 @@
+r[1:100] = 5
+gen th 0,,359 20
+th = th//th//th//th//th
+x = r*cosd(th)
+y = r*sind(th)
+gen z 0,,10 100
