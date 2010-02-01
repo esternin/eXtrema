@@ -32,6 +32,7 @@ BEGIN_EVENT_TABLE( VisualizationSpeedButtonPanel, wxPanel )
   EVT_BUTTON( ID_clearGraphicsPage, VisualizationSpeedButtonPanel::OnClearGraphicsPage )
   EVT_BUTTON( ID_drawGraph, VisualizationSpeedButtonPanel::OnDrawGraph )
   EVT_BUTTON( ID_3dplot, VisualizationSpeedButtonPanel::On3DPlot )
+  EVT_BUTTON( ID_drawFigure, VisualizationSpeedButtonPanel::OnDrawFigure )
   EVT_BUTTON( ID_drawText, VisualizationSpeedButtonPanel::OnDrawText )
   EVT_BUTTON( ID_peakFind, VisualizationSpeedButtonPanel::OnPeakFind )
   EVT_BUTTON( ID_drawFigures, VisualizationSpeedButtonPanel::OnDrawFigures )
@@ -85,11 +86,11 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
   peakFindButton->SetToolTip( wxT("find peaks") );
   sizer->Add( peakFindButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
   
-  wxBitmapButton *drawFiguresButton =
-    new wxBitmapButton( (wxWindow*)this, ID_drawFigures,
+  wxBitmapButton *drawFigureButton =
+    new wxBitmapButton( (wxWindow*)this, ID_drawFigure,
                         wxBitmap(imageDir+wxT("/drawfigure.GIF"),wxBITMAP_TYPE_GIF) );
-  drawFiguresButton->SetToolTip( wxT("draw geometric figures") );
-  sizer->Add( drawFiguresButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
+  drawFigureButton->SetToolTip( wxT("draw geometric figures") );
+  sizer->Add( drawFigureButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
   sizer->InsertSpacer( 6, 10 );
   
@@ -270,6 +271,9 @@ void VisualizationSpeedButtonPanel::OnDrawGraph( wxCommandEvent &event )
   
 void VisualizationSpeedButtonPanel::On3DPlot( wxCommandEvent &event )
 { visualizationWindow_->On3DPlot( event ); }
+  
+void VisualizationSpeedButtonPanel::OnDrawFigure( wxCommandEvent &event )
+{ visualizationWindow_->OnDrawFigure( event ); }
   
 void VisualizationSpeedButtonPanel::OnDrawText( wxCommandEvent &event )
 { visualizationWindow_->OnDrawText( event ); }

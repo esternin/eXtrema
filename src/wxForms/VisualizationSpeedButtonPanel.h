@@ -33,6 +33,7 @@ public:
   void OnClearGraphicsPage( wxCommandEvent & );
   void OnDrawGraph( wxCommandEvent & );
   void On3DPlot( wxCommandEvent & );
+  void OnDrawFigure( wxCommandEvent & );
   void OnDrawText( wxCommandEvent & );
   void OnPeakFind( wxCommandEvent & );
   void OnSaveDrawing( wxCommandEvent & );
@@ -68,7 +69,8 @@ private:
       ID_newPage,
       ID_removePage,
       ID_aspectRatio,
-      ID_3dplot
+      ID_3dplot,
+      ID_drawFigure
   };
   
   DECLARE_EVENT_TABLE()

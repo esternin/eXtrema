@@ -36,6 +36,7 @@ class GRA_window;
 class SetAspectRatioForm;
 class GraphicsPage;
 class ThreeDPlotForm;
+class FigureForm;
 
 // The VisualizationWindow is the main extrema graphics window. It contains the
 // graphics canvas as well as various menus and speed buttons.
@@ -52,6 +53,10 @@ public:
   void ZeroThreeDPlotForm();
   ThreeDPlotForm *GetThreeDPlotForm();
   void SetThreeDPlotForm( ThreeDPlotForm * );
+
+  void ZeroFigureForm();
+  FigureForm *GetFigureForm();
+  void SetFigureForm( FigureForm * );
 
   MyStatusBar *GetStatusBar();
 
@@ -107,6 +112,7 @@ public:
   void OnSavePNG( wxCommandEvent & );
   void OnSaveJPEG( wxCommandEvent & );
   void OnDrawGraph( wxCommandEvent & );
+  void OnDrawFigure( wxCommandEvent & );
   void On3DPlot( wxCommandEvent & );
   void OnDrawText( wxCommandEvent & );
 
@@ -137,6 +143,7 @@ public:
 private:
   GraphForm *graphForm_;
   ThreeDPlotForm *threeDPlotForm_;
+  FigureForm *figureForm_;
   TextForm *textForm_;
   SetAspectRatioForm  *setAspectRatioForm_;
   PeakFindForm *peakFindForm_;
@@ -156,6 +163,7 @@ private:
       ID_clearWindow,
       ID_drawGraph,
       ID_3DPlot,
+      ID_drawFigure,
       ID_drawText,
       ID_replotAll,
       ID_replotCurrent,

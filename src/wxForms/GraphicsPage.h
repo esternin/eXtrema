@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2007...2009 Joseph L. Chuma
+Copyright (C) 2007...2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -31,6 +31,7 @@ class GRA_arrow2;
 class GRA_arrow3;
 class GRA_ellipse;
 class GRA_wxWidgets;
+class GRA_color;
 
 class GraphicsPage : public wxNotebookPage
 {
@@ -67,24 +68,26 @@ public:
   void ReplotAllWindows();
   void ReplotCurrentWindow( bool );
 
-  void SetInteractiveWindowMode( bool );
-  void SetInteractiveLegendMode( bool );
-  void SetArrowPlacementMode( bool );
-  void SetPolygonPlacementMode( bool );
-  void SetEllipsePlacementMode( bool );
+  void SetInteractiveWindowMode();
+  void SetInteractiveLegendMode();
+  void SetArrowPlacementMode();
+  void SetPolygonPlacementMode();
+  void SetEllipsePlacementMode();
   void SetTextPlacementMode( GRA_drawableText * );
-  bool GetTextPlacementMode() const;
+  void SetAllModesFalse();
   void SetArrowType( int );
   void SetHeadsBothEnds( bool );
   void SetPolygonType( int );
   void SetDrawCircles( bool );
-  void SetPolygonAngle( double );
-  
+  void SetPolygonAngle( int );
+  void SetFigureLineThickness( int );
+
   void SavePS( wxString const & );
   void SaveBitmap( wxString const &, int );
 
   void OnMouseMove( wxMouseEvent & );
   void OnMouseLeftDown( wxMouseEvent & );
+  void OnMouseLeftUp( wxMouseEvent & );
   void OnMouseRightDown( wxMouseEvent & );
 
   friend std::ostream &operator<<( std::ostream &, GraphicsPage const * );
@@ -93,16 +96,12 @@ private:
   int currentWindowNumber_;
   std::vector<GRA_window*> graphWindows_;
 
-  bool mouseDown_, firstPoint_;
   bool interactiveWindowMode_, interactiveLegendMode_;
-  bool textPlacementMode_, arrowPlacementMode_;
-  bool polygonPlacementMode_, ellipsePlacementMode_;
-  bool headsBothEnds_, drawCircles_;
-  int xWStart_, yWStart_, xLast_, yLast_;
-  int arrowType_, polygonType_;
-  double polygonAngle_;
+  bool arrowPlacementMode_, polygonPlacementMode_, ellipsePlacementMode_;
+  bool firstPoint_, headsBothEnds_, drawCircles_;
+  int arrowType_, polygonType_, polygonAngle_, figureLineThickness_;
+  GRA_color *figureLineColor_, *figureFillColor_;
   double xw1_, yw1_;
-  double xLo_, xUp_, yLo_, yUp_;
   GRA_drawableText *textToPlace_;
   GRA_polygon *currentPolygon_;
   GRA_arrow1 *currentArrow1_;

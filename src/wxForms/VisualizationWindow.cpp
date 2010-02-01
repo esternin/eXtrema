@@ -36,6 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "SetAspectRatioForm.h"
 #include "ImportWindow.h"
 #include "ThreeDPlotForm.h"
+#include "FigureForm.h"
 
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
@@ -51,6 +52,7 @@ BEGIN_EVENT_TABLE( VisualizationWindow, wxFrame )
   EVT_MENU( ID_clearWindow, VisualizationWindow::OnClearWindow )
   EVT_MENU( ID_drawGraph, VisualizationWindow::OnDrawGraph )
   EVT_MENU( ID_3DPlot, VisualizationWindow::On3DPlot )
+  EVT_MENU( ID_drawFigure, VisualizationWindow::OnDrawFigure )
   EVT_MENU( ID_drawText, VisualizationWindow::OnDrawText )
   EVT_MENU( ID_replotAll, VisualizationWindow::OnReplotAll )
   EVT_MENU( ID_replotCurrent, VisualizationWindow::OnReplotCurrent )
@@ -75,6 +77,7 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
 {
   graphForm_ = 0;
   threeDPlotForm_ = 0;
+  figureForm_ = 0;
   textForm_ = 0;
   peakFindForm_ = 0;
   textToPlace_ = 0;
@@ -125,6 +128,7 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   
   drawingMenu->Append( ID_drawGraph, wxT("Draw a graph"), wxT("draw a graph") );
   drawingMenu->Append( ID_3DPlot, wxT("Draw a 3D graph"), wxT("draw a 3D graph") );
+  drawingMenu->Append( ID_drawFigure, wxT("Draw a figure"), wxT("draw a figure") );
   drawingMenu->Append( ID_drawText, wxT("Draw text"), wxT("draw text") );
 
   wxMenu *replotMenu = new wxMenu();
@@ -654,6 +658,15 @@ ThreeDPlotForm *VisualizationWindow::GetThreeDPlotForm()
 void VisualizationWindow::SetThreeDPlotForm( ThreeDPlotForm *threeDPlotForm )
 { threeDPlotForm_ = threeDPlotForm; }
 
+void VisualizationWindow::ZeroFigureForm()
+{ figureForm_ = 0; }
+
+FigureForm *VisualizationWindow::GetFigureForm()
+{ return figureForm_; }
+
+void VisualizationWindow::SetFigureForm( FigureForm *figureForm )
+{ figureForm_ = figureForm; }
+
 void VisualizationWindow::ZeroTextForm()
 { textForm_ = 0; }
 
@@ -699,6 +712,16 @@ void VisualizationWindow::On3DPlot( wxCommandEvent &WXUNUSED(event) )
   {
     threeDPlotForm_ = new ThreeDPlotForm( this );
     threeDPlotForm_->Show();
+  }
+}
+
+void VisualizationWindow::OnDrawFigure( wxCommandEvent &WXUNUSED(event) )
+{
+  if( figureForm_ )figureForm_->Raise();
+  else
+  {
+    figureForm_ = new FigureForm( this );
+    figureForm_->Show();
   }
 }
 

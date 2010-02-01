@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2007...2009 Joseph L. Chuma
+Copyright (C) 2007...2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GraphicsPage.h"
 #include "EGraphicsError.h"
 #include "ExGlobals.h"
+#include "GRA_color.h"
 #include "GRA_window.h"
 #include "GRA_drawableObject.h"
 #include "GRA_drawableText.h"
@@ -68,6 +69,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 BEGIN_EVENT_TABLE( GraphicsPage, wxNotebookPage )
   EVT_PAINT( GraphicsPage::OnPaint )
   EVT_LEFT_DOWN( GraphicsPage::OnMouseLeftDown )
+  EVT_LEFT_UP( GraphicsPage::OnMouseLeftUp )
   EVT_RIGHT_DOWN( GraphicsPage::OnMouseRightDown )
   EVT_MOTION( GraphicsPage::OnMouseMove )
 END_EVENT_TABLE()
@@ -95,7 +97,7 @@ GraphicsPage::GraphicsPage( wxNotebook *nb )
   ellipsePlacementMode_ = false;
   arrowType_ = 1;
   polygonType_ = 1;
-  polygonAngle_ = 0.0;
+  polygonAngle_ = 0;
   headsBothEnds_ = false;
   drawCircles_ = false;
   textToPlace_ = 0;
@@ -104,6 +106,9 @@ GraphicsPage::GraphicsPage( wxNotebook *nb )
   currentArrow2_ = 0;
   currentArrow3_ = 0;
   currentEllipse_ = 0;
+  figureLineThickness_ = 1;
+  figureLineColor_ = GRA_colorControl::GetColor( wxT("BLACK") );
+  figureFillColor_ = 0;
 }
 
 GraphicsPage::~GraphicsPage()
@@ -366,6 +371,73 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
     textToPlace_ = 0;
     ExGlobals::RestartScripts();
   }
+  else if( arrowPlacementMode_ || polygonPlacementMode_ || ellipsePlacementMode_ )
+  {
+    if( firstPoint_ )
+    {
+      firstPoint_ = false;
+      long xl, yl;
+      event.GetPosition( &xl, &yl );
+      ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), xw1_, yw1_ );
+    }
+    else
+    {
+      if( arrowPlacementMode_ )
+      {
+        GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
+        wxClientDC dc( ExGlobals::GetwxWindow() );
+        int answer = wxMessageBox( wxT("Arrow OK?"), wxT("Confirm"), wxYES_NO, this );
+        if( answer == wxYES )
+        {
+          dc.SetLogicalFunction( wxCOPY );
+          switch (arrowType_)
+          {
+            case 1:
+              currentArrow1_->Draw( graphicsOutput, dc );
+              graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow1_ );
+              break;
+            case 2:
+              currentArrow2_->Draw( graphicsOutput, dc );
+              graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow2_ );
+              break;
+            case 3:
+              currentArrow3_->Draw( graphicsOutput, dc );
+              graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow3_ );
+              break;
+          }
+        }
+        else
+        {
+          dc.SetLogicalFunction( wxINVERT );
+          switch (arrowType_)
+          {
+            case 1:
+              currentArrow1_->Draw( graphicsOutput, dc );
+              delete currentArrow1_;
+              currentArrow1_ = 0;
+              break;
+            case 2:
+              currentArrow2_->Draw( graphicsOutput, dc );
+              delete currentArrow2_;
+              currentArrow2_ = 0;
+              break;
+            case 3:
+              currentArrow3_->Draw( graphicsOutput, dc );
+              delete currentArrow3_;
+              currentArrow3_ = 0;
+              break;
+          }
+        }
+      }
+      else if( polygonPlacementMode_ )
+      {
+      }
+      else if( ellipsePlacementMode_ )
+      {
+      }
+    }
+  }
+  event.Skip();
 }
 
 void GraphicsPage::OnMouseRightDown( wxMouseEvent &event )
@@ -432,6 +504,7 @@ void GraphicsPage::OnMouseRightDown( wxMouseEvent &event )
       }
     }
   }
+  event.Skip();
 }
 
 void GraphicsPage::OnMouseMove( wxMouseEvent &event )
@@ -475,25 +548,117 @@ void GraphicsPage::OnMouseMove( wxMouseEvent &event )
       break;
     }
   }
+  if( !firstPoint_ && arrowPlacementMode_ )
+  {
+    firstPoint_ = true;
+    GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
+    wxClientDC dc( ExGlobals::GetwxWindow() );
+    dc.SetLogicalFunction( wxINVERT );
+    long xl, yl;
+    event.GetPosition( &xl, &yl );
+    double xw2, yw2;
+    graphicsOutput->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), xw2, yw2 );
+    GRA_window *gw = ExGlobals::GetGraphWindow();
+    GRA_setOfCharacteristics *genC = gw->GetGeneralCharacteristics();
+    double headWidth = static_cast<GRA_doubleCharacteristic*>(genC->Get(wxT("ARROWHEADWIDTH")))->Get();
+    double headLength = static_cast<GRA_doubleCharacteristic*>(genC->Get(wxT("ARROWHEADLENGTH")))->Get();
+    switch (arrowType_)
+    {
+      case 1:
+      {
+        if( currentArrow1_ )
+        {
+          ExGlobals::HideHint();
+          currentArrow1_->Draw( graphicsOutput, dc );
+          delete currentArrow1_;
+        }
+        currentArrow1_ = new GRA_arrow1( xw2, yw2, xw1_, yw1_, headsBothEnds_,
+                                         figureLineColor_, figureFillColor_, figureLineThickness_,
+                                         headWidth, headLength );
+        currentArrow1->Draw( graphicsOutput, dc );
+        break;
+      }
+      case 2:
+      {
+        if( currentArrow2_ )
+        {
+          ExGlobals::HideHint();
+          currentArrow2_->Draw( graphicsOutput, dc );
+          delete currentArrow2_;
+        }
+        currentArrow2_ = new GRA_arrow2( xw2, yw2, xw1_, yw1_, headsBothEnds_,
+                                         figureLineColor_, figureFillColor_, figureLineThickness_,
+                                         headWidth, headLength );
+        currentArrow2_->Draw( graphicsOutput, dc );
+        break;
+      }
+      case 3:
+      {
+        if( currentArrow3_ )
+        {
+          ExGlobals::HideHint();
+          currentArrow3_->Draw( graphicsOutput, dc );
+          delete currentArrow3_;
+        }
+        currentArrow3_ = new GRA_arrow3( xw2, yw2, xw1_, yw1_, headsBothEnds_,
+                                         figureLineColor_, figureLineThickness_,
+                                         headWidth, headLength );
+        currentArrow3_->Draw( graphicsOutput, dc );
+      }
+    }
+  }
+  event.Skip();
 }
 
-void GraphicsPage::SetInteractiveWindowMode( bool b )
-{ interactiveWindowMode_ = b; }
+void GraphicsPage::SetInteractiveWindowMode()
+{
+  SetAllModesFalse();
+  interactiveWindowMode_ = true;
+}
 
-void GraphicsPage::SetInteractiveLegendMode( bool b )
-{ interactiveLegendMode_ = b; }
+void GraphicsPage::SetInteractiveLegendMode()
+{
+  SetAllModesFalse();
+  interactiveLegendMode_ = true;
+}
 
-void GraphicsPage::SetArrowPlacementMode( bool b )
-{ arrowPlacementMode_ = b; }
+void GraphicsPage::SetArrowPlacementMode()
+{
+  SetAllModesFalse();
+  arrowPlacementMode_ = true;
+}
 
-void GraphicsPage::SetPolygonPlacementMode( bool b )
-{ polygonPlacementMode_ = b; }
+void GraphicsPage::SetPolygonPlacementMode()
+{
+  SetAllModesFalse();
+  polygonPlacementMode_ = true;
+}
 
-void GraphicsPage::SetEllipsePlacementMode( bool b )
-{ ellipsePlacementMode_ = b; }
+void GraphicsPage::SetEllipsePlacementMode()
+{
+  SetAllModesFalse();
+  ellipsePlacementMode_ = true;
+}
 
 void GraphicsPage::SetTextPlacementMode( GRA_drawableText *dt )
-{ textToPlace_ = dt; }
+{
+  SetAllModesFalse();
+  textToPlace_ = dt;
+}
+
+void GraphicsPage::SetAllModesFalse()
+{
+  interactiveWindowMode_ = false;
+  interactiveLegendMode_ = false;
+  arrowPlacementMode_ = false;
+  polygonPlacementMode_ = false;
+  ellipsePlacementMode_ = false;
+  if( textToPlace_ )
+  {
+    delete textToPlace_;
+    textToPlace_ = 0;
+  }
+}
 
 void GraphicsPage::SetArrowType( int i )
 { arrowType_ = i; }
@@ -507,8 +672,17 @@ void GraphicsPage::SetPolygonType( int i )
 void GraphicsPage::SetDrawCircles( bool b )
 { drawCircles_ = b; }
 
-void GraphicsPage::SetPolygonAngle( double a )
-{ polygonAngle_ = a; }
+void GraphicsPage::SetPolygonAngle( int angle )
+{ polygonAngle_ = angle; }
+
+void GraphicsPage::SetFigureLineThickness( int i )
+{ figureLineThickness_ = i; }
+
+void GraphicsPage::SetFigureLineColor( GRA_color *c )
+{ figureLineColor_ = c; }
+
+void GraphicsPage::SetFigureFillColor( GRA_color *c )
+{ figureFillColor_ = c; }
 
 void GraphicsPage::SavePS( wxString const &filename )
 {
