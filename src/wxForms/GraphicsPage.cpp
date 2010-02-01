@@ -43,6 +43,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_star5pt.h"
 #include "GRA_setOfCharacteristics.h"
 #include "GRA_colorCharacteristic.h"
+#include "GRA_doubleCharacteristic.h"
 #include "GRA_postscript.h"
 #include "GRA_point.h"
 #include "GRA_polyline.h"
@@ -69,7 +70,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 BEGIN_EVENT_TABLE( GraphicsPage, wxNotebookPage )
   EVT_PAINT( GraphicsPage::OnPaint )
   EVT_LEFT_DOWN( GraphicsPage::OnMouseLeftDown )
-  EVT_LEFT_UP( GraphicsPage::OnMouseLeftUp )
   EVT_RIGHT_DOWN( GraphicsPage::OnMouseRightDown )
   EVT_MOTION( GraphicsPage::OnMouseMove )
 END_EVENT_TABLE()
@@ -88,7 +88,6 @@ GraphicsPage::GraphicsPage( wxNotebook *nb )
 
   SetUpDefaultWindows();
 
-  mouseDown_ = false;
   firstPoint_ = true;
   interactiveWindowMode_ = false;
   interactiveLegendMode_ = false;
@@ -382,8 +381,10 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
     }
     else
     {
+      firstPoint_ = true;
       if( arrowPlacementMode_ )
       {
+        arrowPlacementMode_ = false;
         GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
         wxClientDC dc( ExGlobals::GetwxWindow() );
         int answer = wxMessageBox( wxT("Arrow OK?"), wxT("Confirm"), wxYES_NO, this );
@@ -550,7 +551,6 @@ void GraphicsPage::OnMouseMove( wxMouseEvent &event )
   }
   if( !firstPoint_ && arrowPlacementMode_ )
   {
-    firstPoint_ = true;
     GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
     wxClientDC dc( ExGlobals::GetwxWindow() );
     dc.SetLogicalFunction( wxINVERT );
@@ -575,7 +575,7 @@ void GraphicsPage::OnMouseMove( wxMouseEvent &event )
         currentArrow1_ = new GRA_arrow1( xw2, yw2, xw1_, yw1_, headsBothEnds_,
                                          figureLineColor_, figureFillColor_, figureLineThickness_,
                                          headWidth, headLength );
-        currentArrow1->Draw( graphicsOutput, dc );
+        currentArrow1_->Draw( graphicsOutput, dc );
         break;
       }
       case 2:

@@ -20,11 +20,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "wx/wx.h"
 
-#include "ExSpinCtrlD.h"
 #include "ExSpinCtrlI.h"
 #include "ExColorCtrl.h"
 
 class VisualizationWindow;
+class GRA_color;
 
 class FigureForm : public wxFrame 
 {
@@ -33,27 +33,33 @@ public:
 
 private:
   void CreateForm();
-  void FillOutForm( double, bool, bool );
+  void FillOutForm( int, bool, bool, int, int );
+  void OnArrow1( wxCommandEvent & );
+  void OnArrow2( wxCommandEvent & );
+  void OnArrow3( wxCommandEvent & );
+  void OnRectangle( wxCommandEvent & );
+  void OnSquare( wxCommandEvent & );
+  void OnStar( wxCommandEvent & );
   void OnDrawArrow( wxCommandEvent & );
   void OnTwoHeads( wxCommandEvent & );
   void OnCircle( wxCommandEvent & );
-  void OnPolygonAngleChange( wxCommandEvent & );
+  void OnPolygonAngle( int );
   void OnDrawPolygon( wxCommandEvent & );
   void OnDrawEllipse( wxCommandEvent & );
-  void OnLineThickness( wxCommandEvent & );
-  void OnLineColor( wxCommandEvent & );
-  void OnFillColor( wxCommandEvent & );
+  void OnLineThickness( int );
+  void OnLineColor( GRA_color * );
+  void OnFillColor( GRA_color * );
   void OnClose( wxCommandEvent & );
   void CloseEventHandler( wxCloseEvent & );
   
   wxBitmapButton *arrow1_, *arrow2_, *arrow3_, *rectangle_, *square_, *star_;
-  wxTextCtrl *polygonAngleTextCtrl_;
   wxCheckBox *twoHeadsCheckBox_, *makeCircleCheckBox_;
-  ExSpinCtrlI<AxisPopup> *lineWidthSC_;
-  ExColorCtrl<AxisPopup> *lineColorCC_, *fillColorCC_;
+  ExSpinCtrlI<FigureForm> *lineThicknessSC_, *polygonAngleSC_;
+  ExColorCtrl<FigureForm> *lineColorCC_, *fillColorCC_;
 
   VisualizationWindow *visualizationWindow_;
   int arrowType_, polygonType_;
+  double polygonAngle_;
 
   enum 
   {

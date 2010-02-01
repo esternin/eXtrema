@@ -946,7 +946,7 @@ void ProcessCommand( wxString &commandLine )
   if( commandLine[0] == Script::GetCommentCharacter() )return;
   else if( commandLine[0] == wxT('%') )
   {
-    system( wxString(commandLine.substr(1)).mb_str(wxConvUTF8) );
+    int err = system( wxString(commandLine.substr(1)).mb_str(wxConvUTF8) );
     return;
   }
   else if( commandLine[0] == executeCharacter_ )

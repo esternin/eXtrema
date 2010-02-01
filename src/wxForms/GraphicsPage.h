@@ -81,13 +81,14 @@ public:
   void SetDrawCircles( bool );
   void SetPolygonAngle( int );
   void SetFigureLineThickness( int );
+  void SetFigureLineColor( GRA_color * );
+  void SetFigureFillColor( GRA_color * );
 
   void SavePS( wxString const & );
   void SaveBitmap( wxString const &, int );
 
   void OnMouseMove( wxMouseEvent & );
   void OnMouseLeftDown( wxMouseEvent & );
-  void OnMouseLeftUp( wxMouseEvent & );
   void OnMouseRightDown( wxMouseEvent & );
 
   friend std::ostream &operator<<( std::ostream &, GraphicsPage const * );

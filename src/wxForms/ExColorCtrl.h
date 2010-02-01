@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_color.h"
 #include "ExGlobals.h"
 #include "BasicColors.h"
+#include "GRA_colorControl.h"
 
 template<typename T>
 class ExColorCtrl : public wxPanel
@@ -49,6 +50,15 @@ public:
 
   void SetColor( GRA_color *color )
   { button_->SetBackgroundColour( ExGlobals::GetwxColor(color) ); }
+
+  int GetColorCode() const
+  {
+    wxColour wxc = button_->GetBackgroundColour();
+    int red = wxc.Red();
+    int green = wxc.Green();
+    int blue = wxc.Blue();
+    return GRA_colorControl::GetColorCode( red, green, blue );
+  }
   
 private:
   void OnClick( wxCommandEvent &WXUNUSED(event) )

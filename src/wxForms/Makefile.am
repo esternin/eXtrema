@@ -1,4 +1,4 @@
-# Copyright (C) 2006 Joseph L. Chuma <chuma@triumf.ca>
+# Copyright (C) 2010 Joseph L. Chuma <joe.chuma@gmail.com>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 
@@ -22,6 +22,7 @@ libwxforms_la_SOURCES = \
           CommandTextCtrl.cpp CommandTextCtrl.h \
           CurvePopup.cpp CurvePopup.h \
 	  ExecuteDialog.cpp ExecuteDialog.h \
+	  FigureForm.cpp FigureForm.h \
           FitForm.cpp FitForm.h \
           FontChooser.cpp FontChooser.h \
           GenerateVectorForm.cpp GenerateVectorForm.h \

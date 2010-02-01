@@ -525,10 +525,10 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
   //
   struct specialCharacter
   {
-    wxChar *name;  // special character name
-    wxChar uName;  // upper case character
-    wxChar lName;  // lower case character
-    wxChar *fName; // font name
+    wxChar const *name;  // special character name
+    wxChar const uName;  // upper case character
+    wxChar const lName;  // lower case character
+    wxChar const *fName; // font name
   };
   std::size_t const nNames = 93;
   specialCharacter spc[] =

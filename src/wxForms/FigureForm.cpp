@@ -16,6 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "wx/config.h"
 #include "wx/string.h"
 #include "wx/stattext.h"
 #include "wx/gdicmn.h"
@@ -39,6 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "ExGlobals.h"
 #include "VisualizationWindow.h"
 #include "GraphicsPage.h"
+#include "GRA_colorControl.h"
 
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
@@ -49,16 +51,12 @@ BEGIN_EVENT_TABLE( FigureForm, wxFrame )
   EVT_BUTTON( ID_arrow3, FigureForm::OnArrow3 )
   EVT_CHECKBOX( ID_twoHeads, FigureForm::OnTwoHeads )
   EVT_CHECKBOX( ID_circle, FigureForm::OnCircle )
-  EVT_TEXT( ID_angle, FigureForm::OnPolygonAngleChange )
   EVT_BUTTON( ID_drawArrow, FigureForm::OnDrawArrow )
   EVT_BUTTON( ID_rectangle, FigureForm::OnRectangle )
   EVT_BUTTON( ID_square, FigureForm::OnSquare )
   EVT_BUTTON( ID_star, FigureForm::OnStar )
   EVT_BUTTON( ID_drawPolygon, FigureForm::OnDrawPolygon )
   EVT_BUTTON( ID_drawEllipse, FigureForm::OnDrawEllipse )
-  EVT_BUTTON( ID_linethickness, FigureForm::OnLineThickness )
-  EVT_BUTTON( ID_linecolor, FigureForm::OnLineColor )
-  EVT_BUTTON( ID_fillcolor, FigureForm::OnFillColor )
   EVT_BUTTON( wxID_CLOSE, FigureForm::OnClose )
   EVT_CLOSE( FigureForm::CloseEventHandler )
 END_EVENT_TABLE()
@@ -71,10 +69,10 @@ FigureForm::FigureForm( VisualizationWindow *parent )
   CreateForm();
 
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/FigureForm/UPPERLEFTX"), 100l );
-  int uly = config->Read( wxT("/FigureForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/FigureForm/WIDTH"), 200l );
-  int height = config->Read( wxT("/FigureForm/HEIGHT"), 200l );
+  int ulx = config->Read( wxT("/FigureForm/UPPERLEFTX"), 980l );
+  int uly = config->Read( wxT("/FigureForm/UPPERLEFTY"), 60l );
+  int width = config->Read( wxT("/FigureForm/WIDTH"), 350l );
+  int height = config->Read( wxT("/FigureForm/HEIGHT"), 430l );
 
   SetSize( ulx, uly, width, height );
   Show( true );
@@ -82,8 +80,7 @@ FigureForm::FigureForm( VisualizationWindow *parent )
   arrowType_ = config->Read( wxT("/FigureForm/ARROWTYPE"), 1l );
   polygonType_ = config->Read( wxT("/FigureForm/POLYGONTYPE"), 1l );
 
-  double polygonAngle = 0.0;
-  config->Read( wxT("/FigureForm/POLYGONANGLE"), &polygonAngle );
+  int polygonAngle = config->Read( wxT("/FigureForm/POLYGONANGLE"), 0l );
 
   bool twoHeads = false;
   config->Read( wxT("/FigureDrawForm/HEADSBOTHENDS"), &twoHeads );
@@ -91,7 +88,10 @@ FigureForm::FigureForm( VisualizationWindow *parent )
   bool drawCircles = false;
   config->Read( wxT("/FigureDrawForm/DRAWCIRCLES"), &drawCircles );
 
-  FillOutForm( polygonAngle, twoHeads, drawCircles );
+  int lc = config->Read( wxT("/FigureForm/LINECOLOR"), -1l );
+  int fc = config->Read( wxT("/FigureForm/LINECOLOR"), 0l );
+
+  FillOutForm( polygonAngle, twoHeads, drawCircles, lc, fc );
 }
 
 void FigureForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
@@ -110,9 +110,11 @@ void FigureForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     //
     config->Write( wxT("/FigureForm/ARROWTYPE"), static_cast<long>(arrowType_) );
     config->Write( wxT("/FigureForm/POLYGONTYPE"), static_cast<long>(polygonType_) );
-    config->Write( wxT("/FigureForm/POLYGONANGLE"), polygonAngleTextCtrl_->GetValue() );
+    config->Write( wxT("/FigureForm/POLYGONANGLE"), polygonAngleSC_->GetValue() );
     config->Write( wxT("/FigureForm/HEADSBOTHENDS"), twoHeadsCheckBox_->GetValue() );
     config->Write( wxT("/FigureForm/DRAWCIRCLES"), makeCircleCheckBox_->GetValue() );
+    config->Write( wxT("/FigureForm/LINECOLOR"), lineColorCC_->GetColorCode() );
+    config->Write( wxT("/FigureForm/FILLCOLOR"), fillColorCC_->GetColorCode() );
   }
   visualizationWindow_->ZeroFigureForm();
   Destroy();
@@ -302,9 +304,12 @@ void FigureForm::CreateForm()
   mainSizer->Fit( this );
 }
 
-void FigureForm::FillOutForm( double polygonAngle, bool twoHeads, bool drawCircles )
+void FigureForm::FillOutForm( int polygonAngle, bool twoHeads, bool drawCircles,
+                              int lineColor, int fillColor )
 {
-  lineThicknessSC_->SetValue( polygonAngle );
+  lineColorCC_->SetColor( GRA_colorControl::GetColor(lineColor) );
+  fillColorCC_->SetColor( GRA_colorControl::GetColor(fillColor) );
+  polygonAngleSC_->SetValue( polygonAngle );
   twoHeadsCheckBox_->SetValue( twoHeads );
   makeCircleCheckBox_->SetValue( drawCircles );
 
@@ -312,7 +317,7 @@ void FigureForm::FillOutForm( double polygonAngle, bool twoHeads, bool drawCircl
   switch( arrowType_ )
   {
     case 1:
-      if( twoHeadsCheckBox_->IsChecked() )
+      if( twoHeads )
       {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
@@ -326,7 +331,7 @@ void FigureForm::FillOutForm( double polygonAngle, bool twoHeads, bool drawCircl
       }
       break;
     case 2:
-      if( twoHeadsCheckBox_->IsChecked() )
+      if( twoHeads )
       {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.bmp"),wxBITMAP_TYPE_BMP));
@@ -340,7 +345,7 @@ void FigureForm::FillOutForm( double polygonAngle, bool twoHeads, bool drawCircl
       }
       break;
     case 3:
-      if( twoHeadsCheckBox_->IsChecked() )
+      if( twoHeads )
       {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
@@ -356,8 +361,8 @@ void FigureForm::FillOutForm( double polygonAngle, bool twoHeads, bool drawCircl
   }
   GraphicsPage *page = dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage());
   page->SetArrowType( arrowType_ );
-  page->SetHeadsBothEnds( twoHeadsCheckBox_->IsChecked() );
-  page->SetDrawCircles( makeCircleCheckBox_->IsChecked() );
+  page->SetHeadsBothEnds( twoHeads );
+  page->SetDrawCircles( drawCircles );
   switch( polygonType_ )
   {
     case 1:  // rectangle
@@ -377,11 +382,12 @@ void FigureForm::FillOutForm( double polygonAngle, bool twoHeads, bool drawCircl
       break;
   }
   page->SetPolygonType( polygonType_ );
-  page->SetPolygonAngle( polygonAngle_ );
+  page->SetPolygonAngle( polygonAngle );
 }
 
 void FigureForm::OnArrow1( wxCommandEvent &WXUNUSED(event) )
 {
+  wxString imageDir = ExGlobals::GetImagePath();
   switch( arrowType_ )
   {
     case 1:
@@ -417,6 +423,7 @@ void FigureForm::OnArrow1( wxCommandEvent &WXUNUSED(event) )
 
 void FigureForm::OnArrow2( wxCommandEvent &WXUNUSED(event) )
 {
+  wxString imageDir = ExGlobals::GetImagePath();
   switch( arrowType_ )
   {
     case 1:
@@ -452,6 +459,7 @@ void FigureForm::OnArrow2( wxCommandEvent &WXUNUSED(event) )
 
 void FigureForm::OnArrow3( wxCommandEvent &WXUNUSED(event) )
 {
+  wxString imageDir = ExGlobals::GetImagePath();
   switch( arrowType_ )
   {
     case 1:
@@ -485,42 +493,80 @@ void FigureForm::OnArrow3( wxCommandEvent &WXUNUSED(event) )
   dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetArrowType( arrowType_ );
 }
 
+void FigureForm::OnRectangle( wxCommandEvent &WXUNUSED(event) )
+{
+  wxString imageDir = ExGlobals::GetImagePath();
+  rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle.bmp"),wxBITMAP_TYPE_BMP));
+  square_->SetBitmapLabel(wxBitmap(imageDir+wxT("/square1.bmp"),wxBITMAP_TYPE_BMP));
+  star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
+}
+
+void FigureForm::OnSquare( wxCommandEvent &WXUNUSED(event) )
+{
+  wxString imageDir = ExGlobals::GetImagePath();
+  rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.bmp"),wxBITMAP_TYPE_BMP));
+  square_->SetBitmapLabel(wxBitmap(imageDir+wxT("/square.bmp"),wxBITMAP_TYPE_BMP));
+  star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
+}
+
+void FigureForm::OnStar( wxCommandEvent &WXUNUSED(event) )
+{
+  wxString imageDir = ExGlobals::GetImagePath();
+  rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.bmp"),wxBITMAP_TYPE_BMP));
+  square_->SetBitmapLabel(wxBitmap(imageDir+wxT("/square1.bmp"),wxBITMAP_TYPE_BMP));
+  star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star.bmp"),wxBITMAP_TYPE_BMP));
+}
+
+
 void FigureForm::OnClose( wxCommandEvent &WXUNUSED(event) )
 { Close(); }
 
 void FigureForm::OnTwoHeads( wxCommandEvent &WXUNUSED(event) )
 {
+  wxString imageDir = ExGlobals::GetImagePath();
   switch( arrowType_ )
   {
     case 1:
       if( twoHeadsCheckBox_->IsChecked() )
+      {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
         arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.bmp"),wxBITMAP_TYPE_BMP));
-      else
+      }
+      else 
+      {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.bmp"),wxBITMAP_TYPE_BMP));
         arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.bmp"),wxBITMAP_TYPE_BMP));
+      }
       break;
     case 2:
       if( twoHeadsCheckBox_->IsChecked() )
+      {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.bmp"),wxBITMAP_TYPE_BMP));
         arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.bmp"),wxBITMAP_TYPE_BMP));
+      }
       else
+      {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.bmp"),wxBITMAP_TYPE_BMP));
         arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.bmp"),wxBITMAP_TYPE_BMP));
+      }
       break;
     case 3:
       if( twoHeadsCheckBox_->IsChecked() )
+      {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
         arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.bmp"),wxBITMAP_TYPE_BMP));
+      }
       else
+      {
         arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.bmp"),wxBITMAP_TYPE_BMP));
         arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.bmp"),wxBITMAP_TYPE_BMP));
         arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.bmp"),wxBITMAP_TYPE_BMP));
+      }
       break;
   }
   dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->
@@ -557,9 +603,7 @@ void FigureForm::OnDrawPolygon( wxCommandEvent &WXUNUSED(event) )
 {
   GraphicsPage *page = dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage());
   page->SetPolygonPlacementMode();
-  double angle;
-  polygonAngleTextCtrl_->GetValue().ToDouble( &angle );
-  page->SetPolygonAngle( angle );
+  page->SetPolygonAngle( polygonAngleSC_->GetValue() );
 }
 
 void FigureForm::OnLineThickness( int val )
