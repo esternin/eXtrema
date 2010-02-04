@@ -54,6 +54,7 @@ void GRA_multiLineFigure::CopyStuff( GRA_multiLineFigure const &rhs )
   x_.assign( rhs.x_.begin(), rhs.x_.end() );
   y_.assign( rhs.y_.begin(), rhs.y_.end() );
   pen_.assign( rhs.pen_.begin(), rhs.pen_.end() );
+  type_ = rhs.type_;
 }
 
 void GRA_multiLineFigure::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )

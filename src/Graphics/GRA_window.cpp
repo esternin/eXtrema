@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2009 Joseph L. Chuma
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -1572,12 +1572,64 @@ void GRA_window::RemoveLastTextString()
 {
   wxWindow *wx = ExGlobals::GetwxWindow();
   wxClientDC dc( wx );
-  wx->PrepareDC( dc );
   for( int i=static_cast<int>(drawableObjects_.size())-1; i>=0; --i )
   {
     if( drawableObjects_[i]->IsaDrawableText() )
     {
       static_cast<GRA_drawableText*>(drawableObjects_[i])->Erase( ExGlobals::GetGraphicsOutput(), dc );
+      drawableObjects_.erase( drawableObjects_.begin()+i );
+      break;
+    }
+  }
+} 
+
+void GRA_window::RemoveLastArrow()
+{
+  for( int i=static_cast<int>(drawableObjects_.size())-1; i>=0; --i )
+  {
+    if( drawableObjects_[i]->IsaPolygon() )
+    {
+      GRA_polygon *polygon = reinterpret_cast<GRA_polygon*>(drawableObjects_[i]);
+      if( polygon->IsaArrow1() || polygon->IsaArrow2() )
+      {
+        drawableObjects_.erase( drawableObjects_.begin()+i );
+        break;
+      }
+    }
+    else if( drawableObjects_[i]->IsaMultilineFigure() )
+    {
+      GRA_multiLineFigure *multiline = reinterpret_cast<GRA_multiLineFigure*>(drawableObjects_[i]);
+      if( multiline->IsaArrow3() )
+      {
+        drawableObjects_.erase( drawableObjects_.begin()+i );
+        break;
+      }
+    }
+  }
+} 
+
+void GRA_window::RemoveLastPolygon()
+{
+  for( int i=static_cast<int>(drawableObjects_.size())-1; i>=0; --i )
+  {
+    if( drawableObjects_[i]->IsaPolygon() )
+    {
+      GRA_polygon *polygon = reinterpret_cast<GRA_polygon*>(drawableObjects_[i]);
+      if( polygon->IsaRectangle() || polygon->IsaRegular() || polygon->Isa5PtStar() )
+      {
+        drawableObjects_.erase( drawableObjects_.begin()+i );
+        break;
+      }
+    }
+  }
+} 
+
+void GRA_window::RemoveLastEllipse()
+{
+  for( int i=static_cast<int>(drawableObjects_.size())-1; i>=0; --i )
+  {
+    if( drawableObjects_[i]->IsaEllipse() )
+    {
       drawableObjects_.erase( drawableObjects_.begin()+i );
       break;
     }

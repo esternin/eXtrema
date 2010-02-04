@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,6 +25,7 @@ GRA_rectangle::GRA_rectangle( double xc, double yc, double xSide, double ySide,
                               int lineWidth )
   : GRA_polygon(lineColor,fillColor,lineWidth,1)
 {
+  SetRectangle();
   double const cosang = cos(angle*M_PI/180.);
   double const sinang = sin(angle*M_PI/180.);
   double const xs = xSide*0.5;
@@ -49,6 +50,7 @@ GRA_rectangle::GRA_rectangle( double x1, double y1, double x2, double y2, double
                               int lineWidth )
   : GRA_polygon(lineColor,fillColor,lineWidth,1)
 {
+  SetRectangle();
   double xul=x1, yul=y1, xlr=x2, ylr=y2;
   if( xul > xlr )
   {

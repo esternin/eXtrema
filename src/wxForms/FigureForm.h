@@ -33,32 +33,36 @@ public:
 
 private:
   void CreateForm();
-  void FillOutForm( int, bool, bool, int, int );
+  void FillOutForm( int, int, bool, bool, int, int, int );
   void OnArrow1( wxCommandEvent & );
   void OnArrow2( wxCommandEvent & );
   void OnArrow3( wxCommandEvent & );
   void OnRectangle( wxCommandEvent & );
-  void OnSquare( wxCommandEvent & );
+  void OnRegular( wxCommandEvent & );
   void OnStar( wxCommandEvent & );
   void OnDrawArrow( wxCommandEvent & );
+  void OnEraseArrow( wxCommandEvent & );
   void OnTwoHeads( wxCommandEvent & );
   void OnCircle( wxCommandEvent & );
   void OnPolygonAngle( int );
+  void OnPolygonVertices( int );
   void OnDrawPolygon( wxCommandEvent & );
+  void OnErasePolygon( wxCommandEvent & );
   void OnDrawEllipse( wxCommandEvent & );
+  void OnEraseEllipse( wxCommandEvent & );
   void OnLineThickness( int );
   void OnLineColor( GRA_color * );
   void OnFillColor( GRA_color * );
   void OnClose( wxCommandEvent & );
   void CloseEventHandler( wxCloseEvent & );
   
-  wxBitmapButton *arrow1_, *arrow2_, *arrow3_, *rectangle_, *square_, *star_;
+  wxBitmapButton *arrow1_, *arrow2_, *arrow3_, *rectangle_, *regular_, *star_;
   wxCheckBox *twoHeadsCheckBox_, *makeCircleCheckBox_;
-  ExSpinCtrlI<FigureForm> *lineThicknessSC_, *polygonAngleSC_;
+  ExSpinCtrlI<FigureForm> *lineThicknessSC_, *polygonAngleSC_, *polygonVerticesSC_;
   ExColorCtrl<FigureForm> *lineColorCC_, *fillColorCC_;
 
   VisualizationWindow *visualizationWindow_;
-  int arrowType_, polygonType_;
+  int arrowType_, polygonType_, polygonVertices_;
   double polygonAngle_;
 
   enum 
@@ -67,14 +71,18 @@ private:
       ID_arrow2,
       ID_arrow3,
       ID_rectangle,
-      ID_square,
+      ID_regular,
       ID_star,
       ID_twoHeads,
       ID_circle,
       ID_angle,
+      ID_vertices,
       ID_drawArrow,
+      ID_eraseArrow,
       ID_drawPolygon,
+      ID_erasePolygon,
       ID_drawEllipse,
+      ID_eraseEllipse,
       ID_linethickness,
       ID_linecolor,
       ID_fillcolor

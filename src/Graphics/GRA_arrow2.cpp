@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2009 Joseph L. Chuma
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -26,6 +26,7 @@ GRA_arrow2::GRA_arrow2( double x1, double y1, double x2, double y2, bool heads,
 			double widthFactor, double lengthFactor )
   : GRA_polygon(lineColor,fillColor,lineWidth), headsBothEnds_(heads)
 {
+  SetArrow2();
   double const dx = x2 - x1;
   double const dy = y2 - y1;
   double const angle = atan2(dy,dx)+0.5*M_PI;

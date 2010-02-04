@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,12 +24,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 GRA_star5pt::GRA_star5pt( double xc, double yc, double side, double angle,
                           GRA_color *lineColor, GRA_color *fillColor, int lineWidth )
     : GRA_polygon(lineColor,fillColor,lineWidth,1)
-{ MakeStar( angle, side, xc, yc ); }
+{
+  Set5PtStar();
+  MakeStar( angle, side, xc, yc );
+}
 
 GRA_star5pt::GRA_star5pt( double x1, double y1, double x2, double y2, double angle,
                           GRA_color *lineColor, GRA_color *fillColor, int lineWidth )
     : GRA_polygon(lineColor,fillColor,lineWidth,1)
 {
+  Set5PtStar();
   double xul = x1;
   double yul = y1;
   double xlr = x2;

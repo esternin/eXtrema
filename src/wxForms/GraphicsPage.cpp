@@ -97,13 +97,16 @@ GraphicsPage::GraphicsPage( wxNotebook *nb )
   arrowType_ = 1;
   polygonType_ = 1;
   polygonAngle_ = 0;
+  polygonVertices_ = 3;
   headsBothEnds_ = false;
   drawCircles_ = false;
   textToPlace_ = 0;
-  currentPolygon_ = 0;
   currentArrow1_ = 0;
   currentArrow2_ = 0;
   currentArrow3_ = 0;
+  currentRectangle_ = 0;
+  currentRegularPolygon_ = 0;
+  current5PtStar_ = 0;
   currentEllipse_ = 0;
   figureLineThickness_ = 1;
   figureLineColor_ = GRA_colorControl::GetColor( wxT("BLACK") );
@@ -132,7 +135,6 @@ void GraphicsPage::DeleteGraphWindows()
 void GraphicsPage::Paint()
 {
   wxPaintDC dc( this );
-  PrepareDC( dc );
   dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
   dc.Clear();
   DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
@@ -340,21 +342,21 @@ void GraphicsPage::ReplotCurrentWindow( bool repaint )
 
 void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
 {
+  GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
   if( textToPlace_ )
   {
     GRA_window *gw = graphWindows_[currentWindowNumber_];
     long xl, yl;
     event.GetPosition( &xl, &yl );
     double x, y;
-    ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), x, y );
+    graphicsOutput->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), x, y );
     //
-    wxWindow *wx = ExGlobals::GetwxWindow();
-    wxClientDC dc( wx );
-    wx->PrepareDC( dc );
+    wxClientDC dc( this );
+    //PrepareDC( dc );
     //
     textToPlace_->SetX( x );
     textToPlace_->SetY( y );
-    textToPlace_->Draw( ExGlobals::GetGraphicsOutput(), dc );
+    textToPlace_->Draw( graphicsOutput, dc );
     gw->AddDrawableObject( textToPlace_ );
     ExGlobals::HideHint();
     if( ExGlobals::StackIsOn() )
@@ -377,7 +379,7 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
       firstPoint_ = false;
       long xl, yl;
       event.GetPosition( &xl, &yl );
-      ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), xw1_, yw1_ );
+      graphicsOutput->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), xw1_, yw1_ );
     }
     else
     {
@@ -385,60 +387,90 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
       if( arrowPlacementMode_ )
       {
         arrowPlacementMode_ = false;
-        GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
-        wxClientDC dc( ExGlobals::GetwxWindow() );
-        int answer = wxMessageBox( wxT("Arrow OK?"), wxT("Confirm"), wxYES_NO, this );
-        if( answer == wxYES )
+        wxClientDC dc( this );
+        dc.SetLogicalFunction( wxCOPY );
+        switch (arrowType_)
         {
-          dc.SetLogicalFunction( wxCOPY );
-          switch (arrowType_)
+          case 1:
           {
-            case 1:
-              currentArrow1_->Draw( graphicsOutput, dc );
-              graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow1_ );
-              break;
-            case 2:
-              currentArrow2_->Draw( graphicsOutput, dc );
-              graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow2_ );
-              break;
-            case 3:
-              currentArrow3_->Draw( graphicsOutput, dc );
-              graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow3_ );
-              break;
+            currentArrow1_->Draw( graphicsOutput, dc );
+            GRA_arrow1 *a1 = new GRA_arrow1( *currentArrow1_ );
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
+            delete currentArrow1_;
+            currentArrow1_ = 0;
+            break;
           }
-        }
-        else
-        {
-          dc.SetLogicalFunction( wxINVERT );
-          switch (arrowType_)
+          case 2:
           {
-            case 1:
-              currentArrow1_->Draw( graphicsOutput, dc );
-              delete currentArrow1_;
-              currentArrow1_ = 0;
-              break;
-            case 2:
-              currentArrow2_->Draw( graphicsOutput, dc );
-              delete currentArrow2_;
-              currentArrow2_ = 0;
-              break;
-            case 3:
-              currentArrow3_->Draw( graphicsOutput, dc );
-              delete currentArrow3_;
-              currentArrow3_ = 0;
-              break;
+            currentArrow2_->Draw( graphicsOutput, dc );
+            GRA_arrow2 *a2 = new GRA_arrow2( *currentArrow2_ );
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( a2 );
+            delete currentArrow2_;
+            currentArrow2_ = 0;
+            break;
+          }
+          case 3:
+          {
+            currentArrow3_->Draw( graphicsOutput, dc );
+            GRA_arrow3 *a3 = new GRA_arrow3( *currentArrow3_ );
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( a3 );
+            delete currentArrow3_;
+            currentArrow3_ = 0;
+            break;
           }
         }
       }
       else if( polygonPlacementMode_ )
       {
+        polygonPlacementMode_ = false;
+        wxClientDC dc( this );
+        dc.SetLogicalFunction( wxCOPY );
+        switch (polygonType_)
+        {
+          case 1:
+          {
+            currentRectangle_->Draw( graphicsOutput, dc );
+            GRA_rectangle *a1 = new GRA_rectangle( *static_cast<GRA_rectangle*>(currentRectangle_) );
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
+            delete currentRectangle_;
+            currentRectangle_ = 0;
+            break;
+          }
+          case 2:
+          {
+            currentRegularPolygon_->Draw( graphicsOutput, dc );
+            GRA_polygon *a2 = new GRA_polygon( *currentRegularPolygon_ );
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( a2 );
+            delete currentRegularPolygon_;
+            currentRegularPolygon_ = 0;
+            break;
+          }
+          case 3:
+          {
+            current5PtStar_->Draw( graphicsOutput, dc );
+            GRA_star5pt *a3 = new GRA_star5pt( *static_cast<GRA_star5pt*>(current5PtStar_) );
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( a3 );
+            delete current5PtStar_;
+            current5PtStar_ = 0;
+            break;
+          }
+        }
       }
       else if( ellipsePlacementMode_ )
       {
+        ellipsePlacementMode_ = false;
+        wxClientDC dc( this );
+        dc.SetLogicalFunction( wxCOPY );
+        currentEllipse_->Draw( graphicsOutput, dc );
+        GRA_ellipse *a1 = new GRA_ellipse( *currentEllipse_ );
+        graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
+        delete currentEllipse_;
+        currentEllipse_ = 0;
       }
+      Refresh();
+      Update();
     }
   }
-  event.Skip();
 }
 
 void GraphicsPage::OnMouseRightDown( wxMouseEvent &event )
@@ -505,11 +537,11 @@ void GraphicsPage::OnMouseRightDown( wxMouseEvent &event )
       }
     }
   }
-  event.Skip();
 }
 
 void GraphicsPage::OnMouseMove( wxMouseEvent &event )
 {
+  GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
   MyStatusBar *statusBar =
     dynamic_cast<MyStatusBar*>(ExGlobals::GetVisualizationWindow()->GetStatusBar());
   switch ( statusBar->GetUnitsType() )
@@ -517,7 +549,7 @@ void GraphicsPage::OnMouseMove( wxMouseEvent &event )
     case 0:  // graph units
     {
       double xw, yw, xg, yg;
-      ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( (int)event.GetX(), (int)event.GetY(), xw, yw );
+      graphicsOutput->OutputTypeToWorld( (int)event.GetX(), (int)event.GetY(), xw, yw );
       ExGlobals::GetGraphWindow()->WorldToGraph( xw, yw, xg, yg, true );
       statusBar->SetStatusText( wxString(wxT("x = "))<<xg, 1 );
       statusBar->SetStatusText( wxString(wxT("y = "))<<yg, 2 );
@@ -526,7 +558,7 @@ void GraphicsPage::OnMouseMove( wxMouseEvent &event )
     case 1:  // world units
     {
       double xw, yw;
-      ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( (int)event.GetX(), (int)event.GetY(), xw, yw );
+      graphicsOutput->OutputTypeToWorld( (int)event.GetX(), (int)event.GetY(), xw, yw );
       statusBar->SetStatusText( wxString(wxT("x = "))<<xw, 1 );
       statusBar->SetStatusText( wxString(wxT("y = "))<<yw, 2 );
       break;
@@ -534,7 +566,7 @@ void GraphicsPage::OnMouseMove( wxMouseEvent &event )
     case 2:  // percentages
     {
       double xw, yw, xp, yp;
-      ExGlobals::GetGraphicsOutput()->OutputTypeToWorld( (int)event.GetX(), (int)event.GetY(), xw, yw );
+      graphicsOutput->OutputTypeToWorld( (int)event.GetX(), (int)event.GetY(), xw, yw );
       ExGlobals::GetGraphWindow()->WorldToPercent( xw, yw, xp, yp );
       statusBar->SetStatusText( wxString(wxT("%x = "))<<xp, 1 );
       statusBar->SetStatusText( wxString(wxT("%y = "))<<yp, 2 );
@@ -549,17 +581,16 @@ void GraphicsPage::OnMouseMove( wxMouseEvent &event )
       break;
     }
   }
-  if( !firstPoint_ && arrowPlacementMode_ )
+  if( firstPoint_ )return;
+  if( arrowPlacementMode_ )
   {
-    GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
-    wxClientDC dc( ExGlobals::GetwxWindow() );
+    wxClientDC dc( this );
     dc.SetLogicalFunction( wxINVERT );
     long xl, yl;
     event.GetPosition( &xl, &yl );
     double xw2, yw2;
     graphicsOutput->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), xw2, yw2 );
-    GRA_window *gw = ExGlobals::GetGraphWindow();
-    GRA_setOfCharacteristics *genC = gw->GetGeneralCharacteristics();
+    GRA_setOfCharacteristics *genC = ExGlobals::GetGraphWindow()->GetGeneralCharacteristics();
     double headWidth = static_cast<GRA_doubleCharacteristic*>(genC->Get(wxT("ARROWHEADWIDTH")))->Get();
     double headLength = static_cast<GRA_doubleCharacteristic*>(genC->Get(wxT("ARROWHEADLENGTH")))->Get();
     switch (arrowType_)
@@ -607,7 +638,85 @@ void GraphicsPage::OnMouseMove( wxMouseEvent &event )
       }
     }
   }
-  event.Skip();
+  else if( polygonPlacementMode_ )
+  {
+    wxClientDC dc( this );
+    dc.SetLogicalFunction( wxINVERT );
+    long xl, yl;
+    event.GetPosition( &xl, &yl );
+    double xw2, yw2;
+    graphicsOutput->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), xw2, yw2 );
+    switch (polygonType_)
+    {
+      case 1:
+      {
+        if( currentRectangle_ )
+        {
+          ExGlobals::HideHint();
+          currentRectangle_->Draw( graphicsOutput, dc );
+          delete currentRectangle_;
+        }
+        currentRectangle_ = new GRA_rectangle( xw1_, yw1_, xw2, yw2, polygonAngle_, false, 
+                                               figureLineColor_, figureFillColor_, figureLineThickness_ );
+        currentRectangle_->Draw( graphicsOutput, dc );
+        break;
+      }
+      case 2:
+      {
+        if( currentRegularPolygon_ )
+        {
+          ExGlobals::HideHint();
+          currentRegularPolygon_->Draw( graphicsOutput, dc );
+          delete currentRegularPolygon_;
+        }
+        double radius = sqrt((xw1_-xw2)*(xw1_-xw2)+(yw1_-yw2)*(yw1_-yw2));
+        currentRegularPolygon_ = new GRA_polygon( xw1_, yw1_, polygonAngle_, radius, polygonVertices_,
+                                                  figureLineColor_, figureFillColor_, figureLineThickness_ );
+        currentRegularPolygon_->Draw( graphicsOutput, dc );
+        break;
+      }
+      case 3:
+      {
+        if( current5PtStar_ )
+        {
+          ExGlobals::HideHint();
+          current5PtStar_->Draw( graphicsOutput, dc );
+          delete current5PtStar_;
+        }
+        double radius = sqrt((xw1_-xw2)*(xw1_-xw2)+(yw1_-yw2)*(yw1_-yw2));
+        current5PtStar_ = new GRA_star5pt( xw1_, yw1_, 2*radius, polygonAngle_,
+                                           figureLineColor_, figureFillColor_, figureLineThickness_ );
+        current5PtStar_->Draw( graphicsOutput, dc );
+      }
+    }
+  }
+  else if( ellipsePlacementMode_ )
+  {
+    wxClientDC dc( this );
+    dc.SetLogicalFunction( wxINVERT );
+    long xl, yl;
+    event.GetPosition( &xl, &yl );
+    double xw2, yw2;
+    graphicsOutput->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), xw2, yw2 );
+    if( currentEllipse_ )
+    {
+      ExGlobals::HideHint();
+      currentEllipse_->Draw( graphicsOutput, dc );
+      delete currentEllipse_;
+    }
+    if( drawCircles_ )
+    {
+      double radius = sqrt((xw1_-xw2)*(xw1_-xw2)+(yw1_-yw2)*(yw1_-yw2));
+      currentEllipse_ = new GRA_ellipse( xw1_-radius, yw1_-radius, xw1_+radius, yw1_+radius, true,
+                                         figureLineColor_, figureFillColor_, figureLineThickness_ );
+    }
+    else
+    {
+      currentEllipse_ = new GRA_ellipse( xw1_, yw1_, xw2, yw2, false,
+                                         figureLineColor_, figureFillColor_, figureLineThickness_ );
+    }
+    currentEllipse_->Draw( graphicsOutput, dc );
+  }
 }
 
 void GraphicsPage::SetInteractiveWindowMode()
@@ -669,11 +778,14 @@ void GraphicsPage::SetHeadsBothEnds( bool b )
 void GraphicsPage::SetPolygonType( int i )
 { polygonType_ = i; }
 
-void GraphicsPage::SetDrawCircles( bool b )
-{ drawCircles_ = b; }
-
 void GraphicsPage::SetPolygonAngle( int angle )
 { polygonAngle_ = angle; }
+
+void GraphicsPage::SetPolygonVertices( int vertices )
+{ polygonVertices_ = vertices; }
+
+void GraphicsPage::SetDrawCircles( bool b )
+{ drawCircles_ = b; }
 
 void GraphicsPage::SetFigureLineThickness( int i )
 { figureLineThickness_ = i; }

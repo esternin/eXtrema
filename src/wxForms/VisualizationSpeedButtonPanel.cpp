@@ -69,7 +69,7 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
   wxBitmapButton *threeDPlotButton =
     new wxBitmapButton( (wxWindow*)this, ID_3dplot,
                         wxBitmap(imageDir+wxT("/3dplot.bmp"),wxBITMAP_TYPE_BMP) );
-  drawGraphButton->SetToolTip( wxT("draw a 3D graph") );
+  threeDPlotButton->SetToolTip( wxT("draw a 3D graph") );
   sizer->Add( threeDPlotButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
   wxBitmapButton *drawTextButton =

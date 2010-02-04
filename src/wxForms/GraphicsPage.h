@@ -80,6 +80,7 @@ public:
   void SetPolygonType( int );
   void SetDrawCircles( bool );
   void SetPolygonAngle( int );
+  void SetPolygonVertices( int );
   void SetFigureLineThickness( int );
   void SetFigureLineColor( GRA_color * );
   void SetFigureFillColor( GRA_color * );
@@ -100,14 +101,14 @@ private:
   bool interactiveWindowMode_, interactiveLegendMode_;
   bool arrowPlacementMode_, polygonPlacementMode_, ellipsePlacementMode_;
   bool firstPoint_, headsBothEnds_, drawCircles_;
-  int arrowType_, polygonType_, polygonAngle_, figureLineThickness_;
+  int arrowType_, polygonType_, polygonAngle_, polygonVertices_, figureLineThickness_;
   GRA_color *figureLineColor_, *figureFillColor_;
   double xw1_, yw1_;
   GRA_drawableText *textToPlace_;
-  GRA_polygon *currentPolygon_;
   GRA_arrow1 *currentArrow1_;
   GRA_arrow2 *currentArrow2_;
   GRA_arrow3 *currentArrow3_;
+  GRA_polygon *currentRectangle_, *currentRegularPolygon_, *current5PtStar_;
   GRA_ellipse *currentEllipse_;
 
   void DeleteGraphWindows();

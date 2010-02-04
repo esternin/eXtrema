@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2009 Joseph L. Chuma
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,6 +25,7 @@ GRA_arrow3::GRA_arrow3( double xc, double yc, double side, double offset, double
                         GRA_color *lineColor, int lineWidth )
   : GRA_multiLineFigure()
 {
+  SetArrow3();
   SetLineColor( lineColor );
   SetLineWidth( lineWidth );
   xc_ = xc;
@@ -53,6 +54,7 @@ GRA_arrow3::GRA_arrow3( double x1, double y1, double x2, double y2, bool heads,
                         GRA_color *lineColor, int lineWidth, double widthFactor, double lengthFactor )
   : GRA_multiLineFigure(), headsBothEnds_(heads)
 {
+  SetArrow3();
   SetLineColor( lineColor );
   SetLineWidth( lineWidth );
   double const dx = x2 - x1;

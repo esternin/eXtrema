@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,6 +30,9 @@ class GRA_wxWidgets;
 
 class GRA_multiLineFigure : public GRA_shape
 {
+protected:
+  enum MultiType { UNKNOWN, ARROW3 };
+
 public:
   GRA_multiLineFigure() : GRA_shape(0,0,0,1,wxT("MULTILINEFIGURE"))
   {}
@@ -63,6 +66,12 @@ public:
   
   void Draw( GRA_wxWidgets *, wxDC & );
 
+  bool IsaArrow3() const
+  { return (type_ == ARROW3); }
+  
+  void SetArrow3()
+  { type_ = ARROW3; }
+  
   friend std::ostream &operator<<( std::ostream &, GRA_multiLineFigure const & );
 
 protected:
@@ -70,6 +79,7 @@ protected:
   //
   std::vector<double> x_, y_;
   std::vector<int> pen_;
+  MultiType type_;
 };
 #endif
  

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -45,6 +45,29 @@ void GRA_polygon::SetUp( std::vector<double> const &x, std::vector<double> const
   yc_ = (ymax_+ymin_)*0.5;
 }
 
+void GRA_polygon::SetUp( double xc, double yc, double angle, double radius, int vertices )
+{
+  xc_ = xc;
+  yc_ = yc;
+  double angleInc = 360./vertices;
+  for( int i=0; i<vertices; ++i )
+  {
+    x_.push_back( radius*cos(M_PI/180.*(angle-i*angleInc)) + xc_ );
+    y_.push_back( radius*sin(M_PI/180.*(angle-i*angleInc)) + yc_ );
+  }
+  xmin_ = x_[0];
+  xmax_ = x_[0];
+  ymin_ = y_[0];
+  ymax_ = y_[0];
+  for( std::size_t i=1; i<vertices; ++i )
+  {
+    if( x_[i] < xmin_ )xmin_ = x_[i];
+    if( x_[i] > xmax_ )xmax_ = x_[i];
+    if( y_[i] < ymin_ )ymin_ = y_[i];
+    if( y_[i] > ymax_ )ymax_ = y_[i];
+  }
+}
+
 void GRA_polygon::CopyStuff( GRA_polygon const &rhs )
 {
   x_.assign( rhs.x_.begin(), rhs.x_.end() );
@@ -55,6 +78,7 @@ void GRA_polygon::CopyStuff( GRA_polygon const &rhs )
   ymax_ = rhs.ymax_;
   xc_ = rhs.xc_;
   yc_ = rhs.yc_;
+  type_ = rhs.type_;
 }
 
 int GRA_polygon::GetQuadrant( double x, double y,

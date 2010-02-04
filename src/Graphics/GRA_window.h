@@ -141,6 +141,9 @@ public:
   
   void Draw( GRA_wxWidgets *, wxDC & );
   void RemoveLastTextString();
+  void RemoveLastArrow();
+  void RemoveLastPolygon();
+  void RemoveLastEllipse();
 
   bool InsideWindow( double, double ) const;
 
