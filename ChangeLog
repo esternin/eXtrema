@@ -1,3 +1,14 @@
+03/02/2010  Joe Chuma <joe.chuma@gmail.com>
+
+	v4.4.3
+
+	* added 3D graphing speed button to the visualization window
+	which allows the user to plot (x,y,z) data on basic graph axes, with the ability to zoom in/out
+	and rotate in 3 dimensions.
+
+	* enabled figure drawing speed button to the visualization window
+	which allows the user to interactively draw various types of arrows, polygons, and ellipses
+
 03/12/2009  Joe Chuma <joe.chuma@gmail.com>
 
 	v4.4.2
