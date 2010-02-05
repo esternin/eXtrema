@@ -34,25 +34,7 @@ GRA_star5pt::GRA_star5pt( double x1, double y1, double x2, double y2, double ang
     : GRA_polygon(lineColor,fillColor,lineWidth,1)
 {
   Set5PtStar();
-  double xul = x1;
-  double yul = y1;
-  double xlr = x2;
-  double ylr = y2;
-  if( xul > xlr )
-  {
-    xul = x2;
-    xlr = x1;
-  }
-  if( ylr > yul )
-  {
-    ylr = y1;
-    yul = y2;
-  }
-  double const dx = xlr - xul;
-  double const dy = yul - ylr;
-  if( dx < dy )ylr = yul - dx;
-  else if( dy < dx )xlr = xul + dy;
-  MakeStar( angle, dx, (xlr+xul)*0.5, (ylr+yul)*0.5 );
+  MakeStar( angle, sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)), x1, y1 );
 }
 
 void GRA_star5pt::MakeStar( double const angle, double const side, double const xc, double const yc )

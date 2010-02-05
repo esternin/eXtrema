@@ -46,7 +46,7 @@ GRA_ellipse::GRA_ellipse( double xmin, double ymin, double xmax, double ymax, bo
   {
     if( dy > dx )
     {
-      ymin_ = ymax_ - dx;
+      ymax_ = ymin_ + dx;
       dy = dx;
     }
     else if( dy < dx )

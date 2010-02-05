@@ -122,7 +122,10 @@ void FigureForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     config->Write( wxT("/FigureForm/DRAWCIRCLES"), makeCircleCheckBox_->GetValue() );
     config->Write( wxT("/FigureForm/LINETHICKNESS"), static_cast<long>(lineThicknessSC_->GetValue()) );
     config->Write( wxT("/FigureForm/LINECOLOR"), static_cast<long>(lineColorCC_->GetColorCode()) );
-    config->Write( wxT("/FigureForm/FILLCOLOR"), static_cast<long>(fillColorCC_->GetColorCode()) );
+    if( fillColorCC_ )
+      config->Write( wxT("/FigureForm/FILLCOLOR"), static_cast<long>(fillColorCC_->GetColorCode()) );
+    else
+      config->Write( wxT("/FigureForm/FILLCOLOR"), 0l );
   }
   visualizationWindow_->ZeroFigureForm();
   Destroy();
@@ -250,7 +253,7 @@ void FigureForm::CreateForm()
                                  &FigureForm::OnPolygonVertices );
   polygonVerticesSC_->SetToolTip( wxT("set the number of vertices for the regular polygon (3 to 999)") );
   polyPropertiesSizer->Add( polygonVerticesSC_, wxSizerFlags(0).Center().Border(wxALL,5) );
-  polygonVerticesSC_->Show(false);
+  polygonVerticesSC_->Show(true);
   
   polygonAngleSC_ =
     new ExSpinCtrlI<FigureForm>( polyPropertiesPanel, wxT("Angle (degrees)"), 0, 360, this,
@@ -431,7 +434,10 @@ void FigureForm::FillOutForm( int polygonAngle, int polygonVertices, bool twoHea
   GraphicsPage *page = dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage());
   page->SetFigureLineThickness( lineThickness );
   page->SetFigureLineColor( GRA_colorControl::GetColor(lineColor) );
-  page->SetFigureFillColor( GRA_colorControl::GetColor(fillColor) );
+  if( fillColor == 0 )
+    page->SetFigureFillColor( 0 );
+  else
+    page->SetFigureFillColor( GRA_colorControl::GetColor(fillColor) );
   page->SetArrowType( arrowType_ );
   page->SetHeadsBothEnds( twoHeads );
   page->SetDrawCircles( drawCircles );
@@ -441,6 +447,7 @@ void FigureForm::FillOutForm( int polygonAngle, int polygonVertices, bool twoHea
       rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle.bmp"),wxBITMAP_TYPE_BMP));
       regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.bmp"),wxBITMAP_TYPE_BMP));
       star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
+      polygonVerticesSC_->Show( false );
       break;
     case 2:  // regular polygon
       rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.bmp"),wxBITMAP_TYPE_BMP));
@@ -452,6 +459,7 @@ void FigureForm::FillOutForm( int polygonAngle, int polygonVertices, bool twoHea
       rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.bmp"),wxBITMAP_TYPE_BMP));
       regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.bmp"),wxBITMAP_TYPE_BMP));
       star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star.bmp"),wxBITMAP_TYPE_BMP));
+      polygonVerticesSC_->Show( false );
       break;
   }
   page->SetPolygonType( polygonType_ );

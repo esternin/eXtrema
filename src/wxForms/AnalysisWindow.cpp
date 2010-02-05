@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -208,7 +208,7 @@ void AnalysisWindow::OnAbout( wxCommandEvent &WXUNUSED(event) )
   textCtrl->SetDefaultStyle( ta2 );
   textCtrl->AppendText( wxString()<<wxT("version ")<<wxT(VERSION)<<wxT("\n") );
   textCtrl->AppendText( wxT(" \n") );
-  textCtrl->AppendText( wxT("Copyright 2005,...,2009 by Joseph L. Chuma\n") );
+  textCtrl->AppendText( wxT("Copyright 2005,...,2010 by Joseph L. Chuma\n") );
   textCtrl->AppendText( wxT(" \n") );
   textCtrl->AppendText( wxT("Extrema comes with ABSOLUTELY NO WARRANTY\n") );
   textCtrl->AppendText( wxT("This is free software, distributed under the\n") );

@@ -1,4 +1,4 @@
-# Copyright (C) 2009 Joseph L. Chuma <joe.chuma@gmail.com>
+# Copyright (C) 2010 Joseph L. Chuma <joe.chuma@gmail.com>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 

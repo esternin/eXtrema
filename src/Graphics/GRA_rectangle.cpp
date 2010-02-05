@@ -41,7 +41,6 @@ GRA_rectangle::GRA_rectangle( double xc, double yc, double xSide, double ySide,
   y.push_back(yc+RotY(-xs,-ys,sinang,cosang));
   x.push_back(xc+RotX( xs,-ys,sinang,cosang));
   y.push_back(yc+RotY( xs,-ys,sinang,cosang));
-  //
   SetUp( x, y );
 }
 
@@ -51,50 +50,28 @@ GRA_rectangle::GRA_rectangle( double x1, double y1, double x2, double y2, double
   : GRA_polygon(lineColor,fillColor,lineWidth,1)
 {
   SetRectangle();
-  double xul=x1, yul=y1, xlr=x2, ylr=y2;
-  if( xul > xlr )
-  {
-    xul = x2;
-    xlr = x1;
-  }
-  if( ylr > yul )
-  {
-    ylr = y1;
-    yul = y2;
-  }
-  double dx = xlr - xul;
-  double dy = yul - ylr;
-  if( square )
-  {
-    if( dx < dy )
-    {
-      ylr = yul - dx;
-      dy = dx;
-    }
-    else if( dy < dx )
-    {
-      xlr = xul + dy;
-      dx = dy;
-    }
-  }
-  double const xc = (xlr+xul)*0.5;
-  double const yc = (ylr+yul)*0.5;
   double const cosang = cos(angle*M_PI/180.);
   double const sinang = sin(angle*M_PI/180.);
-  double const xs = dx*0.5;
-  double const ys = dy*0.5;
+  double x22 = x1 + RotX( x2-x1, y2-y1, -sinang, cosang );
+  double y22 = y1 + RotY( x2-x1, y2-y1, -sinang, cosang );
+  if( square )
+  {
+    double dx = fabs(x22 - x1);
+    double dy = fabs(y22 - y1);
+    if( dx < dy )y22 = y22>y1 ? (y1+dx) : (y1-dx);
+    else if( dy < dx )x22 = x22>x1 ? (x1+dy) : (x1-dy);
+  }
   std::vector<double> x, y;
-  x.push_back(xc+RotX( xs,-ys,sinang,cosang));
-  y.push_back(yc+RotY( xs,-ys,sinang,cosang));
-  x.push_back(xc+RotX( xs, ys,sinang,cosang));
-  y.push_back(yc+RotY( xs, ys,sinang,cosang));
-  x.push_back(xc+RotX(-xs, ys,sinang,cosang));
-  y.push_back(yc+RotY(-xs, ys,sinang,cosang));
-  x.push_back(xc+RotX(-xs,-ys,sinang,cosang));
-  y.push_back(yc+RotY(-xs,-ys,sinang,cosang));
-  x.push_back(xc+RotX( xs,-ys,sinang,cosang));
-  y.push_back(yc+RotY( xs,-ys,sinang,cosang));
-  //
+  x.push_back( x1 );
+  y.push_back( y1 );
+  x.push_back( x1+RotX(x22-x1,0.,sinang,cosang) );
+  y.push_back( y1+RotY(x22-x1,0.,sinang,cosang) );
+  x.push_back( x1+RotX(x22-x1,y22-y1,sinang,cosang) );
+  y.push_back( y1+RotY(x22-x1,y22-y1,sinang,cosang) );
+  x.push_back( x1+RotX(0.,y22-y1,sinang,cosang) );
+  y.push_back( y1+RotY(0.,y22-y1,sinang,cosang) );
+  x.push_back( x1 );
+  y.push_back( y1 );
   SetUp( x, y );
 }
 
