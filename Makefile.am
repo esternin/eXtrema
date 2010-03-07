@@ -8,7 +8,7 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-EXTRA_DIST = reconf configure extrema.spec extrema.desktop extrema_icons.tar.bz2 ./Images ./Help ./Scripts ./doc ./src/wxForms/ExColorCtrl.h ./src/wxForms/ExSpinCtrlD.h ./src/wxForms/ExSpinCtrlI.h ./src/wxForms/ExSlider.h
+EXTRA_DIST = reconf configure extrema.spec extrema.desktop extrema_icons.tar.bz2 ./fonts ./Images ./Help ./Scripts ./doc ./src/wxForms/ExColorCtrl.h ./src/wxForms/ExSpinCtrlD.h ./src/wxForms/ExSpinCtrlI.h ./src/wxForms/ExSlider.h
 
 # list immediate subdirectories only
 SUBDIRS = src
