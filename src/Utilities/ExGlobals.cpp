@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2009 Joseph L. Chuma
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -542,8 +542,16 @@ void SetAspectRatio( double r ) // r = height/width
 {
   xminW_ = xminWDef_;
   yminW_ = yminWDef_;
-  xmaxW_ = xmaxWDef_;
-  ymaxW_ = xmaxWDef_*r;
+  if( r < 1. )
+  {
+    xmaxW_ = xmaxWDef_;
+    ymaxW_ = xmaxWDef_*r;
+  }
+  else
+  {
+    xmaxW_ = ymaxWDef_;
+    ymaxW_ = ymaxWDef_*r;
+  }
   //
   xminClip_ = xminW_ + pageBorder_;
   yminClip_ = yminW_ + pageBorder_;
@@ -552,8 +560,16 @@ void SetAspectRatio( double r ) // r = height/width
   //
   xminM_ = xminMDef_;
   yminM_ = yminMDef_;
-  xmaxM_ = xmaxMDef_;
-  ymaxM_ = static_cast<int>(xmaxMDef_*r+0.5);
+  if( r < 1. )
+  {
+    xmaxM_ = xmaxMDef_;
+    ymaxM_ = static_cast<int>(xmaxMDef_*r+0.5);
+  }
+  else
+  {
+    xmaxM_ = ymaxMDef_;
+    ymaxM_ = static_cast<int>(ymaxMDef_*r+0.5);
+  }
   //
   delete graphicsOutput_;
   graphicsOutput_ = new GRA_wxWidgets( xminM_, yminM_, xmaxM_, ymaxM_ );

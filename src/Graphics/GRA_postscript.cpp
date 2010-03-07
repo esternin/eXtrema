@@ -2301,7 +2301,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
   // apply fudge factor
   double xminW, yminW, xmaxW, ymaxW;
   ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
-  yLoc += 0.01*(ymaxW-yminW);
+  //yLoc += 0.01*(ymaxW-yminW);
 
   if( dt->GetGraphUnits() ) // convert to world units
   {
