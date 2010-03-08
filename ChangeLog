@@ -1,3 +1,14 @@
+07/03/2010  Joe Chuma <joe.chuma@gmail.com>
+
+	v4.4.4
+
+	* modified src/Utilities/ExGlobals
+	fixed a bug in the calculation of the world and monitor units after a change in the
+	aspect ratio
+
+	* modified src/Graphics/GRA_postscript
+	removed a "fudge factor" in the location for drawing text (related to preceeding fix)
+	
 05/02/2010  Joe Chuma <joe.chuma@gmail.com>
 
 	v4.4.3
