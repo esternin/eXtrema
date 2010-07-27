@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -36,6 +36,10 @@ public:
 private:
   CMD_contour();
   static CMD_contour *cmd_contour_;
+  
+  void GetIntParameter( std::vector<int> &, ParseLine const *, int &, wxString const & );
+  void GetDataParameters( std::vector<double> &, std::vector<double> &, std::vector<double> &,
+                          ParseLine const *, int & );
 };
 
 #endif

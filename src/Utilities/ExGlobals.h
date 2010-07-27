@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -47,7 +47,7 @@ class GRA_cartesianAxes;
 class GRA_cartesianCurve;
 class GRA_axis;
 class GRA_errorBar;
-class GRA_contour;
+class GRA_contourLine;
 class GRA_boxPlot;
 class GRA_diffusionPlot;
 class GRA_ditheringPlot;
@@ -289,7 +289,7 @@ namespace ExGlobals
   GRA_cartesianCurve *GetCartesianCurve( ExXML & );
   GRA_axis *GetAxis( ExXML &, wxChar const, wxString const & );
   GRA_errorBar *GetErrorBar( ExXML & );
-  GRA_contour *GetContour( ExXML & );
+  GRA_contourLine *GetContour( ExXML & );
   GRA_boxPlot *GetBoxPlot( ExXML & );
   GRA_diffusionPlot *GetDiffusionPlot( ExXML & );
   GRA_ditheringPlot *GetDitheringPlot( ExXML & );

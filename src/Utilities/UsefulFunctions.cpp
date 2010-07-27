@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005, 2006, 2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -13215,6 +13215,155 @@ L300:
       }
     }
     kv0 += my;
+  }
+}
+
+void ContourCalculation( double const level, std::vector<double> const &xVector,
+                         std::vector<double> const &yVector,
+                         std::vector< std::vector<double> > const &zMatrix,
+                         std::vector<double> &x, std::vector<double> &y )
+{
+  // this routine is coppied almost verbatim form Nicholas Yue's C++ implememtation
+  // of Paul bourkes CONREC routine. for deatails on the theory and implementation
+  // of this routine visit http://local.wasp.uwa.edu.au/~pbourke/papers/conrec/
+  //
+  std::size_t const im[4] = {0,1,1,0};
+  std::size_t const jm[4] = {0,0,1,1};
+  std::size_t const castab[3][3][3] =
+  {
+    { {0,0,8},{0,2,5},{7,6,9} },
+    { {0,3,4},{1,3,1},{4,3,0} },
+    { {9,6,7},{5,2,0},{8,0,0} }
+  };
+  std::size_t xsize = xVector.size();
+  std::size_t ysize = yVector.size();
+  for( std::size_t jj=0; jj<ysize-1; ++jj )
+  {
+    std::size_t j = ysize-2-jj;
+    for( std::size_t k=0; k<xsize-1; ++k )
+    {
+      double temp1 = std::min(zMatrix[j][k],zMatrix[j+1][k]);
+      double temp2 = std::min(zMatrix[j][k+1],zMatrix[j+1][k+1]);
+      double dmin = std::min(temp1,temp2);
+      temp1 = std::max(zMatrix[j][k],zMatrix[j+1][k]);
+      temp2 = std::max(zMatrix[j][k+1],zMatrix[j+1][k+1]);
+      double dmax = std::max(temp1,temp2);
+      if( dmax>=level && dmin<=level )
+      {
+        double h[5], xh[5], yh[5];
+        int sh[5];
+        for( std::size_t m=4; m>0; --m )
+        {
+          h[m] = zMatrix[j+jm[m-1]][k+im[m-1]] - level;
+          xh[m] = xVector[k+im[m-1]];
+          yh[m] = yVector[j+jm[m-1]];
+          sh[m] = h[m]==0.0 ? 0 : (h[m]>0 ? 1 : -1);
+        }
+        h[0] = 0.25*(h[1]+h[2]+h[3]+h[4]);
+        xh[0] = 0.5*(xVector[k]+xVector[k+1]);
+        yh[0] = 0.5*(yVector[j]+yVector[j+1]);
+        sh[0] = h[0]==0.0 ? 0 : (h[0]>0 ? 1 : -1);
+        //
+        // Note: at this stage the relative heights of the corners and the
+        // centre are in the h array, and the corresponding coordinates are
+        // in the xh and yh arrays. The centre of the box is indexed by 0
+        // and the 4 corners by 1 to 4 as shown below.
+        // Each triangle is then indexed by the parameter m, and the 3 vertices
+        // of each triangle are indexed by parameters m1, m2 and m3.
+        // It is assumed that the centre of the box is always vertex 2, though
+        // this is important only when all 3 vertices lie exactly on the same
+        // contour level, in which case only the side of the box is drawn.
+        //
+        //      vertex 4 +-------------------+ vertex 3
+        //               | \               / |
+        //               |   \    m-3    /   |
+        //               |     \       /     |
+        //               |       \   /       |
+        //               |  m=2    X   m=2   |       the centre is vertex 0
+        //               |       /   \       |
+        //               |     /       \     |
+        //               |   /    m=1    \   |
+        //               | /               \ |
+        //      vertex 1 +-------------------+ vertex 2
+        //
+        // Scan each triangle in the box
+        //
+        for( std::size_t m=1; m<=4; ++m )
+        {
+          int m1 = m;
+          int m2 = 0;
+          int m3 = m<4 ? m+1 : 1;
+          std::size_t caseValue = castab[sh[m1]+1][sh[m2]+1][sh[m3]+1];
+          double x1, y1, x2, y2;
+          if( caseValue != 0 )
+          {
+            switch (caseValue)
+            {
+              case 1: // line between vertices 1 and 2
+	        x1 = xh[m1];
+	        y1 = yh[m1];
+	        x2 = xh[m2];
+	        y2 = yh[m2];
+	        break;
+	      case 2: // line between vertices 2 and 3
+	        x1 = xh[m2];
+	        y1 = yh[m2];
+	        x2 = xh[m3];
+	        y2 = yh[m3];
+	        break;
+	      case 3: // line between vertices 3 and 1
+	        x1 = xh[m3];
+	        y1 = yh[m3];
+	        x2 = xh[m1];
+	        y2 = yh[m1];
+	        break;
+	      case 4: // line between vertex 1 and side 2-3
+	        x1 = xh[m1];
+	        y1 = yh[m1];
+	        x2 = (h[m3]*xh[m2]-h[m2]*xh[m3])/(h[m3]-h[m2]);
+	        y2 = (h[m3]*yh[m2]-h[m2]*yh[m3])/(h[m3]-h[m2]);
+	        break;
+	      case 5: // line between vertex 2 and side 3-1
+	        x1 = xh[m2];
+	        y1 = yh[m2];
+	        x2 = (h[m1]*xh[m3]-h[m3]*xh[m1])/(h[m1]-h[m3]);
+	        y2 = (h[m1]*yh[m3]-h[m3]*yh[m1])/(h[m1]-h[m3]);
+	        break;
+	      case 6: // line between vertex 3 and side 1-2
+	        x1 = xh[m3];
+	        y1 = yh[m3];
+	        x2 = (h[m2]*xh[m1]-h[m1]*xh[m2])/(h[m2]-h[m1]);
+	        y2 = (h[m2]*yh[m1]-h[m1]*yh[m2])/(h[m2]-h[m1]);
+	        break;
+	      case 7: // line between sides 1-2 and 2-3
+	        x1 = (h[m2]*xh[m1]-h[m1]*xh[m2])/(h[m2]-h[m1]);
+	        y1 = (h[m2]*yh[m1]-h[m1]*yh[m2])/(h[m2]-h[m1]);
+	        x2 = (h[m3]*xh[m2]-h[m2]*xh[m3])/(h[m3]-h[m2]);
+	        y2 = (h[m3]*yh[m2]-h[m2]*yh[m3])/(h[m3]-h[m2]);
+	        break;
+	      case 8: // line between sides 2-3 and 3-1
+	        x1 = (h[m3]*xh[m2]-h[m2]*xh[m3])/(h[m3]-h[m2]);
+	        y1 = (h[m3]*yh[m2]-h[m2]*yh[m3])/(h[m3]-h[m2]);
+	        x2 = (h[m1]*xh[m3]-h[m3]*xh[m1])/(h[m1]-h[m3]);
+	        y2 = (h[m1]*yh[m3]-h[m3]*yh[m1])/(h[m1]-h[m3]);
+	        break;
+	      case 9: // line between sides 3-1 and 1-2
+	        x1 = (h[m1]*xh[m3]-h[m3]*xh[m1])/(h[m1]-h[m3]);
+	        y1 = (h[m1]*yh[m3]-h[m3]*yh[m1])/(h[m1]-h[m3]);
+	        x2 = (h[m2]*xh[m1]-h[m1]*xh[m2])/(h[m2]-h[m1]);
+	        y2 = (h[m2]*yh[m1]-h[m1]*yh[m2])/(h[m2]-h[m1]);
+	        break;
+	      default:
+	        break;
+            }
+            x.push_back(x1);
+            y.push_back(y1);
+            x.push_back(x2);
+            y.push_back(y2);
+	  }
+	}
+      }
+    }
   }
 }
 

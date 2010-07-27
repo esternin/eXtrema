@@ -50,7 +50,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_plotSymbol.h"
 #include "GRA_axis.h"
 #include "GRA_legend.h"
-#include "GRA_contour.h"
+#include "GRA_contourLine.h"
 #include "GRA_multiLineFigure.h"
 #include "GRA_boxPlot.h"
 #include "GRA_ditheringPlot.h"
@@ -163,7 +163,7 @@ void GRA_window::CopyStuff( GRA_window const &rhs )
     else if( (*i)->IsaGraphLegend() )
       p = new GRA_legend(*(static_cast<GRA_legend*>(*i)));
     else if( (*i)->IsaContour() )
-      p = new GRA_contour(*(static_cast<GRA_contour*>(*i)));
+      p = new GRA_contourLine(*(static_cast<GRA_contourLine*>(*i)));
     else if( (*i)->IsaPolarAxes() )
       p = new GRA_polarAxes(*(static_cast<GRA_polarAxes*>(*i)));
     else if( (*i)->IsaPolarCurve() )
@@ -1758,7 +1758,7 @@ std::ostream &operator<<( std::ostream &out, GRA_window const &gw )
     else if( (*i)->IsaPolygon() )out << *(static_cast<GRA_polygon*>(*i));
     else if( (*i)->IsaMultilineFigure() )out << *(static_cast<GRA_multiLineFigure*>(*i));
     else if( (*i)->IsaPlotsymbol() )out << *(static_cast<GRA_plotSymbol*>(*i));
-    else if( (*i)->IsaContour() )out << *(static_cast<GRA_contour*>(*i));
+    else if( (*i)->IsaContour() )out << *(static_cast<GRA_contourLine*>(*i));
     else if( (*i)->IsaBoxPlot() )out << *(static_cast<GRA_boxPlot*>(*i));
     else if( (*i)->IsaDitheringPlot() )out << *(static_cast<GRA_ditheringPlot*>(*i));
     else if( (*i)->IsaDiffusionPlot() )out << *(static_cast<GRA_diffusionPlot*>(*i));

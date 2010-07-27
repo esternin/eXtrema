@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2007 Joseph L. Chuma, TRIUMF
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -239,5 +239,9 @@ namespace UsefulFunctions
                            std::vector<double> &,
                            std::vector<double> &,
                            std::vector<double> & );
+  void ContourCalculation( double const, std::vector<double> const &,
+                           std::vector<double> const &,
+                           std::vector< std::vector<double> > const &,
+                           std::vector<double> &, std::vector<double> & );
 }
 #endif

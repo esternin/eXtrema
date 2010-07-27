@@ -59,7 +59,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_plotSymbol.h"
 #include "GRA_legend.h"
 #include "GRA_errorBar.h"
-#include "GRA_contour.h"
+#include "GRA_contourLine.h"
 #include "GRA_boxPlot.h"
 #include "GRA_diffusionPlot.h"
 #include "GRA_ditheringPlot.h"
@@ -1821,7 +1821,7 @@ void RestoreSession( wxString &file )
         }
         else if( xml.GetName() == wxT("contour") )
         {
-          GRA_contour *contour = GetContour( xml );
+          GRA_contourLine *contour = GetContour( xml );
           contour->Draw( graphicsOutput_, dc );
           gw->AddDrawableObject( contour );
         }
@@ -2645,6 +2645,7 @@ GRA_polarCurve *GetPolarCurve( ExXML &xml )
 
 GRA_contour *GetContour( ExXML &xml )
 {
+  /*
   long int tmp;
   xml.GetPropertyValue(wxT("color")).ToLong( &tmp );
   int color = static_cast<int>(tmp);
@@ -2690,6 +2691,9 @@ GRA_contour *GetContour( ExXML &xml )
   contour->SetColor( GRA_colorControl::GetColor(color) );
   contour->SetCoords( x, y, connect );
   contour->SetDrawableText( textVec );
+  return contour;
+  */
+  GRA_contourLine *contour = 0;
   return contour;
 }
 
