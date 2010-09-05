@@ -27,7 +27,7 @@ libgraphics_la_SOURCES = \
 	  GRA_colorControl.cpp GRA_colorControl.h \
 	  GRA_color.cpp GRA_color.h \
 	  GRA_colorMap.cpp GRA_colorMap.h \
-	  GRA_contour.cpp GRA_contour.h \
+	  GRA_contourLine.cpp GRA_contourLine.h \
 	  GRA_cross.cpp GRA_cross.h \
 	  GRA_crossPlus.cpp GRA_crossPlus.h \
 	  GRA_densityPlot.cpp GRA_densityPlot.h \

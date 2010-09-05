@@ -107,7 +107,7 @@ void CMD_contour::Execute( ParseLine const *p )
       GetIntParameter( linetypes, p, ifld, wxT("expecting linetype (scalar or vector)") );
     if( qualifiers[wxT("LINEWIDTHS")] )
       GetIntParameter( linewidths, p, ifld, wxT("expecting linewidth (scalar or vector)") );
-    GetDataParmaters( xVector, yVector, zVector, p, ifld );
+    GetDataParameters( xVector, yVector, zVector, p, ifld );
   }
   catch( ECommandError const &e )
   {
@@ -333,6 +333,8 @@ void CMD_contour::Execute( ParseLine const *p )
     }
     else if( p->IsString(ifld) )
     {
+      int ndm=0, dimSizes[]={0,0,0};
+      double d=0.0;
       try
       {
         NumericVariable::GetVariable( p->GetString(ifld), ndm, d, contourVector, dimSizes );
@@ -370,6 +372,7 @@ void CMD_contour::Execute( ParseLine const *p )
     bool zminsEntered = false;
     if( p->GetNumberOfTokens() > ifld )
     {
+      double d;
       NumericVariable::GetScalar( p->GetString(ifld), wxT("minimum contour level"), d );
       zmins = d;
       AddToStackLine( p->GetString(ifld++) );
@@ -624,13 +627,13 @@ void CMD_contour::GetDataParameters( std::vector<double> &x, std::vector<double>
     }
     else if( ndm == 2 )  // contour x y matrix ...
     {
-      if( static_cast<int>(xVector.size()) < dimSizes[1] )
+      if( static_cast<int>(x.size()) < dimSizes[1] )
         throw ECommandError( command+wxT("independent vector length < number of columns of matrix") );
-      if( static_cast<int>(xVector.size()) > dimSizes[1] )
+      if( static_cast<int>(x.size()) > dimSizes[1] )
         throw ECommandError( command+wxT("independent vector length > number of columns of matrix") );
-      if( static_cast<int>(yVector.size()) < dimSizes[0] )
+      if( static_cast<int>(y.size()) < dimSizes[0] )
         throw ECommandError( command+wxT("dependent vector length < number of rows of matrix") );
-      if( static_cast<int>(yVector.size()) > dimSizes[0] )
+      if( static_cast<int>(y.size()) > dimSizes[0] )
         throw ECommandError( command+wxT("dependent vector length > number of rows of matrix") );
       AddToStackLine( p->GetString(ifld++) );
     }

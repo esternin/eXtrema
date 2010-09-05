@@ -51,7 +51,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_cartesianAxes.h"
 #include "GRA_cartesianCurve.h"
 #include "GRA_legend.h"
-#include "GRA_contour.h"
+#include "GRA_contourLine.h"
 #include "GRA_boxPlot.h"
 #include "GRA_diffusionPlot.h"
 #include "GRA_ditheringPlot.h"
@@ -832,7 +832,7 @@ void GraphicsPage::SavePS( wxString const &filename )
         else if( (*j)->IsaCartesianAxes() )ps.Draw( static_cast<GRA_cartesianAxes*>(*j) );
         else if( (*j)->IsaCartesianCurve() )ps.Draw( static_cast<GRA_cartesianCurve*>(*j) );
         else if( (*j)->IsaGraphLegend() )ps.Draw( static_cast<GRA_legend*>(*j) );
-        else if( (*j)->IsaContour() )ps.Draw( static_cast<GRA_contour*>(*j) );
+        else if( (*j)->IsaContour() )ps.Draw( static_cast<GRA_contourLine*>(*j) );
         else if( (*j)->IsaBoxPlot() )ps.Draw( static_cast<GRA_boxPlot*>(*j) );
         else if( (*j)->IsaDiffusionPlot() )ps.Draw( static_cast<GRA_diffusionPlot*>(*j) );
         else if( (*j)->IsaDitheringPlot() )ps.Draw( static_cast<GRA_ditheringPlot*>(*j) );

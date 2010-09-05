@@ -2643,7 +2643,7 @@ GRA_polarCurve *GetPolarCurve( ExXML &xml )
   return curve;
 }
 
-GRA_contour *GetContour( ExXML &xml )
+GRA_contourLine *GetContour( ExXML &xml )
 {
   /*
   long int tmp;

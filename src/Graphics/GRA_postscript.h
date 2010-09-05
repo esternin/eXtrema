@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005,...,2009 Joseph L. Chuma
+Copyright (C) 2005,...,2010 Joseph L. Chuma
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -39,7 +39,7 @@ class GRA_cartesianCurve;
 class GRA_polarAxes;
 class GRA_polarCurve;
 class GRA_legend;
-class GRA_contour;
+class GRA_contourLine;
 class GRA_densityPlot;
 class GRA_boxPlot;
 class GRA_diffusionPlot;
@@ -102,7 +102,7 @@ public:
   void Draw( GRA_polarAxes * );
   void Draw( GRA_polarCurve * );
   void Draw( GRA_legend * );
-  void Draw( GRA_contour * );
+  void Draw( GRA_contourLine * );
   void Draw( GRA_boxPlot * );
   void Draw( GRA_diffusionPlot * );
   void Draw( GRA_ditheringPlot * );

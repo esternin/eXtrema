@@ -17,6 +17,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include <cmath>
 #include <stdexcept>
+#include <limits>
+#include <ctime>
 
 #include "GRA_contourLine.h"
 #include "ExGlobals.h"
@@ -26,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_color.h"
 #include "GRA_distanceCharacteristic.h"
 #include "GRA_doubleCharacteristic.h"
+#include "GRA_sizeCharacteristic.h"
 #include "GRA_setOfCharacteristics.h"
 #include "GRA_window.h"
 #include "GRA_drawableText.h"
@@ -136,11 +139,11 @@ void GRA_contourLine::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   // draw the contour line
   //
   int lineTypeSave = graphicsOutput->GetLineType();
-  int lineWidthSave = graphicsOutput->GetLineWidth();
-  GRA_color *colorSave = graphicsOutput->GetColor();
   graphicsOutput->SetLineType( lineType_ );
-  graphicsOutput->SetLineWidth( lineWidth_ );
-  graphicsOutput->SetColor( color_ );
+  wxPen wxpen( dc.GetPen() );
+  wxpen.SetColour( ExGlobals::GetwxColor(color_) );
+  wxpen.SetWidth( lineWidth_ );
+  dc.SetPen( wxpen );
   double labelHeight =
       static_cast<GRA_sizeCharacteristic*>(generalC->Get(wxT("CONTOURLABELHEIGHT")))->GetAsWorld();
   double labelAngle = 0.0;
@@ -149,7 +152,8 @@ void GRA_contourLine::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   GRA_color *labelColor = color_;
   std::size_t size = xCurve_.size();
   double const pp[5] = {0.2,0.333,0.5,0.667,0.8};
-  std::size_t ix = random(5);
+  srand(time(0));
+  std::size_t ix = (rand()%5) + 1;
   for( std::size_t i=0; i<size; ++i )
   {
     std::size_t np = xCurve_[i].size();
@@ -161,15 +165,13 @@ void GRA_contourLine::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
       ++ix;
       double xloc = xCurve_[i][int(pp[ix%5]*np)];
       double yloc = yCurve_[i][int(pp[ix%5]*np)];
-      GRA_drawableText dt( ExString(level_), labelHeight, labelAngle, xloc, yloc,
+      GRA_drawableText dt( wxString()<<level_, labelHeight, labelAngle, xloc, yloc,
                            labelAlignment, labelFont, labelColor );
       dt.Parse();
       dt.Draw( graphicsOutput, dc );
     }
   }
   graphicsOutput->SetLineType( lineTypeSave );
-  graphicsOutput->SetColor( colorSave );
-  graphicsOutput->SetLineWidth( lineWidthSave );
   ExGlobals::ResetClippingBoundary();
 }
 

@@ -63,7 +63,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_colorCharacteristic.h"
 #include "GRA_setOfCharacteristics.h"
 #include "GRA_legend.h"
-#include "GRA_contour.h"
+#include "GRA_contourLine.h"
 #include "GRA_boxPlot.h"
 #include "GRA_diffusionPlot.h"
 #include "GRA_ditheringPlot.h"
@@ -1407,32 +1407,55 @@ void GRA_postscript::Draw( GRA_legend *legend )
   }
 }
 
-void GRA_postscript::Draw( GRA_contour *contour )
+void GRA_postscript::Draw( GRA_contourLine *contour )
 {
   GRA_window *gw = ExGlobals::GetGraphWindow();
   GRA_setOfCharacteristics *xAxisC = gw->GetXAxisCharacteristics();
   GRA_setOfCharacteristics *yAxisC = gw->GetYAxisCharacteristics();
+  GRA_setOfCharacteristics *generalC = gw->GetGeneralCharacteristics();
   double const xuaxis =
-    static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
+      static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
   double const xlaxis =
-    static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
+      static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
   double const yuaxis =
-    static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
+      static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("UPPERAXIS")))->GetAsWorld();
   double const ylaxis =
-    static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
+      static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("LOWERAXIS")))->GetAsWorld();
   ExGlobals::SetClippingBoundary( xlaxis, ylaxis, xuaxis, yuaxis );
+  //
+  // draw the contour line
+  //
+  SetLineType( contour->GetLineType() );
   SetColor( contour->GetColor() );
-  std::vector<double> xPlot, yPlot;
-  std::vector<bool> connect;
-  contour->GetXYPlot( xPlot, yPlot, connect );
-  std::size_t size = xPlot.size();
+  SetLineWidth( contour->GetLineWidth() );
+  double labelHeight =
+    static_cast<GRA_sizeCharacteristic*>(generalC->Get(wxT("CONTOURLABELHEIGHT")))->GetAsWorld();
+  double labelAngle = 0.0;
+  int labelAlignment = 5;
+  GRA_font *labelFont = GRA_fontControl::GetFont(wxT("ARIAL"));
+  GRA_color *labelColor = contour->GetColor();
+  std::vector< std::vector<double> > xCurve( contour->GetXCurve() );
+  std::vector< std::vector<double> > yCurve( contour->GetYCurve() );
+  std::size_t size = xCurve.size();
+  double const pp[5] = {0.2,0.333,0.5,0.667,0.8};
+  srand(time(0));
+  std::size_t ix = (rand()%5) + 1;
   for( std::size_t i=0; i<size; ++i )
   {
-    connect[i] ? PenDown( xPlot[i], yPlot[i] ) : PenUp( xPlot[i], yPlot[i] );
+    std::size_t np = xCurve[i].size();
+    StartLine( xCurve[i][0], yCurve[i][0] );
+    for( std::size_t j=1; j<np; ++j )ContinueLine( xCurve[i][j], yCurve[i][j] );
+    if( np > 10 )
+    {
+      ++ix;
+      double xloc = xCurve[i][int(pp[ix%5]*np)];
+      double yloc = yCurve[i][int(pp[ix%5]*np)];
+      GRA_drawableText dt( wxString()<<contour->GetLevel(), labelHeight, labelAngle,
+                           xloc, yloc, labelAlignment, labelFont, labelColor );
+      dt.Parse();
+      Draw( &dt );
+    }
   }
-  std::vector<GRA_drawableText*> *textVec = contour->GetTextVec();
-  size = textVec->size();
-  for( std::size_t i=0; i<size; ++i )Draw( textVec->at(i) );
   ExGlobals::ResetClippingBoundary();
 }
 

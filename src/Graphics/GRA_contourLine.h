@@ -32,13 +32,13 @@ class GRA_drawableText;
 class GRA_contourLine : public GRA_drawableObject
 {
 public:
-  GRA_contourLine() : GRA_drawableObject(wxT("CONTOURLINE"))
+  GRA_contourLine() : GRA_drawableObject(wxT("CONTOUR"))
   {}
 
   GRA_contourLine( double level,
                    std::vector<double> const &x, std::vector<double> const &y,
                    GRA_color *color, int ltype, int lwidth )
-      : GRA_drawableObject(wxT("CONTOURLINE")),
+      : GRA_drawableObject(wxT("CONTOUR")),
         level_(level), color_(color), lineType_(ltype), lineWidth_(lwidth)
   {
     xData_.assign( x.begin(), x.end() );
@@ -67,11 +67,11 @@ public:
   double const GetLevel()
   { return level_; }
 
-  std::vector<double> const &GetXData()
-  { return xData_; }
+  std::vector< std::vector<double> > const &GetXCurve()
+  { return xCurve_; }
 
-  std::vector<double> const &GetYData()
-  { return yData_; }
+  std::vector< std::vector<double> > const &GetYCurve()
+  { return yCurve_; }
 
   friend std::ostream &operator<<( std::ostream &, GRA_contourLine const & );
 

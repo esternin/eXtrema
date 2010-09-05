@@ -20,7 +20,7 @@ myhelpdir = $(datadir)/extrema/Help
 myhelp_DATA = ./Help/extrema.hhc ./Help/extrema.hhk ./Help/extrema.hhp ./Help/*.gif ./Help/extremaMain.htm
 
 myCommandsdir = $(myhelpdir)/Commands
-myCommands_DATA = ./Help/Commands/*.htm ./Help/Commands/*.png ./Help/Commands/*.gif ./Help/Commands/*.jpg ./Help/Commands/*.pcm
+myCommands_DATA = ./Help/Commands/*.htm ./Help/Commands/*.png ./Help/Commands/*.gif ./Help/Commands/*.jpg
 
 myBasicTasksdir = $(myhelpdir)/BasicTasks
 myBasicTasks_DATA = ./Help/BasicTasks/*.htm ./Help/BasicTasks/*.gif ./Help/BasicTasks/*.dat ./Help/BasicTasks/*.pcm
