@@ -30,10 +30,6 @@
       <param name="Local" value="Commands/Write.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="\AREAS">
-      <param name="Local" value="Commands/Contour.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
       <param name="Name" value="\AVERAGE">
       <param name="Local" value="Commands/Bin.htm">
       </OBJECT>
@@ -107,10 +103,6 @@
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
       <param name="Name" value="\CONTINUE">
-      <param name="Local" value="Commands/Contour.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="\COORDINATES">
       <param name="Local" value="Commands/Contour.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
@@ -260,10 +252,6 @@
   <LI><OBJECT type="text/sitemap">
       <param name="Name" value="\INTERPOLATE">
       <param name="Local" value="Commands/Grid.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="\INTERPSIZE">
-      <param name="Local" value="Commands/Contour.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
       <param name="Name" value="\ITMAX">
@@ -606,10 +594,6 @@
       <param name="Local" value="Commands/Zerolines.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="\VOLUMES">
-      <param name="Local" value="Commands/Contour.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
       <param name="Name" value="\WEIGHTS">
       <param name="Local" value="Commands/Bestfit.htm">
       </OBJECT>
@@ -698,10 +682,6 @@
       <param name="Local" value="Characteristics/autoscale.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="axis">
-      <param name="Local" value="Commands/ContourS07.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
       <param name="Name" value="backslash">
       <param name="Local" value="Introduction/Introduction.htm">
       </OBJECT>
@@ -778,10 +758,6 @@
       <param name="Local" value="Characteristics/colormap.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="COLORMAP">
-      <param name="Local" value="Commands/ContourS02.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
       <param name="Name" value="COLORMAPFILE">
       <param name="Local" value="Characteristics/colormapfile.htm">
       </OBJECT>
@@ -818,10 +794,6 @@
       <param name="Local" value="Introduction/ExpressionS01.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="contour axis">
-      <param name="Local" value="Commands/ContourS07.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
       <param name="Name" value="contour color">
       <param name="Local" value="Introduction/Colors.htm">
       </OBJECT>
@@ -830,12 +802,8 @@
       <param name="Local" value="Commands/Contour.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="contour label">
-      <param name="Local" value="Commands/ContourS03.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
       <param name="Name" value="contour legend">
-      <param name="Local" value="Commands/ContourS05.htm">
+      <param name="Local" value="Commands/ContourS03.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
       <param name="Name" value="contour level">
@@ -844,10 +812,6 @@
   <LI><OBJECT type="text/sitemap">
       <param name="Name" value="CONTOURLABELHEIGHT">
       <param name="Local" value="Characteristics/contourlabelheight.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="CONTOURLABELSEPARATION">
-      <param name="Local" value="Characteristics/contourlabelseparation.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
       <param name="Name" value="correlation">
@@ -1196,10 +1160,6 @@
   <LI><OBJECT type="text/sitemap">
       <param name="Name" value="Poisson distribution">
       <param name="Local" value="Commands/FitS08.htm">
-      </OBJECT>
-  <LI><OBJECT type="text/sitemap">
-      <param name="Name" value="polar coordinates">
-      <param name="Local" value="Commands/ContourS06.htm">
       </OBJECT>
   <LI><OBJECT type="text/sitemap">
       <param name="Name" value="polar coordinates">

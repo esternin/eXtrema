@@ -850,46 +850,26 @@
                    <param name="Local" value="Commands/Contour.htm">
                    </OBJECT>
                    <UL>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Contour level selection">
-                            <param name="Local" value="Commands/ContourS01.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Colours">
-                            <param name="Local" value="Commands/ContourS02.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Labels">
-                            <param name="Local" value="Commands/ContourS03.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Saving contour levels and coordinates">
-                            <param name="Local" value="Commands/ContourS04.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Legend">
-                            <param name="Local" value="Commands/ContourS05.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Polar coordinates">
-                            <param name="Local" value="Commands/ContourS06.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Axes">
-                            <param name="Local" value="Commands/ContourS07.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Scattered data">
-                            <param name="Local" value="Commands/ContourS08.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Matrix data">
-                            <param name="Local" value="Commands/ContourS09.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="Example">
-                            <param name="Local" value="Commands/ContourS10.htm">
-                            </OBJECT>
+ 		        <LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Contour level selection">
+				<param name="Local" value="Commands/ContourS01.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Contour line properties">
+				<param name="Local" value="Commands/ContourS02.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Legend">
+				<param name="Local" value="Commands/ContourS03.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Axes">
+				<param name="Local" value="Commands/ContourS04.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Examples">
+				<param name="Local" value="Commands/ContourS05.htm">
+				</OBJECT>
                    </UL>
               <LI> <OBJECT type="text/sitemap">
                    <param name="Name" value="DEALIAS command">
@@ -1607,10 +1587,6 @@
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="CONTOURLABELHEIGHT">
                             <param name="Local" value="Characteristics/contourlabelheight.htm">
-                            </OBJECT>
-                       <LI> <OBJECT type="text/sitemap">
-                            <param name="Name" value="CONTOURLABELSEPARATION">
-                            <param name="Local" value="Characteristics/contourlabelseparation.htm">
                             </OBJECT>
                        <LI> <OBJECT type="text/sitemap">
                             <param name="Name" value="ARROWHEADWIDTH">
