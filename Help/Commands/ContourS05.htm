@@ -1,51 +1,79 @@
 <HTML>
 <HEAD>
-<TITLE>Contour legend</TITLE>
+<TITLE>Examples</TITLE>
 </HEAD>
+
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<P><font size="+2" color="green">Legend</font></P>
+<P><A NAME="contourexample"></A>
+<font size="+1" color="green">Example 1</font></P>
 <P>
- By default, the contours are labeled with the actual contour level, using
- three significant digits.  If <CODE>\-AXES</CODE> is used, then no legend is allowed.</P>
+ The figure below was produced by the following commands:</P>
+
+<font color="blue"><PRE>
+ X = {1;0;1;0;.2;.5;.8}
+ Y = {1;0;0;1;.2;.5;.8}
+ Z = {0;0;0;0;10;0;-5}
+ GRID\XYOUT X Y Z M XOUT YOUT   ! interpolate a matrix
+ CONTOUR\LEGEND XOUT YOUT M 10  ! 10 contours of matrix M
+</PRE></font>
 <P>
- If the <CODE>\LEGEND</CODE> qualifier is used,
- then the contours are labeled with an integer index and the list of indices
- corresponding to the actual contour levels, the legend, is plotted along
- the right side of the axes. If areas and/or volumes are requested, using
- <CODE>\AREAS</CODE> and/or <CODE>\VOLUMES</CODE>, these values will also appear in the legend.</P>
+<center>
+<IMG SRC="ContourS05I01.png">
+</center></P>
 <P>
- If you zoom in on a contour plot, by setting the axis scales beforehand,
- and you use the <code>\PARTIAL</code> qualifier as well as the <code>\AREAS</code> qualifier,
- then the areas will be percentages of the area currently showing on the
- graph.  By default, the areas are percentages of the total area.</P>
+<font size="+1" color="green">Example 2</font></P>
 <P>
- To add more contours to a contour plot, re-issue the same contour command
- with the <CODE>\CONTINUE</CODE> qualifier and
- the legend will be continued from where it left off. You must have used the
- <CODE>\-RESET</CODE> qualifier on the previous <CODE>CONTOUR</CODE> command if you intend to
- use <CODE>\CONTINUE</CODE> on a succeeding <CODE>CONTOUR</CODE> command.</P>
+ The figure below was produced by the following command (assuming the same data as above):</P>
+
+<font color="blue"><PRE>
+ CONTOUR\LEGEND\COLORS\LINEWIDTHS [-1;-1;-1;-1;-2] [1;1;1;1;2] XOUT YOUT M 15
+</PRE></font>
 <P>
- <font size="+1" color="green">Legend size</font></P>
+<center>
+<IMG SRC="ContourS05I02.png">
+</center></P>
 <P>
- The size of the legend characters is controlled with the
- <CODE><a href="../Characteristics/legendsize.htm">LEGENDSIZE</a></CODE>
- characteristic. The default value of <CODE>%LEGENDSIZE = 3</CODE>.</p>
+<font size="+1" color="green">Example 3</font></P>
 <P>
- <font size="+1" color="green">Axis relocation</font></P>
+ The figure below was produced by the following command (assuming the same data as above):</P>
+
+<font color="blue"><PRE>
+ CONTOUR\LEG\LINEW [1;1;1;1;2] XOUT YOUT M 15 0 0.5
+</PRE></font>
 <P>
- The legend requires the right end of the <i>x</i>-axis to be set to
- <CODE>75%</CODE> of the window, that is,
- <CODE><a href="../Characteristics/xupperaxis.htm">%XUPPERAXIS</a></CODE> is set to <CODE>75</CODE>.</P>
+<center>
+<IMG SRC="ContourS05I03.png">
+</center></P>
 <P>
- By default, <CODE>%XUPPERAXIS</CODE> is reset to its former value after the
- <CODE>CONTOUR</CODE> command is finished. If the <CODE>\-RESET</CODE>
- qualifier is used, the axis location will not be reset.</P>
+<font size="+1" color="green">Example 4</font></P>
 <P>
- <a href="ContourS04.htm"><img src="../shadow_left.gif">&nbsp;
- <font size="+1" color="olive">Saving contour levels and coordinates</font></a><br />
- <a href="ContourS06.htm"><img src="../shadow_right.gif">&nbsp;
- <font size="+1" color="olive">Polar coordinates</font></a>
-</P>
-</body>
-</html>
+ The figure below was produced by the following commands (assuming the same data as above):</P>
+
+<font color="blue"><PRE>
+ SCALES 0 1 0 1
+ CONTOUR\LINEW [1;1;1;1;2] XOUT YOUT M 15 0 0.5
+</PRE></font>
+<P>
+<center>
+<IMG SRC="ContourS05I04.png">
+</center></P>
+<P>
+<font size="+1" color="green">Example 5</font></P>
+<P>
+ The figure below was produced by the following commands (assuming the same data as above):</P>
+
+<font color="blue"><PRE>
+ SCALES 0 1 0 1
+ SET COLORMAP THERMAL
+ DENSITY XOUT YOUT M
+ CONTOUR\LINEW [1;1;1;1;2] XOUT YOUT M 20 -5 0.5
+</PRE></font>
+<P>
+<center>
+<IMG SRC="ContourS05I05.png">
+</center></P>
+<P>
+<a href="ContourS04.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;<font size="+1" color="olive">Axes</font></a></P>
+</BODY>
+</HTML>

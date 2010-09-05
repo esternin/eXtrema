@@ -2,6 +2,7 @@
 <HEAD>
 <TITLE>Contour level selection</TITLE>
 </HEAD>
+
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
 <P><A NAME="contourlevels"></A>
@@ -11,58 +12,57 @@
 <TR>
 <TD width="15%" valign="top"><B>Syntax</B>:</TD>
 <TD width="85%" valign="top"><CODE>
-CONTOUR { x y } v nctr { min { incr }}<br />
-CONTOUR\SPECIFIC { x y } v lvls</CODE>
+CONTOUR { x y } z nctr { min { incr }}<br>
+CONTOUR\SPECIFIC { x y } z lvls</CODE>
 </TD></TR>
 </TABLE>
 <P>
- By default, the number of contours, <CODE>nctr</CODE>, must be provided.
- If <CODE>nctr &gt; 0</CODE> and the increment is
- not specified, the actual number of contours drawn may not be the same as
+ By default, the number of contours,
+ <CODE><font color="blue">nctr</font></CODE>, must be provided.
+ If the increment is not specified, the actual number of contours drawn may not be the same as
  the number that was asked for, since "nice" contour levels will be
  selected and the range of values may not be neatly divisible by the
  requested number. If the minimum is provided, but not the increment, a
- "nice" value close to <CODE>min</CODE> will be
+ "nice" value close to <CODE><font color="blue">min</font></CODE> will be
  used instead of the actual data minimum. If the minimum and the increment
  are both specified, those exact values will be used for the contour
  levels.</P>
 <P>
- <font size="+1" color="green">Specific contour levels</font></P>
+<font size="+1" color="green">Specific contour levels</font></P>
 <P>
- Specific contour levels can be requested by using the <CODE>\SPECIFIC</CODE>
- qualifier.  In this case, the vector <CODE>lvls</CODE> should contain the desired contour levels.</P>
+ Specific contour levels can be requested by using the
+ <CODE><font color="blue">\SPECIFIC</font></CODE>
+ qualifier.  In this case, the vector
+ <CODE><font color="blue">lvls</font></CODE> should contain the desired
+ contour levels.</P>
 <P>
- <font size="+1" color="green">Exact contour levels</font></P>
+<font size="+1" color="green">Exact contour levels</font></P>
 <P>
- Exact contour levels can be requested in three ways.</P>
+ Exact contour levels can be requested in two ways.</P>
 <UL>
-<LI>Use the <CODE>\SPECIFIC</CODE> qualifier and
+<LI>Use the <CODE><font color="blue">\SPECIFIC</font></CODE> qualifier and
  enter a vector containing the desired levels.</li>
-<LI>Specify the minimum contour level, <CODE>min</CODE>, and the contour level
- increment, <CODE>inc</CODE>.  This produces a set of equally spaced contour levels,<BR />
- <CODE>[min; min+inc; min+2*inc; ...; min+nctr*inc]</CODE>.</li>
-<LI>Specify a negative number of contours,
- <CODE>nctr &lt; 0</CODE>.  This
- produces a set of equally spaced contour levels, as above, using the actual
- data minimum and the actual data maximum.</li>
+<LI>Specify the minimum contour level, <CODE><font color="blue">min</font></CODE>, and the contour level
+ increment, <CODE><font color="blue">inc</font></CODE>.  This produces a
+ set of equally spaced contour levels,<BR>
+ <CODE>[<font color="blue">min</font>; <font color="blue">min</font>+<font color="blue">inc</font>; <font color="blue">min</font>+2*<font color="blue">inc</font>; ...; <font color="blue">min</font>+<font color="blue">nctr</font>*<font color="blue">inc</font>]</CODE>.</li>
 </UL>
 <P>
- <font size="+1" color="green">Zooming in</font></P>
+<font size="+1" color="green">Zooming in</font></P>
 <P>
- When the minimum and maximum contour levels are to be determined, by default,
- the entire range of the data is used. If the
- <CODE>\PARTIAL</CODE> qualifier is used, the minimum and maximum contour levels will be
+ When the user enters the number of contours but does not enter the contour level minimum and increment,
+ by default the entire range of data is used to find the minimum and maximum contour levels. 
+ If the <CODE><font color="blue">\PARTIAL</font></CODE>
+ qualifier is used, the minimum and maximum contour levels will be
  determined by the region contained within the axes. Thus, to zoom in on a
  particular region for more detail, pre-set the axis scales, using the
- <CODE><a href="Scales.htm">SCALES</a></CODE>
- command, before entering the <CODE>CONTOUR</CODE>
- command.  Of course, the <CODE>\PARTIAL</CODE>
+ <a href="Scales.htm"><CODE><font color="blue">SCALES</font></CODE></A>
+ command, before entering the <CODE><font color="blue">CONTOUR</font></CODE>
+ command.  Of course, the <CODE><font color="blue">\PARTIAL</font></CODE>
  qualifier does not apply when you request specific contour levels.</P>
 <P>
- <a href="Contour.htm"><img src="../shadow_left.gif">&nbsp;
- <font size="+1" color="olive">CONTOUR command</font></a><br />
- <a href="ContourS02.htm"><img src="../shadow_right.gif">&nbsp;
- <font size="+1" color="olive">Contour level colour</font></a>
+<a href="Contour.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;<font size="+1" color="olive">CONTOUR command</font></a><br>
+<a href="ContourS02.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;<font size="+1" color="olive">Contour line properties</font></a>
 </P>
 </body>
 </html>

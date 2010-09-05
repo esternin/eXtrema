@@ -1,33 +1,78 @@
 <HTML>
 <HEAD>
-<TITLE>Contour level color</TITLE>
+<TITLE>Contour line properties</TITLE>
 </HEAD>
+
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
-<P><font size="+2" color="green">Contour level color</font></P>
+<P><A NAME="contourcolors"></A>
+<font size="+2" color="green">Contour line properties</font></P>
 
-<TABLE border="1" cols="2" frame="box" rules="cols" width="608">
+<TABLE border="1" cols="2" frame="box" rules="cols">
 <TR>
 <TD width="15%" valign="top"><B>Syntax</B>:</TD>
 <TD width="85%" valign="top"><CODE>
-CONTOUR\COLORS colr { x y } v nctr { min { incr }}<br />
-CONTOUR\INTERP/COLORS colr ntrp { x y } v num { min { incr }}<br />
-CONTOUR\SPECIFIC\COLORS colr { x y } v lvls<br />
-CONTOUR\SPECIFIC\INTERP/COLORS colr ntrp { x y } v lvls</CODE>
+CONTOUR\COLORS colr { x y } z nctr { min { incr }}<br>
+CONTOUR\LINETYPES ltype { x y } z nctr { min { incr }}<br>
+CONTOUR\LINEWIDTHS lwidth { x y } z nctr { min { incr }}<br>
+CONTOUR\LINETYPES\LINEWIDTHS\COLORS colr ltype lwidth { x y } z nctr { min { incr }}<br>
+CONTOUR\SPECIFIC\COLORS colr { x y } v lvls<br>
+CONTOUR\SPECIFIC\LINETYPES ltype { x y } v lvls<br>
+CONTOUR\SPECIFIC\LINEWIDTHS lwidth { x y } v lvls<br>
+CONTOUR\SPECIFIC\LINEWIDTHS\LINETYPES\COLORS colr ltype lwidth ntrp { x y } v lvls</CODE>
 </TD></TR>
 </TABLE>
 <P>
- Contours in color can be obtained using the <code>\COLOR</code> qualifier. A color
- vector, <CODE>colr</CODE>, is expected as the first parameter.  The length of
- <CODE>colr</CODE> should be the same as the
- number of contours requested.  A positive numeric value represents the index of the
- color in the currently loaded colormap. A negative number represents the index of
- the fixed color.</p>
+<font size="+1" color="green">Colors</font></P>
 <P>
- <a href="ContourS01.htm"><img src="../shadow_left.gif">&nbsp;
- <font size="+1" color="olive">Contour level selection</font></a><br />
- <a href="ContourS03.htm"><img src="../shadow_right.gif">&nbsp;
- <font size="+1" color="olive">Labels</font></a>
-</P>
+ By default, contour lines are drawn in black. If the <code><font color="blue">\COLORS</font></code>
+ qualifier is used, a color vector, <CODE><font color="blue">colr</font></CODE>, is expected as the
+ first parameter.  If the length of <CODE><font color="blue">colr</font></CODE> is less than the
+ number of contours requested, the colors are recycled.  For example, entering
+ <tt>[-1;-1;-1;-1;-2]</tt> causes all contours to be drawn in black (fixed color code -1)
+ except for every fifth contour to be drawn in red (fixed color code -2). A positive numeric value
+ represents the index of the color in the currently loaded colormap, while a negative number
+ represents the index of the fixed color.</p>
+<P>
+<font size="+1" color="green">Line type and line width</font></P>
+<P>
+ By default, contour lines are drawn with a width of one, and using line type one (a normal solid line).
+ The user can specify the type and width of each contour line using the 
+ <code><font color="blue">\LINETYPES</font></code> and <code><font color="blue">\LINEWIDTHS</font></code>
+ qualifiers.</p>
+<p>
+ If the <code><font color="blue">\LINETYPES</font></code>
+ qualifier is used, a linetype vector, <CODE><font color="blue">ltype</font></CODE>, is expected as the
+ first parameter (or the second parameter if the <code><font color="blue">\COLORS</font></code> is used
+ as well).  If the length of <CODE><font color="blue">ltype</font></CODE> is less than the
+ number of contours requested, the linetypes are recycled.  For example, entering
+ <tt>[1;1;1;1;2]</tt> causes all contours to be drawn using linetype 1 except for every fifth contour
+ to be drawn using linetype 2.</p>
+<p>
+ If the <code><font color="blue">\LINEWIDTHS</font></code>
+ qualifier is used, a linewidth vector, <CODE><font color="blue">lwidth</font></CODE>, is expected as the
+ first parameter (or the second parameter if the <code><font color="blue">\COLORS</font></code> is used
+ as well, or the third parameter if the <code><font color="blue">\LINETYPES</font></code> is also used).
+ If the length of <CODE><font color="blue">lwidth</font></CODE> is less than the
+ number of contours requested, the linewidths are recycled.  For example, entering
+ <tt>[1;1;1;1;2]</tt> causes all contours to be drawn using linewidth 1 except for every fifth contour
+ to be drawn using linewidth 2.</p>
+<P>
+<font size="+1" color="green">Contour labels</font></P>
+<P>
+ By default, contours are labeled with the actual contour level. See the discussion on the
+ <a href="ContourS03.htm"><CODE><font color="blue">\LEGEND</font></CODE></a>
+ qualifier for an alternate contour labeling facility.</P>
+<P>
+ The size of the contour labels is <CODE><font color="blue">
+ <a href="../Characteristics/contourlabelheight.htm">CONTOURLABELHEIGHT</a></font></CODE>
+ or <CODE><font color="blue">%CONTOURLABELHEIGHT</a></font></CODE>.
+ If labels are not desired on the contours, use the <nobr><CODE><font color="blue">
+ <a href="Set.htm">SET CONTOURLABELHEIGHT</a> 0</font></CODE></nobr>
+ command to set the label height to zero before entering the <CODE><font color="blue">CONTOUR</font></CODE>
+ command.</P>
+<p>
+<a href="ContourS01.htm"><img align="middle" border="0" src="../shadow_left.gif">&nbsp;<font size="+1" color="olive">Contour level selection</font></a><br>
+<a href="ContourS03.htm"><img align="middle" border="0" src="../shadow_right.gif">&nbsp;<font size="+1" color="olive">Legend</font></a></P>
 </body>
 </html>
