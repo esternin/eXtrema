@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define GRA_THIESSENTRIANGULATION
 
 #include <vector>
+#include <cstddef>
 
 class GRA_thiessenTriangulation
 {
