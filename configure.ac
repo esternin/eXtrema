@@ -1,3 +1,4 @@
+# Copyright (C) 2020,...,2021 Edward Sternin <edward.sternin@brocku.ca>
 # Copyright (C) 2005,...,2010 Joseph L. Chuma <joe.chuma@gmail.com>
 #  
 # This file is free software; as a special exception the author gives
@@ -11,7 +12,8 @@
 AC_PREREQ(2.59)
 
 # touch src/wxForms/AnalysisWindow.cpp to get the latest version number
-AC_INIT([extrema],[4.4.5],[Joseph L. Chuma joe.chuma@gmail.com])
+#AC_INIT([extrema],[4.4.5],[Joseph L. Chuma joe.chuma@gmail.com])
+AC_INIT([extrema],[4.5],[Edward Sternin edward.sternin@brocku.ca])
 
 # automake < 1.9 will not be allowed
 # use gnu strictness

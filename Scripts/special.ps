@@ -1,0 +1,2532 @@
+%!PS-Adobe-2.0
+%%Creator: wxWidgets PostScript renderer
+%%CreationDate: Fri Jan 10 17:14:45 2020
+%%Orientation: Portrait
+%%DocumentPaperSizes: A4
+%%EndComments
+
+%%BeginProlog
+/conicto {
+    /to_y exch def
+    /to_x exch def
+    /conic_cntrl_y exch def
+    /conic_cntrl_x exch def
+    currentpoint
+    /p0_y exch def
+    /p0_x exch def
+    /p1_x p0_x conic_cntrl_x p0_x sub 2 3 div mul add def
+    /p1_y p0_y conic_cntrl_y p0_y sub 2 3 div mul add def
+    /p2_x p1_x to_x p0_x sub 1 3 div mul add def
+    /p2_y p1_y to_y p0_y sub 1 3 div mul add def
+    p1_x p1_y p2_x p2_y to_x to_y curveto
+}  bind def
+/ellipsedict 8 dict def
+ellipsedict /mtrx matrix put
+/ellipse {
+    ellipsedict begin
+    /endangle exch def
+    /startangle exch def
+    /yrad exch def
+    /xrad exch def
+    /y exch def
+    /x exch def
+    /savematrix mtrx currentmatrix def
+    x y translate
+    xrad yrad scale
+    0 0 1 startangle endangle arc
+    savematrix setmatrix
+    end
+    } def
+/ellipticarcdict 8 dict def
+ellipticarcdict /mtrx matrix put
+/ellipticarc
+{ ellipticarcdict begin
+  /do_fill exch def
+  /endangle exch def
+  /startangle exch def
+  /yrad exch def
+  /xrad exch def 
+  /y exch def
+  /x exch def
+  /savematrix mtrx currentmatrix def
+  x y translate
+  xrad yrad scale
+  do_fill { 0 0 moveto } if
+  0 0 1 startangle endangle arc
+  savematrix setmatrix
+  do_fill { fill }{ stroke } ifelse
+  end
+} def
+% define 'colorimage' if it isn't defined
+%   ('colortogray' and 'mergeprocs' come from xwd2ps
+%     via xgrab)
+/colorimage where   % do we know about 'colorimage'?
+  { pop }           % yes: pop off the 'dict' returned
+  {                 % no:  define one
+    /colortogray {  % define an RGB->I function
+      /rgbdata exch store    % call input 'rgbdata'
+      rgbdata length 3 idiv
+      /npixls exch store
+      /rgbindx 0 store
+      0 1 npixls 1 sub {
+        grays exch
+        rgbdata rgbindx       get 20 mul    % Red
+        rgbdata rgbindx 1 add get 32 mul    % Green
+        rgbdata rgbindx 2 add get 12 mul    % Blue
+        add add 64 idiv      % I = .5G + .31R + .18B
+        put
+        /rgbindx rgbindx 3 add store
+      } for
+      grays 0 npixls getinterval
+    } bind def
+
+    % Utility procedure for colorimage operator.
+    % This procedure takes two procedures off the
+    % stack and merges them into a single procedure.
+
+    /mergeprocs { % def
+      dup length
+      3 -1 roll
+      dup
+      length
+      dup
+      5 1 roll
+      3 -1 roll
+      add
+      array cvx
+      dup
+      3 -1 roll
+      0 exch
+      putinterval
+      dup
+      4 2 roll
+      putinterval
+    } bind def
+
+    /colorimage { % def
+      pop pop     % remove 'false 3' operands
+      {colortogray} mergeprocs
+      image
+    } bind def
+  } ifelse          % end of 'false' case
+
+/reencodeISO {
+dup dup findfont dup length dict begin
+{ 1 index /FID ne { def }{ pop pop } ifelse } forall
+/Encoding ISOLatin1Encoding def
+currentdict end definefont
+} def
+/ISOLatin1Encoding [
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/space/exclam/quotedbl/numbersign/dollar/percent/ampersand/quoteright
+/parenleft/parenright/asterisk/plus/comma/minus/period/slash
+/zero/one/two/three/four/five/six/seven/eight/nine/colon/semicolon
+/less/equal/greater/question/at/A/B/C/D/E/F/G/H/I/J/K/L/M/N
+/O/P/Q/R/S/T/U/V/W/X/Y/Z/bracketleft/backslash/bracketright
+/asciicircum/underscore/quoteleft/a/b/c/d/e/f/g/h/i/j/k/l/m
+/n/o/p/q/r/s/t/u/v/w/x/y/z/braceleft/bar/braceright/asciitilde
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/dotlessi/grave/acute/circumflex/tilde/macron/breve
+/dotaccent/dieresis/.notdef/ring/cedilla/.notdef/hungarumlaut
+/ogonek/caron/space/exclamdown/cent/sterling/currency/yen/brokenbar
+/section/dieresis/copyright/ordfeminine/guillemotleft/logicalnot
+/hyphen/registered/macron/degree/plusminus/twosuperior/threesuperior
+/acute/mu/paragraph/periodcentered/cedilla/onesuperior/ordmasculine
+/guillemotright/onequarter/onehalf/threequarters/questiondown
+/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
+/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex
+/Idieresis/Eth/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis
+/multiply/Oslash/Ugrave/Uacute/Ucircumflex/Udieresis/Yacute
+/Thorn/germandbls/agrave/aacute/acircumflex/atilde/adieresis
+/aring/ae/ccedilla/egrave/eacute/ecircumflex/edieresis/igrave
+/iacute/icircumflex/idieresis/eth/ntilde/ograve/oacute/ocircumflex
+/otilde/odieresis/divide/oslash/ugrave/uacute/ucircumflex/udieresis
+/yacute/thorn/ydieresis
+] def
+
+/DrawSplineSection {
+    /y3 exch def
+    /x3 exch def
+    /y2 exch def
+    /x2 exch def
+    /y1 exch def
+    /x1 exch def
+    /xa x1 x2 x1 sub 0.666667 mul add def
+    /ya y1 y2 y1 sub 0.666667 mul add def
+    /xb x3 x2 x3 sub 0.666667 mul add def
+    /yb y3 y2 y3 sub 0.666667 mul add def
+    x1 y1 lineto
+    xa ya xb yb x3 y3 curveto
+    } def
+%%EndProlog
+1.000000 setlinewidth
+%%Page: 1
+1.00000000 1.00000000 scale
+0 0 translate
+47 536 moveto
+432 536 lineto
+stroke
+0.750000 setlinewidth
+0.750000 setlinewidth
+0.750000 setlinewidth
+0.750000 setlinewidth
+newpath
+432 536 moveto
+432 831 lineto
+stroke
+0.750000 setlinewidth
+0.750000 setlinewidth
+newpath
+42 823 moveto
+432 823 lineto
+stroke
+0.750000 setlinewidth
+0.750000 setlinewidth
+newpath
+130 536 moveto
+130 838 lineto
+stroke
+0.750000 setlinewidth
+0.750000 setlinewidth
+newpath
+230 536 moveto
+230 838 lineto
+stroke
+0.750000 setlinewidth
+0.750000 setlinewidth
+newpath
+335 536 moveto
+335 838 lineto
+stroke
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 830 moveto
+(Name) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 830 moveto
+(U) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 830 moveto
+(L) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 815 moveto
+(Alpha) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 815 moveto
+(A) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 815 moveto
+(a) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 806 moveto
+(Beta) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 806 moveto
+(B) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 806 moveto
+(b) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 797 moveto
+(Gamma) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 797 moveto
+(G) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 797 moveto
+(g) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 788 moveto
+(Delta) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 788 moveto
+(D) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 788 moveto
+(d) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 779 moveto
+(Epsilon) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 779 moveto
+(E) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 779 moveto
+(\305\222) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 771 moveto
+(Zeta) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 771 moveto
+(Z) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 771 moveto
+(z) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 762 moveto
+(Eta) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 762 moveto
+(H) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 762 moveto
+(h) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 753 moveto
+(Theta) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 753 moveto
+(Q) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 753 moveto
+(q) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 744 moveto
+(Iota) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 744 moveto
+(I) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 744 moveto
+(i) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 736 moveto
+(Kappa) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 736 moveto
+(K) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 736 moveto
+(k) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 727 moveto
+(Lambda) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 727 moveto
+(L) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 727 moveto
+(l) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 718 moveto
+(Mu) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 718 moveto
+(M) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 718 moveto
+(m) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 709 moveto
+(Nu) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 709 moveto
+(N) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 709 moveto
+(n) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 700 moveto
+(Xi) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 700 moveto
+(X) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 700 moveto
+(x) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 692 moveto
+(Omicron) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 692 moveto
+(O) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 692 moveto
+(o) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 683 moveto
+(Pi) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 683 moveto
+(P) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 683 moveto
+(p) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 674 moveto
+(Rho) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 674 moveto
+(R) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 674 moveto
+(r) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 665 moveto
+(Sigma) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 665 moveto
+(S) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 665 moveto
+(s) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 656 moveto
+(Tau) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 656 moveto
+(T) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 656 moveto
+(t) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 647 moveto
+(Upsilon) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 647 moveto
+(U) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 647 moveto
+(u) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 638 moveto
+(Phi) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 638 moveto
+(F) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 638 moveto
+(f) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 629 moveto
+(Chi) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 629 moveto
+(C) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 629 moveto
+(c) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 621 moveto
+(Psi) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 621 moveto
+(Y) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 621 moveto
+(y) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 612 moveto
+(Omega) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 612 moveto
+(W) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 612 moveto
+(w) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 603 moveto
+(Vartheta) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 603 moveto
+(J) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 603 moveto
+(J) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 594 moveto
+(Varphi) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 594 moveto
+(j) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 594 moveto
+(j) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 585 moveto
+(Varepsilon) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 585 moveto
+(e) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 585 moveto
+(e) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 577 moveto
+(Varpi) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 577 moveto
+(v) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 577 moveto
+(v) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 568 moveto
+(Aleph) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 568 moveto
+(\302\277) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 568 moveto
+(\302\277) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 559 moveto
+(Nabla) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 559 moveto
+(\342\200\224) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 559 moveto
+(\342\200\224) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+46 550 moveto
+(Partial) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+104 550 moveto
+(\342\210\202) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+116 550 moveto
+(\342\210\202) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 830 moveto
+(Name) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 830 moveto
+(U) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 830 moveto
+(L) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 815 moveto
+(Leftarrow) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 815 moveto
+(\342\200\271) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 815 moveto
+(\302\250) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 806 moveto
+(Rightarrow) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 806 moveto
+(\357\254\201) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 806 moveto
+(\303\206) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 797 moveto
+(Uparrow) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 797 moveto
+(\342\200\272) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 797 moveto
+(\342\211\240) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 788 moveto
+(Downarrow) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 788 moveto
+(\357\254\202) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 788 moveto
+(\303\230) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 779 moveto
+(Leftrightarrow) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 779 moveto
+(\342\202\254) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 779 moveto
+(\302\264) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 771 moveto
+(Hookleftarrow) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 771 moveto
+(\303\270) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 771 moveto
+(\303\270) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 762 moveto
+(Perp) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 762 moveto
+(^) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 762 moveto
+(^) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 753 moveto
+(Mid) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 753 moveto
+(\313\231) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 753 moveto
+(\313\231) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 744 moveto
+(Sum) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 744 moveto
+(\303\202) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 744 moveto
+(\303\202) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 736 moveto
+(Prod) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 736 moveto
+(\342\200\231) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 736 moveto
+(\342\200\231) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 727 moveto
+(Int) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 727 moveto
+(\303\232) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 727 moveto
+(\303\232) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 718 moveto
+(Surd) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 718 moveto
+(\303\267) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 718 moveto
+(\303\267) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 709 moveto
+(Plus) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 709 moveto
+(+) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 709 moveto
+(+) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 700 moveto
+(Minus) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 700 moveto
+(-) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 700 moveto
+(-) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 692 moveto
+(Pm) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 692 moveto
+(\302\261) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 692 moveto
+(\302\261) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 683 moveto
+(Times) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 683 moveto
+(\302\245) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 683 moveto
+(\302\245) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 674 moveto
+(Div) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 674 moveto
+(\342\210\217) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 674 moveto
+(\342\210\217) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 665 moveto
+(Oplus) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 665 moveto
+(\342\211\210) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 665 moveto
+(\342\211\210) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 656 moveto
+(Otimes) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 656 moveto
+(\306\222) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 656 moveto
+(\306\222) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 647 moveto
+(Cap) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 647 moveto
+(\302\253) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 647 moveto
+(\302\253) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 638 moveto
+(Cup) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 638 moveto
+(\302\273) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 638 moveto
+(\302\273) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 629 moveto
+(Subset) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 629 moveto
+(\303\203) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 629 moveto
+(\303\203) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 621 moveto
+(Supset) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 621 moveto
+(\342\200\246) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 621 moveto
+(\342\200\246) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 612 moveto
+(Subseteq) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 612 moveto
+(\303\225) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 612 moveto
+(\303\225) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 603 moveto
+(Supseteq) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 603 moveto
+(\302\240) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 603 moveto
+(\302\240) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+142 594 moveto
+(Emptyset) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+200 594 moveto
+(\342\210\206) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+212 594 moveto
+(\342\210\206) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 830 moveto
+(Name) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 830 moveto
+(U) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 830 moveto
+(L) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 815 moveto
+(Equiv) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 815 moveto
+(\342\210\253) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 815 moveto
+(\342\210\253) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 806 moveto
+(Approx) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 806 moveto
+(\302\252) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 806 moveto
+(\302\252) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 797 moveto
+(Sim) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 797 moveto
+(~) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 797 moveto
+(~) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 788 moveto
+(Neq) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 788 moveto
+(\317\200) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 788 moveto
+(\317\200) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 779 moveto
+(Lt) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 779 moveto
+(<) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 779 moveto
+(<) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 771 moveto
+(Gt) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 771 moveto
+(>) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 771 moveto
+(>) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 762 moveto
+(Leq) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 762 moveto
+(\302\243) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 762 moveto
+(\302\243) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 753 moveto
+(Geq) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 753 moveto
+(\342\211\245) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 753 moveto
+(\342\211\245) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 744 moveto
+(Neg) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 744 moveto
+(\303\277) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 744 moveto
+(\303\277) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 736 moveto
+(Cdot) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 736 moveto
+(.) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 736 moveto
+(.) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 727 moveto
+(Ldots) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 727 moveto
+(\302\272) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 727 moveto
+(\302\272) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 718 moveto
+(Therefore) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 718 moveto
+(\\) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 718 moveto
+(\\) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 709 moveto
+(In) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 709 moveto
+(\305\222) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 709 moveto
+(\305\222) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 700 moveto
+(Ni) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 700 moveto
+(\305\223) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 700 moveto
+(\305\223) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 692 moveto
+(Exists) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 692 moveto
+($) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 692 moveto
+($) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 683 moveto
+(Forall) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 683 moveto
+(") show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 683 moveto
+(") show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 674 moveto
+(Propto) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 674 moveto
+(\302\265) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 674 moveto
+(\302\265) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 665 moveto
+(Infty) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 665 moveto
+(\342\200\242) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 665 moveto
+(\342\200\242) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 656 moveto
+(Degree) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 656 moveto
+(\342\210\236) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 656 moveto
+(\342\210\236) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 647 moveto
+(Re) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 647 moveto
+(\302\254) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 647 moveto
+(\302\254) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 638 moveto
+(Im) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 638 moveto
+(\302\241) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 638 moveto
+(\302\241) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 629 moveto
+(Wp) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 629 moveto
+(\342\210\232) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 629 moveto
+(\342\210\232) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 621 moveto
+(Langle) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 621 moveto
+(\302\267) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 621 moveto
+(\302\267) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 612 moveto
+(Rangle) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 612 moveto
+(\303\222) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 612 moveto
+(\303\222) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 603 moveto
+(Angle) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 603 moveto
+(\342\200\223) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 603 moveto
+(\342\200\223) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 594 moveto
+(Vee) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 594 moveto
+(\342\201\204) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 594 moveto
+(\342\201\204) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+245 585 moveto
+(Wedge) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+304 585 moveto
+(\342\201\204) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+316 585 moveto
+(\342\201\204) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 830 moveto
+(Name) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 830 moveto
+(U) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 830 moveto
+(L) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 815 moveto
+(Bullet) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 815 moveto
+(\342\210\221) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 815 moveto
+(\342\210\221) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 806 moveto
+(Diamond) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 806 moveto
+(\342\200\241) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 806 moveto
+(\342\200\241) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 797 moveto
+(Clubsuit) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 797 moveto
+(\303\237) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 797 moveto
+(\303\237) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 788 moveto
+(Diamondsuit) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 788 moveto
+(\302\256) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 788 moveto
+(\302\256) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 779 moveto
+(Heartsuit) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 779 moveto
+(\302\251) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 779 moveto
+(\302\251) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 771 moveto
+(Spadesuit) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 771 moveto
+(\342\204\242) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 771 moveto
+(\342\204\242) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 762 moveto
+(Tm) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 762 moveto
+(\342\200\260) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 762 moveto
+(\342\200\260) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 753 moveto
+(Copyright) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 753 moveto
+(\342\200\235) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 753 moveto
+(\342\200\235) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+350 744 moveto
+(Registered) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+407 744 moveto
+(\342\200\234) show
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+/Helvetica reencodeISO def
+/Helvetica findfont
+9.028436 scalefont setfont
+420 744 moveto
+(\342\200\234) show

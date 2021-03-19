@@ -1,9 +1,0 @@
-To make use of the symbol and wingding fonts, if they are not already
-available on your system, first make an extrema/ subdirectory of
-/usr/share/fonts and copy the symbol and wingding files to that location.
-For example:
-
-$sudo mkdir /usr/share/fonts/extrema
-$sudo cp extrema-x.x.x/fonts/symbol.ttf extrema-x.x.x/fonts/wingding.ttf
- /usr/share/fonts/extrema/
-

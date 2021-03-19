@@ -57,6 +57,8 @@ Then, if you have the MUD and MINUIT optional packages:
 $ ./configure --with-wxGTK=<path_to_wx-config> --with-MUD=<path_to_mud>
 --with-MINUIT=<path_to_minuit>
 
+Use the absolute path for mud. Cannot find minuit/minuit2. ES 2021
+
 If you do not have the optional packages:
 
 $ ./configure --with-wxGTK=<path_to_wx-config> 

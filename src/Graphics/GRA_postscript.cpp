@@ -2295,6 +2295,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     }
 
     //std::cout << "fontName = |" << fontName.mb_str(wxConvUTF8) << "|\n";
+    //std::cout << "psFontName = |" << psFontName.mb_str(wxConvUTF8) << "|\n";
 
     ExGlobals::RemoveBlanks( fontName );
     ExGlobals::ToCapitalize( fontName );
@@ -2306,22 +2307,161 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
              << "] /" << psFontName.mb_str(wxConvUTF8) << " " << height
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
-    for( size_t i=0; i<tEnd; ++i )
-    {
-      int j = static_cast<int>(text[i]);
-      if( j < 0 )j += 256;
+    //std::cout << " |" << psFontName.mb_str(wxConvUTF8) << "|" << "SymbolMT" << "|\n";
+    if( psFontName == wxT("SymbolMT") ) {
+      //  for SymbolMT NEED TO ADD LOOKUP UTF8 -> PostScript Symbol font (0..255)
+      for( size_t i=0; i<tEnd; ++i ) {
+        int j = static_cast<int>(text[i]);
+        //std::cout << "j = " << j << "\n";
+        switch(j) {
+          case 0x0391:	j = 65; break; // ALPHA
+          case 0x0392:	j = 66; break;
+          case 0x0393:	j = 71; break;
+          case 0x0394:	j = 68; break;
+          case 0x0395:	j = 69; break;
+          case 0x0396:	j = 90; break;
+          case 0x0397:	j = 72; break;
+          case 0x0398:	j = 81; break;
+          case 0x0399:	j = 73; break;
+          case 0x039A:	j = 75; break;
 
-      //std::cout << "j = " << j << "\n";
+          case 0x039B:  j = 76; break; // LAMBDA
+          case 0x039C:  j = 77; break;
+          case 0x039D:  j = 78; break;
+          case 0x039E:  j = 88; break;
+          case 0x039F:  j = 79; break;
+          case 0x03A0:  j = 80; break;
+          case 0x03A1:  j = 82; break;
+          case 0x03A3:  j = 83; break;
+          case 0x03A4:  j = 84; break;
+          case 0x03A5:  j = 161; break;
 
-      outFile_ << "\\" << std::setfill('0') << std::setw(3) << std::oct << j << std::dec << std::setw(0);
-    }
+          case 0x03A6:  j = 70; break; // PHI
+          case 0x03A7:  j = 67; break;
+          case 0x03A8:  j = 89; break;
+          case 0x03A9:  j = 87; break;
+          case 0x03D1:  j = 74; break; // VARTHETA
+          case 0x03D5:  j = 106; break; // VARPHI
+          case 0x03F5:  j = 206; break; // VAREPSILON, in PS fake it with IN (= PS "/element")
+          case 0x2135:  j = 192; break; // ALEPH
+          case 0x2207:  j = 209; break; // NABLA
+          case 0x2202:  j = 182; break; // PARTIAL
+
+          case 0x2190:  j = 220; break;
+          case 0x2191:  j = 221; break;
+          case 0x2193:  j = 223; break;
+          case 0x2192:  j = 222; break;
+          case 0x27C2:  j = 94; break;
+          case 0x2223:  j = 189; break;
+          case 0x2022:  j = 183; break;
+          case 0x00E5:  j = 229; break; // SUM
+          case 0x220F:  j = 213; break;
+          case 0x222B:  j = 242; break;
+
+          case 0x221A:  j = 214; break;
+          case 0x002B:  j =  43; break;
+          case 0x2212:  j =  45; break;
+          case 0x00B1:  j = 177; break;
+          case 0x00B4:  j = 180; break;	// TIMES
+          case 0x00B8:  j = 184; break; //DIV
+          case 0x2295:  j = 197; break;
+          case 0x2297:  j = 196; break;
+          case 0x2229:  j = 199; break;
+          case 0x2282:  j = 204; break;
+
+          case 0x222A:  j = 200; break;
+          case 0x2283:  j = 201; break;
+          case 0x02DA:  j = 176; break;
+          case 0x27E8:  j = 225; break;
+          case 0x27E9:  j = 241; break;
+          case 0x00D8:  j = 216; break; // NEG
+          case 0x2234:  j =  92; break;
+          case 0x2220:  j = 208; break;
+          case 0x2228:  j = 218; break;
+          case 0x2227:  j = 217; break;
+
+          case 0x00D7:  j = 215; break; // CDOT
+          case 0x221E:  j = 165; break;
+          case 0x2208:  j = 206; break;
+          case 0x220B:  j = 207; break;
+          case 0x221D:  j = 181; break;
+          case 0x2203:  j =  36; break;
+          case 0x2200:  j =  34; break;
+          case 0x2260:  j = 185; break;
+          case 0x00BA:  j = 186; break; // EQUIV
+          case 0x2248:  j = 187; break;
+
+          case 0x007E:  j = 126; break;
+          case 0x003C:  j =  60; break;
+          case 0x003E:  j =  62; break;
+          case 0x2264:  j = 163; break;
+          case 0x2265:  j = 179; break;
+          case 0x03D6:  j = 118; break;
+          case 0x2663:  j = 167; break;
+          case 0x2666:  j = 168; break;
+          case 0x2665:  j = 169; break;
+          case 0x2660:  j = 170; break;
+
+          case 0x2286:  j = 205; break;
+          case 0x2287:  j = 202; break;
+          case 0x2026:  j = 188; break;
+          case 0x21D4:  j = 219; break;
+          case 0x2205:  j = 198; break;
+          case 0x2118:  j = 195; break;
+          case 0x211C:  j = 194; break;
+          case 0x2111:  j = 193; break;
+          case 0x21B2:  j = 191; break;
+          case 0x00E3:  j = 227; break; // COPYRIGHT
+
+          case 0x00E2:  j = 226; break; // REGISTERED
+          case 0x2122:  j = 228; break;
+          case 0x25CA:  j = 224; break;
+
+          case 0x03B1:	j =  97; break; // alpha
+          case 0x03B2:	j =  98; break;
+          case 0x03B3:	j = 103; break;
+          case 0x03B4:	j = 100; break;
+          case 0x03B5:	j = 101; break; // epsilon
+          case 0x03B6:	j = 122; break;
+          case 0x03B7:	j = 104; break;
+          case 0x03B8:	j = 113; break;
+          case 0x03B9:	j = 105; break;
+          case 0x03BA:	j = 107; break;
+
+          case 0x03BB:  j = 108; break;
+          case 0x03BC:  j = 109; break;
+          case 0x03BD:  j = 110; break;
+          case 0x03BE:  j = 120; break;
+          case 0x03BF:  j = 111; break;
+          case 0x03C0:  j = 112; break;
+          case 0x03C1:  j = 114; break;
+          case 0x03C3:  j = 115; break;
+          case 0x03C4:  j = 116; break;
+          case 0x03C5:  j = 117; break;
+
+          case 0x03C6:  j = 102; break;
+          case 0x03C7:  j =  99; break;
+          case 0x03C8:  j = 121; break;
+          case 0x03C9:  j = 119; break;
+          }
+        outFile_ << "\\" << std::setfill('0') << std::setw(3) << std::oct << j << std::dec << std::setw(0);
+        }
+      }
+    else {
+      for( size_t i=0; i<tEnd; ++i ) {
+        int j = static_cast<int>(text[i]);
+        if( j < 0 ) j += 256;
+        //std::cout << "j = " << j << "\n";
+        outFile_ << "\\" << std::setfill('0') << std::setw(3) << std::oct << j << std::dec << std::setw(0);
+        }
+      }
     outFile_ << ")] put\n";
   }
   outFile_ << "SetupText\n";
   double xLoc = dt->GetX();
   double yLoc = dt->GetY();
 
-  // apply fudge factor
+ // apply fudge factor
   double xminW, yminW, xmaxW, ymaxW;
   ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
   //yLoc += 0.01*(ymaxW-yminW);

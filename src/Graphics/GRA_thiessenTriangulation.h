@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define GRA_THIESSENTRIANGULATION
 
 #include <vector>
-#include <cstddef>
 
 class GRA_thiessenTriangulation
 {
@@ -29,36 +28,36 @@ public:
   GRA_thiessenTriangulation( GRA_thiessenTriangulation const & );
   GRA_thiessenTriangulation & operator=( GRA_thiessenTriangulation const & );
   void CreateMesh();
-  void Gradients( double, size_t & );
-  void Interpolate( size_t, size_t, std::vector<double> &, std::vector<double> &, std::vector<double> & );
+  void Gradients( double, std::size_t & );
+  void Interpolate( std::size_t, std::size_t, std::vector<double> &, std::vector<double> &, std::vector<double> & );
   double Volume();
 
 private:
   void QuickSort( std::vector<int> & );
   void Permute( std::vector<int> &, std::vector<double> & );
-  void AddNode( size_t );
-  void AddBoundaryNode( size_t, size_t, size_t );
-  void AddInteriorNode( size_t, size_t, size_t, size_t );
-  size_t Index( size_t, size_t );
-  void Shift( size_t, size_t, int, std::vector<size_t> & );
-  void Swap( size_t, size_t, size_t, size_t );
-  bool SwapTest( size_t, size_t, size_t, size_t );
-  void Find( size_t, double, double, size_t &, size_t &, size_t & );
-  void InterpolateSub( double, double, double &, size_t & );
+  void AddNode( std::size_t );
+  void AddBoundaryNode( std::size_t, std::size_t, std::size_t );
+  void AddInteriorNode( std::size_t, std::size_t, std::size_t, std::size_t );
+  std::size_t Index( std::size_t, std::size_t );
+  void Shift( std::size_t, std::size_t, int, std::vector<std::size_t> & );
+  void Swap( std::size_t, std::size_t, std::size_t, std::size_t );
+  bool SwapTest( std::size_t, std::size_t, std::size_t, std::size_t );
+  void Find( std::size_t, double, double, std::size_t &, std::size_t &, std::size_t & );
+  void InterpolateSub( double, double, double &, std::size_t & );
   double TriangleVolume( double, double, double, double, double, double, double, double, double );
   double tval( double, double, double, double, double, double, double, double,
                double, double, double, double, double, double, double, double, double );
   //
   std::vector<double> theX, theY, theZ;
-  size_t theNumberOfNodes;
+  std::size_t theNumberOfNodes;
   //
-  std::vector<size_t> iadj; // length = 6*theNumberOfNodes - 9
+  std::vector<std::size_t> iadj; // length = 6*theNumberOfNodes - 9
   // Adjacency lists of neighbors in counterclockwise order.
   // The list for node i+1 follows that for node i where theX and theY define the order.
   // The value 0 denotes the boundary (or a pseudo-node at infinity) and is always the
   // last neighbor of a boundary node.
   //
-  std::vector<size_t> iend; // length = theNumberOfNodes
+  std::vector<std::size_t> iend; // length = theNumberOfNodes
   // Pointers to the ends of adjacency lists (sets of neighbors) in iadj.
   // The neighbors of node 1 begin in iadj[0]. For k > 1, the neighbors of node k begin
   // in iadj[iend[k-2]] and k has iend[k-1] - iend[k-2] neighbors including

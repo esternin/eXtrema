@@ -12,6 +12,7 @@ set
  graphbox 1
  xnumberson 0
  ynumberson 0
+ font "FreeSans"
 
 scales\-messages -1 1 -1 1
 graph [-1;1] [0.9;0.9]

@@ -1,0 +1,19 @@
+src/Commands/CMD_grid.cpp 
+src/Commands/CMD_set.cpp 
+src/Graphics/GRA_axis.cpp
+src/Graphics/GRA_setOfCharacteristics.cpp 
+src/Graphics/GRA_stringCharacteristic.cpp 
+src/Variables/Variable.cpp 
+src/wxForms/AnalysisMessagePanel.cpp 
+src/wxForms/AnalysisSpeedButtonPanel.cpp
+src/wxForms/ChooseFilePanel.cpp
+src/wxForms/VisualizationSpeedButtonPanel.cpp
+src/wxForms/VisualizationWindow.cpp 
+
+changes for GTK+ 3.0.4
+
+https://wiki.wxwidgets.org/Converting_everything_to_and_from_wxString#std::string_to_wxString
+
+https://docs.wxwidgets.org/3.0/classwx_file_dialog.html (wxOPEN -> wxFD_OPEN, etc)
+
+https://docs.wxwidgets.org/3.0/classwx_combo_box.html (IsEmpty -> IsListEmpty, IsTextEmpty)
