@@ -147,11 +147,11 @@ void ChooseFilePanel::OnRemoveFilename( wxCommandEvent &WXUNUSED(event) )
 
 void ChooseFilePanel::RemoveFilename()
 {
-  if( filenameComboBox_->IsEmpty() )return;
+  if( filenameComboBox_->IsListEmpty() )return;
   int i = filenameComboBox_->GetSelection();
   filenameComboBox_->Delete( i );
   i > 0 ? filenameComboBox_->SetSelection(i-1) : filenameComboBox_->SetSelection(0);
-  if( filenameComboBox_->IsEmpty() )filenameComboBox_->SetValue( wxT("") );
+  if( filenameComboBox_->IsTextEmpty() )filenameComboBox_->SetValue( wxT("") );
 }
 
 wxString ChooseFilePanel::GetSelection()
