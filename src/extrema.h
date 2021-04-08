@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define wxUSE_UNICODE 1
 
 #include "wx/wx.h"
-#include "wx/config.h"
 
 class AnalysisWindow;
 
@@ -32,14 +31,6 @@ public:
   // initialization (doing it here and not in the ctor allows to have an error
   // return: if OnInit() returns false, the application terminates)
   bool OnInit();
-
-  // OnExit is called after destroying all application windows and controls,
-  // but before wxWidgets cleanup.  It is not called at all if OnInit fails.
-  int OnExit()
-  {
-    wxConfigBase *config = wxConfigBase::Get();
-    if( config )delete config;
-  }
 
   void WriteOutput( wxString const & );
 
