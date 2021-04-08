@@ -128,7 +128,7 @@ wxString ExXML::GetPropertyValue( wxString const &name )
 {
   if( !currentNode_ )throw std::runtime_error( "current node is NULL" );
   wxString value;
-  if( !currentNode_->GetPropVal(name,&value) )
+  if( !currentNode_->GetAttribute(name,&value) )
     throw std::runtime_error( std::string( (wxString()<<wxT("node ")<<currentNode_->GetName()
                                            <<wxT(" should have a property named ")<<name).mb_str(wxConvUTF8) ) );
   return value;
