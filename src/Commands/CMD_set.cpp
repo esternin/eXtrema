@@ -3290,7 +3290,7 @@ NEXTLINE:
   {
     wxString tmp( wxT("unknown keyword: ") );
     tmp += keyword;
-    throw ECommandError( command+tmp.c_str() );
+    throw ECommandError( command+tmp );
   }
   if( multipleEntries )goto TOP;
 }
