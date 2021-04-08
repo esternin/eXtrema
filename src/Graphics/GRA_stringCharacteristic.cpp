@@ -48,7 +48,7 @@ wxString GRA_stringCharacteristic::Encode( wxString const &s )
   std::size_t length = s.size();
   for( std::size_t i=0; i<length; ++i )
   {
-    switch ( s[i] )
+    switch ( s[i].GetValue() )
     {
       case wxT('<'):
         result += wxT("&lt;");

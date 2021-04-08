@@ -1162,7 +1162,7 @@ wxString GRA_axis::DoubleToString( double r, int power, int nPos, int nDec ) con
   //
   std::size_t i = s.find_first_not_of( digit[0], 0 );
   if( i == s.npos )i = nPos-1;
-  s.replace( 0, i, i, blank );
+  s.replace( 0, i, i, wxUniChar(blank) );
   //
   if( r >= 0.0 )
   {
