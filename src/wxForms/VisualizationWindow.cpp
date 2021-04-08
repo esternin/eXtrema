@@ -184,7 +184,7 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
 
   notebook_ = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_RIGHT );
 
-  sizer->Add( notebook_, wxSizerFlags(1).Expand().Center().Border(wxALL,5) );
+  sizer->Add( notebook_, wxSizerFlags(1).Expand().Border(wxALL,5) );
   SetSizer( sizer );
 
   GraphicsPage *page = new GraphicsPage(notebook_);

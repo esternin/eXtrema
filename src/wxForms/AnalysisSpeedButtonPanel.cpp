@@ -76,36 +76,36 @@ AnalysisSpeedButtonPanel::AnalysisSpeedButtonPanel( AnalysisWindow *parent )
   wxBitmapButton *stackToggleButton =
       new wxBitmapButton( this, ID_stackToggle, wxBitmap(imageDir+wxT("/stack.GIF"),wxBITMAP_TYPE_GIF) );
   stackToggleButton->SetToolTip( wxT("toggle recording of commands on/off") );
-  sizer->Add( stackToggleButton, wxSizerFlags(0).Right().Border(wxTOP|wxBOTTOM|wxLEFT,2) );
+  sizer->Add( stackToggleButton, wxSizerFlags(0).Border(wxTOP|wxBOTTOM|wxLEFT,2) );
 
   wxBitmapButton *saveSessionButton =
     new wxBitmapButton( this, ID_saveSession, wxBitmap(imageDir+wxT("/save.GIF"),wxBITMAP_TYPE_GIF) );
   saveSessionButton->SetToolTip( wxT("save the current session to a file") );
-  sizer->Add( saveSessionButton, wxSizerFlags(0).Right().Border(wxTOP|wxBOTTOM|wxLEFT,2) );
+  sizer->Add( saveSessionButton, wxSizerFlags(0).Border(wxTOP|wxBOTTOM|wxLEFT,2) );
 
   wxBitmapButton *restoreSessionButton =
     new wxBitmapButton( this, ID_restoreSession,
                         wxBitmap(imageDir+wxT("/restore.GIF"),wxBITMAP_TYPE_GIF) );
   restoreSessionButton->SetToolTip( wxT("restore a previously saved session") );
-  sizer->Add( restoreSessionButton, wxSizerFlags(0).Right().Border(wxTOP|wxBOTTOM|wxLEFT,2) );
+  sizer->Add( restoreSessionButton, wxSizerFlags(0).Border(wxTOP|wxBOTTOM|wxLEFT,2) );
 
   wxBitmapButton *clearMessagesButton =
       new wxBitmapButton( this, ID_clearMessages,
                           wxBitmap(imageDir+wxT("/clear.GIF"),wxBITMAP_TYPE_GIF) );
   clearMessagesButton->SetToolTip( wxT("clear the message window") );
-  sizer->Add( clearMessagesButton, wxSizerFlags(0).Right().Border(wxTOP|wxBOTTOM|wxLEFT,2) );
+  sizer->Add( clearMessagesButton, wxSizerFlags(0).Border(wxTOP|wxBOTTOM|wxLEFT,2) );
   
   wxBitmapButton *helpButton =
       new wxBitmapButton( this, wxID_HELP,
                           wxBitmap(imageDir+wxT("/help.GIF"),wxBITMAP_TYPE_GIF) );
   helpButton->SetToolTip( wxT("help contents") );
-  sizer->Add( helpButton, wxSizerFlags(0).Right().Border(wxTOP|wxBOTTOM|wxLEFT,2) );
+  sizer->Add( helpButton, wxSizerFlags(0).Border(wxTOP|wxBOTTOM|wxLEFT,2) );
   
   wxBitmapButton *exitButton =
       new wxBitmapButton( this, wxID_EXIT,
                           wxBitmap(imageDir+wxT("/exit.GIF"),wxBITMAP_TYPE_GIF) );
   exitButton->SetToolTip( wxT("quit the program (with confirmation)") );
-  sizer->Add( exitButton, wxSizerFlags(0).Right().Border(wxALL,2) );
+  sizer->Add( exitButton, wxSizerFlags(0).Border(wxALL,2) );
 
   SetSizer( sizer );
 }
