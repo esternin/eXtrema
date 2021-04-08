@@ -50,7 +50,7 @@ AC_DEFUN([AX_CHECK_WX], [
     AC_PATH_PROG(WX_CONFIG,wx-config,[],[$with_wxGTK:$PATH])
     if test -n "$WX_CONFIG"; then
       WX_CXXFLAGS=`$WX_CONFIG --cxxflags`
-      WX_LIBS=`$WX_CONFIG --libs`
+      WX_LIBS=`$WX_CONFIG --libs base,xml,core,adv,html`
     else
       AC_MSG_ERROR([fatal error: could not find wx-config.  wxGTK is required to build extrema])
     fi
