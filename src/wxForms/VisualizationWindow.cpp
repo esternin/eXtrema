@@ -324,9 +324,8 @@ void VisualizationWindow::ResetPages()
   for( int i=0; i<nPages; ++i )
   {
     notebook_->GetPage(i)->SetClientSize( width, height );
-    //static_cast<GraphicsPage*>(notebook_->GetPage(i))->Paint();
   }
-  currentPage->Paint();
+  currentPage->Refresh();
   SetPage( currentPage );
 }
 
@@ -404,7 +403,7 @@ void VisualizationWindow::OnClearWindow( wxCommandEvent &WXUNUSED(event) )
   GRA_window *gw = static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->GetGraphWindow();
   gw->Erase();
   gw->Clear();
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->Paint();
+  notebook_->GetCurrentPage()->Refresh();
 }
 
 void VisualizationWindow::OnReplotAll( wxCommandEvent &WXUNUSED(event) )

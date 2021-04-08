@@ -132,16 +132,13 @@ void GraphicsPage::DeleteGraphWindows()
   }
 }
   
-void GraphicsPage::Paint()
+void GraphicsPage::OnPaint( wxPaintEvent & )
 {
   wxPaintDC dc( this );
   dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
 }
-
-void GraphicsPage::OnPaint( wxPaintEvent &event )
-{ Paint(); }
 
 void GraphicsPage::RefreshGraphics()
 { Refresh(); }
@@ -337,7 +334,7 @@ void GraphicsPage::ReplotCurrentWindow( bool repaint )
   {
     throw;
   }
-  if( repaint )Paint();
+  if( repaint )Refresh();
 }
 
 void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )

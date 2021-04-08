@@ -723,7 +723,7 @@ void FigureForm::OnDrawArrow( wxCommandEvent &WXUNUSED(event) )
 void FigureForm::OnEraseArrow( wxCommandEvent &WXUNUSED(event) )
 {
   ExGlobals::GetGraphWindow()->RemoveLastArrow();
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->Paint();
+  ExGlobals::GetVisualizationWindow()->GetPage()->Refresh();
   ExGlobals::GetwxWindow()->Refresh();
   ExGlobals::GetwxWindow()->Update();
   if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("FORM FIGURE,ARROW,ERASE") );
@@ -754,7 +754,7 @@ void FigureForm::OnDrawPolygon( wxCommandEvent &WXUNUSED(event) )
 void FigureForm::OnErasePolygon( wxCommandEvent &WXUNUSED(event) )
 {
   ExGlobals::GetGraphWindow()->RemoveLastPolygon();
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->Paint();
+  ExGlobals::GetVisualizationWindow()->GetPage()->Refresh();
   ExGlobals::GetwxWindow()->Refresh();
   ExGlobals::GetwxWindow()->Update();
   if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("FORM FIGURE,POLYGON,ERASE") );
@@ -780,7 +780,7 @@ void FigureForm::OnDrawEllipse( wxCommandEvent &WXUNUSED(event) )
 void FigureForm::OnEraseEllipse( wxCommandEvent &WXUNUSED(event) )
 {
   ExGlobals::GetGraphWindow()->RemoveLastEllipse();
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->Paint();
+  ExGlobals::GetVisualizationWindow()->GetPage()->Refresh();
   ExGlobals::GetwxWindow()->Refresh();
   ExGlobals::GetwxWindow()->Update();
   if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("FORM FIGURE,ELLIPSE,ERASE") );

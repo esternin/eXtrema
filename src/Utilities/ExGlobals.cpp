@@ -1865,7 +1865,7 @@ void RestoreSession( wxString &file )
         nextObject = xml.GetNextSibling();
       }
       visualizationWindow_->SetWindowNumber( windowNumber );
-      dynamic_cast<GraphicsPage*>(visualizationWindow_->GetPage())->Paint();
+      visualizationWindow_->GetPage()->Refresh();
 
       if( drawableObjects )xml.SetBackToParent(); // set back to <drawableobjects>
       xml.SetBackToParent(); // set back to <graphwindow>

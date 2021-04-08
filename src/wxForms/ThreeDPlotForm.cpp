@@ -300,7 +300,7 @@ void ThreeDPlotForm::OnDraw( wxCommandEvent &WXUNUSED(event) )
   wxClientDC dc( ExGlobals::GetwxWindow() );
   gw->Clear();
   gw->Erase();
-  dynamic_cast<GraphicsPage*>(visualizationWindow_->GetPage())->Paint();
+  visualizationWindow_->GetPage()->Refresh();
   threeDPlot_ = new GRA_threeDPlot( this, x, y, z );
   double e2o;
   eye2objTextCtrl_->GetValue().ToDouble( &e2o );
@@ -340,7 +340,7 @@ void ThreeDPlotForm::ReDraw()
   wxClientDC dc( ExGlobals::GetwxWindow() );
   gw->Clear();
   gw->Erase();
-  dynamic_cast<GraphicsPage*>(visualizationWindow_->GetPage())->Paint();
+  visualizationWindow_->GetPage()->Refresh();
   threeDPlot_ = tmp;
   threeDPlot_->Draw( ExGlobals::GetGraphicsOutput(), dc );
   gw->AddDrawableObject( threeDPlot_ );

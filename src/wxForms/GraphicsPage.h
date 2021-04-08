@@ -39,7 +39,6 @@ public:
   GraphicsPage( wxNotebook * );
   ~GraphicsPage();
 
-  void Paint();
   void OnPaint( wxPaintEvent & );
   void RefreshGraphics();
   //void Reset();
