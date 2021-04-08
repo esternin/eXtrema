@@ -154,7 +154,7 @@ void AnalysisWindow::AddCommandString( wxString const &s )
 { commandPanel_->AddCommandString( s ); }
 
 std::vector<wxString> &AnalysisWindow::GetCommandStrings()
-{ commandPanel_->GetCommandStrings(); }
+{ return commandPanel_->GetCommandStrings(); }
 
 void AnalysisWindow::OnQuit( wxCommandEvent &WXUNUSED(event) )
 { extrema_->QuitApp(); }
