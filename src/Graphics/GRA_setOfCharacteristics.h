@@ -83,8 +83,6 @@ public:
   void AddString( wxChar const *, wxString const & );
   GRA_characteristic *Get( wxString const & ) const;
 
-  GRA_characteristic *Get( wxChar const * ) const;
-
   friend std::ostream &operator<<( std::ostream &, GRA_setOfCharacteristics const & );
 
 private:

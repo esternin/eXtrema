@@ -193,9 +193,6 @@ void GRA_setOfCharacteristics::AddSize( wxChar const *name, std::vector<double> 
 }
 
 GRA_characteristic *GRA_setOfCharacteristics::Get( wxString const &name ) const
-{ return Get( name.c_str() ); }
-
-GRA_characteristic *GRA_setOfCharacteristics::Get( wxChar const *name ) const
 {
   cVecIter end = characteristics_.end();
   for( cVecIter i=characteristics_.begin(); i!=end; ++i )
