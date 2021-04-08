@@ -17,12 +17,10 @@ AC_INIT([extrema],[4.4.5],[Joseph L. Chuma joe.chuma@gmail.com])
 # use gnu strictness
 AM_INIT_AUTOMAKE([1.9])
 
-LF_CONFIGURE_CC
-LF_CONFIGURE_CXX
-LF_SET_WARNINGS
+AC_PROG_CC
+AC_PROG_CXX
 
-AC_DISABLE_SHARED
-AC_PROG_LIBTOOL
+LT_INIT([disable-shared])
 
 AX_CHECK_WX
 AX_CHECK_MUD
