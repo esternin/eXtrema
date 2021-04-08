@@ -34,9 +34,6 @@ IMPLEMENT_APP(extrema)
 // 'main program' equivalent, program execution starts here
 bool extrema::OnInit()
 {
-  wxImage::AddHandler( new wxPNGHandler );
-  wxImage::AddHandler( new wxJPEGHandler );
-  wxImage::AddHandler( new wxGIFHandler );
   ::wxInitAllImageHandlers();
   //
   wxFileConfig *config = new wxFileConfig( wxT("extrema") );
