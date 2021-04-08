@@ -27,8 +27,6 @@ AX_CHECK_MUD
 AX_CHECK_MINUIT
 AX_SETCXXFLAGS
 
-AC_SUBST(GTK_LIBS,`pkg-config --libs gtk+-2.0`)
-
 AC_CONFIG_FILES([
    Makefile
    src/Makefile
