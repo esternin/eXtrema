@@ -65,7 +65,7 @@ public:
   void SetTextForm( TextForm * );
   void SetInteractiveText( GRA_drawableText * );
 
-  void SaveBitmap( int, int, int, int, wxString const &, int );
+  void SaveBitmap( int, int, int, int, wxString const &, wxBitmapType );
   void SavePS( wxString const & );
 
   void ClearWindows();

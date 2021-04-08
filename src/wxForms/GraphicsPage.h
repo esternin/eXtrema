@@ -86,7 +86,7 @@ public:
   void SetFigureFillColor( GRA_color * );
 
   void SavePS( wxString const & );
-  void SaveBitmap( wxString const &, int );
+  void SaveBitmap( wxString const &, wxBitmapType );
 
   void OnMouseMove( wxMouseEvent & );
   void OnMouseLeftDown( wxMouseEvent & );

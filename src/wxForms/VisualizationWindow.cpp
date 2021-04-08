@@ -266,7 +266,7 @@ void VisualizationWindow::SetInteractiveText( GRA_drawableText *dt )
 }
 
 void VisualizationWindow::SaveBitmap( int xmin, int ymin, int xmax, int ymax,
-                                      wxString const &filename, int type )
+                                      wxString const &filename, wxBitmapType type )
 {
   GRA_wxWidgets ps( xmin, ymin, xmax, ymax );
   wxBitmap tempBM( xmax-xmin, ymax-ymin );

@@ -854,7 +854,7 @@ void GraphicsPage::SavePS( wxString const &filename )
   currentWindowNumber_ = gwSave;
 }
 
-void GraphicsPage::SaveBitmap( wxString const &filename, int type )
+void GraphicsPage::SaveBitmap( wxString const &filename, wxBitmapType type )
 {
   int xmin, ymin, xmax, ymax;
   ExGlobals::GetMonitorLimits( xmin, ymin, xmax, ymax );

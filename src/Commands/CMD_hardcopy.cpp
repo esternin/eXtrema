@@ -78,7 +78,7 @@ void CMD_hardcopy::Execute( ParseLine const *p )
   {
     if( qualifiers[wxT("PNG")] || qualifiers[wxT("JPEG")] )
     {
-      int type;
+      wxBitmapType type;
       if( qualifiers[wxT("PNG")] )
       {
         if( extension.empty() )filename += wxT(".png");
