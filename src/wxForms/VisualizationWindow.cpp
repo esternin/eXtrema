@@ -93,8 +93,6 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   double aspectRatio;
   config->Read( wxT("/VisualizationWindow/ASPECTRATIO"), &aspectRatio,
                 ExGlobals::GetAspectRatio() );
-  //SetSize( ulx, uly, std::max(400,width), std::max(250,height) );
-  SetSize( ulx, uly, width, height );
 
   wxMenu *fileMenu = new wxMenu();
 
@@ -193,6 +191,8 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
 
   statusBar_ = new MyStatusBar( this );
   SetStatusBar( statusBar_ );
+
+  SetSize( ulx, uly, width, height );
 
   ExGlobals::SetMonitorLimits( 0, 0, width, height );
   ExGlobals::SetAspectRatio( aspectRatio );
