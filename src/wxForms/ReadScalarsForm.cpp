@@ -39,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 BEGIN_EVENT_TABLE( ReadScalarsForm, wxFrame )
   EVT_BUTTON( wxID_APPLY, ReadScalarsForm::OnApply )
   EVT_BUTTON( wxID_CLOSE, ReadScalarsForm::OnClose )
-  EVT_GRID_CELL_CHANGE( ReadScalarsForm::OnCellChange )
+  EVT_GRID_CELL_CHANGED( ReadScalarsForm::OnCellChange )
   EVT_CHECKBOX( ID_errorFill, ReadScalarsForm::OnErrorFill )
   EVT_CHECKBOX( ID_format, ReadScalarsForm::OnFormat )
   EVT_CLOSE( ReadScalarsForm::CloseEventHandler )
