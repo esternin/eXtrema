@@ -135,7 +135,7 @@ void GraphicsPage::DeleteGraphWindows()
 void GraphicsPage::Paint()
 {
   wxPaintDC dc( this );
-  dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
 }
@@ -862,7 +862,7 @@ void GraphicsPage::SaveBitmap( wxString const &filename, int type )
   wxBitmap tempBM( xmax-xmin, ymax-ymin );
   wxMemoryDC dc;
   dc.SelectObject( tempBM );
-  dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   dc.StartDoc( wxT("produced by EXTREMA") );
   try

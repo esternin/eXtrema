@@ -92,11 +92,11 @@ void GRA_ellipse::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   if( fillColor_ )
   {
     wxbrush.SetColour( ExGlobals::GetwxColor(fillColor_) );
-    wxbrush.SetStyle( wxSOLID );
+    wxbrush.SetStyle( wxBRUSHSTYLE_SOLID );
     dc.SetBrush( wxbrush );
     dc.DrawEllipse( static_cast<int>(xll+0.5), static_cast<int>(yll+0.5), width, height );
   }
-  wxbrush.SetStyle( wxTRANSPARENT );
+  wxbrush.SetStyle( wxBRUSHSTYLE_TRANSPARENT );
   dc.SetBrush( wxbrush );
   dc.DrawEllipse( static_cast<int>(xll+0.5), static_cast<int>(yll+0.5), width, height );
 }

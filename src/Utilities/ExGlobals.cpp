@@ -1195,7 +1195,7 @@ void DefaultSize()
   delete graphicsOutput_;
   graphicsOutput_ = new GRA_wxWidgets( xminM_, yminM_, xmaxM_, ymaxM_ );
   wxClientDC dc( visualizationWindow_->GetPage() );
-  dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   //
   visualizationWindow_->DrawGraphWindows( graphicsOutput_, dc );
@@ -1210,7 +1210,7 @@ void ChangeSize( double value )
   delete graphicsOutput_;
   graphicsOutput_ = new GRA_wxWidgets( xminM_, yminM_, xmaxM_, ymaxM_ );
   wxClientDC dc( visualizationWindow_->GetPage() );
-  dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   //
   visualizationWindow_->DrawGraphWindows( graphicsOutput_, dc );

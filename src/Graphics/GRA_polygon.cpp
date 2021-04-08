@@ -293,11 +293,11 @@ void GRA_polygon::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   if( fillColor_ )
   {
     wxbrush.SetColour( ExGlobals::GetwxColor(fillColor_) );
-    wxbrush.SetStyle( wxSOLID );
+    wxbrush.SetStyle( wxBRUSHSTYLE_SOLID );
     dc.SetBrush( wxbrush );
     dc.DrawPolygon( static_cast<int>(size), pArray );
   }
-  wxbrush.SetStyle( wxTRANSPARENT );
+  wxbrush.SetStyle( wxBRUSHSTYLE_TRANSPARENT );
   dc.SetBrush( wxbrush );
   dc.DrawPolygon( static_cast<int>(size), pArray );
   delete [] pArray;

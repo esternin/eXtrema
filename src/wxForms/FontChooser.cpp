@@ -473,7 +473,7 @@ void MySampleText::OnPaint( wxPaintEvent &event )
     font_.SetPointSize( 10 );
     wxPaintDC dc( this );
     //PrepareDC( dc );
-    dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+    dc.SetBackground( *wxWHITE_BRUSH );
     dc.Clear();
     dc.SetFont( font_ );
     dc.SetTextForeground( colour_ );
@@ -489,7 +489,7 @@ void MySampleText::SetText( wxFont &font, wxColour colour )
   font.SetPointSize( 10 );
   wxClientDC dc( this );
   //PrepareDC( dc );
-  dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   dc.SetFont( font );
   dc.SetTextForeground( colour );

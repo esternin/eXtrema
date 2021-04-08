@@ -198,7 +198,7 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   ExGlobals::SetAspectRatio( aspectRatio );
   page->ResetWindows();
   wxClientDC dc( page );
-  dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
 
   // Show the window.
@@ -272,7 +272,7 @@ void VisualizationWindow::SaveBitmap( int xmin, int ymin, int xmax, int ymax,
   wxBitmap tempBM( xmax-xmin, ymax-ymin );
   wxMemoryDC dc;
   dc.SelectObject( tempBM );
-  dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   dc.StartDoc( wxT("produced by EXTREMA") );
   try
@@ -336,7 +336,7 @@ void VisualizationWindow::ClearAllPages()
   {
     static_cast<GraphicsPage*>(notebook_->GetPage(i))->ClearWindows();
     wxClientDC dc( notebook_->GetPage(i) );
-    dc.SetBackground( wxBrush(wxT("WHITE"),wxSOLID) );
+    dc.SetBackground( *wxWHITE_BRUSH );
     dc.Clear();
   }
 }
