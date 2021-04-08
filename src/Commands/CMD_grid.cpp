@@ -167,7 +167,7 @@ void CMD_grid::Execute( ParseLine const *p )
     if( dup.size() > 0 )
     {
       if( qualifiers[wxT("MESSAGES")] )
-        ExGlobals::WarningMessage( wxString(wxT("GRID: "))+dup.size()+wxT(" duplicate points found") );
+        ExGlobals::WarningMessage( wxString::Format(wxT("GRID: %zd duplicate points found"), dup.size()) );
       for( std::size_t i=0; i<dup.size(); ++i )
       {
         std::size_t j = dup.size()-i-1;
