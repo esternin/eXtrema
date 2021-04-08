@@ -100,7 +100,7 @@ wxString Variable::SimpleName( wxString const &name )
     else if( newState == -20 )
       throw EVariableError( wxT("no variable name was given") );
     else if( newState == -30 )
-      throw EVariableError( uName[i]+wxT(" is an invalid character in ")+name );
+      throw EVariableError( wxString::Format(wxT("%c is an invalid character in %s"), uName[i], name) );
     ++i;
   }
   if( start == -1 )throw EVariableError(wxT("no variable name was given"));
