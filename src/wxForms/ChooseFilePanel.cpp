@@ -96,13 +96,13 @@ void ChooseFilePanel::OnChooseFile( wxCommandEvent &WXUNUSED(event) )
   if( read_ )
   {
     fd = new wxFileDialog( this, message_, wxT(""), wxT(""), fileType_,
-                           wxOPEN|wxFILE_MUST_EXIST|wxCHANGE_DIR );
+                           wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR );
     mode = std::ios_base::in;
   }
   else
   {
     fd = new wxFileDialog( this, message_, wxT(""), wxT(""), fileType_,
-                           wxSAVE|wxOVERWRITE_PROMPT|wxCHANGE_DIR );
+                           wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
     mode = std::ios_base::out;
   }
   wxString filename;

@@ -83,7 +83,7 @@ void CommandHistoryWindow::OnMouseRightDown( wxMouseEvent &event )
   std::ios_base::openmode mode;
   fd = new wxFileDialog( this, wxT("Save command history"), wxT(""), wxT(""),
                          wxT("Text files (*.txt)|*.txt|Any file (*.*)|*.*"),
-                         wxSAVE|wxOVERWRITE_PROMPT|wxCHANGE_DIR );
+                         wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
   mode = std::ios_base::out;
   wxString filename;
   if( fd->ShowModal() == wxID_OK )filename = fd->GetPath();

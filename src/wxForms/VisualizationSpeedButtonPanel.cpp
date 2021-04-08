@@ -163,7 +163,7 @@ void VisualizationSpeedButtonPanel::OnSaveDrawing( wxCommandEvent &WXUNUSED(even
   wxString wildcard( wxT("Encapsulated PostScript (*.eps)|*.eps|PNG file (*.png)|*.png|JPEG file (*.jpeg)|*.jpeg") );
 #endif
   wxFileDialog *fd = new wxFileDialog( this, wxT("Choose an output file"), wxT(""), wxT(""),
-                                       wildcard, wxSAVE|wxOVERWRITE_PROMPT|wxCHANGE_DIR );
+                                       wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
   if( fd->ShowModal() != wxID_OK )return;
   wxString filename( fd->GetFilename() );
   if( filename.empty() )return;

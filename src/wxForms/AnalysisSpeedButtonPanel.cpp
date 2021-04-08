@@ -163,7 +163,7 @@ void AnalysisSpeedButtonPanel::OnSaveSession( wxCommandEvent &WXUNUSED(event) )
   wxFileDialog *fd;
   fd = new wxFileDialog( this, wxT("Save session"), wxT(""), wxT(""),
                          wxT("xml files (*.xml)|*.xml"),
-                         wxSAVE|wxOVERWRITE_PROMPT|wxCHANGE_DIR );
+                         wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
   wxString filename;
   if( fd->ShowModal() == wxID_OK )filename = fd->GetPath();
   if( filename.empty() )return;
@@ -195,7 +195,7 @@ void AnalysisSpeedButtonPanel::OnRestoreSession( wxCommandEvent &WXUNUSED(event)
   wxFileDialog *fd;
   fd = new wxFileDialog( this, wxT("Save session"), wxT(""), wxT(""),
                          wxT("xml files (*.xml)|*.xml"),
-                         wxOPEN|wxFILE_MUST_EXIST|wxCHANGE_DIR );
+                         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR );
   wxString filename;
   if( fd->ShowModal() == wxID_OK )filename = fd->GetPath();
   if( filename.empty() )return;

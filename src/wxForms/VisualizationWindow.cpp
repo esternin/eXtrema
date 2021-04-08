@@ -501,7 +501,7 @@ void VisualizationWindow::OnSavePS( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("PostScript (*.eps)|*.eps") );
   wxFileDialog *fd = new wxFileDialog( this, wxT("Choose an output file"), wxT(""), wxT(""),
-                                       wildcard, wxSAVE|wxOVERWRITE_PROMPT|wxCHANGE_DIR );
+                                       wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
   if( fd->ShowModal() != wxID_OK )return;
   wxString filename( fd->GetFilename() );
   if( filename.empty() )return;
@@ -530,7 +530,7 @@ void VisualizationWindow::OnSavePNG( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("PNG (*.png)|*.png") );
   wxFileDialog *fd = new wxFileDialog( this, wxT("Choose an output file"), wxT(""), wxT(""),
-                                       wildcard, wxSAVE|wxOVERWRITE_PROMPT|wxCHANGE_DIR );
+                                       wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
   if( fd->ShowModal() != wxID_OK )return;
   wxString filename( fd->GetFilename() );
   if( filename.empty() )return;
@@ -561,7 +561,7 @@ void VisualizationWindow::OnSaveJPEG( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("JPEG (*.jpeg)|*.jpeg") );
   wxFileDialog *fd = new wxFileDialog( this, wxT("Choose an output file"), wxT(""), wxT(""),
-                                       wildcard, wxSAVE|wxOVERWRITE_PROMPT|wxCHANGE_DIR );
+                                       wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
   if( fd->ShowModal() != wxID_OK )return;
   wxString filename( fd->GetFilename() );
   if( filename.empty() )return;
