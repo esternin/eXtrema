@@ -1,21 +1,24 @@
 Installation Instructions
 *************************
 
-Copyright (C) 1994, 1995, 1996, 1999, 2000, 2001, 2002, 2004 Free
-Software Foundation, Inc.
+Copyright (C) 1994, 1995, 1996, 1999, 2000, 2001, 2002, 2004, 2021 Free Software Foundation, Inc.
 
-This file is free documentation; the Free Software Foundation gives
-unlimited permission to copy, distribute and modify it.
+This file is free documentation; the Free Software Foundation gives unlimited permission to copy, distribute and modify it.
 
 Getting ready to build
 ======================
+The following instructions are for Ubuntu, use the equivalent instructions
+for your distribution.
 
 Required:
 
-Extrema requires the wxGTK ( >= v2.6.3, although > v2.8.0 is recommended )
-package to be installed before installing extrema.  See http://www.wxwidgets.org
-for information on downloading and installing.  Specifically for
-extrema, wxGTK should be built with the following configure command:
+Compiling requires general development tools (compilers etc.); and
+eXtrema requires wxWidgets' library, currently tested for v.3.0.4
+(see http://www.wxwidgets.org), which in turn needs gtk+3.0:
+
+$ sudo apt-get install build-essential libwxgtk3.0-gtk3-dev libgtk-3-dev
+
+If you are building wxWidgets library yourself, configure it with the following options:
 
 $ ./configure --enable-optimise --enable-exceptions --enable-unicode
   --enable-htmlhelp --enable-postscript --enable-giff --enable-static
@@ -23,11 +26,23 @@ $ ./configure --enable-optimise --enable-exceptions --enable-unicode
 
 Optional:
 
-The MUon Data package, known as MUD, is for storing and retrieving muSR
-data. See  http://musr.org/mud for information on downloading and
-installing.  If you have no idea what muSR is, you probably don't need it.
-The MUD package comes with various Makefiles for the supported architectures.
+MUD
+===
+The Muon Universal data (MUD) format used at TRIUMF is an efficent framework
+for storing and retrieving muSR (Muon Spin Resonance) data, but can also be
+used for other data. See https://musr.ca/mud/ for information on
+downloading and installing. The MUD package comes with various Makefiles
+for the supported architectures.
 
+A quick guide (only works on 32-bit systems at the moment):
+
+$ wget https://musr.ca/mud/mud.tar.gz
+$ tar -xvf mud.tar.gz
+$ cd mud
+$ make
+
+MINUIT
+======
 The Minuit minimization package "finds the minimum value of a multi-parameter
 function".  Extrema uses Minuit as an alternate fitting package, or to 
 minimize a chi-square expression directly, via the MINUIT command.
@@ -48,23 +63,22 @@ which will create a directory named extrema-x.y.z.
 
 $ cd extrema-x.y.z
 
-Then type the command:
+Then type the commands:
 
-$ ./reconf
+$ autoreconf --install
+$ mkdir build-linux-x86_64
+$ cd build-linux-x86_64
+$ ../configure
 
-Then, if you have the MUD and MINUIT optional packages:
+If you are using a wxWidgets version other than the system one, e.g. if
+you compiled your own copy of wxWidgets, point to where its wx-config is:
 
-$ ./configure --with-wxGTK=<path_to_wx-config> --with-MUD=<path_to_mud>
---with-MINUIT=<path_to_minuit>
+$ ../configure --with-wx-config=<path_to_wx-config>
 
-If you do not have the optional packages:
+If you are making use of the MUD and MINUIT optional packages, add the
+appropriate switches to the above command:
 
-$ ./configure --with-wxGTK=<path_to_wx-config> 
-
-or if wx-config is located in your PATH, it is no longer necessary to mention
-it specifically, so just enter:
-
-$ ./configure
+$ ../configure --with-MUD=<path_to_mud> --with-MINUIT=<path_to_minuit>
 
 One configure option to consider is --prefix=DIR, which specifies the location
 where the program and associated files will be installed.  By default, the prefix
@@ -72,7 +86,7 @@ directory is /usr/local, so the extrema executable will be placed in /usr/local/
 and the help and image files will be placed in /usr/local/share/extrema.  You
 can specify a different location via the --prefix=DIR configure option, e.g.,
 
-$ ./configure --prefix=/usr
+$ ../configure --prefix=/usr
 
 which will cause the extrema executable to be installed in /usr/bin, and the
 help and image files in /usr/share/extrema.

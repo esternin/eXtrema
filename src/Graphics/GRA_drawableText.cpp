@@ -523,6 +523,7 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
   //
   bool upperCase = (const_cast<wxString&>(command)[0]==s[0]);
   //
+/*
   struct specialCharacter
   {
     wxChar const *name;  // special character name
@@ -534,19 +535,19 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
   specialCharacter spc[] =
   {
       {wxT("ALPHA"),0x41,0x61,wxT("Symbol")},          {wxT("BETA"),0x42,0x62,wxT("Symbol")},          {wxT("GAMMA"),0x47,0x67,wxT("Symbol")},
-      {wxT("DELTA"),0x44,0x64,wxT("Symbol")},          {wxT("EPSILON"),0x45,0x152,wxT("Symbol")},      {wxT("ZETA"),0x5a,0x7a,wxT("Symbol")},
+      {wxT("DELTA"),0x44,0x64,wxT("Symbol")},          {wxT("EPSILON"),0x45,0x65,wxT("Symbol")},       {wxT("ZETA"),0x5a,0x7a,wxT("Symbol")},
       {wxT("ETA"),0x48,0x68,wxT("Symbol")},            {wxT("THETA"),0x51,0x71,wxT("Symbol")},         {wxT("IOTA"),0x49,0x69,wxT("Symbol")},
       {wxT("KAPPA"),0x4b,0x6b,wxT("Symbol")},          {wxT("LAMBDA"),0x4c,0x6c,wxT("Symbol")},        {wxT("MU"),0x4d,0x6d,wxT("Symbol")},
       {wxT("NU"),0x4e,0x6e,wxT("Symbol")},             {wxT("XI"),0x58,0x78,wxT("Symbol")},            {wxT("OMICRON"),0x4f,0x6f,wxT("Symbol")},
       {wxT("PI"),0x50,0x70,wxT("Symbol")},             {wxT("RHO"),0x52,0x72,wxT("Symbol")},           {wxT("SIGMA"),0x53,0x73,wxT("Symbol")},
       {wxT("TAU"),0x54,0x74,wxT("Symbol")},            {wxT("UPSILON"),0x55,0x75,wxT("Symbol")},       {wxT("PHI"),0x46,0x66,wxT("Symbol")},
       {wxT("CHI"),0x43,0x63,wxT("Symbol")},            {wxT("PSI"),0x59,0x79,wxT("Symbol")},           {wxT("OMEGA"),0x57,0x77,wxT("Symbol")},
-      {wxT("VARTHETA"),0x4a,0x4a,wxT("Symbol")},       {wxT("VARPHI"),0x6a,0x6a,wxT("Symbol")},        {wxT("VAREPSILON"),0x65,0x65,wxT("Symbol")},
-      {wxT("ALEPH"),0xbf,0xbf,wxT("Symbol")},          {wxT("NABLA"),0x2014,0x2014,wxT("Symbol")},     {wxT("PARTIAL"),0x2202,0x2202,wxT("Symbol")},
+      {wxT("VARTHETA"),0x51,0x71,wxT("Symbol")},       {wxT("VARPHI"),0x6a,0x6a,wxT("Symbol")},        {wxT("VAREPSILON"),0x65,0x65,wxT("Symbol")},
+      {wxT("ALEPH"),0xf0c0,0xf0c0,wxT("Symbol")},          {wxT("NABLA"),0x2014,0x2014,wxT("Symbol")},     {wxT("PARTIAL"),0x2202,0x2202,wxT("Symbol")},
       {wxT("LEFTARROW"),0x2039,0xa8,wxT("Symbol")},    {wxT("UPARROW"),0x203a,0x2260,wxT("Symbol")},   {wxT("DOWNARROW"),0xfb02,0xd8,wxT("Symbol")},
       {wxT("RIGHTARROW"),0xfb01,0xc6,wxT("Symbol")},   {wxT("PERP"),0x5e,0x5e,wxT("Symbol")},          {wxT("MID"),0x2d9,0x2d9,wxT("Symbol")},
       {wxT("BULLET"),0x2211,0x2211,wxT("Symbol")},     {wxT("SUM"),0xc2,0xc2,wxT("Symbol")},           {wxT("PROD"),0x2019,0x2019,wxT("Symbol")},
-      {wxT("INT"),0xda,0xda,wxT("Symbol")},            {wxT("SURD"),0xf7,0xf7,wxT("Symbol")},          {wxT("PLUS"),0x2b,0x2b,wxT("Symbol")},
+      {wxT("INT"),0xf0f2,0xf0f2,wxT("Symbol")},            {wxT("SURD"),0xf7,0xf7,wxT("Symbol")},          {wxT("PLUS"),0x2b,0x2b,wxT("Symbol")},
       {wxT("MINUS"),0x2d,0x2d,wxT("Symbol")},          {wxT("PM"),0xb1,0xb1,wxT("Symbol")},            {wxT("TIMES"),0xa5,0xa5,wxT("Symbol")},
       {wxT("DIV"),0x220f,0x220f,wxT("Symbol")},        {wxT("OPLUS"),0x2248,0x2248,wxT("Symbol")},     {wxT("OTIMES"),0x192,0x192,wxT("Symbol")},
       {wxT("CAP"),0xab,0xab,wxT("Symbol")},            {wxT("SUBSET"),0xc3,0xc3,wxT("Symbol")},        {wxT("CUP"),0xbb,0xbb,wxT("Symbol")},
@@ -563,13 +564,56 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
       {wxT("SUPSETEQ"),0xa0,0xa0,wxT("Symbol")},       {wxT("LDOTS"),0xba,0xba,wxT("Symbol")},         {wxT("LEFTRIGHTARROW"),0x20ac,0xb4,wxT("Symbol")},
       {wxT("EMPTYSET"),0x2206,0x2206,wxT("Symbol")},   {wxT("WP"),0x221a,0x221a,wxT("Symbol")},        {wxT("RE"),0xac,0xac,wxT("Symbol")},
       {wxT("IM"),0xa1,0xa1,wxT("Symbol")},             {wxT("HOOKLEFTARROW"),0xf8,0xf8,wxT("Symbol")}, {wxT("COPYRIGHT"),0x201d,0x201d,wxT("Symbol")},
-      {wxT("REGISTERED"),0x201c,0x201c,wxT("Symbol")}, {wxT("TM"),0x2030,0x2030,wxT("Symbol")},        {wxT("DIAMOND"),0x2021,0x2021,wxT("Symbol")} 
+      {wxT("REGISTERED"),0xf0e2,0xf0e2,wxT("Symbol")}, {wxT("TM"),0x2030,0x2030,wxT("Symbol")},        {wxT("DIAMOND"),0x2021,0x2021,wxT("Symbol")} 
+  };
+*/
+  struct specialCharacter
+  {
+    wxChar const *name;  // special character name
+    wxChar const uName;  // upper case character
+    wxChar const lName;  // lower case character
+  };
+  std::size_t const nNames = 93;
+  specialCharacter spc[] =
+  {
+      {wxT("ALPHA"),0x0391,0x03B1},      {wxT("BETA"),0x0392,0x03B2},          {wxT("GAMMA"),0x0393,0x03B3},
+      {wxT("DELTA"),0x0394,0x03B4},      {wxT("EPSILON"),0x0395,0x03B5},       {wxT("ZETA"),0x0396,0x03B6},
+      {wxT("ETA"),0x0397,0x03B7},        {wxT("THETA"),0x0398,0x03B8},         {wxT("IOTA"),0x0399,0x03B9},
+      {wxT("KAPPA"),0x039A,0x03BA},      {wxT("LAMBDA"),0x039B,0x03BB},        {wxT("MU"),0x039C,0x03BC},
+      {wxT("NU"),0x039D,0x03BD},         {wxT("XI"),0x039E,0x03BE},            {wxT("OMICRON"),0x039F,0x03BF},
+      {wxT("PI"),0x03A0,0x03C0},         {wxT("RHO"),0x03A1,0x03C1},           {wxT("SIGMA"),0x03A3,0x03C3},
+      {wxT("TAU"),0x03A4,0x03C4},        {wxT("UPSILON"),0x03A5,0x03C5},       {wxT("PHI"),0x03A6,0x03C6},
+      {wxT("CHI"),0x03A7,0x03C7},        {wxT("PSI"),0x03A8,0x03C8},           {wxT("OMEGA"),0x03A9,0x03C9},
+      {wxT("VARTHETA"),0x03D1,0x03D1},   {wxT("VARPHI"),0x03D5,0x03D5},        {wxT("VAREPSILON"),0x03F5,0x03F5},
+      {wxT("ALEPH"),0x2135,0x2135},      {wxT("NABLA"),0x2207,0x2207},         {wxT("PARTIAL"),0x2202,0x2202},
+      {wxT("LEFTARROW"),0x2190,0x2190},  {wxT("UPARROW"),0x2191,0x2191},       {wxT("DOWNARROW"),0x2193,0x2193},
+      {wxT("RIGHTARROW"),0x2192,0x2192}, {wxT("PERP"),0x27C2,0x27C2},          {wxT("MID"),0x2223,0x2223},
+      {wxT("BULLET"),0x2022,0x2022},     {wxT("SUM"),0x00E5,0x00E5},           {wxT("PROD"),0x220F,0x220F},
+      {wxT("INT"),0x222B,0x222B},        {wxT("SURD"),0x221A,0x221A},          {wxT("PLUS"),0x002B,0x002B},
+      {wxT("MINUS"),0x2212,0x2212},      {wxT("PM"),0x00B1,0x00B1},            {wxT("TIMES"),0x00B4,0x00B4},
+      {wxT("DIV"),0x00B8,0x00B8},        {wxT("OPLUS"),0x2295,0x2295},         {wxT("OTIMES"),0x2297,0x2297},
+      {wxT("CAP"),0x2229,0x2229},        {wxT("SUBSET"),0x2282,0x2282},        {wxT("CUP"),0x222A,0x222A},
+      {wxT("SUPSET"),0x2283,0x2283},     {wxT("DEGREE"),0x02DA,0x02DA},        {wxT("LANGLE"),0x27E8,0x27E8},
+      {wxT("RANGLE"),0x27E9,0x27E9},     {wxT("NEG"),0x00D8,0x00D8},           {wxT("THEREFORE"),0x2234,0x2234},
+      {wxT("ANGLE"),0x2220,0x2220},      {wxT("VEE"),0x2228,0x2228},           {wxT("WEDGE"),0x2227,0x2227},
+      {wxT("CDOT"),0x00D7,0x00D7},       {wxT("INFTY"),0x221E,0x221E},         {wxT("IN"),0x2208,0x2208},
+      {wxT("NI"),0x220B,0x220B},         {wxT("PROPTO"),0x221D,0x221D},        {wxT("EXISTS"),0x2203,0x2203},
+      {wxT("FORALL"),0x2200,0x2200},     {wxT("NEQ"),0x2260,0x2260},           {wxT("EQUIV"),0x00BA,0x00BA},
+      {wxT("APPROX"),0x2248,0x2248},     {wxT("SIM"),0x007E,0x007E},           {wxT("LT"),0x003C,0x003C},
+      {wxT("GT"),0x003E,0x003E},         {wxT("LEQ"),0x2264,0x2264},           {wxT("GEQ"),0x2265,0x2265},
+      {wxT("VARPI"),0x03D6,0x03D6},      {wxT("CLUBSUIT"),0x2663,0x2663},      {wxT("DIAMONDSUIT"),0x2666,0x2666},
+      {wxT("HEARTSUIT"),0x2665,0x2665},  {wxT("SPADESUIT"),0x2660,0x2660},     {wxT("SUBSETEQ"),0x2286,0x2286},
+      {wxT("SUPSETEQ"),0x2287,0x2287},   {wxT("LDOTS"),0x2026,0x2026},         {wxT("LEFTRIGHTARROW"),0x21D4,0x21D4},
+      {wxT("EMPTYSET"),0x2205,0x2205},   {wxT("WP"),0x2118,0x2118},            {wxT("RE"),0x211C,0x211C},
+      {wxT("IM"),0x2111,0x2111},         {wxT("HOOKLEFTARROW"),0x21B2,0x21B2}, {wxT("COPYRIGHT"),0x00E3,0x00E3},
+      {wxT("REGISTERED"),0x00E2,0x00E2}, {wxT("TM"),0x2122,0x2122},            {wxT("DIAMOND"),0x25CA,0x25CA} 
   };
   for( std::size_t i=0; i<nNames; ++i )
   {
     if( s == spc[i].name )
     {
-      fontName = spc[i].fName;
+      //fontName = spc[i].fName;
+      fontName = wxT("symbol");
       return upperCase ? spc[i].uName : spc[i].lName;
     }
   }

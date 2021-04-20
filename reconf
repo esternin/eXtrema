@@ -1,4 +1,4 @@
-# Copyright (C) 2006 Joseph L. Chuma <chuma@triumf.ca>
+# Copyright (C) 2021 Edward Sternin <edward.sternin@brocku.ca>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 
@@ -9,13 +9,16 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 #!/bin/sh
-rm -f config.cache
-echo "- aclocal."
-aclocal -I m4
-echo "- autoconf."
-autoconf
-#echo "- autoheader."
-#autoheader
-echo "- automake."
-automake -a
+echo " .. cleaning up"
+xargs rm -rf <.gitignore
+
+echo " .. autoreconf --install"
+autoreconf --install
+
+echo " .. add and congigure a build subdirectory"
+mkdir build-linux-x86_64
+cd build-linux-x86_64
+../configure
+
+echo " .. ready to make; make install"
 exit

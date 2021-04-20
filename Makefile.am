@@ -8,34 +8,39 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-EXTRA_DIST = reconf configure extrema.spec extrema.desktop extrema_icons.tar.bz2 ./fonts ./Images ./Help ./Scripts ./doc ./src/wxForms/ExColorCtrl.h ./src/wxForms/ExSpinCtrlD.h ./src/wxForms/ExSpinCtrlI.h ./src/wxForms/ExSlider.h
+# autoreconf suggested we move m4 files to a subdirectory, need to know this in Makefile.am ES
+ACLOCAL_AMFLAGS = -I m4
+
+EXTRA_DIST = extrema.desktop ./fonts ./icons ./Images ./Help ./Scripts ./doc ./demo .gitignore reconf
 
 # list immediate subdirectories only
 SUBDIRS = src
 
+##AM_CPPFLAGS = -I $(srcdir)/../../../src -I $(srcdir)/../../../src/Commands -I $(srcdir)/../../../src/Expression -I $(srcdir)/../../../src/Functions -I $(srcdir)/../../../src/Graphics -I $(srcdir)/../../../src/Operators -I $(srcdir)/../../../src/Parsing -I $(srcdir)/../../../src/Utilities -I $(srcdir)/../../../src/Variables -I $(srcdir)/../../../src/wxForms
+
 myimagesdir = $(datadir)/extrema/Images
-myimages_DATA = ./Images/*.GIF ./Images/*.bmp
+myimages_DATA = $(abs_top_srcdir)/Images/*.GIF $(abs_top_srcdir)/Images/*.bmp
 
 myhelpdir = $(datadir)/extrema/Help
-myhelp_DATA = ./Help/extrema.hhc ./Help/extrema.hhk ./Help/extrema.hhp ./Help/*.gif ./Help/extremaMain.htm
+myhelp_DATA = $(abs_top_srcdir)/Help/extrema.hhc $(abs_top_srcdir)/Help/extrema.hhk $(abs_top_srcdir)/Help/extrema.hhp $(abs_top_srcdir)/Help/*.gif $(abs_top_srcdir)/Help/extremaMain.htm
 
 myCommandsdir = $(myhelpdir)/Commands
-myCommands_DATA = ./Help/Commands/*.htm ./Help/Commands/*.png ./Help/Commands/*.gif ./Help/Commands/*.jpg
+myCommands_DATA = $(abs_top_srcdir)/Help/Commands/*.htm $(abs_top_srcdir)/Help/Commands/*.png $(abs_top_srcdir)/Help/Commands/*.gif $(abs_top_srcdir)/Help/Commands/*.jpg
 
 myBasicTasksdir = $(myhelpdir)/BasicTasks
-myBasicTasks_DATA = ./Help/BasicTasks/*.htm ./Help/BasicTasks/*.gif ./Help/BasicTasks/*.dat ./Help/BasicTasks/*.pcm
+myBasicTasks_DATA = $(abs_top_srcdir)/Help/BasicTasks/*.htm $(abs_top_srcdir)/Help/BasicTasks/*.gif $(abs_top_srcdir)/Help/BasicTasks/*.dat $(abs_top_srcdir)/Help/BasicTasks/*.pcm
 
 myCharacteristicsdir = $(myhelpdir)/Characteristics
-myCharacteristics_DATA = ./Help/Characteristics/*.htm ./Help/Characteristics/*.png ./Help/Characteristics/*.jpg
+myCharacteristics_DATA = $(abs_top_srcdir)/Help/Characteristics/*.htm $(abs_top_srcdir)/Help/Characteristics/*.png $(abs_top_srcdir)/Help/Characteristics/*.jpg
 
 myFunctionsdir = $(myhelpdir)/Functions
-myFunctions_DATA = ./Help/Functions/*.htm ./Help/Functions/*.png ./Help/Functions/*.gif
+myFunctions_DATA = $(abs_top_srcdir)/Help/Functions/*.htm $(abs_top_srcdir)/Help/Functions/*.png $(abs_top_srcdir)/Help/Functions/*.gif
 
 myIntroductiondir = $(myhelpdir)/Introduction
-myIntroduction_DATA = ./Help/Introduction/*.htm ./Help/Introduction/*.png
+myIntroduction_DATA = $(abs_top_srcdir)/Help/Introduction/*.htm $(abs_top_srcdir)/Help/Introduction/*.png
 
 myLicensedir = $(myhelpdir)/License
-myLicense_DATA = ./Help/License/*.htm
+myLicense_DATA = $(abs_top_srcdir)/Help/License/*.htm
 
 myOperatorsdir = $(myhelpdir)/Operators
-myOperators_DATA = ./Help/Operators/*.htm
+myOperators_DATA = $(abs_top_srcdir)/Help/Operators/*.htm

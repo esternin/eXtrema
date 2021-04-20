@@ -1,10 +1,10 @@
 [Desktop Entry]
 Name=eXtrema
-Comment=eXtrema 2D/3D Graphics
+Comment=Data visualisation and analysis
 Exec=/usr/local/bin/extrema
 Icon=extrema
 Terminal=0
 Type=Application
 Encoding=UTF-8
 X-Desktop-File-Install-Version=0.10
-Categories=Application;Graphics;X-Red-Hat-Extra;
+Categories=Application;Graphics;Science;Education

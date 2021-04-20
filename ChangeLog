@@ -1,3 +1,46 @@
+20/03/2021  Edward Sternin <edward.sternin@brocku.ca>
+
+	4.5
+
+	* wxWidgets updated to v.2.8.12, gcc to v. 4.8.5, minor code
+	incompatibilities resolved.
+
+	* a big change in font handling 
+	Graphics/GRA_Graphics/GRA_drawableText.cpp modified to be usable on a
+	modern UTF-8 platform.  To compensate, reverse re-mapping added to
+	Graphics/GRA_postscript.cpp (back from symbol.ttf in Latin-1 Supplement
+	encoding).  This is a very poor solution, but the entire font-handling
+	needs a major revision, so this is just a temporary patch.  EPS does
+	not support UTF-8 fonts, so this will require building a custom
+	dictionary in the PostScript preamble, or switching to PDF.
+
+	With this workaround, PNG/JPEG/EPS all work and look the same.
+
+	* preliminary work started to move to wxWidgets v.3.0.x
+
+05/08/2011  Joe Chuma passed away
+
+	Version 4.4.5 has been Joe's final version, and for a few years was
+	available through most of the distribution channels. Edward Sternin
+	has maintained a code set that could be compiled (linux only), but
+	otherwise made no changes.  In 2020, Edward Sternin took over
+	sourceforge repository.  As of 2020, extrema is not available through
+	any distribution channels, and v. 4.4.5 mishandles all special
+	characters on linux and Windows 10 platforms.
+
+
+05/09/2010  Joe Chuma <joe.chuma@gmail.com>
+
+	 4.4.5
+
+	* The contour plot feature has been completely rewritten. It now produces
+	plots corresponding to the interactive help documentation (which was also
+	updated).
+
+	* A graph legend should no longer disappear on a hardcopy or a window
+	resize after setting LEGENDON false or using the DEFAULTS command.
+
+
 07/03/2010  Joe Chuma <joe.chuma@gmail.com>
 
 	v4.4.4
@@ -8,6 +51,10 @@
 
 	* modified src/Graphics/GRA_postscript
 	removed a "fudge factor" in the location for drawing text (related to preceeding fix)
+
+	Note: if you are having problems with Greek characters or
+	other math symbols, copy the symbol.ttf font file from the
+	fonts/ subdirectory to /usr/share/fonts/extrema.
 	
 05/02/2010  Joe Chuma <joe.chuma@gmail.com>
 
