@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>POLARLABEL</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="POLARLABEL">
+  <PARAM NAME="Keyword" VALUE="polar axis label">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>POLARLABEL</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET POLARLABEL s<br>
+GET POLARLABEL { s }</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+POLARLABEL</CODE> is blank
+</TD></TR>
+</TABLE>
+<p>
+ <em>Note:</em> The value of the <CODE><font color="blue">POLARLABEL</font></CODE>
+ characteristic is a string instead of a numeric value. So, if
+ you enter: <CODE><font color="blue">GET POLARLABEL X</font></CODE>, the variable
+ <CODE>X</CODE> will be a string variable.</P>
+<P>
+ The <CODE><font color="blue">SET POLARLABEL</font></CODE> command sets the
+ automatic polar axis text label. Setting the label also turns it on. Use the
+ <CODE><font color="blue">SET <A HREF="labelon.htm">POLARLABELON</A></font></CODE> command to
+ toggle off/on drawing the 
+ polar axis text label. The axis text labels are drawn only when the axes are
+ drawn. The character string may contain format commands. Change the sizes of the
+ text label with <CODE><font color="blue">SET <a href="labelheight.htm">POLARLABELHEIGHT</A></font></CODE>
+ or <CODE><font color="blue">SET %POLARLABELHEIGHT</font></CODE>.
+ The polar axis text label is drawn, centred, below the polar axis.</P>
+<P>
+ <a href="smallticlength.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;
+ <font size=+1 color="olive">POLARSMALLTICLENGTH</font></a><BR />
+ <a href="labelon.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;
+ <font size=+1 color="olive">POLARLABELON</font></a>
+</P>
+</body>
+</html>

@@ -1,0 +1,22 @@
+CLEAR
+window 0
+DEFAULTS
+!
+GENERATE A 0,,360 20        ! create vector A: min= 0, max= 360, length= 20
+GENERATE R 5,,5 20          ! create vector R: min= 5, max= 5, length= 20
+SET
+ PLOTSYMBOL -13             ! symbol 'centered arrow', angle A
+ %PLOTSYMBOLSIZE 7
+ PLOTSYMBOLANGLE A
+ %XNUMBERSHEIGHT 4
+ %YNUMBERSHEIGHT 4
+ AUTOSCALE COMMENSURATE
+ 
+GRAPH R*COSD(A) R*SIND(A)                 ! data is in polar coordinates
+SET %PLOTSYMBOLSIZE 3
+GRAPH\OVERLAY R/2*COSD(A) R/2*SIND(A)     ! overlay curve in polar coordinates
+SET
+ PLOTSYMBOLANGLE 90-A   ! symbol 'centered arrow', size 1, colour 1, angle 90-A
+ %PLOTSYMBOLSIZE 7
+ 
+GRAPH\OVERLAY 3*R/4*COSD(A) 3*R/4*SIND(A) ! overlay curve

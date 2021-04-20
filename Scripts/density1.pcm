@@ -1,0 +1,28 @@
+X=[  1;  0;  1;  0;   .2; .3;   .5;  .8]
+Y=[  5;  5;  0;  0;    1;1.5;  2.5;   4]
+Z=[ 10; 10; 10; 10; -100; 10; -100; 500]
+GRID\XYOUT\-messages X Y Z M XOUT YOUT
+window 5
+defaults
+clear
+set
+ %yimagticlength 2
+ %xnumbersheight 5
+ %ynumbersheight 5
+ xdropfirstnumber 1
+ xdroplastnumber 1
+ ydropfirstnumber 1
+ ydroplastnumber 1
+
+scale\-messages -.1 1.1 -.2 5.2
+density\dither\leg xout yout m
+!
+window\inherit 6 5
+dens\leg xout yout m
+!
+window\inherit 7 5
+dens\diff xout yout m
+!
+window\inherit 8 5
+dens\boxes xout yout m
+

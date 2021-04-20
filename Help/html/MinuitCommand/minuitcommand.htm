@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>MINUIT command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="MINUIT command">
+        <PARAM NAME="Keyword" VALUE="minimization">
+        <PARAM NAME="Keyword" VALUE="fit">
+</OBJECT>
+
+<P><A NAME="minuitcommand"></A>
+<font size=+3 color="green"><B>MINUIT command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+MINUIT y=expression<br>
+MINUIT expression<br>
+MINUIT\UPDATE yf</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\MINIMIZE,</nobr> <nobr>\MIGRAD,</nobr> <nobr>\SIMPLEX,</nobr>
+<nobr>\UPDATE,</nobr> <nobr>\WEIGHTS,</nobr> <nobr>\CHISQ,</nobr>
+<nobr>\VARNAMES,</nobr> <nobr>\MESSAGES</nobr></CODE></TD>
+</TR><TR>
+<TD width=15% valign="top"><B>Defaults:</B></TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\MINIMIZE,</nobr> <nobr>\-WEIGHTS,</nobr> <nobr>\-CHISQ,</nobr>
+<nobr>\-VARNAMES,</nobr> <nobr>\MESSAGES</nobr></CODE></TD>
+</TR><TR>
+<TD width=15% valign="top"><B>Examples:</B></TD>
+<TD width=85% valign="top"><CODE>
+MINUIT Y=A*X+B<br>
+MINUIT\WEIGHTS W Y=A*EXP(-B*X)+C<br>
+MINUIT\UPDATE YF</CODE></TD>
+</TR></TABLE>
+<P>
+This command accesses the CERN Minuit package for function minimization
+and error analysis.  The command is very similar to the
+<CODE><font color="blue"><a href="../FitCommand/fitcommand.htm">FIT</a></font></code>
+command.  The variable
+parameters are defined with the
+<CODE><font color="blue"><a href="../ScalarCommand/scalarcommand.htm">SCALAR\FIT</a></font></code>
+command.  The expression to be fitted must result in
+a vector with the same length as the data variable y.</P>
+<P>
+For detailed information on Minuit, please refer to the Minuit Home Page at
+<font color="red">http://seal.web.cern.ch/seal/work-packages/mathlibs/minuit/home.html</font></p>
+<p>
+<I>This implementation is open to suggestions from users for enhancements.</I>
+<P>
+If your expression calculates the chi-square value, you can just enter the
+<CODE><font color="blue">expression</font></code>, instead of the usual
+<CODE><font color="blue">y=expression</font></code>.</P>
+<p>
+By default, or with the <CODE><font color="blue">\MINIMIZE</font></code> qualifier, the 
+MIGRAD method is tried first, and if that fails to converge, the SIMPLEX method will be
+tried and then the MIGRAD method again.</P>
+<P>
+If the <CODE><font color="blue">\MIGRAD</font></code> qualifier is used, the MIGRAD method is used,
+which "is the best minimizer
+for nearly all functions. It is a variable-metric method with inexact line search, a stable
+metric updating scheme, and checks for positive-definiteness.... Its main weakness is that
+it depends heavily on knowledge of the first derivatives, and fails miserably if they are
+very inaccurate."</P>
+<P>
+If the <CODE><font color="blue">\SIMPLEX</font></code> qualifier is used, the SIMPLEX method is
+used.  "This genuine multidimensional
+minimization routine is uusually much slower than MIGRAD, but it does not use first
+derivatives".</P>
+<P>
+There is no maximum number of fitting parameters allowed in the expression, but
+fifteen (15) parameters is probably a practical limit. Variable fitting parameters are
+created with the <CODE><font color="blue">SCALAR\FIT</font></code> command, and
+can be converted to fixed value scalar variables with the
+ <CODE><font color="blue">SCALAR</font></code> command.  
+If the <CODE><font color="blue">\VARNAMES</font></code> qualifier is used, an array text variable named
+<CODE><font color="orange">FIT$VAR</font></code> will be made which will contain the names of the fitting parameter
+variables.  The array length of <CODE><font color="orange">FIT$VAR</font></code> will be equal to the number of 
+fitting parameters.</P>
+<P>
+The <CODE><font color="blue">SCALAR</font></code> command allows for limits to be placed
+on a fitting parameter.  Use the <CODE><font color="blue">a[amin:amax]</font></code>
+syntax to create fit parameter <CODE><font color="blue">a</font></code> with lower limit
+<CODE><font color="blue">amin</font></code> and upper limit
+<CODE><font color="blue">amax</font></code>. To set an upper limit only, use
+<CODE><font color="blue">a[:amax]</font></code>, and to set a lower limit only, use
+<CODE><font color="blue">a[amin:]</font></code>. These limits are only used by the
+<CODE><font color="blue">MINUIT</font></code> command and are ignored by the
+<CODE><font color="blue">FIT</font></code> command.</P>
+<P>
+The <CODE><font color="blue">\WEIGHTS</font></code> qualifier must be used if you want to enter a vector of weights.
+The optional weight vector will then be expected.  The weights are assigned
+to the dependent variable in a one-to-one fashion, so the length of the weight
+vector must be the same as the length of the data vectors.</P>
+<P>
+If the <CODE><font color="blue">\CHISQ</font></code> qualifier is used, a scalar named
+<CODE><font color="orange">FIT$CHISQ</font></code> will be made with value
+equal to the total chi-square.  The chi-square is calculated as
+<code>sum(<font color="blue">w</font>*(<font color="blue">y</font>-<font color="blue">expression</font>)^2)</code>
+where <CODE><font color="blue">w</font></code> is the weight vector, <CODE><font color="blue">y</font></code>
+ is the data vector, and <CODE><font color="blue">expression</font></code> contains the variable
+parameters to be fitted.</p>
+<P>
+If the <CODE><font color="blue">\-MESSAGES</font></code> qualifier is used, then there will be no
+ informational messages output to the display window.</P>
+<P>
+ The <font color="blue"><CODE>MINUIT\UPDATE yout</CODE></font> command evaluates
+ the previously fitted expression, that is, the expression
+ in the last <CODE>MINUIT</CODE> command, for the current
+ parameter values, and stores this result in the vector
+ <font color="blue"><CODE>yout</CODE></font>.</P>
+<P>
+ This is exactly equivalent to entering: 
+ <TT>yout=</TT>previously_fitted_expression <BR>
+ and is provided only to obviate the necessity of re-entering a complicated
+ expression.</P>
+<P>
+ <EM>Note</EM>: The vector name <font color="blue"><TT>yout</TT></font>
+ usually differs from the name of the vector being fitted to avoid destroying
+ the original data.
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>INDEX</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="INDEX function">
+</OBJECT>
+<P><A NAME="index"></A>
+<font size=+3 color="green"><B>INDEX</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+scalar = INDEX(string1,string2)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">INDEX</font></CODE> function accepts two strings as arguments.
+ If <CODE><font color="blue">string2</font></CODE> is a subset of
+ <CODE><font color="blue">string1</font></CODE>, it returns the substring's starting position. If
+ <CODE><font color="blue">string2</font></CODE> occurs more than once in
+ <CODE><font color="blue">string1</font></CODE>, the starting position of the first (leftmost) occurrence is
+ returned. If <CODE><font color="blue">string2</font></CODE> does not occur in
+ <CODE><font color="blue">string1</font></CODE>, the value zero (0) is returned. Neither string
+ argument will be modified.</p>
+<p>
+ <font size=+1 color="green">Examples</font></p>
+<p>
+<table>
+<tr>
+ <td align="center" bgcolor=#CCFFFF><em>function</em></td>
+ <td bgcolor=#FF9966><em>result</em></td>
+</tr><tr>
+ <td><CODE><font color="blue">INDEX('abc','abc')</font></CODE></td>
+ <td align="center"><font color="orange">1</font></td>
+</tr><tr>
+ <td><CODE><font color="blue">INDEX('abcd','abc')</font></CODE></td>
+ <td align="center"><font color="orange">1</font></td>
+</tr><tr>
+ <td><CODE><font color="blue">INDEX('abc','abcd')</font></CODE></td>
+ <td align="center"><font color="orange">0</font></td>
+</tr><tr>
+ <td><CODE><font color="blue">INDEX('xxabcabc','abc')</font></CODE></td>
+ <td align="center"><font color="orange">3</font></td>
+</tr></table></p>
+<p>
+<a href="sup.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">SUP</font></a><br>
+<a href="eval.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">EVALUATE</font></a>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>ADEV function</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="ADEV function">
+  <PARAM NAME="Keyword" VALUE="average deviation">
+</OBJECT>
+<P><font size=+3 color="green"><B>Average deviation</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>s = ADEV(x)</CODE><br>
+              <CODE>s = ADEV(w,x)</CODE></TD></TR>
+</table></p>
+<p>
+The <code><font color="blue">ADEV</font></code> function only accepts one or two vector arguments.
+If only one vector is entered, the function returns the average deviation of that vector's data. If two
+vectors are entered, the first vector holds the weights and the second vector holds the data.  The result is
+always a scalar value.
+</p>
+<p>
+ Suppose that <i>x</i> is a vector with <i>N</i> elements.</P>
+<P>
+ A weight vector, <i>w</i>, may be entered as the first argument. The
+ length of <i>w</i> is assumed to also be <i>N</i>. If no weights are entered,
+ let <IMG WIDTH=17 HEIGHT=17 ALIGN=MIDDLE SRC="..\img8.gif"> default to
+ <CODE>1</CODE>, for <IMG WIDTH=98 HEIGHT=25 ALIGN=MIDDLE SRC="..\img9.gif">.
+ Define the total weight: <IMG WIDTH=108 HEIGHT=36 ALIGN=MIDDLE SRC="..\img10.gif"></p>
+<P>
+ The mean value, <IMG WIDTH=8 HEIGHT=11 ALIGN=BOTTOM SRC="..\img12.gif">, is
+ defined by
+ <IMG WIDTH=139 HEIGHT=36 ALIGN=MIDDLE SRC="..\img13.gif"></p>
+<P>
+ The average deviation, or mean deviation,
+ <IMG WIDTH=7 HEIGHT=13 ALIGN=BOTTOM SRC="..\img23.gif">, is defined by
+ <IMG WIDTH=187 HEIGHT=36 ALIGN=MIDDLE SRC="..\img24.gif"></p>
+<p>
+<font size=+1 color="green"><B>Examples</B></font></P>
+<p>
+ Suppose <nobr><code>X = [1;2;3;4;5;6;7;8;9;10]</code></nobr>, then <nobr><code>A = ADEV(X)</code></nobr> returns scalar <code>A</code> with the value <code>2.5</code>.</p>
+<p>
+ Suppose <nobr><code>W = [1;1;1;5;5;5;5;1;1;1]</code></nobr>, then <nobr><code>A = ADEV(W,X)</code></nobr> returns scalar <code>A</code> with the value <code>1.57692</code>.</p>
+<P>
+<a href="..\statprob.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Statistics and probability functions</font></a><br>
+<a href="..\Binomial\binom.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Binomial coefficient</font></a>
+</P>
+</BODY>
+</HTML>

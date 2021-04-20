@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Area between two curves example</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="AREAFILLCOLOR area between 2 curves example">
+</OBJECT>
+<P><font size=+2 color="green">Area between two curves example</font></P>
+<p>
+ The script below, <code>fill.pcm</code>, will fill the area between two curves with a
+ solid color. It expects five parameters which are the four vectors containing the two sets
+ of data. The fifth parameter the script expects is the name of the fixed color to use for
+ filling.</p>
+<p>
+ <pre>
+  ! fill.pcm
+  !
+  X0 = ?1
+  Y0 = ?2
+  X02 = ?3
+  Y02 = ?4
+  L = LEN(X0)
+  L1 = LEN(X02)
+  X0[L+1:L+L1] = X02[L1:1:-1]
+  Y0[L+1:L+L1] = Y02[L1:1:-1]
+  SET AREAFILLCOLOR STRING(?5)
+  GRAPH X0 Y0
+  DEFAULTS
+ </pre></p>
+ The following commands generate some data and call <code>fill.pcm</code>, producing
+ the figure below.</p>
+<p>
+ <table>
+ <tr>
+  <td><table cellpadding="0" cellspacing="0">
+    <td><code><nobr>GENERATE X 0,,180 100</nobr></code></td></tr><tr>
+    <td><code><nobr>Y=SIND(X)</nobr></code></td></tr><tr>
+    <td><code><nobr>GENERATE X1 0,,180 50</nobr></code></td></tr><tr>
+    <td><code><nobr>Y1=EXP(-X1/90)*SIND(X1)</nobr></code></td></tr><tr>
+    <td><code><nobr>@FILL X Y X1 Y1 RED</nobr></code></td></tr></table></td>
+  <td><img src="example3.jpg"></td>
+ </tr></table></p>
+<P>
+<a href="example2.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Histogram example</font></a>
+</P>
+</BODY>
+</HTML>

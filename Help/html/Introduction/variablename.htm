@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Variable names</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="variable name">
+</OBJECT>
+
+<P><A NAME="variablenames"></A>
+<font size=+2 color="green">Variable names</font></P>
+<P>
+ The first character of a variable name <EM>must</EM> be an alphabetic
+ character, that is, <CODE>A</CODE> to <CODE>Z</CODE>. Except for this
+ restriction, variable names can be any combination of:
+<P>
+<table border=1 cellpadding=10>
+<tr>
+<td> alphabetic characters</td>
+<td><tt>ABC...XYZ</tt></td>
+</tr><tr>
+<td>digits</td>
+<td><tt>0123456789</tt></td>
+</tr><tr>
+<td>underscore</td>
+<td align=center><tt>_</tt></td>
+</tr><tr>
+<td>dollar sign</td>
+<td align=center><tt>$</tt></td></tr>
+</table></P>
+<P>
+ There is no maximum length for variable names.</P>
+<P>
+ All variable names are stored internally as upper case, but can be refered to
+ as upper or lower case.
+<P>
+ Function names and some other keywords are reserved names and cannot be
+ used as variable names. The following table shows the list of reserved
+ keywords.</P>
+<PRE>
+         LOG          LN     DIGAMMA         PSI       LOG10        AIRY
+         EXP       LOGAM        SQRT       BESI0         SIN        SINE
+       BESI1       BESK0         COS      COSINE       BESK1       BESJ0
+         TAN     TANGENT       BESJ1       BESY0        ASIN       ARSIN
+       BESY1      COSINT      DAWSON      ELLICK        ACOS       ARCOS
+      ELLICE         ERF      EXPINT        FREQ        ATAN       ARTAN
+      ARCTAN     GAUSSIN      SININT       GAMMA       ATAN2      ARTAN2
+     ARCTAN2       DILOG     STRUVE0     STRUVE1        SINH        COSH
+        TANH        CSCH        SECH        COTH         ABS       ASINH
+      ARSINH      ARCOSH         MAX       ACOSH       ACOTH      ARCOTH
+         MIN       ASECH      ARSECH       ACSCH      ARCSCH         COT
+         SEC         CSC         INT        IFIX         MOD       ARCOT
+        ACOT       ARSEC        SIGN        ASEC         DIM       ARCSC
+         RAN       VOIGT        ACSC       FREC1       FREC2       FRES1
+       FRES2         PLM        PLMN        PLMU    FERDIRAC        ERFC
+        BIRY          EI   FACTORIAL         BER         BEI        AERF
+        EXPN      RADMAC       WALSH        BETA       BINOM       CHEBY
+       CHISQ    CHISQINV    FINELLIC    EINELLIC     GAMMAIN    GAMMACIN
+    GAMMATIN     HERMITE    LAGUERRE    LEGENDRE     STUDENT    STUDENTI
+      BETAIN    BIVARNOR      CHLOGU      FISHER       POICA      JACOBI
+      HYPGEO         KER         KEI        SIND        COSD        TAND
+       ASIND       ACOSD       ATAND      ATAN2D        NINT       AERFC
+       GAUSS      AGAUSS        PROB       ATANH      ARTANH      GAMMLN
+       GAMMQ      CLEBSG      WIGN3J      WIGN6J      WIGN9J      RACAHC
+      JAHNUF      NORMAL        TINA      ELTIME       RCHAR        CHAR
+       ICHAR    EVALUATE      EXPAND        DATE        TIME       UCASE
+       LCASE       TCASE       INDEX        CLEN        VLEN         LEN
+       WHERE         EQS         NES         SUB         SUP        ROLL
+        STEP        WRAP        NULL        FOLD      UNFOLD   CONVOLUTE
+    INTEGRAL  DERIVATIVE INTERPOLATE      SMOOTH         FFT      SAVGOL
+   SPLINTERP   SPLSMOOTH       FIRST        LAST        IFFT       EXIST
+     VARNAME      ICLOSE      GAUSSJ        AREA   TRANSLATE    PFACTORS
+     INVERSE DETERMINANT    IDENTITY       EIGEN      IEQUAL      STRING
+        JOIN     VARTYPE
+</PRE>
+<P>
+ The <a href="..\Functions\StringManipulation\varname.htm"><CODE>VARNAME</CODE></a> function
+ accepts a variable, either
+ string or numeric, as its argument, and converts that variable's name into a
+ string.  For example, <font color="blue"><code>a=VARNAME(x)</code></font>
+ would create a string variable called <code>A</code> with the value
+ <code>`X'</code>.</P>
+<P>
+<a href="variables.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Variables</font></a><br>
+<a href="scalarvariable.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Scalar variables</font></a>
+</P>
+
+</body>
+</html>

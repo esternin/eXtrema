@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>LIST command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="LIST command">
+</OBJECT>
+
+<p><A NAME="listcommand"></A>
+<font size=+3 color="green"><B>LIST command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+LIST x1 { x2 ... x5 } { first { last { increment }}}<br>
+LIST\MATRIX m<br>
+LIST\MATRIX\FORMAT m `format'</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\COUNTER,</NOBR> <nobr>\MATRIX,</NOBR> <nobr>\FORMAT</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\-COUNTER,</NOBR> <nobr>\-MATRIX,</NOBR> <nobr>\-FORMAT</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Examples</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>LIST X Y Z 1 10</NOBR><br>
+<NOBR>LIST\MATRIX M[1:NR,1:#]</NOBR><BR>
+<NOBR>LIST\MATRIX\FORMAT M `%7.2g'</NOBR></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ By default, the <CODE><font color="blue">LIST</font></CODE> command displays a
+ listing of the specified vectors, <CODE><font color="blue">xI</font></CODE>,
+ from index <CODE><font color="blue">first</font></CODE> to index
+ <CODE><font color="blue">last</font></CODE> by increments of
+ <CODE><font color="blue">increment</font></CODE>.</p>
+<p>
+ <CODE><font color="blue">first</font></CODE> defaults to <CODE>1</CODE> and
+ <CODE><font color="blue">increment</font></CODE> defaults to <CODE>1</CODE> if
+ either are not entered.  If <CODE><font color="blue">last</font></CODE> is not entered,
+ all the elements of each vector are listed.</p>
+<p>
+ To display a counter on the left, under a <CODE><font color="orange">#</font></CODE>
+ header, use the <CODE><font color="blue">\COUNTER</font></CODE> qualifier.</p>
+<p>
+<font size=+1 color="green">List a matrix</font></p>
+<p>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+LIST\MATRIX m<br>
+LIST\MATRIX\FORMAT m `format'</CODE>
+</TD></TR>
+</TABLE>
+<p>
+ The <CODE><font color="blue">LIST\MATRIX</font></CODE> command displays a listing
+ of a matrix. The format defaults to <CODE>`%12g'</CODE>.  Use the
+ <CODE><font color="blue">\FORMAT</font></CODE> qualifier to indicate that a user
+ specified format has been entered.  The format must be enclosed in
+ quotes, <CODE><font color="blue">`</font></CODE> and
+ <CODE><font color="blue">'</font></CODE>. Any standard C-style format is valid.</p>
+</BODY>
+</HTML>

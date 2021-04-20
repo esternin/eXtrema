@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>CONTOUR command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="graphics">
+	<PARAM NAME="Keyword" VALUE="CONTOUR command">
+</OBJECT>
+
+<P><A NAME="contourcommand"></A>
+<font size=+3 color="green"><B>CONTOUR command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+CONTOUR { x y } z nctr { min { incr }}<BR>
+CONTOUR\SPECIFIC { x y } z lvls</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers:</B></TD>
+<TD width=85%><CODE>
+<NOBR>\SPECIFIC,</NOBR> <NOBR>\POLAR,</NOBR> <NOBR>\LEGEND,</NOBR>
+<NOBR>\COLORS,</NOBR> <NOBR>\LINETYPES,</NOBR> <NOBR>\LINEWIDTHS,</NOBR> <NOBR>\PARTIAL,</NOBR>
+<NOBR>\RESET,</NOBR> <NOBR>\BORDER,</NOBR> <NOBR>\AXES,</NOBR>
+<NOBR>\CONTINUE</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults:</B></TD>
+<TD width=85%><CODE>
+X=[1;2;3;…], y=[1;2;3;…], <NOBR>\-SPECIFIC,</NOBR>
+<NOBR>\-POLAR,</NOBR> <NOBR>\-LEGEND,</NOBR> <NOBR>\-COLORS,</NOBR>
+<NOBR>\-LINETYPES,</NOBR> <NOBR>\-LINEWIDTHS,</NOBR> <NOBR>\-PARTIAL,</NOBR>
+<NOBR>\-RESET,</NOBR><NOBR>\BORDER,</NOBR> <NOBR>\AXES,</NOBR>
+<NOBR>\-CONTINUE</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Examples:</B></TD>
+<TD width=85%><CODE>
+CONTOUR X Y Z 10<br>
+CONTOUR M 10 MINVAL<br>
+CONTOUR\SPECIFIC X Y M LEVELS</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <TT>CONTOUR</TT> command draws contour lines for data contained in a
+ regular matrix.  If you instead have a scattered set of points contained in three vectors,
+ first create a regular matrix from the data using the
+ <a href="..\GridCommand\gridcommand.htm"><tt><font color="blue">GRID</font></TT></a> command.</P>
+<P>
+ Suppose that <CODE><font color="blue">z</font></CODE> is a matrix which has <i>n</i> columns and <i>m</i>
+ rows.  The vectors <CODE><font color="blue">x</font></CODE> and <CODE><font color="blue">y</font></CODE>
+ are optional, and if entered, are used for scaling the axes. Each matrix element,
+ <code><font color="blue">z</font>[i,j]</code>, is associated with the coordinates
+ <code>(<font color="blue">x</font>[j],<font color="blue">y</font>[i])</code>.
+ The length of <CODE><font color="blue">x</font></CODE> must be greater than or equal to <i>n</i>
+ and the length of <CODE><font color="blue">y</font></CODE> must be greater than or equal
+ to <i>m</i>.</P>
+<P>
+ If <CODE><font color="blue">x</font></CODE> and <CODE><font color="blue">y</font></CODE> are not entered,
+ <CODE><font color="blue">x</font></CODE> defaults to the set <CODE>[1;2;3;...;<i>n</i>]</CODE>, and
+ <CODE><font color="blue">y</font></CODE> defaults to the set <CODE>[1;2;3;...;<i>m</i>]</CODE>, so that
+ matrix element <code><i>z</i>[i,j]</code> is
+ associated with the coordinates <code>(j,i)</code>.</P>
+<p>
+<font size=+1 color="green">Polar coordinates</font></P>
+<P>
+ By default, the vectors <CODE><font color="blue">x</font></CODE> and
+ <CODE><font color="blue">y</font></CODE> are assumed to represent
+ Cartesian coordinates. If the <CODE><font color="blue">\POLAR</font></CODE>
+ qualifier is used, <CODE><font color="blue">x</font></CODE> and
+ <CODE><font color="blue">y</font></CODE> are assumed to represent polar
+ coordinates, with <CODE><font color="blue">x</font></CODE> the radial
+ component and <CODE><font color="blue">y</font></CODE> the angular component,
+ in degrees. The values are converted internally to rectangular coordinates,
+ and the vectors are returned unchanged.</P>
+<P>
+<font size=+1 color="green">Matrix boundary</font></P>
+<P>
+ By default, the boundary of the matrix is outlined within the axes. If this
+ boundary is not desired, use the
+ <CODE><font color="blue">\-BORDER</font></CODE> qualifier.</P>
+<P>
+<font size=+1 color="green">Add more contours</font></P>
+<P>
+ To add more contours to an existing contour plot, re-issue the contour command
+ with the <CODE><font color="blue">\CONTINUE</font></CODE></TT> qualifier.  If a legend
+ is being drawn, it will be continued from where it left off. You must have used the
+ <CODE><font color="blue">\-RESET</font></CODE> qualifier on the previous
+ <CODE><font color="blue">CONTOUR</font></CODE></TT> command if you intend to
+ use <CODE><font color="blue">\CONTINUE</font></CODE> on a
+ succeeding <CODE><font color="blue">CONTOUR</font></CODE> command.</P>
+<p>
+<a href="levelselection.htm"><font size=+1 color="olive">Contour level selection</font></a><br>
+<a href="colours.htm"><font size=+1 color="olive">Contour line properties</font></a><br>
+<a href="legend.htm"><font size=+1 color="olive">Legend</font></a><br>
+<a href="axes.htm"><font size=+1 color="olive">Axes</font></a><br>
+<a href="example.htm"><font size=+1 color="olive">Examples</font></a>
+</P>
+</body>
+</html>

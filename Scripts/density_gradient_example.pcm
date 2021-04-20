@@ -1,0 +1,29 @@
+clear
+!
+r=mod([0:143],4)+1
+sort r
+t=mod([0:143],36)*10
+x = r*cosd(t)
+y = r*sind(t)
+z = exp(-r/2)*cosd(180*(r-1))
+grid\xyout\-messages x y z m xout yout
+window 0
+defaults
+set
+ %yimagticlength 2
+ %xnumbersheight 5
+ %ynumbersheight 5
+ xdropfirstnumber 1
+ xdroplastnumber 1
+ ydropfirstnumber 1
+ ydroplastnumber 1
+ xticangle -90
+ yticangle 90
+ colormap topo256
+
+scales\commensurate\-messages -4 4 -4 4 
+density\-reset xout yout m
+!density\legend\-reset xout yout m
+!
+!set contourlabelheight 0
+!contour\-axes xout yout m 10

@@ -1,0 +1,39 @@
+clear
+window 0
+defaults
+!
+x=[1:10]
+set
+ %textheight 3
+ legendon 1
+ legendtitlecolor teal
+ legendtitle 'The Legend Title'
+ %legendframe 15 70 50 90
+ legendframeon 1
+ legendframecolor red
+
+lineCodes = [1;0;1;0]
+symbolSizes = [2;2.5;3;2]
+symbols = [15;16;17;18]
+colors[1] = 'red'
+colors[2] = 'blue'
+colors[3] = 'coral'
+colors[4] = 'cyan'
+widths = [1;2;3;4]
+do i = [1:4]
+  set
+   plotsymbol symbols[i]
+   plotsymbolcolor colors[i]
+   %plotsymbolsize symbolSizes[i]
+   legendsymbols i
+   legendentrylineon lineCodes[i]
+   curvecolor colors[5-i]
+   linetype i+2
+   curvelinewidth widths[i]
+
+  graph 'legend entry<^>'//rchar(i) x i*x^2
+enddo
+!pause 'hit the <Enter> key to replot on a common scale...'
+replot
+!
+!set legendon 0

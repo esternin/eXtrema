@@ -1,0 +1,22 @@
+m=[[3;10;5];[4;2;-4];[15;3;3]]
+b=[26;14;22]
+soln=gaussj(m,b)
+='solve mx=b for x, where m ='
+=m
+='and b ='
+=b
+=' '
+='solution = '
+=soln
+=' '
+='check by looking at m<>solution ='
+=m<>soln
+=' '
+='now for the matrix inverse...'
+inv=inverse(m)
+=' '
+='inverse ='
+=inv
+=' '
+='check by looking at m<>inverse ='
+=abs(m<>inv-1)<.001

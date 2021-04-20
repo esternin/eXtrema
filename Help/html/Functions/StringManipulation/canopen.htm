@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>CANOPEN</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="CANOPEN function">
+</OBJECT>
+<P><A NAME="canopen"></A>
+<font size=+3 color="green"><B>CANOPEN</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+scalar = CANOPEN(filename)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">CANOPEN</font></CODE> function accepts a string as argument, which is
+ interpreted as a file name.
+ If <CODE><font color="blue">filename</font></CODE> exists, the function returns the value one (1).
+ If <CODE><font color="blue">filename</font></CODE> does not exist, the function returns the value zero (0).
+ The <CODE><font color="blue">filename</font></CODE> string argument will not be modified.</p>
+<p>
+ <font size=+1 color="green">Examples</font></p>
+<p>
+ <font color="blue"><CODE>TEST = CANOPEN('/home/user/foo.dat')</CODE></FONT> <BR>
+or<br>
+ <font color="blue"><CODE>FILENAME = '/home/user/foo.dat'</CODE></FONT> <BR>
+ <font color="blue"><CODE>TEST = CANOPEN(FILENAME)</CODE></FONT></P>
+<p>
+<a href="expand.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;
+<font size=+1 color="olive">EXPAND</font></a>
+</P>
+</BODY>
+</HTML>

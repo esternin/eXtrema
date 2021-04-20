@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>DECONVOLUTE function</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="DECONVOLUTE function">
+  <PARAM NAME="Keyword" VALUE="CONVOLUTE function">
+  <PARAM NAME="Keyword" VALUE="fast Fourier transform">
+</OBJECT>
+<P><font size=+3 color="green"><B>DECONVOLUTE function</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+yd = DECONVOLUTE(y,b)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">DECONVOLUTE</font></CODE> function accepts two vector
+ arguments. It deconvolutes the first argument vector, <CODE><font color="blue">y</font></CODE>,
+ with the specified blurring vector, <CODE><font color="blue">b</font></CODE>. The result is a
+ vector the same length as <CODE><font color="blue">y</font></CODE>. 
+ The blurring vector <CODE><font color="blue">b</font></CODE>, the second argument,
+ must contain an even number of points. The preferred lengths are powers of <code>2</code>.
+ The deconvolution is done using fast Fourier transforms. The following restrictions apply:</p>
+<ul>
+<li><CODE><font color="blue">y</font></CODE> must be padded at its lower end with a number
+    of zeros equal to the number of non-zero elements in <CODE><font color="blue">b</font></CODE>.
+    For example, if both vectors have <code>128</code> elements, and 
+    <CODE><font color="blue">b</font></CODE> is non-zero in the range <code>1 - 29</code>, then
+    <CODE><font color="blue">y</font></CODE> must contain zeros in locations <code>1 - 29</code></li>
+<li><CODE><font color="blue">y</font></CODE> and <CODE><font color="blue">b</font></CODE>
+    must have the same number of elements</li>
+<li>the end points of <CODE><font color="blue">b</font></CODE> must not be equal.  A difference
+    of less than <code>0.0001</code> produces oscillations in the deconvoluted result. The
+    usual way to correct for this is to shift <CODE><font color="blue">b</font></CODE> to the
+    left so that the first point has a non-zero value.  Together with the first restriction,
+    this ensures that the right most point has the value zero, leaving the ends unequal.</li>
+</ul>
+<p>
+ Noise in <CODE><font color="blue">b</font></CODE> produces a change in the output, which, due to
+ averaging, has a small effect.  Noise effects depend on the shape of the deconvoluted peak. The
+ narrower this peak, the more effect the noise in <CODE><font color="blue">b</font></CODE> has. This
+ occurs because each noisy point becomes a greater percentage of the total number in the deconvoluting
+ function, thus reducing the average effect. In many applications, the noise in the measured data is
+ statistical in nature and so, to reduce the sensitivity to this noise on the deconvolution, apply
+ <a href="..\..\..\FilterCommand\nonrecursive.htm">smoothing filters</a> on the measured data before
+ deconvolution.
+<p>
+ The <CODE><font color="blue"><a href="..\Convolute\convolute.htm">CONVOLUTE</a>
+ </font></CODE> function calculates the convolution.</p>
+<p>
+<a href="..\Dawson\dawson.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Dawson's integral</font></a><br>
+<a href="..\Deriv\deriv.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Derivative</font></a>
+</P>
+</BODY>
+</HTML>

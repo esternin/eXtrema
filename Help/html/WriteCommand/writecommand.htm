@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>WRITE command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="WRITE command">
+</OBJECT>
+
+<P><A NAME="writecommand"></A>
+<font size=+3 color="green"><B>WRITE command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+WRITE file x1 { x2 ... }<br>
+WRITE\SCALAR file s1 { s2 ... }<br>
+WRITE\MATRIX file matrix<br>
+WRITE\TEXT file txtvar</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\SCALAR,</NOBR> <NOBR>\MATRIX,</NOBR> <NOBR>\TEXT,</NOBR> <NOBR>\APPEND</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Examples</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>WRITE FILE.DAT X Y Z</nobr><br>
+<nobr>WRITE\APPEND FILE.DAT X Y Z</nobr><br>
+<nobr>WRITE\SCALAR FILE.DAT A B C</nobr><br>
+<nobr>WRITE\SCALAR\APPEND FILE.DAT A B C</nobr><br>
+<nobr>WRITE\MATRIX\APPEND FILE.DAT M[1:100,1:10]</nobr><br>
+<nobr>WRITE\TEXT FILE.DAT `X['//RCHAR(J)//`] = '//RCHAR(X[J])</nobr><br>
+<nobr>WRITE\TEXT\APPEND FILE.DAT `A = '//RCHAR(A)</nobr></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE><font color="blue">WRITE</font></CODE> command is a general purpose writing
+ command for vectors, scalars, matrices, or character strings. The variable type that will
+ be written depends on the qualifier appended to the command. The parameters that are
+ expected also depend on this qualifier.</p>
+<p>
+<font size=+1 color="green">Write vectors</font></p>
+<p>
+ By default, the <CODE><font color="blue">WRITE</font></CODE> command writes vectors to a
+ file. If the <CODE><font color="blue">\APPEND</font></CODE> qualifier is used, and if the
+ output file already exists, the data will be appended onto the end of the file. Columns of
+ data will be written to the file, where the <CODE>I</CODE><sup>th</sup> column will be
+ vector <CODE><font color="blue">xI</font></CODE>. The number of lines that are written to
+ the file will
+ be the minimum length of the vectors. A maximum of <CODE>29</CODE> vectors can be written
+ with one <CODE><font color="blue">WRITE</font></CODE> command.</p>
+<p>
+<font size=+1 color="green">Example 1</font></p>
+<p>
+ If you have a vector, for example, <CODE>X</CODE>, and enter
+ <nobr><CODE><font color="blue">WRITE FILE.DAT X X X</font></CODE></nobr>
+ then the following values will be written to the file:</p>
+<pre>
+ X(1) X(2) X(3)
+ X(4) X(5) X(6)
+ ...
+</pre>
+<p>
+<font size=+1 color="green">Example 2</font></p>
+<p>
+ To write the vectors <CODE>X</CODE>, <CODE>Y</CODE> and <CODE>Z</CODE> to the file
+ <CODE>DUM.DAT</CODE> so that there will be three columns of numbers in the file, enter:
+ <nobr><CODE><font color="blue">WRITE DUM.DAT X Y Z</font></CODE></nobr></p>
+<p>
+ If you enter:
+ <nobr><CODE><font color="blue">WRITE DUM.DAT X X Y Y Z Z</font></CODE></nobr>
+ then the following will be written to the file:</p>
+<pre>
+    X(1) X(2) Y(1) Y(2) Z(1) Z(2)
+    X(3) X(4) Y(3) Y(4) Z(3) Z(4)
+    X(5) X(6) Y(5) Y(6) Z(5) Z(6)
+    ...  ...  ...  ...  ...  ...
+</pre>
+<P>
+<a href="scalars.htm"><font size=+1 color="olive">Write scalars</font></a><br>
+<a href="matrix.htm"><font size=+1 color="olive">Write a matrix</font></a><br>
+<a href="text.htm"><font size=+1 color="olive">Write a character string</font></a><br>
+</P>
+</BODY>
+</HTML>

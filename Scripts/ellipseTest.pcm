@@ -1,0 +1,18 @@
+clear
+defaults
+!
+generate\random x -4 4 1000
+generate\random y 3 5 1000
+ellipse\fit\xyout\fraction\parameters x y 0.8 a b xc yc angle xo yo
+set plotsymbol -17
+set %plotsymbolsize 0.5
+graph x y
+set plotsymbol 0
+set curvecolor red
+graph\overlay xo yo
+polygon\inside xo yo x y key
+idx = where(key=1)
+set plotsymbol -17
+set plotsymbolcolor green
+graph\overlay x[idx] y[idx]
+

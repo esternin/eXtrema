@@ -1,0 +1,20 @@
+clear
+window 0
+defaults
+!
+x = [0:10]
+y = 2*x^2-3*x+50 + 75*ran(x)
+generate xx 0,,10,100
+set plotsymbol -10
+set plotsymbolcolor red
+graph x y
+set plotsymbol 0
+set curvecolor black
+t = [0;0.001;0.01;0.1]
+do i = [1:len(t)]
+ set tension t[i]
+ set curvecolor -(i+6)
+ display 'Using tension = '//rchar(t[i])
+ graph\overlay xx smooth(x,y,xx)
+enddo
+replot

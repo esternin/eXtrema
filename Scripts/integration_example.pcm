@@ -1,0 +1,25 @@
+clear
+defaults
+pi=acos(-1)
+generate x 0,,2*pi 100
+y = cos(x)^3+sin(x)^3
+graph x y
+!
+set curvecolor red
+graph\overlay x integral(x,y)
+set curvecolor black
+set
+ %xtextlocation 53
+ %ytextlocation 76
+ textalign 1
+ textinteractive 0
+ 
+text '<C-2><H5%><Int><H3%>f(x)dx'
+set
+ %xtextlocation 45
+ %ytextlocation 30
+ textalign 9
+ 
+text 'f(x) = cos(x)<^>3<_> + sin(x)<^>3<_>'
+replot
+zerolines\horizontal

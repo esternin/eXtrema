@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Mean filters</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="mean filter">
+	<PARAM NAME="Keyword" VALUE="average filter">
+	<PARAM NAME="Keyword" VALUE="\MEAN qualifier">
+	<PARAM NAME="Keyword" VALUE="running mean filter">
+</OBJECT>
+<P><font size=+2 color="green">Mean filters</font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+FILTER\MEAN x f npt</CODE>
+</TD></TR>
+</table></P>
+<P>
+ If the <CODE><font color="blue">\MEAN</font></CODE> qualifier is used, the
+ filter will be the running mean, or average, filter.  This filter method is
+ sensitive to large spikes in the data. Any large spikes, for example,
+ <CODE>&gt;&sim;1000</CODE> times normal value, should first be removed, by,
+ for example, the median filter.</P>
+<P>
+ There are two versions of the running mean filter, which are chosen by
+ whether <CODE><font color="blue">npt</font></CODE> is positive or negative.
+ The window width is always <CODE>|<font color="blue">npt</font>|</CODE>.</P>
+<P>
+ If <CODE><font color="blue">npt</font> &gt; 0</CODE>, the average value of
+ each window placement is calculated by summing the relevant points and
+ dividing by <CODE><font color="blue">npt</font></CODE>. The averaging
+ window butts up against the end.</P>
+<P>
+ If <CODE><font color="blue">npt</font> &lt; 0</CODE>, a much faster method
+ is used which adds a new point to the right and drops an old one from the
+ left. The window runs off half way from each end, but pseudo points outside
+ the range are set to the appropriate end point values.</P>
+<P>
+<a href="median.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Median filters</font></a><br>
+<a href="nonrecursive.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Nonrecursive filters</font></a>
+</P>
+</BODY>
+</HTML>

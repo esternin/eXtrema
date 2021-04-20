@@ -1,0 +1,59 @@
+X=[  1;  0;  1;  0;   .2; .3;   .5;  .8]
+Y=[  5;  5;  0;  0;    1;1.5;  2.5;   4]
+Z=[ 10; 10; 10; 10; -100; 10; -100; 500]
+GRID\XYOUT X Y Z M XOUT YOUT
+window 1 20 20 80 80
+defaults
+clear
+set %yimagticlength 2
+set %xnumbersheight 5
+set %ynumbersheight 5
+set xdropfirstnumber 1
+set xdroplastnumber 1
+set ydropfirstnumber 1
+set ydroplastnumber 1
+density xout yout m
+pause
+!
+clear
+density\legend xout yout m
+pause
+!
+clear
+density\dithering x y z
+pause
+!
+clear
+density\dithering\legend x y z
+pause
+!
+clear
+D=[ 1;1; 2;2; 4;4; 7;7; 11;11; 0;0 ]
+density\dithering\dithervector\legend d x y z
+pause
+!
+clear
+density\diffusion x y z
+pause
+!
+clear
+density\diffusion\xpro\ypro x y z
+pause
+!
+clear
+window 0
+defaults
+set %yimagticlength 2
+r=mod([0:143],4)+1
+sort r
+t=mod([0:143],36)*10
+d=[1;1; 2;2; 4;4; 7;7; 11;11; 0;0]
+x = r*cosd(t)
+y = r*sind(t)
+z = exp(-r/2)*cosd(180*(r-1))
+grid\xyout x y z m xout yout
+density\legend\dithering\dithervector d xout yout m
+!
+window 0
+destroy r t d x y z xout yout m
+

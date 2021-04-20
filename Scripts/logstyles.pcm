@@ -1,0 +1,23 @@
+x=[1:100]
+y=x^2
+clear
+window 3 0 50 100 100
+defaults
+set %ximagticlength 3
+set %yimagticlength 3
+set %xloweraxis 15
+set ylogbase 10
+set ylogstyle 1
+set %ynumbersheight 6
+set %xnumbersheight 6
+graph x y
+window 4 0 0 100 50
+defaults
+set %ximagticlength 3
+set %yimagticlength 3
+set %xloweraxis 15
+set ylogbase 10
+set ylogstyle 0
+set %ynumbersheight 6
+set %xnumbersheight 6
+graph x y

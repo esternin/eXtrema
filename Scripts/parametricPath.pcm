@@ -1,0 +1,53 @@
+clear
+window 0
+defaults
+!
+define\constants
+!phi[1:100] = 0
+!do i = [2:100]
+!  phi[i] = phi[i-1]+sin(i/5)
+!enddo
+generate phi 0,,3*pi 100
+a=0.2
+b=0.5
+x=a*phi-b*sin(phi)
+y=a-b*cos(phi)
+f=2*phi^2-3*phi+5
+set colormap rainbow
+get colormapsize csize
+c=int(f*csize/max(f)+0.99)
+scales\-messages min(x) max(x) min(y) max(y)
+set
+ plotsymbol 0
+ %xnumbersheight 4
+ %ynumbersheight 4
+ curvelinewidth 15
+ %xupperaxis 80
+ 
+graph\axesonly
+do i = [1:len(phi)-1]
+ set curvecolor c[i]
+ graph\overlay [x[i];x[i+1]] [y[i];y[i+1]]
+enddo
+scales\-messages 0 1 min(f) max(f)
+generate tmp min(f),,max(f) len(phi)
+set
+ %xloweraxis 85
+ %xupperaxis 90
+ xaxison 0
+ yaxison 1
+
+graph\axesonly\yonright 
+do i = [1:len(phi)-1]
+  set curvecolor c[i]
+  graph\overlay [0.5;0.5] [tmp[i];tmp[i+1]]
+enddo
+set
+ %textheight 6
+ textfont 'Arial Black'
+ textalign 1
+ textinteractive 0
+ %xtextlocation 10
+ %ytextlocation 93
+ 
+text 'Prolate Cycloid'

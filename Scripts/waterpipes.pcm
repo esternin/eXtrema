@@ -1,0 +1,38 @@
+! Suppose we were given the job of figuring out the minimum amount of water
+! pipe necessary to connect up the houses on a street to a water main. We
+! have to determine where to dig a straight trench down the street for the
+! water main pipe. Suppose that the houses are set back from the street by
+! varying distances, and that each house should be about 5 meters from the
+! water main.  The problem is to find the trench which would result in the
+! minimum usage of water pipe segments from the main to the houses.  We also
+! should determine the total length of the pipe we will need.
+!
+! Suppose the (x,y) coordinates of the connections to the houses are stored
+! in a file, HOUSES.DAT.  Remember from plane geometry that the distance from
+! point (x,y) to a straight line with slope A and y-intercept B is given by
+! D = |A*x+B-y|/sqrt(A^2+1), see the figure (waterpipe-fig.gif).  We want
+! to minimize the connecting pipe lengths by varying the free parameters A
+! and B.  The following small script does what we want.
+!
+! Since least squares is used for fitting, we take the square root of the
+! expression.  Note that we have more than one independent variable in the
+! expression.  Extension to multidimensional cases is straightforward.
+! The problem of fitting to a scattered set of points with a straight line
+! which is, on the average, a fixed number of units away will, in general,
+! have two solutions and which one you get will depend on the starting values
+! of the free parameters.
+!
+!
+FILE = 'HOUSES.DAT'
+LENGTH_GOAL = 5                       ! try to achieve this goal
+READ\-MESSAGES FILE X Y               ! read in the house positions
+SCALAR\FIT A B                        ! declare the free parameters
+A = 1                                 ! initialize
+B = 1                                 ! initialize
+D[1:LEN(X)] = LENGTH_GOAL             ! 
+DISTANCE = 'ABS(A*X+B-Y)/SQRT(A*A+1)' !
+FIT\-MESSAGES D=SQRT(DISTANCE)        ! do the fit
+FIT\UPDATE PIECES                     ! redo using calculated A and B
+STATISTICS PIECES PSUM\SUM            ! the total length of pipe needed
+DISPLAY 'Total length of pipe = '//RCHAR(PSUM,'%4.2f')
+waterpipesDone = 1

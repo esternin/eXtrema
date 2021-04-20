@@ -1,0 +1,70 @@
+clear
+X = [1.1:1.6:0.1]
+Y = [2.2;2.4;2.6;3.1;4.5;5.1]
+WINDOW 5
+defaults
+SET
+ %xnumbersheight 4
+ %ynumbersheight 4
+ %ximagticlength 2
+ %xtextlocation 50
+ %ytextlocation 90
+ textinteractive 0
+ textalign 2
+ %textheight 5
+ histogramtype 1
+ areafillcolor red
+
+GRAPH X Y
+text 'histogramtype = 1'
+!
+WINDOW 6
+defaults
+SET
+ %xnumbersheight 4
+ %ynumbersheight 4
+ %ximagticlength 2
+ %xtextlocation 50
+ %ytextlocation 90
+ textinteractive 0
+ textalign 2
+ %textheight 5
+ histogramtype 2
+ areafillcolor [-1:-6:-1]
+
+GRAPH X Y
+text 'histogramtype = 2'
+!
+WINDOW 7
+defaults
+SET
+ %xnumbersheight 4
+ %ynumbersheight 4
+ %ximagticlength 2
+ %xtextlocation 50
+ %ytextlocation 90
+ textinteractive 0
+ textalign 2
+ %textheight 5
+ histogramtype 3
+ areafillcolor blue
+
+GRAPH X Y
+text 'histogramtype = 3'
+!
+WINDOW 8
+defaults
+SET
+ %xnumbersheight 4
+ %ynumbersheight 4
+ %ximagticlength 2
+ %xtextlocation 50
+ %ytextlocation 90
+ textinteractive 0
+ textalign 2
+ %textheight 5
+ histogramtype 4
+ areafillcolor [-7:-12:-1]
+
+GRAPH X Y
+text 'histogramtype = 4'

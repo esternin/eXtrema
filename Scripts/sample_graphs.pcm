@@ -1,0 +1,31 @@
+clear
+window 5
+defaults
+x=[1:10]
+set
+ xlabelon 1
+ xlabel 'X<^>2<_> vs X'
+ %xlabelheight 6
+
+graph x x*x
+window 6
+defaults
+x2=[-5:5]
+set
+ xlabelon 1
+ xlabel 'X<^>3<_> vs X'
+ %xlabelheight 6
+
+graph x2 x2^3
+window 7
+defaults
+pi = acos(-1)
+theta=[0:2*pi:0.05]
+if exist('r') then destroy\-messages r
+r[1:len(theta)] = 1
+set
+ xlabelon 1
+ xlabel 'R*SIN(<theta>)  vs  R*COS(<theta>)'
+ %xlabelheight 6
+
+graph r*cos(theta) r*sin(theta)

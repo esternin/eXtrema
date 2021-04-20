@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>POLARCOMPASSLABELS</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="POLARCOMPASSLABELS">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>POLARCOMPASSLABELS</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET POLARCOMPASSLABELS n<br>
+GET POLARCOMPASSLABELS { n }</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default value</B>:</TD>
+<TD width=80% valign="top"><CODE>
+POLARCOMPASSLABELS = 0</CODE>
+</TD></TR></TABLE>
+<P>
+ <CODE><font color="blue">POLARCOMPASSLABELS</font></CODE> controls whether or not
+ each of the radial polar axes are labeled with the compass direction abbreviations or
+ with the angle of that axis.</P>
+<P>
+ <CODE><font color="blue">POLARCOMPASSLABELS</font> = 0</CODE> means label the outer end of
+ each axis with the angle of that axis relative to the 0<sup>&deg;</sup> radial axis.</p>
+<p>
+ <CODE><font color="blue">POLARCOMPASSLABELS</font> &ne; 0</CODE> means label the outer end of
+ each axis with the abbreviation for the compass direction.  This only applies if
+ <code><a href="naxes.htm">POLARNAXES</a></code> is one of 1, 2, 4, 8, or 16.</p>
+<p>
+ The height of these labels is controlled by the
+ <code><a href="labelheight.htm">POLARLABELHEIGHT</a></code> characteristic.</p>
+<p>
+ <img src="compasslabels.png"></p>
+<P>
+ <a href="naxes.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;
+ <font size=+1 color="olive">POLARNAXES</font></a><BR />
+ <a href="clockwise.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;
+ <font size=+1 color="olive">POLARCLOCKWISE</font></a>
+</P>
+</body>
+</html>

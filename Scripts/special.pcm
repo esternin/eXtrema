@@ -1,0 +1,849 @@
+clear
+window 0
+defaults
+!
+set
+ %xloweraxis 1
+ %xupperaxis 95
+ %yloweraxis 5
+ %yupperaxis 99
+ xticson 0
+ yticson 0
+ graphbox 1
+ xnumberson 0
+ ynumberson 0
+
+scales\-messages -1 1 -1 1
+graph [-1;1] [0.9;0.9]
+graph\overlay [-0.55;-0.55] [-1;1]
+graph\overlay [-0.035;-0.035] [-1;1]
+graph\overlay [0.5;0.5] [-1;1]
+set
+ textangle 0
+ textalign 1
+ textinteractive 0
+
+!
+txthite = 2.0
+skip = txthite+0.75
+!
+! first column
+!
+x1 = 2
+x2 = 16
+x3 = 19
+yloc = 90
+set
+ %textheight txthite
+ %ytextlocation yloc+2*skip
+ %xtextlocation x1
+
+text 'Name'
+set %xtextlocation x2
+text 'U'
+set %xtextlocation x3
+text 'L'
+!
+yloc = yloc+1
+set
+ %textheight txthite
+ %ytextlocation yloc
+ %xtextlocation x1
+
+text 'Alpha'
+set %xtextlocation x2
+text '<Alpha>'
+set %xtextlocation x3
+text '<alpha>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Beta'
+set %xtextlocation x2
+text '<Beta>'
+set %xtextlocation x3
+text '<beta>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Gamma'
+set %xtextlocation x2
+text '<Gamma>'
+set %xtextlocation x3
+text '<gamma>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Delta'
+set %xtextlocation x2
+text '<Delta>'
+set %xtextlocation x3
+text '<delta>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Epsilon'
+set %xtextlocation x2
+text '<Epsilon>'
+set %xtextlocation x3
+text '<epsilon>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Zeta'
+set %xtextlocation x2
+text '<Zeta>'
+set %xtextlocation x3
+text '<zeta>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Eta'
+set %xtextlocation x2
+text '<Eta>'
+set %xtextlocation x3
+text '<eta>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Theta'
+set %xtextlocation x2
+text '<Theta>'
+set %xtextlocation x3
+text '<theta>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Iota'
+set %xtextlocation x2
+text '<Iota>'
+set %xtextlocation x3
+text '<iota>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Kappa'
+set %xtextlocation x2
+text '<Kappa>'
+set %xtextlocation x3
+text '<kappa>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Lambda'
+set %xtextlocation x2
+text '<Lambda>'
+set %xtextlocation x3
+text '<lambda>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Mu'
+set %xtextlocation x2
+text '<Mu>'
+set %xtextlocation x3
+text '<mu>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Nu'
+set %xtextlocation x2
+text '<Nu>'
+set %xtextlocation x3
+text '<nu>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Xi'
+set %xtextlocation x2
+text '<Xi>'
+set %xtextlocation x3
+text '<xi>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Omicron'
+set %xtextlocation x2
+text '<Omicron>'
+set %xtextlocation x3
+text '<omicron>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Pi'
+set %xtextlocation x2
+text '<Pi>'
+set %xtextlocation x3
+text '<pi>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Rho'
+set %xtextlocation x2
+text '<Rho>'
+set %xtextlocation x3
+text '<rho>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Sigma'
+set %xtextlocation x2
+text '<Sigma>'
+set %xtextlocation x3
+text '<sigma>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Tau'
+set %xtextlocation x2
+text '<Tau>'
+set %xtextlocation x3
+text '<tau>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Upsilon'
+set %xtextlocation x2
+text '<Upsilon>'
+set %xtextlocation x3
+text '<upsilon>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Phi'
+set %xtextlocation x2
+text '<Phi>'
+set %xtextlocation x3
+text '<phi>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Chi'
+set %xtextlocation x2
+text '<Chi>'
+set %xtextlocation x3
+text '<chi>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Psi'
+set %xtextlocation x2
+text '<Psi>'
+set %xtextlocation x3
+text '<psi>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Omega'
+set %xtextlocation x2
+text '<Omega>'
+set %xtextlocation x3
+text '<omega>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Vartheta'
+set %xtextlocation x2
+text '<Vartheta>'
+set %xtextlocation x3
+text '<vartheta>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Varphi'
+set %xtextlocation x2
+text '<Varphi>'
+set %xtextlocation x3
+text '<varphi>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Varepsilon'
+set %xtextlocation x2
+text '<Varepsilon>'
+set %xtextlocation x3
+text '<varepsilon>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Varpi'
+set %xtextlocation x2
+text '<Varpi>'
+set %xtextlocation x3
+text '<varpi>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Aleph'
+set %xtextlocation x2
+text '<Aleph>'
+set %xtextlocation x3
+text '<aleph>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Nabla'
+set %xtextlocation x2
+text '<Nabla>'
+set %xtextlocation x3
+text '<nabla>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Partial'
+set %xtextlocation x2
+text '<Partial>'
+set %xtextlocation x3
+text '<partial>'
+!
+! second column
+!
+x1 = 25
+x2 = x1+14
+x3 = x2+3
+yloc = 90
+!
+set %textheight txthite
+set %ytextlocation yloc+2*skip
+set %xtextlocation x1
+text 'Name'
+set %xtextlocation x2
+text 'U'
+set %xtextlocation x3
+text 'L'
+!
+yloc = yloc+1
+set %textheight txthite
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Leftarrow'
+set %xtextlocation x2
+text '<Leftarrow>'
+set %xtextlocation x3
+text '<leftarrow>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Rightarrow'
+set %xtextlocation x2
+text '<Rightarrow>'
+set %xtextlocation x3
+text '<rightarrow>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Uparrow'
+set %xtextlocation x2
+text '<Uparrow>'
+set %xtextlocation x3
+text '<uparrow>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Downarrow'
+set %xtextlocation x2
+text '<Downarrow>'
+set %xtextlocation x3
+text '<downarrow>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Leftrightarrow'
+set %xtextlocation x2
+text '<Leftrightarrow>'
+set %xtextlocation x3
+text '<leftrightarrow>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Hookleftarrow'
+set %xtextlocation x2
+text '<Hookleftarrow>'
+set %xtextlocation x3
+text '<hookleftarrow>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Perp'
+set %xtextlocation x2
+text '<Perp>'
+set %xtextlocation x3
+text '<perp>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Mid'
+set %xtextlocation x2
+text '<Mid>'
+set %xtextlocation x3
+text '<mid>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Sum'
+set %xtextlocation x2
+text '<Sum>'
+set %xtextlocation x3
+text '<sum>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Prod'
+set %xtextlocation x2
+text '<Prod>'
+set %xtextlocation x3
+text '<prod>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Int'
+set %xtextlocation x2
+text '<Int>'
+set %xtextlocation x3
+text '<int>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Surd'
+set %xtextlocation x2
+text '<Surd>'
+set %xtextlocation x3
+text '<surd>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Plus'
+set %xtextlocation x2
+text '<Plus>'
+set %xtextlocation x3
+text '<plus>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Minus'
+set %xtextlocation x2
+text '<Minus>'
+set %xtextlocation x3
+text '<minus>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Pm'
+set %xtextlocation x2
+text '<Pm>'
+set %xtextlocation x3
+text '<pm>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Times'
+set %xtextlocation x2
+text '<Times>'
+set %xtextlocation x3
+text '<times>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Div'
+set %xtextlocation x2
+text '<Div>'
+set %xtextlocation x3
+text '<div>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Oplus'
+set %xtextlocation x2
+text '<Oplus>'
+set %xtextlocation x3
+text '<oplus>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Otimes'
+set %xtextlocation x2
+text '<Otimes>'
+set %xtextlocation x3
+text '<otimes>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Cap'
+set %xtextlocation x2
+text '<Cap>'
+set %xtextlocation x3
+text '<cap>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Cup'
+set %xtextlocation x2
+text '<Cup>'
+set %xtextlocation x3
+text '<cup>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Subset'
+set %xtextlocation x2
+text '<Subset>'
+set %xtextlocation x3
+text '<subset>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Supset'
+set %xtextlocation x2
+text '<Supset>'
+set %xtextlocation x3
+text '<supset>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Subseteq'
+set %xtextlocation x2
+text '<Subseteq>'
+set %xtextlocation x3
+text '<subseteq>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Supseteq'
+set %xtextlocation x2
+text '<Supseteq>'
+set %xtextlocation x3
+text '<supseteq>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Emptyset'
+set %xtextlocation x2
+text '<Emptyset>'
+set %xtextlocation x3
+text '<emptyset>'
+!
+! third column
+!
+x1 = 50
+x2 = x1+14
+x3 = x2+3
+yloc = 90
+!
+set %textheight txthite
+set %ytextlocation yloc+2*skip
+set %xtextlocation x1
+text 'Name'
+set %xtextlocation x2
+text 'U'
+set %xtextlocation x3
+text 'L'
+!
+yloc = yloc+1
+set %textheight txthite
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Equiv'
+set %xtextlocation x2
+text '<Equiv>'
+set %xtextlocation x3
+text '<equiv>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Approx'
+set %xtextlocation x2
+text '<Approx>'
+set %xtextlocation x3
+text '<approx>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Sim'
+set %xtextlocation x2
+text '<Sim>'
+set %xtextlocation x3
+text '<sim>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Neq'
+set %xtextlocation x2
+text '<Neq>'
+set %xtextlocation x3
+text '<neq>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Lt'
+set %xtextlocation x2
+text '<Lt>'
+set %xtextlocation x3
+text '<lt>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Gt'
+set %xtextlocation x2
+text '<Gt>'
+set %xtextlocation x3
+text '<gt>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Leq'
+set %xtextlocation x2
+text '<Leq>'
+set %xtextlocation x3
+text '<leq>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Geq'
+set %xtextlocation x2
+text '<Geq>'
+set %xtextlocation x3
+text '<geq>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Neg'
+set %xtextlocation x2
+text '<Neg>'
+set %xtextlocation x3
+text '<neg>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Cdot'
+set %xtextlocation x2
+text '<Cdot>'
+set %xtextlocation x3
+text '<cdot>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Ldots'
+set %xtextlocation x2
+text '<Ldots>'
+set %xtextlocation x3
+text '<ldots>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Therefore'
+set %xtextlocation x2
+text '<Therefore>'
+set %xtextlocation x3
+text '<therefore>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'In'
+set %xtextlocation x2
+text '<In>'
+set %xtextlocation x3
+text '<in>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Ni'
+set %xtextlocation x2
+text '<Ni>'
+set %xtextlocation x3
+text '<ni>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Exists'
+set %xtextlocation x2
+text '<Exists>'
+set %xtextlocation x3
+text '<exists>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Forall'
+set %xtextlocation x2
+text '<Forall>'
+set %xtextlocation x3
+text '<forall>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Propto'
+set %xtextlocation x2
+text '<Propto>'
+set %xtextlocation x3
+text '<propto>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Infty'
+set %xtextlocation x2
+text '<Infty>'
+set %xtextlocation x3
+text '<infty>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Degree'
+set %xtextlocation x2
+text '<Degree>'
+set %xtextlocation x3
+text '<degree>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Re'
+set %xtextlocation x2
+text '<Re>'
+set %xtextlocation x3
+text '<re>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Im'
+set %xtextlocation x2
+text '<Im>'
+set %xtextlocation x3
+text '<im>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Wp'
+set %xtextlocation x2
+text '<Wp>'
+set %xtextlocation x3
+text '<wp>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Langle'
+set %xtextlocation x2
+text '<Langle>'
+set %xtextlocation x3
+text '<langle>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Rangle'
+set %xtextlocation x2
+text '<Rangle>'
+set %xtextlocation x3
+text '<rangle>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Angle'
+set %xtextlocation x2
+text '<Angle>'
+set %xtextlocation x3
+text '<angle>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Vee'
+set %xtextlocation x2
+text '<Vee>'
+set %xtextlocation x3
+text '<vee>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Wedge'
+set %xtextlocation x2
+text '<Wedge>'
+set %xtextlocation x3
+text '<wedge>'
+!
+! fourth column
+!
+x1 = 75
+x2 = x1+14
+x3 = x2+3
+yloc = 90
+!
+set %textheight txthite
+set %ytextlocation yloc+2*skip
+set %xtextlocation x1
+text 'Name'
+set %xtextlocation x2
+text 'U'
+set %xtextlocation x3
+text 'L'
+!
+yloc = yloc+1
+set %textheight txthite
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Bullet'
+set %xtextlocation x2
+text '<Bullet>'
+set %xtextlocation x3
+text '<bullet>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Diamond'
+set %xtextlocation x2
+text '<Diamond>'
+set %xtextlocation x3
+text '<diamond>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Clubsuit'
+set %xtextlocation x2
+text '<Clubsuit>'
+set %xtextlocation x3
+text '<clubsuit>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Diamondsuit'
+set %xtextlocation x2
+text '<Diamondsuit>'
+set %xtextlocation x3
+text '<diamondsuit>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Heartsuit'
+set %xtextlocation x2
+text '<Heartsuit>'
+set %xtextlocation x3
+text '<heartsuit>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Spadesuit'
+set %xtextlocation x2
+text '<Spadesuit>'
+set %xtextlocation x3
+text '<spadesuit>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Tm'
+set %xtextlocation x2
+text '<Tm>'
+set %xtextlocation x3
+text '<tm>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Copyright'
+set %xtextlocation x2
+text '<Copyright>'
+set %xtextlocation x3
+text '<copyright>'
+yloc = yloc-skip
+set %ytextlocation yloc
+set %xtextlocation x1
+text 'Registered'
+set %xtextlocation x2
+text '<Registered>'
+set %xtextlocation x3
+text '<registered>'
+yloc = yloc-skip
+

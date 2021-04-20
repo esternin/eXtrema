@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Spline interpolation</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="INTERPOLATE function">
+        <PARAM NAME="Keyword" VALUE="spline tension">
+        <PARAM NAME="Keyword" VALUE="TENSION">
+        <PARAM NAME="Keyword" VALUE="cubic spline interpolation">
+</OBJECT>
+<P><A NAME="interpolate"></A>
+<font size=+3 color="green"><B>Spline interpolation</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+vout = INTERPOLATE(x,y,xout,'SPLINE')</CODE>
+</TD></TR>
+</table></p>
+<p>
+ If the <CODE><font color="blue">SPLINE</font></CODE> keyword is used the
+ interpolant is calculated by the method of
+ cubic splines under tension. The tension factor corresponds to the
+ "curviness", and must be greater than zero. If it is close to zero, each
+ interpolated function is almost a cubic spline and the resulting curve is
+ quite "loose". If the tension is large, then the resultant is almost
+ linear. The tension used is the current value of
+ <CODE>TENSION</CODE>, which may be changed with the <CODE><font color="blue">
+ <a href="..\..\..\SetCommand\GeneralGraph\Tension\tension.htm">SET TENSION</a>
+ </font></CODE> command.</P>
+<P>
+<a href="interpolate.htm"><img align=middle border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">INTERPOLATE</font></a><br>
+<a href="linear.htm"><img align=middle border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Linear interpolation</font></a>
+</P>
+</BODY>
+</HTML>

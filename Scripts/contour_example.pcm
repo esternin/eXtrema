@@ -1,0 +1,9 @@
+clear
+window 0
+defaults
+define\constants
+set %contourlabelheight 3
+x=[1:30]
+m=sin(x><x/450*pi)
+set contourlabelheight 0
+contour\color -[1:5]//[7:11] m 10

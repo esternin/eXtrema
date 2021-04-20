@@ -1,0 +1,17 @@
+clear
+!
+GEN\RANDOM X -5 5 2000            ! generate some "data"
+GEN\RANDOM Y 10 20 2000           !
+WINDOW 5                          !
+SET %XNUMBERSHEIGHT 5             !
+SET %YNUMBERSHEIGHT 5             !
+SET PLOTSYMBOL -11                ! choose unjoined point plotting symbol
+GRAPH X Y                         ! display the data graphically
+XP = {-0.5;1.2;-0.2;1.3;-3;-2}    ! the polygon vertices 
+YP = {13;13.5;16;18.5;18;14}      !
+POLYGON\OUTSIDE XP YP X Y K       ! find data points outside polygon, create key vector, K
+WINDOW\INHERIT 7 5                !
+IDX = WHERE(K=1)                  ! choose indices of points inside polygon
+GRAPH X[IDX] Y[IDX]               ! display data without unwanted points
+SET PLOTSYMBOL 0                  ! choose no plotting symbol
+GRAPH\OVERLAY XP//{-0.5} YP//{13} ! overlay the polygon (close by appending first point)

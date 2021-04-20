@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Convolution of an odd number of points</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="CONVOLUTE function">
+  <PARAM NAME="Keyword" VALUE="CONVOLUTE function odd number of points">
+</OBJECT>
+<P><font size=+3 color="green"><B>Convolution of an odd number of points</B></font></P>
+<p>
+ Suppose the blurring vector <CODE><font color="blue">b</font></CODE>, the second argument,
+ contains an odd number of points. Let <i>N</i> be the length of <CODE><font color="blue">
+ b</font></CODE>, and let <i>M</i> be the length of the data vector,
+ <CODE><font color="blue">y</font></CODE>.  The convolution of <CODE><font color="blue">y</font></CODE>
+ with <CODE><font color="blue">b</font></CODE> is:</p>
+<p><center>
+ <img src="convolute1.png"></center></p>
+<p>
+ for &nbsp;<img align="bottom" src="convolute2.png">.  References to subscripts out of range
+ of <CODE><font color="blue">y</font></CODE> are not summed.  The blurring vector is
+ normalized to <code>1</code> to insure that the integrals of the the original data and the
+ convolution result are identical.  This normalization is internal, the blurring vector is
+ returned unchanged.</p>
+<p>
+ To ensure proper convolution, <CODE><font color="blue">y</font></CODE> should be padded at
+ it’s upper and lower ends with zeros so it’s length is at least the minimum of the non-zero
+ length of <CODE><font color="blue">b</font></CODE> and one-half the length of
+ <CODE><font color="blue">b</font></CODE>.</p>
+<p>
+ Note that the lengths of <CODE><font color="blue">b</font></CODE> and
+ <CODE><font color="blue">y</font></CODE> can differ.   To avoid centroid shifts in the
+ output, center the blurring vector properly.  For example, suppose that
+ <CODE><font color="blue">b</font></CODE> has <code>2N-1</code> elements containing a
+ Gaussian, then its peak should be at <code>N</code>.</p>
+<P>
+<a href="convolute.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">CONVOLUTE function</font></a><br>
+<a href="even.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Convolution of an even number of points</font></a>
+</P>
+</BODY>
+</HTML>

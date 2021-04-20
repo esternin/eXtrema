@@ -1,0 +1,32 @@
+set aspectratio 1
+window 0
+defaults
+
+define\constants
+generate theta 0,,360,1000
+b = 0.5
+r = -b+cosd(theta)
+
+set curvelinewidth 5
+set curvecolor red
+set polargrid 1
+set polarnaxes 3
+
+graph\polar r theta
+
+set %textheight 6
+set textfont 'Arial Black'
+set %xtextlocation 50
+set %ytextlocation 100
+set textalign 8
+set textinteractive 0
+text 'Limacon of Pascal'
+
+set %textheight 3
+set textfont 'Arial'
+set %xtextlocation 75
+set %ytextlocation 78
+set textalign 1
+text '<theta> = [0:2<v+0.02,pi,v-0.02>]'
+set %ytextlocation 73
+text '<rho> = -'//rchar(b)//' + cos(<theta>)'

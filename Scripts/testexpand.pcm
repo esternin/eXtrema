@@ -1,0 +1,9 @@
+a=2
+b=3
+fc1="(a+b)/a"
+fc2="sqrt(a/b)"
+fc3="fc1*fc2"
+fc4="fc3+4*fc2"
+show\text
+display "fc4         --> "//ucase(fc4)
+display "expand(fc4) --> "//expand(fc4)

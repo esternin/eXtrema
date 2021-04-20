@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Solve a matrix equation</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="matrix equation">
+</OBJECT>
+<p>
+Solve <code>Ax=b</code> (and check the solution) given that</P>
+<P><pre>
+       1  2  0       7
+   A = 2  5 -1   b = 8
+       4 10 -1       9
+</pre></P>
+<P>
+<CODE><font color="blue">
+A=[[1;2;4];[2;5;10];[0;-1;-1]]<br>
+b=[7;8;9]<br>
+soln = gaussj(A,b)<br>
+check = b-A&lt;&gt;soln</font></CODE></P>
+<P>
+The <code>check</code> vector should be all zero if the solution is correct.</P>
+<P>
+<a href="integrate.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Integrate a function</font></a><br>
+<a href="readdata.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Read data from files</font></a>
+</P>
+</BODY>
+</HTML>

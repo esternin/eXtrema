@@ -1,0 +1,36 @@
+!set orientation portrait
+window 0
+defaults
+clear
+!
+set
+ textcolor -2
+ textinteractive 0
+ textalign 4
+ %textheight 4
+
+top = 80
+delta = 10
+scales\-mess -1 1 -1 1
+set %xtextlocation 32.75
+do i=[0:5]
+ set %ytextlocation top-i*delta
+ text rchar(i+1)
+enddo
+set %xtextlocation 51.25
+do i=[0:5]
+ set %ytextlocation top-i*delta
+ text rchar(i+7)
+enddo
+set %xtextlocation 69.75
+do i=[0:5]
+ set %ytextlocation top-i*delta
+ text rchar(i+13)
+enddo
+a = [-0.3;-0.3;-0.3;-0.3;-0.3;-0.3;0.2;0.2;0.2;0.2;0.2;0.2;0.7;0.7;0.7;0.7;0.7;0.7]
+b = [0.75;0.5;0.25;0.0;-0.25;-0.5;0.75;0.5;0.25;0.0;-0.25;-0.5;0.75;0.5;0.25;0.0;-0.25;-0.5]
+set
+ plotsymbol -[1:18]
+ %plotsymbolsize 4
+
+graph\overlay a b

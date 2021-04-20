@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>POLARSMALLTICLENGTH</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="POLARSMALLTICLENGTH">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>POLARSMALLTICLENGTH</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET POLARSMALLTICLENGTH n<br>
+SET %POLARSMALLTICLENGTH n<br>
+GET POLARSMALLTICLENGTH { n }<br>
+GET %POLARSMALLTICLENGTH { n }</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default</B>:</TD>
+<TD width=80% valign="top"><CODE>
+%POLARSMALLTICLENGTH = 0.5</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE><font color="blue">POLARSMALLTICLENGTH</font></CODE> controls the
+ length of the optional small tic marks on the polar axis. These are
+ the unlabeled tic marks between the large, numbered, tic marks. There are two forms:</p>
+<p>
+ <table cols=3>
+<tr>
+<td valign="top"><code><font color="blue">&nbsp;POLARSMALLTICLENGTH</font></code></td>
+<td valign="top"> &rarr;</td>
+<td valign="top">the length, in world coordinate units, of the small tic marks on the polar axis</td>
+</tr><tr>
+<td valign="top"><code><font color="blue">%POLARSMALLTICLENGTH</font></code></td>
+<td valign="top"> &rarr;</td>
+<td valign="top">the length, expressed as a percentage of the height of
+ the graphics sub-window, that is,
+ <CODE><font color="blue">POLARSMALLTICLENGTH</font> =
+ <font color="blue">%POLARSMALLTICLENGTH</font>
+ * (<font color="blue"><a href="..\GeneralGraph\yupperwindow.htm">YUPPERWINDOW</a></font>-
+ <font color="blue"><a href="..\GeneralGraph\ylowerwindow.htm">YLOWERWINDOW</a></font>)/100</CODE>.</td>
+</tr></table></p>
+<P>
+ <a href="largeticlength.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;
+ <font size=+1 color="olive">POLARLARGETICLENGTH</font></a><BR />
+ <a href="label.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;
+ <font size=+1 color="olive">POLARLABEL</font></a>
+</P>
+</body>
+</html>

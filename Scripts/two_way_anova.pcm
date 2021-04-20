@@ -1,0 +1,83 @@
+!
+! two-way analysis of variance without interaction
+!
+nameList = ?1
+!
+@splitString nameList k names error
+if (error) then
+  display 'an error occurred splitting the name list into vector names'
+  return
+endif
+!
+! k    = number of populations
+! n    = number of blocks
+! T[i] = total of the observations for the i_th population
+! TT   = grand total of all observations from all populations
+! df   = population degrees of freedom
+! dfe  = error degrees of freedom
+! dft  = total degrees of freedom
+! SSTr = sum of squares for the populations
+! SSE  = error sum of squares
+! SSB  = block sum of squares
+! SST  = total sum of squares
+! MSTr = population mean square
+! MSE  = error mean square
+!
+n = len(names[1])
+do i = [2:k]
+  tmp = len(names[i])
+  if (tmp~=n) then
+    display 'all vectors must be the same length for the 2-way anova'
+    return
+  endif
+enddo
+destroy tmp
+df = k-1
+dfb = n-1
+dfe = df*dfb
+dft = df+dfb+dfe  ! = n*k-1
+if exist('T') then destroy T
+do i = [1:k]
+ T[i] = sum(names[i])
+enddo
+TT = sum(T)
+if exist('TB') then destroy TB
+TB[1:n] = 0
+do j = [1:n]
+  do i = [1:k]
+    TB[j] = TB[j] + (names[i])[j]
+  enddo
+enddo
+SSB = sum(TB^2)/k - TT^2/k/n
+SSTr = sum(T^2)/n - TT^2/k/n
+SST = 0
+do i = [1:k]
+ do j = [1:n]
+   SST = SST + (names[i])[j]^2
+ enddo
+enddo
+SST = SST - TT^2/k/n
+MSTr = SSTr/df
+SSE = SST - SSTr - SSB
+MSB = SSB/dfb
+MSE = SSE/dfb/df
+FTr = MSTr/MSE
+FB = MSB/MSE
+='Source of        Degrees of      Sum of          Mean              F'
+='Variation         Freedom        Squares         Square'
+='----------------------------------------------------------------------'
+='Populations '//rchar(df,'%12.0f')//rchar(SSTr,'%15.1f')//rchar(MSTr,'%15.1f')//rchar(FTr,'%15.1f')
+='Blocks      '//rchar(dfb,'%12.0f')//rchar(SSB,'%15.1f')//rchar(MSB,'%15.1f')//rchar(FB,'%15.1f')
+='Error       '//rchar(dfe,'%12.0f')//rchar(SSE,'%15.1f')//rchar(MSE,'%15.1f')
+='Total       '//rchar(dft,'%12.0f')//rchar(SST,'%15.1f')
+=' '
+criticalValue = 1-fisher(df,dfe,FTr)
+='Null hypothesis: the differences among the population means can be atributed to chance'
+='Accept the null hypothesis at a significance level of '//rchar(criticalValue*100,'%4.1f')//'%'
+=' '
+criticalValue = 1-fisher(dfb,dfe,FB)
+='Null hypothesis: the differences among the block means can be atributed to chance'
+='Accept the null hypothesis at a significance level of '//rchar(criticalValue*100,'%4.1f')//'%'
+=' '
+!destroy error k n df dfe dft i j T TT SST SSTr SSB MSTr MSB SSE MSE FTr FB
+!destroy nameList names rowLen numberOfPopulations 

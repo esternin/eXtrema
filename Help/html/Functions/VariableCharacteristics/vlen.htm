@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>VLEN</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="VLEN function">
+  <PARAM NAME="Keyword" VALUE="dimensional size">
+</OBJECT>
+<P><font size=+3 color="green"><B>VLEN</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+vector = VLEN(vector)<br>
+vector = VLEN(matrix)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">VLEN</font></CODE> function accepts either a vector or a
+ matrix as argument. It returns the length of each dimension of the argument. If the
+ argument is a vector, the result is a vector of length one (1). If the argument is a
+ matrix, the result is a vector of length two (2), with the first element
+ being the number of rows and the second the number of columns.</P>
+<p>
+ <font size=+1 color="green">Examples</font></P>
+<P>
+ Suppose <code>X</code> is a vector of length 10 and <code>M</code> is a matrix with
+ 5 rows and 12 columns.</p>
+<p>
+<pre>
+  A = VLEN(X)      ! number of elements of vector X
+  B = VLEN(M)
+  NR = VLEN(M)[1]  ! number of rows of matrix M
+  NC = VLEN(M)[2]  ! number of columns of matrix M</pre></p>
+<p>
+ makes vectors <code>A</code> and <code>B</code> with <code>A = {10}</code> and
+ <code>B = {5;12}</code> and scalars <code>NR</code> and <code>NC</code>. Note that <code>A</code>
+ is a vector of length one (1).</p>
+<p>
+<a href="len.htm"><img align=top border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">LEN</font></a><br>
+<a href="clen.htm"><img align=top border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">CLEN</font></a>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>PAGE command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="PAGE command">
+  <PARAM NAME="Keyword" VALUE="\INHERIT qualifier">
+  <PARAM NAME="Keyword" VALUE="inherit characteristics">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>PAGE command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+PAGE n<BR>
+PAGE\INHERIT n m</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>\INHERIT</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>\-INHERIT</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE><font color="blue">PAGE</font></CODE> command creates a new blank graphics page and brings
+ it to the front, or brings an existing page to the front.</P>
+<p>
+ If the page number <code><font color="blue">n</FONT></CODE> is greater than the current maximum
+ page number, a new blank graphics page will be created.  If <code><font color="blue">n</FONT></CODE>
+ is greater than the current maximum page number plus one, the intermediate pages will also be
+ created.  If <code><font color="blue">n</FONT></CODE> is less than or equal to the current maximum
+ page number, that page will be brought to the front.</p>
+<P>
+ Every page has its own set of graph windows, each of which has its own set of characteristics,
+ such as plot symbols, line widths, etc.
+ If the <CODE><font color="blue">\INHERIT</font></CODE> qualifier is used, page number
+ <CODE><font color="blue">n</font></CODE> will be chosen, and the graph windows for page
+ <CODE><font color="blue">n</font></CODE> will be copies of the graph windows from page
+ <CODE><font color="blue">m</font></CODE>. Any objects drawn on the graph windows on page 
+ <CODE><font color="blue">m</font></CODE> are not copied, just the characteristics.</p>
+<p>
+ The graphics page that is visible is the active page.  Commands which involve graphics,
+ such as <code><font color="blue">GRAPH</FONT></CODE>, <code><font color="blue">DENSITY</FONT></CODE>,
+ <code><font color="blue">CONTOUR</FONT></CODE>, <code><font color="blue">FIGURE</FONT></CODE>, 
+ <code><font color="blue">HARDCOPY</FONT></CODE>, etc. will draw to or process the active page.
+</p>
+</BODY>
+</HTML>

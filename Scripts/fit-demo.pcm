@@ -1,0 +1,54 @@
+clear
+window 0
+defaults
+!
+x=[0:720:5]
+y=5+sind(x+20)*exp(x/800)+ran(x)
+set
+ plotsymbol -1
+ nsxinc 5
+ nsyinc 5
+ curvecolor red
+ %xupperaxis 95
+ 
+graph x y
+scalar\fit a b c
+c=100
+fit\e1\e2 y=a+sind(x+b)*exp(x/c)
+display 'root mean square standard errors of estimate for each paramter'
+display '--------------------------------------------------------------'
+display 'for A: '//rchar(fit$e2[1])
+display 'for B: '//rchar(fit$e2[2])
+display 'for C: '//rchar(fit$e2[3])
+display ' '
+fit\update yf
+set
+ plotsymbol 0
+ curvecolor blue
+ 
+graph\overlay x yf
+set
+ %xtextlocation 18
+ %ytextlocation 91
+ %textheight 4
+ textalign 1
+ textinteractive 0
+ 
+text 'Fitted function y=a*sin(x+b)*exp(x/c)'
+set
+ %xtextlocation 70
+ %ytextlocation 85
+
+text 'a = '//rchar(a)
+set %ytextlocation 80
+text 'b = '//rchar(b)
+set %ytextlocation 75
+text 'c = '//rchar(c)
+!set
+! %xtextlocation 55
+! %ytextlocation 94
+! %textheight 6
+! textalign 2
+! textcolor red
+! 
+!text '<b>Extrema<b> fitting demonstration'

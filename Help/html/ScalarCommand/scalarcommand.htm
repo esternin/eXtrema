@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>SCALAR command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="SCALAR command">
+</OBJECT>
+
+<P><A NAME="scalarcommand"></A>
+<font size=+3 color="green"><B>SCALAR command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+SCALAR s1 { s2 ... }</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers:</B></TD>
+<TD width=85% valign="top"><CODE>
+\FIT</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Examples:</B></TD>
+<TD width=85% valign="top"><CODE>
+SCALAR A<BR>
+SCALAR\FIT A B</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ This command defines <CODE><font color="blue">s1</font></CODE> to be a scalar.
+ Other variable names, <CODE><font color="blue">s2 ...</font></CODE>, may
+ be included, and they will also be defined to be scalars. If
+ <CODE>sI</CODE> already is a scalar, its value will be unchanged. If
+ <CODE>sI</CODE> is an existing variable, but not a scalar, it will be
+ destroyed first. If <CODE>sI</CODE> does not exist, it will be
+ created and initialized to 1.</P>
+<P>
+<a href="fitparameters.htm"><font size=+1 color="olive">Fit parameters</font></a>
+</P>
+</BODY>
+</HTML>

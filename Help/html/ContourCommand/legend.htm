@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Contour legend</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+</OBJECT>
+
+<P><A NAME="contourlegend"></A>
+<font size=+2 color="green">Legend</font></P>
+<P>
+ By default, the contours are labeled with the actual contour level. If
+ <CODE><font color="blue">\-AXES</font></CODE> is used, then no legend is allowed.</P>
+<P>
+ If the <CODE><font color="blue">\LEGEND</font></CODE> qualifier is used,
+ then the contours are labeled with an integer index and the list of indices
+ corresponding to the actual contour levels, the legend, is plotted along
+ the right side of the axes.</P>
+<P>
+<font size=+1 color="green">Legend size</font></P>
+<P>
+ The size of the legend characters is <CODE><font color="blue">LEGENDSIZE</font></CODE>.
+ The value of <CODE><font color="blue">LEGENDSIZE</font></CODE>,
+ or <CODE><font color="blue">%LEGENDSIZE</font></CODE>, can be changed with the
+ <a href="..\SetCommand\setcommand.htm"><CODE><font color="blue">SET</font></CODE></a>
+ command. The default value is <CODE><font color="blue">%LEGENDSIZE</font> =
+ 3</CODE></P>
+<P>
+<font size=+1 color="green">Axis relocation</font></P>
+<P>
+ The legend requires the right end of the <i>x</i>-axis to be set to
+ <CODE>75%</CODE> of the window, that is, <CODE><font color="blue">%XUPPERAXIS</font></CODE> is
+ set to <CODE>75</CODE>.</P>
+<P>
+ By default, <CODE><font color="blue">%XUPPERAXIS</font></CODE> is reset to
+ its former value after the <CODE><font color="blue">CONTOUR</font></CODE>
+ command is finished. If the <CODE><font color="blue">\-RESET</font></CODE>
+ qualifier is used, the axis location will not be reset.</P>
+<P>
+<a href="colours.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Contour line properties</font></a><br>
+<a href="axes.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Axes</font></a>
+</P>
+</body>
+</html>

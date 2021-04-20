@@ -1,0 +1,17 @@
+m=[[2;-1;0;0];[-1;2;-1;0];[0;-1;2;-1];[0;0;-1;2]]
+e=eigen(m)
+='matrix m'
+=m
+=' '
+='matrix e'
+=e
+!
+! check
+!
+n=vlen(m)[1]
+do j = [1:n]
+! these should be all zero (or close to zero)
+ =' '
+ ='j = '//rchar(j)
+ =m<>e[*,j]-e[j,n+1]*e[*,j]
+enddo

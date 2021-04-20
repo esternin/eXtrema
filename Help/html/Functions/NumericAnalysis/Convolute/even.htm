@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Convolution of an even number of points</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="CONVOLUTE function">
+  <PARAM NAME="Keyword" VALUE="CONVOLUTE function even number of points">
+</OBJECT>
+<P><font size=+3 color="green"><B>Convolution of an even number of points</B></font></P>
+<p>
+ Suppose the blurring vector <CODE><font color="blue">b</font></CODE>, the second argument,
+ contains an even number of points. The preferred lengths are powers of <code>2</code>.
+ The convolution is done using fast Fourier transforms.  The following restrictions apply:</p>
+<ul>
+<li><CODE><font color="blue">y</font></CODE> must be padded at its lower end with a number
+    of zeros equal to the number of non-zero elements in <CODE><font color="blue">b</font></CODE>.
+    For example, if both vectors have <code>128</code> elements, and 
+    <CODE><font color="blue">b</font></CODE> is non-zero in the range <code>1 - 29</code>, then
+    <CODE><font color="blue">y</font></CODE> must contain zeros in locations <code>1 - 29</code></li>
+<li><CODE><font color="blue">y</font></CODE> and <CODE><font color="blue">b</font></CODE>
+    must have the same number of elements</li>
+<li>the end points of <CODE><font color="blue">b</font></CODE> must not be equal.  A difference
+    of less than <code>0.0001</code> produces oscillations in the deconvoluted result. The
+    usual way to correct for this is to shift <CODE><font color="blue">b</font></CODE> to the
+    left so that the first point has a non-zero value.  Together with the first restriction,
+    this ensures that the right most point has the value zero, leaving the ends unequal.</li>
+</ul>
+<p>
+ Noise in <CODE><font color="blue">b</font></CODE> produces a change in the output, which, due
+ to averaging, has a small effect.  Noise effects depend on the shape of the deconvoluted peak.</p>
+<p>
+ The narrower this peak, the more effect the noise in <CODE><font color="blue">b</font></CODE> has.
+ This occurs because each noisy point becomes a greater percentage of the total number in the
+ convoluted result, thus reducing the average effect. In many applications, the
+ noise in the measured data is statistical in nature and so, to reduce the sensitivity to this noise
+ on the convolution, apply <a href="..\..\..\FilterCommand\nonrecursive.htm">smoothing filters</a>
+ on the measured data before convolution.</p>
+<P>
+<a href="odd.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Convolution of an odd number of points</font></a>
+</P>
+</BODY>
+</HTML>

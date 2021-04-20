@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Alternate method</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+</OBJECT>
+
+<P><A NAME="windowalternate"></A>
+<font size=+2 color="green">Alternate method</font></P>
+<P>
+ Choosing a window with the <CODE><font color="blue">WINDOW</font></CODE>
+ command, which has its lower left corner at
+ <CODE>(<font color="blue">lowx</font>,<font color="blue">lowy</font>)</CODE> and its upper
+ right corner at <CODE>(<font color="blue">upx</font>,<font color="blue">upy</font>)</CODE>,
+ is equivalent to choosing the graphics sub-window with the
+ <a href="..\SetCommand\setcommand.htm"><CODE><font color="blue">SET</font></CODE></a>
+ command. That is, the following command:</P>
+<P>
+ <code><font color="blue">WINDOW n lowx lowy upx upy</font></code></P>
+<P>
+ is equivalent to the following:</P>
+
+<font color="blue"><PRE>
+ SET %XLOWERWINDOW lowx
+ SET %YLOWERWINDOW lowy
+ SET %XUPPERWINDOW upx
+ SET %YUPPERWINDOW upy
+</PRE></font>
+<P>
+ Using the <CODE><font color="blue">SET</font></CODE> command to define a
+ window is <EM>not</EM> recommended. When the
+ <a href="..\ClearCommand\clearcommand.htm"><CODE><font color="blue">CLEAR</font></CODE></a>
+ command is entered, the window chosen with the last
+ <CODE><font color="blue">WINDOW</font></CODE> command is set up, and the
+ values of
+ <A HREF="..\SetCommand\GeneralGraph\xlowerwindow.htm"><CODE><font color="blue">XLOWERWINDOW</font></CODE></a>,
+ <A HREF="..\SetCommand\GeneralGraph\xupperwindow.htm"><CODE><font color="blue">XUPPERWINDOW</font></CODE></a>,
+ <A HREF="..\SetCommand\GeneralGraph\ylowerwindow.htm"><CODE><font color="blue">YLOWERWINDOW</font></CODE></a>, and
+ <A HREF="..\SetCommand\GeneralGraph\yupperwindow.htm"><CODE><font color="blue">YUPPERWINDOW</font></CODE></a>
+ are changed. Thus, if their values had been re-defined with the
+ <CODE><font color="blue">SET</font></CODE> command, these values would be
+ lost when the <CODE><font color="blue">CLEAR</font></CODE> command is
+ entered.</P>
+<P>
+<a href="predefined.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Pre-defined windows</font></a><br>
+<a href="multiple.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Multiple window creation</font></a>
+</P>
+</BODY>
+</HTML>

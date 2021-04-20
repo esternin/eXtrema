@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>JOIN function</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="JOIN function">
+</OBJECT>
+<P><font size=+3 color="green"><B>JOIN function</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+m = JOIN(x,y)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The arguments of the <CODE><font color="blue">JOIN</font></CODE> function must both be
+ vectors. <CODE><font color="blue">JOIN</font></CODE> produces a matrix with 3
+ columns. The first column is the intersection of <CODE><font color="blue">x</font></CODE>
+ and <CODE><font color="blue">y</font></CODE>, that is, if you enter
+ <CODE><font color="blue">m=JOIN(x,y)</font></CODE> then <code>m[*,1]</code> is the same
+ as <code>x/&y</code>.  &nbsp;&nbsp;<code>m[i,2]</code> is the index of
+ <CODE><font color="blue">x</font></CODE> from which <code>m[i,1]</code> was
+ taken, and <code>m[i,3]</code> is the index of <CODE><font color="blue">y</font></CODE>
+ from which <code>m[i,1]</code> was taken. If the vector arguments
+ are ordered, the <CODE><font color="blue">JOIN</font></CODE> function will proceed much
+ faster than if they are unordered.</p>
+<p><font color="green" size="+1">Example</font></p>
+<p>
+ Suppose that you have two vectors:</p>
+<p>
+ <code>X = [0;1;2;3;4;5;6;7;8;9;10], Y = [1;3;5;7;9]</code></p>
+<p>
+ <table>
+ <tr>
+ <td bgcolor="#FFCCCC"><i>function</i></td><td bgcolor="#FFCCCC"><i>result</i></td>
+ </tr><tr>
+ <td valign="middle"><CODE><font color="blue">JOIN(X,Y)</font></CODE></td>
+ <td bgcolor="#FFFFCC">
+ <table cellspacing="0" cellpadding="0">
+  <tr><td><code>| 1&nbsp; &nbsp;2 &nbsp;1&nbsp;|</code></td></tr>
+  <tr><td><code>| 3&nbsp; &nbsp;4 &nbsp;2&nbsp;|</code></td></tr>
+  <tr><td><code>| 5&nbsp; &nbsp;6 &nbsp;3&nbsp;|</code></td></tr>
+  <tr><td><code>| 7&nbsp; &nbsp;8 &nbsp;4&nbsp;|</code></td></tr>
+  <tr><td><code>| 9&nbsp; 10 &nbsp;5&nbsp;|</code></td></tr></table></td>
+ </tr></table></p>
+<p>
+<a href="..\Jacobi\jacobi.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Jacobi polynomials</font></a><br>
+<a href="..\Kelvin\kelvin.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Kelvin functions</font></a>
+</P>
+</BODY>
+</HTML>

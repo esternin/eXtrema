@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>PATTERN</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="\PATTERN qualifier">
+	<PARAM NAME="Keyword" VALUE="\XYOUT qualifier">
+</OBJECT>
+<P>
+<A NAME="gridcommandpattern"></A>
+<font size=+3 color="green"><B>PATTERN</B></font>
+</P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+GRID\PATTERN x y z m<BR>
+GRID\PATTERN\XYOUT x y z m xout yout</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<NOBR>\XYOUT</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\-XYOUT</nobr></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ Suppose the vectors <CODE><font color="blue">x</font></CODE> and
+ <CODE><font color="blue">y</font></CODE> have length <CODE>h</CODE>, and suppose that for some
+ <CODE>n1</CODE> and <CODE>n2</CODE>, <CODE><font color="blue">x</font></CODE> and
+ <CODE><font color="blue">y</font></CODE> have the following pattern:</p>
+<TABLE>
+<TR>
+<TD><CODE><font color="blue">x</font>[1]</CODE></TD>
+<TD><CODE>= <font color="blue">x</font>[2]</CODE></TD>
+<TD><CODE>= ... = <font color="blue">x</font>[n2],</CODE></TD>
+</TR><TR>
+<TD><CODE><font color="blue">x</font>[n2+1]</CODE></TD>
+<TD><CODE>= <font color="blue">x</font>[n2+2]</CODE></TD>
+<TD><CODE>= ... = <font color="blue">x</font>[n2+n2],</CODE></TD>
+</TR><TR>
+<TD><CODE>......</CODE></TD><TD></TD><TD></TD>
+</TR><TR>
+<TD><CODE><font color="blue">x</font>[(n1-1)*n2+1]</CODE></TD>
+<TD><CODE>= <font color="blue">x</font>[(n1-1)*n2+2]</CODE></TD>
+<TD><CODE>= ... = <font color="blue">x</font>[n1*n2]</CODE></TD>
+</TR><TR>
+<TD><CODE><font color="blue">y</font>[1]</CODE></TR>
+<TD><CODE>= <font color="blue">y</font>[n2+1]</CODE></TD>
+<TD><CODE>= ... = <font color="blue">y</font>[(n1-1)*n2+1],</CODE></TD>
+</TR><TR>
+<TD><CODE><font color="blue">y</font>[2]</CODE></TD>
+<TD><CODE>= <font color="blue">y</font>[n2+2]</CODE></TD>
+<TD><CODE>= ... = <font color="blue">y</font>[(n1-1)*n2+2],</CODE></TD>
+</TR><TR>
+<TD><CODE>......</CODE></TD><TD></TD><TD></TD>
+</TR><TR>
+<TD><CODE><font color="blue">y</font>[n2]</CODE></TD>
+<TD><CODE>= <font color="blue">y</font>[n2+n2]</CODE></TD>
+<TD><CODE>= ... = <font color="blue">y</font>[n1*n2]</CODE></TD>
+</TR>
+</TABLE>
+<P>
+ where <CODE>h = n1*n2</CODE>. If the <CODE><font color="blue">x</font></CODE>
+ and <CODE><font color="blue">y</font></CODE> vectors have this form, the matrix is
+ constructed, without interpolation, with <CODE>n2</CODE> rows and <CODE>n1</CODE>
+ columns, i.e., <CODE><font color="blue">m</font>[i,j]=<font color="blue">z</font>[k]</CODE>
+ where <CODE>k=j+(i-1)*n1</CODE> for <CODE>i=1,2,...,n2</CODE> and for
+ <CODE>j=1,2,...,n1</CODE>.</P>
+<P>
+<font size=+1 color="green">XYOUT</font></P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+GRID\PATTERN\XYOUT x y z m xout yout</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ If output vectors, <CODE><font color="blue">xout</font></CODE> and
+ <CODE><font color="blue">yout</font></CODE>, are desired, you must use the
+ <CODE><font color="blue">\XYOUT</font></CODE> qualifier. The coordinates of output
+ matrix element <CODE><font color="blue">m</font>[i,j]</CODE> will be
+ <CODE>(<font color="blue">xout</font>[j],<font color="blue">yout</font>[i])</CODE>,
+ where <CODE><font color="blue">xout</font></CODE> contains the <i>x</i>-coordinates
+ of each column and <CODE><font color="blue">yout</font></CODE> contains the
+ <i>y</i>-coordinates of each row. If the output matrix has <CODE>n1</CODE> columns and
+ <CODE>n2</CODE> rows, then the length of <CODE><font color="blue">xout</font></CODE> will be
+ <CODE>n1</CODE> and the length of <CODE><font color="blue">yout</font></CODE> will be
+ <CODE>n2</CODE>.</P>
+<P>
+ <CODE><font color="blue">xout</font> = [ <font color="blue">x</font>[1];
+ <font color="blue">x</font>[n2+1]; ...; <font color="blue">x</font>[(n1-1)*n2+1] ]</CODE><BR>
+ <CODE><font color="blue">yout</font> = [ <font color="blue">y</font>[1];
+ <font color="blue">y</font>[2]; ...; <font color="blue">y</font>[n2] ]</CODE></P>
+<P>
+<font size=+1 color="green">Example</font></P>
+<table>
+<tr>
+<td>Suppose:</td>
+<td><CODE>X = [ 1; 1; 1; 1; 2; 2; 2; 2; 3;  3;  3;  3 ]</CODE></td>
+</tr><tr>
+<td></td>
+<td><CODE>Y = [ 1; 2; 3; 4; 1; 2; 3; 4; 1;  2;  3;  4 ]</CODE></td>
+</tr><tr>
+<td></td>
+<td><CODE>Z = [ 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12 ]</CODE></td>
+</tr>
+</table>
+<p>
+ After the command: <CODE><font color="blue">GRID\PATTERN\XYOUT X Y Z M XOUT YOUT</font></CODE>
+</p>
+<pre>
+      | 1  5   9 |
+ M =  | 2  6  10 |, XOUT = [ 1; 2; 3 ], YOUT = [ 1; 2; 3; 4 ]
+      | 3  7  11 |
+      | 4  8  12 |
+</pre>
+<P>
+<a href="interpolate.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">INTERPOLATE</font></a><br>
+<a href="indices.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">INDICES</font></a>
+</P>
+</BODY>
+</HTML>

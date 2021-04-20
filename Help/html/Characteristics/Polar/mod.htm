@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>POLARMOD</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="POLARMOD">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>POLARMOD</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET POLARMOD n<br>
+GET POLARMOD { n }</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default</B>:</TD>
+<TD width=80% valign="top"><CODE>
+POLARMOD = 0</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE><font color="blue">POLARMOD</font></CODE> is another control on
+ the numbering for the polar axis.</P>
+<P>
+ If <code><font color="blue">POLARMOD</font> &gt; 1</CODE>
+ the numbers displayed on the polar axis are modulo
+ <CODE><font color="blue">POLARMOD</font></CODE> and positive. If the number
+ to be displayed on the axis is <CODE>N</CODE> then the number that is
+ actually displayed is
+ <CODE>|N-<font color="blue">POLARMOD</font>*(N/<font color="blue">POLARMOD</font>)|+<font color="blue"><A HREF="offset.htm">POLAROFFSET</a></font></CODE></P>
+<P>
+ If <CODE>|<font color="blue">POLARMOD</font>| &le; 1</CODE>
+ the numbers will be displayed normally.</p>
+<p>
+ If <CODE><font color="blue">POLARMOD</font> &lt; -1</CODE>
+ the numbers will be modulo <CODE>|<font color="blue">POLARMOD</font>|</CODE>
+ and may be negative.</p>
+<P>
+ <a href="numberofdecimals.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;
+ <font size=+1 color="olive">POLARNUMBEROFDECIMALS</font></a><BR />
+ <a href="leadingzeros.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;
+ <font size=+1 color="olive">POLARLEADINGZEROS</font></a>
+</P>
+</BODY>
+</HTML>

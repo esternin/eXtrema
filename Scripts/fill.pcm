@@ -1,0 +1,14 @@
+! script fill.pcm
+!
+X0 = ?1
+Y0 = ?2
+X02 = ?3
+Y02 = ?4
+L = LEN(X0)
+L1 = LEN(X02)
+X0[L+1:L+L1] = X02[L1:1:-1]
+Y0[L+1:L+L1] = Y02[L1:1:-1]
+SET AREAFILLCOLOR STRING(?5)
+GRAPH X0 Y0
+!DEFAULTS
+!DESTROY X0 Y0 X02 Y02 L L1 ! eliminate dummy variables

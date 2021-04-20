@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Display array data as contours and density plot</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="contour plot">
+  <PARAM NAME="Keyword" VALUE="density plot">
+</OBJECT>
+<P>
+Create a <code>32&times;32</code> array <code>Z</code>, where
+ <code>Z(x,y) = exp(-((x/15)^2+(y/12)^2))</code> for <code>-5 &le; x &le; 26</code>
+ and <code>-10 &le; y &le; 10</code>.<br>
+ Display as a contour plot and as density plots.</P>
+<P>
+The following script will perform the desired operations:</P>
+<P>
+<font color="blue"><pre>
+generate x -5,,26 32
+generate y -10,,10 32
+matrix z 32 32
+do j=[1:32]
+  do k=[1:32]
+    z[k,j] = exp(-((x[j]/15)^2+(y[k]/12)^2))
+  enddo
+enddo
+window 5
+contour\legend x y z 20
+window 6
+set colormap thermal
+density x y z
+window 7
+density\diffusion x y z
+window 8
+density\dithering x y z
+</pre></font></P>
+<P>
+ <IMG SRC="contourdensity1.gif"></P>
+<P>
+Read <code>32&times;24</code> elevation data from file <a href="e.dat">e.dat</a>.<br>
+Display as a contour map and as density plots.</P>
+<P>
+<font color="blue"><pre>
+read\matrix e.dat elevation 32 24
+window 5
+contour\legend elevation 15
+window 6
+set colormap topo256
+density elevation
+window 7
+set colormap gray256
+density elevation
+window 8
+density\diffusion elevation
+</pre></font></P>
+<P>
+ <IMG SRC="contourdensity2.gif"></P>
+<P>
+<a href="fft.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Analyze data using FFT</font></a><br>
+<a href="parametric.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Plot parametric functions</font></a>
+</P>
+</BODY>
+</HTML>
+

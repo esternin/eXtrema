@@ -1,0 +1,8 @@
+r = mod([1:1000]-1,5)+1
+sort\up r
+generate t 0,1.8,,200
+t[201:400] = t[1:200]
+t[401:800] = t[1:400]
+t[801:1000] = t[1:200]
+z = exp(-r/2)*cosd(180*(r-1))
+grid\xyout\size 30 r*cosd(t) r*sind(t) z m xo yo

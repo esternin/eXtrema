@@ -1,0 +1,21 @@
+clear
+window 0
+defaults
+!
+x=[1:19]
+set xaxiscolor red
+set yaxiscolor blue
+set xnumberscolor green
+set ynumberscolor purple
+set curvecolor salmon
+set %plotsymbolsize 4
+set plotsymbol 14
+set plotsymbolcolor -x
+set xlabel 'X Axis Label'
+set xlabelcolor navy
+set xlabelon 1
+set ylabel 'Y Axis Label'
+set ylabelcolor brown
+set ylabelon 1
+set %xloweraxis 12
+graph x x^2

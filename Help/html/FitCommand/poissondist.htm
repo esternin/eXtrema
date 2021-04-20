@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Poisson Distribution</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="fit">
+</OBJECT>
+
+<P><A NAME="fitcpoisson"></A>
+<font size=+2 color="green">Poisson distribution</font>
+</P>
+<P>
+ Assume that each data point has an error that is independently random
+ and distributed as a Poisson distribution. The log likelihood function,
+ <IMG WIDTH=34 HEIGHT=29 ALIGN=MIDDLE SRC="img25.gif">, as a function of the
+ fit parameters,  <IMG WIDTH=11 HEIGHT=17 ALIGN=MIDDLE SRC="img12.gif">,
+ is minimized using a Gauss-Newton
+ method. Since logarithms are involved, a good first approximation is 
+ required before starting the Poisson fit, so try a normal fit first, and
+ use the resultant parameter values to start off the Poisson fit.
+</P>
+<P>
+ Weights do not have meaning, and so are not used, in a Poisson fit.
+</P>
+<P>
+ Assume that each data point,
+ <IMG WIDTH=16 HEIGHT=17 ALIGN=MIDDLE SRC="img9.gif">, has an error that is
+ independently random and distributed as a Poisson distribution, that is,
+ <IMG WIDTH=266 HEIGHT=35 ALIGN=MIDDLE SRC="img54.gif">.
+ We want to minimize:
+</P>
+<P>
+ <IMG WIDTH=607 HEIGHT=55 ALIGN=BOTTOM SRC="img55.gif">
+</P>
+<P>
+ but <IMG WIDTH=74 HEIGHT=29 ALIGN=MIDDLE SRC="img56.gif">  is a constant. So,
+ the goal is to minimize
+</P>
+<P>
+ <IMG WIDTH=400 HEIGHT=54 ALIGN=BOTTOM SRC="img57.gif">
+</P>
+<P>
+ Consider the Taylor expansion of
+ <IMG WIDTH=13 HEIGHT=13 ALIGN=BOTTOM SRC="img58.gif">:
+</P>
+<P>
+ <IMG WIDTH=494 HEIGHT=57 ALIGN=BOTTOM SRC="img59.gif">
+</P>
+<P>
+ Define:
+</P>
+<P>
+ <IMG WIDTH=636 HEIGHT=149 ALIGN=BOTTOM SRC="img60.gif">
+</P>
+<P>
+ Then: <IMG WIDTH=225 HEIGHT=33 ALIGN=MIDDLE SRC="img61.gif">.
+ Linearize, and the problem reduces to solving the
+ matrix equation  <IMG WIDTH=88 HEIGHT=25 ALIGN=MIDDLE SRC="img34.gif">.
+</P>
+<P>
+<a href="chisquare.htm"><font size=+1 color="olive">Chi-square of the fit</font></a><br>
+</P>
+<P>
+<a href="normaldist.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Normal distribution</font></a>
+</P>
+</BODY>
+</HTML>

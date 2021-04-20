@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>READ\VECTORS command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="read vector">
+	<PARAM NAME="Keyword" VALUE="file">
+</OBJECT>
+
+<P><A NAME="rvcommand"></A>
+<font size=+3 color="green"><B>READ\VECTORS Command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+READ\VECTORS file{\lineRange} x1{\c1} { x2{\c2} ... }<br>
+READ\FAST file{\lineRange} x1 { x2 ... }</CODE></TD>
+</TR><TR>
+<TD width=15% valign="top"><B>Qualifiers:</B></TD>
+<TD width=85% valign="top"><CODE>
+ <nobr>\APPEND,</nobr> <nobr>\ERRORSTOP,</nobr> 
+ <nobr>\ERRORFILL,</nobr> <nobr>\OVERLAY,</nobr> <nobr>\EXTEND,</nobr>
+ <nobr>\FAST</nobr></CODE></TD>
+</TR><TR>
+<TD width=15% valign="top"><B>Defaults:</B></TD>
+<TD width=85% valign="top"><CODE>
+ <nobr>\-APPEND,</nobr> <nobr>\ERRORSTOP,</nobr> <nobr>\-OVERLAY,</nobr>
+ <nobr>\EXTEND,</nobr> <nobr>\-FAST</nobr>
+ <nobr>cI = I</nobr></CODE></TD>
+</TR>
+</TABLE>
+<P>
+ The <CODE><font color="blue">\FAST</font></CODE> qualifier only applies to
+ reading vectors. All vectors being read must exist already, and will not be
+ extended by the read.  No error checking is done.  Column numbers may be specified but
+ no format may be used.  A line range may be entered as a file qualifier.</P>
+<P>
+ By default, vectors are read from space or tab delimited columns of numbers in an ASCII file.
+ The file is read by records,  and the
+ <CODE><font color="blue">cI</font><SUP>th</SUP></CODE> column is placed
+ into vector <CODE><font color="blue">xI</font></CODE>, where
+ <CODE><font color="blue">cI</font></CODE> defaults to <CODE>I</CODE>. Every
+ record is read, from the first record to the end of file. If
+ <CODE><font color="blue">xI</font></CODE> exists, it will be destroyed and a
+ new <CODE><font color="blue">xI</font></CODE> vector created.
+ Every record is checked for errors, and if an error occurs, reading stops. To
+ skip over records with errors, use the <CODE><font color="blue">\-ERRORSTOP</font></CODE>
+ qualifier.</P>
+<P>
+ A scalar appended to the file name,
+ <CODE><font color="blue">file\n</font></CODE>, specifies the starting record.
+ The first <CODE><font color="blue">n</font>-1</CODE> records will be
+ skipped.  A vector appended to the file name,
+ <CODE><font color="blue">file\x</font></CODE>, specifies each record to
+ read. The first <CODE><font color="blue">x</font>[1]-1</CODE> records will be
+ skipped. The data will be read from records
+ <CODE><font color="blue">x</font>[1]</CODE>,
+ <CODE><font color="blue">x</font>[2]</CODE>, ...,
+ <CODE><font color="blue">x</font>[#]</CODE>. Records
+ <CODE><font color="blue">x</font>[1]+1</CODE> to
+ <CODE><font color="blue">x</font>[2]-1</CODE> will be skipped. The vector
+ <CODE><font color="blue">x</font></CODE> must be monotonically
+ increasing.</P>
+<P>
+ By default, the <CODE>I<SUP>th</SUP></CODE> column is placed into vector
+ <CODE><font color="blue">xI</font></CODE>. The column number can be specified
+ by appending a scalar, <CODE><font color="blue">cI</font></CODE>, to the
+ vector name as a qualifier. In this case, the
+ <CODE><font color="blue">cI</font><SUP>th</SUP></CODE> column
+ can be placed into the <CODE><font color="blue">xI</font></CODE> vector.  For
+ example, after:
+<P>
+ <CODE><font color="blue">READ DUM.DAT W\2 X\4 Y Z\1</font></CODE></P>
+<P>
+ <CODE><font color="blue">W</font></CODE> would contain column <code>2</code>,
+ <CODE><font color="blue">X</font></CODE> would contain column <CODE>4</CODE>,
+ <CODE><font color="blue">Y</font></CODE> would default to column <CODE>3</CODE>, and
+ <CODE><font color="blue">Z</font></CODE> would contain column <CODE>1</CODE>.</P>
+<P>
+ The <CODE><font color="blue">\FORMAT</font></CODE> qualifier must be used
+ to indicate that a format is present. The format must be enclosed in quotes,
+ <font color="blue">`</font> and <font color="blue">'</font>.  If a format is
+ used, column numbers cannot be specified.</P>
+<P>
+ Standard C floating formats are valid.  All values are converted to floating
+ point doubles for internal storage.</P>
+<P>
+ To read only a certain number of elements into vectors use the
+ <CODE><font color="blue">\-EXTEND</font></CODE>, qualifier. The output
+ length of a vector will be number of values that are read, to a maximum of
+ that vector's original length. For example, suppose that vector
+ <CODE><font color="blue">X</font></CODE> has length <CODE>10</CODE> and
+ vector <CODE><font color="blue">Y</font></CODE> has length <CODE>20</CODE>.
+ If you enter:
+ <CODE><font color="blue">READ\-EXTEND file\[1:20] X Y</font></CODE> and
+ <CODE>20</CODE> records are read, vector
+ <CODE><font color="blue">X</font></CODE> will be made with a length of
+ <CODE>10</CODE> and vector <CODE><font color="blue">Y</font></CODE> will be
+ made with a length of <CODE>20</CODE>. If only <CODE>15</CODE> records are
+ read, vector <CODE><font color="blue">X</font></CODE> will have length
+ <CODE>10</CODE> but vector <CODE><font color="blue">Y</font></CODE> will
+ only have length <CODE>15</CODE>.</P>
+<P>
+ By default, a new vector is created to hold the newly read data. If the
+ <CODE><font color="blue">\OVERLAY</font></CODE> qualifier is used, an
+ existing vector will have the newly read data overlayed on the original
+ data. The resultant vector length may be longer, but never shorter. Use the
+ <CODE><font color="blue">\APPEND</font></CODE> qualifier to append the
+ newly read data onto the end of existing vectors.</P>
+<P>
+<CODE><font color="blue">\-EXTEND</font></CODE> is incompatible with
+ <CODE><font color="blue">\OVERLAY</font></CODE>.<br>
+<CODE><font color="blue">\-EXTEND</font></CODE> is incompatible with
+ <CODE><font color="blue">\APPEND</font></CODE>.
+</P>
+<P>
+ Field counts must be literal integers, that is, they cannot be scalar
+ variables. Field counts are specified by an integer preceding the vector
+ name. For example,
+ <CODE><font color="blue">READ FILE.DAT 3X 2Y Z</font></CODE>  will read
+ <CODE>6</CODE> numbers from each record, placing the first <CODE>3</CODE>
+ numbers into <CODE><font color="blue">X</font>[i]</CODE>,
+ <CODE><font color="blue">X</font>[i+1]</CODE>,
+ <CODE><font color="blue">X</font>[i+2]</CODE>, the next <CODE>2</CODE>
+ numbers into <CODE><font color="blue">Y</font>[i]</CODE>,
+ <CODE><font color="blue">Y</font>[i+1]</CODE>, and the last number into
+ <CODE><font color="blue">Z</font>[i]</CODE>.  This command is
+ equivalent to <CODE><font color="blue">READ FILE.DAT X X X Y Y Z</font></CODE>.</P>
+<P>
+ Records beginning with <font color="blue">!</font> are considered to be
+ comments and are ignored. </P>
+<P>
+ By default, an invalid field stops the read. If the
+ <CODE><font color="blue">\-ERRORSTOP</font></CODE> qualifier is
+ used, an invalid field causes the entire record to be skipped. If the
+ <CODE><font color="blue">\ERRORFILL</font></CODE> qualifier is used, an
+ invalid field causes the entire record to be filled with the value of
+ the <CODE><font color="blue">ERRORFILL</font></CODE> characteristic if a
+ format was entered, or only the invalid field will be set to the
+ <CODE><font color="blue">ERRORFILL</font></CODE> characteristic if no format
+ was entered. By default, <CODE><font color="blue">ERRORFILL</font>=0</CODE>,
+ but it's value can be changed with the
+ <CODE><a href="..\SetCommand\setcommand.htm"><font color="blue">SET ERRORFILL</font></a></CODE>
+ command and it's value obtained with the
+ <CODE><a href="..\GetCommand\getcommand.htm"><font color="blue">GET ERRORFILL</font></a></CODE>
+ command.</P>
+<P>
+<a href="..\readcommand.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">READ command</font></a><br>
+<a href="rvexample1.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Example 1</font></a>
+</P>
+</BODY>
+</HTML>

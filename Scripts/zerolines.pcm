@@ -1,0 +1,26 @@
+CLEAR
+!
+WINDOW 5
+DEFAULTS
+set %xnumbersheight 4
+set %ynumbersheight 4
+SCALES\-messages -5 5 -5 5
+GRAPH\AXESONLY
+set curvecolor red
+ZEROLINES
+WINDOW 7
+DEFAULTS
+set %xnumbersheight 4
+set %ynumbersheight 4
+SCALES\-messages -5 5 -5 5
+GRAPH\AXESONLY
+set curvecolor red
+ZEROLINES\HORIZONTAL
+WINDOW 12 25 0 75 50
+DEFAULTS
+set %xnumbersheight 4
+set %ynumbersheight 4
+SCALES\-messages -5 5 -5 5
+GRAPH\AXESONLY
+set curvecolor red
+ZEROLINES\VERTICAL

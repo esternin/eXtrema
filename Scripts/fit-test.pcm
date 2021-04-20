@@ -1,0 +1,34 @@
+clear
+window 0
+defaults
+!
+set
+ plotsymbol -17
+ %plotsymbolsize 2
+ plotsymbolcolor red
+ curvecolor blue
+
+x=[0:5:.25]
+y=2*exp(-3*x)-0.5*ran(x)
+set autoscale on
+graph x y
+scalar\fit a b c
+a=1
+b=-1
+c=1
+fit y = a*exp(b*x) + c
+fit\update yfit
+set
+ curvecolor blue
+ plotsymbol 0
+
+graph\overlay x yfit
+set
+ %xtextlocation 10
+ %ytextlocation 92
+ textalign 1
+ textinteractive 0
+
+text 'FIT: y = a*exp(b*x)+c'
+!
+destroy\-mess x y a b c yfit

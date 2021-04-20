@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Recursive filters</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+</OBJECT>
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="nonrecursive filter">
+	<PARAM NAME="Keyword" VALUE="time-invariant filters">
+	<PARAM NAME="Keyword" VALUE="filter time-invariant">
+	<PARAM NAME="Keyword" VALUE="\RECURSIVE qualifier">
+	<PARAM NAME="Keyword" VALUE="integrating recursive filter">
+	<PARAM NAME="Keyword" VALUE="trapezoidal rule filter">
+	<PARAM NAME="Keyword" VALUE="Leo Tick formula">
+</OBJECT>
+<P>
+<font size=+2 color="green">Recursive filters</font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+FILTER\RECURSIVE x f c d</CODE>
+</TD></TR>
+</table></P>
+<P>
+ If the <CODE><font color="blue">\RECURSIVE</font></CODE> qualifier is used, the
+ third parameter, <CODE><font color="blue">c</font></CODE>, must be a vector,
+ and the fourth parameter, <CODE><font color="blue">d</font></CODE>, must also
+ be a vector. The data array, <CODE><font color="blue">x</font></CODE>, is
+ processed through a recursive filter. This allows for the specification of a
+ completely general recursive filter of arbitrary length. The values of
+ <CODE><font color="blue">c</font></CODE> are the filter coefficients which
+ operate on the data.  The values of <CODE><font color="blue">d</font></CODE>
+ are the filter coefficients which operate on the previously made output.</P>
+<P>
+ <center><IMG ALIGN=BOTTOM SRC="img22.gif"></center></P>
+<P>
+ where <IMG ALIGN=BOTTOM SRC="N.gif"> is the length of vector
+ <CODE><font color="blue">c</font></CODE> and
+ <IMG ALIGN=BOTTOM SRC="M.gif"> is the length of
+ vector <CODE><font color="blue">d</font></CODE>.</P>
+<P>
+<font size=+1 color="green">Integrating recursive filters</font></P>
+<P>
+ The trapezoidal rule integration filter:</P>
+<P>
+ <center><IMG ALIGN=BOTTOM SRC="Gn1.gif"></center></P>
+<P>
+ The Leo Tick formula for integration:</P>
+<P>
+ <center><IMG ALIGN=BOTTOM SRC="Gn2.gif"></center></P>
+<P>
+ See <a href="#table7">Table 7</a> for the trapezoidal rule 
+ and the Leo Tick formula integrating recursive filter coefficients.</P>
+<P>
+<a name="table7">
+<table border="1">
+<caption><nobr><b>Table 7:&nbsp;&nbsp; Integrating recursive filters</b></nobr></caption>
+<tr>
+<td align="center"><em>type</em></td>
+<td align="center"><em>data coefficients</em></td>
+<td align="center"><em>output coefficients</em></td>
+</tr><tr>
+ <td>Trapezoidal rule&nbsp;&nbsp;</td><td>&nbsp;[ 0.5; 0.5 ]&nbsp;</td><td>&nbsp;[ 1 ]&nbsp;</td>
+</tr><tr>
+ <td>Leo Tick formula&nbsp;&nbsp;</td><td>&nbsp;[ 0.3584; 1.2832; 0.3584 ]&nbsp;</td><td>&nbsp;[ 0; 1 ]&nbsp;</td>
+</tr>
+</table>
+</P>
+<P>
+<a href="nonrecursive.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Nonrecursive filters</font></a><br>
+<a href="examples.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Examples</font></a>
+</P>
+</BODY>
+</HTML>

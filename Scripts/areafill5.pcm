@@ -1,0 +1,9 @@
+clear
+defaults
+window 0
+!
+C = [1:10]                      ! produces f=[7;8;9;10;7;8;9;10;7;8]
+X = [1:10]                      ! fake some data
+SET AREAFILLCOLOR -C            ! fill colors are in C
+SCALES\-MESSAGES 0 11 0 10.5    ! fix axis scales
+GRAPH\HISTOGRAM X               ! draw the histogram

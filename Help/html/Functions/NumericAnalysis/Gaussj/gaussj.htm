@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Solve system of equations</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="GAUSSJ function">
+  <PARAM NAME="Keyword" VALUE="solve system of equations">
+  <PARAM NAME="Keyword" VALUE="Gauss-Jordan method">
+</OBJECT>
+<P>
+<font size=+3 color="green"><B>Solve system of equations</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+y = GAUSSJ(m,x)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">GAUSSJ</font></CODE> function solves the system of
+ equations <code>m&lt;&gt;x = b</code>, where <code>m</code> is a square matrix and
+ <code>b</code> is a vector, and returns <code>x</code>, the vector of solutions.
+ This function uses the Gauss-Jordan method of elimination with full pivoting. The
+ matrix must be square. The length of the input vector must be the same as the row
+ dimension of the matrix.  The function returns a vector with the same length.</p>
+<P>
+<font size=+1 color="green">Example 1</font></P>
+<p>
+ To solve the following three equations for the three unknowns
+ <IMG ALIGN="bottom" SRC="x1.png">, <IMG ALIGN="bottom" SRC="x2.png">,
+ and <IMG ALIGN="bottom" SRC="x3.png">:</p>
+<p>
+ <IMG ALIGN="top" SRC="ex1.png"></p>
+<p>
+ You could use the script:</p>
+<p><pre>
+ m=[[3;10;5];[4;2;-2];[15;3;3]]
+ b=[26;14;22]
+ soln=gaussj(m,b)</pre></p>
+<p>
+ The answer: <code>soln=[1.41772;-3.77215;2.4557]</code></p>
+ can be checked by using the outer product operator:
+ <nobr><code>m&lt;&gt;soln</code></nobr>
+ and comparing this result with the original <code>b</code> vector.</p>
+<p>
+<font size=+1 color="green">Example 2</font></P>
+<p>
+ The following script, <code>INVERSE.PCM</code>, will find the inverse of a square
+ matrix. If you have a square matrix <code>M</code>, you could find it's inverse,
+ <code>INV_M</code>, with the command: <code>@INVERSE M</code></p>
+<p><pre>
+ if ( len(?1[1,*]) ~= len(?1[*,1]) ) then
+   display 'input matrix must be square'
+   return
+ endif
+ n = len(?1[1,*])
+ ! identity(n) is the identity matrix of order n
+ do k = [1:n]
+  inv_m[1:n,k] = gaussj(?1,identity(n)[1:n,k])
+ enddo</pre></p>
+<P>
+<a href="..\Gamma\gamma.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Gamma functions</font></a><br>
+<a href="..\Hermite\hermite.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Hermite polynomials</font></a>
+</P>
+</BODY>
+</HTML>

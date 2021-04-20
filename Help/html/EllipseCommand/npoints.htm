@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>ELLIPSE command: number of points</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="ELLIPSE command">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>Number of points</B></font></P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>ELLIPSE\FIT\NPTS xin yin n</nobr><br>
+<nobr>ELLIPSE\FIT\FRACTION\NPTS xin yin frac n</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT\NPTS xin yin n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT\FRACTION\NPTS xin yin frac n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\NPTS xin yin a b xc yc angle n</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION\NPTS xin yin frac a b xc yc angle n</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\NPTS xin yin a b xc yc angle n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION\NPTS xin yin frac a b xc yc angle n xout yout</nobr><br>
+<nobr>ELLIPSE\POPULATE\NPTS a b xc yc angle n</nobr><br>
+<nobr>ELLIPSE\POPULATE\XYOUT\NPTS a b xc yc angle n xout yout</nobr></CODE>
+</TD></TR>
+</TABLE>
+<p>
+ By default, the ellipse perimeter is populated by 260 points. If the
+ <CODE><font color="blue">\NPTS</font></CODE> qualifier is used, the number of
+ points with which to populate the perimeter is expected. This number should
+ be divisible by four (4).</p>
+<P>
+<a href="outputvectors.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Output vectors</font></a><br>
+<a href="explicit.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Ellipse explicitly defined</font></a>
+</P>
+</BODY>
+</HTML>

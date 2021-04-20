@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>WRAP</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="WRAP function">
+</OBJECT>
+<P><A NAME="wrap"></A>
+<font size=+3 color="green"><B>WRAP</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+matrix = WRAP( matrix, scalar )</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">WRAP</font></CODE> function only accepts a matrix
+ as its first argument. It wraps the column elements of a matrix by the
+ specified step size, the scalar second argument.</p>
+<P>
+ Suppose the step size is <i>n</i>.</P>
+<P>
+ <table>
+ <tr>
+ <td valign=top>&bull;</td><td>If <i>n</i> &gt; 0, the column elements of the matrix are
+ shifted down. The first <i>n</i> elements in the first column are zero filled, then the last
+ <i>n</i> elements of each column are brought into the next column. The last <i>n</i> elements
+ in the last column are lost.</td>
+ </tr><tr>
+ <td valign=top>&bull;</td><td>If <i>n</i> = 0, the matrix is returned unchanged.</td>
+ </tr><tr>
+ <td valign=top>&bull;</td><td>If <i>n</i> &lt; 0, the column elements of the matrix are
+ shifted up. The first <i>n</i> elements in the first column are lost. The first <i>n</i>
+ elements of each column are brought into the preceding column. The last <i>n</i> elements in
+ the last column are zero filled.</td>
+ </tr></table></P>
+<P>
+ If the step size is not an integer, only the integer part will be used.</P>
+<P>
+ <font size=+1 color="green">Examples</font></P>
+<P>
+ Suppose you have a matrix <CODE>M</CODE><br>
+ <pre>
+            | 1  2  3  4 |
+        M = | 5  6  7  8 |
+            | 9 10 11 12 |
+ </pre></P>
+<P>
+ <table>
+ <tr>
+ <td bgcolor=#FFCCCC><i>function</i></td><td bgcolor=#FFCCCC><i>result</i></td>
+ </tr><tr>
+ <td valign=middle><CODE><font color="blue">WRAP(M,2)</font></CODE></td>
+ <td bgcolor=#FFFFCC><table><tr><td><CODE>| 0 5&nbsp; 6&nbsp; 7 |</CODE></td></tr>
+            <tr><td><CODE>| 0 9 10 11 |</CODE></td></tr>
+            <tr><td><CODE>| 1 2&nbsp; 3&nbsp; 4 |</CODE></td></tr></table></td>
+ </tr><tr>
+ <td valign=middle><CODE><font color="blue">WRAP(M,-2)</font></CODE></td>
+ <td bgcolor=#FFFFCC><table><tr><td><CODE>| 9 10 11 12 |</CODE></td></tr>
+            <tr><td><CODE>| 2&nbsp; 3&nbsp; 4&nbsp; 0 |</CODE></td></tr>
+            <tr><td><CODE>| 6&nbsp; 7&nbsp; 8&nbsp; 0 |</CODE></td></tr></table></td>
+ </tr></table></P>
+<p>
+<a href="step.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">STEP</font></a><br>
+<a href="fold.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">FOLD</font></a>
+</P>
+</BODY>
+</HTML>

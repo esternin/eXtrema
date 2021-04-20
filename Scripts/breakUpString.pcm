@@ -1,0 +1,37 @@
+!
+longString = ?1
+! number of strings = ?2
+! vector of strings = ?3
+! error flag = ?4
+!
+?4 = 0
+!
+! eliminate blanks at the beginning of longString
+!
+do i__ = [1:clen(longString)]
+  if nes(longString[i__],' ') then
+    start__ = i__
+    goto NEXT
+  endif
+enddo
+?4 = 1
+return
+!
+NEXT:
+!
+do k__ = [1:?2]
+  j__ = index(longString[start__:#],' ')
+  if (j__=0) then j__=clen(longString)-start__+2
+  ?3[k__] = longString[start__:j__+start__-2]
+  if (clen(longString)>=j__+start__+1) then
+    do i__ = [j__+start__:clen(longString)]
+      if nes(longString[i__],' ') then
+        start__ = i__
+        goto NEXT_2
+      endif
+    enddo
+  endif
+  NEXT_2:
+enddo
+!
+destroy\-messages i__ j__ k__ start__

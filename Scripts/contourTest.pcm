@@ -1,0 +1,9 @@
+clear
+!window 0
+defaults
+set %contourlabelseparation 50
+!
+x=[1:30]
+m=sin(x><x/450*3.14159)
+contour\legend m 20
+!destroy x m

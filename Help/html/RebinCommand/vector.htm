@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Rebin a vector</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="REBIN command vector data">
+</OBJECT>
+<P><font size=+2 color="green">Rebin a vector</font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+REBIN x y n</CODE>
+</TD></TR>
+</TABLE></P>
+<P>
+Suppose that the length of vector <CODE><font color="blue">x</font></CODE> is <i>N</i> then:</p>
+<p>
+ <center><img src="rebin1.png"></center></p>
+<p>
+ that is, the length of <CODE><font color="blue">y</font></CODE> will be
+ <i>N</i><code>/<font color="blue">n</font></CODE>, and</p>
+<p>
+ <center><img src="rebin3.png"></center></p>
+<p>
+ If &nbsp;<img align="top" src="rebin5.png">&nbsp; is not equal to <i>N</i>, then the last
+ element of <CODE><font color="blue">y</font></CODE> will be incomplete. For example, if
+ <i>N</i> <code>= 10</code> and <i>n</i> <coce>= 3</code> then
+ <CODE><font color="blue">y</font></CODE> will have <code>3</code> elements:</p>
+<p>
+<pre>
+   <font color="blue">y</font>[1] = <font color="blue">x</font>[1] + <font color="blue">x</font>[2] + <font color="blue">x</font>[3]
+   <font color="blue">y</font>[2] = <font color="blue">x</font>[4] + <font color="blue">x</font>[5] + <font color="blue">x</font>[6]
+   <font color="blue">y</font>[3] = <font color="blue">x</font>[7] + <font color="blue">x</font>[8] + <font color="blue">x</font>[9]
+</pre></p>
+<p>
+ and <code><font color="blue">x</font>[10]</code> will not be included in
+ <CODE><font color="blue">y</font></CODE>.</p>
+<p>
+ <font size="+1" color="green">Examples</font></p>
+<p>
+ Suppose that vector <code>X</code> has <code>20</code> elements and vector <code>DATA</code> has
+ <code>1000</code> elements.</p>
+<p>
+ <table>
+ <tr>
+ <td bgcolor="#FFCCCC"><i>command</i></td><td bgcolor="#FFCCCC"><i>result</i></td>
+ </tr><tr>
+ <td valign="middle"><CODE><font color="blue">REBIN X XOUT 2</font></CODE></td>
+ <td bgcolor=#FFFFCC><table>
+  <tr><td><CODE>XOUT[ 1]</CODE></td><td><CODE>=</CODE></td><td><CODE>X[ 1] + X[ 2]</CODE></td></tr>
+  <tr><td><CODE>XOUT[ 2]</CODE></td><td><CODE>=</CODE></td><td><CODE>X[ 3] + X[ 4]</CODE></td></tr>
+  <tr><td><CODE>XOUT[ 3]</CODE></td><td><CODE>=</CODE></td><td><CODE>X[ 5] + X[ 6]</CODE></td></tr>
+  <tr><td></td><td><CODE>...</CODE></td><td></td></tr>
+  <tr><td><CODE>XOUT[10]</CODE></td><td><code>=</CODE></td><td><CODE>X[19] + X[20]</CODE></td></tr>
+  </table></td>
+ </tr><tr>
+ <td valign="middle"><CODE><font color="blue">REBIN DATA DOUT 3</font></CODE></td>
+ <td bgcolor=#FFFFCC><table>
+  <tr><td><CODE>DOUT[  1]</CODE></td><td><CODE>=</CODE></td><td><CODE>DATA[  1] + DATA[  2] + DATA[  3]</CODE></td></tr>
+  <tr><td><CODE>DOUT[  2]</CODE></td><td><CODE>=</CODE></td><td><CODE>DATA[  4] + DATA[  5] + DATA[  6]</CODE></td></tr>
+  <tr><td><CODE>DOUT[  3]</CODE></td><td><CODE>=</CODE></td><td><CODE>DATA[  7] + DATA[  8] + DATA[  9]</CODE></td></tr>
+  <tr><td></td><td><CODE>...</CODE></td><td></td></tr>
+  <tr><td><CODE>DOUT[333]</CODE></td><td><CODE>=</CODE></td><td><CODE>DATA[997] + DATA[998] + DATA[999]</CODE></td></tr>
+  </table></td>
+ </tr></table></P>
+<p>
+ A warning will be given that the length of <CODE><font color="blue">DATA</font></CODE> is not
+ evenly divisible by <CODE><font color="blue">3</font></CODE> and so the last bin is incomplete.</p>
+<P>
+<a href="rebincommand.htm"><img align="top" border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">REBIN command</font></a><br>
+<a href="matrix.htm"><img align="top" border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Rebin a matrix</font></a>
+</P>
+</body>
+</html>

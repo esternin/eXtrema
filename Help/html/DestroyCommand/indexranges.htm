@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Index ranges</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="index range">
+</OBJECT>
+
+<P><A NAME="destroycommandindexranges"></A>
+<font size=+3 color="green"><B>Index ranges</B></font></P>
+<P>
+ Index ranges are <em>not</em> allowed on scalars, matrices or tensors, but
+ subsets of vectors or string variables may be eliminated by including an
+ index range. For example:</P>
+<P>
+ <CODE><font color="blue">DESTROY X[5:25:5] Y[IDX] S[1:5] T[2][1:10]</font></CODE></P>
+<P>
+ will eliminate elements <CODE>5, 10, 15,</CODE> and <CODE>25</CODE> from 
+ vector <CODE>X</CODE>. If <CODE>IDX</CODE> is a vector, then 
+ <NOBR><CODE>Y[IDX[1]]</CODE></NOBR>, <NOBR><CODE>Y[IDX[2]]</CODE></NOBR>,
+ &hellip; <NOBR><CODE>Y[IDX[#]]</CODE></NOBR> will be eliminated.  If
+ <CODE>S</CODE> is a string variable, characters <CODE>1</CODE> through
+ <CODE>5</CODE> will be eliminated. If <CODE>T</CODE> is a string array
+ variable, then characters <CODE>2</CODE> through <CODE>10</CODE> of string
+ <CODE>2</CODE> will be eliminated.</P>
+<P>
+<a href="expand.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Expanded names</font></a><br>
+<a href="variableclasses.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Destroy entire classes of variables</font></a><br>
+</P>
+</BODY>
+</HTML>

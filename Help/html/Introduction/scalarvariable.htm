@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Scalar variables</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="variable scalar">
+        <PARAM NAME="Keyword" VALUE="scalar variable">
+</OBJECT>
+
+<P><A NAME="variablescalar"></A>
+<font size=+2 color="green">Scalar variables</font></P>
+<P>
+ A scalar is a single valued double precision real numeric variable. A
+ scalar can be used wherever a single numeric value is expected. 
+ Indices have no meaning, and so are not allowed on scalars.</P>
+<P>
+ A literal scalar can be a single number, such as, <CODE>3.456</CODE>, or an
+ expression that results in a single number, such as
+ <nobr><font color="blue"><code>LEN(x)+2</code></font></nobr>.</P>
+<P>
+ The following table shows the possible ways that variables can be
+ considered to be equivalent to scalars, that is, can be used
+ wherever scalars are expected.</P>
+<center>
+<table border=1>
+<tr><td>
+ <table cellpadding=5>
+ <tr>
+ <td colspan=3>Let <font color="blue"><code>a</code></font> and
+ <font color="blue"><code>b</code></font> be scalars</td>
+ </tr>
+ <tr>
+ <td colspan=3>Suppose that <font color="blue"><code>M</code></font> is
+ a matrix, <font color="blue"><code>V</code></font> is a vector, and
+ <font color="blue"><code>S</code></font> is a scalar</td>
+ </tr><tr>
+ <td><font color="blue"><code>S</code></font></td>
+ <td>=</td>
+ <td>the value of <font color="blue"><code>S</code></font></td>
+ </tr><tr>
+ <td><font color="blue"><code>V[a]</code></font></td>
+ <td>=</td>
+ <td>the value stored in the <font color="blue"><code>a</code></font><sup><i>th</i></sup> element of <font color="blue"><code>V</code></font></td>
+ </tr><tr>
+ <td><font color="blue"><code>M[a,b]</code></font></td>
+ <td>=</td>
+ <td>the value stored in row <font color="blue"><code>a</code></font> and
+ column <font color="blue"><code>b</code></font> of
+ <font color="blue"><code>M</code></font></td>
+ </table>
+ </td></tr></table>
+ </center>
+<P>
+<a href="variablename.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Variable names</font></a><br>
+<a href="vectorvariable.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Vector variables</font></a>
+</P>
+
+</body>
+</html>

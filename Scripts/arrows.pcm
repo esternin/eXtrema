@@ -1,0 +1,28 @@
+CLEAR
+WINDOW 0
+!DEFAULTS
+!
+figure\percent arrow 1 1 12 90 32 90
+figure\percent arrow 2 1 12 80 32 80
+figure\percent arrow 3 1 12 70 32 70
+figure\percent arrow 1 2 40 90 60 90
+figure\percent arrow 2 2 40 80 60 80
+figure\percent arrow 3 2 40 70 60 70
+set
+ textalign 1
+ textinteractive 0
+ %textheight 4
+ %xtextlocation 5
+ %ytextlocation 88
+ 
+text '1'
+set %ytextlocation 78
+text '2'
+set %ytextlocation 68
+text '3'
+set
+ %xtextlocation 6
+ %ytextlocation 94
+ textalign 2
+ 
+text 'style'

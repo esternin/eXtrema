@@ -1,0 +1,22 @@
+clear
+window 0
+defaults
+x=[1:22]
+set
+ xaxiscolor red
+ yaxiscolor blue
+ xnumberscolor green
+ ynumberscolor purple
+ curvecolor coral
+ %plotsymbolsize 4
+ plotsymbol x
+ plotsymbolcolor -x
+ xlabel 'X Axis Label'
+ xlabelcolor navy
+ xlabelon 1
+ ylabel 'Y Axis Label'
+ ylabelcolor brown
+ ylabelon 1
+ %xloweraxis 12
+ 
+graph x x^2

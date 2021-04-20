@@ -1,0 +1,29 @@
+clear
+destroy\-messages *
+!
+window 5
+defaults
+generate x -5,,5 50
+y=x^2+3*x-2
+@curvefill x y red
+!
+window 6
+defaults
+generate x 0,,180 100
+y=sind(x)
+generate x1 0,,180 50
+y1=exp(-x1/90)*sind(x1)
+scales\-messages -10 200 -.2 1
+@fill x y x1 y1 red
+!
+window 7
+defaults
+@filledring 12 5 green 100
+!
+window 8
+defaults
+C = [1:10]                     ! produces f=[7;8;9;10;7;8;9;10;7;8]
+X = [1:10]                     ! fake some data
+SET AREAFILLCOLOR -C           ! fill colors are in C
+SCALE\-MESSAGES 0 11 0 10.5    ! fix axis scales
+GRAPH\HISTOGRAM X              ! draw the histogram

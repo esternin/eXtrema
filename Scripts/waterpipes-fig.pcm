@@ -1,0 +1,74 @@
+if ~exist('waterpipesDone') then
+ display 'first execute waterpipes.pcm'
+ return
+endif
+clear
+window 1 0 0 80 100
+defaults
+set
+ xnumberson 0
+ ynumberson 0
+ xticson 0
+ yticson 0
+ xcross 1
+ ycross 1
+ graphbox 0
+ xaxison 0
+ yaxison 0
+
+scales\commensurate\-messages -15 100 -15 100
+set curvecolor blue
+graph [-10;90] [10;90]
+a = 0.8
+b = 18
+v = 20
+w = 80
+set plotsymbol 17
+set plotsymbolcolor green
+graph\overlay v w
+set curvecolor black
+set plotsymbol 0
+graph\overlay [v;v] [a*v+b;w]
+graph\overlay [(w-b)/a;v] [w;w]
+c = (1/a)*[w-b-(w-b-a*v)/(a*a+1)]
+d = a*c+b
+set curvecolor blue
+graph\overlay [c;v] [d;w]
+set
+ textinteractive 0
+ %textheight 5
+ textalign 3
+ %xtextlocation 42
+ %ytextlocation 75
+
+text '(x,y)'
+set
+ textalign 1
+ %xtextlocation 53
+ %ytextlocation 53
+
+text '(v,w)'
+set %xtextlocation 70
+set %ytextlocation 71
+text '((y-B)/A,y)'
+set %xtextlocation 44
+set %ytextlocation 42
+text '(x,A*x+B)'
+set
+ %textheight 5
+ %xtextlocation 50
+ %ytextlocation 33
+
+text 'v = (1/A)*[y-B-(y-B-A*x)/(A*A+1)]'
+set %ytextlocation 27
+text 'w = A*v+B'
+!
+b2 = a*46+b
+b3 = 46/a+b2
+b4 = (-1/a)*42+b3
+b5 = -a*42+b4
+x1 = (105-b5)/(a+1.25)
+y1 = a*x1+b5
+set curvecolor black
+graph\overlay [46;42;x1] [b2;b4;y1]
+

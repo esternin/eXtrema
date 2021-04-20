@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>ELLIPSE command: ellipse explicitly defined </TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="ELLIPSE command">
+	<PARAM NAME="Keyword" VALUE="populate ellipse">
+	<PARAM NAME="Keyword" VALUE="fit ellipse">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>Ellipse explicitly defined</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>ELLIPSE a b xc yc angle</nobr><br>
+<nobr>ELLIPSE\POPULATE a b xc yc angle</nobr><br>
+<nobr>ELLIPSE\POPULATE\NPTS a b xc yc angle n</nobr><br>
+<nobr>ELLIPSE\POPULATE\XYOUT a b xc yc angle xout yout</nobr><br>
+<nobr>ELLIPSE\POPULATE\XYOUT\NPTS a b xc yc angle n xout yout</nobr></CODE>
+</TD></TR>
+</TABLE>
+<p>
+ By default, the input parameters are assumed to be scalars representing the
+ major axis radius, <CODE><font color="blue">a</font></CODE>, the minor axis
+ radius, <CODE><font color="blue">b</font></CODE>, the coordinates of the centre,
+ <CODE><font color="blue">cx</font></CODE> and
+ <CODE><font color="blue">cy</font></CODE>, and the angle of the ellipse,
+ <CODE><font color="blue">angle</font></CODE>, in degrees, measured
+ counter-clockwise from the horizontal.</p>
+<h2>Parameter order</h2>
+<p>
+ The order in which the qualifiers appear is irrelevant. The order in which the
+ command parameters appear is fixed:
+ <nobr><CODE><font color="blue">a b xc yc angle { npts } { xout yout }</font></CODE></nobr></p>
+<P>
+<a href="npoints.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Number of points</font></a><br>
+<a href="fit.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Fit an ellipse</font></a>
+</P>
+</BODY>
+</HTML>

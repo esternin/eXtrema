@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>POLARPOWERAUTO</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="POLARPOWERAUTO">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>POLARPOWERAUTO</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=20% valign="top"><B>Syntax</B>:</TD>
+<TD width=80% valign="top"><CODE>
+SET POLARPOWERAUTO n<br>
+GET POLARPOWERAUTO { n }</CODE>
+</TD></TR>
+<TR>
+<TD width=20% valign="top"><B>Default</B>:</TD>
+<TD width=80% valign="top"><CODE>
+POLARPOWERAUTO = 1</CODE>
+</TD></TR>
+</TABLE>
+<P>
+ <CODE><font color="blue">POLARPOWERAUTO</font></CODE>, along with
+ <CODE><font color="blue"><a href="power.htm">POLARPOWER</A></font></CODE>,
+ controls the polar axis scale value that is appended to the
+ polar axis text label.  This scale value is needed when there
+ are not enough digits allowed for the numbers labeling the polar axis.</P>
+<P>
+<table border=0 cols=3>
+<tr>
+<td colspan=3 valign="top" align="left">
+ <CODE><font color="blue">POLARPOWERAUTO</font></CODE></td>
+</tr><tr>
+<td colspan=3 valign="center"><hr></td>
+</tr><tr>
+<td valign="top"><CODE>2</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">determine <CODE><font color="blue">POLARPOWER</font></CODE>,
+ but do not append the scale value to the text label, even if it is needed</td>
+</tr><tr>
+<td valign="top"><CODE>1</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">determine <CODE><font color="blue">POLARPOWER</font></CODE>,
+ and append the scale value to the text label</td>
+</tr><tr>
+<td valign="top"><CODE>0</CODE></td>
+<td valign="top">&rarr;</td>
+<td valign="top">use the present value of
+ <CODE><font color="blue">POLARPOWER</font></CODE>, and append the scale value to the text label</td>
+</tr></table></P>
+<P>
+ If the user wishes to completely specify the appearance of the
+ polar axis, <CODE><font color="blue">POLARPOWERAUTO</font></CODE>
+ must be set to <CODE>0</CODE>, otherwise the number of digits and decimal places,
+ <CODE><font color="blue"><A HREF="numberofdigits.htm">POLARNUMBEROFDIGITS</A></font></CODE> and
+ <CODE><font color="blue"><A HREF="numberofdecimals.htm">POLARNUMBEROFDECIMALS</A></font></CODE>,
+ may be changed.</P>
+<P>
+ <a href="power.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;
+ <font size=+1 color="olive">POLARPOWER</font></a>
+</P>
+</body>
+</html>

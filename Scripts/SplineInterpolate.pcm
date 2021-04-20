@@ -1,0 +1,65 @@
+clear
+!
+x = [0:10]
+y = 2*x^2-3*x+50 + 100*ran(x)
+generate xx 0,,10,100
+tensions = [0;1;5;10;100]
+colors = [-7;-5;-2;-3;-11]
+!
+display 'first try cubic spline interpolation with various tensions'
+window 1 0 0 50 50
+defaults
+set plotsymbol -10
+set plotsymbolcolor red
+set xlabel 'Spline under tension interpolation'
+set xlabelon 1
+graph x y
+set plotsymbol 0
+set curvecolor black
+set legendon 1
+set %legendframe 15 65 60 90
+do i = [1:len(tensions)]
+ set tension tensions[i]
+ ='Using tension = '//rchar(tensions[i])
+ set curvecolor colors[i]
+ graph\overlay 'tension='//rchar(tensions[i]) xx interpolate(x,y,xx,'spline')
+enddo
+replot
+set legendon 0
+!
+display 'and now for linear, Lagrange, and Fritch-Carlson interpolation'
+window 2 0 50 50 100
+defaults
+set plotsymbol -10
+set plotsymbolcolor red
+set xlabel 'Linear interpolation'
+set xlabelon 1
+graph x y
+set plotsymbol 0
+set curvecolor black
+ylinear = interpolate(x,y,xx,'linear')
+graph\overlay xx ylinear
+!
+window 3 50 50 100 100
+defaults
+set plotsymbol -10
+set plotsymbolcolor red
+set xlabel 'Lagrange interpolation'
+set xlabelon 1
+graph x y
+set plotsymbol 0
+set curvecolor black
+ylagrange = interpolate(x,y,xx,'lagrange')
+graph\overlay xx ylagrange
+!
+window 4 50 0 100 50
+defaults
+set plotsymbol -10
+set plotsymbolcolor red
+set xlabel 'Fritch-Carlson interpolation'
+set xlabelon 1
+graph x y
+set plotsymbol 0
+set curvecolor black
+yfc = interpolate(x,y,xx,'fc')
+graph\overlay xx yfc

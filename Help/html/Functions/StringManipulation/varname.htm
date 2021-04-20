@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>VARNAME</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="VARNAME function">
+	<PARAM NAME="Keyword" VALUE="variable name">
+</OBJECT>
+<P><A NAME="varname"></A>
+<font size=+3 color="green"><B>VARNAME</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+string = VARNAME(variable)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">VARNAME</font></CODE> function accepts a variable, either string
+ or numeric, as its argument, and converts that variable name into a string. This function can
+ be useful in scripts where a variable is passed to the script as one of the generalized
+ <CODE><font color="blue">?</font></CODE> parameters. The variable name could then be converted
+ to a string for display or manipulation.</p>
+<p>
+ <font size=+1 color="green">Example</font></P>
+<p>
+ The following script shows one way in which the <CODE><font color="blue">VARNAME</font></CODE>
+ function could be used.</p>
+<p>
+ <font color="blue"><pre>
+ t1 = varname(?1) ! 1st variable name passed to the script converted to a string
+ t2 = varname(?2) ! 2nd variable name passed to the script converted to a string
+ graph ?1 ?2      ! plot graph of 2nd variable versus 1st variable
+ text 'graph of '//t1//' vs '//t2 ! label the plot with the command
+ </pre></font></p>
+<p>
+<a href="ichar.htm"><img align=middle border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">ICHAR</font></a><br>
+<a href="string.htm"><img align=middle border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">STRING</font></a>
+</P>
+</BODY>
+</HTML>

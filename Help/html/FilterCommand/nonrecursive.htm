@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Nonrecursive filters</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+</OBJECT>
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="nonrecursive filter">
+  <PARAM NAME="Keyword" VALUE="time-invariant filters">
+  <PARAM NAME="Keyword" VALUE="filter time-invariant">
+  <PARAM NAME="Keyword" VALUE="\-RECURSIVE qualifier">
+  <PARAM NAME="Keyword" VALUE="differentiating nonrecursive filter">
+  <PARAM NAME="Keyword" VALUE="smoothing nonrecursive filter">
+  <PARAM NAME="Keyword" VALUE="Spencer's formulae">
+  <PARAM NAME="Keyword" VALUE="interpolating nonrecursive filter">
+</OBJECT>
+
+<P><font size=+2 color="green">Nonrecursive filters</font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+FILTER\-RECURSIVE x f c</CODE>
+</TD></TR>
+</table></P>
+<P>
+ If the <CODE><font color="blue">\-RECURSIVE</font></CODE> qualifier is
+ used, the third parameter, <CODE><font color="blue">c</font></CODE>, must be
+ a vector. The data array, <CODE><font color="blue">x</font></CODE>, is
+ processed through a nonrecursive filter using the values of
+ <CODE><font color="blue">c</font></CODE> as the data coefficients:</P>
+<P>
+ <center><IMG ALIGN=BOTTOM SRC="img19.gif"></center></P>
+<P>
+ where <IMG ALIGN=BOTTOM SRC="N.gif"> is the length of vector
+ <CODE><font color="blue">c</font></CODE>. Note that when
+ <CODE><font color="blue">c</font></CODE> has an even number of elements, the
+ filter will be applied to the
+ <IMG ALIGN=BOTTOM SRC="nth.gif"> point by application to
+ points from <IMG ALIGN=MIDDLE SRC="n-N2.gif"> to
+ <IMG ALIGN=MIDDLE SRC="n-1N2.gif">. For example, when
+ <IMG ALIGN=BOTTOM SRC="N.gif"> is two, the weightings will
+ be applied to the previous point and to the current point.</P>
+<P>
+<font size=+1 color="green">Differentiating nonrecursive filters</font></P>
+<P>
+ Remember, that the <CODE><font color="blue">x</font></CODE>'s must be
+ equally spaced, and are actually assumed by the
+ <CODE><font color="blue">FILTER</font></CODE> command to have unit spacing.
+ Thus, to obtain the correct output scaling, multiply
+ <CODE><font color="blue">f</font></CODE> by
+ <IMG ALIGN=MIDDLE SRC="kfact.gif">, where
+ <IMG ALIGN=BOTTOM SRC="k.gif"> is the order of the
+ derivative, <IMG ALIGN=BOTTOM SRC="N.gif"> is the length of
+ vector <CODE><font color="blue">c</font></CODE>, and
+ <IMG ALIGN=BOTTOM SRC="h.gif"> is the spacing of
+ <CODE><font color="blue">x</font></CODE>, that is,
+ <IMG ALIGN=MIDDLE SRC="heq.gif">. For example:</P>
+<P>
+<pre>
+ FILTER\-RECURSIVE X XOUT [2;-16;0;16;-2]  ! 1st deriv. nonrecursive filter
+ XOUT=XOUT/(24*(X[2]-X[1]))                  ! use scale factor 1/(h*4!)
+</pre></P>
+<P>
+ See <a href="#table1">Table 1</a> for various first derivative nonrecursive
+ filter data coefficients. See <a href="#table2">Table 2</a> for various second
+ derivative nonrecursive filter data coefficients. See
+ <a href="#table3">Table 3</a> for various third derivative nonrecursive filter
+ data coefficients.</P>
+<P>
+<a name="table1">
+<table border="1">
+<caption><nobr><b>Table 1:&nbsp;&nbsp; Various <i>1<sup>st</sup></i> derivative
+ nonrecursive filters</b></nobr></caption>
+<tr>
+<td align="center"><em>type</em></td>
+<td align="center"><em>data coefficients</em></td>
+<td align="center"><em>scale factor</em></td>
+</tr><tr>
+<td><font face="Arial" size="-2">3 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 1; 0; -1 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/2h&nbsp;</font></td>
+</tr><tr>
+<td><font face="Arial" size="-2">4 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 1; -6; 3; 2 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/6h&nbsp;</font></td>
+</tr><tr>
+<td><font face="Arial" size="-2">5 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 2; -16; 0; 16; -2 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/24h&nbsp;</font></td>
+</tr><tr>
+<td><font face="Arial" size="-2">6 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -4; 30; -120; 40; 60; -6 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/120h&nbsp;</font></td>
+</tr>
+</table></P>
+<P>
+<a name="table2">
+<table border="1">
+<caption><nobr><b>Table 2:&nbsp;&nbsp; Various <i>2<sup>nd</sup></i> derivative nonrecursive filters</b></nobr></caption>
+<tr>
+<td align="center"><em>type</em></td>
+<td align="center"><em>data coefficients</em></td>
+<td align="center"><em>scale factor</em></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">3 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 1; -2; 1 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/h<sup>2</sup>&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">4 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 0; 3; -6; 3 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/3h<sup>2</sup>&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">5 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -1; 16; -30; 16; -1 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/12h<sup>2</sup>&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">6 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 0; 5; 80; -150; 80; -5 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/60h<sup>2</sup>&nbsp;</font></td>
+</tr>
+</table></P>
+<P>
+<a name="table3">
+<table border="1">
+<caption><nobr><b>Table 3:&nbsp;&nbsp; Various <i>3<sup>rd</sup></i> derivative nonrecursive filters</b></nobr></caption>
+<tr>
+<td align="center"><em>type</em></td>
+<td align="center"><em>data coefficients</em></td>
+<td align="center"><em>scale factor</em></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">4 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -1; 3; -3; 1 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/h<sup>3</sup>&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">5 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -2; 4; 0; -4; 2 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/4h<sup>3&nbsp;</sup></font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">6 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 5; -35; 70; -50; 5; 5 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/20h<sup>3</sup>&nbsp;</font></td>
+</tr>
+</table></P>
+<P><font size=+1 color="green">Smoothing nonrecursive filters</font></P>
+<P>
+ See <a href="#table4">Table 4</a> for various quadratic smoothing nonrecursive
+ filter data coefficients. See <a href="#table5">Table 5</a> for various
+ quartic smoothing nonrecursive filter data coefficients. See
+ <a href="#table6">Table 6</a> for Spencer's formulae smoothing nonrecursive
+ filter data coefficients.</P>
+<P>
+<a name="table4">
+<table border="1">
+<caption><nobr><b>Table 4:&nbsp;&nbsp; Smoothing nonrecursive filters (quadratic)</b></nobr></caption>
+<tr>
+<td align="center"><em>type</em></td>
+<td align="center"><em>data coefficients</em></td>
+<td align="center"><em>scale factor</em></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">5 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -3; 12; 17; 12; -3 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/35&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">7 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -2; 3; 6; 7; 6; 3; -2 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/21&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">9 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -21; 14; 39; 54; 59; 54; 39; 14; -21 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/231&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">11 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -36; 9; 44; 69; 84; 89; 84; 69; 44; 9; -36 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/429&nbsp;</font></td>
+</tr>
+</table></P>
+<P>
+<a name="table5">
+<table border="1">
+<caption><nobr><b>Table 5:&nbsp;&nbsp; Smoothing nonrecursive filters (quartic)</b></nobr></caption>
+<tr>
+<td align="center"><em>type</em></td>
+<td align="center"><em>data coefficients</em></td>
+<td align="center"><em>scale factor</em></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">7 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 5; -30; 75; 131; 75; -30; 5 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/231&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">9 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 15; -55; 30; 135; 179; 135; 30; -55; 15 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/429&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">11 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 18; -45; -10; 60; 120; 143; 120; 60; -10; -45; 18 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/429&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">13 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ 110; -198; -135; 110; 390; 600; 677; 600; 390; 110; -135; -198; 110 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/2431&nbsp;</font></td>
+</tr>
+</table></P>
+<P>
+<a name="table6">
+<table border="1">
+<caption><nobr><b>Table 6:&nbsp;&nbsp; Smoothing nonrecursive filters (Spencer's formulae)</b></nobr></caption>
+<tr>
+<td align="center"><em>type</em></td>
+<td align="center"><em>data coefficients</em></td>
+<td align="center"><em>scale factor</em></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">15 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -3; -6; -5; 3; 21; 46; 67; 74; 67; 46; 21; 3; -5; -6; -3 ]&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;1/320&nbsp;</font></td>
+</tr><tr>
+ <td><font face="Arial" size="-2">21 point&nbsp;&nbsp;</font></td><td><font face="Arial" size="-2">&nbsp;[ -1; -3; -5; -5; -2; 6; 18; 33; 47; 57; 60; 57; 47; 33; 18; 6; -2; -5; -5; -3; -1 ]&nbsp;</font></td><td>&nbsp;1/350&nbsp;</font></td>
+</tr>
+</table></P>
+<P>
+<font size=+1 color="green">Interpolating nonrecursive filters</font></P>
+<P>
+ Suppose we have points in a vector which are "bad" and need to be replaced.
+ Assuming one can fit the data with an odd degree polynomial. The next
+ higher order difference equation, when set to zero, can be used to give the
+ desired filter coefficients. For example, if the data can be fit with a
+ <CODE>5<sup><i>th</i></sup></CODE> order polynomial, the fourth difference set
+ to zero gives:</P>
+<P>
+ <center><IMG ALIGN=BOTTOM SRC="yn-2.gif"></center></P>
+<P>
+ and solving for <IMG ALIGN=BOTTOM SRC="yn.gif"> gives:</P>
+<P>
+ <center><IMG ALIGN=BOTTOM SRC="yneq.gif"></center></P>
+<P>
+ so the data filter coefficients are <CODE>[ -1/6; 2/3; 0; 2/3; -1/6 ]</CODE>.
+</P>
+<P>
+<a href="mean.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Mean filters</font></a><br>
+<a href="recursive.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Recursive filters</font></a>
+</P>
+</BODY>
+</HTML>

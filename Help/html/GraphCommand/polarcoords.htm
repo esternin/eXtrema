@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Polar plot</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="polar plot">
+</OBJECT>
+
+<P><font size=+2 color="green">Polar plot</font></P>
+<P>
+ <TABLE border="1" cols="2" frame="box" rules="all" width="572">
+ <TR>
+ <TD width=15% valign="top"><B>Syntax</B>:</TD>
+ <TD width=85% valign="top"><CODE>
+  GRAPH\POLAR r theta<br />
+  GRAPH\RADAR r theta</CODE>
+ </TD></TR>
+ <TR>
+ <TD width=15% valign="top"><B>Qualifiers:</B></TD>
+ <TD width=85% valign="top"><CODE>
+  \AXESONLY, \OVERLAY</CODE>
+ </TD></TR>
+ <TR>
+ <TD width=15% valign="top"><B>Defaults:</B></TD>
+ <TD width=85% valign="top">axis drawn
+ </TD></TR>
+ <TR>
+ <TD width=15% valign="top"><B>Examples:</B></TD>
+ <TD width=85% valign="top"><CODE>
+  GRAPH\POLAR R THETA<BR>
+  GRAPH\POLAR\OVERLAY R2 T2<BR>
+  GRAPH\RADAR\AXESONLY R T</CODE>
+ </TD></TR></TABLE></P>
+<P>
+ If either the <CODE><font color="blue">\POLAR</font></CODE> qualifier or the
+ <CODE><font color="blue">\RADAR</font></CODE> qualifier is used, the input variables,
+ <CODE><font color="blue">r</font></CODE> and <CODE><font color="blue">theta</font></CODE>,
+ are assumed to represent polar coordinates, where <CODE><font color="blue">r</font></CODE> contains
+ the radial components and <CODE><font color="blue">theta</font></CODE> contains
+ the angular components, in degrees.</P>
+<p>
+ A polar plot is always autoscaled.  The radial axis always begins at zero, and all 360<sup>&deg;</sup>
+ are always displayed. By default, four radial axes are drawn, but any number of axes can be drawn using the
+ <CODE><a href="..\Characteristics\Polar\naxes.htm">POLARNAXES</a></CODE> characteristic.  Only the
+ radial axis at 0<sup>&deg;</sup> can have numeric labels and the optional text label. Circular grid
+ lines can be drawn, and are controlled by the
+ <CODE><a href="..\Characteristics\Polar\grid.htm">POLARGRID</a></CODE> characteristic.</p>
+<p>
+ Use the <CODE><font color="blue">\POLAR</font></CODE> qualifier if you would like 0<sup>&deg;</sup>
+ to be horizontal through the origin. Use the <CODE><font color="blue">\RADAR</font></CODE>
+ qualifier if you would like 0<sup>&deg;</sup> to be vertical.  The radial axis at 0<sup>&deg;</sup> always
+ has a minimum value of zero.  The maximum value of the radial axis is determined by the data.
+ <img src="polarradar.png"></p>
+<p>
+ The user has control over the polar plot by means of the
+ <a href="..\Characteristics\Polar\polarchar.htm">Polar Characteristics</a>.</p>
+<P>
+ <a href="graphcommand.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;
+ <font size=+1 color="olive">GRAPH command</font></a><br>
+ <a href="plotsymbol.htm"><img align=middle border=0 src="..\shadow_right.gif">&nbsp;
+ <font size=+1 color="olive">Plotting symbols</font></a>
+</P>
+</BODY>
+</HTML>

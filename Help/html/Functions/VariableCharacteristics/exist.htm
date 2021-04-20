@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>EXIST</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" 
+CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="EXIST function">
+  <PARAM NAME="Keyword" VALUE="variable existence">
+</OBJECT>
+<P><A NAME="exist"></A>
+<font size=+3 color="green"><B>EXIST</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+scalar = EXIST(string)</CODE>
+</TD></TR>
+</table></p>
+<p>
+ The <CODE><font color="blue">EXIST</font></CODE> function accepts one string
+ as its argument and returns a one (1) if the string is an existing variable
+ name, and zero (0) is it is not.</P>
+<P>
+ <font size=+1 color="green">Example</font></P>
+<P>
+ If you enter <CODE><font color="blue">X2=3</font></CODE>, the function
+ <CODE><font color="blue">EXIST('X2')</font></CODE> would have the value 1.</P>
+<P>
+ You can even enter: <CODE><font color="blue">N=2</font></CODE> and
+ <CODE><font color="blue">T='X'//RCHAR(N)</font></CODE> and the function
+ <CODE><font color="blue">EXIST(T)</font></CODE> would have the value 1.</P>
+<p>
+<a href="vartype.htm"><img align=top border=0 src="..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">VARTYPE</font></a><br>
+<a href="iclose.htm"><img align=top border=0 src="..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">ICLOSE</font></a>
+</P>
+</BODY>
+</HTML>

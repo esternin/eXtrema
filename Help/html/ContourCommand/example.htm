@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Examples</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+</OBJECT>
+
+<P><A NAME="contourexample"></A>
+<font size=+1 color="green">Example 1</font></P>
+<P>
+ The figure below was produced by the following commands:</P>
+
+<font color="blue"><PRE>
+ X = {1;0;1;0;.2;.5;.8}
+ Y = {1;0;0;1;.2;.5;.8}
+ Z = {0;0;0;0;10;0;-5}
+ GRID\XYOUT X Y Z M XOUT YOUT   ! interpolate a matrix
+ CONTOUR\LEGEND XOUT YOUT M 10  ! 10 contours of matrix M
+</PRE></font>
+<P>
+<center>
+<IMG SRC="example1.png">
+</center></P>
+<P>
+<font size=+1 color="green">Example 2</font></P>
+<P>
+ The figure below was produced by the following command (assuming the same data as above):</P>
+
+<font color="blue"><PRE>
+ CONTOUR\LEGEND\COLORS\LINEWIDTHS [-1;-1;-1;-1;-2] [1;1;1;1;2] XOUT YOUT M 15
+</PRE></font>
+<P>
+<center>
+<IMG SRC="example2.png">
+</center></P>
+<P>
+<font size=+1 color="green">Example 3</font></P>
+<P>
+ The figure below was produced by the following command (assuming the same data as above):</P>
+
+<font color="blue"><PRE>
+ CONTOUR\LEG\LINEW [1;1;1;1;2] XOUT YOUT M 15 0 0.5
+</PRE></font>
+<P>
+<center>
+<IMG SRC="example3.png">
+</center></P>
+<P>
+<font size=+1 color="green">Example 4</font></P>
+<P>
+ The figure below was produced by the following commands (assuming the same data as above):</P>
+
+<font color="blue"><PRE>
+ SCALES 0 1 0 1
+ CONTOUR\LINEW [1;1;1;1;2] XOUT YOUT M 15 0 0.5
+</PRE></font>
+<P>
+<center>
+<IMG SRC="example4.png">
+</center></P>
+<P>
+<font size=+1 color="green">Example 5</font></P>
+<P>
+ The figure below was produced by the following commands (assuming the same data as above):</P>
+
+<font color="blue"><PRE>
+ SCALES 0 1 0 1
+ SET COLORMAP THERMAL
+ DENSITY XOUT YOUT M
+ CONTOUR\LINEW [1;1;1;1;2] XOUT YOUT M 20 -5 0.5
+</PRE></font>
+<P>
+<center>
+<IMG SRC="example5.png">
+</center></P>
+<P>
+<a href="axes.htm"><img align=middle border=0 src="..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Axes</font></a>
+</P>
+
+</BODY>
+</HTML>

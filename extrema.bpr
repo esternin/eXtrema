@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="extrema.exe"/>
+    <OBJFILES value="objs\extrema.obj objs\extremaMain.obj objs\ArrowChooser.obj 
+      objs\DigitizeInfo.obj objs\DigitizePNG.obj objs\Display.obj 
+      objs\ExecuteForm.obj objs\FigureDraw.obj objs\FitForm.obj 
+      objs\GenerateCommandForm.obj objs\GetCoordinates.obj objs\GraphForm.obj 
+      objs\GraphicsSubwindow.obj objs\HistogramType.obj objs\Inquire.obj 
+      objs\InquireYN.obj objs\MainGraphicsWindow.obj objs\PeakFinding.obj 
+      objs\PNGDisplay.obj objs\ProgressDisplay.obj objs\ReadMatrixForm.obj 
+      objs\ReadScalarsForm.obj objs\ReadTextForm.obj objs\ReadVectorsForm.obj 
+      objs\SelectColor.obj objs\SelectFont.obj objs\SelectLineWidth.obj 
+      objs\SplashScreen.obj objs\TextInteractive.obj objs\VarInfo.obj 
+      objs\VarShow.obj objs\WriteMatrixForm.obj objs\WriteScalarsForm.obj 
+      objs\WriteTextForm.obj objs\WriteVectorsForm.obj objs\CMD_bin2d.obj 
+      objs\CMD_bin.obj objs\CMD_clear.obj objs\CMD_contour.obj 
+      objs\CMD_defaults.obj objs\CMD_define.obj objs\CMD_destroy.obj 
+      objs\CMD_display.obj objs\CMD_do.obj objs\CMD_enddo.obj objs\CMD_endif.obj 
+      objs\CMD_evaluateExpression.obj objs\CMD_execute.obj objs\CMD_figure.obj 
+      objs\CMD_filter.obj objs\CMD_fit.obj objs\CMD_generate.obj 
+      objs\CMD_get.obj objs\CMD_goto.obj objs\CMD_graph.obj objs\CMD_grid.obj 
+      objs\CMD_hardcopy.obj objs\CMD_help.obj objs\CMD_if.obj 
+      objs\CMD_inquire.obj objs\CMD_list.obj objs\CMD_matrix.obj 
+      objs\CMD_pause.obj objs\CMD_quit.obj objs\CMD_read.obj objs\CMD_rebin.obj 
+      objs\CMD_replot.obj objs\CMD_return.obj objs\CMD_save.obj 
+      objs\CMD_scalar.obj objs\CMD_scales.obj objs\CMD_set.obj objs\CMD_show.obj 
+      objs\CMD_sort.obj objs\CMD_statistics.obj objs\CMD_text.obj 
+      objs\CMD_vector.obj objs\CMD_window.obj objs\CMD_world.obj 
+      objs\CMD_write.obj objs\CMD_zerolines.obj objs\Command.obj 
+      objs\CommandTable.obj objs\FCN_abs.obj objs\FCN_acos.obj 
+      objs\FCN_acosd.obj objs\FCN_acot.obj objs\FCN_acotd.obj objs\FCN_acsc.obj 
+      objs\FCN_acscd.obj objs\FCN_aerf.obj objs\FCN_aerfc.obj 
+      objs\FCN_agauss.obj objs\FCN_airy.obj objs\FCN_asec.obj objs\FCN_asecd.obj 
+      objs\FCN_asin.obj objs\FCN_asind.obj objs\FCN_atan2.obj 
+      objs\FCN_atan2d.obj objs\FCN_atan.obj objs\FCN_atand.obj objs\FCN_bei.obj 
+      objs\FCN_ber.obj objs\FCN_besi0.obj objs\FCN_besi1.obj objs\FCN_besj0.obj 
+      objs\FCN_besj1.obj objs\FCN_besk0.obj objs\FCN_besk1.obj 
+      objs\FCN_besy0.obj objs\FCN_besy1.obj objs\FCN_beta.obj objs\FCN_betain.obj 
+      objs\FCN_binom.obj objs\FCN_biry.obj objs\FCN_bivarnor.obj 
+      objs\FCN_cheby.obj objs\FCN_chisq.obj objs\FCN_chisqi.obj 
+      objs\FCN_chlogu.obj objs\FCN_clebsg.obj objs\FCN_cos.obj objs\FCN_cosd.obj 
+      objs\FCN_cosint.obj objs\FCN_cot.obj objs\FCN_cotd.obj objs\FCN_csc.obj 
+      objs\FCN_cscd.obj objs\FCN_date.obj objs\FCN_dawson.obj 
+      objs\FCN_digamma.obj objs\FCN_dilog.obj objs\FCN_ei.obj 
+      objs\FCN_einellic.obj objs\FCN_ellice.obj objs\FCN_ellick.obj 
+      objs\FCN_eltime.obj objs\FCN_erf.obj objs\FCN_erfc.obj objs\FCN_exp.obj 
+      objs\FCN_expand.obj objs\FCN_expint.obj objs\FCN_expn.obj 
+      objs\FCN_factorial.obj objs\FCN_ferdirac.obj objs\FCN_finellic.obj 
+      objs\FCN_fisher.obj objs\FCN_frec1.obj objs\FCN_frec2.obj 
+      objs\FCN_fres1.obj objs\FCN_fres2.obj objs\FCN_gamma.obj 
+      objs\FCN_gammacin.obj objs\FCN_gammain.obj objs\FCN_gammatin.obj 
+      objs\FCN_gammln.obj objs\FCN_gammq.obj objs\FCN_gauss.obj 
+      objs\FCN_gaussin.obj objs\FCN_hermite.obj objs\FCN_hypgeo.obj 
+      objs\FCN_int.obj objs\FCN_jacobi.obj objs\FCN_jahnuf.obj objs\FCN_kei.obj 
+      objs\FCN_ker.obj objs\FCN_laguerre.obj objs\FCN_lcase.obj 
+      objs\FCN_legendre.obj objs\FCN_ln.obj objs\FCN_lnagamma.obj 
+      objs\FCN_lnbeta.obj objs\FCN_log10.obj objs\FCN_log.obj objs\FCN_logam.obj 
+      objs\FCN_mod.obj objs\FCN_nint.obj objs\FCN_normal.obj objs\FCN_null.obj 
+      objs\FCN_pdiff.obj objs\FCN_plmn.obj objs\FCN_plmu.obj objs\FCN_poica.obj 
+      objs\FCN_poisson.obj objs\FCN_prob.obj objs\FCN_psi.obj objs\FCN_racah.obj 
+      objs\FCN_radmac.obj objs\FCN_sec.obj objs\FCN_secd.obj objs\FCN_sign.obj 
+      objs\FCN_simpleran.obj objs\FCN_sin.obj objs\FCN_sind.obj 
+      objs\FCN_sinint.obj objs\FCN_sqrt.obj objs\FCN_string.obj 
+      objs\FCN_struve0.obj objs\FCN_struve1.obj objs\FCN_student.obj 
+      objs\FCN_studenti.obj objs\FCN_tan.obj objs\FCN_tand.obj 
+      objs\FCN_tcase.obj objs\FCN_time.obj objs\FCN_tina.obj objs\FCN_ucase.obj 
+      objs\FCN_vartype.obj objs\FCN_voigt.obj objs\FCN_walsh.obj 
+      objs\FCN_wign3j.obj objs\FCN_wign6j.obj objs\FCN_wign9j.obj 
+      objs\FunctionDefinition.obj objs\FunctionTable.obj objs\GRA_window.obj 
+      objs\GRA_arrow1.obj objs\GRA_arrow2.obj objs\GRA_arrow3.obj 
+      objs\GRA_asterisk.obj objs\GRA_axis.obj objs\GRA_bitmap.obj 
+      objs\GRA_boolCharacteristic.obj objs\GRA_borlandW32.obj 
+      objs\GRA_cartesianAxes.obj objs\GRA_cartesianCurve.obj objs\GRA_color.obj 
+      objs\GRA_colorCharacteristic.obj objs\GRA_colorControl.obj 
+      objs\GRA_colorMap.obj objs\GRA_cross.obj objs\GRA_crossPlus.obj 
+      objs\GRA_diamond.obj objs\GRA_diamondPlus.obj 
+      objs\GRA_distanceCharacteristic.obj objs\GRA_doubleCharacteristic.obj 
+      objs\GRA_drawableObject.obj objs\GRA_drawableText.obj objs\GRA_ellipse.obj 
+      objs\GRA_fontCharacteristic.obj objs\GRA_intCharacteristic.obj 
+      objs\GRA_jpeg.obj objs\GRA_legend.obj objs\GRA_multiLineFigure.obj 
+      objs\GRA_outputType.obj objs\GRA_plotSymbol.obj objs\GRA_plus.obj 
+      objs\GRA_point.obj objs\GRA_polygon.obj objs\GRA_polyline.obj 
+      objs\GRA_postscript.obj objs\GRA_rectangle.obj 
+      objs\GRA_setOfCharacteristics.obj objs\GRA_simpleText.obj 
+      objs\GRA_sizeCharacteristic.obj objs\GRA_star5pt.obj 
+      objs\GRA_stringCharacteristic.obj objs\GRA_thiessenTriangulation.obj 
+      objs\GRA_triangle.obj objs\OperatorTable.obj objs\OPR_and.obj 
+      objs\OPR_divide.obj objs\OPR_equals.obj objs\OPR_exponentiation2.obj 
+      objs\OPR_exponentiation.obj objs\OPR_ge.obj objs\OPR_gt.obj 
+      objs\OPR_le.obj objs\OPR_lt.obj objs\OPR_minus.obj objs\OPR_ne.obj 
+      objs\OPR_not.obj objs\OPR_or.obj objs\OPR_plus.obj objs\Script.obj 
+      objs\ParseLine.obj objs\ParseToken.obj objs\UsefulFunctions.obj 
+      objs\ExString.obj objs\Variable.obj objs\NumericVariable.obj 
+      objs\NVariableTable.obj objs\TextVariable.obj objs\TVariableTable.obj 
+      objs\ExGlobals.obj objs\GRA_borlandMetafile.obj objs\OPR_multiply.obj 
+      objs\Workspace.obj objs\ExprCodes.obj objs\Expression.obj 
+      objs\ListVector.obj objs\ScalarFunction.obj objs\FCN_area.obj 
+      objs\FCN_char.obj objs\FCN_clen.obj objs\FCN_convolute.obj 
+      objs\FCN_deconvolute.obj objs\FCN_deriv.obj objs\FCN_det.obj 
+      objs\FCN_eigen.obj objs\FCN_eqs.obj objs\FCN_evaluate.obj 
+      objs\FCN_exist.obj objs\FCN_fft.obj objs\FCN_fold.obj objs\FCN_gaussj.obj 
+      objs\FCN_ichar.obj objs\FCN_iclose.obj objs\FCN_identity.obj 
+      objs\FCN_iequal.obj objs\FCN_ifft.obj objs\FCN_index.obj 
+      objs\FCN_integral.obj objs\FCN_interpolate.obj objs\FCN_inverse.obj 
+      objs\FCN_join.obj objs\FCN_len.obj objs\FCN_max.obj objs\FCN_min.obj 
+      objs\FCN_nes.obj objs\FCN_pfactors.obj objs\FCN_prod.obj 
+      objs\FCN_rchar.obj objs\FCN_roll.obj objs\FCN_rprod.obj objs\FCN_rsum.obj 
+      objs\FCN_savgol.obj objs\FCN_smooth.obj objs\FCN_splinterp.obj 
+      objs\FCN_splsmooth.obj objs\FCN_step.obj objs\FCN_sub.obj objs\FCN_sum.obj 
+      objs\FCN_sup.obj objs\FCN_varname.obj objs\FCN_unfold.obj 
+      objs\FCN_volume.obj objs\FCN_where.obj objs\FCN_wrap.obj 
+      objs\ScalarOperator.obj objs\OPR_concatenation.obj 
+      objs\OPR_exclusiveOr.obj objs\OPR_innerProduct.obj 
+      objs\OPR_intersection.obj objs\OPR_outerProduct.obj objs\OPR_reflect.obj 
+      objs\OPR_transpose.obj objs\OPR_union.obj objs\TextData.obj 
+      objs\NumericData.obj objs\GRA_gd.obj objs\CMD_density.obj 
+      objs\GRA_boxPlot.obj objs\GRA_densityPlot.obj 
+      objs\GRA_angleCharacteristic.obj objs\GRA_diffusionPlot.obj 
+      objs\GRA_gradientPlot.obj objs\GRA_ditheringPlot.obj objs\GraphNovice.obj 
+      objs\FitNovice.obj objs\ExXML.obj objs\GRA_errorBar.obj 
+      objs\GRA_fontControl.obj objs\About.obj objs\CMD_bestfit.obj 
+      objs\FCN_bivinterp.obj objs\FCN_bivsmooth.obj objs\StackCommandsForm.obj 
+      objs\CMD_stack.obj objs\CMD_form.obj objs\HintForm.obj 
+      objs\CMD_restore.obj objs\FCN_canopen.obj objs\CMD_minuit.obj 
+      objs\Extrema_fcn.obj objs\FCN_mean.obj objs\FCN_median.obj 
+      objs\FCN_rms.obj objs\FCN_stdev.obj objs\FCN_adev.obj objs\FCN_gmean.obj 
+      objs\FCN_imin.obj objs\FCN_imax.obj objs\FCN_var.obj objs\FCN_skew.obj 
+      objs\FCN_kurt.obj objs\FCN_tanh.obj objs\FCN_acosh.obj objs\FCN_acoth.obj 
+      objs\FCN_acsch.obj objs\FCN_asech.obj objs\FCN_atanh.obj objs\FCN_cosh.obj 
+      objs\FCN_coth.obj objs\FCN_csch.obj objs\FCN_sech.obj objs\FCN_sinh.obj 
+      objs\FCN_asinh.obj objs\GRA_page.obj objs\CMD_page.obj 
+      objs\SetAspectRatio.obj objs\CMD_dealias.obj objs\CMD_alias.obj 
+      objs\CMD_ellipse.obj objs\CMD_polygon.obj objs\BasicColors.obj 
+      objs\AxisPopup.obj objs\CurvePopup.obj objs\TextPopup.obj 
+      objs\LegendPopup.obj objs\FCN_heaviside.obj objs\GRA_polarCurve.obj 
+      objs\GRA_polarAxes.obj objs\ThreeDPlot.obj objs\GRA_threeDPlot.obj 
+      objs\GRA_contourLine.obj"/>
+    <RESFILES value="extrema.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) Forms\extremaMain.dfm Forms\ArrowChooser.dfm 
+      Forms\DigitizeInfo.dfm Forms\DigitizePNG.dfm Forms\Display.dfm 
+      Forms\ExecuteForm.dfm Forms\FigureDraw.dfm Forms\FitForm.dfm 
+      Forms\GenerateCommandForm.dfm Forms\GetCoordinates.dfm Forms\GraphForm.dfm 
+      Forms\GraphicsSubwindow.dfm Forms\HistogramType.dfm Forms\Inquire.dfm 
+      Forms\InquireYN.dfm Forms\MainGraphicsWindow.dfm Forms\PeakFinding.dfm 
+      Forms\PNGDisplay.dfm Forms\ProgressDisplay.dfm Forms\ReadMatrixForm.dfm 
+      Forms\ReadScalarsForm.dfm Forms\ReadTextForm.dfm Forms\ReadVectorsForm.dfm 
+      Forms\SelectColor.dfm Forms\SelectFont.dfm Forms\SelectLineWidth.dfm 
+      Forms\SplashScreen.dfm Forms\TextInteractive.dfm Forms\VarInfo.dfm 
+      Forms\VarShow.dfm Forms\WriteMatrixForm.dfm Forms\WriteScalarsForm.dfm 
+      Forms\WriteTextForm.dfm Forms\WriteVectorsForm.dfm Forms\GraphNovice.dfm 
+      Forms\FitNovice.dfm Forms\About.dfm Forms\StackCommandsForm.dfm 
+      Forms\HintForm.dfm Forms\SetAspectRatio.dfm Forms\BasicColors.dfm 
+      Forms\AxisPopup.dfm Forms\CurvePopup.dfm Forms\TextPopup.dfm 
+      Forms\LegendPopup.dfm Forms\ThreeDPlot.dfm"/>
+    <LIBFILES value="&quot;C:\Program Files\HTML Help Workshop\lib\htmlhelp.lib&quot; 
+      C:\Programming\PNG\lpng128\libpngstat.lib 
+      C:\Programming\GD\gd-2_0_3\gd2033.lib 
+      C:\Programming\ZLIB\ZLIB_1.2.2\zlib.lib 
+      C:\Programming\FreeType\freetype-2.1.9\FreeType.lib 
+      C:\Programming\libxml2-2.6.20\win32\bin.bcb\libxml2.lib 
+      C:\Programming\MUD\mud.lib C:\Programming\Minuit-1_7_9\lib\Minuit.lib"/>
+    <LIBRARIES value="Vclx50.lib Vcl50.lib"/>
+    <SPARELIBS value="Vcl50.lib Vclx50.lib"/>
+    <PACKAGES value="Vcl50.bpi Vclx50.bpi VCLDB50.bpi vclie50.bpi Inetdb50.bpi Inet50.bpi"/>
+    <PATHCPP value=".;Forms;Commands;Functions;Graphics;Operators;Parsing;Utilities;Variables;Expression"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="HAVE_MINUIT"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="extrema.cpp"/>
+    <INCLUDEPATH value="&quot;C:\Program Files\Common Files\Borland Shared\Images\Buttons\&quot;;&quot;C:\Program Files\Borland\CBuilder5\Projects\&quot;;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\Minuit-1_7_9\;C:\Programming\XMLPARSER\;&quot;C:\Program Files\HTML Help Workshop\include\&quot;;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\;&quot;C:\Programming\GD\gd-2_0_3\&quot;"/>
+    <LIBPATH value="&quot;C:\Program Files\Common Files\Borland Shared\Images\Buttons\&quot;;&quot;C:\Program Files\Borland\CBuilder5\Projects\&quot;;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;&quot;C:\Program Files\HTML Help Workshop\lib\&quot;;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;&quot;C:\Programming\Minuit-1_7_9\lib\&quot;"/>
+    <WARNINGS value="-w-par -w-8027 -w-8026 -wdef -w-aus"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-src_suffixcpp -I$(BCB)\include -I$(BCB)\include\vcl"/>
+    <CFLAG1 value="-O2 -H=C:\Temp\vcl50.csm -Hc -Vx -Ve -X- -a8 -6 -b- -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-N2objs -N0objs -$Y- -$L- -$D- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-Iobjs -D&quot;&quot; -aa -Tpe -x"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=4
+MinorVer=4
+Release=5
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=4.4.5.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+$(BCB)\Bin\dcl31w50.bpl=Delphi 1.0 Compatibility Components
+$(BCB)\Bin\bcbsmp50.bpl=Borland C++ Sample Components
+$(BCB)\Bin\dclqrt50.bpl=QuickReport Components
+C:\Windows\system32\ibsmp50.bpl=Borland C++ InterBase Alerter Component
+$(BCB)\Bin\dclbde50.bpl=Borland BDE DB Components
+$(BCB)\Bin\dcldb50.bpl=Borland Database Components
+$(BCB)\Bin\dcltee50.bpl=TeeChart 5.0 Components
+$(BCB)\Bin\applet50.bpl=Borland Control Panel Applet Package
+$(BCB)\Bin\dcltqr50.bpl=TeeChart 5.0 for QuickReport Components Design Package
+$(BCB)\Bin\dclsmpedit50.bpl=Borland Editor Script Enhancements
+$(BCB)\Bin\dclib50.bpl=InterBase Data Access Components
+$(BCB)\Bin\bcbie50.bpl=Borland C++Builder Internet Explorer 5 Components Package
+$(BCB)\Bin\DBWEBXPRT.BPL=Borland Web Wizard Package
+$(BCB)\Bin\DCLNMF50.bpl=NetMasters Fastnet Tools
+$(BCB)\Bin\dclocx50.bpl=Borland Sample Imported ActiveX Controls
+$(BCB)\Bin\dclite50.bpl=Borland Integrated Translation Environment
+$(BCB)\Bin\mfcwizard.bpl=MFC Wizard
+$(BCB)\Bin\bcb2kaxserver50.bpl=Borland C++Builder COM Server Components Sample Package
+
+[HistoryLists\hlIncludePath]
+Count=26
+Item0=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\Minuit-1_7_9\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\;C:\Programming\GD\gd-2_0_3\
+Item1=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\Minuit-1_7_9\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\;C:\Programming\GD\gd-2_0_3
+Item2=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\Minuit-1_7_9\;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\
+Item3=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\Minuit-1_7_9\Minuit\;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\
+Item4=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\;C:\Programming\Minuit-1_7_9\Minuit\
+Item5=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\;C:\Programming\Minuit-1_7_9\Minuit
+Item6=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\
+Item7=C:\Program Files\Common Files\Borland Shared\Images\Buttons;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\
+Item8=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\
+Item9=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\libxml\
+Item10=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\;C:\Programming\libxml2-2.6.20\include\libxml
+Item11=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\
+Item12=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\;C:\Programming\PNG\lpng128;C:\Programming\ZLIB\ZLIB_1.2.2
+Item13=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\
+Item14=C:\Program Files\Borland\CBuilder5\Projects;C:\extrema-Open;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\
+Item15=C:\Program Files\Borland\CBuilder5\Projects;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\
+Item16=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include\
+Item17=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\include
+Item18=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1\;C:\Programming\XMLPARSER\
+Item19=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1\;C:\Programming\XMLPARSER
+Item20=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1\
+Item21=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl;C:\Programming\GD\gd-2.0.1
+Item22=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl
+Item23=C:\extrema-Open\Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\include;$(BCB)\include\vcl
+Item24=Forms;$(BCB)\include;$(BCB)\include\vcl
+Item25=Forms;C:\;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=27
+Item0=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\
+Item1=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\GD\gd-2_0_3\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\
+Item2=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\GD\gd-2_0_3\;C:\Programming\Minuit-1_7_9\lib\
+Item3=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\;C:\Programming\GD\gd-2_0_3\
+Item4=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\;C:\Programming\GD\gd-2_0_3
+Item5=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\GD\gd-2.0.33\;C:\Programming\Minuit-1_7_9\lib\
+Item6=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\GD\gd-2.0.33\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\
+Item7=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Programming\GD\gd-2.0.33\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\
+Item8=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\GD\gd-2.0.33\;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\
+Item9=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\;C:\Programming\GD\gd-2.0.33\
+Item10=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib\;C:\Programming\GD\gd-2.0.33
+Item11=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\;C:\Programming\Minuit-1_7_9\lib
+Item12=C:\Program Files\Common Files\Borland Shared\Images\Buttons\;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\
+Item13=C:\Program Files\Common Files\Borland Shared\Images\Buttons;C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\
+Item14=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb\
+Item15=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\libxml2-2.6.20\win32\bin.bcb
+Item16=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\
+Item17=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\FreeType\FreeType-2.1.8\lib\;C:\Programming\GD\gd-2.0.33\;C:\Programming\PNG\lpng128\;C:\Programming\ZLIB\ZLIB_1.2.2\
+Item18=C:\Program Files\Borland\CBuilder5\Projects\;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\;C:\Programming\FreeType\FreeType-2.1.8\lib;C:\Programming\GD\gd-2.0.33;C:\Programming\PNG\lpng128;C:\Programming\ZLIB\ZLIB_1.2.2
+Item19=C:\Program Files\Borland\CBuilder5\Projects;Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\
+Item20=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib\
+Item21=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\;C:\Program Files\HTML Help Workshop\lib
+Item22=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER\
+Item23=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib;C:\Programming\XMLPARSER
+Item24=Variables;Operators;Utilities;Parsing;Functions;Graphics;Expression;Commands;Forms;$(BCB)\lib\obj;$(BCB)\lib
+Item25=Forms;$(BCB)\lib\obj;$(BCB)\lib
+Item26=Forms;C:\;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=3
+Item0=HAVE_MINUIT
+Item1=HAVE_MINUIT;_DEBUG
+Item2=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=2
+Item0=objs
+Item1=C:\extrema-open\objs
+
+[HistoryLists\hlFinalOutputDir]
+Count=1
+Item0=C:\extrema-open
+
+[HistoryLists\hIBPIOutputDir]
+Count=2
+Item0=C:\extrema-Open\
+Item1=C:\extrema-Open
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+  </IDEOPTIONS>
+</PROJECT>

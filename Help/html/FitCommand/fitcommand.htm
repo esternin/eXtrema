@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>FIT command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="fit">
+</OBJECT>
+
+<P><A NAME="fitcommand"></A>
+<font size=+3 color="green"><B>FIT command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=608>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+FIT y = { expression }<br>
+FIT\UPDATE yout</CODE></TD>
+</TR><TR>
+<TD width=15% valign="top"><B>Qualifiers:</B></TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\NORMAL,</nobr> <nobr>\POISSON,</nobr> <nobr>\UPDATE,</nobr> <nobr>\ITMAX,</nobr>
+ <nobr>\WEIGHTS,</nobr> <nobr>\TOLERANCE,</nobr> <nobr>\ZEROS,</nobr> <nobr>\CHISQ,</nobr>
+ <nobr>\VARNAMES,</nobr> <nobr>\CORRMAT,</nobr> <nobr>\COVMAT,</nobr> <nobr>\CL,</nobr>
+ <nobr>\E1,</nobr> <nobr>\E2,</nobr> <nobr>\FREE,</nobr> <nobr>\RESET,</nobr>
+ <nobr>\MESSAGES</nobr></CODE></TD>
+</TR><TR>
+<TD width=15% valign="top"><B>Defaults:</B></TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\NORMAL,</nobr> <nobr>\-ITMAX,</nobr> <nobr>\-WEIGHTS,</nobr> <nobr>\-TOLERANCE,</nobr>
+ <nobr>\ZEROS,</nobr> <nobr>\-CHISQ,</nobr> <nobr>\-CL,</nobr> <nobr>\-VARNAMES,</nobr>
+ <nobr>\-CORRMAT,</nobr> <nobr>\-COVMAT,</nobr> <nobr>\-E1,</nobr> <nobr>\-E2,</nobr>
+ <nobr>\-RESET,</nobr> <nobr>\-FREE,</nobr> <nobr>\MESSAGES</nobr></CODE></TD>
+</TR><TR>
+<TD width=15% valign="top"><B>Examples:</B></TD>
+<TD width=85% valign="top"><CODE>
+FIT Y=A*X+B<br>
+FIT\CHISQ\CL\ITMAX\WEIGHTS\TOLERANCE W 3 0.001 Y=A*EXP(-B*X)+C<br>
+FIT\UPDATE YF</CODE></TD>
+</TR>
+</TABLE>
+<P>
+ By default, or if the <font color="blue"><code>\NORMAL</code></font> qualifier is used,
+ it is assumed that each data point has an error that is distributed as a normal distribution,</p>
+<P>
+<center><IMG WIDTH=399 HEIGHT=72 ALIGN=BOTTOM SRC="img3.gif"></center></P>
+<p>
+ where <IMG WIDTH=11 HEIGHT=17 ALIGN=MIDDLE SRC="img4.gif">
+ is the mean and <IMG WIDTH=9 HEIGHT=8 ALIGN=BOTTOM SRC="img5.gif">
+ is the standard deviation of the distribution. The weight is defined as:
+ <IMG WIDTH=56 HEIGHT=33 ALIGN=MIDDLE SRC="img6.gif"></P>
+<P>
+ If the <code>\POISSON</code> qualifier is used, the
+ data errors are assumed to be distributed as a Poisson distribution,</P>
+<P>
+<CENTER><IMG WIDTH=396 HEIGHT=40 ALIGN=BOTTOM SRC="img7.gif"></CENTER></P>
+<P>
+where <IMG WIDTH=9 HEIGHT=12 ALIGN=BOTTOM SRC="img8.gif">
+is the mean and the variance of the distribution.</P>
+<P>
+<font size=+2 color="green">Expression and parameters</font></P>
+<P>
+ The <font color="blue"><code>expression</code></font> must result in a
+ vector with the same length as
+ the data vector, <font color="blue"><code>y</code></font>. A maximum of
+ twenty-five (<CODE>25</CODE>) fitting parameters are allowed in the
+ <font color="blue"><code>expression</code></font>. The fitting parameter
+ values are altered during the fit. Fit parameters are created with the
+ <font color="blue"><code>SCALAR\FIT</code></font></a>
+ command, and can be converted to fixed value scalars
+ with the <font color="blue"><code><a href="../ScalarCommand/scalarcommand.htm">SCALAR</a></code></font>
+ command.  If you use the <font color="blue"><code>\RESET</code></font>
+ qualifier, the fitting parameters will be reset to their original values
+ after an unsuccessful fit.</P>
+<P>
+ If the <font color="blue"><code>\VARNAMES</code></font> qualifier is used
+ with the <font color="blue"><code>FIT</code></font>
+ command, a string array variable named
+ <font color="orange"><code>FIT$VAR</code></font> will
+ be made which will contain the names of the fitting parameter variables.  The
+ array length of <font color="orange"><code>FIT$VAR</code></font> will be
+ equal to the number of fit parameters.</P>
+<P>
+<font size=+2 color="green">Informational messages</font></P>
+<P>
+ By default, information on the progress of the fit, as well as the results,
+ are displayed on the monitor screen. If the 
+ <font color="blue"><CODE>\-MESSAGES</CODE></font> qualifier is used, these
+ informational messages will be suppressed.</P>
+<P>
+<a href="fitform.htm"><font size=+1 color="olive">Graphical user interface</font></a><br>
+<a href="method.htm"><font size=+1 color="olive">Method</font></a><br>
+<a href="tolerance.htm"><font size=+1 color="olive">Tolerance</font></a><br>
+<a href="corrcov.htm"><font size=+1 color="olive">Correlation and covariance</font></a><br>
+<a href="confidencelevel.htm"><font size=+1 color="olive">Confidence level</font></a><br>
+<a href="numiters.htm"><font size=+1 color="olive">Number of iterations</font></a><br>
+<a href="update.htm"><font size=+1 color="olive">Update after a fit</font></a><br>
+<a href="normaldist.htm"><font size=+1 color="olive">Normal distribution</font></a><br>
+<a href="poissondist.htm"><font size=+1 color="olive">Poisson distribution</font></a>
+</P>
+</BODY>
+</HTML>

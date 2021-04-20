@@ -1,0 +1,13 @@
+clear
+defaults
+generate x -5,,5 50
+y=x^2+3*x-2
+SET AREAFILLCOLOR red
+L = LEN(X)
+X[2:L+1] = X[1:L]
+X[L+2] = X[L+1]
+Y[2:L+1] = Y[1:L]
+Y[1] = 0
+Y[L+2] = 0
+GRAPH X Y
+ZEROLINES\HORIZONTAL ! draw horizontal line thru (0,0)

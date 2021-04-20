@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>GRID command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="GRID command">
+</OBJECT>
+
+<P><A NAME="gridcommand"></A>
+<font size=+3 color="green"><B>GRID command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+GRID x y z m<br>
+GRID\PATTERN x y z m<br>
+GRID\INDICES x y z m</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\INTERPOLATE,</NOBR> <NOBR>\PATTERN,</NOBR> <NOBR>\MESSAGES,</NOBR>
+<NOBR>\INDICES,</NOBR> <NOBR>\SIZE,</NOBR> <NOBR>\XYOUT,</NOBR>
+<NOBR>\BOUNDS,</NOBR> <NOBR>\CHECKDUP</NOBR></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\INTERPOLATE,</nobr> <nobr>\MESSAGES,</nobr> <nobr>\-SIZE,</nobr>
+<nobr>\-XYOUT,</nobr> <nobr>\-BOUNDS,</nobr> <nobr>\-CHECKDUP</nobr></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ This command creates a regular matrix from scattered data points. The vectors
+ <CODE><font color="blue">x</font></CODE>, <CODE><font color="blue">y</font></CODE>
+ and <CODE><font color="blue">z</font></CODE> are assumed to represent scattered
+ points, where <CODE><font color="blue">z</font></CODE> is the data
+ value at location
+ <CODE>(<font color="blue">x</font>,<font color="blue">y</font>)</CODE>. By default,
+ a square matrix, <CODE><font color="blue">m</font></CODE>, is interpolated,
+ with row and column dimensions equal to
+ <NOBR><CODE>5*sqrt(min(len(<font color="blue">x</font>),len(<font color="blue">y</font>),len(<font color="blue">z</font>)))</CODE>.</NOBR></P>
+<P>
+<font size=+1 color="green">MESSAGES</font></P>
+<P>
+ If the <CODE><font color="blue">\-MESSAGES</font></CODE> qualifier is used, no informational
+ messages will be displayed.</P>
+<P>
+<font size=+1 color="green">CHECKDUP</font></P>
+<P>
+ By default, duplicate
+ <CODE>(<font color="blue">x</font>,<font color="blue">y</font>)</CODE> locations are
+ not checked for before the matrix is made.  If you want duplicate points to be
+ ignored, use the <CODE><font color="blue">\CHECKDUP</font></CODE> qualifier. See also
+ the <CODE><font color="blue"><A HREF="..\UniqueCommand\uniquecommand.htm">UNIQUE</a>
+ </font></CODE> command.</P>
+<p>
+<a href="interpolate.htm"><font size=+1 color="olive">INTERPOLATE</font></a><br>
+<a href="pattern.htm"><font size=+1 color="olive">PATTERN</font></a><br>
+<a href="indices.htm"><font size=+1 color="olive">INDICES</font></a></p>
+</BODY>
+</HTML>

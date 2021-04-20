@@ -1,0 +1,112 @@
+physica                                   extrema
+-------                                   -------
+GRAPH\-AXES                               GRAPH\OVERLAY
+
+HARDCOPY POSTSCRIPT                       HARDCOPY\POSTSCRIPT
+HARDCOPY PNG                              HARDCOPY\PNG
+-                                         HARDCOPY\JPEG
+-                                         HARDCOPY\WMF  (Windows version only)
+-                                         HARDCOPY\EMF  (Windows version only)
+
+LEGEND ON | OFF                           SET LEGENDON 0 | 1
+LEGEND FRAME ON | OFF                     SET LEGENDFRAMEON 0 | 1
+LEGEND\WORLD FRAME xlo ylo xhi yhi        SET LEGENDFRAME xlo ylo xhi yhi
+LEGEND\PERCENT FRAME xlo ylo xhi yhi      SET %LEGENDFRAME xlo ylo xhi yhi
+LEGEND TRANSPARENCY ON | OFF              -
+LEGEND AUTOHEIGHT ON | OFF                -
+LEGEND NSYMBOLS n                         SET LEGENDSYMBOLS n
+LEGEND TITLE `title'                      SET LEGENDTITLE 'title', SET LEGENDTITLEON 0 | 1
+LEGEND STATUS                             -
+-                                         SET LEGENDTITLEHEIGHT n
+-                                         SET LEGENDTITLECOLOR c
+-                                         SET LEGENDTITLEFONT f
+
+LABEL\XAXIS `x-axis label'                SET XLABEL 'x-axis label', SET XLABELON 1
+LABEL\XAXIS                               SET XLABELON 0 | 1
+LABEL\YAXIS `y-axis label'                SET YLABEL 'y-axis label', SET YLABELON 1
+LABEL\YAXIS                               SET YLABELON 0 | 1
+-                                         SET XLABELCOLOR c
+-                                         SET YLABELCOLOR c
+-                                         SET XLABELHEIGHT n, SET %XLABELHEIGHT n
+-                                         SET YLABELHEIGHT n, SET %YLABELHEIGHT n
+-                                         SET XLABELFONT f
+-                                         SET YLABELFONT f
+
+COLOR n                                   SET COLOR n
+
+ORIENTATION PORTRAIT | LANDSCAPE          SET ORIENTATION PORTRAIT | LANDSCAPE
+
+RESIZE                                    SET WINDOWSIZE n
+
+ENABLE ECHO                               SET ECHOON 1
+DISABLE ECHO                              SET ECHOON 0
+
+physica commands which are yet to be done
+-----------------------------------------
+
+REFRESH                                   -
+
+TEQS txt string v                         -
+
+TLEN txt n                                -
+                                          
+TRANSFORM x p f(x,p) xout                 -
+
+UNIQUE x y xout yout                      -
+
+USE filename                              -
+
+VOLUME x y z { volume }                   -
+VOLUME\MATRIX { x y } m { volume }        -
+
+WAIT n                                    -
+
+ASSIGN name environmentVariable           -
+
+ALIAS newCommand commandString            -
+DEALIAS newCommand                        -
+
+BELL { n }                                -
+
+3DPLOT x y z ipen { color }               -
+
+DIGITIZE { xout yout { codes }}           -
+
+DISABLE keyword                           -
+ENABLE keyword                            -
+
+ELLIPSE a b xc yc angle                   -
+
+FMIN x y xlo yhi expression               -
+
+FZERO x expression                        -
+
+MINUIT y=expression                       -
+
+NEWS                                      -
+
+PEAK xout yout                            -
+
+PICK xout yout                            -
+
+PIEGRAPH w e f c o r { cx cy { angle }}   -
+
+PNG                                       -
+
+POLYGON xp yp xd yd key                   -
+
+
+physica commands which are gone
+-------------------------------
+HARDCOPY on GKS, HOUSTON, HPLASERJET, HPPLOTTER, HPTHINKJET,
+            IMAGEN, INKJET, LA100, LN03+, PRINTRONIX, and ROLAND are gone
+
+RESTORE with \CHAOS, \FIOWA, \HBOOK, \IMSR, \MSR, \XFIOWA, \YBOS are gone
+
+SCALAR\DUMMY is gone
+
+SHOW\DUMMY is gone
+
+BANNER, BUFFER, CALL, COPY, DCL, DEVICE, EDGR, 
+ERASEWINDOW, GLOBALS, INPUT, JOURNAL, KEYWORD, LINE, LOAD,
+MAP, MIRROR, MONITOR, PLOTTEXT, RENAME, SLICES, TILE

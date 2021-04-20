@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Smoothing</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" fgcolor="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+  <PARAM NAME="Keyword" VALUE="SMOOTH function">
+  <PARAM NAME="Keyword" VALUE="SPLSMOOTH function">
+  <PARAM NAME="Keyword" VALUE="spline tension">
+  <PARAM NAME="Keyword" VALUE="TENSION">
+  <PARAM NAME="Keyword" VALUE="weights">
+</OBJECT>
+<P>
+<font size=+3 color="green"><B>Smoothing</B></font></P>
+<P>
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85%><CODE>
+vout = SMOOTH(x,y,xout)<br>
+vout = SMOOTH(x,y,xout,w)<br>
+mout = SPLSMOOTH(x,y,n)<br>
+mout = SPLSMOOTH(x,y,n,w)<br>
+mout = BIVSMOOTH(x,y,z,mx,my)</CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85%><CODE>
+w[1:#] = 1</CODE>
+</TD></TR>
+</table></p>
+<p>
+Smoothing means that the output may not pass through the original data.  If it is important that the curve
+pass through the original data, use
+the <CODE><font color="blue"><a href="..\Interpolate\interpolate.htm">INTERPOLATE</a></font></CODE> function,
+unless your independent variable is not monotonically increasing. In that case, use
+the <CODE><font color="blue"><a href="..\Interpolate\splinterp.htm">SPLINTERP</a></font></CODE> function.
+For 2D interpolation, use the
+<CODE><font color="blue"><a href="..\Interpolate\bivinterp.htm">BIVINTERP</a></font></CODE> function.</P>
+<p>
+The <CODE><font color="blue">SMOOTH</font></CODE> function calculates a smooth curve using the method of cubic
+splines under tension. The data is contained in vectors <CODE><font color="blue">x</font></CODE>, the
+independent variable, and <CODE><font color="blue">y</font></CODE>, the dependent variable. A vector is
+returned with the same length as <CODE><font color="blue">xout</font></CODE>, the output locations
+vector. Vectors <CODE><font color="blue">x</font></CODE> and <CODE><font color="blue">xout</font></CODE> must
+be strictly monotonically increasing, with <nobr><CODE><font color="blue">x</font>[1]
+&le; <font color="blue">xout</font>[j] &le; <font color="blue">x</font>[#]</CODE>
+for <CODE>j=1,2,...,LEN(<font color="blue">xout</font>)</CODE></nobr></p>
+<p>
+<font size=+1 color="green">SPLSMOOTH function</font></p>
+<p>
+The <CODE><font color="blue">SPLSMOOTH</font></CODE> function calculates a smooth curve through the data
+contained in <CODE><font color="blue">x</font></CODE>, the independent variable,
+and <CODE><font color="blue">y</font></CODE>, the dependent variable. <CODE><font color="blue">x</font></CODE>
+need not be increasing. The number of output locations is given in
+scalar <CODE><font color="blue">n</font></CODE>. The output of this function is a matrix
+with <CODE><font color="blue">n</font></CODE> rows and <code>2</code> columns. The first column will contain
+the output locations and the second column the smoothed values.</p>
+<p>
+The points are first parameterized in terms of normalized arc length. The normalized length
+of <CODE><font color="blue">x</font></CODE> is the real length divided by the range
+of <CODE><font color="blue">x</font></CODE>, that is, the maximum value minus the minimum value. The arc
+length at a point is approximated by the sum of the lengths of straight line segments connecting all points up
+to that point. A spline under tension is calculated for <CODE><font color="blue">x</font></CODE> versus arc
+length and <CODE><font color="blue">y</font></CODE> versus arc
+length. The <CODE><font color="blue">x</font></CODE> and <CODE><font color="blue">y</font></CODE> values are
+interpolated separately and then combined to form the output interpolant.</p>
+<P>
+<font size=+1 color="green">Weights</font></p>
+<p>
+If no weights, <CODE><font color="blue">w</font></CODE>, are entered, the weight at each data point defaults
+to <CODE>1</CODE>. The weights control the amount of smoothing at each data point. As the weight at a point
+decreases, the spline fits that data point more closely.</P>
+<p>
+<font size=+1 color="green">Spline tension</font></P>
+<p>
+Depending on the tension, the smoothed curve may not pass through the original data points. The tension
+corresponds to the curviness, and must be &gt; <CODE>0</CODE>. As the tension decreases, the amount of
+smoothing decreases and the data points are fit more exactly.  If it is close to zero, each smoothing function
+is almost a cubic spline and the resulting curve is quite loose.  As the tension increases, the fit
+straightens and has less curvature at peaks, valleys and endpoints.  If the tension is large, the smoothing is
+almost linear and the result approaches the least-squares line through the data. The default value for the
+tension is zero, and the tension may be changed with
+the <CODE><font color="blue"><a href="..\..\..\SetCommand\GeneralGraph\tension\tension.htm">SET
+TENSION</a></font></CODE> command.</P>
+<p>
+<font size=+1 color="green">Method</font></P>
+<p>
+Given a set of abscissae: <img src="image1.png">, a cubic spline function over the
+region <img src="image2.png"> is composed of cubic parabolas</p>
+<p>
+<center><img src="image3.png"></center></p>
+<p>
+where <img src="image4.png">, which join at the endpoints <img src="image5.png"> such
+that <img src="image6.png">, <img src="image7.png">, and <img src="image8.png"> are continuous.</p>
+<p>
+The smoothing function is constructed by minimizing &nbsp;&nbsp;<img align="absmiddle"
+src="image9.png">&nbsp;&nbsp; subject to the constraint &nbsp;&nbsp;<img align="absmiddle"
+src="image10.png">&nbsp;&nbsp; where &nbsp;<img align="absmiddle" src="image11.png">&nbsp; are the weights and
+&nbsp;<img align="absmiddle" src="image12.png">&nbsp; is the spline tension.</p>
+<p>
+The solution proceeds by the standard methods of minimizing the functional</p>
+<p>
+<center><img src="image13.png"></center></p>
+<p>
+where <img src="image14.png"> and <img src="image15.png"> are auxiliary parameters. The functional is
+minimized with respect to <img src="image14.png"> and <img src="image15.png"> by setting the partial
+derivatives with respect to <img src="image14.png"> and <img src="image15.png"> equal to zero.</p>
+<P>
+<a href="bivsmooth.htm"><font size=+1 color="olive">2D smoothing</font></a>
+</P>
+<p>
+<a href="..\Sinint\sinint.htm"><img align="top" border=0 src="..\..\..\shadow_left.gif">&nbsp;<font size=+1 color="olive">Sine integral</font></a><br>
+<a href="..\Struve\struve.htm"><img align="top" border=0 src="..\..\..\shadow_right.gif">&nbsp;<font size=+1 color="olive">Struve functions</font></a>
+</P>
+</BODY>
+</HTML>

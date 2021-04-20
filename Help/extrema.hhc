@@ -1,0 +1,2290 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Extrema">
+		<param name="Local" value="html\extremaMain.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="License">
+			<param name="Local" value="html\License\license.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GNU General Public License">
+				<param name="Local" value="html\License\gpl.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Acknowledgments">
+				<param name="Local" value="html\License\acknowledge.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Introduction">
+			<param name="Local" value="html\Introduction\introduction.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Conventions used">
+				<param name="Local" value="html\Introduction\conventions.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Getting started">
+				<param name="Local" value="html\Introduction\gettingstarted.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Commands">
+				<param name="Local" value="html\Introduction\commands.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Qualifiers">
+					<param name="Local" value="html\Introduction\qualifiers.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Variables">
+				<param name="Local" value="html\Introduction\variables.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Variable names">
+					<param name="Local" value="html\Introduction\variablename.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Scalar variables">
+					<param name="Local" value="html\Introduction\scalarvariable.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Vector variables">
+					<param name="Local" value="html\Introduction\vectorvariable.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Matrix variables">
+					<param name="Local" value="html\Introduction\matrixvariable.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="String variables">
+					<param name="Local" value="html\Introduction\stringvariable.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Making a vector">
+					<param name="Local" value="html\Introduction\makingavector.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Indices">
+				<param name="Local" value="html\Introduction\indices.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Indices on functions">
+					<param name="Local" value="html\Introduction\indexonfunction.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Indices on expressions">
+					<param name="Local" value="html\Introduction\indexonexpression.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Index as an expression">
+					<param name="Local" value="html\Introduction\indexasexpression.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Expressions">
+				<param name="Local" value="html\Introduction\expression.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Assignments">
+					<param name="Local" value="html\Introduction\assignments.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="String assignments">
+					<param name="Local" value="html\Introduction\characterassignment.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="String arrays">
+					<param name="Local" value="html\Introduction\characterarrays.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Evaluations">
+					<param name="Local" value="html\Introduction\evaluations.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Colors">
+				<param name="Local" value="html\Introduction\colors.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Basic Tasks">
+			<param name="Local" value="html\BasicTasks\basictasks.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Create arrays of numerical values">
+				<param name="Local" value="html\BasicTasks\arrays.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Create and plot an array">
+				<param name="Local" value="html\BasicTasks\plotarray.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Define vectors (1-d arrays)">
+				<param name="Local" value="html\BasicTasks\vectors.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Define matrices (2-d arrays)">
+				<param name="Local" value="html\BasicTasks\matrices.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Add and plot vectors">
+				<param name="Local" value="html\BasicTasks\plotvectors.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Eigenvalues and eigenvectors">
+				<param name="Local" value="html\BasicTasks\eigen.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Plot functions">
+				<param name="Local" value="html\BasicTasks\plotfunctions.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Integrate a function">
+				<param name="Local" value="html\BasicTasks\integrate.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Solve a matrix equation">
+				<param name="Local" value="html\BasicTasks\solvematrix.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Read data from files">
+				<param name="Local" value="html\BasicTasks\readdata.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Fit a function">
+				<param name="Local" value="html\BasicTasks\fit.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Define and plot a function">
+				<param name="Local" value="html\BasicTasks\defineplotfunction.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Analyze data using FFT">
+				<param name="Local" value="html\BasicTasks\fft.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Display array data as contours and density plot">
+				<param name="Local" value="html\BasicTasks\contourdensity.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Plot parametric functions">
+				<param name="Local" value="html\BasicTasks\parametric.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Write data to a file">
+				<param name="Local" value="html\BasicTasks\writedata.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Functions">
+			<param name="Local" value="html\Functions\functions.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Trigonometric and other basic functions">
+				<param name="Local" value="html\Functions\TrigAndOtherBasic\trigandother.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ATAN2">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\atan2.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ATAN2D">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\atan2d.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ELTIME">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\eltime.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="FACTORIAL">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\factorial.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="INT">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\int.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MOD">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\mod.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="NINT">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\nint.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PDIFF">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\pdiff.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="RAN">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\ran.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SIGN">
+					<param name="Local" value="html\Functions\TrigAndOtherBasic\sign.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="String manipulation functions">
+				<param name="Local" value="html\Functions\StringManipulation\stringmanipulation.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="DATE">
+					<param name="Local" value="html\Functions\StringManipulation\date.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TIME">
+					<param name="Local" value="html\Functions\StringManipulation\time.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="UCASE">
+					<param name="Local" value="html\Functions\StringManipulation\ucase.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LCASE">
+					<param name="Local" value="html\Functions\StringManipulation\lcase.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TCASE">
+					<param name="Local" value="html\Functions\StringManipulation\tcase.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CHAR">
+					<param name="Local" value="html\Functions\StringManipulation\char.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ICHAR">
+					<param name="Local" value="html\Functions\StringManipulation\ichar.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="VARNAME">
+					<param name="Local" value="html\Functions\StringManipulation\varname.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="STRING">
+					<param name="Local" value="html\Functions\StringManipulation\string.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="RCHAR">
+					<param name="Local" value="html\Functions\StringManipulation\rchar.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EQS">
+					<param name="Local" value="html\Functions\StringManipulation\eqs.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="NES">
+					<param name="Local" value="html\Functions\StringManipulation\nes.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SUB">
+					<param name="Local" value="html\Functions\StringManipulation\sub.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SUP">
+					<param name="Local" value="html\Functions\StringManipulation\sup.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="INDEX">
+					<param name="Local" value="html\Functions\StringManipulation\index.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EVALUATE">
+					<param name="Local" value="html\Functions\StringManipulation\eval.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EXPAND">
+					<param name="Local" value="html\Functions\StringManipulation\expand.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CANOPEN">
+					<param name="Local" value="html\Functions\StringManipulation\canopen.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Numeric analysis functions">
+				<param name="Local" value="html\Functions\NumericAnalysis\numericanalysis.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Airy's functions">
+					<param name="Local" value="html\Functions\NumericAnalysis\Airy\airy.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Area function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Area\area.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Bessel functions">
+					<param name="Local" value="html\Functions\NumericAnalysis\Bessel\bessel.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Beta functions">
+					<param name="Local" value="html\Functions\NumericAnalysis\Beta\beta.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Chebyshev polynomial">
+					<param name="Local" value="html\Functions\NumericAnalysis\Cheby\cheby.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Convolute function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Convolute\convolute.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Cosine integral">
+					<param name="Local" value="html\Functions\NumericAnalysis\Cosint\cosint.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Dawson's integral">
+					<param name="Local" value="html\Functions\NumericAnalysis\Dawson\dawson.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Deconvolute function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Deconvolute\deconvolute.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Derivative">
+					<param name="Local" value="html\Functions\NumericAnalysis\Deriv\deriv.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Matrix determinant">
+					<param name="Local" value="html\Functions\NumericAnalysis\Det\det.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Dilogarithm">
+					<param name="Local" value="html\Functions\NumericAnalysis\Dilog\dilog.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Eigenvectors and eigenvalues">
+					<param name="Local" value="html\Functions\NumericAnalysis\Eigen\eigen.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Elliptic integrals">
+					<param name="Local" value="html\Functions\NumericAnalysis\EllipticIntegrals\ellipticintegrals.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Exponential integrals">
+					<param name="Local" value="html\Functions\NumericAnalysis\ExponentialIntegral\expint.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Fermi-Dirac distribution">
+					<param name="Local" value="html\Functions\NumericAnalysis\FermiDirac\ferdirac.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Fast Fourier transform">
+					<param name="Local" value="html\Functions\NumericAnalysis\Fft\fft.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Fresnel integrals">
+					<param name="Local" value="html\Functions\NumericAnalysis\Fresnel\fresnel.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Gamma functions">
+					<param name="Local" value="html\Functions\NumericAnalysis\Gamma\gamma.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Solve system of equations">
+					<param name="Local" value="html\Functions\NumericAnalysis\Gaussj\gaussj.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Hermite polynomials">
+					<param name="Local" value="html\Functions\NumericAnalysis\Hermite\hermite.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Hypergeometric function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Hypergeometric\hypgeo.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Identity matrix">
+					<param name="Local" value="html\Functions\NumericAnalysis\Identity\identity.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Inverse fast Fourier transform">
+					<param name="Local" value="html\Functions\NumericAnalysis\Ifft\ifft.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Integration">
+					<param name="Local" value="html\Functions\NumericAnalysis\Integral\integral.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Interpolation">
+					<param name="Local" value="html\Functions\NumericAnalysis\Interpolate\interpolate.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Linear interpolation">
+						<param name="Local" value="html\Functions\NumericAnalysis\Interpolate\linear.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Spline interpolation">
+						<param name="Local" value="html\Functions\NumericAnalysis\Interpolate\spline.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Lagrange interpolation">
+						<param name="Local" value="html\Functions\NumericAnalysis\Interpolate\lagrange.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Fritch-Carlson interpolation">
+						<param name="Local" value="html\Functions\NumericAnalysis\Interpolate\fc.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="SPLINTERP function">
+						<param name="Local" value="html\Functions\NumericAnalysis\Interpolate\splinterp.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="2D interpolation">
+						<param name="Local" value="html\Functions\NumericAnalysis\Interpolate\bivinterp.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Matrix inverse">
+					<param name="Local" value="html\Functions\NumericAnalysis\Inverse\inverse.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Jacobi polynomials">
+					<param name="Local" value="html\Functions\NumericAnalysis\Jacobi\jacobi.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="JOIN function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Join\join.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Kelvin functions">
+					<param name="Local" value="html\Functions\NumericAnalysis\Kelvin\kelvin.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Laguerre polynomials">
+					<param name="Local" value="html\Functions\NumericAnalysis\Laguerre\laguerre.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Legendre polynomials">
+					<param name="Local" value="html\Functions\NumericAnalysis\Legendre\legendre.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Prime factors">
+					<param name="Local" value="html\Functions\NumericAnalysis\Pfactors\pfactors.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Poisson-Charlier polynomial">
+					<param name="Local" value="html\Functions\NumericAnalysis\PoissonCharlier\poica.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Psi function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Psi\psi.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Rademacher function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Rademacher\radmac.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Savitzky-Golay function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Savgol\savgol.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Sine integral">
+					<param name="Local" value="html\Functions\NumericAnalysis\Sinint\sinint.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Smoothing">
+					<param name="Local" value="html\Functions\NumericAnalysis\Smooth\smooth.htm">
+					</OBJECT>
+  		                    <UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="2D smoothing">
+						<param name="Local" value="html\Functions\NumericAnalysis\Smooth\bivsmooth.htm">
+					     </OBJECT>
+                                    </UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Struve functions">
+					<param name="Local" value="html\Functions\NumericAnalysis\Struve\struve.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Normalized Tina resolution">
+					<param name="Local" value="html\Functions\NumericAnalysis\Tina\tina.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Vector coupling coefficients">
+					<param name="Local" value="html\Functions\NumericAnalysis\VectorCoupling\vectorcoupling.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Voigt profile">
+					<param name="Local" value="html\Functions\NumericAnalysis\Voigt\voigt.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Volume function">
+					<param name="Local" value="html\Functions\NumericAnalysis\Volume\volume.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Walsh functions">
+					<param name="Local" value="html\Functions\NumericAnalysis\Walsh\walsh.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Statistics and probability functions">
+				<param name="Local" value="html\Functions\StatisticsProbability\statprob.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Average deviation">
+					<param name="Local" value="html\Functions\StatisticsProbability\Adev\adev.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Binomial coefficient">
+					<param name="Local" value="html\Functions\StatisticsProbability\Binomial\binom.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Bivariate normal probability">
+					<param name="Local" value="html\Functions\StatisticsProbability\Bivarnor\bivarnor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Chi-square probability">
+					<param name="Local" value="html\Functions\StatisticsProbability\Chisq\chisq.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Error function">
+					<param name="Local" value="html\Functions\StatisticsProbability\ErrorFunction\errorfunction.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Fisher's F-distribution">
+					<param name="Local" value="html\Functions\StatisticsProbability\Fisher\fisher.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Gaussian distribution">
+					<param name="Local" value="html\Functions\StatisticsProbability\Gauss\gauss.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Geometric mean">
+					<param name="Local" value="html\Functions\StatisticsProbability\Gmean\gmean.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Index of maximum">
+					<param name="Local" value="html\Functions\StatisticsProbability\Imax\imax.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Index of minimum">
+					<param name="Local" value="html\Functions\StatisticsProbability\Imin\imin.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Kurtosis">
+					<param name="Local" value="html\Functions\StatisticsProbability\Kurt\kurt.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Maximum">
+					<param name="Local" value="html\Functions\StatisticsProbability\Max\max.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Mean">
+					<param name="Local" value="html\Functions\StatisticsProbability\Mean\mean.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Median">
+					<param name="Local" value="html\Functions\StatisticsProbability\Median\median.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Minimum">
+					<param name="Local" value="html\Functions\StatisticsProbability\Min\min.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Poisson function">
+					<param name="Local" value="html\Functions\StatisticsProbability\Poisson\poisson.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Product">
+					<param name="Local" value="html\Functions\StatisticsProbability\Prod\prod.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Root-mean-square">
+					<param name="Local" value="html\Functions\StatisticsProbability\Rms\rms.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Running product">
+					<param name="Local" value="html\Functions\StatisticsProbability\Rprod\rprod.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Running sum">
+					<param name="Local" value="html\Functions\StatisticsProbability\Rsum\rsum.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Skewness">
+					<param name="Local" value="html\Functions\StatisticsProbability\Skew\skew.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Standard deviation">
+					<param name="Local" value="html\Functions\StatisticsProbability\Stdev\stdev.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Student's t distribution">
+					<param name="Local" value="html\Functions\StatisticsProbability\Student\student.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Sum">
+					<param name="Local" value="html\Functions\StatisticsProbability\Sum\sum.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Variance">
+					<param name="Local" value="html\Functions\StatisticsProbability\Var\var.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Functions that return a variable's characteristics">
+				<param name="Local" value="html\Functions\VariableCharacteristics\varcharacteristics.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEN">
+					<param name="Local" value="html\Functions\VariableCharacteristics\len.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="VLEN">
+					<param name="Local" value="html\Functions\VariableCharacteristics\vlen.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CLEN">
+					<param name="Local" value="html\Functions\VariableCharacteristics\clen.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="VARTYPE">
+					<param name="Local" value="html\Functions\VariableCharacteristics\vartype.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EXIST">
+					<param name="Local" value="html\Functions\VariableCharacteristics\exist.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ICLOSE">
+					<param name="Local" value="html\Functions\VariableCharacteristics\iclose.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="IEQUAL">
+					<param name="Local" value="html\Functions\VariableCharacteristics\iequal.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Where function">
+					<param name="Local" value="html\Functions\VariableCharacteristics\Where\where.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Shape changing functions">
+				<param name="Local" value="html\Functions\ShapeChanging\shapechanging.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ROLL">
+					<param name="Local" value="html\Functions\ShapeChanging\roll.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="STEP">
+					<param name="Local" value="html\Functions\ShapeChanging\step.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="WRAP">
+					<param name="Local" value="html\Functions\ShapeChanging\wrap.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="FOLD">
+					<param name="Local" value="html\Functions\ShapeChanging\fold.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="UNFOLD">
+					<param name="Local" value="html\Functions\ShapeChanging\Unfold.htm">
+					</OBJECT>
+			</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Operators">
+			<param name="Local" value="html\Operators\operators.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Boolean">
+				<param name="Local" value="html\Operators\boolean\boolean.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="transpose">
+				<param name="Local" value="html\Operators\transpose\transpose.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="reflect">
+				<param name="Local" value="html\Operators\reflect\reflect.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="union">
+				<param name="Local" value="html\Operators\union\union.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="intersection">
+				<param name="Local" value="html\Operators\intersection\intersection.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="append">
+				<param name="Local" value="html\Operators\append\append.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="outer product">
+				<param name="Local" value="html\Operators\outerproduct\outerproduct.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="inner product">
+				<param name="Local" value="html\Operators\innerproduct\innerproduct.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Commands">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="ALIAS command">
+				<param name="Local" value="html\AliasCommand\aliascommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="BESTFIT command">
+				<param name="Local" value="html\BestfitCommand\bestfitcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="BIN command">
+				<param name="Local" value="html\BinCommand\bincommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Weights">
+					<param name="Local" value="html\BinCommand\weights.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Number of bins">
+					<param name="Local" value="html\BinCommand\nbins.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Lagrange">
+					<param name="Local" value="html\BinCommand\lagrange.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Average">
+					<param name="Local" value="html\BinCommand\average.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Count only if empty">
+					<param name="Local" value="html\BinCommand\empty.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Edge defined bins">
+					<param name="Local" value="html\BinCommand\edges.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="BIN2D command">
+				<param name="Local" value="html\Bin2DCommand\bin2dcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CLEAR command">
+				<param name="Local" value="html\ClearCommand\clearcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CONTOUR command">
+				<param name="Local" value="html\ContourCommand\contourcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Contour level selection">
+					<param name="Local" value="html\ContourCommand\levelselection.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Contour line properties">
+					<param name="Local" value="html\ContourCommand\colours.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Legend">
+					<param name="Local" value="html\ContourCommand\legend.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Axes">
+					<param name="Local" value="html\ContourCommand\axes.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Examples">
+					<param name="Local" value="html\ContourCommand\example.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DEALIAS command">
+				<param name="Local" value="html\DealiasCommand\dealiascommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DEFAULTS command">
+				<param name="Local" value="html\DefaultsCommand\defaultscommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DEFINE command">
+				<param name="Local" value="html\DefineCommand\definecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DENSITY command">
+				<param name="Local" value="html\DensityCommand\densitycommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Color gradients">
+					<param name="Local" value="html\DensityCommand\gradients.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Random points">
+					<param name="Local" value="html\DensityCommand\randompoints.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Dithering">
+					<param name="Local" value="html\DensityCommand\dithering.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Diffusion">
+					<param name="Local" value="html\DensityCommand\diffusion.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Boxes">
+					<param name="Local" value="html\DensityCommand\boxes.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DESTROY command">
+				<param name="Local" value="html\DestroyCommand\destroycommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Expanded names">
+					<param name="Local" value="html\DestroyCommand\expand.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Index ranges">
+					<param name="Local" value="html\DestroyCommand\indexranges.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Destroy entire classes of variables">
+					<param name="Local" value="html\DestroyCommand\variableclasses.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Examples">
+					<param name="Local" value="html\DestroyCommand\examples.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="DISPLAY command">
+				<param name="Local" value="html\DisplayCommand\displaycommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="ELLIPSE command">
+				<param name="Local" value="html\EllipseCommand\ellipsecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Output vectors">
+					<param name="Local" value="html\EllipseCommand\outputvectors.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Number of points">
+					<param name="Local" value="html\EllipseCommand\npoints.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Explicitly defined">
+					<param name="Local" value="html\EllipseCommand\explicit.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Fit an ellipse">
+					<param name="Local" value="html\EllipseCommand\fit.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="EXECUTE command">
+				<param name="Local" value="html\ExecuteCommand\executecommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Comments">
+					<param name="Local" value="html\ExecuteCommand\comments.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Echoing">
+					<param name="Local" value="html\ExecuteCommand\echolines.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Keyboard input">
+					<param name="Local" value="html\ExecuteCommand\keyboardinput.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Abort">
+					<param name="Local" value="html\ExecuteCommand\abort.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Parameters">
+					<param name="Local" value="html\ExecuteCommand\parameters.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Branching">
+					<param name="Local" value="html\ExecuteCommand\branching.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Looping">
+					<param name="Local" value="html\ExecuteCommand\looping.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Conditional statements">
+					<param name="Local" value="html\ExecuteCommand\ifthen.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="FIGURE command">
+				<param name="Local" value="html\FigureCommand\figurecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="FILTER command">
+				<param name="Local" value="html\FilterCommand\filtercommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Median filters">
+					<param name="Local" value="html\FilterCommand\median.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Mean filters">
+					<param name="Local" value="html\FilterCommand\mean.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Nonrecursive filters">
+					<param name="Local" value="html\FilterCommand\nonrecursive.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Recursive filters">
+					<param name="Local" value="html\FilterCommand\recursive.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Examples">
+					<param name="Local" value="html\FilterCommand\examples.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="FIT Command">
+				<param name="Local" value="html\FitCommand\fitcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Graphical user interface">
+					<param name="Local" value="html\FitCommand\fitform.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Method">
+					<param name="Local" value="html\FitCommand\method.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Tolerance">
+					<param name="Local" value="html\FitCommand\tolerance.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Correlation and covariance">
+					<param name="Local" value="html\FitCommand\corrcov.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Confidence level of the fit">
+					<param name="Local" value="html\FitCommand\confidencelevel.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Number of iterations">
+					<param name="Local" value="html\FitCommand\numiters.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Update after a fit">
+					<param name="Local" value="html\FitCommand\update.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Normal distribution">
+					<param name="Local" value="html\FitCommand\normaldist.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Chi-square and weights">
+						<param name="Local" value="html\FitCommand\chi2andweights.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Hint for physicists">
+						<param name="Local" value="html\FitCommand\hint.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Degrees of freedom">
+						<param name="Local" value="html\FitCommand\degfree.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Poisson distribution">
+					<param name="Local" value="html\FitCommand\poissondist.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Chi-square of the fit">
+						<param name="Local" value="html\FitCommand\chisquare.htm">
+						</OBJECT>
+				</UL>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GENERATE command">
+				<param name="Local" value="html\GenerateCommand\generatecommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Increment and number of points">
+					<param name="Local" value="html\GenerateCommand\incnpts.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Maximum and number of points">
+					<param name="Local" value="html\GenerateCommand\maxnpts.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Increment and maximum">
+					<param name="Local" value="html\GenerateCommand\incmax.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Random values">
+					<param name="Local" value="html\GenerateCommand\random.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GET Command">
+				<param name="Local" value="html\GetCommand\getcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GRAPH command">
+				<param name="Local" value="html\GraphCommand\graphcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Polar plot">
+					<param name="Local" value="html\GraphCommand\polarcoords.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plotting symbols">
+					<param name="Local" value="html\GraphCommand\plotsymbol.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Graph legend">
+					<param name="Local" value="html\GraphCommand\graphlegend.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Axis scaling">
+					<param name="Local" value="html\GraphCommand\axisscaling.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plot data and axes">
+					<param name="Local" value="html\GraphCommand\dataandaxes.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plot axes only">
+					<param name="Local" value="html\GraphCommand\axesonly.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plot data only">
+					<param name="Local" value="html\GraphCommand\dataonly.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plot smooth curve through data">
+					<param name="Local" value="html\GraphCommand\smooth.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Draw y-axis on the right">
+					<param name="Local" value="html\GraphCommand\yonright.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Draw x-axis on the top">
+					<param name="Local" value="html\GraphCommand\xontop.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Replot data on a common scale">
+					<param name="Local" value="html\GraphCommand\replotdata.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Histograms">
+					<param name="Local" value="html\GraphCommand\histograms.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Error bars">
+					<param name="Local" value="html\GraphCommand\errorbars.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Example">
+						<param name="Local" value="html\GraphCommand\errorbarexample.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Fill the area under a curve">
+					<param name="Local" value="html\GraphCommand\fillareacurve.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Basic example">
+					<param name="Local" value="html\GraphCommand\basicexample.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="A script to plot a curve with axes">
+					<param name="Local" value="html\GraphCommand\scripttoplot.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Getting the axis numbers right">
+					<param name="Local" value="html\GraphCommand\getaxisnums.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GRID command">
+				<param name="Local" value="html\GridCommand\gridcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="\INTERPOLATE">
+					<param name="Local" value="html\GridCommand\interpolate.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="\PATTERN">
+					<param name="Local" value="html\GridCommand\pattern.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="\INDICES">
+					<param name="Local" value="html\GridCommand\indices.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="HARDCOPY command">
+				<param name="Local" value="html\HardcopyCommand\hardcopycommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="INQUIRE command">
+				<param name="Local" value="html\InquireCommand\inquirecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="LIST command">
+				<param name="Local" value="html\ListCommand\listcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="MATRIX command">
+				<param name="Local" value="html\MatrixCommand\matrixcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="MINUIT command">
+				<param name="Local" value="html\MinuitCommand\minuitcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="PAUSE command">
+				<param name="Local" value="html\PauseCommand\pausecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="PAGE command">
+				<param name="Local" value="html\PageCommand\pagecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="POLYGON command">
+				<param name="Local" value="html\PolygonCommand\polygoncommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="QUIT command">
+				<param name="Local" value="html\QuitCommand\quitcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="READ Command">
+				<param name="Local" value="html\ReadCommand\readcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Read vectors">
+					<param name="Local" value="html\ReadCommand\Vectors\rvcommand.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Example 1">
+						<param name="Local" value="html\ReadCommand\Vectors\rvexample1.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Example 2">
+						<param name="Local" value="html\ReadCommand\Vectors\rvexample2.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Example 3">
+						<param name="Local" value="html\ReadCommand\Vectors\rvexample3.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Read scalars">
+					<param name="Local" value="html\ReadCommand\Scalars\rscommand.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="REBIN command">
+				<param name="Local" value="html\RebinCommand\rebincommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Rebin a vector">
+					<param name="Local" value="html\RebinCommand\vector.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Rebin a matrix">
+					<param name="Local" value="html\RebinCommand\matrix.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="REPLOT command">
+				<param name="Local" value="html\ReplotCommand\replotcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="What is saved">
+					<param name="Local" value="html\ReplotCommand\whatissaved.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Strings">
+					<param name="Local" value="html\ReplotCommand\strings.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Enable/disable">
+					<param name="Local" value="html\ReplotCommand\enabledisable.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Windows">
+					<param name="Local" value="html\ReplotCommand\windows.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Clearing the graphics">
+					<param name="Local" value="html\ReplotCommand\clearing.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Example 1">
+					<param name="Local" value="html\ReplotCommand\example1.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Example 2">
+					<param name="Local" value="html\ReplotCommand\example2.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="RESTORE command">
+				<param name="Local" value="html\RestoreCommand\restorecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+  				    <param name="Name" value="MUD format data files">
+				    <param name="Local" value="html\RestoreCommand\restoremud.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="RETURN command">
+				<param name="Local" value="html\ReturnCommand\returncommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SAVE command">
+				<param name="Local" value="html\SaveCommand\savecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SCALAR command">
+				<param name="Local" value="html\ScalarCommand\scalarcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Fit parameters">
+					<param name="Local" value="html\ScalarCommand\fitparameters.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SCALES command">
+				<param name="Local" value="html\ScalesCommand\scalescommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Commensurate axis scaling">
+					<param name="Local" value="html\ScalesCommand\commensurate.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Labeled tic marks">
+					<param name="Local" value="html\ScalesCommand\ticmarks.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Example">
+					<param name="Local" value="html\ScalesCommand\example.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SET command">
+				<param name="Local" value="html\SetCommand\setcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SHOW command">
+				<param name="Local" value="html\ShowCommand\showcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SORT command">
+				<param name="Local" value="html\SortCommand\sortcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="STACK command">
+				<param name="Local" value="html\StackCommand\stackcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="STATISTICS command">
+				<param name="Local" value="html\StatisticsCommand\statisticscommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SURFACE command">
+				<param name="Local" value="html\SurfaceCommand\surfacecommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="TEXT command">
+				<param name="Local" value="html\TextCommand\textcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Appending numeric values">
+					<param name="Local" value="html\TextCommand\numeric.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="GRAPHUNITS">
+					<param name="Local" value="html\TextCommand\graphunits.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ERASE">
+					<param name="Local" value="html\TextCommand\erase.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Alignment and location">
+					<param name="Local" value="html\TextCommand\justandloc.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Formatting">
+					<param name="Local" value="html\TextCommand\formatting.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Date and time">
+					<param name="Local" value="html\TextCommand\date.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Examples">
+					<param name="Local" value="html\TextCommand\example.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="VECTOR command">
+				<param name="Local" value="html\VectorCommand\vectorcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="WINDOW command">
+				<param name="Local" value="html\WindowCommand\windowcommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="What are windows?">
+					<param name="Local" value="html\WindowCommand\whatare.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Boundaries">
+					<param name="Local" value="html\WindowCommand\boundaries.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plotting units">
+					<param name="Local" value="html\WindowCommand\plotunits.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Defining a new window">
+					<param name="Local" value="html\WindowCommand\define.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Pre-defined windows">
+					<param name="Local" value="html\WindowCommand\predefined.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Alternate method">
+					<param name="Local" value="html\WindowCommand\alternate.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Multiple window creation">
+					<param name="Local" value="html\WindowCommand\multiple.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="WORLD command">
+				<param name="Local" value="html\WorldCommand\worldcommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="WRITE command">
+				<param name="Local" value="html\WriteCommand\writecommand.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Write scalars">
+					<param name="Local" value="html\WriteCommand\scalars.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Write a matrix">
+					<param name="Local" value="html\WriteCommand\matrix.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Write a character string">
+					<param name="Local" value="html\WriteCommand\text.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="ZEROLINES command">
+				<param name="Local" value="html\ZerolinesCommand\zerolinescommand.htm">
+				<param name="ImageNumber" value="1">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Characteristics">
+			<param name="Local" value="html\Characteristics\characteristics.htm">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="General characteristics">
+				<param name="Local" value="html\Characteristics\GeneralGraph\genchar.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MAXHISTORY">
+					<param name="Local" value="html\Characteristics\GeneralGraph\maxhistory.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="NHISTORY">
+					<param name="Local" value="html\Characteristics\GeneralGraph\nhistory.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TENSION">
+					<param name="Local" value="html\Characteristics\GeneralGraph\tension\tension.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="AUTOSCALE">
+					<param name="Local" value="html\Characteristics\GeneralGraph\autoscale.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="COLORMAP">
+					<param name="Local" value="html\Characteristics\GeneralGraph\colormap.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="COLORMAPNAME">
+					<param name="Local" value="html\Characteristics\GeneralGraph\colormapname.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="COLORMAPSIZE">
+					<param name="Local" value="html\Characteristics\GeneralGraph\colormapsize.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="COLORMAPFILE">
+					<param name="Local" value="html\Characteristics\GeneralGraph\colormapfile.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="AREAFILLCOLOR">
+					<param name="Local" value="html\Characteristics\GeneralGraph\areafillcolor\areafillcolor.htm">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Single numeric value or fixed color name">
+						<param name="Local" value="html\Characteristics\GeneralGraph\areafillcolor\single.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Numeric vector">
+						<param name="Local" value="html\Characteristics\GeneralGraph\areafillcolor\vector.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Curve example">
+						<param name="Local" value="html\Characteristics\GeneralGraph\areafillcolor\example1.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Histogram example">
+						<param name="Local" value="html\Characteristics\GeneralGraph\areafillcolor\example2.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Area between two curves example">
+						<param name="Local" value="html\Characteristics\GeneralGraph\areafillcolor\example3.htm">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="GRAPHBOX">
+					<param name="Local" value="html\Characteristics\GeneralGraph\graphbox.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="GRIDLINETYPE">
+					<param name="Local" value="html\Characteristics\GeneralGraph\gridlinetype.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ASPECTRATIO">
+					<param name="Local" value="html\Characteristics\GeneralGraph\aspectratio.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="WINDOWSIZE">
+					<param name="Local" value="html\Characteristics\GeneralGraph\windowsize.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLOWERWINDOW">
+					<param name="Local" value="html\Characteristics\GeneralGraph\xlowerwindow.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XUPPERWINDOW">
+					<param name="Local" value="html\Characteristics\GeneralGraph\xupperwindow.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLOWERWINDOW">
+					<param name="Local" value="html\Characteristics\GeneralGraph\ylowerwindow.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YUPPERWINDOW">
+					<param name="Local" value="html\Characteristics\GeneralGraph\yupperwindow.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="BACKGROUNDCOLOR">
+					<param name="Local" value="html\Characteristics\GeneralGraph\backgroundcolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="BACKGROUNDFILE">
+					<param name="Local" value="html\Characteristics\GeneralGraph\backgroundfile.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="COLOR">
+					<param name="Local" value="html\Characteristics\GeneralGraph\color.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="FONT">
+					<param name="Local" value="html\Characteristics\GeneralGraph\font.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LINEWIDTH">
+					<param name="Local" value="html\Characteristics\GeneralGraph\linewidth.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CONTOURLABELHEIGHT">
+					<param name="Local" value="html\Characteristics\GeneralGraph\contourlabelheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CONTOURLABELSEPARATION">
+					<param name="Local" value="html\Characteristics\GeneralGraph\contourlabelseparation.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ARROWHEADWIDTH">
+					<param name="Local" value="html\Characteristics\GeneralGraph\arrowheadwidth.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ARROWHEADLENGTH">
+					<param name="Local" value="html\Characteristics\GeneralGraph\arrowheadlength.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Graph legend characteristics">
+				<param name="Local" value="html\Characteristics\GraphLegend\legendchar.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDON">
+					<param name="Local" value="html\Characteristics\GraphLegend\legend.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDENTRYLINEON">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendentryline.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDFRAMEON">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendframeon.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDFRAME">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendframe.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDSYMBOLS">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendsymbols.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDTITLEON">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendtitleon.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDTITLE">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendtitle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDTITLEHEIGHT">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendtitleheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDTITLECOLOR">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendtitlecolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDTITLEFONT">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendtitlefont.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LEGENDSTATUS">
+					<param name="Local" value="html\Characteristics\GraphLegend\legendstatus.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="File related characteristics">
+				<param name="Local" value="html\Characteristics\FileRelated\filerelated.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="COMMENT">
+					<param name="Local" value="html\Characteristics\FileRelated\comment.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ERRORFILL">
+					<param name="Local" value="html\Characteristics\FileRelated\errorfill.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="SCRIPTEXTENSION">
+					<param name="Local" value="html\Characteristics\FileRelated\extension.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="STACKEXTENSION">
+					<param name="Local" value="html\Characteristics\FileRelated\stackextension.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Data curve and plotting symbol">
+				<param name="Local" value="html\Characteristics\PlottingSymbol\plotsymbolchar.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="HISTOGRAMTYPE">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\histogramtype.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CURVECOLOR">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\linecolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CURVELINEWIDTH">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\curvelinewidth.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="CURVELINETYPE">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\curvelinetype.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLOTSYMBOL">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\plotsymbol.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLOTSYMBOLANGLE">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\plotsymbolangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLOTSYMBOLCOLOR">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\plotsymbolcolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLOTSYMBOLSIZE">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\plotsymbolsize.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="PLOTSYMBOLLINEWIDTH">
+					<param name="Local" value="html\Characteristics\PlottingSymbol\plotsymbollinewidth.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="x-axis characteristics">
+				<param name="Local" value="html\Characteristics\Xaxis\xaxischar.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XAXIS">
+					<param name="Local" value="html\Characteristics\Xaxis\xaxis.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XAXISCOLOR">
+					<param name="Local" value="html\Characteristics\Xaxis\axiscolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XAXISANGLE">
+					<param name="Local" value="html\Characteristics\Xaxis\xaxisangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLOWERAXIS">
+					<param name="Local" value="html\Characteristics\Xaxis\xloweraxis.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XUPPERAXIS">
+					<param name="Local" value="html\Characteristics\Xaxis\xupperaxis.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XMIN">
+					<param name="Local" value="html\Characteristics\Xaxis\xmin.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XMAX">
+					<param name="Local" value="html\Characteristics\Xaxis\xmax.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XVIRTUALMIN">
+					<param name="Local" value="html\Characteristics\Xaxis\xvirtualmin.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XVIRTUALMAX">
+					<param name="Local" value="html\Characteristics\Xaxis\xvirtualmax.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLOGBASE">
+					<param name="Local" value="html\Characteristics\Xaxis\xlogbase.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLOGSTYLE">
+					<param name="Local" value="html\Characteristics\Xaxis\xlogstyle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNLINCS">
+					<param name="Local" value="html\Characteristics\Xaxis\xnlincs.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNSINCS">
+					<param name="Local" value="html\Characteristics\Xaxis\xnsincs.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XGRID">
+					<param name="Local" value="html\Characteristics\Xaxis\xgrid.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XFORCECROSS">
+					<param name="Local" value="html\Characteristics\Xaxis\xforcecross.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XZERO">
+					<param name="Local" value="html\Characteristics\Xaxis\xzero.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLABEL">
+					<param name="Local" value="html\Characteristics\Xaxis\xlabel.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLABELON">
+					<param name="Local" value="html\Characteristics\Xaxis\xlabelon.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLABELCOLOR">
+					<param name="Local" value="html\Characteristics\Xaxis\xlabelcolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLABELFONT">
+					<param name="Local" value="html\Characteristics\Xaxis\xlabelfont.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLABELHEIGHT">
+					<param name="Local" value="html\Characteristics\Xaxis\xlabelheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNUMBERSON">
+					<param name="Local" value="html\Characteristics\Xaxis\xnumbers.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNUMBERSCOLOR">
+					<param name="Local" value="html\Characteristics\Xaxis\xnumberscolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNUMBERSFONT">
+					<param name="Local" value="html\Characteristics\Xaxis\xnumbersfont.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNUMBEROFDIGITS">
+					<param name="Local" value="html\Characteristics\Xaxis\xnumberofdigits.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNUMBEROFDECIMALS">
+					<param name="Local" value="html\Characteristics\Xaxis\xnumberofdecimals.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNUMBERSHEIGHT">
+					<param name="Local" value="html\Characteristics\Xaxis\xnumberheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XNUMBERSANGLE">
+					<param name="Local" value="html\Characteristics\Xaxis\xnumberangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XMOD">
+					<param name="Local" value="html\Characteristics\Xaxis\xmod.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLEADINGZEROS">
+					<param name="Local" value="html\Characteristics\Xaxis\xleadingzeros.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XOFFSET">
+					<param name="Local" value="html\Characteristics\Xaxis\xoffset.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XDROPFIRSTNUMBER">
+					<param name="Local" value="html\Characteristics\Xaxis\xdropfirstnumber.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XDROPLASTNUMBER">
+					<param name="Local" value="html\Characteristics\Xaxis\xdroplastnumber.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XTICSON">
+					<param name="Local" value="html\Characteristics\Xaxis\xticson.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XTICSBOTHSIDES">
+					<param name="Local" value="html\Characteristics\Xaxis\xticsbothsides.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XTICANGLE">
+					<param name="Local" value="html\Characteristics\Xaxis\xticangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XLARGETICLENGTH">
+					<param name="Local" value="html\Characteristics\Xaxis\xlargeticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XSMALLTICLENGTH">
+					<param name="Local" value="html\Characteristics\Xaxis\xsmallticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XIMAGTICANGLE">
+					<param name="Local" value="html\Characteristics\Xaxis\ximagticangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XIMAGTICLENGTH">
+					<param name="Local" value="html\Characteristics\Xaxis\ximagticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XPOWER">
+					<param name="Local" value="html\Characteristics\Xaxis\xpower.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XPOWERAUTO">
+					<param name="Local" value="html\Characteristics\Xaxis\xpowerauto.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XAXISLINEWIDTH">
+					<param name="Local" value="html\Characteristics\Xaxis\axislinewidth.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="y-axis characteristics">
+				<param name="Local" value="html\Characteristics\Yaxis\yaxischar.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YAXIS">
+					<param name="Local" value="html\Characteristics\Yaxis\yaxis.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YAXISCOLOR">
+					<param name="Local" value="html\Characteristics\Yaxis\axiscolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YAXISANGLE">
+					<param name="Local" value="html\Characteristics\Yaxis\yaxisangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLOWERAXIS">
+					<param name="Local" value="html\Characteristics\Yaxis\yloweraxis.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YUPPERAXIS">
+					<param name="Local" value="html\Characteristics\Yaxis\yupperaxis.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YMIN">
+					<param name="Local" value="html\Characteristics\Yaxis\ymin.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YMAX">
+					<param name="Local" value="html\Characteristics\Yaxis\ymax.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YVIRTUALMIN">
+					<param name="Local" value="html\Characteristics\Yaxis\yvirtualmin.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YVIRTUALMAX">
+					<param name="Local" value="html\Characteristics\Yaxis\yvirtualmax.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLOGBASE">
+					<param name="Local" value="html\Characteristics\Yaxis\ylogbase.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLOGSTYLE">
+					<param name="Local" value="html\Characteristics\Yaxis\ylogstyle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNLINCS">
+					<param name="Local" value="html\Characteristics\Yaxis\ynlincs.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNSINCS">
+					<param name="Local" value="html\Characteristics\Yaxis\ynsincs.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YGRID">
+					<param name="Local" value="html\Characteristics\Yaxis\ygrid.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YFORCECROSS">
+					<param name="Local" value="html\Characteristics\Yaxis\yforcecross.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YZERO">
+					<param name="Local" value="html\Characteristics\Yaxis\yzero.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLABEL">
+					<param name="Local" value="html\Characteristics\Yaxis\ylabel.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLABELON">
+					<param name="Local" value="html\Characteristics\Yaxis\ylabelon.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLABELCOLOR">
+					<param name="Local" value="html\Characteristics\Yaxis\ylabelcolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLABELFONT">
+					<param name="Local" value="html\Characteristics\Yaxis\ylabelfont.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLABELHEIGHT">
+					<param name="Local" value="html\Characteristics\Yaxis\ylabelheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNUMBERSON">
+					<param name="Local" value="html\Characteristics\Yaxis\ynumbers.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNUMBERSCOLOR">
+					<param name="Local" value="html\Characteristics\Yaxis\ynumberscolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNUMBERSFONT">
+					<param name="Local" value="html\Characteristics\Yaxis\ynumbersfont.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNUMBEROFDIGITS">
+					<param name="Local" value="html\Characteristics\Yaxis\ynumberofdigits.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNUMBEROFDECIMALS">
+					<param name="Local" value="html\Characteristics\Yaxis\ynumberofdecimals.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNUMBERSHEIGHT">
+					<param name="Local" value="html\Characteristics\Yaxis\ynumberheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YNUMBERSANGLE">
+					<param name="Local" value="html\Characteristics\Yaxis\ynumberangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YMOD">
+					<param name="Local" value="html\Characteristics\Yaxis\ymod.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLEADINGZEROS">
+					<param name="Local" value="html\Characteristics\Yaxis\yleadingzeros.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YOFFSET">
+					<param name="Local" value="html\Characteristics\Yaxis\yoffset.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YDROPFIRSTNUMBER">
+					<param name="Local" value="html\Characteristics\Yaxis\ydropfirstnumber.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YDROPLASTNUMBER">
+					<param name="Local" value="html\Characteristics\Yaxis\ydroplastnumber.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YTICSON">
+					<param name="Local" value="html\Characteristics\Yaxis\yticson.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YTICSBOTHSIDES">
+					<param name="Local" value="html\Characteristics\Yaxis\yticsbothsides.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YTICANGLE">
+					<param name="Local" value="html\Characteristics\Yaxis\yticangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YLARGETICLENGTH">
+					<param name="Local" value="html\Characteristics\Yaxis\ylargeticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YSMALLTICLENGTH">
+					<param name="Local" value="html\Characteristics\Yaxis\ysmallticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YIMAGTICANGLE">
+					<param name="Local" value="html\Characteristics\Yaxis\yimagticangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YIMAGTICLENGTH">
+					<param name="Local" value="html\Characteristics\Yaxis\yimagticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YPOWER">
+					<param name="Local" value="html\Characteristics\Yaxis\ypower.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YPOWERAUTO">
+					<param name="Local" value="html\Characteristics\Yaxis\ypowerauto.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YAXISLINEWIDTH">
+					<param name="Local" value="html\Characteristics\Yaxis\axislinewidth.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Text related characteristics">
+				<param name="Local" value="html\Characteristics\TextRelated\textrelated.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TEXTALIGN">
+					<param name="Local" value="html\Characteristics\TextRelated\textalign.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TEXTANGLE">
+					<param name="Local" value="html\Characteristics\TextRelated\textangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TEXTCOLOR">
+					<param name="Local" value="html\Characteristics\TextRelated\textcolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TEXTFONT">
+					<param name="Local" value="html\Characteristics\TextRelated\textfont.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TEXTHEIGHT">
+					<param name="Local" value="html\Characteristics\TextRelated\textheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="TEXTINTERACTIVE">
+					<param name="Local" value="html\Characteristics\TextRelated\textinteractive.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="XTEXTLOCATION">
+					<param name="Local" value="html\Characteristics\TextRelated\xtextlocation.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="YTEXTLOCATION">
+					<param name="Local" value="html\Characteristics\TextRelated\ytextlocation.htm">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Polar characteristics">
+				<param name="Local" value="html\Characteristics\Polar\polarchar.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARAXISON">
+					<param name="Local" value="html\Characteristics\Polar\axison.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARORIGINX">
+					<param name="Local" value="html\Characteristics\Polar\xorigin.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARORIGINY">
+					<param name="Local" value="html\Characteristics\Polar\yorigin.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARAXISANGLE">
+					<param name="Local" value="html\Characteristics\Polar\axisangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARAXISLENGTH">
+					<param name="Local" value="html\Characteristics\Polar\axislength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNAXES">
+					<param name="Local" value="html\Characteristics\Polar\naxes.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARCOMPASSLABELS">
+					<param name="Local" value="html\Characteristics\Polar\compasslabels.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARCLOCKWISE">
+					<param name="Local" value="html\Characteristics\Polar\clockwise.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARAXISCOLOR">
+					<param name="Local" value="html\Characteristics\Polar\axiscolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARAXISLINEWIDTH">
+					<param name="Local" value="html\Characteristics\Polar\axislinewidth.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARGRID">
+					<param name="Local" value="html\Characteristics\Polar\grid.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARMAX">
+					<param name="Local" value="html\Characteristics\Polar\max.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNUMBERSON">
+					<param name="Local" value="html\Characteristics\Polar\numberson.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNUMBERSCOLOR">
+					<param name="Local" value="html\Characteristics\Polar\numberscolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNUMBERSFONT">
+					<param name="Local" value="html\Characteristics\Polar\numbersfont.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNUMBERSHEIGHT">
+					<param name="Local" value="html\Characteristics\Polar\numbersheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNUMBERSANGLE">
+					<param name="Local" value="html\Characteristics\Polar\numbersangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNUMBEROFDIGITS">
+					<param name="Local" value="html\Characteristics\Polar\numberofdigits.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNUMBEROFDECIMALS">
+					<param name="Local" value="html\Characteristics\Polar\numberofdecimals.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARMOD">
+					<param name="Local" value="html\Characteristics\Polar\mod.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARLEADINGZEROS">
+					<param name="Local" value="html\Characteristics\Polar\leadingzeros.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARDROPFIRSTNUMBER">
+					<param name="Local" value="html\Characteristics\Polar\dropfirstnumber.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARDROPLASTNUMBER">
+					<param name="Local" value="html\Characteristics\Polar\droplastnumber.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLAROFFSET">
+					<param name="Local" value="html\Characteristics\Polar\offset.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARNSINCS">
+					<param name="Local" value="html\Characteristics\Polar\nsincs.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARTICSON">
+					<param name="Local" value="html\Characteristics\Polar\ticson.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARTICSBOTHSIDES">
+					<param name="Local" value="html\Characteristics\Polar\ticsbothsides.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARTICANGLE">
+					<param name="Local" value="html\Characteristics\Polar\ticangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARIMAGTICANGLE">
+					<param name="Local" value="html\Characteristics\Polar\imagticangle.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARIMAGTICLENGTH">
+					<param name="Local" value="html\Characteristics\Polar\imagticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARLARGETICLENGTH">
+					<param name="Local" value="html\Characteristics\Polar\largeticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARSMALLTICLENGTH">
+					<param name="Local" value="html\Characteristics\Polar\smallticlength.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARLABEL">
+					<param name="Local" value="html\Characteristics\Polar\label.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARLABELON">
+					<param name="Local" value="html\Characteristics\Polar\labelon.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARLABELCOLOR">
+					<param name="Local" value="html\Characteristics\Polar\labelcolor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARLABELFONT">
+					<param name="Local" value="html\Characteristics\Polar\labelfont.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARLABELHEIGHT">
+					<param name="Local" value="html\Characteristics\Polar\labelheight.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARPOWER">
+					<param name="Local" value="html\Characteristics\Polar\power.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="POLARPOWERAUTO">
+					<param name="Local" value="html\Characteristics\Polar\powerauto.htm">
+					</OBJECT>
+		        </UL>
+		</UL>
+	</UL>
+</UL>
+</BODY></HTML>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>ELLIPSE command</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject"
+        CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="ELLIPSE command">
+	<PARAM NAME="Keyword" VALUE="populate ellipse">
+	<PARAM NAME="Keyword" VALUE="fit ellipse">
+</OBJECT>
+
+<P><font size=+3 color="green"><B>ELLIPSE command</B></font></P>
+
+<TABLE border=1 cols=2 frame=box rules=all width=572>
+<TR>
+<TD width=15% valign="top"><B>Syntax</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>ELLIPSE\FIT xin yin</nobr><br>
+<nobr>ELLIPSE\FIT\NPTS xin yin n</nobr><br>
+<nobr>ELLIPSE\FIT\FRACTION xin yin frac</nobr><br>
+<nobr>ELLIPSE\FIT\FRACTION\NPTS xin yin frac n</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT xin yin xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT\NPTS xin yin n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT\FRACTION xin yin frac xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\XYOUT\FRACTION\NPTS xin yin frac n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS xin yin a b xc yc angle</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\NPTS xin yin a b xc yc angle n</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION xin yin frac a b xc yc angle</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\FRACTION\NPTS xin yin frac a b xc yc angle n</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT xin yin a b xc yc angle xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\NPTS xin yin a b xc yc angle n xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION xin yin frac a b xc yc angle xout yout</nobr><br>
+<nobr>ELLIPSE\FIT\PARAMETERS\XYOUT\FRACTION\NPTS xin yin frac a b xc yc angle n xout yout</nobr><br>
+<nobr>ELLIPSE\POPULATE a b xc yc angle</nobr><br>
+<nobr>ELLIPSE\POPULATE\NPTS a b xc yc angle n</nobr><br>
+<nobr>ELLIPSE\POPULATE\XYOUT a b xc yc angle xout yout</nobr><br>
+<nobr>ELLIPSE\POPULATE\XYOUT\NPTS a b xc yc angle n xout yout</nobr></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Qualifiers</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\FIT,</nobr> <nobr>\NPTS,</nobr> <nobr>\FRACTION,</nobr>
+<nobr>\XYOUT,</nobr> <nobr>\PARAMETERS,</nobr> <nobr>\POPULATE</nobr></CODE>
+</TD></TR>
+<TR>
+<TD width=15% valign="top"><B>Defaults</B>:</TD>
+<TD width=85% valign="top"><CODE>
+<nobr>\POPULATE,</nobr> <nobr>\-FIT,</nobr> <nobr>\-NPTS,</nobr>
+<nobr>\-FRACTION,</nobr> <nobr>\-XYOUT,</nobr> <nobr>\-PARAMETERS,</nobr>
+<nobr>fraction = 0.9</nobr></CODE>
+</TD></TR>
+</TABLE>
+<P>
+ The <CODE><font color="blue">ELLIPSE</font></CODE> command can uniformly populate
+ the perimeter of an ellipse in two ways:</br>
+ <ul>
+ <li> Given the major axis radius, the minor axis radius, centre coordinates, and
+      angle of the major axis</li>
+ <li> First fit an ellipse so a certain fraction of the data points are within the
+      ellipse, then determine the major axis radius, the minor axis radius, the
+      centre coordinates, and the angle of the major axis.</ul>
+</p>
+<P>
+<a href="outputvectors.htm"><font size=+1 color="olive">Output vectors</font></a><br>
+<a href="npoints.htm"><font size=+1 color="olive">Number of points</font></a><br>
+<a href="explicit.htm"><font size=+1 color="olive">Ellipse explicitly defined</font></a><br>
+<a href="fit.htm"><font size=+1 color="olive">Fit an ellipse</font></a></P>
+</BODY>
+</HTML>

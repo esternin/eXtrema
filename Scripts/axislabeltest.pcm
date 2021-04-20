@@ -1,0 +1,22 @@
+clear
+window 0
+defaults
+!
+x=[1:10]
+set xforcecross 1
+set yforcecross 1
+set xlabel `some x-axis label'
+set xlabelon 1
+set ylabel `some other y-axis label'
+set ylabelon 1
+do i = [1:5]
+  clear
+  set plotsymbol i
+  set plotsymbolcolor -i
+  set xlabelcolor -(23-i)
+  set ylabelcolor -(22-i)
+  graph x-2^i x^2-i*10
+  pause
+enddo
+clear
+graph x x

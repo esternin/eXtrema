@@ -1,0 +1,237 @@
+object BasicColorsForm: TBasicColorsForm
+  Left = 507
+  Top = 615
+  BorderIcons = []
+  BorderStyle = bsToolWindow
+  ClientHeight = 129
+  ClientWidth = 162
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Shape1: TShape
+    Left = 2
+    Top = 1
+    Width = 30
+    Height = 30
+    Hint = 'white'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor0
+  end
+  object Shape2: TShape
+    Left = 34
+    Top = 1
+    Width = 30
+    Height = 30
+    Hint = 'black'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor1
+  end
+  object Shape3: TShape
+    Left = 66
+    Top = 1
+    Width = 30
+    Height = 30
+    Hint = 'red'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor2
+  end
+  object Shape4: TShape
+    Left = 98
+    Top = 1
+    Width = 30
+    Height = 30
+    Hint = 'green'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor3
+  end
+  object Shape5: TShape
+    Left = 130
+    Top = 1
+    Width = 30
+    Height = 30
+    Hint = 'blue'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor4
+  end
+  object Shape6: TShape
+    Left = 2
+    Top = 33
+    Width = 30
+    Height = 30
+    Hint = 'purple'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor5
+  end
+  object Shape7: TShape
+    Left = 34
+    Top = 33
+    Width = 30
+    Height = 30
+    Hint = 'yellow'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor6
+  end
+  object Shape8: TShape
+    Left = 66
+    Top = 33
+    Width = 30
+    Height = 30
+    Hint = 'cyan'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor7
+  end
+  object Shape9: TShape
+    Left = 98
+    Top = 33
+    Width = 30
+    Height = 30
+    Hint = 'brown'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor8
+  end
+  object Shape10: TShape
+    Left = 130
+    Top = 33
+    Width = 30
+    Height = 30
+    Hint = 'coral'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor9
+  end
+  object Shape11: TShape
+    Left = 2
+    Top = 65
+    Width = 30
+    Height = 30
+    Hint = 'salmon'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor10
+  end
+  object Shape12: TShape
+    Left = 34
+    Top = 65
+    Width = 30
+    Height = 30
+    Hint = 'sienna'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor11
+  end
+  object Shape13: TShape
+    Left = 66
+    Top = 65
+    Width = 30
+    Height = 30
+    Hint = 'tan'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor12
+  end
+  object Shape14: TShape
+    Left = 98
+    Top = 65
+    Width = 30
+    Height = 30
+    Hint = 'fuchsia'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor13
+  end
+  object Shape15: TShape
+    Left = 130
+    Top = 65
+    Width = 30
+    Height = 30
+    Hint = 'lime'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor14
+  end
+  object Shape16: TShape
+    Left = 2
+    Top = 97
+    Width = 30
+    Height = 30
+    Hint = 'maroon'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor15
+  end
+  object Shape17: TShape
+    Left = 34
+    Top = 97
+    Width = 30
+    Height = 30
+    Hint = 'navy'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor16
+  end
+  object Shape18: TShape
+    Left = 66
+    Top = 97
+    Width = 30
+    Height = 30
+    Hint = 'olive'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor17
+  end
+  object Shape19: TShape
+    Left = 98
+    Top = 97
+    Width = 30
+    Height = 30
+    Hint = 'silver'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor18
+  end
+  object Shape20: TShape
+    Left = 130
+    Top = 97
+    Width = 30
+    Height = 30
+    Hint = 'teal'
+    ParentShowHint = False
+    Shape = stRoundSquare
+    ShowHint = True
+    OnMouseDown = OnChooseColor19
+  end
+end
