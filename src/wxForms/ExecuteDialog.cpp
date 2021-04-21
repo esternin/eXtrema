@@ -55,10 +55,10 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
   //wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
   wxBoxSizer *midSizer = new wxBoxSizer( wxHORIZONTAL );
   midPanel->SetSizer( midSizer );
-  mainSizer->Add( midPanel, wxSizerFlags(1).Expand().Center().Border(wxALL,1) );
+  mainSizer->Add( midPanel, wxSizerFlags(1).Expand().Border(wxALL,1) );
 
   midSizer->Add(
-    new wxStaticText(midPanel,wxID_ANY,wxT("Parameter(s): ")), wxSizerFlags(0).Right().Border(wxALL,10) );
+    new wxStaticText(midPanel,wxID_ANY,wxT("Parameter(s): ")), wxSizerFlags(0).Border(wxALL,10) );
   parameterTextCtrl_ = new wxTextCtrl( midPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxSize(350,20) );
   parameterTextCtrl_->SetToolTip( wxT("enter any required parameters") );
   midSizer->Add( parameterTextCtrl_, wxSizerFlags(1).Expand().Left().Border(wxALL,10) );
