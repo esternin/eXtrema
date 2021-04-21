@@ -8,8 +8,6 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-AM_CPPFLAGS = $(EX_CXXFLAGS) $(WX_CXXFLAGS) $(MUD_CXXFLAGS) $(MINUIT_CXXFLAGS)
-
 noinst_LTLIBRARIES = libcommands.la
 libcommands_la_SOURCES = CMD_alias.cpp CMD_alias.h \
                          CMD_bestfit.cpp CMD_bestfit.h \

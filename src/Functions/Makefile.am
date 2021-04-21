@@ -8,8 +8,6 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-AM_CPPFLAGS = $(EX_CXXFLAGS) $(WX_CXXFLAGS) $(MUD_CXXFLAGS) $(MINUIT_CXXFLAGS)
-
 noinst_LTLIBRARIES = libfunctions.la
 libfunctions_la_SOURCES = \
 	  FCN_abs.cpp FCN_abs.h \
