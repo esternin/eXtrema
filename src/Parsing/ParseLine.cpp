@@ -232,7 +232,7 @@ void ParseLine::ParseIt()
       }
       case 2:                 // comma after blank
       {
-        std::auto_ptr<ParseToken> atoken( new ParseToken );
+        std::unique_ptr<ParseToken> atoken( new ParseToken );
         ParseToken *token = atoken.release();
         tokens_.push_back( token );
         openBracketCounter = 0;
@@ -242,7 +242,7 @@ void ParseLine::ParseIt()
       }
       case 3:                 // start valid character
       {
-        std::auto_ptr<ParseToken> atoken( new ParseToken );
+        std::unique_ptr<ParseToken> atoken( new ParseToken );
         ParseToken *token = atoken.release();
         tokens_.push_back( token );
         openBracketCounter = 0;
@@ -260,7 +260,7 @@ void ParseLine::ParseIt()
       {
         if( newToken )
         {
-          std::auto_ptr<ParseToken> atoken( new ParseToken );
+          std::unique_ptr<ParseToken> atoken( new ParseToken );
           ParseToken *token = atoken.release();
           tokens_.push_back( token );
         }
@@ -283,7 +283,7 @@ void ParseLine::ParseIt()
       {
         if( newToken )
         {
-          std::auto_ptr<ParseToken> atoken( new ParseToken );
+          std::unique_ptr<ParseToken> atoken( new ParseToken );
           ParseToken *token = atoken.release();
           tokens_.push_back( token );
         }
@@ -306,7 +306,7 @@ void ParseLine::ParseIt()
       {
         if( newToken )
         {
-          std::auto_ptr<ParseToken> atoken( new ParseToken );
+          std::unique_ptr<ParseToken> atoken( new ParseToken );
           ParseToken *token = atoken.release();
           tokens_.push_back( token );
         }
@@ -327,7 +327,7 @@ void ParseLine::ParseIt()
       }
       case 14:               // initial opening bracket
       {
-        std::auto_ptr<ParseToken> atoken( new ParseToken );
+        std::unique_ptr<ParseToken> atoken( new ParseToken );
         ParseToken *token = atoken.release();
         tokens_.push_back( token );
         ++openBracketCounter;
@@ -379,12 +379,12 @@ void ParseLine::ParseIt()
       }
       case 21:               // encountered equal sign
       {
-        std::auto_ptr<ParseToken> atoken( new ParseToken );
+        std::unique_ptr<ParseToken> atoken( new ParseToken );
         ParseToken *token0 = atoken.release();
         tokens_.push_back( token0 );
         if( GetNumberOfTokens() == 1 )
         {
-          std::auto_ptr<ParseToken> atoken( new ParseToken );
+          std::unique_ptr<ParseToken> atoken( new ParseToken );
           ParseToken *token1 = atoken.release();
           tokens_.push_back( token1 );
         }
@@ -400,7 +400,7 @@ void ParseLine::ParseIt()
       }
       case 22:      // start expression after an equal sign
       {
-        std::auto_ptr<ParseToken> atoken( new ParseToken );
+        std::unique_ptr<ParseToken> atoken( new ParseToken );
         ParseToken *token = atoken.release();
         tokens_.push_back( token );
         tokens_.back()->SetType( ParseToken::STRINGFIELD );

@@ -277,7 +277,7 @@ void Expression::Evaluate()
             {
               wxString str( wxT('(') );
               str += tmp + wxT(')');
-              std::auto_ptr<Workspace> aws( new Workspace(str) );
+              std::unique_ptr<Workspace> aws( new Workspace(str) );
               Workspace *ws = aws.release();
               ws->SetExpression( this );
               ws->SetLevel( level+1 );

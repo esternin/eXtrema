@@ -1531,7 +1531,7 @@ void GRA_window::DisplayBackground( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   ExGlobals::SetClippingBoundary( xl, yl, xu, yu );
   if( bgcolor )
   {
-    std::auto_ptr<GRA_rectangle> rect( new GRA_rectangle(xl,yl,xu,yu,0.0,false,bgcolor,bgcolor) );
+    std::unique_ptr<GRA_rectangle> rect( new GRA_rectangle(xl,yl,xu,yu,0.0,false,bgcolor,bgcolor) );
     rect->Draw( graphicsOutput, dc );
   }
   else if( !bgfile.empty() )

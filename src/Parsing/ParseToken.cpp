@@ -43,7 +43,7 @@ void ParseToken::CopyStuff( ParseToken const &rhs )
   std::size_t size( rhs.qualifiers_.size() );
   for( std::size_t i=0; i<size; ++i )
   {
-    std::auto_ptr<wxString> tmp( new wxString(*rhs.qualifiers_[i]) );
+    std::unique_ptr<wxString> tmp( new wxString(*rhs.qualifiers_[i]) );
     qualifiers_.push_back( tmp.release() );
   }
   tokenType_ = rhs.tokenType_;

@@ -50,12 +50,12 @@ void ExprCodes::CopyStuff( ExprCodes const &rhs )
   }
   if( rhs.tokenType_ == LISTVECTOR )
   {
-    std::auto_ptr<ListVector> s( new ListVector(*rhs.listVectorPtr_) );
+    std::unique_ptr<ListVector> s( new ListVector(*rhs.listVectorPtr_) );
     listVectorPtr_ = s.release();
   }
   else if( rhs.tokenType_ == RANGEVECTOR )
   {
-    std::auto_ptr<RangeVector> s( new RangeVector(*rhs.rangeVectorPtr_) );
+    std::unique_ptr<RangeVector> s( new RangeVector(*rhs.rangeVectorPtr_) );
     rangeVectorPtr_ = s.release();
   }
   tokenType_ = rhs.tokenType_;

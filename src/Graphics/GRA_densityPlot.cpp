@@ -133,7 +133,7 @@ void GRA_densityPlot::SetUp()
     yt.push_back( dataYmin_ );
     yt.push_back( dataYmin_ );
     yt.push_back( dataYmax_ );
-    std::auto_ptr<GRA_cartesianAxes> cartesianAxes( new GRA_cartesianAxes(xt,yt,false,false) );
+    std::unique_ptr<GRA_cartesianAxes> cartesianAxes( new GRA_cartesianAxes(xt,yt,false,false) );
     try
     {
       cartesianAxes->Make();
@@ -299,9 +299,9 @@ void GRA_densityPlot::DrawProfiles( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     static_cast<GRA_distanceCharacteristic*>(xAxisC->Get(wxT("UPPERAXIS")))->SetAsWorld( xuaxis+0.1*(xuwind-xlwind) );
     static_cast<GRA_stringCharacteristic*>(generalC->Get(wxT("AUTOSCALE")))->Set( wxString(wxT("OFF")) );
     std::vector<double> xe1, ye1, xe2, ye2;
-    std::auto_ptr<GRA_cartesianAxes> cartesianAxes(
+    std::unique_ptr<GRA_cartesianAxes> cartesianAxes(
       new GRA_cartesianAxes(yProfileX_,yProfileY_,false,false) );
-    std::auto_ptr<GRA_cartesianCurve> cartesianCurve(
+    std::unique_ptr<GRA_cartesianCurve> cartesianCurve(
       new GRA_cartesianCurve(yProfileX_,yProfileY_,xe1,ye1,xe2,ye2,false) );
     try
     {
@@ -337,9 +337,9 @@ void GRA_densityPlot::DrawProfiles( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     static_cast<GRA_stringCharacteristic*>(generalC->Get(wxT("AUTOSCALE")))->Set( wxString(wxT("OFF")) );
     static_cast<GRA_stringCharacteristic*>(generalC->Get(wxT("AUTOSCALE")))->Set( wxString(wxT("OFF")) );
     std::vector<double> xe1, ye1, xe2, ye2;
-    std::auto_ptr<GRA_cartesianAxes> cartesianAxes(
+    std::unique_ptr<GRA_cartesianAxes> cartesianAxes(
       new GRA_cartesianAxes(xProfileX_,xProfileY_,false,false) );
-    std::auto_ptr<GRA_cartesianCurve> cartesianCurve(
+    std::unique_ptr<GRA_cartesianCurve> cartesianCurve(
       new GRA_cartesianCurve(xProfileX_,xProfileY_,xe1,ye1,xe2,ye2,false) );
     try
     {

@@ -118,7 +118,7 @@ void CMD_execute::Execute( ParseLine const *p )
     throw ECommandError( command+wxT("executing an open stack file leads to recursion") );
   //
   AddToStackLine( p->GetString(1) );
-  std::auto_ptr<Script> aScript( new Script() );
+  std::unique_ptr<Script> aScript( new Script() );
   //
   aScript->AddParameter( fname ); // the first parameter is always the script file name
   //

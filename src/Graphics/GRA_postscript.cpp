@@ -2173,7 +2173,7 @@ void GRA_postscript::DisplayBackground( GRA_window *gw )
   ExGlobals::SetClippingBoundary( xl, yl, xu, yu );
   if( bgcolor )
   {
-    std::auto_ptr<GRA_rectangle> rect( new GRA_rectangle(xl,yl,xu,yu,0.0,false,bgcolor,bgcolor) );
+    std::unique_ptr<GRA_rectangle> rect( new GRA_rectangle(xl,yl,xu,yu,0.0,false,bgcolor,bgcolor) );
     Draw( rect.get() );
   }
   else if( !bgfile.empty() )
