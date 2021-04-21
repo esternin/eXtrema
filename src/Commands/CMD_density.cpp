@@ -492,7 +492,6 @@ void CMD_density::Execute( ParseLine const *p )
     }
     ExGlobals::GetGraphWindow()->AddDrawableObject( gp );
   }
-  ExGlobals::RefreshGraphics();
 }
 
 // end of file
