@@ -20,8 +20,6 @@ AC_INIT([extrema],[4.6],[edward.sternin@brocku.ca],[extrema],[https://www.physic
 # use foreign to avoid "mandatory" NEWS and AUTHORS; automake syntax changed at v1.12
 AM_INIT_AUTOMAKE([1.12 foreign])
 
-m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
-
 AC_PROG_CC
 AC_PROG_CXX
 
