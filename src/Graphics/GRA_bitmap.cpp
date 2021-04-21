@@ -110,16 +110,25 @@ void GRA_bitmap::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   int xmin, ymin, xmax, ymax;
   graphicsOutput->GetLimits( xmin, ymin, xmax, ymax );
-  for( int x=0; x<width_; ++x )
+
+  wxImage image(width_, height_, false /* don't clear, we'll do it */);
+  unsigned char* data = image.GetData();
+
+  // Note that we need to iterate in bottom to top order because this is how
+  // the data is currently stored in bitmap_.
+  for( int y=height_-1; y>=0; --y )
   {
-    for( int y=0; y<height_; ++y )
+    for( int x=0; x<width_; ++x )
     {
-      wxPen wxpen( dc.GetPen() );
-      wxpen.SetColour( ExGlobals::GetwxColor(bitmap_[x+y*width_]) );
-      dc.SetPen( wxpen );
-      dc.DrawPoint( x+ixLo_, ymax-(y+iyLo_) );
+      int r, g, b;
+      bitmap_[x+y*width_]->GetRGB(r, g, b);
+      *data++ = r;
+      *data++ = g;
+      *data++ = b;
     }
   }
+
+  dc.DrawBitmap( image, ixLo_, ymax-iyLo_-height_+1 );
 }
 
 // end of file
