@@ -37,24 +37,15 @@ LT_INIT([disable-shared])
 #AX_CHECK_MUD
 #AX_CHECK_MINUIT
 
-# check for the wxWidgets (from https://wiki.wxwidgets.org/Autoconf - ES)
-#
-# AM_OPTIONS_WXCONFIG adds options like --with-wx-config to enable using an
-# uninstalled build of wxWidgets. See these options by running ./configure --help=short
-AM_OPTIONS_WXCONFIG
-reqwx=3.0.4
-AM_PATH_WXCONFIG($reqwx, wxWin=1)
-if test "$wxWin" != 1; then
-	AC_MSG_ERROR([
-		wxWidgets must be installed on your system.
+dnl Check for the wxWidgets.
+dnl
+dnl This macro adds options like --with-wx-config to enable using an
+dnl uninstalled build of wxWidgets. See these options by running ./configure --help=short
+WX_CONFIG_OPTIONS
 
-		Please check that wx-config is in path, the directory
-		where wxWidgets libraries are installed (returned by
-		'wx-config --libs' or 'wx-config --static --libs' command)
-		is in LD_LIBRARY_PATH or equivalent variable and
-		wxWidgets version is $reqwx or above.
-		])
-fi
+dnl This macro will define WX_CXXFLAGS and WX_LIBS used in the makefiles if
+dnl successful and abort with the failure message otherwise.
+WX_CONFIG_CHECK([3.0.4],[],[],[base,xml,core,adv,html])
 
 AC_CONFIG_FILES([
    Makefile
