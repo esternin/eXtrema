@@ -64,10 +64,7 @@ CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
 CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
 CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
 
-# be sure to 'sudo apt-get install libwxgtk3.0-gtk3-dev' if this fails - ES
-AC_SUBST(GTK_LIBS,`pkg-config --libs gtk+-3.0`)
-
-LIBS="$LIBS $WX_LIBS $GTK_LIBS"
+LIBS="$LIBS $WX_LIBS"
 
 AC_CONFIG_FILES([
    Makefile
