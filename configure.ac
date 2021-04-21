@@ -15,7 +15,6 @@ AC_PREREQ([2.59])
 AC_CONFIG_MACRO_DIRS([m4])
 
 # touch src/wxForms/AnalysisWindow.cpp to get the latest version number
-#AC_INIT([extrema],[4.4.5],[Joseph L. Chuma joe.chuma@gmail.com])
 AC_INIT([extrema],[4.6],[edward.sternin@brocku.ca],[extrema],[https://www.physics.brocku.ca/Labs/extrema/])
 
 # use foreign to avoid "mandatory" NEWS and AUTHORS; automake syntax changed at v1.12
@@ -25,14 +24,9 @@ m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 AC_PROG_CC
 AC_PROG_CXX
-#LF_SET_WARNINGS
 
 LT_INIT([disable-shared])
 
-#AC_DISABLE_SHARED
-#AC_PROG_LIBTOOL
-
-#AX_CHECK_WX
 #AX_CHECK_MUD
 #AX_CHECK_MINUIT
 AX_SETCXXFLAGS
