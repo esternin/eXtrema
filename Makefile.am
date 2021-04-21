@@ -16,8 +16,6 @@ EXTRA_DIST = extrema.desktop ./fonts ./icons ./Images ./Help ./Scripts ./doc ./d
 # list immediate subdirectories only
 SUBDIRS = src
 
-##AM_CPPFLAGS = -I $(srcdir)/../../../src -I $(srcdir)/../../../src/Commands -I $(srcdir)/../../../src/Expression -I $(srcdir)/../../../src/Functions -I $(srcdir)/../../../src/Graphics -I $(srcdir)/../../../src/Operators -I $(srcdir)/../../../src/Parsing -I $(srcdir)/../../../src/Utilities -I $(srcdir)/../../../src/Variables -I $(srcdir)/../../../src/wxForms
-
 myimagesdir = $(datadir)/extrema/Images
 myimages_DATA = $(abs_top_srcdir)/Images/*.GIF $(abs_top_srcdir)/Images/*.bmp
 

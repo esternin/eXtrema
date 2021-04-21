@@ -30,8 +30,3 @@ AC_DEFUN([AX_CHECK_MINUIT], [
   AC_SUBST(MINUIT_CXXFLAGS)
   AC_SUBST(MINUIT_LIB)
 ])
-
-AC_DEFUN([AX_SETCXXFLAGS],[
-  EX_CXXFLAGS='-I${top_srcdir}/src -I${top_srcdir}/src/Commands -I${top_srcdir}/src/Expression -I${top_srcdir}/src/Functions -I${top_srcdir}/src/Graphics -I${top_srcdir}/src/Operators -I${top_srcdir}/src/Parsing -I${top_srcdir}/src/Utilities -I${top_srcdir}/src/Variables -I${top_srcdir}/src/wxForms -DEX_DATADIR="\"$(datadir)\"" -DEX_BINDIR="\"$(bindir)\""'
-  AC_SUBST(EX_CXXFLAGS)
-])

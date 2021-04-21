@@ -36,10 +36,6 @@ LT_INIT([disable-shared])
 
 #AX_CHECK_MUD
 #AX_CHECK_MINUIT
-AX_SETCXXFLAGS
-
-# may need includes from other subdirectories in src/*  - ES
-CXXFLAGS="$CXXFLAGS -I ../../../src -I ../../../src/Commands -I ../../../src/Expression -I ../../../src/Functions -I ../../../src/Graphics -I ../../../src/Operators -I ../../../src/Parsing -I ../../../src/Utilities -I ../../../src/Variables -I ../../../src/wxForms"
 
 # check for the wxWidgets (from https://wiki.wxwidgets.org/Autoconf - ES)
 #
@@ -59,12 +55,6 @@ if test "$wxWin" != 1; then
 		wxWidgets version is $reqwx or above.
 		])
 fi
-
-CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
-CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
-CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
-
-LIBS="$LIBS $WX_LIBS"
 
 AC_CONFIG_FILES([
    Makefile

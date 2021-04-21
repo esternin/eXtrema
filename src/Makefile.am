@@ -10,10 +10,21 @@
 
 SUBDIRS = Commands Expression Functions Graphics Operators Parsing Utilities Variables wxForms .
 
-# EX_CXXFLAGS, WX_CXXFLAGS, MUD_CXXFLAGS, and MINUIT_CXXFLAGS  are defined in acinclude.m4
-AM_CPPFLAGS = $(EX_CXXFLAGS) $(WX_CXXFLAGS) $(MUD_CXXFLAGS) $(MINUIT_CXXFLAGS)
-
-AM_LDFLAGS = $(EX_LDFLAGS) $(WX_LIBS)
+# Make sure AM_CXXFLAGS is used in all subdirectories too
+export AM_CXXFLAGS = \
+    -DEX_BINDIR='"$(bindir)"' \
+    -DEX_DATADIR='"$(datadir)"' \
+    -I$(top_srcdir)/src \
+    -I$(top_srcdir)/src/Commands \
+    -I$(top_srcdir)/src/Expression \
+    -I$(top_srcdir)/src/Functions \
+    -I$(top_srcdir)/src/Graphics \
+    -I$(top_srcdir)/src/Operators \
+    -I$(top_srcdir)/src/Parsing \
+    -I$(top_srcdir)/src/Utilities \
+    -I$(top_srcdir)/src/Variables \
+    -I$(top_srcdir)/src/wxForms \
+    $(WX_CXXFLAGS) $(MUD_CXXFLAGS) $(MINUIT_CXXFLAGS)
 
 lib_LTLIBRARIES = libextrema.la
 libextrema_la_SOURCES =
