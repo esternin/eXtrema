@@ -1,4 +1,4 @@
-Makefile.in
+/Makefile.in
 aclocal.m4
 ar-lib
 autom4te.cache/
@@ -17,13 +17,4 @@ m4/ltsugar.m4
 m4/ltversion.m4
 m4/lt~obsolete.m4
 missing
-src/Commands/Makefile.in
-src/Expression/Makefile.in
-src/Functions/Makefile.in
-src/Graphics/Makefile.in
 src/Makefile.in
-src/Operators/Makefile.in
-src/Parsing/Makefile.in
-src/Utilities/Makefile.in
-src/Variables/Makefile.in
-src/wxForms/Makefile.in

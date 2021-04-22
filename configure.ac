@@ -18,7 +18,7 @@ AC_CONFIG_MACRO_DIRS([m4])
 AC_INIT([extrema],[4.6],[edward.sternin@brocku.ca],[extrema],[https://www.physics.brocku.ca/Labs/extrema/])
 
 # use foreign to avoid "mandatory" NEWS and AUTHORS; automake syntax changed at v1.12
-AM_INIT_AUTOMAKE([1.12 foreign])
+AM_INIT_AUTOMAKE([1.12 foreign subdir-objects])
 
 AC_ARG_ENABLE(debug,
              [AC_HELP_STRING([--enable-debug],
@@ -72,15 +72,6 @@ WX_CONFIG_CHECK([3.0.4],[],[],[base,xml,core,adv,html])
 AC_CONFIG_FILES([
    Makefile
    src/Makefile
-   src/Commands/Makefile
-   src/Expression/Makefile
-   src/Functions/Makefile
-   src/Graphics/Makefile
-   src/Operators/Makefile
-   src/Parsing/Makefile
-   src/Utilities/Makefile
-   src/Variables/Makefile
-   src/wxForms/Makefile
 ])
 
 AC_OUTPUT
