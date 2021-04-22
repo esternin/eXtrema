@@ -67,7 +67,7 @@ InquireYNDialog::InquireYNDialog()
 
   bottomPanel->SetSizer( bottomSizer );
 
-  mainSizer->Add( bottomPanel, wxSizerFlags(1).Expand().Centre().Border(wxALL,1) );
+  mainSizer->Add( bottomPanel, wxSizerFlags(1).Expand().Border(wxALL,1) );
 
   SetSizer( mainSizer );
   
