@@ -297,7 +297,7 @@ void Script::AddScriptLine( std::size_t numberOfParameters, wxString &fname, wxS
       if ( missingParameter )
       {
         wxChar c[100];
-        ::wxSnprintf( c, 100, wxT("parameter %d missing from file: %s"), ipindex, fname.c_str() );
+        ::wxSnprintf( c, 100, wxT("parameter %zd missing from file: %s"), ipindex, fname.c_str() );
         throw ESyntaxError( c );
       }
       wxString s1;
