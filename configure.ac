@@ -20,6 +20,28 @@ AC_INIT([extrema],[4.6],[edward.sternin@brocku.ca],[extrema],[https://www.physic
 # use foreign to avoid "mandatory" NEWS and AUTHORS; automake syntax changed at v1.12
 AM_INIT_AUTOMAKE([1.12 foreign])
 
+AC_ARG_ENABLE(debug,
+             [AC_HELP_STRING([--enable-debug],
+                             [compile with debug information and without optimizations])],
+             [case "x${enableval}" in
+                   x) debug_option=yes ;;
+                xyes) debug_option=yes ;;
+                 xno) debug_option=no ;;
+                   *) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
+             esac], [debug_option=yes])
+
+if test "$debug_option" = "yes"; then
+    DEBUG_FLAG="-g"
+    NOOPT_FLAGS="-O0"
+
+    CFLAGS="$CFLAGS $DEBUG_FLAG $NOOPT_FLAGS"
+    CXXFLAGS="$CXXFLAGS $DEBUG_FLAG $NOOPT_FLAGS"
+    LDFLAGS="$LDFLAGS $DEBUG_FLAG"
+else
+    dnl Turn off assert checking in standard library and also wxWidgets.
+    CPPFLAGS="$CPPFLAGS -DNDEBUG"
+fi
+
 AC_PROG_CC
 AC_PROG_CXX
 
