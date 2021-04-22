@@ -390,7 +390,18 @@ void CMD_density::Execute( ParseLine const *p )
     y.assign( yi.begin(), yi.end() );
     z.assign( array.begin(), array.end() );
   }
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+
+  // We don't need to actually draw anything here, this will be done later,
+  // after RefreshGraphics() is called at the end of this function. However we
+  // do want to call Draw() just to check that the new drawable object can be
+  // drawn successfully before storing it, so we create a dummy DC, using the
+  // smallest possible valid bitmap, only to be able to use it for checking
+  // this.
+  //
+  // IF we can ever prove that checking for EGraphicsError here is unnecessary,
+  // we should remove this DC entirely and not call Draw() at all from here.
+  wxBitmap dummyBitmap(1, 1);
+  wxMemoryDC dc(dummyBitmap);
   if( qualifiers[wxT("BOXES")] )
   {
     GRA_boxPlot *bp = new GRA_boxPlot( x, y, z, nrow, fmin, fmax, qmin, qmax,
@@ -492,6 +503,7 @@ void CMD_density::Execute( ParseLine const *p )
     }
     ExGlobals::GetGraphWindow()->AddDrawableObject( gp );
   }
+  ExGlobals::RefreshGraphics();
 }
 
 // end of file
