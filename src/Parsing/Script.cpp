@@ -58,7 +58,17 @@ void Script::Run()
       if( echo_ )ExGlobals::WriteOutput( commandLine );
     }
     if( !commandLine.empty() && commandLine!=wxString(wxT(" ")) )
+    {
       ExGlobals::ProcessCommand(commandLine);
+      if ( ExGlobals::NotInaScript() )
+      {
+        // This can only happen if StopAllScripts() was called from inside the
+        // command, in which case this script object itself doesn't exist any
+        // longer and we must not use it any more, so bail out immediately.
+        return;
+      }
+    }
+
     if( ExGlobals::GetExecuteCommand() )
     {
       ExGlobals::SetExecuteCommand( false );
