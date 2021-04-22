@@ -31,7 +31,6 @@ void Script::Run()
 {
   for( ;; )
   {
-    Script *script = 0;
     wxString commandLine;
     if( ExGlobals::GetRestartingScript() )
     {
