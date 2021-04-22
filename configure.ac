@@ -56,8 +56,8 @@ AR_FLAGS=cr
 
 LT_INIT([disable-shared])
 
-#AX_CHECK_MUD
-#AX_CHECK_MINUIT
+AX_CHECK_MUD
+AX_CHECK_MINUIT
 
 dnl Check for the wxWidgets.
 dnl
