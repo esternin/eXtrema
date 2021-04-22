@@ -16,6 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include <deque>
+#include <memory>
 
 #include "FCN_expand.h"
 #include "Workspace.h"
@@ -44,14 +45,13 @@ void FCN_expand::TextScalarEval( int j, std::vector<wxString> &sStack ) const
 
 bool FCN_expand::FillOut( wxString &str ) const
 {
-  Workspace *ws = new Workspace(str);
+  std::unique_ptr<Workspace> ws(new Workspace(str));
   try
   {
     ws->ParseAndCheck( true );
   }
   catch( EExpressionError &e )
   {
-    delete ws;
     throw;
   }
   wxString s;
@@ -117,7 +117,6 @@ bool FCN_expand::FillOut( wxString &str ) const
     }
   }
   str = s;
-  delete ws;
   return foundTV;
 }
 
