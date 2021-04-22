@@ -24,14 +24,7 @@ FCN_hermite *FCN_hermite::fcn_hermite_ = 0;
 void FCN_hermite::ScalarEval( int j, std::vector<double> &rStack ) const
 {
   int n = static_cast<int>(rStack[j]);
-  try
-  {
-    rStack[j] = UsefulFunctions::HermitePolynomial( n, rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::HermitePolynomial( n, rStack[j+1] );
   rStack.pop_back();
 }
 

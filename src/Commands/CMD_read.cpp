@@ -89,15 +89,8 @@ void CMD_read::Execute( ParseLine const *p )
   //                (format)  --> if nB format, e.g. (4B), stream read
   //
   QualifierMap qualifiers, qualifierEntered;
-  try
-  {
-    SetUp( p, qualifiers );
-    SetUp( qualifierEntered );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
+  SetUp( qualifierEntered );
   wxString command( Name()+wxT(": ") );
   startingLine_ = 1;               // starting line range value
   lineRange_.clear();
@@ -190,14 +183,7 @@ void CMD_read::Execute( ParseLine const *p )
   //
   if( !p->IsString(1) )throw ECommandError( command+wxT("filename not entered") );
   wxString fileName;
-  try
-  {
-    TextVariable::GetVariable( p->GetString(1), true, fileName );
-  }
-  catch (EVariableError &e)
-  {
-    throw;
-  }
+  TextVariable::GetVariable( p->GetString(1), true, fileName );
   AddToStackLine( wxString(wxT("'"))+fileName+wxString(wxT("'")) );
   //
   wxFileName wxfn( fileName );

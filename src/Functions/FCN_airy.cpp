@@ -24,14 +24,7 @@ FCN_airy *FCN_airy::fcn_airy_ = 0;
 
 void FCN_airy::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Airy( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Airy( rStack[j] );
 }
 
 // end of file

@@ -118,14 +118,7 @@ void GRA_boxPlot::Make()
 void GRA_boxPlot::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   GRA_cartesianAxes *axes =0;
-  try
-  {
-    DrawAxes( graphicsOutput, dc, axes );
-  }
-  catch (EGraphicsError &e)
-  {
-    throw;
-  }
+  DrawAxes( graphicsOutput, dc, axes );
   GRA_window *gw = ExGlobals::GetGraphWindow();
   GRA_setOfCharacteristics *xAxisC = gw->GetXAxisCharacteristics();
   GRA_setOfCharacteristics *yAxisC = gw->GetYAxisCharacteristics();

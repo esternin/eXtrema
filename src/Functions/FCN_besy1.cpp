@@ -23,13 +23,6 @@ FCN_besy1 *FCN_besy1::fcn_besy1_ = 0;
 
 void FCN_besy1::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::BesselY1( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::BesselY1( rStack[j] );
 }
 

@@ -23,14 +23,7 @@ FCN_einellic *FCN_einellic::fcn_einellic_ = 0;
 
 void FCN_einellic::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::IncompleteEllipticIntegral2( rStack[j], rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::IncompleteEllipticIntegral2( rStack[j], rStack[j+1] );
   rStack.pop_back();
 }
 

@@ -29,15 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 void GRA_diffusionPlot::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   GRA_cartesianAxes *axes =0;
-  try
-  {
-    DrawBitmap( graphicsOutput, dc );
-    DrawAxes( graphicsOutput, dc, axes );
-  }
-  catch (EGraphicsError &e)
-  {
-    throw;
-  }
+  DrawBitmap( graphicsOutput, dc );
+  DrawAxes( graphicsOutput, dc, axes );
   DrawAxes2( graphicsOutput, dc, axes );
 }
 

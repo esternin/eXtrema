@@ -44,14 +44,7 @@ void CMD_form::Execute( ParseLine const *p )
   // open one of the gui forms
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( p->GetNumberOfTokens()<2 || !p->IsString(1) )
     throw ECommandError( command+wxT("expecting a form name") );

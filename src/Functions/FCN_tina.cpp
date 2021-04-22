@@ -23,15 +23,8 @@ FCN_tina *FCN_tina::fcn_tina_ = 0;
 
 void FCN_tina::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::NormalizedTina( rStack[j], rStack[j+1],
-                                                 rStack[j+2], rStack[j+3] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::NormalizedTina( rStack[j], rStack[j+1],
+                                               rStack[j+2], rStack[j+3] );
   rStack.pop_back();
   rStack.pop_back();
   rStack.pop_back();

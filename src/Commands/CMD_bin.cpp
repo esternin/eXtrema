@@ -47,14 +47,7 @@ void CMD_bin::Execute( ParseLine const *p )
   // BIN\NBINS x xbin xcount n { xmin xmax }
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("LAGRANGE")] )
   {

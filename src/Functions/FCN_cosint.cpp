@@ -23,13 +23,6 @@ FCN_cosint *FCN_cosint::fcn_cosint_ = 0;
 
 void FCN_cosint::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::CosineIntegral( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::CosineIntegral( rStack[j] );
 }
 

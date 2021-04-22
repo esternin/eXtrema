@@ -23,13 +23,6 @@ FCN_biry *FCN_biry::fcn_biry_ = 0;
 
 void FCN_biry::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Airy2( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Airy2( rStack[j] );
 }
 

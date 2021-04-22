@@ -41,14 +41,7 @@ void CMD_sort::Execute( ParseLine const *p )
   // names are included in the command parameter list.
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   qualifiers[wxT("UP")] = !qualifiers[wxT("DOWN")];
   if( p->GetNumberOfTokens() < 2 )throw ECommandError( command+wxT("expecting a vector to sort") );

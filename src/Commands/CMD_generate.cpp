@@ -49,14 +49,7 @@ void CMD_generate::Execute( ParseLine const *p )
   // GENERATE\RANDOM X MIN MAX NPTS
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( wxT("GENERATE: ") );
   //
   if( p->GetNumberOfTokens()<2 || !p->IsString(1) )

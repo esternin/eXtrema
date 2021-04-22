@@ -23,16 +23,9 @@ FCN_wign6j *FCN_wign6j::fcn_wign6j_ = 0;
 
 void FCN_wign6j::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Wigner6JSymbol( rStack[j], rStack[j+1],
-                                                 rStack[j+2], rStack[j+3],
-                                                 rStack[j+4], rStack[j+5] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Wigner6JSymbol( rStack[j], rStack[j+1],
+                                               rStack[j+2], rStack[j+3],
+                                               rStack[j+4], rStack[j+5] );
   rStack.pop_back();
   rStack.pop_back();
   rStack.pop_back();

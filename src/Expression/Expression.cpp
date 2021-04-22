@@ -149,15 +149,8 @@ void Expression::SetFitParameterValue( std::size_t i, double v, wxString const &
 void Expression::Evaluate()
 {
   Workspace *w0 = (*levels_.find(0)).second;
-  try
-  {
-    w0->ParseAndCheck( false );
-    w0->HandleFunctionsAndText();
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  w0->ParseAndCheck( false );
+  w0->HandleFunctionsAndText();
   bool doOver = true;
   while( doOver )
   {
@@ -238,14 +231,7 @@ void Expression::Evaluate()
               if( icw )ic = &icw->GetFinalData();
               wxString str( wxT('(') );
               wxString tmp;
-              try
-              {
-                tmp = tv->GetString(ia,ic);
-              }
-              catch( EExpressionError &e )
-              {
-                throw;
-              }
+              tmp = tv->GetString(ia,ic);
               //wxChar *c = new wxChar[tmp.length()+1];
               //strcpy( c, tmp.c_str() );
               //str.append( c );
@@ -306,16 +292,9 @@ void Expression::Evaluate()
         }
         else if( s->IsCharacter() )
         {
-          try
-          {
-            //s->HandleFunctionsAndText();
-            s->RPNTconvert();
-            CalcText( s );
-          }
-          catch( EExpressionError &e )
-          {
-            throw;
-          }
+          //s->HandleFunctionsAndText();
+          s->RPNTconvert();
+          CalcText( s );
           s->SetFinished();
         }
       }    // end of loop over Workspaces at a level
@@ -326,15 +305,8 @@ void Expression::Evaluate()
         std::vector<Workspace*>::const_iterator end( wsv.end() );
         for( std::vector<Workspace*>::const_iterator i=wsv.begin(); i!=end; ++i )
         {
-          try
-          {
-            (*i)->ParseAndCheck( false );
-            (*i)->HandleFunctionsAndText();
-          }
-          catch( EExpressionError &e )
-          {
-            throw;
-          }
+          (*i)->ParseAndCheck( false );
+          (*i)->HandleFunctionsAndText();
         }
         break;  // break out of loop over levels
       }
@@ -405,16 +377,9 @@ void Expression::SeventhPass( int minLevel )
     {
       if( level==0 || ((*i)->IsRPNdone() && !(*i)->IsFinished()) )
       {
-        try
-        {
-          (*i)->SetType();
-          (*i)->SetUp();
-          (*i)->Calculate();
-        }
-        catch (EExpressionError &e)
-        {
-          throw;
-        }
+        (*i)->SetType();
+        (*i)->SetUp();
+        (*i)->Calculate();
       }
     }
   }
@@ -454,14 +419,7 @@ void Expression::CalcText( Workspace *ws )
       j -= narg-1;
       if( fp->IsMixed2Char() )
       {
-        try
-        {
-          fp->TextArrayEval( j, wStack, sStack );
-        }
-        catch( EExpressionError &e )
-        {
-          throw;
-        }
+        fp->TextArrayEval( j, wStack, sStack );
       }
       else
       {

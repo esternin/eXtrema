@@ -79,14 +79,7 @@ void CMD_density::Execute( ParseLine const *p )
   // DENSITY\DITHERING\DITHERVECTOR d x y v
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError const &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( !qualifiers[wxT("DITHERING")] )
   {

@@ -51,15 +51,8 @@ void GRA_ditheringPlot::CopyStuff( GRA_ditheringPlot const &rhs )
 void GRA_ditheringPlot::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   GRA_cartesianAxes *axes =0;
-  try
-  {
-    DrawBitmap( graphicsOutput, dc );
-    DrawAxes( graphicsOutput, dc, axes );
-  }
-  catch (EGraphicsError &e)
-  {
-    throw;
-  }
+  DrawBitmap( graphicsOutput, dc );
+  DrawAxes( graphicsOutput, dc, axes );
   DrawAxes2( graphicsOutput, dc, axes );
 }
 
@@ -283,14 +276,7 @@ void GRA_ditheringPlot::DrawLegend( GRA_wxWidgets *outputType, wxDC &dc )
       wxString stmp(c);
       GRA_drawableText dt( stmp, height, angle, xhi+0.1, yp-height/2., 1,
                            font, GRA_colorControl::GetColor(wxT("BLACK")) );
-      try
-      {
-        dt.Parse();
-      }
-      catch ( EGraphicsError &e )
-      {
-        throw;
-      }
+      dt.Parse();
       dt.Draw( outputType, dc );
     }
   }

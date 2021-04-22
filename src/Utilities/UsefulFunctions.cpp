@@ -77,14 +77,7 @@ TOP:
   //
   for( std::size_t j=0; j<nparam; ++j )expr->SetFitParameterValue( j, p[j] );
   //
-  try
-  {
-    expr->FinalPass();
-  }
-  catch ( EExpressionError &e )
-  {
-    throw;
-  }
+  expr->FinalPass();
   //std::vector<double> ymid;
   //ymid.reserve(expr->GetFinalAnswer().GetData().size());
   //ymid = expr->GetFinalAnswer().GetData();
@@ -97,14 +90,7 @@ TOP:
   {
     p[j]==0.0 ? expr->SetFitParameterValue( j, -1.0 ) :
                 expr->SetFitParameterValue( j, p[j]*(1.0-tolerance) );
-    try
-    {
-      expr->FinalPass();
-    }
-    catch ( EExpressionError &e )
-    {
-      throw;
-    }
+    expr->FinalPass();
     //std::vector<double> ylow;
     //ylow.reserve(expr->GetFinalAnswer().GetData().size());
     //ylow = expr->GetFinalAnswer().GetData();
@@ -112,14 +98,7 @@ TOP:
     //
     p[j]==0.0 ? expr->SetFitParameterValue( j, 1.0 ) :
                 expr->SetFitParameterValue( j, p[j]*(1.0+tolerance) );
-    try
-    {
-      expr->FinalPass();
-    }
-    catch ( EExpressionError &e )
-    {
-      throw;
-    }
+    expr->FinalPass();
     //std::vector<double> yhi;
     //yhi.reserve(expr->GetFinalAnswer().GetData().size());
     //yhi = expr->GetFinalAnswer().GetData();
@@ -213,14 +192,7 @@ AGAIN:
         errmat[i].assign( nparam, 0.0 );
         errmat[i][i] = 1.0;
       }
-      try
-      {
-        SolveLinearEquations( cc, errmat );
-      }
-      catch ( EExpressionError &e )
-      {
-        throw;
-      }
+      SolveLinearEquations( cc, errmat );
       for( std::size_t i=0; i<nparam; ++i )
       {
         for( std::size_t j=0; j<nparam; ++j )p[i] += errmat[j][i]*vv[0][j];
@@ -271,14 +243,7 @@ AGAIN:
       errmat[i].assign( nparam, 0.0 );
       errmat[i][i] = 1.0;
     }
-    try
-    {
-      SolveLinearEquations( cc, errmat );
-    }
-    catch ( EExpressionError &e )
-    {
-      throw;
-    }
+    SolveLinearEquations( cc, errmat );
     for( std::size_t i=0; i<nparam; ++i )
     {
       for( std::size_t j=0; j<nparam; ++j )p[i] += errmat[j][i]*vv[0][j];
@@ -293,14 +258,7 @@ AGAIN:
       errmat[i].assign( nparam, 0.0 );
       errmat[i][i] = 1.0;
     }
-    try
-    {
-      SolveLinearEquations( cc, errmat );
-    }
-    catch ( EExpressionError &e )
-    {
-      throw;
-    }
+    SolveLinearEquations( cc, errmat );
     for( std::size_t i=0; i<nparam; ++i )
     {
       for( std::size_t j=0; j<nparam; ++j )p[i] += errmat[j][i]*vv[0][j];
@@ -310,14 +268,7 @@ AGAIN:
   if( nt < ntmax )
   {
     ++nt;
-    try
-    {
-      SolveLinearEquations( cc, vv );
-    }
-    catch ( EExpressionError &e )
-    {
-      throw;
-    }
+    SolveLinearEquations( cc, vv );
     pp = p;
     vp = vv[0];
     for( std::size_t i=0; i<nparam; ++i )
@@ -337,14 +288,7 @@ AGAIN:
       errmat[i].assign( nparam, 0.0 );
       errmat[i][i] = 1.0;
     }
-    try
-    {
-      SolveLinearEquations( cc, errmat );
-    }
-    catch ( EExpressionError &e )
-    {
-      throw;
-    }
+    SolveLinearEquations( cc, errmat );
     for( std::size_t i=0; i<nparam; ++i )
     {
       for( std::size_t j=0; j<nparam; ++j )p[i] += errmat[j][i]*vv[0][j];
@@ -357,14 +301,7 @@ DONE:
     expr->SetFitParameterValue( i, p[i] ); // update parameter values to current values
   }
   pSave = p;
-  try
-  {
-    expr->FinalPass();
-  }
-  catch ( EExpressionError &e )
-  {
-    throw;
-  }
+  expr->FinalPass();
   std::vector<double> temp( expr->GetFinalAnswer().GetData() );
   ymid.assign( temp.begin(), temp.end() );
   //ymid.reserve(expr->GetFinalAnswer().GetData().size());
@@ -2273,15 +2210,8 @@ void Splsmooth( std::vector<double> &x,
   // functional values x versus arclength and y versus arclength
   //
   std::vector<double> yderiv( m, 0.0 );
-  try
-  {
-    SplineSmooth( w1, x, w3, xout, yderiv, weights );
-    SplineSmooth( w1, y, w3, yout, yderiv, weights );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  SplineSmooth( w1, x, w3, xout, yderiv, weights );
+  SplineSmooth( w1, y, w3, yout, yderiv, weights );
 }
 
 void SplineSmooth( std::vector<double> &x,
@@ -3272,16 +3202,9 @@ double IncompleteBeta( double x, double pin, double qin )
   double result = 0.0;
   if( (p+q)*y/(p+1.0) < eps )
   {
-    try
-    {
-      double xb = p*log(std::max(y,sml)) - log(p) - LnCompleteBeta(p,q);
-      if( xb>alnsml && y!=0.0 )result = exp(xb);
-      if( y!=x || p!=pin )result = 1.0 - result;
-    }
-    catch( EExpressionError &e )
-    {
-      throw;
-    }
+    double xb = p*log(std::max(y,sml)) - log(p) - LnCompleteBeta(p,q);
+    if( xb>alnsml && y!=0.0 )result = exp(xb);
+    if( y!=x || p!=pin )result = 1.0 - result;
     return result;
   }
   //
@@ -3291,14 +3214,7 @@ double IncompleteBeta( double x, double pin, double qin )
   double ps = q - static_cast<int>(q);
   if( ps == 0.0 )ps = 1.0;
   double xb;
-  try
-  {
-    xb = p*log(y) - LnCompleteBeta(ps,p) - log(p);
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  xb = p*log(y) - LnCompleteBeta(ps,p) - log(p);
   if( xb >= alnsml )
   {
     result = exp( xb );
@@ -3318,14 +3234,7 @@ double IncompleteBeta( double x, double pin, double qin )
   //
   if( q > 1.0 )
   {
-    try
-    {
-      xb = p*log(y) + q*log(1.0-y) - LnCompleteBeta(p,q) - log(q);
-    }
-    catch( EExpressionError &e )
-    {
-      throw;
-    }
+    xb = p*log(y) + q*log(1.0-y) - LnCompleteBeta(p,q) - log(q);
     std::size_t ib = static_cast<std::size_t>(std::max(xb/alnsml,0.0));
     double term = exp( xb-ib*alnsml );
     double c = 1.0/(1.0-y);
@@ -3368,28 +3277,21 @@ double LnCompleteBeta( double a, double b )
   if( p <= 0.0 )
     throw EExpressionError( wxT("LnCompleteBeta: both arguments must be > zero") );
   //
-  try
+  if( p >= 10.0 ) // p and q are big
   {
-    if( p >= 10.0 ) // p and q are big
-    {
-      double corr = LogGammaCorrection(p) + LogGammaCorrection(q) - LogGammaCorrection(p+q);
-      return -0.5*log(q) + log(sqrt(2*M_PI)) + corr + (p-0.5)*log(p/(p+q)) +
-          q*LnRel(-p/(p+q));
-    }
-    if( q >= 10.0 ) // p is small, but q is big
-    {
-      double corr = LogGammaCorrection(q) - LogGammaCorrection(p+q);
-      return LnAbsGamma(p) + corr + p - p*log(p+q) + (q-0.5)*LnRel(-p/(p+q));
-    }
-    //
-    // p and q are small
-    //
-    return log( CompleteGamma(p)*(CompleteGamma(q)/CompleteGamma(p+q)) );
+    double corr = LogGammaCorrection(p) + LogGammaCorrection(q) - LogGammaCorrection(p+q);
+    return -0.5*log(q) + log(sqrt(2*M_PI)) + corr + (p-0.5)*log(p/(p+q)) +
+        q*LnRel(-p/(p+q));
   }
-  catch( EExpressionError &e )
+  if( q >= 10.0 ) // p is small, but q is big
   {
-    throw;
+    double corr = LogGammaCorrection(q) - LogGammaCorrection(p+q);
+    return LnAbsGamma(p) + corr + p - p*log(p+q) + (q-0.5)*LnRel(-p/(p+q));
   }
+  //
+  // p and q are small
+  //
+  return log( CompleteGamma(p)*(CompleteGamma(q)/CompleteGamma(p+q)) );
 }
 
 double LnRel( double x )
@@ -3437,16 +3339,9 @@ double LnRel( double x )
         +.63533936180236187354180266666666e-31 };
   //
   double result = 0.0;
-  try
-  {
-    int const n = Initds( a, 43, 0.1*eps );
-    fabs(x) <= 0.375 ? result = x*(1.0-x*NTermChebyshevSeries(x/.375,a,n)) :
-                       result = log(1.0+x);
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  int const n = Initds( a, 43, 0.1*eps );
+  fabs(x) <= 0.375 ? result = x*(1.0-x*NTermChebyshevSeries(x/.375,a,n)) :
+                     result = log(1.0+x);
   return result;
 }
 
@@ -3490,41 +3385,20 @@ double LnAbsGamma( double x )
   xmax /= log(xmax);
   double dxrel = sqrt(2*std::numeric_limits<double>::epsilon());
   double y = fabs(x);
-  try
-  {
-    if( y <= 10.0 )return log(fabs(CompleteGamma(x)));
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  if( y <= 10.0 )return log(fabs(CompleteGamma(x)));
   //
   // log(fabs(dgamma(x))) for fabs(x) > 10.0
   //
   if( y > xmax )
     throw EExpressionError( wxT("LnAbsGamma: fabs(x) causes overflow") );
-  try
-  {
-    if( x > 0.0 )return log(sqrt(2*M_PI)) + (x-0.5)*log(x) - x + LogGammaCorrection(y);
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  if( x > 0.0 )return log(sqrt(2*M_PI)) + (x-0.5)*log(x) - x + LogGammaCorrection(y);
   double sinpiy = fabs(sin(M_PI*y));
   if( sinpiy == 0.0 )
     throw EExpressionError( wxT("LnAbsGamma: x is a negative integer") );
   if( fabs((x-static_cast<int>(x-0.5))/x) < dxrel )
     throw EExpressionError(
      wxT("LnAbsGamma: answer < half precision because x too near negative integer") );
-  try
-  {
-    return log(sqrt(M_PI/2)) + (x-0.5)*log(y) - x - log(sinpiy) - LogGammaCorrection(y);
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  return log(sqrt(M_PI/2)) + (x-0.5)*log(y) - x - log(sinpiy) - LogGammaCorrection(y);
 }
 
 double LnGamma( double x )
@@ -3591,23 +3465,9 @@ double CompleteGamma( double x )
   double const sq2pil = 0.91893853320467274178032973640562;
   double eps = std::numeric_limits<double>::epsilon();
   int ngam;
-  try
-  {
-    ngam = Initds( gamcs, 42, 0.1*eps );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  ngam = Initds( gamcs, 42, 0.1*eps );
   double xmin, xmax;
-  try
-  {
-    ComputeGammaBounds( xmin, xmax );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  ComputeGammaBounds( xmin, xmax );
   double dxrel = sqrt(2*eps);
   double y = fabs(x);
   double result = 0.0;
@@ -3615,14 +3475,7 @@ double CompleteGamma( double x )
   {
     if( x > xmax )throw EExpressionError( wxT("CompleteGamma: x is too large") );
     if( x < xmin )throw EExpressionError( wxT("CompleteGamma: x is too small") );
-    try
-    {
-      result = exp( (y-0.5)*log(y) - y + sq2pil + LogGammaCorrection(y) );
-    }
-    catch( EExpressionError &e )
-    {
-      throw;
-    }
+    result = exp( (y-0.5)*log(y) - y + sq2pil + LogGammaCorrection(y) );
     if( x > 0.0 )return result;
     if( fabs((x-static_cast<int>(x-0.5))/x) < dxrel )
       throw EExpressionError(
@@ -3640,14 +3493,7 @@ double CompleteGamma( double x )
   if( x < 0.0 )--n;
   y = x - n;
   --n;
-  try
-  {
-    result = 0.9375 + NTermChebyshevSeries( 2.0*y-1.0, gamcs, ngam );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  result = 0.9375 + NTermChebyshevSeries( 2.0*y-1.0, gamcs, ngam );
   if( n == 0 )return result;
   if( n > 0 ) // gamma(x) for x >= 2 and x <= 10
   {
@@ -4152,14 +3998,7 @@ double LogGammaCorrection( double x )
     +.1276642195630062933333333333333e-30 };
   double const eps = std::numeric_limits<double>::epsilon();
   int nalgm;
-  try
-  {
-    nalgm = Initds( algmcs, 15, eps );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  nalgm = Initds( algmcs, 15, eps );
   double const xbig = 1.0/sqrt(eps);
   double const xmax = exp( std::min( log(std::numeric_limits<double>::max()/12.0),
                                -log(12.0*std::numeric_limits<double>::min()) ) );
@@ -4168,14 +4007,7 @@ double LogGammaCorrection( double x )
   if( x >= xmax )
     throw EExpressionError( wxT("LogGammaCorrection: x is too large") );
   double result = 1.0/(12.0*x);
-  try
-  {
-    if( x < xbig )result = NTermChebyshevSeries(200.0/(x*x)-1.0,algmcs,nalgm)/x;
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  if( x < xbig )result = NTermChebyshevSeries(200.0/(x*x)-1.0,algmcs,nalgm)/x;
   return result;
 }
 
@@ -4287,15 +4119,8 @@ double Airy( double x )
                           +.19900855034518869333333333333333e-29,
                           +.74702885256533333333333333333333e-33};
   int naif, naig;
-  try
-  {
-    naif = Initds(aifcs,13,0.1*std::numeric_limits<double>::epsilon());
-    naig = Initds(aigcs,13,0.1*std::numeric_limits<double>::epsilon());
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  naif = Initds(aifcs,13,0.1*std::numeric_limits<double>::epsilon());
+  naig = Initds(aigcs,13,0.1*std::numeric_limits<double>::epsilon());
   double const x3sml = pow(std::numeric_limits<double>::epsilon(),0.3334);
   double xmax = pow((-1.5*log(std::numeric_limits<double>::min())),0.6667);
   xmax = xmax - xmax*log(xmax)/(4.0*sqrt(xmax)+1.0) - 0.01;
@@ -4304,41 +4129,20 @@ double Airy( double x )
     if( x > 1.0 )
     {
       if( x > xmax )throw EExpressionError(wxT("Airy: x so big AI underflows"));
-      try
-      {
-        return AiryNegative(x)*exp(-2.0*x*sqrt(x)/3.0);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      return AiryNegative(x)*exp(-2.0*x*sqrt(x)/3.0);
     }
     else
     {
       double z = 0.0;
       if( fabs(x) > x3sml )z = pow(x,3.0);
-      try
-      {
-        return 0.375+NTermChebyshevSeries(z,aifcs,naif) -
-            x*(0.25+NTermChebyshevSeries(z,aigcs,naig));
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      return 0.375+NTermChebyshevSeries(z,aifcs,naif) -
+          x*(0.25+NTermChebyshevSeries(z,aigcs,naig));
     }
   }
   else
   {
     double xm, theta;
-    try
-    {
-      AiryModulusPhase( x, xm, theta );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    AiryModulusPhase( x, xm, theta );
     return xm*cos(theta);
   }
 }
@@ -4733,19 +4537,12 @@ void AiryModulusPhase( double x, double &ampl, double &theta )
   //
   double const eta = 0.1*std::numeric_limits<double>::epsilon();
   int nam20, nath0, nam21, nath1, nam22, nath2;
-  try
-  {
-    nam20 = Initds(am20cs,57,eta);
-    nath0 = Initds(ath0cs,53,eta);
-    nam21 = Initds(am21cs,60,eta);
-    nath1 = Initds(ath1cs,58,eta);
-    nam22 = Initds(am22cs,74,eta);
-    nath2 = Initds(ath2cs,72,eta);
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  nam20 = Initds(am20cs,57,eta);
+  nath0 = Initds(ath0cs,53,eta);
+  nam21 = Initds(am21cs,60,eta);
+  nath1 = Initds(ath1cs,58,eta);
+  nam22 = Initds(am22cs,74,eta);
+  nath2 = Initds(ath2cs,72,eta);
   double xsml = -1.0/pow(std::numeric_limits<double>::epsilon(),0.3333);
   if( x >= -4.0 )
   {
@@ -4754,43 +4551,22 @@ void AiryModulusPhase( double x, double &ampl, double &theta )
       if( x >= -1.0 )
         throw EExpressionError(wxT("AiryModulusPhase: x must be <= -1.0"));
       double z = (16.0/pow(x,3.0)+9.0)/7.0;
-      try
-      {
-        ampl = 0.3125 + NTermChebyshevSeries( z, am22cs, nam22 );
-        theta = -0.625 + NTermChebyshevSeries( z, ath2cs, nath2 );
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      ampl = 0.3125 + NTermChebyshevSeries( z, am22cs, nam22 );
+      theta = -0.625 + NTermChebyshevSeries( z, ath2cs, nath2 );
     }
     else
     {
       double z = (128.0/pow(x,3.0)+9.0)/7.0;
-      try
-      {
-        ampl = 0.3125 + NTermChebyshevSeries( z, am21cs, nam21 );
-        theta = -0.625 + NTermChebyshevSeries( z, ath1cs, nath1 );
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      ampl = 0.3125 + NTermChebyshevSeries( z, am21cs, nam21 );
+      theta = -0.625 + NTermChebyshevSeries( z, ath1cs, nath1 );
     }
   }
   else
   {
     double z = 1.0;
     if( x > xsml )z = 128.0/pow(x, 3.0) + 1.0;
-    try
-    {
-      ampl = 0.3125 + NTermChebyshevSeries( z, am20cs, nam20 );
-      theta = -0.625 + NTermChebyshevSeries( z, ath0cs, nath0 );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    ampl = 0.3125 + NTermChebyshevSeries( z, am20cs, nam20 );
+    theta = -0.625 + NTermChebyshevSeries( z, ath0cs, nath0 );
   }
   double sqrtx = sqrt(-x);
   ampl = sqrt(ampl/sqrtx);
@@ -4932,17 +4708,10 @@ double AiryNegative( double x )
       +.347570964526601147340117333333e-31};
   double const eta = 0.1*std::numeric_limits<double>::epsilon();
   int naif, naig, naip1, naip2;
-  try
-  {
-    naif = Initds(aifcs,13,eta);
-    naig = Initds(aigcs,13,eta);
-    naip1 = Initds(aip1cs,57,eta);
-    naip2 = Initds(aip2cs,37,eta);
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  naif = Initds(aifcs,13,eta);
+  naig = Initds(aigcs,13,eta);
+  naip1 = Initds(aip1cs,57,eta);
+  naip2 = Initds(aip2cs,37,eta);
   //
   double x3sml = pow(eta,0.3333);
   double x32sml = 1.3104*pow(x3sml,2.0);
@@ -4958,55 +4727,27 @@ double AiryNegative( double x )
       {
         double z = -1.0;
         if( x < xbig )z = 16.0/(x*sqrtx)-1.0;
-        try
-        {
-          ans = (0.28125+NTermChebyshevSeries(z,aip2cs,naip2))/sqrt(sqrtx);
-        }
-        catch (EExpressionError &e)
-        {
-          throw;
-        }
+        ans = (0.28125+NTermChebyshevSeries(z,aip2cs,naip2))/sqrt(sqrtx);
       }
       else
       {
         double const z = (16.0/(x*sqrtx)-9.0)/7.0;
-        try
-        {
-          ans = (0.28125+NTermChebyshevSeries(z,aip1cs,naip1))/sqrt(sqrtx);
-        }
-        catch (EExpressionError &e)
-        {
-          throw;
-        }
+        ans = (0.28125+NTermChebyshevSeries(z,aip1cs,naip1))/sqrt(sqrtx);
       }
     }
     else
     {
       double z = 0.0;
       if( fabs(x) > x3sml )z = pow(x,3.0);
-      try
-      {
-        ans = 0.375 + (NTermChebyshevSeries(z,aifcs,naif)-
-                       x*(0.25+NTermChebyshevSeries(z,aigcs,naig)));
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      ans = 0.375 + (NTermChebyshevSeries(z,aifcs,naif)-
+                     x*(0.25+NTermChebyshevSeries(z,aigcs,naig)));
       if( x > x32sml )ans *= exp(2.0*x*sqrt(x)/3.0);
     }
   }
   else
   {
     double xm, theta;
-    try
-    {
-      AiryModulusPhase( x, xm, theta );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    AiryModulusPhase( x, xm, theta );
     ans = xm*cos(theta);
   }
   return ans;
@@ -5032,14 +4773,7 @@ double BesselI0( double x )
   if( y > 3.0 )
   {
     if( y > log(xmax) )throw EExpressionError( wxT("BesselI0: argument too large") );
-    try
-    {
-      answer = exp(y)*EBesselI0(x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    answer = exp(y)*EBesselI0(x);
   }
   else
   {
@@ -5054,15 +4788,8 @@ double BesselI0( double x )
       +.9535680890248770026944341333333333e-20, +.3154382039721427336789333333333333e-22,
       +.9004564101094637431466666666666666e-25, +.2240647369123670016000000000000000e-27,
       +.4903034603242837333333333333333333e-30, +.9508172606122666666666666666666666e-33 };
-    try
-    {
-      int const n = Initds(b,18,0.1*eps);
-      if( y > sqrt(8.0*eps) )answer = 2.75+NTermChebyshevSeries(y*y/4.5-1.0,b,n);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int const n = Initds(b,18,0.1*eps);
+    if( y > sqrt(8.0*eps) )answer = 2.75+NTermChebyshevSeries(y*y/4.5-1.0,b,n);
   }
   return answer;
 }
@@ -5124,15 +4851,8 @@ double EBesselI0( double x )
         +.3625309510541569975700684800000e-28, -.5733627999055713589945958399999e-29,
         +.3736796722063098229642581333333e-30, +.1602073983156851963365512533333e-30,
         -.8700424864057229884522495999999e-31, +.2741320937937481145603413333333e-31 };
-      try
-      {
-        int const n = Initds(a,46,0.1*eps);
-        answer = (0.375+NTermChebyshevSeries((48.0/y-11.0)/5.0,a,n))/sqrt(y);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int const n = Initds(a,46,0.1*eps);
+      answer = (0.375+NTermChebyshevSeries((48.0/y-11.0)/5.0,a,n))/sqrt(y);
     }
     else  // y > 8.0
     {
@@ -5172,15 +4892,8 @@ double EBesselI0( double x )
         -.1102259120409223803217794787792e-29, +.1886287118039704490077874479431e-30,
         +.2160196872243658913149031414060e-30, -.1605454124919743200584465949655e-30,
         +.1965352984594290603938848073318e-31 };
-      try
-      {
-        int const n = Initds(a,69,0.1*eps);
-        answer = (0.375+NTermChebyshevSeries((16.0/y-1.0),a,n))/sqrt(y);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int const n = Initds(a,69,0.1*eps);
+      answer = (0.375+NTermChebyshevSeries((16.0/y-1.0),a,n))/sqrt(y);
     }
   }
   else // y <= 3.0
@@ -5198,15 +4911,8 @@ double EBesselI0( double x )
         +.9535680890248770026944341333333333e-20, +.3154382039721427336789333333333333e-22,
         +.9004564101094637431466666666666666e-25, +.2240647369123670016000000000000000e-27,
         +.4903034603242837333333333333333333e-30, +.9508172606122666666666666666666666e-33 };
-      try
-      {
-        int const n = Initds(b,18,0.1*eps);
-        answer = exp(-y)*(2.75+NTermChebyshevSeries(y*y/4.5-1.0,b,n));
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int const n = Initds(b,18,0.1*eps);
+      answer = exp(-y)*(2.75+NTermChebyshevSeries(y*y/4.5-1.0,b,n));
     }
   }
   return answer;
@@ -5236,14 +4942,7 @@ double BesselI1( double x )
   {
     if( y > log(xmax) )throw EExpressionError( wxT("BesselI1: argument too large") );
     double answer;
-    try
-    {
-      answer = exp(y)*EBesselI1(x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    answer = exp(y)*EBesselI1(x);
     return answer;
   }
   if( y < 2.0*xmin )throw EExpressionError( wxT("BesselI1: argument too small") );
@@ -5260,15 +4959,8 @@ double BesselI1( double x )
       +.36450935657866949458491733333333e-21, +.11205749502562039344810666666666e-23,
       +.29875441934468088832000000000000e-26, +.69732310939194709333333333333333e-29,
       +.14367948220620800000000000000000e-31 };
-    try
-    {
-      int n = Initds(b,17,0.1*eps);
-      answer = x*(0.875+NTermChebyshevSeries(y*y/4.5-1.0,b,n));
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n = Initds(b,17,0.1*eps);
+    answer = x*(0.875+NTermChebyshevSeries(y*y/4.5-1.0,b,n));
   }
   return answer;
 }
@@ -5333,15 +5025,8 @@ double EBesselI1( double x )
         -.3596589107984244158535215786666e-28 , +.5448178578948418576650513066666e-29 ,
         -.2731831789689084989162564266666e-30 , -.1858905021708600715771903999999e-30 ,
         +.9212682974513933441127765333333e-31 , -.2813835155653561106370833066666e-31 };
-      try
-      {
-        int n = Initds(a,46,0.1*eps);
-        answer = (0.375+NTermChebyshevSeries((48.0/y-11)/5.0,a,n))/sqrt(y);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int n = Initds(a,46,0.1*eps);
+      answer = (0.375+NTermChebyshevSeries((48.0/y-11)/5.0,a,n))/sqrt(y);
     }
     else
     {
@@ -5381,15 +5066,8 @@ double EBesselI1( double x )
         +.1114548172988164547413709273694e-29  , -.1808343145039336939159368876687e-30  ,
         -.2231677718203771952232448228939e-30  , +.1619029596080341510617909803614e-30  ,
         -.1834079908804941413901308439210e-31 };
-      try
-      {
-        int n = Initds(a,69,0.1*eps);
-        answer = (0.375+NTermChebyshevSeries(16.0/y-1.0,a,n))/sqrt(y);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int n = Initds(a,69,0.1*eps);
+      answer = (0.375+NTermChebyshevSeries(16.0/y-1.0,a,n))/sqrt(y);
     }
     if( x >= 0.0 )answer =  fabs(answer);
     else          answer = -fabs(answer);
@@ -5410,15 +5088,8 @@ double EBesselI1( double x )
         +.36450935657866949458491733333333e-21 , +.11205749502562039344810666666666e-23 ,
         +.29875441934468088832000000000000e-26 , +.69732310939194709333333333333333e-29 ,
         +.14367948220620800000000000000000e-31 };
-      try
-      {
-        int n = Initds(b,17,0.1*eps);
-        answer = x*(0.875+NTermChebyshevSeries(y*y/4.5-1.0,b,n));
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int n = Initds(b,17,0.1*eps);
+      answer = x*(0.875+NTermChebyshevSeries(y*y/4.5-1.0,b,n));
     }
     answer *= exp(-y);
   }
@@ -5444,16 +5115,9 @@ double BesselJ0( double x )
   double const y = fabs(x);
   if( y > 4.0 )
   {
-    try
-    {
-      double ampl, theta;
-      Bessel0ModulusPhase(y,ampl,theta);
-      answer = ampl*cos(theta);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    double ampl, theta;
+    Bessel0ModulusPhase(y,ampl,theta);
+    answer = ampl*cos(theta);
   }
   else
   {
@@ -5471,15 +5135,8 @@ double BesselJ0( double x )
         +.23024281584337436200523093333333e-21, -.10319144794166698148522666666666e-23,
         +.40608178274873322700800000000000e-26, -.14143836005240913919999999999999e-28,
         +.43910905496698880000000000000000e-31 };
-      try
-      {
-        int n = Initds(b,19,0.1*eps);
-        answer = NTermChebyshevSeries(0.125*y*y-1.0,b,n);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int n = Initds(b,19,0.1*eps);
+      answer = NTermChebyshevSeries(0.125*y*y-1.0,b,n);
     }
   }
   return answer;
@@ -5503,16 +5160,9 @@ double BesselJ1( double x )
   double answer;
   if( y > 4.0 )
   {
-    try
-    {
-      double ampl, theta;
-      Bessel1ModulusPhase(y,ampl,theta);
-      answer = ampl*cos(theta);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    double ampl, theta;
+    Bessel1ModulusPhase(y,ampl,theta);
+    answer = ampl*cos(theta);
   }
   else
   {
@@ -5533,15 +5183,8 @@ double BesselJ1( double x )
         +.773947881939274637298346666666666e-23, -.324869378211199841143466666666666e-25,
         +.120223767722741022720000000000000e-27, -.395201221265134933333333333333333e-30,
         +.116167808226645333333333333333333e-32 };
-      try
-      {
-        int const n = Initds(b,19,0.1*eps);
-        answer = x*(0.25+NTermChebyshevSeries(0.125*y*y-1.0,b,n));
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int const n = Initds(b,19,0.1*eps);
+      answer = x*(0.25+NTermChebyshevSeries(0.125*y*y-1.0,b,n));
     }
   }
   return answer;
@@ -5587,14 +5230,7 @@ void BesselJn( double x, double a, int nnn, int D, double *j )
   double const eps = 0.5*pow(10.0,static_cast<double>(-D));
   double D1 = 2.3026*static_cast<double>(D)+1.3863;
   double sum;
-  try
-  {
-    sum = pow((x/2.0),a)/CompleteGamma(1.0+a);
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  sum = pow((x/2.0),a)/CompleteGamma(1.0+a);
   int kk = 1;
   double t2 = 0.0;
   double x1 = x;
@@ -5706,14 +5342,7 @@ double BesselK0( double x )
     double t = -log(xmin);
     if( x > t-0.5*t*log(t)/(t+0.5) )
       throw EExpressionError( wxT("BesselK0: argument is too large") );
-    try
-    {
-      answer = exp(-x)*EBesselK0(x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    answer = exp(-x)*EBesselK0(x);
   }
   else
   {
@@ -5728,15 +5357,8 @@ double BesselK0( double x )
       +.357089652850837359099688597333333e-18, +.763164366011643737667498666666666e-21,
       +.136542498844078185908053333333333e-23, +.207527526690666808319999999999999e-26,
       +.271281421807298560000000000000000e-29, +.308259388791466666666666666666666e-32 };
-    try
-    {
-      int const n = Initds(b,16,0.1*eps);
-      answer = -log(0.5*x)*BesselI0(x)-0.25+NTermChebyshevSeries(0.5*y-1.0,b,n);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int const n = Initds(b,16,0.1*eps);
+    answer = -log(0.5*x)*BesselI0(x)-0.25+NTermChebyshevSeries(0.5*y-1.0,b,n);
   }
   return answer;
 }
@@ -5794,15 +5416,8 @@ double EBesselK0( double x )
         +.8193483971121307640135680000000e-28, -.1642000275459297726780757333333e-28,
         +.3316143281480227195890346666666e-29, -.6746863644145295941085866666666e-30,
         +.1382429146318424677635413333333e-30, -.2851874167359832570811733333333e-31 };
-      try
-      {
-        int const n = Initds(a,38,0.1*eps);
-        answer = (1.25+NTermChebyshevSeries((16.0/x-5)/3.0,a,n))/sqrt(x);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int const n = Initds(a,38,0.1*eps);
+      answer = (1.25+NTermChebyshevSeries((16.0/x-5)/3.0,a,n))/sqrt(x);
     }
     else
     {
@@ -5824,15 +5439,8 @@ double EBesselK0( double x )
         +.1569806306635368939301546666666e-28, -.2988226453005757788979199999999e-29  ,
         +.5796831375216836520618666666666e-30, -.1145035994347681332155733333333e-30  ,
         +.2301266594249682802005333333333e-31 };
-      try
-      {
-        int const n = Initds(a,33,0.1*eps);
-        answer = (1.25+NTermChebyshevSeries(16.0/x-1.0,a,n))/sqrt(x);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int const n = Initds(a,33,0.1*eps);
+      answer = (1.25+NTermChebyshevSeries(16.0/x-1.0,a,n))/sqrt(x);
     }
   }
   else
@@ -5848,15 +5456,8 @@ double EBesselK0( double x )
       +.357089652850837359099688597333333e-18, +.763164366011643737667498666666666e-21,
       +.136542498844078185908053333333333e-23, +.207527526690666808319999999999999e-26,
       +.271281421807298560000000000000000e-29, +.308259388791466666666666666666666e-32 };
-    try
-    {
-      int const n = Initds(b,16,0.1*eps);
-      answer = (exp(x)*(-log(0.5*x)*BesselI0(x)-0.25+NTermChebyshevSeries(0.5*y-1.0,b,n)));
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int const n = Initds(b,16,0.1*eps);
+    answer = (exp(x)*(-log(0.5*x)*BesselI0(x)-0.25+NTermChebyshevSeries(0.5*y-1.0,b,n)));
   }
   return answer;
 }
@@ -5886,14 +5487,7 @@ double BesselK1( double x )
   {
     double t = -log(xmin);
     if( x > t-0.5*t*log(t)/(t+0.5) )throw EExpressionError( wxT("BesselK1: argument too large") );
-    try
-    {
-      answer = exp(-x)*EBesselK1(x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    answer = exp(-x)*EBesselK1(x);
   }
   else
   {
@@ -5910,15 +5504,8 @@ double BesselK1( double x )
       -.70238634793862875971783797120000e-17, -.16543275155100994675491029333333e-19,
       -.32338347459944491991893333333333e-22, -.53312750529265274999466666666666e-25,
       -.75130407162157226666666666666666e-28, -.91550857176541866666666666666666e-31 };
-    try
-    {
-      int n = Initds(b,16,0.1*eps);
-      answer = log(0.5*x)*BesselI1(x)+(0.75+NTermChebyshevSeries(0.5*y-1.0,b,n))/x;
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n = Initds(b,16,0.1*eps);
+    answer = log(0.5*x)*BesselI1(x)+(0.75+NTermChebyshevSeries(0.5*y-1.0,b,n))/x;
   }
   return answer;
 }
@@ -5979,15 +5566,8 @@ double EBesselK1( double x )
         -.88932884769020194062336000000000e-28 , +.17794680018850275131392000000000e-28 ,
         -.35884555967329095821994666666666e-29 , +.72906290492694257991679999999999e-30 ,
         -.14918449845546227073024000000000e-30 , +.30736573872934276300799999999999e-31 };
-      try
-      {
-        int n = Initds(a,38,0.1*eps);
-        answer = (1.25+NTermChebyshevSeries((16.0/x-5.0)/3.0,a,n))/sqrt(x);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int n = Initds(a,38,0.1*eps);
+      answer = (1.25+NTermChebyshevSeries((16.0/x-5.0)/3.0,a,n))/sqrt(x);
     }
     else
     {
@@ -6009,15 +5589,8 @@ double EBesselK1( double x )
         -.1654585918039257548936533333333e-28 , +.3145111321357848674303999999999e-29 ,
         -.6092998312193127612416000000000e-30 , +.1202021939369815834623999999999e-30 ,
         -.2412930801459408841386666666666e-31 };
-      try
-      {
-        int n = Initds(a,33,0.1*eps);
-        answer = (1.25+NTermChebyshevSeries(16.0/x-1.0,a,n))/sqrt(x);
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      int n = Initds(a,33,0.1*eps);
+      answer = (1.25+NTermChebyshevSeries(16.0/x-1.0,a,n))/sqrt(x);
     }
   }
   else
@@ -6035,15 +5608,8 @@ double EBesselK1( double x )
       -.70238634793862875971783797120000e-17 , -.16543275155100994675491029333333e-19 ,
       -.32338347459944491991893333333333e-22 , -.53312750529265274999466666666666e-25 ,
       -.75130407162157226666666666666666e-28 , -.91550857176541866666666666666666e-31 };
-    try
-    {
-      int n = Initds(b,16,0.1*eps);
-      answer = exp(x)*(log(0.5*x)*BesselI1(x)+(0.75+NTermChebyshevSeries(0.5*y-1.0,b,n))/x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n = Initds(b,16,0.1*eps);
+    answer = exp(x)*(log(0.5*x)*BesselI1(x)+(0.75+NTermChebyshevSeries(0.5*y-1.0,b,n))/x);
   }
   return answer;
 }
@@ -6069,16 +5635,9 @@ double BesselY0( double x )
   double answer;
   if( x > 4.0 )
   {
-    try
-    {
-      double ampl, theta;
-      Bessel0ModulusPhase( x, ampl, theta );
-      answer = ampl*sin(theta);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    double ampl, theta;
+    Bessel0ModulusPhase( x, ampl, theta );
+    answer = ampl*sin(theta);
   }
   else
   {
@@ -6095,16 +5654,9 @@ double BesselY0( double x )
       -.3906843476710437330740906666666e-21, +.1795503664436157949829120000000e-23,
       -.7229627125448010478933333333333e-26, +.2571727931635168597333333333333e-28,
       -.8141268814163694933333333333333e-31 };
-    try
-    {
-      int n = Initds( b, 19, 0.1*eps );
-      answer = 2.0/M_PI*log(0.5*x)*BesselJ0(x) + 0.375 +
-          NTermChebyshevSeries(0.125*y-1.0,b,n);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n = Initds( b, 19, 0.1*eps );
+    answer = 2.0/M_PI*log(0.5*x)*BesselJ0(x) + 0.375 +
+        NTermChebyshevSeries(0.125*y-1.0,b,n);
   }
   return answer;
 }
@@ -6128,16 +5680,9 @@ double BesselY1( double x )
   double answer;
   if( x > 4.0 )
   {
-    try
-    {
-      double ampl, theta;
-      Bessel1ModulusPhase( x, ampl, theta );
-      answer = ampl*sin(theta);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    double ampl, theta;
+    Bessel1ModulusPhase( x, ampl, theta );
+    answer = ampl*sin(theta);
   }
   else
   {
@@ -6159,15 +5704,8 @@ double BesselY1( double x )
       +.106853153391168259757070336000000e-19, -.527472195668448228943872000000000e-22,
       +.227019940315566414370133333333333e-24, -.859539035394523108693333333333333e-27,
       +.288540437983379456000000000000000e-29, -.864754113893717333333333333333333e-32 };
-    try
-    {
-      int n = Initds(b,20,0.1*eps);
-      answer = 2.0/M_PI*log(0.5*x)*BesselJ1(x)+(0.5+NTermChebyshevSeries(0.125*y-1.0,b,n))/x;
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n = Initds(b,20,0.1*eps);
+    answer = 2.0/M_PI*log(0.5*x)*BesselJ1(x)+(0.5+NTermChebyshevSeries(0.125*y-1.0,b,n))/x;
   }
   return answer;
 }
@@ -6231,15 +5769,8 @@ void Bessel0ModulusPhase( double x, double &ampl, double &theta )
       +.6149512428936330071503575161324e-29 , -.2255766896581828349944300237242e-29 ,
       +.8399707509294299486061658353200e-30 , -.3172997595562602355567423936152e-30 ,
       +.1215205298881298554583333026514e-30 , -.4715852749754438693013210568045e-31 };
-    try
-    {
-      int n1 = Initds(b1,40,0.1*eps);
-      ampl = (0.75+NTermChebyshevSeries(z,b1,n1))/sqrt(x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n1 = Initds(b1,40,0.1*eps);
+    ampl = (0.75+NTermChebyshevSeries(z,b1,n1))/sqrt(x);
     double const b2[44] =
     { -.24901780862128936717709793789967e+0 , +.48550299609623749241048615535485e-3 ,
       -.54511837345017204950656273563505e-5 , +.13558673059405964054377445929903e-6 ,
@@ -6263,15 +5794,8 @@ void Bessel0ModulusPhase( double x, double &ampl, double &theta )
       -.24992261166978652421207213682763e-29, +.98399794299521955672828260355318e-30,
       -.39220375242408016397989131626158e-30, +.15818107030056522138590618845692e-30,
       -.64525506144890715944344098365426e-31, +.26611111369199356137177018346367e-31 };
-    try
-    {
-      int n2 = Initds(b2,44,0.1*eps);
-      theta = x-M_PI/4.0+NTermChebyshevSeries(z,b2,n2)/x;
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n2 = Initds(b2,44,0.1*eps);
+    theta = x-M_PI/4.0+NTermChebyshevSeries(z,b2,n2)/x;
   }
   else
   {
@@ -6296,15 +5820,8 @@ void Bessel0ModulusPhase( double x, double &ampl, double &theta )
       +.1411804686144259308038826666666e-28 , -.3298094961231737245750613333333e-29 ,
       +.7763931143074065031714133333333e-30 , -.1841031343661458478421333333333e-30 ,
       +.4395880138594310737100799999999e-31 };
-    try
-    {
-      int n1 = Initds(b1,37,0.1*eps);
-      ampl = (0.75+NTermChebyshevSeries(z,b1,n1))/sqrt(x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n1 = Initds(b1,37,0.1*eps);
+    ampl = (0.75+NTermChebyshevSeries(z,b1,n1))/sqrt(x);
     double const b2[39] =
     { -.24548295213424597462050467249324e+0 , +.12544121039084615780785331778299e-2 ,
       -.31253950414871522854973446709571e-4 , +.14709778249940831164453426969314e-5 ,
@@ -6326,15 +5843,8 @@ void Bessel0ModulusPhase( double x, double &ampl, double &theta )
       -.86560755713629122479172266666666e-29, +.20779909972536284571238399999999e-29,
       -.50211170221417221674325333333333e-30, +.12208360279441714184191999999999e-30,
       -.29860056267039913454250666666666e-31 };
-    try
-    {
-      int n2 = Initds(b2,39,0.1*eps);
-      theta = x-M_PI/4.0+NTermChebyshevSeries(z,b2,n2)/x;
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n2 = Initds(b2,39,0.1*eps);
+    theta = x-M_PI/4.0+NTermChebyshevSeries(z,b2,n2)/x;
   }
 }
 
@@ -6398,15 +5908,8 @@ void Bessel1ModulusPhase( double x, double &ampl, double &theta )
       -.6563031314841980867618635050373e-29 , +.2404898976919960653198914875834e-29 ,
       -.8945966744690612473234958242979e-30 , +.3376085160657231026637148978240e-30 ,
       -.1291791454620656360913099916966e-30 , +.5008634462958810520684951501254e-31 };
-    try
-    {
-      int n1 = Initds(b1,40,0.1*eps);
-      ampl = (0.75+NTermChebyshevSeries(z,b1,n1))/sqrt(x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n1 = Initds(b1,40,0.1*eps);
+    ampl = (0.75+NTermChebyshevSeries(z,b1,n1))/sqrt(x);
     double const b2[44] =
     { +.74749957203587276055443483969695e+0  , -.12400777144651711252545777541384e-2  ,
       +.99252442404424527376641497689592e-5  , -.20303690737159711052419375375608e-6  ,
@@ -6430,15 +5933,8 @@ void Bessel1ModulusPhase( double x, double &ampl, double &theta )
       +.26566028671720419358293422672212e-29 , -.10450402527914452917714161484670e-29 ,
       +.41618290825377144306861917197064e-30 , -.16771639203643714856501347882887e-30 ,
       +.68361997776664389173535928028528e-31 , -.28172247861233641166739574622810e-31 };
-    try
-    {
-      int n2 = Initds(b2,44,0.1*eps);
-      theta = x-3.0*M_PI/4.0+NTermChebyshevSeries(z,b2,n2)/x;
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n2 = Initds(b2,44,0.1*eps);
+    theta = x-3.0*M_PI/4.0+NTermChebyshevSeries(z,b2,n2)/x;
   }
   else
   {
@@ -6463,15 +5959,8 @@ void Bessel1ModulusPhase( double x, double &ampl, double &theta )
       -.1584401568222476721192960000000e-28, +.3695641006570938054301013333333e-29,
       -.8687115921144668243012266666666e-30, +.2057080846158763462929066666666e-30,
       -.4905225761116225518523733333333e-31 };
-    try
-    {
-      int n1 = Initds(b1,37,0.1*eps);
-      ampl = (0.75+NTermChebyshevSeries(z,b1,n1))/sqrt(x);
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n1 = Initds(b1,37,0.1*eps);
+    ampl = (0.75+NTermChebyshevSeries(z,b1,n1))/sqrt(x);
     double const b2[39] =
     { +.73823860128742974662620839792764e+0  , -.33361113174483906384470147681189e-2  ,
       +.61463454888046964698514899420186e-4  , -.24024585161602374264977635469568e-5  ,
@@ -6493,15 +5982,8 @@ void Bessel1ModulusPhase( double x, double &ampl, double &theta )
       +.96934745136779622700373333333333e-29 , -.23237636337765716765354666666666e-29 ,
       +.56074510673522029406890666666666e-30 , -.13616465391539005860522666666666e-30 ,
       +.33263109233894654388906666666666e-31 };
-    try
-    {
-      int n2 = Initds(b2,39,0.1*eps);
-      theta = x-3.0*M_PI/4.0+NTermChebyshevSeries(z,b2,n2)/x;
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    int n2 = Initds(b2,39,0.1*eps);
+    theta = x-3.0*M_PI/4.0+NTermChebyshevSeries(z,b2,n2)/x;
   }
 }
 
@@ -6519,17 +6001,10 @@ double CompleteBeta( double a, double b )
     throw EExpressionError( wxT("CompleteBeta: both arguments must be > 0") );
   //
   double xmin, xmax, answer;
-  try
-  {
-    ComputeGammaBounds(xmin,xmax);
-    if( a+b < xmax )return CompleteGamma(a)*CompleteGamma(b)/CompleteGamma(a+b);
-    //
-    answer = LnCompleteBeta(a,b);
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  ComputeGammaBounds(xmin,xmax);
+  if( a+b < xmax )return CompleteGamma(a)*CompleteGamma(b)/CompleteGamma(a+b);
+  //
+  answer = LnCompleteBeta(a,b);
   if( answer < log(std::numeric_limits<double>::min()) )
     throw EExpressionError( wxT("CompleteBeta: parameter too large") );
   return exp(answer);
@@ -6587,15 +6062,8 @@ double Psi( double x )
     +.195867922607736251733333333333e-30, -.775195892523335680000000000000e-32 };
   double const eps = std::numeric_limits<double>::epsilon();
   int ntpsi, ntapsi;
-  try
-  {
-    ntpsi = Initds( psics, 42, 0.1*eps );
-    ntapsi = Initds( apsics, 16, 0.1*eps );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  ntpsi = Initds( psics, 42, 0.1*eps );
+  ntapsi = Initds( apsics, 16, 0.1*eps );
   double const xbig = 1.0/sqrt(eps);
   double const dxrel = sqrt(2.0*eps);
   //
@@ -6604,14 +6072,7 @@ double Psi( double x )
   if( y > 10.0 ) // psi(x) for fabs(x) > 10.0
   {
     double aux = 0.0;
-    try
-    {
-      if( y < xbig )aux = NTermChebyshevSeries( 2.0*(100.0/y/y)-1.0, apsics, ntapsi );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    if( y < xbig )aux = NTermChebyshevSeries( 2.0*(100.0/y/y)-1.0, apsics, ntapsi );
     if( x < 0.0 )answer = log(fabs(x)) - 0.5/x + aux - M_PI/tan(M_PI*x);
     if( x > 0.0 )answer = log(x) - 0.5/x + aux;
   }
@@ -6623,14 +6084,7 @@ double Psi( double x )
     int n = static_cast<int>(x);
     if( x < 0.0 )--n;
     y = x - n;
-    try
-    {
-      answer = NTermChebyshevSeries( 2*y-1, psics, ntpsi );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    answer = NTermChebyshevSeries( 2*y-1, psics, ntpsi );
     if( --n == 0 )return answer;
     if( n > 0 ) // psi(x) for x >= 2.0 and x <= 10.0
     {
@@ -11798,14 +11252,7 @@ void SavitzkyGolay( std::vector<double> &yin, std::vector<double> &yout,
   for( std::size_t i=0; i<filterWidth/2; ++i, ++nl )
   {
     yout[i] = 0.0;
-    try
-    {
-      SavGol( c, filterWidth, nl, filterWidth-nl-1, filterOrder );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    SavGol( c, filterWidth, nl, filterWidth-nl-1, filterOrder );
     //
     // Smooth the point
     //
@@ -11820,14 +11267,7 @@ void SavitzkyGolay( std::vector<double> &yin, std::vector<double> &yout,
   // Handle non-end cases of XIN
   //
   nl = filterWidth/2;
-  try
-  {
-    SavGol( c, filterWidth, nl, filterWidth-nl-1, filterOrder );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  SavGol( c, filterWidth, nl, filterWidth-nl-1, filterOrder );
   for( std::size_t i=filterWidth/2+1; i<=npts-(filterWidth-1)/2; ++i )
   {
     //
@@ -11849,14 +11289,7 @@ void SavitzkyGolay( std::vector<double> &yin, std::vector<double> &yout,
   {
     --nr;
     nl = filterWidth-nr-1;
-    try
-    {
-      SavGol( c, filterWidth, nl, nr, filterOrder );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    SavGol( c, filterWidth, nl, nr, filterOrder );
     //
     // Smooth the point
     //

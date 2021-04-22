@@ -23,14 +23,7 @@ FCN_ferdirac *FCN_ferdirac::fcn_ferdirac_ = 0;
 
 void FCN_ferdirac::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::FermiDirac( rStack[j], rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::FermiDirac( rStack[j], rStack[j+1] );
   rStack.pop_back();
 }
 

@@ -24,14 +24,7 @@ FCN_legendre *FCN_legendre::fcn_legendre_ = 0;
 void FCN_legendre::ScalarEval( int j, std::vector<double> &rStack ) const
 {
   int n = static_cast<int>(rStack[j]);
-  try
-  {
-    rStack[j] = UsefulFunctions::LegendrePolynomial( n, rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::LegendrePolynomial( n, rStack[j+1] );
   rStack.pop_back();
 }
 

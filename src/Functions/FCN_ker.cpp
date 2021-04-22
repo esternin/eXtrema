@@ -23,13 +23,6 @@ FCN_ker *FCN_ker::fcn_ker_ = 0;
 
 void FCN_ker::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Ker( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Ker( rStack[j] );
 }
 

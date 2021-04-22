@@ -46,14 +46,7 @@ CMD_hardcopy::CMD_hardcopy() : Command( wxT("HARDCOPY") )
 void CMD_hardcopy::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch( ECommandError const &e )
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( !p->IsString(1) )throw ECommandError( command+wxT("filename not entered") );
   wxString filename;

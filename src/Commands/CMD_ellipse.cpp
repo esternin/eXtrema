@@ -46,14 +46,7 @@ void CMD_ellipse::Execute( ParseLine const *p )
 {
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError const &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("FIT")] )qualifiers[wxT("POPULATE")] = false;
   if( qualifiers[wxT("POPULATE")] )
@@ -197,15 +190,8 @@ void CMD_ellipse::Execute( ParseLine const *p )
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
     }
-    try
-    {
-      PopulateEllipse( qualifiers[wxT("NPTS")], qualifiers[wxT("XYOUT")], p, counter,
-                       a, b, xc, yc, angle );
-    }
-    catch (ECommandError const &e)
-    {
-      throw;
-    }
+    PopulateEllipse( qualifiers[wxT("NPTS")], qualifiers[wxT("XYOUT")], p, counter,
+                     a, b, xc, yc, angle );
   }
   else  // not a fit, must be populate
   {
@@ -283,15 +269,8 @@ void CMD_ellipse::Execute( ParseLine const *p )
     }
     AddToStackLine( p->GetString(counter++) );
     //
-    try
-    {
-      PopulateEllipse( qualifiers[wxT("NPTS")], qualifiers[wxT("XYOUT")], p, counter,
-                       a, b, xc, yc, angle );
-    }
-    catch (ECommandError const &e)
-    {
-      throw;
-    }
+    PopulateEllipse( qualifiers[wxT("NPTS")], qualifiers[wxT("XYOUT")], p, counter,
+                     a, b, xc, yc, angle );
   }
 }
 

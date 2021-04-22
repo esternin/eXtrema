@@ -103,15 +103,8 @@ void FCN_convolute::ArrayEval( Workspace *ws )
     //
     // Call the discrete fast fourier transform
     //
-    try
-    {
-      UsefulFunctions::ComplexFourierTransform( x, work1, sizeX, sizeX, false );
-      UsefulFunctions::ComplexFourierTransform( b, work2, sizeX, sizeX, false );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    UsefulFunctions::ComplexFourierTransform( x, work1, sizeX, sizeX, false );
+    UsefulFunctions::ComplexFourierTransform( b, work2, sizeX, sizeX, false );
     for( std::size_t k=0; k<sizeX; ++k )
     {
       double tmp = x[k];
@@ -121,14 +114,7 @@ void FCN_convolute::ArrayEval( Workspace *ws )
     //
     // Call the inverse discete fast fourier transform (convolution)
     //
-    try
-    {
-      UsefulFunctions::ComplexFourierTransform( x, work1, sizeX, sizeX, true );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    UsefulFunctions::ComplexFourierTransform( x, work1, sizeX, sizeX, true );
     for( std::size_t k=0; k<sizeX; ++k )ws->SetData( k, x[k]/sizeX );
   }
   else // The blurring function array is assumed to contain an odd number of points,

@@ -136,14 +136,7 @@ void FCN_splsmooth::ArrayEval( Workspace *ws )
   }
   std::vector<double> xx( npts, 0.0 );
   std::vector<double> yy( npts, 0.0 );
-  try
-  {
-    UsefulFunctions::Splsmooth( d1, d2, d4, xx, yy );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  UsefulFunctions::Splsmooth( d1, d2, d4, xx, yy );
   for( int i=0; i<npts; ++i )xx.push_back(yy[i]);
   //
   ws->SetNumberOfDimensions(2);

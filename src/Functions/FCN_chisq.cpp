@@ -24,14 +24,7 @@ FCN_chisq *FCN_chisq::fcn_chisq_ = 0;
 void FCN_chisq::ScalarEval( int j, std::vector<double> &rStack ) const
 {
   int n = static_cast<int>(rStack[j+1]);
-  try
-  {
-    rStack[j] = UsefulFunctions::Chisq( rStack[j], n );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Chisq( rStack[j], n );
   rStack.pop_back();
 }
 

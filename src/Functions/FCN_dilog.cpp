@@ -23,13 +23,6 @@ FCN_dilog *FCN_dilog::fcn_dilog_ = 0;
 
 void FCN_dilog::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::DiLog( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::DiLog( rStack[j] );
 }
 

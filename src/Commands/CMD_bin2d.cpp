@@ -44,14 +44,7 @@ void CMD_bin2d::Execute( ParseLine const *p )
   // BIN2D\MATRIX       mdata mxin myin mout
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("MATRIX")] )
   {

@@ -223,14 +223,7 @@ int GetColorCode( GRA_color *color )
   {
     if( namedColors_[i] == color )return -1*static_cast<int>(i);
   }
-  try
-  {
-    return current_->GetCode( color );
-  }
-  catch (EGraphicsError &e)
-  {
-    throw;
-  }
+  return current_->GetCode( color );
 }
 
 GRA_color *GetColor( wxString const &nameIn )

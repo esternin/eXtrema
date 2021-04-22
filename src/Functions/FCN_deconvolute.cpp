@@ -106,15 +106,8 @@ void FCN_deconvolute::ArrayEval( Workspace *ws )
   //
   // Call the discrete fast fourier transform
   //
-  try
-  {
-    UsefulFunctions::ComplexFourierTransform( x, work1, sizeX, sizeX, false );
-    UsefulFunctions::ComplexFourierTransform( b, work2, sizeX, sizeX, false );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  UsefulFunctions::ComplexFourierTransform( x, work1, sizeX, sizeX, false );
+  UsefulFunctions::ComplexFourierTransform( b, work2, sizeX, sizeX, false );
   for( std::size_t k=0; k<sizeX; ++k )
   {
     double denom = b[k]*b[k] + work2[k]*work2[k];
@@ -135,14 +128,7 @@ void FCN_deconvolute::ArrayEval( Workspace *ws )
     x[k] /= sizeX;
     work1[k] /= sizeX;
   }
-  try
-  {
-    UsefulFunctions::ComplexFourierTransform( x, work1, sizeX, sizeX, true );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  UsefulFunctions::ComplexFourierTransform( x, work1, sizeX, sizeX, true );
   ws->SetData( x );
   ws->SetNumberOfDimensions(1);
   ws->SetDimMag( 0, sizeX );

@@ -90,16 +90,9 @@ void FCN_gaussj::ArrayEval( Workspace *ws )
   if( size1 < 2 )
     throw EExpressionError( wxT("GAUSSJ: vector length < 2") );
   //
-  try
-  {
-    std::vector<int> indx( size1, 0 );
-    UsefulFunctions::LUDecomposition( d1, indx );
-    UsefulFunctions::LUSubstitution( d1, indx, d2 );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  std::vector<int> indx( size1, 0 );
+  UsefulFunctions::LUDecomposition( d1, indx );
+  UsefulFunctions::LUSubstitution( d1, indx, d2 );
   /*
     std::vector<double> indxr( size1, 0.0 );
     std::vector<double> indxc( size1, 0.0 );

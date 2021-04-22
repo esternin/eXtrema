@@ -397,14 +397,7 @@ L8:
   //
   if( k == theNumberOfNodes )return;
   kmin = k+1;
-  try
-  {
-    for( size_t k=kmin; k<=theNumberOfNodes; ++k )AddNode( k );
-  }
-  catch (EGraphicsError &e)
-  {
-    throw;
-  }
+  for( size_t k=kmin; k<=theNumberOfNodes; ++k )AddNode( k );
 }
 
 void GRA_thiessenTriangulation::Gradients( double eps, size_t &numberOfIterations )
@@ -622,16 +615,9 @@ void GRA_thiessenTriangulation::Interpolate( size_t nx, size_t ny,
   if( nx<1 )throw EGraphicsError( wxT("Interpolate: nx < 1") );
   if( ny<1 )throw EGraphicsError( wxT("Interpolate: ny < 1") );
   size_t ist = 1;
-  try               // compute interpolated values
+  for( size_t j=0; j<ny; ++j )
   {
-    for( size_t j=0; j<ny; ++j )
-    {
-      for( size_t i=0; i<nx; ++i )InterpolateSub( px[i], py[j], zz[j+i*ny], ist );
-    }
-  }
-  catch (EGraphicsError &e)
-  {
-    throw;
+    for( size_t i=0; i<nx; ++i )InterpolateSub( px[i], py[j], zz[j+i*ny], ist );
   }
 }
 
@@ -1750,15 +1736,8 @@ void GRA_thiessenTriangulation::InterpolateSub( double xp, double yp, double &pz
   z1 = theZ[i1-1];
   z2 = theZ[i2-1];
   z3 = theZ[i3-1];
-  try
-  {
-    pz = tval( xp, yp, x1, x2, x3, y1, y2, y3, z1, z2, z3,
-               zx1, zx2, zx3, zy1, zy2, zy3 );
-  }
-  catch (EGraphicsError &e)
-  {
-    throw;
-  }
+  pz = tval( xp, yp, x1, x2, x3, y1, y2, y3, z1, z2, z3,
+             zx1, zx2, zx3, zy1, zy2, zy3 );
   return;
 L3:
   //

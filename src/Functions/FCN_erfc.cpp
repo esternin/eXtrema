@@ -23,13 +23,6 @@ FCN_erfc *FCN_erfc::fcn_erfc_ = 0;
 
 void FCN_erfc::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::ComplementaryError( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::ComplementaryError( rStack[j] );
 }
 

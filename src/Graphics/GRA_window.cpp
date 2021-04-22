@@ -1556,16 +1556,9 @@ void GRA_window::DisplayBackground( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 void GRA_window::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   DisplayBackground( graphicsOutput, dc );
-  try
-  {
-    drawableVecIter end = drawableObjects_.end();
-    for( drawableVecIter i=drawableObjects_.begin(); i!=end; ++i )
-      (*i)->Draw( graphicsOutput, dc );
-  }
-  catch( EGraphicsError const &e )
-  {
-    throw;
-  }
+  drawableVecIter end = drawableObjects_.end();
+  for( drawableVecIter i=drawableObjects_.begin(); i!=end; ++i )
+    (*i)->Draw( graphicsOutput, dc );
 }
 
 void GRA_window::RemoveLastTextString()

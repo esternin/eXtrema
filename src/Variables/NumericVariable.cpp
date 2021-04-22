@@ -233,14 +233,7 @@ bool NumericVariable::DeletePartial( wxString const &name, wxString const &input
   int numberOfIndices;
   std::vector<double> indexVecs[3];
   bool indexIsScalar[3];
-  try
-  {
-    GetIndices( const_cast<wxString&>(name), numberOfIndices, indexVecs, indexIsScalar );
-  }
-  catch (EVariableError &e)
-  {
-    throw;
-  }
+  GetIndices( const_cast<wxString&>(name), numberOfIndices, indexVecs, indexIsScalar );
   std::vector<double> data( data_.GetData() );
   int size = data.size();
   if( indexIsScalar[0] )
@@ -309,15 +302,8 @@ void NumericVariable::GetIndices( wxString &name, int &numberOfIndices,
   catch ( EExpressionError &e ) {}
   //
   wxString simpleName;
-  try
-  {
-    simpleName = SimpleName( name );
-    CheckReservedName( simpleName );
-  }
-  catch ( EVariableError &e )
-  {
-    throw;
-  }
+  simpleName = SimpleName( name );
+  CheckReservedName( simpleName );
   int nameLen = simpleName.length();
   int indexLen = name.length() - nameLen;
   int dimension = 0;
@@ -464,14 +450,7 @@ NumericVariable *NumericVariable::PutVariable( wxString name,
   int numberOfIndices;
   std::vector<double> indexVecs[3];
   bool indexIsScalar[3];
-  try
-  {
-    GetIndices( name, numberOfIndices, indexVecs, indexIsScalar );
-  }
-  catch (EVariableError &e)
-  {
-    throw;
-  }
+  GetIndices( name, numberOfIndices, indexVecs, indexIsScalar );
   //
   int nmin[3] = {0,0,0}, nmax[3] = {0,0,0};
   int imin[3] = {0,0,0}, imax[3] = {0,0,0};
@@ -652,14 +631,7 @@ NumericVariable *NumericVariable::PutVariable( wxString name,
   int numberOfIndices;
   std::vector<double> indexVecs[3];
   bool indexIsScalar[3];
-  try
-  {
-    GetIndices( name, numberOfIndices, indexVecs, indexIsScalar );
-  }
-  catch (EVariableError &e)
-  {
-    throw;
-  }
+  GetIndices( name, numberOfIndices, indexVecs, indexIsScalar );
   //
   int nmin[3] = {0,0,0}, nmax[3] = {0,0,0};
   int imin[3] = {0,0,0}, imax[3] = {0,0,0};
@@ -859,14 +831,7 @@ NumericVariable *NumericVariable::PutVariable( wxString name,
   int numberOfIndices;
   std::vector<double> indexVecs[3];
   bool indexIsScalar[3];
-  try
-  {
-    GetIndices( name, numberOfIndices, indexVecs, indexIsScalar );
-  }
-  catch (EVariableError &e)
-  {
-    throw;
-  }
+  GetIndices( name, numberOfIndices, indexVecs, indexIsScalar );
   //
   int nmin[3] = {0,0,0}, nmax[3] = {0,0,0};
   int imin[3] = {0,0,0}, imax[3] = {0,0,0};

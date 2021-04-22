@@ -24,14 +24,7 @@ FCN_laguerre *FCN_laguerre::fcn_laguerre_ = 0;
 void FCN_laguerre::ScalarEval( int j, std::vector<double> &rStack ) const
 {
   int n = static_cast<int>(rStack[j]);
-  try
-  {
-    rStack[j] = UsefulFunctions::LaguerrePolynomial( n, rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::LaguerrePolynomial( n, rStack[j+1] );
   rStack.pop_back();
 }
 

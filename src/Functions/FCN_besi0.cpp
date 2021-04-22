@@ -23,13 +23,6 @@ FCN_besi0 *FCN_besi0::fcn_besi0_ = 0;
 
 void FCN_besi0::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::BesselI0( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::BesselI0( rStack[j] );
 }
 

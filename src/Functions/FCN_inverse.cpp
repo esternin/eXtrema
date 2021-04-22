@@ -66,14 +66,7 @@ void FCN_inverse::ArrayEval( Workspace *ws )
     throw EExpressionError( wxT("INVERSE: matrix dimension < 2") );
   //
   std::vector<int> indx( size1, 0 );
-  try
-  {
-    UsefulFunctions::LUDecomposition( d1, indx );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  UsefulFunctions::LUDecomposition( d1, indx );
   std::vector<double> d2( size1*size1, 0.0 );
   std::vector<double> b( size1, 0.0 );
   for( int j=0; j<size1; ++j )

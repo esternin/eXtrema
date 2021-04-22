@@ -387,14 +387,7 @@ void GRA_polarAxes::DrawLabel( GRA_wxWidgets *graphicsOutput, wxDC &dc )
       align = 2; // bottom centre
     }
     GRA_drawableText dt(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
-    try
-    {
-      dt.Parse();
-    }
-    catch ( EGraphicsError const &e )
-    {
-      throw;
-    }
+    dt.Parse();
     dt.Draw( graphicsOutput, dc );
   }
 }

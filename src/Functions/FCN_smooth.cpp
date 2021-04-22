@@ -145,14 +145,7 @@ void FCN_smooth::ArrayEval( Workspace *ws )
   }
   std::vector<double> yy( size3, 0.0 );
   std::vector<double> yderiv( size3, 0.0 );
-  try
-  {
-    UsefulFunctions::SplineSmooth( d1, d2, d3, yy, yderiv, d4 );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  UsefulFunctions::SplineSmooth( d1, d2, d3, yy, yderiv, d4 );
   ws->SetDimMag( 0, yy.size() );
   ws->SetNumberOfDimensions(1);
   ws->SetData( yy );

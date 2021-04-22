@@ -23,14 +23,7 @@ FCN_gammatin *FCN_gammatin::fcn_gammatin_ = 0;
 
 void FCN_gammatin::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::TricomiSIncomplete( rStack[j], rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::TricomiSIncomplete( rStack[j], rStack[j+1] );
   rStack.pop_back();
 }
 

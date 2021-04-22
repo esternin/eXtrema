@@ -226,29 +226,15 @@ void Workspace::GetMinMax( double &min, double &max ) const
 void Workspace::ParseAndCheck( bool expand )
 {
   if( CodesAreParsed() )return;
-  try
-  {
-    ParseCodes( expand );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  ParseCodes( expand );
   if( codes_.empty() )
   {
     throw EExpressionError( wxT("blank expression") );
   }
   if( expand )return;
-  try
-  {
-    SequencingCheck();
-    BracketCheck();
-    FinalCheck();
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  SequencingCheck();
+  BracketCheck();
+  FinalCheck();
   DetermineType();
 }
 
@@ -3409,17 +3395,10 @@ void Workspace::SetUp()
           }
           else if( IsArrayOpEvalType() )
           {
-            try
-            {
-              int tmp = GetNumberOfDimensions();
-              lastCode->GetOpPtr()->ProcessOperand( first, ndmEff, code, oCode, tmp, nloop );
-              SetNumberOfDimensions( tmp );
-              first = false;
-            }
-            catch( EExpressionError &e )
-            {
-              throw;
-            }
+            int tmp = GetNumberOfDimensions();
+            lastCode->GetOpPtr()->ProcessOperand( first, ndmEff, code, oCode, tmp, nloop );
+            SetNumberOfDimensions( tmp );
+            first = false;
           }
         }
         else if( lastCode->IsaFunction() )
@@ -3440,16 +3419,9 @@ void Workspace::SetUp()
           }
           else if( IsArrayFcnEvalType() )
           {
-            try
-            {
-              lastCode->GetFcnPtr()->ProcessArgument( first, ndmEff, nloop );
-              SetNumberOfDimensions( ndmEff );
-              first = false;
-            }
-            catch( EExpressionError &e )
-            {
-              throw;
-            }
+            lastCode->GetFcnPtr()->ProcessArgument( first, ndmEff, nloop );
+            SetNumberOfDimensions( ndmEff );
+            first = false;
           }
           for( unsigned short int j=0; j<nloop; ++j )code->SetIndx( j, j );
         }
@@ -3665,14 +3637,7 @@ void Workspace::Calculate()
           {
             // element by element array evaluation  or  array operator
             //
-            try
-            {
-              lastCode->GetOpPtr()->CalcOperand( first, ndmEff, nptEff, this );
-            }
-            catch( EExpressionError &e )
-            {
-              throw;
-            }
+            lastCode->GetOpPtr()->CalcOperand( first, ndmEff, nptEff, this );
             first = false;
           }
         }
@@ -3682,14 +3647,7 @@ void Workspace::Calculate()
           {
             // element by element array evaluation  or  array function
             //
-            try
-            {
-              lastCode->GetFcnPtr()->CalcArgument( first, ndmEff, nptEff, this );
-            }
-            catch( EExpressionError &e )
-            {
-              throw;
-            }
+            lastCode->GetFcnPtr()->CalcArgument( first, ndmEff, nptEff, this );
             first = false;
           }
         }
@@ -3721,14 +3679,7 @@ void Workspace::Calculate()
   //
   if( IsSimpleEvalType() )
   {
-    try
-    {
-      SimpleEval();
-    }
-    catch( EExpressionError &e )
-    {
-      throw;
-    }
+    SimpleEval();
   }
   else if( IsArrayFcnEvalType() )
   {
@@ -3736,14 +3687,7 @@ void Workspace::Calculate()
   }
   else if( IsArrayOpEvalType() )
   {
-    try
-    {
-      codes_.back()->GetOpPtr()->ArrayEval( this );
-    }
-    catch( EExpressionError &e )
-    {
-      throw;
-    }
+    codes_.back()->GetOpPtr()->ArrayEval( this );
   }
 
   //std::cout << "end Calculate\n";
@@ -3773,40 +3717,19 @@ TOP:
     {
       int narg = (*i)->GetArgCntr();
       j -= narg-1;
-      try
-      {
-        (*i)->GetFcnPtr()->ScalarEval( j, rStack );
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      (*i)->GetFcnPtr()->ScalarEval( j, rStack );
     }
     else if( (*i)->IsaOperator() )
     {
       if( (*i)->IsBinary() )
       {
         --j;
-        try
-        {
-          rStack[j] = (*i)->GetOpPtr()->ScalarEval( rStack[j], rStack[j+1] );
-        }
-        catch (EExpressionError &e)
-        {
-          throw;
-        }
+        rStack[j] = (*i)->GetOpPtr()->ScalarEval( rStack[j], rStack[j+1] );
         rStack.pop_back();
       }
       else
       {
-        try
-        {
-          rStack[j] = (*i)->GetOpPtr()->ScalarEval( rStack[j] );
-        }
-        catch (EExpressionError &e)
-        {
-          throw;
-        }
+        rStack[j] = (*i)->GetOpPtr()->ScalarEval( rStack[j] );
       }
     }
     else if( (*i)->IsaConstant() )

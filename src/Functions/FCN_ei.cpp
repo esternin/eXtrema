@@ -23,13 +23,6 @@ FCN_ei *FCN_ei::fcn_ei_ = 0;
 
 void FCN_ei::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = -UsefulFunctions::ExponentialIntegral( -rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = -UsefulFunctions::ExponentialIntegral( -rStack[j] );
 }
 

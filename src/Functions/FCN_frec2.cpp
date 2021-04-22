@@ -24,13 +24,6 @@ FCN_frec2 *FCN_frec2::fcn_frec2_ = 0;
 
 void FCN_frec2::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::FresnelCAssociated( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::FresnelCAssociated( rStack[j] );
 }
 

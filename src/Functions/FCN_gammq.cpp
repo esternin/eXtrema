@@ -23,14 +23,7 @@ FCN_gammq *FCN_gammq::fcn_gammq_ = 0;
 
 void FCN_gammq::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::IncompleteGamma2( rStack[j], rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::IncompleteGamma2( rStack[j], rStack[j+1] );
   rStack.pop_back();
 }
 

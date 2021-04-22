@@ -165,15 +165,8 @@ void GRA_gradientPlot::DrawLegend( GRA_wxWidgets *outputType, wxDC &dc )
     stmp = wxString(c);
     GRA_drawableText dt2( stmp, height, angle, xhi+0.1, yuaxis-height/2., 1,
                           font, GRA_colorControl::GetColor(wxT("BLACK")) );
-    try
-    {
-      dt.Parse();
-      dt2.Parse();
-    }
-    catch ( EGraphicsError &e )
-    {
-      throw;
-    }
+    dt.Parse();
+    dt2.Parse();
     dt.Draw( outputType, dc );
     dt2.Draw( outputType, dc );
   }

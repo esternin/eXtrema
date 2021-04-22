@@ -62,14 +62,7 @@ void CMD_fit::Execute( ParseLine const *p )
   // fit/poisson/itmax n y = expression
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   bool output = qualifiers[wxT("MESSAGES")] || ExGlobals::NotInaScript() || ExGlobals::GetEcho();
   if( !qualifiers[wxT("MESSAGES")] )output = false;

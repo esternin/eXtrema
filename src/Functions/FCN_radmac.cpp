@@ -23,14 +23,7 @@ FCN_radmac *FCN_radmac::fcn_radmac_ = 0;
 
 void FCN_radmac::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Rademacher( static_cast<int>(rStack[j]), rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Rademacher( static_cast<int>(rStack[j]), rStack[j+1] );
   rStack.pop_back();
 }
 

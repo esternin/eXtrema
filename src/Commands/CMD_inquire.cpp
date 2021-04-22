@@ -44,14 +44,7 @@ void CMD_inquire::Execute( ParseLine const *p )
   if( ExGlobals::NotInaScript() )
     throw ECommandError( wxT("INQUIRE: INQUIRE is only allowed in executable script files") );
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   if( qualifiers[wxT("YESNO")] )
   {
     if( !p->IsString(1) )

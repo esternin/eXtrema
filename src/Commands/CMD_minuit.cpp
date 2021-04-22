@@ -69,14 +69,7 @@ void CMD_minuit::Execute( ParseLine const *p )
   // minuit/weights w y=expression
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   bool output = qualifiers[wxT("MESSAGES")] || ExGlobals::NotInaScript() || ExGlobals::GetEcho();
   if( !qualifiers[wxT("MESSAGES")] )output = false;
   //
@@ -307,14 +300,7 @@ void CMD_minuit::Execute( ParseLine const *p )
   //
   if( qualifiers[wxT("CHISQ")] )
   {
-    try
-    {
-      expr.FinalPass();
-    }
-    catch ( EExpressionError &e )
-    {
-      throw;
-    }
+    expr.FinalPass();
     NumericData result( expr.GetFinalAnswer() );
     std::vector<double> temp( result.GetData() );
     std::size_t N = yVec.size();

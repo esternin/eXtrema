@@ -23,13 +23,6 @@ FCN_gammln *FCN_gammln::fcn_gammln_ = 0;
 
 void FCN_gammln::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::LnGamma( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::LnGamma( rStack[j] );
 }
 

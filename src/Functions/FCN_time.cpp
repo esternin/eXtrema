@@ -33,37 +33,16 @@ void FCN_time::TextScalarEval( int j, std::vector<wxString> &sStack ) const
     wxChar seperator;
     int nh=0, nm=0, ns=0;
     int ampm=0;  // 0 -> not there, 1 -> lower case, 2 -> upper case
-    try
-    {
-      order = ParseInputString( sStack[j], seperator, nh, nm, ns, ampm );
-      AddToFormat( format, order.at(0), nh, nm, ns, ampm );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    order = ParseInputString( sStack[j], seperator, nh, nm, ns, ampm );
+    AddToFormat( format, order.at(0), nh, nm, ns, ampm );
     if( order.size() > 1 )
     {
       format += seperator;
-      try
-      {
-        AddToFormat( format, order.at(1), nh, nm, ns, ampm );
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      AddToFormat( format, order.at(1), nh, nm, ns, ampm );
       if( order.size() > 2 )
       {
         format += seperator;
-        try
-        {
-          AddToFormat( format, order.at(2), nh, nm, ns, ampm );
-        }
-        catch (EExpressionError &e)
-        {
-          throw;
-        }
+        AddToFormat( format, order.at(2), nh, nm, ns, ampm );
       }
     }
     if( ampm == 1 )format += wxT(" %P");

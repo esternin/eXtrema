@@ -23,13 +23,6 @@ FCN_dawson *FCN_dawson::fcn_dawson_ = 0;
 
 void FCN_dawson::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::DawsonIntegral( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::DawsonIntegral( rStack[j] );
 }
 

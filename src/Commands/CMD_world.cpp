@@ -40,14 +40,7 @@ void CMD_world::Execute( ParseLine const *p )
   // WORLD\PERCENT xin yin xout yout
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( p->GetNumberOfTokens() < 3 )throw ECommandError( command+wxT("expecting x and y") );
   if( p->IsNull(1) || p->IsNull(2) )throw ECommandError( command+wxT("expecting x and y") );

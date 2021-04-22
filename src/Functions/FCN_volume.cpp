@@ -140,16 +140,9 @@ void FCN_volume::ArrayEval( Workspace *ws )
   {
     if( size3 != size1 )throw EExpressionError( wxT("VOLUME: vectors have different lengths") );
     if( size1 < 4 )throw EExpressionError( wxT("VOLUME: vector length < 4") );
-    try
-    {
-      GRA_thiessenTriangulation tt( x, y, z );
-      tt.CreateMesh();
-      volume = tt.Volume();
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    GRA_thiessenTriangulation tt( x, y, z );
+    tt.CreateMesh();
+    volume = tt.Volume();
   }
   ws->SetValue( volume );
   ws->SetNumberOfDimensions(0);

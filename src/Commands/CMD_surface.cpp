@@ -48,14 +48,7 @@ void CMD_surface::Execute( ParseLine const *p )
   // SURFACE { X Y } Z { azimuth altitude }
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   //
   wxString command( wxT("SURFACE: ") );
   //

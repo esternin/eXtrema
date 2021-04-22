@@ -23,14 +23,7 @@ FCN_poisson *FCN_poisson::fcn_poisson_ = 0;
 
 void FCN_poisson::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Poisson( rStack[j], static_cast<int>(rStack[j+1]) );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Poisson( rStack[j], static_cast<int>(rStack[j+1]) );
   rStack.pop_back();
 }
 

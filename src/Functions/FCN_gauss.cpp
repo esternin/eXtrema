@@ -23,13 +23,6 @@ FCN_gauss *FCN_gauss::fcn_gauss_ = 0;
 
 void FCN_gauss::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Gauss( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Gauss( rStack[j] );
 }
 

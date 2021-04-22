@@ -100,14 +100,7 @@ void GRA_surfacePlot::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   int w, h;
   dc.GetSize( &w, &h );
   wxPLplotstream *myStream;
-  try
-  {
-    myStream = new wxPLplotstream( (wxDC*)(&dc), w, h );
-  }
-  catch ( EGraphicsError &e )
-  {
-    throw;
-  }
+  myStream = new wxPLplotstream( (wxDC*)(&dc), w, h );
   double basex = 3.0;
   double basey = 3.0;
   double height = 3.0;

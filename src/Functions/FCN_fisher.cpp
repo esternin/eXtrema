@@ -25,14 +25,7 @@ void FCN_fisher::ScalarEval( int j, std::vector<double> &rStack ) const
 {
   int m = static_cast<int>(rStack[j]);
   int n = static_cast<int>(rStack[j+1]);
-  try
-  {
-    rStack[j] = UsefulFunctions::FisherDistribution( m, n, rStack[j+2] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::FisherDistribution( m, n, rStack[j+2] );
   rStack.pop_back();
   rStack.pop_back();
 }

@@ -47,14 +47,7 @@ CMD_show::CMD_show() : Command( wxT("SHOW") )
 void CMD_show::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   int nTokens = p->GetNumberOfTokens();
   qualifiers[wxT("ALL")] = !(qualifiers[wxT("SCALARS")] || qualifiers[wxT("VECTORS")] ||
                         qualifiers[wxT("MATRICES")] || qualifiers[wxT("TENSORS")] ||

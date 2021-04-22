@@ -275,14 +275,7 @@ void VisualizationWindow::SaveBitmap( int xmin, int ymin, int xmax, int ymax,
   dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   dc.StartDoc( wxT("produced by EXTREMA") );
-  try
-  {
-    static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->DrawGraphWindows(&ps,dc);
-  }
-  catch ( EGraphicsError const &e )
-  {
-    throw;
-  }
+  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->DrawGraphWindows(&ps,dc);
   dc.EndDoc();
   wxImage image( tempBM.ConvertToImage() );
   image.SaveFile( filename, type );
@@ -290,14 +283,7 @@ void VisualizationWindow::SaveBitmap( int xmin, int ymin, int xmax, int ymax,
 
 void VisualizationWindow::SavePS( wxString const &filename )
 {
-  try
-  {
-    static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->SavePS( filename );
-  }
-  catch ( EGraphicsError const &e )
-  {
-    throw;
-  }
+  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->SavePS( filename );
 }
 
 void VisualizationWindow::ResetPages()

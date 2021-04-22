@@ -77,14 +77,7 @@ void FCN_fft::ArrayEval( Workspace *ws )
   int nr2 = nr/2;
   double deg2rad = M_PI/180.;
   std::vector<double> b( nr, 0.0 );
-  try
-  {
-    UsefulFunctions::ComplexFourierTransform( a, b, nr, nr, false );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  UsefulFunctions::ComplexFourierTransform( a, b, nr, nr, false );
   //
   // Construct the AMP&PHASE or the H and G coefficients of SIN&COS
   //

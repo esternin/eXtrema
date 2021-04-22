@@ -45,14 +45,7 @@ void CMD_bestfit::Execute( ParseLine const *p )
   // BESTFIT\CYCLES\WEIGHTS w n pmin pmax penalty error parm pout
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   int counter = 1;
   std::vector<double> weights;
@@ -170,15 +163,8 @@ void CMD_bestfit::Execute( ParseLine const *p )
       throw ECommandError( command+wxT("expecting output parameter vector name") );
   //
   std::vector<double> pout(np);
-  try
-  {
-    FitData( static_cast<int>(np), static_cast<int>(nr), ncyc, pmin, pmax, penalties,
-             errors, weights, pcm, pout );
-  }
-  catch( ECommandError &e )
-  {
-    throw;
-  }
+  FitData( static_cast<int>(np), static_cast<int>(nr), ncyc, pmin, pmax, penalties,
+           errors, weights, pcm, pout );
   wxString poutName( p->GetString(counter) );
   try
   {

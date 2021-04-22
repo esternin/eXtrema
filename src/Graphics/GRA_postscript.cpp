@@ -1111,14 +1111,7 @@ void GRA_postscript::Draw( GRA_polarAxes *polarAxes )
       align = 2; // bottom centre
     }
     GRA_drawableText dt(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
-    try
-    {
-      dt.Parse();
-    }
-    catch( EGraphicsError const &e )
-    {
-      throw;
-    }
+    dt.Parse();
     Draw( &dt );
   }
   //
@@ -1604,26 +1597,12 @@ void GRA_postscript::Draw( GRA_diffusionPlot *diffPlot )
   if( amean == 0.0 )amean = 1.e-10;
   if( fabs((amax-amin)/amean) < 1.0e-5 )
     throw EGraphicsError( wxT("region is flat") );
-  try
-  {
-    diffPlot->SetUp();
-  }
-  catch( EGraphicsError const &e )
-  {
-    throw;
-  }
+  diffPlot->SetUp();
   double xlo, ylo, xhi, yhi;
   diffPlot->GetXYLimits( xlo, ylo, xhi, yhi );
   GRA_bitmap bitmap( xlo, ylo, xhi, yhi, GRA_colorControl::GetColor(wxT("WHITE")), (GRA_wxWidgets*)0 );
   diffPlot->FillBitmap( &bitmap );
-  try
-  {
-    Draw( &bitmap );
-  }
-  catch( EGraphicsError const &e )
-  {
-    throw;
-  }
+  Draw( &bitmap );
   if( diffPlot->GetDrawAxes() )
   {
     std::vector<double> xt, yt;
@@ -1701,14 +1680,7 @@ void GRA_postscript::Draw( GRA_ditheringPlot *dithPlot )
   if( amean == 0.0 )amean = 1.e-10;
   if( fabs((amax-amin)/amean) < 1.0e-5 )throw EGraphicsError( wxT("region is flat") );
   //
-  try
-  {
-    dithPlot->SetUp();
-  }
-  catch( EGraphicsError const &e )
-  {
-    throw;
-  }
+  dithPlot->SetUp();
   std::size_t const nLevels = dithPlot->GetDither().size()/2;
   if( dithPlot->GetAreas() )dithPlot->GetAreaVec().resize( nLevels, 0.0 );
   if( dithPlot->GetVolumes() )dithPlot->GetVolumeVec().resize( nLevels, 0.0 );
@@ -1763,14 +1735,7 @@ void GRA_postscript::Draw( GRA_ditheringPlot *dithPlot )
         wxString stmp(c);
         GRA_drawableText dt( stmp, height, angle, xhi+0.1, yp-height/2., 1,
                              font, GRA_colorControl::GetColor(wxT("BLACK")) );
-        try
-        {
-          dt.Parse();
-        }
-        catch( EGraphicsError const &e )
-        {
-          throw;
-        }
+        dt.Parse();
         Draw( &dt );
       }
     }
@@ -1785,14 +1750,7 @@ void GRA_postscript::Draw( GRA_ditheringPlot *dithPlot )
   GRA_bitmap bitmap( xlo, ylo, xhi, yhi,
                      GRA_colorControl::GetColor(wxT("WHITE")), (GRA_wxWidgets*)0 );
   dithPlot->FillBitmap( &bitmap );
-  try
-  {
-    Draw( &bitmap );
-  }
-  catch( EGraphicsError const &e )
-  {
-    throw;
-  }
+  Draw( &bitmap );
   if( dithPlot->GetDrawAxes() )
   {
     std::vector<double> xt, yt;
@@ -1871,14 +1829,7 @@ void GRA_postscript::Draw( GRA_gradientPlot *gradPlot )
   double amean = (amin + amax) / 2.0;
   if( amean == 0.0 )amean = 1.e-10;
   if( fabs((amax-amin)/amean) < 1.0e-5 )throw EGraphicsError( wxT("region is flat") );
-  try
-  {
-    gradPlot->SetUp();
-  }
-  catch( EGraphicsError const &e )
-  {
-    throw;
-  }
+  gradPlot->SetUp();
   if( gradPlot->GetLegend() )
   {
     GRA_window *gw = ExGlobals::GetGraphWindow();
@@ -1911,15 +1862,8 @@ void GRA_postscript::Draw( GRA_gradientPlot *gradPlot )
       stmp = wxString(c);
       GRA_drawableText dt2( stmp, height, angle, xhi+0.1, yuaxis-height/2., 1,
                             font, GRA_colorControl::GetColor(wxT("BLACK")) );
-      try
-      {
-        dt.Parse();
-        dt2.Parse();
-      }
-      catch( EGraphicsError const &e )
-      {
-        throw;
-      }
+      dt.Parse();
+      dt2.Parse();
       Draw( &dt );
       Draw( &dt2 );
     }
@@ -1933,14 +1877,7 @@ void GRA_postscript::Draw( GRA_gradientPlot *gradPlot )
   gradPlot->GetXYLimits( xlo, ylo, xhi, yhi );
   GRA_bitmap bitmap( xlo, ylo, xhi, yhi, GRA_colorControl::GetColor(wxT("WHITE")), (GRA_wxWidgets*)0 );
   gradPlot->FillBitmap( &bitmap );
-  try
-  {
-    Draw( &bitmap );
-  }
-  catch( EGraphicsError const &e )
-  {
-    throw;
-  }
+  Draw( &bitmap );
   if( gradPlot->GetDrawAxes() )
   {
     std::vector<double> xt, yt;
@@ -2285,14 +2222,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     //
     wxString fontName( (*i)->GetFont()->GetFontName() );
     wxString psFontName;
-    try
-    {
-      psFontName = GRA_fontControl::GetPostScriptFontName( (*i)->GetFont()->GetFontName() );
-    }
-    catch( EGraphicsError const &e )
-    {
-      throw;
-    }
+    psFontName = GRA_fontControl::GetPostScriptFontName( (*i)->GetFont()->GetFontName() );
 
     //std::cout << "fontName = |" << fontName.mb_str(wxConvUTF8) << "|\n";
     //std::cout << "psFontName = |" << psFontName.mb_str(wxConvUTF8) << "|\n";

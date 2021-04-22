@@ -68,14 +68,7 @@ void FCN_det::ArrayEval( Workspace *ws )
   //
   std::vector<int> indx( size1, 0 );
   int id;
-  try
-  {
-    id = UsefulFunctions::LUDecomposition( d1, indx );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  id = UsefulFunctions::LUDecomposition( d1, indx );
   double d = static_cast<double>(id);
   for( int i=0; i<size1; ++i )d *= d1[i+i*size1];
   ws->SetValue( d );

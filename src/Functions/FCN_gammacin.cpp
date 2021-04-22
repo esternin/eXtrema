@@ -23,14 +23,7 @@ FCN_gammacin *FCN_gammacin::fcn_gammacin_ = 0;
 
 void FCN_gammacin::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::ComplementaryIncompleteGamma( rStack[j], rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::ComplementaryIncompleteGamma( rStack[j], rStack[j+1] );
   rStack.pop_back();
 }
 

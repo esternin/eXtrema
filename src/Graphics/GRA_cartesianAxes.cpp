@@ -42,14 +42,7 @@ GRA_cartesianAxes::GRA_cartesianAxes( std::vector<double> const &x, std::vector<
                                       bool xOnTop, bool yOnRight )
   : GRA_drawableObject(wxT("CARTESIANAXES")), xOnTop_(xOnTop), yOnRight_(yOnRight)
 {
-  try
-  {
-    AutoScale( x, y );
-  }
-  catch ( EGraphicsError &e )
-  {
-    throw;
-  }
+  AutoScale( x, y );
   //
   GRA_window *gw = ExGlobals::GetGraphWindow();
   GRA_setOfCharacteristics *generalC = gw->GetGeneralCharacteristics();
@@ -525,14 +518,7 @@ void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<dou
   bool xAxisScaleFixed = (autoX == 0);
   double xminValue = xmins;
   double xmaxValue = xmaxs;
-  try
-  {
-    if( !xAxisLinear )GetActualValues( xminValue, xmaxValue, xlogBase );
-  }
-  catch ( EGraphicsError &e )
-  {
-    throw;
-  }
+  if( !xAxisLinear )GetActualValues( xminValue, xmaxValue, xlogBase );
   //
   int ynlinc = abs(static_cast<GRA_intCharacteristic*>(yCharacteristics->Get(wxT("NLINCS")))->Get());
   double ymin = static_cast<GRA_doubleCharacteristic*>(yCharacteristics->Get(wxT("MIN")))->Get();
@@ -548,14 +534,7 @@ void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<dou
   bool yAxisScaleFixed = (autoY == 0);
   double yminValue = ymins;
   double ymaxValue = ymaxs;
-  try
-  {
-    if( !yAxisLinear )GetActualValues( yminValue, ymaxValue, ylogBase );
-  }
-  catch ( EGraphicsError &e )
-  {
-    throw;
-  }
+  if( !yAxisLinear )GetActualValues( yminValue, ymaxValue, ylogBase );
   //
   std::size_t npt = x.size();
   double xinc, yinc;
@@ -563,29 +542,15 @@ void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<dou
   {
     if( yAxisScaleFixed )
     {
-      try
-      {
-        if( xAxisLinear && xnlinc==0 )
-          SetNumberOfIncrements( xnlinc, xminValue, xmaxValue, xCharacteristics );
-        if( yAxisLinear && ynlinc==0 )
-          SetNumberOfIncrements( ynlinc, yminValue, ymaxValue, yCharacteristics );
-      }
-      catch ( EGraphicsError &e )
-      {
-        throw;
-      }
+      if( xAxisLinear && xnlinc==0 )
+        SetNumberOfIncrements( xnlinc, xminValue, xmaxValue, xCharacteristics );
+      if( yAxisLinear && ynlinc==0 )
+        SetNumberOfIncrements( ynlinc, yminValue, ymaxValue, yCharacteristics );
     }
     else // x-axis is fixed, autoscale y-axis
     {
-      try
-      {
-        if( xAxisLinear && xnlinc==0 )
-          SetNumberOfIncrements( xnlinc, xminValue, xmaxValue, xCharacteristics );
-      }
-      catch ( EGraphicsError &e )
-      {
-        throw;
-      }
+      if( xAxisLinear && xnlinc==0 )
+        SetNumberOfIncrements( xnlinc, xminValue, xmaxValue, xCharacteristics );
       //
       // only consider data within the x-axis range
       //
@@ -626,15 +591,8 @@ void GRA_cartesianAxes::AutoScale( std::vector<double> const &x, std::vector<dou
   {
     if( yAxisScaleFixed ) // autoscale x-axis, y-axis is fixed
     {
-      try
-      {
-        if( yAxisLinear && ynlinc==0 )
-          SetNumberOfIncrements( ynlinc, yminValue, ymaxValue, yCharacteristics );
-      }
-      catch ( EGraphicsError &e )
-      {
-        throw;
-      }
+      if( yAxisLinear && ynlinc==0 )
+        SetNumberOfIncrements( ynlinc, yminValue, ymaxValue, yCharacteristics );
       //
       // only consider data within the y-axis range
       //

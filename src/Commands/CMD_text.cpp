@@ -42,14 +42,7 @@ CMD_text::CMD_text() : Command( wxT("TEXT") )
 void CMD_text::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError const &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   ParseToken t( *p->GetToken(0) );
   GRA_window *gw = ExGlobals::GetGraphWindow();
   //

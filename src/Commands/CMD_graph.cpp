@@ -74,14 +74,7 @@ void CMD_graph::Execute( ParseLine const *p )
   // GRAPH\OVERLAY X Y YE1 XE1 YE2 XE2     "    "   "  " " and error bars
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError const &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( wxT("GRAPH: ") );
   //
   ParseToken t( *p->GetToken(0) );

@@ -45,14 +45,7 @@ void CMD_clear::Execute( ParseLine const *p )
   // CLEAR\HISTORY     just clear the history buffer
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("HISTORY")] )
   {

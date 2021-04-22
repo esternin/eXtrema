@@ -23,13 +23,6 @@ FCN_psi *FCN_psi::fcn_psi_ = 0;
 
 void FCN_psi::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Psi( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Psi( rStack[j] );
 }
 

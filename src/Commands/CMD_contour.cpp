@@ -72,14 +72,7 @@ void CMD_contour::Execute( ParseLine const *p )
   // CONTOUR\CONTINUE\SPECIFIC\COLOR  colr x y z cntrs
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch( ECommandError const &e )
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   GRA_window *gw = ExGlobals::GetGraphWindow();
   //
   wxString command( wxT("CONTOUR") );
@@ -99,20 +92,13 @@ void CMD_contour::Execute( ParseLine const *p )
   int ifld = 1;
   std::vector<int> colors, linetypes, linewidths;
   std::vector<double> xVector, yVector, zVector;
-  try
-  {
-    if( qualifiers[wxT("COLORS")]||qualifiers[wxT("COLOURS")] )
-      GetIntParameter( colors, p, ifld, wxT("expecting color (scalar or vector)") );
-    if( qualifiers[wxT("LINETYPES")] )
-      GetIntParameter( linetypes, p, ifld, wxT("expecting linetype (scalar or vector)") );
-    if( qualifiers[wxT("LINEWIDTHS")] )
-      GetIntParameter( linewidths, p, ifld, wxT("expecting linewidth (scalar or vector)") );
-    GetDataParameters( xVector, yVector, zVector, p, ifld );
-  }
-  catch( ECommandError const &e )
-  {
-    throw;
-  }
+  if( qualifiers[wxT("COLORS")]||qualifiers[wxT("COLOURS")] )
+    GetIntParameter( colors, p, ifld, wxT("expecting color (scalar or vector)") );
+  if( qualifiers[wxT("LINETYPES")] )
+    GetIntParameter( linetypes, p, ifld, wxT("expecting linetype (scalar or vector)") );
+  if( qualifiers[wxT("LINEWIDTHS")] )
+    GetIntParameter( linewidths, p, ifld, wxT("expecting linewidth (scalar or vector)") );
+  GetDataParameters( xVector, yVector, zVector, p, ifld );
   double xmin, xmax, ymin, ymax, zmin, zmax;
   if( !qualifiers[wxT("CONTINUE")] )
   {

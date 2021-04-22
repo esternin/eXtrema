@@ -23,13 +23,6 @@ FCN_logam *FCN_logam::fcn_logam_ = 0;
 
 void FCN_logam::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::LnGamma( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::LnGamma( rStack[j] );
 }
 

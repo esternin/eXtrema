@@ -35,14 +35,7 @@ CMD_polygon::CMD_polygon() : Command( wxT("POLYGON") )
 void CMD_polygon::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError const &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("OUTSIDE")] )qualifiers[wxT("INSIDE")] = false;
   int counter = 1;

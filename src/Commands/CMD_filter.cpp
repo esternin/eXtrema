@@ -63,14 +63,7 @@ void CMD_filter::Execute( ParseLine const *p )
   //      yout(i).
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( p->GetNumberOfTokens()<2 || !p->IsString(1) )
     throw ECommandError( command+wxT("expecting data vector") );

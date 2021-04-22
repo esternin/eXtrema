@@ -860,16 +860,9 @@ void SetScript( Script *s )
 
 void RunScript()
 {
-  try
-  {
-    scripts_[currentScriptNumber_-1]->Run();
-    if( pausingScript_ )return;
-    StopScript();
-  }
-  catch( std::runtime_error const &e )
-  {
-    throw;
-  }
+  scripts_[currentScriptNumber_-1]->Run();
+  if( pausingScript_ )return;
+  StopScript();
 }
 
 void StopScript()
@@ -992,14 +985,7 @@ void ProcessCommand( wxString &commandLine )
       return;
     }
   }
-  try
-  {
-    if( HandleAlias(commandName,commandLine,p) )return;
-  }
-  catch( std::runtime_error const &e )
-  {
-    throw;
-  }
+  if( HandleAlias(commandName,commandLine,p) )return;
   Command *command = CommandTable::GetTable()->Get(commandName);
   if( !command )
   {
@@ -1277,14 +1263,7 @@ wxString IntToHex( int n )
 void SaveSession( wxString &file )
 {
   ExXML xml;
-  try
-  {
-    xml.OpenFileForWrite( file );
-  }
-  catch (std::runtime_error const &e)
-  {
-    throw;
-  }
+  xml.OpenFileForWrite( file );
   std::ofstream *out = xml.GetStream();
   
   *out << "<extrema>\n";
@@ -1307,14 +1286,7 @@ void SaveSession( wxString &file )
 void RestoreSession( wxString &file )
 {
   ExXML xml;
-  try
-  {
-    xml.OpenFileForRead( file );
-  }
-  catch ( std::runtime_error const &e )
-  {
-    throw;
-  }
+  xml.OpenFileForRead( file );
   // first get the analysis window
   //
   if( !xml.GetFirstChild() )
@@ -1326,20 +1298,13 @@ void RestoreSession( wxString &file )
 
   visualizationWindow_->DeleteAllPages();
   analysisWindow_->ClearOutput();
-  try
-  {
-    long top, left, height, width;
-    xml.GetPropertyValue( wxT("top") ).ToLong( &top );
-    xml.GetPropertyValue( wxT("left") ).ToLong( &left );
-    xml.GetPropertyValue( wxT("height") ).ToLong( &height );
-    xml.GetPropertyValue( wxT("width") ).ToLong( &width );
-    analysisWindow_->SetSize( static_cast<int>(left), static_cast<int>(top),
-                              static_cast<int>(width), static_cast<int>(height) );
-  }
-  catch (std::runtime_error const &e)
-  {
-    throw;
-  }
+  long top, left, height, width;
+  xml.GetPropertyValue( wxT("top") ).ToLong( &top );
+  xml.GetPropertyValue( wxT("left") ).ToLong( &left );
+  xml.GetPropertyValue( wxT("height") ).ToLong( &height );
+  xml.GetPropertyValue( wxT("width") ).ToLong( &width );
+  analysisWindow_->SetSize( static_cast<int>(left), static_cast<int>(top),
+                            static_cast<int>(width), static_cast<int>(height) );
   xml.GetFirstChild(); // get the messages <string> node
   if( xml.GetName() != wxT("string") )
     throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("string"),file) );
@@ -1369,29 +1334,21 @@ void RestoreSession( wxString &file )
   if( xml.GetName() != wxT("visualizationwindow") )
     throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("visualizationwindow"),file) );
   
-  try
-  {
-    long int top, left, height, width;
-    xml.GetPropertyValue( wxT("top") ).ToLong( &top );
-    xml.GetPropertyValue( wxT("left") ).ToLong( &left );
-    xml.GetPropertyValue( wxT("height") ).ToLong( &height );
-    xml.GetPropertyValue( wxT("width") ).ToLong( &width );
-    double aspectRatio;
-    xml.GetPropertyValue( wxT("aspectratio") ).ToDouble( &aspectRatio );
-    long page;
-    xml.GetPropertyValue( wxT("currentpage") ).ToLong( &page );
-    visualizationWindow_->SetSize( static_cast<int>(left), static_cast<int>(top),
-                                   static_cast<int>(width), static_cast<int>(height) );
-    visualizationWindow_->MakeFirstPage();
-    SetAspectRatio( aspectRatio );
-    visualizationWindow_->ResetPages();
-    visualizationWindow_->ResetWindows();
-    visualizationWindow_->SetPage( static_cast<int>(page) );
-  }
-  catch (std::runtime_error const &e)
-  {
-    throw;
-  }
+  xml.GetPropertyValue( wxT("top") ).ToLong( &top );
+  xml.GetPropertyValue( wxT("left") ).ToLong( &left );
+  xml.GetPropertyValue( wxT("height") ).ToLong( &height );
+  xml.GetPropertyValue( wxT("width") ).ToLong( &width );
+  double aspectRatio;
+  xml.GetPropertyValue( wxT("aspectratio") ).ToDouble( &aspectRatio );
+  long page;
+  xml.GetPropertyValue( wxT("currentpage") ).ToLong( &page );
+  visualizationWindow_->SetSize( static_cast<int>(left), static_cast<int>(top),
+                                 static_cast<int>(width), static_cast<int>(height) );
+  visualizationWindow_->MakeFirstPage();
+  SetAspectRatio( aspectRatio );
+  visualizationWindow_->ResetPages();
+  visualizationWindow_->ResetWindows();
+  visualizationWindow_->SetPage( static_cast<int>(page) );
 
   NVariableTable *nvt = NVariableTable::GetTable();
   TVariableTable *tvt = TVariableTable::GetTable();
@@ -1669,74 +1626,25 @@ void RestoreSession( wxString &file )
       visualizationWindow_->AddGraphWindow( gw );
 
       xml.GetFirstChild(); // get <axisc> for x-axis
-      try
-      {
-        SetCharacteristics( xml, gw->GetXAxisCharacteristics(), wxT("axisc"), file );
-      }
-      catch (std::runtime_error const &e)
-      {
-        throw;
-      }
+      SetCharacteristics( xml, gw->GetXAxisCharacteristics(), wxT("axisc"), file );
 
       xml.GetNextSibling(); // get <axisc> for y-axis
-      try
-      {
-        SetCharacteristics( xml, gw->GetYAxisCharacteristics(), wxT("axisc"), file );
-      }
-      catch (std::runtime_error const &e)
-      {
-        throw;
-      }
+      SetCharacteristics( xml, gw->GetYAxisCharacteristics(), wxT("axisc"), file );
 
       xml.GetNextSibling(); // get <generalc>
-      try
-      {
-        SetCharacteristics( xml, gw->GetGeneralCharacteristics(), wxT("generalc"), file );
-      }
-      catch (std::runtime_error const &e)
-      {
-        throw;
-      }
+      SetCharacteristics( xml, gw->GetGeneralCharacteristics(), wxT("generalc"), file );
 
       xml.GetNextSibling(); // get <textc>
-      try
-      {
-        SetCharacteristics( xml, gw->GetTextCharacteristics(), wxT("textc"), file );
-      }
-      catch (std::runtime_error const &e)
-      {
-        throw;
-      }
+      SetCharacteristics( xml, gw->GetTextCharacteristics(), wxT("textc"), file );
 
       xml.GetNextSibling(); // get <graphlegendc>
-      try
-      {
-        SetCharacteristics( xml, gw->GetGraphLegendCharacteristics(), wxT("graphlegendc"), file );
-      }
-      catch (std::runtime_error const &e)
-      {
-        throw;
-      }
+      SetCharacteristics( xml, gw->GetGraphLegendCharacteristics(), wxT("graphlegendc"), file );
 
       xml.GetNextSibling(); // get <datacurvec>
-      try
-      {
-        SetCharacteristics( xml, gw->GetDataCurveCharacteristics(), wxT("datacurvec"), file );
-      }
-      catch (std::runtime_error const &e)
-      {
-        throw;
-      }
+      SetCharacteristics( xml, gw->GetDataCurveCharacteristics(), wxT("datacurvec"), file );
 
       xml.GetNextSibling(); // get <polarc>
-      try
-      {
-        SetCharacteristics( xml, gw->GetPolarCharacteristics(), wxT("polarc"), file );
-      }
-      catch (std::runtime_error const &e)
-      {
-        throw;
-      }
+      SetCharacteristics( xml, gw->GetPolarCharacteristics(), wxT("polarc"), file );
 
       xml.GetNextSibling(); // get <drawableobjects>
       if( xml.GetName() != wxT("drawableobjects") )

@@ -36,14 +36,7 @@ void CMD_display::Execute( ParseLine const *p )
   // script macro command     DISPLAY string
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( p->GetNumberOfTokens()==1 || !p->IsString(1) )
    throw ECommandError( command+wxT("correct syntax: DISPLAY string") );

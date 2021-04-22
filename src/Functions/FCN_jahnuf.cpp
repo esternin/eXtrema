@@ -23,16 +23,9 @@ FCN_jahnuf *FCN_jahnuf::fcn_jahnuf_ = 0;
 
 void FCN_jahnuf::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::JahnUFunction( rStack[j], rStack[j+1],
-                                                rStack[j+2], rStack[j+3],
-                                                rStack[j+4], rStack[j+5] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::JahnUFunction( rStack[j], rStack[j+1],
+                                              rStack[j+2], rStack[j+3],
+                                              rStack[j+4], rStack[j+5] );
   rStack.pop_back();
   rStack.pop_back();
   rStack.pop_back();

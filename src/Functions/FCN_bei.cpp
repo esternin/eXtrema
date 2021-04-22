@@ -24,13 +24,6 @@ FCN_bei *FCN_bei::fcn_bei_ = 0;
 
 void FCN_bei::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Bei( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Bei( rStack[j] );
 }
 

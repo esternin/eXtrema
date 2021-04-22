@@ -30,14 +30,7 @@ CMD_define::CMD_define() : Command( wxT("DEFINE") )
 void CMD_define::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   if( qualifiers[wxT("CONSTANTS")] )ExGlobals::DefineConstants();
 }
 

@@ -24,13 +24,6 @@ FCN_aerf *FCN_aerf::fcn_aerf_ = 0;
 
 void FCN_aerf::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::ErrorInverse( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::ErrorInverse( rStack[j] );
 }
 

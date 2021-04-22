@@ -23,16 +23,9 @@ FCN_plmn *FCN_plmn::fcn_plmn_ = 0;
 
 void FCN_plmn::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::NormalizedLegendre( static_cast<int>(rStack[j]),
-                                                     static_cast<int>(rStack[j+1]),
-                                                     rStack[j+2] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::NormalizedLegendre( static_cast<int>(rStack[j]),
+                                                   static_cast<int>(rStack[j+1]),
+                                                   rStack[j+2] );
   rStack.pop_back();
   rStack.pop_back();
 }

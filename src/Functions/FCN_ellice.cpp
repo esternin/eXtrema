@@ -23,13 +23,6 @@ FCN_ellice *FCN_ellice::fcn_ellice_ = 0;
 
 void FCN_ellice::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::CompleteEllipticIntegral2( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::CompleteEllipticIntegral2( rStack[j] );
 }
 

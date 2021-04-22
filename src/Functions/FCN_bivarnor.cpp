@@ -23,16 +23,9 @@ FCN_bivarnor *FCN_bivarnor::fcn_bivarnor_ = 0;
 
 void FCN_bivarnor::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::BivariateNormalDistribution( rStack[j],
-                                                              rStack[j+1],
-                                                              rStack[j+2] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::BivariateNormalDistribution( rStack[j],
+                                                            rStack[j+1],
+                                                            rStack[j+2] );
   rStack.pop_back();
   rStack.pop_back();
 }

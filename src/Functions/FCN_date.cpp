@@ -35,40 +35,19 @@ void FCN_date::TextScalarEval( int j, std::vector<wxString> &sStack ) const
     wxString format, order;
     wxChar seperator;
     int nd=0, nm=0, ny=0;
-    try
-    {
-      order = ParseInputString( sStack[j], seperator, nd, nm, ny );
+    order = ParseInputString( sStack[j], seperator, nd, nm, ny );
 
-      //std::cout << "order=|" << order.mb_str(wxConvUTF8) << "|\n";
+    //std::cout << "order=|" << order.mb_str(wxConvUTF8) << "|\n";
 
-      AddToFormat( format, order.at(0), nd, nm, ny );
-    }
-    catch (EExpressionError &e)
-    {
-      throw;
-    }
+    AddToFormat( format, order.at(0), nd, nm, ny );
     if( order.size() > 1 )
     {
       format += seperator;
-      try
-      {
-        AddToFormat( format, order.at(1), nd, nm, ny );
-      }
-      catch (EExpressionError &e)
-      {
-        throw;
-      }
+      AddToFormat( format, order.at(1), nd, nm, ny );
       if( order.size() > 2 )
       {
         format += seperator;
-        try
-        {
-          AddToFormat( format, order.at(2), nd, nm, ny );
-        }
-        catch (EExpressionError &e)
-        {
-          throw;
-        }
+        AddToFormat( format, order.at(2), nd, nm, ny );
       }
     }
     

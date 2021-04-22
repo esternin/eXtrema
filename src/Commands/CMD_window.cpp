@@ -46,14 +46,7 @@ void CMD_window::Execute( ParseLine const *p )
   // WINDOW\INHERIT target inherit
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("TILE")] )
   {

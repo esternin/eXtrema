@@ -50,14 +50,7 @@ CMD_restore::CMD_restore() : Command( wxT("RESTORE") )
 void CMD_restore::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( wxT("RESTORE: ") );
   //
   bool output = qualifiers[wxT("MESSAGES")] || ExGlobals::NotInaScript() || ExGlobals::GetEcho();
@@ -100,14 +93,7 @@ void CMD_restore::Execute( ParseLine const *p )
   if( qualifiers[wxT("MUD")] )
   {
 #ifdef HAVE_MUD
-    try
-    {
-      RestoreMUD( p, command, qualifiers[wxT("TITLE")], output, fileName );
-    }
-    catch ( ECommandError &e )
-    {
-      throw;
-    }
+    RestoreMUD( p, command, qualifiers[wxT("TITLE")], output, fileName );
 #else
     throw ECommandError( wxString()<<command<<wxT("the MUon Data package is not available") );
 #endif

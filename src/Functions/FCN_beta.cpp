@@ -23,14 +23,7 @@ FCN_beta *FCN_beta::fcn_beta_ = 0;
 
 void FCN_beta::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::CompleteBeta( rStack[j], rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::CompleteBeta( rStack[j], rStack[j+1] );
    rStack.pop_back();
 }
 

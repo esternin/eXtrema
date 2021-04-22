@@ -32,28 +32,14 @@ FCN_expand *FCN_expand::fcn_expand_ = 0;
 void FCN_expand::TextScalarEval( int j, std::vector<wxString> &sStack ) const
 {
   wxString str( sStack[j] );
-  try
-  {
-    while ( FillOut(str) );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  while ( FillOut(str) );
   sStack[j] = str;
 }
 
 bool FCN_expand::FillOut( wxString &str ) const
 {
   std::unique_ptr<Workspace> ws(new Workspace(str));
-  try
-  {
-    ws->ParseAndCheck( true );
-  }
-  catch( EExpressionError &e )
-  {
-    throw;
-  }
+  ws->ParseAndCheck( true );
   wxString s;
   bool foundTV = false;
   std::deque<ExprCodes*> &codes = ws->GetCodes();

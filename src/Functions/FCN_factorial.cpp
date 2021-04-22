@@ -23,14 +23,7 @@ FCN_factorial *FCN_factorial::fcn_factorial_ = 0;
 
 void FCN_factorial::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    int n = static_cast<int>( rStack[j] );
-    rStack[j] = UsefulFunctions::Factorial( n );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  int n = static_cast<int>( rStack[j] );
+  rStack[j] = UsefulFunctions::Factorial( n );
 }
 

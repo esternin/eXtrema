@@ -23,13 +23,6 @@ FCN_fres2 *FCN_fres2::fcn_fres2_ = 0;
 
 void FCN_fres2::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::FresnelSAssociated( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::FresnelSAssociated( rStack[j] );
 }
 

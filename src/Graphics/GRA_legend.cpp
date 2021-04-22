@@ -266,14 +266,7 @@ GRA_legendEntry::GRA_legendEntry( GRA_legend *legend, wxString const &label,
   double xLabel = legend->GetXLabel();
   symbol_ = new GRA_plotSymbol(sym,symSize,symAngle,symColor,symLW);
   label_ = new GRA_drawableText(label,labelHeight_,0.0,xLabel,y0,1,labelFont_,labelColor_);
-  try
-  {
-    label_->Parse();
-  }
-  catch (EGraphicsError const &e)
-  {
-    throw;
-  }
+  label_->Parse();
 }
 
 void GRA_legendEntry::DeleteStuff()

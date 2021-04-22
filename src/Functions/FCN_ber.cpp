@@ -23,13 +23,6 @@ FCN_ber *FCN_ber::fcn_ber_ = 0;
 
 void FCN_ber::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Ber( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Ber( rStack[j] );
 }
 

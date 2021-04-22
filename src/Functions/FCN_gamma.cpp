@@ -23,13 +23,6 @@ FCN_gamma *FCN_gamma::fcn_gamma_ = 0;
 
 void FCN_gamma::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::CompleteGamma( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::CompleteGamma( rStack[j] );
 }
 

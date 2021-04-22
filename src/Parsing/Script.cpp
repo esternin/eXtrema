@@ -57,26 +57,12 @@ void Script::Run()
       if( GetNextLine(commandLine) )return; // end of script file found
       if( echo_ )ExGlobals::WriteOutput( commandLine );
     }
-    try
-    {
-      if( !commandLine.empty() && commandLine!=wxString(wxT(" ")) )
-        ExGlobals::ProcessCommand(commandLine);
-    }
-    catch( std::runtime_error const &e )
-    {
-      throw;
-    }
+    if( !commandLine.empty() && commandLine!=wxString(wxT(" ")) )
+      ExGlobals::ProcessCommand(commandLine);
     if( ExGlobals::GetExecuteCommand() )
     {
       ExGlobals::SetExecuteCommand( false );
-      try
-      {
-        ExGlobals::RunScript();
-      }
-      catch( std::runtime_error const &e )
-      {
-        throw;
-      }
+      ExGlobals::RunScript();
     }
     else if( ExGlobals::GetReturnCommand() )
     {
@@ -204,14 +190,7 @@ void Script::AddScriptLine( std::size_t numberOfParameters, wxString &fname, wxS
   }
   else if( uLine.substr(0,5) == wxT("ENDIF") )
   {
-    try
-    {
-      AddEndif( scriptLines_.size() );
-    }
-    catch (ESyntaxError &e)
-    {
-      throw;
-    }
+    AddEndif( scriptLines_.size() );
   }
   else if( uLine.substr(0,3) == wxT("DO ") )
   {
@@ -219,14 +198,7 @@ void Script::AddScriptLine( std::size_t numberOfParameters, wxString &fname, wxS
   }
   else if( uLine.substr(0,5) == wxT("ENDDO") )
   {
-    try
-    {
-      AddEnddo( scriptLines_.size() );
-    }
-    catch (ESyntaxError &e)
-    {
-      throw;
-    }
+    AddEnddo( scriptLines_.size() );
   }
   i = 0;
   while( i < lineLength )

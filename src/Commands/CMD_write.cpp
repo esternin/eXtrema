@@ -85,14 +85,7 @@ void CMD_write::Execute( ParseLine const *p )
     1 1 1 1 1 1 1 1 1 1
   */
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("FORMAT")] && qualifiers[wxT("BINARY")] )
     throw ECommandError( command+wxT("BINARY and FORMAT qualifiers are not compatible") );

@@ -43,14 +43,7 @@ CMD_scalar::CMD_scalar() : Command( wxT("SCALAR") )
 void CMD_scalar::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   std::vector<wxString> names;
   std::vector<double> lowLimits, highLimits;

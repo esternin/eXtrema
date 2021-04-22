@@ -41,14 +41,7 @@ double Extrema_fcn::operator()( std::vector<double> const &p ) const
   // Update parameter values to current values
   //
   for( std::size_t i=0; i<p.size(); ++i )expression_->SetFitParameterValue( i, p[i] );
-  try
-  {
-    expression_->FinalPass();
-  }
-  catch ( EExpressionError &e )
-  {
-    throw;
-  }
+  expression_->FinalPass();
   NumericData result( expression_->GetFinalAnswer() );
   if( chisqDirect_ )
   {

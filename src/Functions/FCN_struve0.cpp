@@ -23,13 +23,6 @@ FCN_struve0 *FCN_struve0::fcn_struve0_ = 0;
 
 void FCN_struve0::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Struve0( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Struve0( rStack[j] );
 }
 

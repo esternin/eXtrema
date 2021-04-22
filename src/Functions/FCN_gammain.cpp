@@ -23,14 +23,7 @@ FCN_gammain *FCN_gammain::fcn_gammain_ = 0;
 
 void FCN_gammain::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::IncompleteGamma( rStack[j], rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::IncompleteGamma( rStack[j], rStack[j+1] );
   rStack.pop_back();
 }
 

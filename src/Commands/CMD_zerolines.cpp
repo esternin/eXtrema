@@ -39,14 +39,7 @@ void CMD_zerolines::Execute( ParseLine const *p )
   // ZEROLINES\VERTICAL                draw vertical only
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   bool horizontal=false, vertical=false;
   if( qualifiers[wxT("HORIZONTAL")] )
   {

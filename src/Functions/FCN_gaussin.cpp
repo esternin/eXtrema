@@ -23,13 +23,6 @@ FCN_gaussin *FCN_gaussin::fcn_gaussin_ = 0;
 
 void FCN_gaussin::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::GaussInverse( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::GaussInverse( rStack[j] );
 }
 

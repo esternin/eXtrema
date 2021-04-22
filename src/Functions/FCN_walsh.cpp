@@ -23,15 +23,8 @@ FCN_walsh *FCN_walsh::fcn_walsh_ = 0;
 
 void FCN_walsh::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::BinaryOrderedWalsh( static_cast<int>(rStack[j]),
-                                                     rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::BinaryOrderedWalsh( static_cast<int>(rStack[j]),
+                                                   rStack[j+1] );
   rStack.pop_back();
 }
 

@@ -316,16 +316,9 @@ void ThreeDPlotForm::GetDataVectors( std::vector<double> &x,
   wxString xVecName( xVecComboBox_->GetStringSelection() );
   wxString yVecName( yVecComboBox_->GetStringSelection() );
   wxString zVecName( zVecComboBox_->GetStringSelection() );
-  try
-  {
-    NumericVariable::GetVector( xVecName, wxT("x variable"), x );
-    NumericVariable::GetVector( yVecName, wxT("y variable"), y );
-    NumericVariable::GetVector( zVecName, wxT("z variable"), z );
-  }
-  catch( EVariableError const &e )
-  {
-    throw;
-  }
+  NumericVariable::GetVector( xVecName, wxT("x variable"), x );
+  NumericVariable::GetVector( yVecName, wxT("y variable"), y );
+  NumericVariable::GetVector( zVecName, wxT("z variable"), z );
   std::size_t npt = std::min( std::min(x.size(),y.size()), z.size() );
   x.resize( npt );
   y.resize( npt );

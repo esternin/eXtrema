@@ -23,15 +23,8 @@ FCN_voigt *FCN_voigt::fcn_voigt_ = 0;
 
 void FCN_voigt::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::VoigtProfile( rStack[j], rStack[j+1],
-                                               rStack[j+2], rStack[j+3] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::VoigtProfile( rStack[j], rStack[j+1],
+                                             rStack[j+2], rStack[j+3] );
   rStack.pop_back();
   rStack.pop_back();
   rStack.pop_back();

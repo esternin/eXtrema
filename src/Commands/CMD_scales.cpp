@@ -47,14 +47,7 @@ void CMD_scales::Execute( ParseLine const *p )
   // SCALES xmin xmax ymin ymax
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch( ECommandError const &e )
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   //
   bool output = qualifiers[wxT("MESSAGES")] || ExGlobals::NotInaScript() || ExGlobals::GetEcho();
   if( !qualifiers[wxT("MESSAGES")] )output = false;

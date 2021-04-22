@@ -23,13 +23,6 @@ FCN_sinint *FCN_sinint::fcn_sinint_ = 0;
 
 void FCN_sinint::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::SineIntegral( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::SineIntegral( rStack[j] );
 }
 

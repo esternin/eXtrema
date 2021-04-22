@@ -110,14 +110,7 @@ void FCN_ifft::ArrayEval( Workspace *ws )
     }
   }
   work1[nrows-1] = 2.0*work1[nrows-1];
-  try
-  {
-    UsefulFunctions::ComplexFourierTransform( work1, work2, npt, npt, true );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  UsefulFunctions::ComplexFourierTransform( work1, work2, npt, npt, true );
   //
   // construct the function
   //

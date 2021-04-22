@@ -62,14 +62,7 @@ void CMD_grid::Execute( ParseLine const *p )
   // GRID\INDICES\XYOUT  x y z m  xout yout
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   //
   int counter = 1;

@@ -23,14 +23,7 @@ FCN_lnbeta *FCN_lnbeta::fcn_lnbeta_ = 0;
 
 void FCN_lnbeta::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::LnCompleteBeta( rStack[j], rStack[j+1] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::LnCompleteBeta( rStack[j], rStack[j+1] );
   rStack.pop_back();
 }
 

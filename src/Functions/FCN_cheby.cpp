@@ -25,14 +25,7 @@ void FCN_cheby::ScalarEval( int j, std::vector<double> &rStack ) const
 {
   int n = static_cast<int>(rStack[j]);
   double x = rStack[j+1];
-  try
-  {
-    rStack[j] = UsefulFunctions::ChebyshevPolynomial( n, x );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::ChebyshevPolynomial( n, x );
   rStack.pop_back();
 }
 

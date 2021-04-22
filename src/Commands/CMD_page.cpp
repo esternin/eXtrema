@@ -44,14 +44,7 @@ void CMD_page::Execute( ParseLine const *p )
   // PAGE\INHERIT target inherit_from
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch ( ECommandError const &e )
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   //
   // PAGE n

@@ -23,14 +23,7 @@ FCN_lnagamma *FCN_lnagamma::fcn_lnagamma_ = 0;
 
 void FCN_lnagamma::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::LnAbsGamma( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::LnAbsGamma( rStack[j] );
 }
 // end of file
  

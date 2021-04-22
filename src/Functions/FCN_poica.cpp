@@ -23,16 +23,9 @@ FCN_poica *FCN_poica::fcn_poica_ = 0;
 
 void FCN_poica::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::PoissonCharlierPolynomial( rStack[j],
-                                                            static_cast<int>(rStack[j+1]),
-                                                            rStack[j+2] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::PoissonCharlierPolynomial( rStack[j],
+                                                          static_cast<int>(rStack[j+1]),
+                                                          rStack[j+2] );
   rStack.pop_back();
   rStack.pop_back();
 }

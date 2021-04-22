@@ -39,14 +39,7 @@ CMD_replot::CMD_replot() : Command( wxT("REPLOT") )
 void CMD_replot::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   std::size_t numWindows = ExGlobals::GetNumberOfWindows();
   ParseToken t( *p->GetToken(0) );

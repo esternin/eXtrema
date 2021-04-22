@@ -123,15 +123,8 @@ void GRA_axis::Make()
 {
   if( static_cast<GRA_boolCharacteristic*>(characteristics_->Get(wxT("AXISON")))->Get() )
   {
-    try
-    {
-      static_cast<GRA_doubleCharacteristic*>(characteristics_->Get(wxT("LOGBASE")))->Get()<=1.0 ?
-          MakeLinearAxis() : MakeLogAxis();
-    }
-    catch (EGraphicsError const &e)
-    {
-      throw;
-    }
+    static_cast<GRA_doubleCharacteristic*>(characteristics_->Get(wxT("LOGBASE")))->Get()<=1.0 ?
+        MakeLinearAxis() : MakeLogAxis();
   }
 }
 
@@ -501,14 +494,7 @@ void GRA_axis::MakeLinearAxis()
                                                    xs+cosAxisAngle*xticl-sinAxisAngle*yticl,
                                                    ys+sinAxisAngle*xticl+cosAxisAngle*yticl,
                                                    alignment, numbersFont, numbersColor );
-      try
-      {
-        tb->Parse();
-      }
-      catch ( EGraphicsError &e )
-      {
-        throw;
-      }
+      tb->Parse();
       textVec_.push_back( tb );
     }
   }
@@ -766,14 +752,7 @@ void GRA_axis::MakeLogAxis()
                                                        xs+cosAxisAngle*xticl-sinAxisAngle*yticl,
                                                        ys+sinAxisAngle*xticl+cosAxisAngle*yticl,
                                                        alignment, numbersFont, numbersColor );
-          try
-          {
-            tb->Parse();
-          }
-          catch ( EGraphicsError &e )
-          {
-            throw;
-          }
+          tb->Parse();
           textVec_.push_back( tb );
         }
       }
@@ -848,14 +827,7 @@ void GRA_axis::MakeLogAxis()
                                                    xs+cosAxisAngle*xticl-sinAxisAngle*yticl,
                                                    ys+sinAxisAngle*xticl+cosAxisAngle*yticl,
                                                    alignment, numbersFont, numbersColor );
-      try
-      {
-        tb->Parse();
-      }
-      catch ( EGraphicsError &e )
-      {
-        throw;
-      }
+      tb->Parse();
       textVec_.push_back( tb );
     }
     double const largeTicValue = exp(ipow*logBase);

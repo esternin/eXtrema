@@ -320,14 +320,7 @@ void GraphicsPage::ReplotCurrentWindow( bool repaint )
 {
   if( graphWindows_[currentWindowNumber_]->GetDrawableObjects().empty() )return;
   graphWindows_[currentWindowNumber_]->Erase();
-  try
-  {
-    graphWindows_[currentWindowNumber_]->Replot();
-  }
-  catch ( EGraphicsError const &e )
-  {
-    throw;
-  }
+  graphWindows_[currentWindowNumber_]->Replot();
   if( repaint )Refresh();
 }
 
@@ -790,14 +783,7 @@ void GraphicsPage::SetFigureFillColor( GRA_color *c )
 void GraphicsPage::SavePS( wxString const &filename )
 {
   GRA_postscript ps;
-  try
-  {
-    ps.Initialize( filename );
-  }
-  catch( EGraphicsError const &e )
-  {
-    throw;
-  }
+  ps.Initialize( filename );
   int gwSave = currentWindowNumber_;
   try
   {
@@ -856,14 +842,7 @@ void GraphicsPage::SaveBitmap( wxString const &filename, wxBitmapType type )
   dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   dc.StartDoc( wxT("produced by EXTREMA") );
-  try
-  {
-    DrawGraphWindows( &ps, dc );
-  }
-  catch (EGraphicsError &e)
-  {
-    throw;
-  }
+  DrawGraphWindows( &ps, dc );
   dc.EndDoc();
   wxImage image( tempBM.ConvertToImage() );
   image.SaveFile( filename, type );

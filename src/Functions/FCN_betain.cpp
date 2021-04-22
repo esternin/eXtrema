@@ -23,14 +23,7 @@ FCN_betain *FCN_betain::fcn_betain_ = 0;
 
 void FCN_betain::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::IncompleteBeta( rStack[j], rStack[j+1], rStack[j+2] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::IncompleteBeta( rStack[j], rStack[j+1], rStack[j+2] );
   rStack.pop_back();
   rStack.pop_back();
 }

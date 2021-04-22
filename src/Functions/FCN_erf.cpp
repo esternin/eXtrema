@@ -23,13 +23,6 @@ FCN_erf *FCN_erf::fcn_erf_ = 0;
 
 void FCN_erf::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Error( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Error( rStack[j] );
 }
 

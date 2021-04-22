@@ -47,14 +47,7 @@ CMD_destroy::CMD_destroy() : Command( wxT("DESTROY") )
 void CMD_destroy::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( qualifiers[wxT("ALL")] )
   {

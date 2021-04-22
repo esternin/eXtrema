@@ -102,14 +102,7 @@ void FCN_savgol::ArrayEval( Workspace *ws )
   if( size < 2 )throw EExpressionError( wxT("SAVGOL: third argument length must be >= 2") );
   //
   std::vector<double> yOut( size, 0.0 );
-  try
-  {
-    UsefulFunctions::SavitzkyGolay( yIn, yOut, filterWidth, filterOrder );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  UsefulFunctions::SavitzkyGolay( yIn, yOut, filterWidth, filterOrder );
   ws->SetData( yOut );
   ws->SetNumberOfDimensions(1);
   ws->SetDimMag( 0, size );

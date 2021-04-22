@@ -23,14 +23,7 @@ FCN_chisqi *FCN_chisqi::fcn_chisqi_ = 0;
 
 void FCN_chisqi::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::ChisqInverse( rStack[j], static_cast<int>(rStack[j+1]) );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::ChisqInverse( rStack[j], static_cast<int>(rStack[j+1]) );
   rStack.pop_back();
 }
 

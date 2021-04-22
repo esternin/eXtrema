@@ -42,14 +42,7 @@ void CMD_stack::Execute( ParseLine const *p )
   // STACK ON   <-->  STACK\APPEND sameFilename
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   if( p->GetNumberOfTokens()<2 || !p->IsString(1) )throw ECommandError( command+wxT("no filename was entered") );
   wxString filename;

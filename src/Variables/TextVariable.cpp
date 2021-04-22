@@ -208,15 +208,8 @@ void TextVariable::GetIndices( wxString &name, int &numberOfIndices,
     if( expr.IsCharacter() )name = expr.GetFinalString();
   }
   wxString simpleName;
-  try
-  {
-    simpleName = SimpleName( name );
-    CheckReservedName( simpleName );
-  }
-  catch( EVariableError &e )
-  {
-    throw;
-  }
+  simpleName = SimpleName( name );
+  CheckReservedName( simpleName );
   int simpleLen = simpleName.size();
   int indexLen = name.size() - simpleLen;
   numberOfIndices = 0;

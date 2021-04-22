@@ -46,14 +46,7 @@ void CMD_list::Execute( ParseLine const *p )
   // LIST\MATRIX\FORMAT m `format'
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   int nTokens = p->GetNumberOfTokens();
   if( qualifiers[wxT("MATRIX")] )

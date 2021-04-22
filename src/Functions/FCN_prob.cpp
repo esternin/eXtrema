@@ -24,14 +24,7 @@ FCN_prob *FCN_prob::fcn_prob_ = 0;
 void FCN_prob::ScalarEval( int j, std::vector<double> &rStack ) const
 {
   int n = static_cast<int>(rStack[j+1]);
-  try
-  {
-    rStack[j] = UsefulFunctions::Chisq( rStack[j], n );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Chisq( rStack[j], n );
   rStack.pop_back();
 }
 

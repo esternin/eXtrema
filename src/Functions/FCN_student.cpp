@@ -23,15 +23,8 @@ FCN_student *FCN_student::fcn_student_ = 0;
 
 void FCN_student::ScalarEval( int const j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::StudentTDistribution( rStack[j],
-                                                       static_cast<int>(rStack[j+1]) );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::StudentTDistribution( rStack[j],
+                                                     static_cast<int>(rStack[j+1]) );
   rStack.pop_back();
 }
 

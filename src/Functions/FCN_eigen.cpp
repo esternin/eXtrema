@@ -73,14 +73,7 @@ void FCN_eigen::ArrayEval( Workspace *ws )
   {
     for( std::size_t j=1; j<=i; ++j )temp[i-1+(j-1)*n] = d[i-1+(j-1)*n];
   }
-  try
-  {
-    UsefulFunctions::Eigen( temp );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  UsefulFunctions::Eigen( temp );
   ws->SetData( temp );
   ws->SetNumberOfDimensions(2);
   ws->SetDimMag( 0, n );

@@ -134,14 +134,7 @@ void GRA_densityPlot::SetUp()
     yt.push_back( dataYmin_ );
     yt.push_back( dataYmax_ );
     std::unique_ptr<GRA_cartesianAxes> cartesianAxes( new GRA_cartesianAxes(xt,yt,false,false) );
-    try
-    {
-      cartesianAxes->Make();
-    }
-    catch (EGraphicsError const &e)
-    {
-      throw;
-    }
+    cartesianAxes->Make();
   }
   double xmin = static_cast<GRA_doubleCharacteristic*>(xAxisC->Get(wxT("MIN")))->Get();
   double xmax = static_cast<GRA_doubleCharacteristic*>(xAxisC->Get(wxT("MAX")))->Get();
@@ -303,15 +296,8 @@ void GRA_densityPlot::DrawProfiles( GRA_wxWidgets *graphicsOutput, wxDC &dc )
       new GRA_cartesianAxes(yProfileX_,yProfileY_,false,false) );
     std::unique_ptr<GRA_cartesianCurve> cartesianCurve(
       new GRA_cartesianCurve(yProfileX_,yProfileY_,xe1,ye1,xe2,ye2,false) );
-    try
-    {
-      cartesianAxes->Make();
-      cartesianCurve->Make();
-    }
-    catch ( EGraphicsError const &e )
-    {
-      throw;
-    }
+    cartesianAxes->Make();
+    cartesianCurve->Make();
     cartesianAxes->Draw( graphicsOutput, dc );
     cartesianCurve->Draw( graphicsOutput, dc );
   }
@@ -341,15 +327,8 @@ void GRA_densityPlot::DrawProfiles( GRA_wxWidgets *graphicsOutput, wxDC &dc )
       new GRA_cartesianAxes(xProfileX_,xProfileY_,false,false) );
     std::unique_ptr<GRA_cartesianCurve> cartesianCurve(
       new GRA_cartesianCurve(xProfileX_,xProfileY_,xe1,ye1,xe2,ye2,false) );
-    try
-    {
-      cartesianAxes->Make();
-      cartesianCurve->Make();
-    }
-    catch ( EGraphicsError const &e )
-    {
-      throw;
-    }
+    cartesianAxes->Make();
+    cartesianCurve->Make();
     cartesianAxes->Draw( graphicsOutput, dc );
     cartesianCurve->Draw( graphicsOutput, dc );
   }

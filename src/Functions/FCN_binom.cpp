@@ -26,14 +26,7 @@ void FCN_binom::ScalarEval( int j, std::vector<double> &rStack ) const
 {
   int n = static_cast<int>(rStack[j]);
   int m = static_cast<int>(rStack[j+1]);
-  try
-  {
-    rStack[j] = UsefulFunctions::BinomialCoefficient( n, m );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::BinomialCoefficient( n, m );
   rStack.pop_back();
 }
 

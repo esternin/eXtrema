@@ -58,14 +58,7 @@ void CMD_statistics::Execute( ParseLine const *p )
   // STAT\PEARSON X Y { R PROB }
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   bool output = qualifiers[wxT("MESSAGES")] || ExGlobals::NotInaScript() || ExGlobals::GetEcho();
   if( !qualifiers[wxT("MESSAGES")] )output = false;
@@ -102,14 +95,7 @@ void CMD_statistics::Execute( ParseLine const *p )
       throw ECommandError( command+wxT("input vectors have different lengths") );
     //
     double r, prob;
-    try
-    {
-      Pearson( x, y, r, prob );
-    }
-    catch( ECommandError &e )
-    {
-      throw;
-    }
+    Pearson( x, y, r, prob );
     if( output )
     {
       wxString c( wxT("Correlation Coeffidient = ") );

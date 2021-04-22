@@ -23,13 +23,6 @@ FCN_ellick *FCN_ellick::fcn_ellick_ = 0;
 
 void FCN_ellick::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::CompleteEllipticIntegral1( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::CompleteEllipticIntegral1( rStack[j] );
 }
 

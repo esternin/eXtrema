@@ -34,14 +34,7 @@ CMD_alias::CMD_alias() : Command( wxT("ALIAS") )
 void CMD_alias::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch( ECommandError const &e )
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   wxString command( Name()+wxT(": ") );
   int nTokens = p->GetNumberOfTokens();
   if( nTokens == 1 )

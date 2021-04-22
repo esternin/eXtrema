@@ -23,13 +23,6 @@ FCN_kei *FCN_kei::fcn_kei_ = 0;
 
 void FCN_kei::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::Kei( rStack[j] );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::Kei( rStack[j] );
 }
 

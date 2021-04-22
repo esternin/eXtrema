@@ -32,14 +32,7 @@ CMD_help::CMD_help() : Command( wxT("HELP") )
 void CMD_help::Execute( ParseLine const *p )
 {
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   ExGlobals::StartHelp();
 }
 

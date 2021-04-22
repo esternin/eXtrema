@@ -53,14 +53,7 @@ void CMD_figure::Execute( ParseLine const *p )
   // FIGURE ELLIPSE x1 y1 x2 y2
   //
   QualifierMap qualifiers;
-  try
-  {
-    SetUp( p, qualifiers );
-  }
-  catch (ECommandError &e)
-  {
-    throw;
-  }
+  SetUp( p, qualifiers );
   GRA_window *gw = ExGlobals::GetGraphWindow();
   GRA_color *cc =
       static_cast<GRA_colorCharacteristic*>(gw->GetDataCurveCharacteristics()->Get(wxT("CURVECOLOR")))->Get();

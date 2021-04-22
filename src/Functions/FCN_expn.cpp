@@ -23,15 +23,8 @@ FCN_expn *FCN_expn::fcn_expn_ = 0;
 
 void FCN_expn::ScalarEval( int j, std::vector<double> &rStack ) const
 {
-  try
-  {
-    rStack[j] = UsefulFunctions::ExponentialIntegralN( rStack[j],
-                                                       static_cast<int>(rStack[j+1]) );
-  }
-  catch (EExpressionError &e)
-  {
-    throw;
-  }
+  rStack[j] = UsefulFunctions::ExponentialIntegralN( rStack[j],
+                                                     static_cast<int>(rStack[j+1]) );
   rStack.pop_back();
 }
 
