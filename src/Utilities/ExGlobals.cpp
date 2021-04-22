@@ -896,7 +896,7 @@ void StopAllScripts()
   if( scripts_.empty() )return;
   std::vector<Script*>::const_iterator sEnd = scripts_.end();
   for( std::vector<Script*>::const_iterator i=scripts_.begin(); i!=sEnd; ++i )delete *i;
-  std::vector<Script*>().swap( scripts_ );
+  scripts_.clear();
   stackIsOn_ = stackSaved_;
   currentScriptNumber_ = 0;
 }
