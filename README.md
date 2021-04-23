@@ -1,3 +1,5 @@
+![extrema](/Images/extrema-title_3.gif)
+
 <h1>Welcome to eXtrema!</h1>
 
 eXtrema is distributed under the GNU GPL. Please see the file COPYING for details.
