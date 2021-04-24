@@ -444,7 +444,7 @@ void CMD_graph::Execute( ParseLine const *p )
       if( cartesianCurve )
       {
         cartesianCurve->Make();
-        cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
+        //cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( cartesianCurve );
       }
     }

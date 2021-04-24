@@ -491,7 +491,7 @@ void CMD_contour::Execute( ParseLine const *p )
     x.clear();
     y.clear();
     contour->Make();
-    contour->Draw( ExGlobals::GetGraphicsOutput(), dc );
+    //contour->Draw( ExGlobals::GetGraphicsOutput(), dc );
     gw->AddDrawableObject( contour );
   }
   // save the last legend value for the next plot

@@ -764,8 +764,8 @@ void ClearGraphicsWindow( bool replot, int n )
   SetWindowNumber( n );
   gw->Erase();
   wxClientDC dc( visualizationWindow_->GetPage() );
-  gw->DisplayBackground( graphicsOutput_, dc );
   if( replot )gw->Clear();
+  gw->DisplayBackground( graphicsOutput_, dc );
 }
   
 void ClearHistory()
@@ -1181,8 +1181,8 @@ void DefaultSize()
   delete graphicsOutput_;
   graphicsOutput_ = new GRA_wxWidgets( xminM_, yminM_, xmaxM_, ymaxM_ );
   wxClientDC dc( visualizationWindow_->GetPage() );
-  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
+  dc.SetBackground( *wxWHITE_BRUSH );
   //
   visualizationWindow_->DrawGraphWindows( graphicsOutput_, dc );
 }
@@ -1196,8 +1196,8 @@ void ChangeSize( double value )
   delete graphicsOutput_;
   graphicsOutput_ = new GRA_wxWidgets( xminM_, yminM_, xmaxM_, ymaxM_ );
   wxClientDC dc( visualizationWindow_->GetPage() );
-  dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
+  dc.SetBackground( *wxWHITE_BRUSH );
   //
   visualizationWindow_->DrawGraphWindows( graphicsOutput_, dc );
 }
