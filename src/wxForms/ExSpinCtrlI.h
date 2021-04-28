@@ -91,9 +91,8 @@ private:
     long val;
     if( !text.ToLong(&val) || val<spinButton_->GetMin() || val>spinButton_->GetMax() )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("invalid value entered"),
-                                                 wxT("Error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxT("invalid value entered"),
+                    wxT("Error"), wxOK|wxICON_ERROR, this );
       return;
     }
     (popup_->*memFunc_)( static_cast<int>(val) );

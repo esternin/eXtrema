@@ -95,11 +95,8 @@ void InquireYNDialog::OnYes( wxCommandEvent &WXUNUSED(event) )
   catch ( ECommandError const &e )
   {
     ExGlobals::StopAllScripts();
-    wxMessageDialog *md =
-        new wxMessageDialog( (wxWindow*)this,
-                             wxString(e.what(),wxConvUTF8),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
   }
   Close();
 }
@@ -113,11 +110,8 @@ void InquireYNDialog::OnNo( wxCommandEvent &WXUNUSED(event) )
   catch ( ECommandError const &e )
   {
     ExGlobals::StopAllScripts();
-    wxMessageDialog *md =
-        new wxMessageDialog( (wxWindow*)this,
-                             wxString(e.what(),wxConvUTF8),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
   }
   Close();
 }

@@ -45,12 +45,9 @@ public:
 
   void OnDrawFigures( wxCommandEvent &WXUNUSED(event) )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( (wxWindow*)this,
-                           wxT("Click here to draw figures (coming soon)"),
-                           wxT("draw figures"),
-                           wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("Click here to draw figures (coming soon)"),
+                  ("draw figures"),
+                  wxOK|wxICON_INFORMATION, this );
   }
 
 

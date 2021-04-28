@@ -140,11 +140,11 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
 void VisualizationSpeedButtonPanel::OnImportDrawing( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("PNG (*.png)|*.png|JPEG (*.jpeg,*.jpg)|*.jpeg;*.jpg") );
-  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose a PNG or JPEG file"), wxT(""), wxT(""),
-                                       wildcard,
-                                       wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
-  if( fd->ShowModal() != wxID_OK )return;
-  wxString filename( fd->GetFilename() );
+  wxFileDialog fd( this, wxT("Choose a PNG or JPEG file"), wxT(""), wxT(""),
+                   wildcard,
+                   wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
+  if( fd.ShowModal() != wxID_OK )return;
+  wxString filename( fd.GetFilename() );
   if( filename.empty() )return;
   wxString extension( ExGlobals::GetFileExtension(filename).MakeUpper() );
   //
@@ -162,15 +162,15 @@ void VisualizationSpeedButtonPanel::OnSaveDrawing( wxCommandEvent &WXUNUSED(even
 #else
   wxString wildcard( wxT("Encapsulated PostScript (*.eps)|*.eps|PNG file (*.png)|*.png|JPEG file (*.jpeg)|*.jpeg") );
 #endif
-  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose an output file"), wxT(""), wxT(""),
-                                       wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
-  if( fd->ShowModal() != wxID_OK )return;
-  wxString filename( fd->GetFilename() );
+  wxFileDialog fd( this, wxT("Choose an output file"), wxT(""), wxT(""),
+                   wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
+  if( fd.ShowModal() != wxID_OK )return;
+  wxString filename( fd.GetFilename() );
   if( filename.empty() )return;
   wxString extension( ExGlobals::GetFileExtension(filename) );
   if( extension.empty() )
   {
-    switch ( fd->GetFilterIndex() )
+    switch ( fd.GetFilterIndex() )
     {
       case 0:
         extension = wxT(".eps");

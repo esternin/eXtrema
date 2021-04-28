@@ -349,9 +349,8 @@ void LegendPopup::ReDraw()
   }
   catch ( EGraphicsError const &e )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Error"), wxOK|wxICON_ERROR, this );
     return;
   }
 }

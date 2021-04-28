@@ -91,30 +91,27 @@ void ChooseFilePanel::SaveFilenames( wxConfigBase *config, wxString const &iniSt
 
 void ChooseFilePanel::OnChooseFile( wxCommandEvent &WXUNUSED(event) )
 {
-  wxFileDialog *fd;
   std::ios_base::openmode mode;
+  int fdFlags = wxFD_CHANGE_DIR;
   if( read_ )
   {
-    fd = new wxFileDialog( this, message_, wxT(""), wxT(""), fileType_,
-                           wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR );
+    fdFlags |= wxFD_OPEN|wxFD_FILE_MUST_EXIST;
     mode = std::ios_base::in;
   }
   else
   {
-    fd = new wxFileDialog( this, message_, wxT(""), wxT(""), fileType_,
-                           wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
+    fdFlags |= wxFD_SAVE|wxFD_OVERWRITE_PROMPT;
     mode = std::ios_base::out;
   }
+  wxFileDialog fd( this, message_, wxT(""), wxT(""), fileType_, fdFlags );
   wxString filename;
-  if( fd->ShowModal() == wxID_OK )filename = fd->GetPath();
+  if( fd.ShowModal() == wxID_OK )filename = fd.GetPath();
   if( filename.empty() )return;
   std::fstream f( filename.mb_str(wxConvUTF8), mode );
   if( !f.is_open() )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( (wxWindow*)this, wxString(wxT("could not open "))+filename,
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("could not open "))+filename,
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   f.close();

@@ -349,9 +349,7 @@ void GraphForm::Draw()
   wxString depName( dataCB_->GetStringSelection() );
   if( depName == wxT("<none>") )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("a dependent vector must be chosen"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("a dependent vector must be chosen"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   try
@@ -360,9 +358,7 @@ void GraphForm::Draw()
   }
   catch( EVariableError &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   wxString indepName( indepCB_->GetStringSelection() );
@@ -382,23 +378,17 @@ void GraphForm::Draw()
     }
     catch( EVariableError &e )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     if( !minTC_->GetValue().ToDouble(&minRange) )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxT("invalid value entered for min"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxT("invalid value entered for min"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     if( !maxTC_->GetValue().ToDouble(&maxRange) )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxT("invalid value entered for max"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxT("invalid value entered for max"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
   }
@@ -411,9 +401,7 @@ void GraphForm::Draw()
     }
     catch( EVariableError &e )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
   }
@@ -439,10 +427,8 @@ void GraphForm::Draw()
   }
   if( newX.empty() )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("there are no data values within the specified independent vector range"),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("there are no data values within the specified independent vector range"),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   num = newX.size();
@@ -500,9 +486,7 @@ void GraphForm::Draw()
   {
     delete cartesianAxes;
     delete cartesianCurve;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   wxClientDC dc( ExGlobals::GetwxWindow() );

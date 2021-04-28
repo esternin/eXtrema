@@ -210,9 +210,8 @@ void ReadTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   wxString fileName( topPanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("no file has been chosen"),
-                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no file has been chosen"),
+                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   CMD_read *readCommand = CMD_read::Instance();
@@ -226,18 +225,16 @@ void ReadTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     inStream->open( fileName.mb_str(wxConvUTF8), std::ios_base::in );
     if( !inStream->is_open() )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(wxT("Could not open "))+fileName,
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(wxT("Could not open "))+fileName,
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
       return;
     }
   }
   wxString varName( varNameTextCtrl_->GetValue() );
   if( varName.empty() )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("a text variable name must be entered"),
-                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("a text variable name must be entered"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
     inStream->close();
     return;
   }
@@ -253,10 +250,8 @@ void ReadTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       firstLineTextCtrl_->SetValue( wxT("1") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this,
-                                                 stmp+wxT(" is an invalid value for line range first line"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( stmp+wxT(" is an invalid value for line range first line"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     startingLine = static_cast<int>(ltmp);
@@ -266,10 +261,8 @@ void ReadTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       lastLineTextCtrl_->SetValue( wxT("1") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this,
-                                                 stmp+wxT(" is an invalid value for line range last line"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( stmp+wxT(" is an invalid value for line range last line"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     lastLine = static_cast<int>(ltmp);
@@ -279,10 +272,8 @@ void ReadTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       incrementTextCtrl_->SetValue( wxT("1") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this,
-                                                 stmp+wxT(" is an invalid value for line range increment"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( stmp+wxT(" is an invalid value for line range increment"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     increment = static_cast<int>(ltmp);
@@ -303,10 +294,9 @@ void ReadTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     if( std::getline(*inStream,buffer).fail() )
     {
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("end of file reached reading initial dummy records"),
-                                                 wxT("Fatal error: no vectors were modified"),
-                                                 wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("end of file reached reading initial dummy records"),
+                    wxT("Fatal error: no vectors were modified"),
+                    wxOK|wxICON_INFORMATION, this );
       return;
     }
   }

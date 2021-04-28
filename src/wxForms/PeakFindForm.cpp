@@ -267,9 +267,8 @@ void PeakFindForm::OnClose( wxCommandEvent &WXUNUSED(event) )
     }
     catch ( EVariableError &e )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                                 wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8),
+                    wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
       return;
     }  
   }
@@ -281,10 +280,8 @@ void PeakFindForm::OnLeft( wxCommandEvent &WXUNUSED(event) )
 {
   if( !curve_ )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("There is no curve drawn in the current window"),
-                           wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("There is no curve drawn in the current window"),
+                  wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   EraseLastArrow();
@@ -374,8 +371,7 @@ void PeakFindForm::OnLeft( wxCommandEvent &WXUNUSED(event) )
   }
   if( !peakFound )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("no peak found"), wxT("Info"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no peak found"), wxT("Info"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   // Found a peak at index jPeak_-1
@@ -390,10 +386,8 @@ void PeakFindForm::OnRight( wxCommandEvent &WXUNUSED(event) )
 {
   if( !curve_ )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("There is no curve drawn in the current window"),
-                           wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("There is no curve drawn in the current window"),
+                  wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   EraseLastArrow();
@@ -483,8 +477,7 @@ void PeakFindForm::OnRight( wxCommandEvent &WXUNUSED(event) )
   }
   if( !peakFound )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("no peak found"), wxT("Info"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no peak found"), wxT("Info"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   // Found a peak at index jPeak_-1
@@ -515,9 +508,8 @@ void PeakFindForm::ShowValues()
   }
   else
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("extremum found outside plot range"),
-                                               wxT("Info"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("extremum found outside plot range"),
+                  wxT("Info"), wxOK|wxICON_INFORMATION, this );
     return;
   }
 }

@@ -446,11 +446,11 @@ void VisualizationWindow::OnSize( wxSizeEvent &event )
 void VisualizationWindow::OnImportPNG( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("PNG (*.png)|*.png") );
-  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose a PNG file"), wxT(""), wxT(""),
-                                       wildcard,
-                                       wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
-  if( fd->ShowModal() != wxID_OK )return;
-  wxString filename( fd->GetFilename() );
+  wxFileDialog fd( this, wxT("Choose a PNG file"), wxT(""), wxT(""),
+                   wildcard,
+                   wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
+  if( fd.ShowModal() != wxID_OK )return;
+  wxString filename( fd.GetFilename() );
   if( filename.empty() )return;
   //
   // open the png file and open a window to display it in
@@ -462,11 +462,11 @@ void VisualizationWindow::OnImportPNG( wxCommandEvent &WXUNUSED(event) )
 void VisualizationWindow::OnImportJPEG( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("JPEG and JPG (*.jpeg;*.jpg)|*.jpeg;*.jpg") );
-  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose a JPEG file"), wxT(""), wxT(""),
-                                       wildcard,
-                                       wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
-  if( fd->ShowModal() != wxID_OK )return;
-  wxString filename( fd->GetFilename() );
+  wxFileDialog fd( this, wxT("Choose a JPEG file"), wxT(""), wxT(""),
+                   wildcard,
+                   wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR|wxFD_PREVIEW );
+  if( fd.ShowModal() != wxID_OK )return;
+  wxString filename( fd.GetFilename() );
   if( filename.empty() )return;
   //
   wxString ext( ExGlobals::GetFileExtension(filename).MakeUpper() );
@@ -480,10 +480,10 @@ void VisualizationWindow::OnImportJPEG( wxCommandEvent &WXUNUSED(event) )
 void VisualizationWindow::OnSavePS( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("PostScript (*.eps)|*.eps") );
-  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose an output file"), wxT(""), wxT(""),
-                                       wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
-  if( fd->ShowModal() != wxID_OK )return;
-  wxString filename( fd->GetFilename() );
+  wxFileDialog fd( this, wxT("Choose an output file"), wxT(""), wxT(""),
+                   wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
+  if( fd.ShowModal() != wxID_OK )return;
+  wxString filename( fd.GetFilename() );
   if( filename.empty() )return;
   if( filename.find_last_of(wxT('.')) == filename.npos )filename += wxT(".eps");
   std::ofstream outFile;
@@ -509,10 +509,10 @@ void VisualizationWindow::OnSavePS( wxCommandEvent &WXUNUSED(event) )
 void VisualizationWindow::OnSavePNG( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("PNG (*.png)|*.png") );
-  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose an output file"), wxT(""), wxT(""),
-                                       wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
-  if( fd->ShowModal() != wxID_OK )return;
-  wxString filename( fd->GetFilename() );
+  wxFileDialog fd( this, wxT("Choose an output file"), wxT(""), wxT(""),
+                   wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
+  if( fd.ShowModal() != wxID_OK )return;
+  wxString filename( fd.GetFilename() );
   if( filename.empty() )return;
   if( filename.find_last_of(wxT('.')) == filename.npos )filename += wxT(".png");
   std::ofstream outFile;
@@ -540,10 +540,10 @@ void VisualizationWindow::OnSavePNG( wxCommandEvent &WXUNUSED(event) )
 void VisualizationWindow::OnSaveJPEG( wxCommandEvent &WXUNUSED(event) )
 {
   wxString wildcard( wxT("JPEG (*.jpeg)|*.jpeg") );
-  wxFileDialog *fd = new wxFileDialog( this, wxT("Choose an output file"), wxT(""), wxT(""),
-                                       wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
-  if( fd->ShowModal() != wxID_OK )return;
-  wxString filename( fd->GetFilename() );
+  wxFileDialog fd( this, wxT("Choose an output file"), wxT(""), wxT(""),
+                   wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
+  if( fd.ShowModal() != wxID_OK )return;
+  wxString filename( fd.GetFilename() );
   if( filename.empty() )return;
   if( filename.find_last_of(wxT('.')) == filename.npos )filename += wxT(".jpeg");
   std::ofstream outFile;

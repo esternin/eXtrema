@@ -128,10 +128,8 @@ void WriteVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   wxString fileName( topPanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("no file has been chosen"),
-                           wxT("Fatal error: nothing was written"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no file has been chosen"),
+                  wxT("Fatal error: nothing was written"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   CMD_write *writeCommand = CMD_write::Instance();
@@ -144,9 +142,8 @@ void WriteVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   if( !outStream->is_open() )
   {
     outStream->clear( std::ios::goodbit );
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(wxT("Could not open "))+fileName,
-                                               wxT("Fatal error: nothing was written"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("Could not open "))+fileName,
+                  wxT("Fatal error: nothing was written"), wxOK|wxICON_ERROR, this );
     return;
   }
   std::vector<wxString> names;
@@ -169,9 +166,8 @@ void WriteVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     catch( EVariableError const &e )
     {
       outStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                                 wxT("Fatal error: nothing was written"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8),
+                    wxT("Fatal error: nothing was written"), wxOK|wxICON_ERROR, this );
       return;
     }
     names.push_back( name );
@@ -181,9 +177,8 @@ void WriteVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   if( names.empty() )
   {
     outStream->close();
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("no vectors were chosen"),
-                                               wxT("Warning: nothing was written"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("no vectors were chosen"),
+                  wxT("Warning: nothing was written"), wxOK|wxICON_ERROR, this );
     return;
   }
   std::vector<int> mm( names.size(), 0 );

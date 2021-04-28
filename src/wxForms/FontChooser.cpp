@@ -429,15 +429,13 @@ void FontChooser::OnOK( wxCommandEvent &WXUNUSED(event) )
   double height;
   if( !heightTC_->GetValue().ToDouble(&height) )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("invalid value for text height"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value for text height"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   double angle;
   if( !angleTC_->GetValue().ToDouble(&angle) )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("invalid value for text angle"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value for text angle"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   ExGlobals::SetWorkingFont( fontCode_, colorCode_, height, angle );

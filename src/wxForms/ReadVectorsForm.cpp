@@ -275,9 +275,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   wxString fileName( topPanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md =  new wxMessageDialog( this, wxT("no file has been chosen"),
-                                                wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no file has been chosen"),
+                                                wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   CMD_read *readCommand = CMD_read::Instance();
@@ -290,9 +289,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     inStream->open( fileName.mb_str(wxConvUTF8), std::ios_base::in );
     if( !inStream->is_open() )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(wxT("Could not open "))+fileName,
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(wxT("Could not open "))+fileName,
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
       return;
     }
   }
@@ -321,10 +319,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       if( !colm.ToLong(&ltmp) || ltmp<1L )
       {
         inStream->close();
-        wxMessageDialog *md =
-            new wxMessageDialog( this, wxT("column number must be an integer > 0"),
-                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxT("column number must be an integer > 0"),
+                      wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
         return;
       }
       columnNumbers.push_back( static_cast<int>(ltmp) );
@@ -334,20 +330,16 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   if( names.empty() )
   {
     inStream->close();
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("expecting some output vector names"),
-                             wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("expecting some output vector names"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   numberOfNames = names.size();
   if( numberOfNames > 100 )
   {
     inStream->close();
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("Maximum number of vectors that can be read is 100"),
-                             wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("Maximum number of vectors that can be read is 100"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   std::vector< std::vector<double> > data( maxColumnNumber );
@@ -387,9 +379,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       firstLineTextCtrl_->SetValue( wxT("1") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("first line must be > 0"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("first line must be > 0"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     startingLine = static_cast<int>(ltmp);
@@ -401,9 +392,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       {
         lastLineTextCtrl_->SetValue( wxT("") );
         inStream->close();
-        wxMessageDialog *md = new wxMessageDialog( this, stmp+wxT(" is an invalid value for last line"),
-                                                   wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( stmp+wxT(" is an invalid value for last line"),
+                      wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
         return;
       }
       lastLine = static_cast<int>(ltmp);
@@ -411,9 +401,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       {
         lastLineTextCtrl_->SetValue( wxT("") );
         inStream->close();
-        wxMessageDialog *md = new wxMessageDialog( this, wxT("last line must be >= first line"),
-                                                   wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxT("last line must be >= first line"),
+                      wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
         return;
       }
     }
@@ -422,9 +411,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       incrementTextCtrl_->SetValue( wxT("1") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("increment must be > 0"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("increment must be > 0"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     increment = static_cast<int>(ltmp);
@@ -437,10 +425,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       errorFillTextCtrl_->SetValue( wxT("0.0") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this,
-                                                 stmp+wxT(" is an invalid value for error fill"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( stmp+wxT(" is an invalid value for error fill"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     readCommand->SetErrorFill( errorFillValue );
@@ -461,10 +447,9 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     if( std::getline(*inStream,buffer).fail() )
     {
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("end of file reached reading initial dummy records"),
-                                                 wxT("Fatal error: no vectors were modified"),
-                                                 wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("end of file reached reading initial dummy records"),
+                    wxT("Fatal error: no vectors were modified"),
+                    wxOK|wxICON_INFORMATION, this );
       return;
     }
   }
@@ -616,9 +601,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       formatString = formatTextCtrl_->GetValue();
       if( formatString.empty() )
       {
-        wxMessageDialog *md = new wxMessageDialog( this, wxT("expecting a format"),
-                                                   wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-        md->ShowModal();
+        wxMessageBox( wxT("expecting a format"),
+                      wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
         inStream->close();
         return;
       }
@@ -668,10 +652,9 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
         if( errorStop_->IsChecked() )
         {
           inStream->close();
-          wxMessageDialog *md = new wxMessageDialog( this, message,
-                                                     wxT("Fatal error: no vectors were modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( message,
+                        wxT("Fatal error: no vectors were modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         if( messages_->IsChecked() )ExGlobals::WarningMessage( message );
@@ -683,10 +666,9 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
         if( errorStop_->IsChecked() )
         {
           inStream->close();
-          wxMessageDialog *md = new wxMessageDialog( this, message,
-                                                     wxT("Fatal error: no vectors were modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( message,
+                        wxT("Fatal error: no vectors were modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         if( messages_->IsChecked() )ExGlobals::WarningMessage( message );
@@ -698,10 +680,9 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
         if( errorStop_->IsChecked() )
         {
           inStream->close();
-          wxMessageDialog *md = new wxMessageDialog( this, message,
-                                                     wxT("Fatal error: no vectors were modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( message,
+                        wxT("Fatal error: no vectors were modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         if( messages_->IsChecked() )ExGlobals::WarningMessage( message );
@@ -745,9 +726,8 @@ void ReadVectorsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       }
       catch ( EVariableError const &e )
       {
-        wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                                   wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxString(e.what(),wxConvUTF8),
+                      wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
       nothingWasRead = false;

@@ -77,12 +77,11 @@ bool extrema::OnInit()
 
 void extrema::QuitApp()
 {
-  wxMessageDialog *md =
-      new wxMessageDialog( (wxWindow*)analysisWindow_,
+  wxMessageDialog md( (wxWindow*)analysisWindow_,
                            wxT("Do you really want to quit?"),
                            wxT("Confirm quit"),
                            wxYES_NO|wxICON_QUESTION );
-  if( md->ShowModal() == wxID_YES )
+  if( md.ShowModal() == wxID_YES )
   {
     analysisWindow_->Close(true);
     exit( 0 );

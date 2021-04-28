@@ -157,11 +157,10 @@ void CommandTextCtrl::DoACommand()
   }
   catch ( std::runtime_error &e )
   {
-    wxMessageDialog *md = new wxMessageDialog( (wxWindow*)this,
-                                               wxString(e.what(),wxConvUTF8),
-                                               wxT("ERROR"),
-                                               wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("ERROR"),
+                  wxOK|wxICON_ERROR,
+                  this );
     command.clear();
     return;
   }

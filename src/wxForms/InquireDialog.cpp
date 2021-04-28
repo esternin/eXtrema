@@ -89,9 +89,8 @@ void InquireDialog::OnOK( wxCommandEvent &WXUNUSED(event) )
   catch ( ECommandError const &e )
   {
     ExGlobals::StopAllScripts();
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
   }
   Close();
 }

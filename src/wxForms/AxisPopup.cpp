@@ -650,17 +650,15 @@ void AxisPopup::OnApplyScales( wxCommandEvent &WXUNUSED(event) )
   double min;
   if( !minTC_->GetValue().ToDouble(&min) )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("invalid value entered for axis minimum"),
-                                               wxT("Error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value entered for axis minimum"),
+                  wxT("Error"), wxOK|wxICON_ERROR, this );
     return;
   }
   double max;
   if( !maxTC_->GetValue().ToDouble(&max) )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("invalid value entered for axis maximum"),
-                                               wxT("Error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value entered for axis maximum"),
+                  wxT("Error"), wxOK|wxICON_ERROR, this );
     return;
   }
   GRA_setOfCharacteristics *general = window_->GetGeneralCharacteristics();
@@ -702,8 +700,8 @@ void AxisPopup::OnLogBase( wxCommandEvent &WXUNUSED(event) )
   int idx = logBaseRB_->GetSelection();
   if( (idx>0) && (axisMin<0.0 || axisMax<0.0) )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("logarithmic axis not possible with negative values"), wxT("Error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("logarithmic axis not possible with negative values"),
+                  wxT("Error"), wxOK|wxICON_ERROR, this );
     logBaseRB_->SetSelection( 0 );
     return;
   }
@@ -746,9 +744,8 @@ void AxisPopup::ReDraw()
   }
   catch ( EGraphicsError const &e )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Error"), wxOK|wxICON_ERROR, this );
     return;
   }
 }

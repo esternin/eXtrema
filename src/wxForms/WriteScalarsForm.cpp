@@ -128,10 +128,8 @@ void WriteScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   wxString fileName( topPanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("no file has been chosen"),
-                           wxT("Fatal error: nothing was written"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no file has been chosen"),
+                  wxT("Fatal error: nothing was written"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   CMD_write *writeCommand = CMD_write::Instance();
@@ -144,9 +142,8 @@ void WriteScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   if( !outStream->is_open() )
   {
     outStream->clear( std::ios::goodbit );
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(wxT("Could not open "))+fileName,
-                                               wxT("Fatal error: nothing was written"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("Could not open "))+fileName,
+                  wxT("Fatal error: nothing was written"), wxOK|wxICON_ERROR, this );
     return;
   }
   int count = variableList_->GetCount();
@@ -165,10 +162,9 @@ void WriteScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     catch( EVariableError const &e )
     {
       outStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                                 wxString(wxT("Fatal error: scalar "))+name+wxT(" was not written"),
-                                                 wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8),
+                    wxString(wxT("Fatal error: scalar "))+name+wxT(" was not written"),
+                    wxOK|wxICON_ERROR, this );
       return;
     }
     (*outStream) << value << "\n";

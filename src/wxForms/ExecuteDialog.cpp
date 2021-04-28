@@ -131,9 +131,7 @@ void ExecuteDialog::Apply()
   wxString fileName( chooseFilePanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("no file has been chosen"), wxT("Warning"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no file has been chosen"), wxT("Warning"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   wxFileName wxfn( fileName );
@@ -150,9 +148,8 @@ void ExecuteDialog::Apply()
   }
   catch( ESyntaxError &e )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   try
@@ -161,9 +158,8 @@ void ExecuteDialog::Apply()
   }
   catch( ECommandError &e )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   if( ExGlobals::StackIsOn() )

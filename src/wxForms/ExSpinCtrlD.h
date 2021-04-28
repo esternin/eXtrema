@@ -84,9 +84,8 @@ private:
     double val;
     if( !text.ToDouble(&val) || val<0.0 || val>100.0 )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("invalid value entered"),
-                                                 wxT("Error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxT("invalid value entered"),
+                    wxT("Error"), wxOK|wxICON_ERROR, this );
       return;
     }
     (popup_->*memFunc_)( val );

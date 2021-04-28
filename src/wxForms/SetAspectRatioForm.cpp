@@ -142,18 +142,14 @@ bool SetAspectRatioForm::GetValues( double &height, double &width )
 {
   if( heightTC_->GetValue().empty() )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(wxT("No value was entered for height")),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("No value was entered for height")),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return false;
   }
   if( !heightTC_->GetValue().ToDouble(&height) )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(wxT("Invalid value entered for height")),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("Invalid value entered for height")),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
 #if wxMINOR_VERSION < 8
     heightTC_->SetValue( wxT("") );
 #else
@@ -163,10 +159,8 @@ bool SetAspectRatioForm::GetValues( double &height, double &width )
   }
   if( height <= 0.0 )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(wxT("Height must be > 0")),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("Height must be > 0")),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
 #if wxMINOR_VERSION < 8
     heightTC_->SetValue( wxT("") );
 #else
@@ -176,18 +170,14 @@ bool SetAspectRatioForm::GetValues( double &height, double &width )
   }
   if( widthTC_->GetValue().empty() )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(wxT("No value was entered for width")),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("No value was entered for width")),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return false;
   }
   if( !widthTC_->GetValue().ToDouble(&width) )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(wxT("Invalid value entered for width")),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("Invalid value entered for width")),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
 #if wxMINOR_VERSION < 8
     widthTC_->SetValue( wxT("") );
 #else
@@ -197,10 +187,8 @@ bool SetAspectRatioForm::GetValues( double &height, double &width )
   }
   if( width <= 0.0 )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(wxT("Width must be > 0")),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("Width must be > 0")),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
 #if wxMINOR_VERSION < 8
     widthTC_->SetValue( wxT("") );
 #else

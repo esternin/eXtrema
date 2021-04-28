@@ -710,10 +710,8 @@ void FitForm::CreateParameters()
     double startValue;
     if( !pstartTC_[i]->GetValue().ToDouble(&startValue) )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(wxT("invalid start value entered for parameter "))<<i,
-                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(wxT("invalid start value entered for parameter "))<<i,
+                    wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     NVariableTable::GetTable()->RemoveEntry( name );
@@ -744,10 +742,8 @@ void FitForm::TestTheFit()
   {
     if( !pstartTC_[i]->GetValue().ToDouble(&pStartValues_.back().at(i)) )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(wxT("invalid start value entered for parameter "))<<i,
-                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(wxT("invalid start value entered for parameter "))<<i,
+                    wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
   }
@@ -776,9 +772,7 @@ void FitForm::TestTheFit()
   }
   catch( EVariableError &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   std::size_t num = std::min( x.size(), y.size() );
@@ -844,9 +838,7 @@ void FitForm::TestTheFit()
     *textC = textCsave;
     delete cartesianAxes;
     delete cartesianCurve;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   wxClientDC dc( ExGlobals::GetwxWindow() );
@@ -882,9 +874,7 @@ void FitForm::TestTheFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -910,9 +900,7 @@ void FitForm::TestTheFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -935,9 +923,7 @@ void FitForm::TestTheFit()
       *yAxisC = yAxisCsave;
       *textC = textCsave;
       delete dt;
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -983,9 +969,7 @@ void FitForm::TestTheFit()
       *textC = textCsave;
       nv->GetData().SetData( iVec );
       nv->GetData().SetDimMag( 0, iVec.size() );
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     std::vector<double> newY( expr.GetFinalAnswer().GetData() );
@@ -1011,9 +995,7 @@ void FitForm::TestTheFit()
       nv->GetData().SetData( iVec );
       nv->GetData().SetDimMag( 0, iVec.size() );
       delete cartesianCurve;
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1041,9 +1023,7 @@ void FitForm::TestTheFit()
       nv->GetData().SetData( iVec );
       nv->GetData().SetDimMag( 0, iVec.size() );
       delete dt;
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1115,9 +1095,7 @@ void FitForm::DoTheFit()
   wxString s( dataCB_->GetStringSelection() );
   if( s == wxT("<none>") )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("a data vector must be chosen"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("a data vector must be chosen"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dVecName_ = s;
@@ -1125,9 +1103,7 @@ void FitForm::DoTheFit()
   s = indepCB_->GetStringSelection();
   if( s == wxT("<none>") )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("an independent vector must be chosen"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("an independent vector must be chosen"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   iVecName_ = s;
@@ -1150,9 +1126,7 @@ void FitForm::DoTheFit()
   }
   catch( EVariableError &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   xVec.assign( xVecSave.begin(), xVecSave.end() );
@@ -1170,16 +1144,12 @@ void FitForm::DoTheFit()
   }
   if( !minTC_->GetValue().ToDouble(&minRange_) )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("invalid value entered for min"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value entered for min"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   if( !maxTC_->GetValue().ToDouble(&maxRange_) )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("invalid value entered for max"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value entered for max"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   std::vector<double> newX, newY, newE;
@@ -1194,10 +1164,8 @@ void FitForm::DoTheFit()
   }
   if( newX.empty() )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("there are no data values within the independent vector range"),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("there are no data values within the independent vector range"),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   num = newX.size();
@@ -1217,9 +1185,7 @@ void FitForm::DoTheFit()
   {
     nvX->GetData().SetData( xVecSave );
     nvX->GetData().SetDimMag( 0, xVecSave.size() );
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   std::size_t const nparam = expr.GetNumberOfFitParameters();
@@ -1227,20 +1193,16 @@ void FitForm::DoTheFit()
   {
     nvX->GetData().SetData( xVecSave );
     nvX->GetData().SetDimMag( 0, xVecSave.size() );
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("there are no fitting parameters in the expression"),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("there are no fitting parameters in the expression"),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   if( num <= nparam )
   {
     nvX->GetData().SetData( xVecSave );
     nvX->GetData().SetDimMag( 0, xVecSave.size() );
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("number of data points <= number of parameters"),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("number of data points <= number of parameters"),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   // do the fit
@@ -1273,9 +1235,7 @@ void FitForm::DoTheFit()
     nvX->GetData().SetData( xVecSave );
     nvX->GetData().SetDimMag( 0, xVecSave.size() );
     for( std::size_t i=0; i<nparam; ++i )expr.SetFitParameterValue( i, p1[i] );
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   catch (...)
@@ -1283,9 +1243,7 @@ void FitForm::DoTheFit()
     nvX->GetData().SetData( xVecSave );
     nvX->GetData().SetDimMag( 0, xVecSave.size() );
     for( std::size_t i=0; i<nparam; ++i )expr.SetFitParameterValue( i, p1[i] );
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("unknown error"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("unknown error"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   nvX->GetData().SetData( xVecSave );
@@ -1302,9 +1260,7 @@ void FitForm::DoTheFit()
   }
   catch ( EExpressionError &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   pvStr_ = wxT("FIT: ") + dVecName_ + wxT(" = ") + fitExpression_;
@@ -1330,9 +1286,7 @@ void FitForm::DoTheFit()
   }
   catch ( EVariableError &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   //
@@ -1358,9 +1312,7 @@ void FitForm::DoTheFit()
   }
   catch ( EVariableError &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   //
@@ -1405,9 +1357,7 @@ void FitForm::DoTheFit()
     }
     catch ( EVariableError &e )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
   }
@@ -1436,9 +1386,7 @@ void FitForm::DoTheFit()
   }
   catch ( EVariableError &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   PlotFit();
@@ -1472,9 +1420,7 @@ void FitForm::PlotFit()
   }
   catch( EVariableError &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   std::size_t num = std::min( x.size(), y.size() );
@@ -1549,9 +1495,7 @@ void FitForm::PlotFit()
     *textC = textCsave;
     delete cartesianAxes;
     delete cartesianCurve;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   wxClientDC dc( ExGlobals::GetwxWindow() );
@@ -1588,9 +1532,7 @@ void FitForm::PlotFit()
       *yAxisC = yAxisCsave;
       *textC = textCsave;
       delete cartesianCurve;
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1610,9 +1552,7 @@ void FitForm::PlotFit()
       *yAxisC = yAxisCsave;
       *textC = textCsave;
       delete cartesianCurve;
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1650,9 +1590,7 @@ void FitForm::PlotFit()
     *textC = textCsave;
     nv->GetData().SetData( iVec );
     nv->GetData().SetDimMag( 0, iVec.size() );
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   std::vector<double> newY( expr.GetFinalAnswer().GetData() );
@@ -1671,9 +1609,7 @@ void FitForm::PlotFit()
     *xAxisC = xAxisCsave;
     *yAxisC = yAxisCsave;
     *textC = textCsave;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   static_cast<GRA_intCharacteristic*>(dataCurveC->Get(wxT("PLOTSYMBOL")))->Set( 0 );
@@ -1691,9 +1627,7 @@ void FitForm::PlotFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete cartesianCurve;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1728,9 +1662,7 @@ void FitForm::PlotFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1756,9 +1688,7 @@ void FitForm::PlotFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1781,9 +1711,7 @@ void FitForm::PlotFit()
       *yAxisC = yAxisCsave;
       *textC = textCsave;
       delete dt;
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1797,9 +1725,7 @@ void FitForm::PlotFit()
     *xAxisC = xAxisCsave;
     *yAxisC = yAxisCsave;
     *textC = textCsave;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("invalid value entered for legend x location"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value entered for legend x location"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   if( !legyTC_->GetValue().ToDouble(&yloc) )
@@ -1809,9 +1735,7 @@ void FitForm::PlotFit()
     *xAxisC = xAxisCsave;
     *yAxisC = yAxisCsave;
     *textC = textCsave;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("invalid value entered for legend y location"), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value entered for legend y location"), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   std::size_t nparams = pStrings_.size();
@@ -1835,9 +1759,7 @@ void FitForm::PlotFit()
       *yAxisC = yAxisCsave;
       *textC = textCsave;
       delete dt;
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1859,9 +1781,7 @@ void FitForm::PlotFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1884,9 +1804,7 @@ void FitForm::PlotFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1908,9 +1826,7 @@ void FitForm::PlotFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1933,9 +1849,7 @@ void FitForm::PlotFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
@@ -1957,9 +1871,7 @@ void FitForm::PlotFit()
     *yAxisC = yAxisCsave;
     *textC = textCsave;
     delete dt;
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   dt->Draw( ExGlobals::GetGraphicsOutput(), dc );

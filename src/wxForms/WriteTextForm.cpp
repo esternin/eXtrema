@@ -137,10 +137,8 @@ void WriteTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   wxString fileName( topPanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("no file has been chosen"),
-                           wxT("Fatal error: nothing was written"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no file has been chosen"),
+                  wxT("Fatal error: nothing was written"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   CMD_write *writeCommand = CMD_write::Instance();
@@ -153,9 +151,8 @@ void WriteTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   if( !outStream->is_open() )
   {
     outStream->clear( std::ios::goodbit );
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(wxT("Could not open "))+fileName,
-                                               wxT("Fatal error: nothing was written"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(wxT("Could not open "))+fileName,
+                  wxT("Fatal error: nothing was written"), wxOK|wxICON_ERROR, this );
     return;
   }
   bool somethingChecked = false;
@@ -173,9 +170,8 @@ void WriteTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     catch( EVariableError const &e )
     {
       outStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                                 wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8),
+                    wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     (*outStream) << line.mb_str(wxConvUTF8) << "\n";
@@ -183,9 +179,8 @@ void WriteTextForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   outStream->close();
   if( !somethingChecked )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("no string variables were chosen"),
-                                               wxT("Warning: nothing was written"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("no string variables were chosen"),
+                  wxT("Warning: nothing was written"), wxOK|wxICON_ERROR, this );
     return;
   }
 }

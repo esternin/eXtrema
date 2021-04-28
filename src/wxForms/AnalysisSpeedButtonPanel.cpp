@@ -125,12 +125,11 @@ void AnalysisSpeedButtonPanel::OnClearMessages( wxCommandEvent &WXUNUSED(event) 
 
 void AnalysisSpeedButtonPanel::OnExit( wxCommandEvent &WXUNUSED(event) )
 {
-  wxMessageDialog *md =
-      new wxMessageDialog( (wxWindow*)this,
+  wxMessageDialog md( (wxWindow*)this,
                            wxT("Do you really want to quit?"),
                            wxT("Confirm quit"),
                            wxYES_NO|wxICON_QUESTION );
-  if( md->ShowModal() == wxID_YES )
+  if( md.ShowModal() == wxID_YES )
   {
     if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("QUIT") );
     GetParent()->Close(true);
@@ -160,20 +159,18 @@ void AnalysisSpeedButtonPanel::OnStackToggle( wxCommandEvent &event )
 
 void AnalysisSpeedButtonPanel::OnSaveSession( wxCommandEvent &WXUNUSED(event) )
 {
-  wxFileDialog *fd;
-  fd = new wxFileDialog( this, wxT("Save session"), wxT(""), wxT(""),
+  wxFileDialog fd( this, wxT("Save session"), wxT(""), wxT(""),
                          wxT("xml files (*.xml)|*.xml"),
                          wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
   wxString filename;
-  if( fd->ShowModal() == wxID_OK )filename = fd->GetPath();
+  if( fd.ShowModal() == wxID_OK )filename = fd.GetPath();
   if( filename.empty() )return;
   if( filename.find_last_of(wxT('.')) == filename.npos )filename += wxT(".xml");
   std::ofstream f( filename.mb_str(wxConvUTF8), std::ios_base::out );
   if( !f.is_open() )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString()<<wxT("could not open ")<<filename,
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString()<<wxT("could not open ")<<filename,
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   f.close();
@@ -183,28 +180,25 @@ void AnalysisSpeedButtonPanel::OnSaveSession( wxCommandEvent &WXUNUSED(event) )
   }
   catch ( std::runtime_error const &e )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString::FromUTF8(e.what()),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
 }
 
 void AnalysisSpeedButtonPanel::OnRestoreSession( wxCommandEvent &WXUNUSED(event) )
 {
-  wxFileDialog *fd;
-  fd = new wxFileDialog( this, wxT("Save session"), wxT(""), wxT(""),
+  wxFileDialog fd( this, wxT("Save session"), wxT(""), wxT(""),
                          wxT("xml files (*.xml)|*.xml"),
                          wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_CHANGE_DIR );
   wxString filename;
-  if( fd->ShowModal() == wxID_OK )filename = fd->GetPath();
+  if( fd.ShowModal() == wxID_OK )filename = fd.GetPath();
   if( filename.empty() )return;
   std::ofstream f( filename.mb_str(wxConvUTF8), std::ios_base::in );
   if( !f.is_open() )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString()<<wxT("could not open ")<<filename,
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString()<<wxT("could not open ")<<filename,
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   f.close();
@@ -217,9 +211,8 @@ void AnalysisSpeedButtonPanel::OnRestoreSession( wxCommandEvent &WXUNUSED(event)
 
     std::cout << "error: |" << e.what() << "|\n";
 
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
 }

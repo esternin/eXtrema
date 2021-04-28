@@ -204,10 +204,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   wxString fileName( topPanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("no file has been chosen"),
-                           wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no file has been chosen"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   CMD_read *readCommand = CMD_read::Instance();
@@ -221,9 +219,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     inStream->open( fileName.mb_str(wxConvUTF8), std::ios_base::in );
     if( !inStream->is_open() )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(wxT("Could not open "))+fileName,
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(wxT("Could not open "))+fileName,
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
       return;
     }
   }
@@ -233,9 +230,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     formatString = formatTextCtrl_->GetValue();
     if( formatString.empty() )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("expecting a format"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxT("expecting a format"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
       inStream->close();
       return;
     }
@@ -256,10 +252,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       if( !colm.ToLong(&ltmp) || ltmp<1L )
       {
         inStream->close();
-        wxMessageDialog *md =
-            new wxMessageDialog( this, wxT("column number must be an integer > 0"),
-                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxT("column number must be an integer > 0"),
+                      wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
         return;
       }
       columnNumber.push_back( static_cast<int>(ltmp) );
@@ -268,10 +262,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   if( names.empty() )
   {
     inStream->close();
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("expecting some output vector names"),
-                             wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("expecting some output vector names"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   int maxColumnNumber = 0;
@@ -288,9 +280,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   {
     lineNumberTextCtrl_->SetValue( wxT("1") );
     inStream->close();
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("line number must be > 0"),
-                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("line number must be > 0"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   int startingLine = static_cast<int>(ltmp);
@@ -303,10 +294,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       errorFillTextCtrl_->SetValue( wxT("0.0") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this,
-                                                 stmp+wxT(" is an invalid value for error fill"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( stmp+wxT(" is an invalid value for error fill"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     readCommand->SetErrorFill( errorFillValue );
@@ -322,10 +311,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     if( std::getline(*inStream,buffer).fail() )
     {
       inStream->close();
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxT("end of file reached reading initial dummy records"),
-                               wxT("Fatal error: no scalars were modified"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("end of file reached reading initial dummy records"),
+                    wxT("Fatal error: no scalars were modified"), wxOK|wxICON_INFORMATION, this );
       return;
     }
   }
@@ -343,10 +330,9 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       inStream->close();
       wxString c( wxT("record ") ); 
       c << recordNumber;
-      wxMessageDialog *md = new wxMessageDialog( this, c+wxT(" could not be read"),
-                                                 wxT("Fatal error: no scalars were modified"),
-                                                 wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( c+wxT(" could not be read"),
+                    wxT("Fatal error: no scalars were modified"),
+                    wxOK|wxICON_INFORMATION, this );
       return;
     }
     double vd[] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
@@ -375,10 +361,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       wxString message( wxT("error reading record ") );
       message << recordNumber;
       inStream->close();
-      wxMessageDialog *md =
-          new wxMessageDialog( this, message,
-                               wxT("Fatal error: no scalars were read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( message,
+                               wxT("Fatal error: no scalars were read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     else if( result < maxColumnNumber )
@@ -386,10 +370,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       wxString message( wxT("not enough values on record ") );
       message << recordNumber;
       inStream->close();
-      wxMessageDialog *md =
-          new wxMessageDialog( this, message,
-                               wxT("Fatal error: no scalars were modified"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( message,
+                    wxT("Fatal error: no scalars were modified"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     //
@@ -406,10 +388,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
       wxString message( wxT("record ") );
       message << recordNumber << wxT(" is empty");
       inStream->close();
-      wxMessageDialog *md =
-          new wxMessageDialog( this, message,
-                               wxT("Fatal error: no scalars were modified"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( message,
+                    wxT("Fatal error: no scalars were modified"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     //
@@ -511,10 +491,8 @@ void ReadScalarsForm::OnApply( wxCommandEvent &WXUNUSED(event) )
           if( !errorFill_->IsChecked() )
           {
             inStream->close();
-            wxMessageDialog *md =
-                new wxMessageDialog( this, wxT("error reading scalars"),
-                                     wxT("Fatal error: no scalars were modified"), wxOK|wxICON_INFORMATION );
-            md->ShowModal();
+            wxMessageBox( wxT("error reading scalars"),
+                          wxT("Fatal error: no scalars were modified"), wxOK|wxICON_INFORMATION, this );
             return;
           }
           data[k] = errorFillValue;

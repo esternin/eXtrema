@@ -156,10 +156,9 @@ void ColorSelector::Apply()
   wxString fileName( chooseFilePanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("no file has been chosen"),
+    wxMessageDialog md( this, wxT("no file has been chosen"),
                            wxT("Warning"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    md.ShowModal();
     return;
   }
   wxString commandLine( wxT("EXECUTE ") );
@@ -173,9 +172,9 @@ void ColorSelector::Apply()
   }
   catch( ESyntaxError &e )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageDialog md( this, wxString(e.what(),wxConvUTF8),
+                        wxT("Fatal error"), wxOK|wxICON_ERROR );
+    md.ShowModal();
     return;
   }
   try
@@ -184,9 +183,8 @@ void ColorSelector::Apply()
   }
   catch( ECommandError &e )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   if( ExGlobals::StackIsOn() )

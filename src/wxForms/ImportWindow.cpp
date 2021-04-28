@@ -328,9 +328,8 @@ void DigitizeForm::OnStartStop( wxCommandEvent &WXUNUSED(event) )
       }
       catch ( EVariableError const &e )
       {
-        wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                                   wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxString(e.what(),wxConvUTF8),
+                      wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
     }
@@ -342,9 +341,8 @@ void DigitizeForm::OnStartStop( wxCommandEvent &WXUNUSED(event) )
       }
       catch ( EVariableError const &e )
       {
-        wxMessageDialog *md = new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                                                   wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxString(e.what(),wxConvUTF8),
+                      wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
     }
@@ -428,9 +426,8 @@ void DigitizeForm::SetupCoordinateTransform()
       xImage_[2]*(yImage_[1]-yImage_[0]) + yImage_[2]*(xImage_[1]-xImage_[0]);
   if( denom == 0.0 )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("division by zero in CoordinateTransform"),
-                                               wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("division by zero in CoordinateTransform"),
+                  wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   a_ = (xImage_[2]*(yImage_[0]*xUser_[1] - yImage_[1]*xUser_[0]) -
@@ -575,30 +572,26 @@ bool GetCoordinates::GetValues( double &x, double &y )
 {
   if( xTC_->GetValue().empty() )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("Please enter an x-coordinate value"),
-                                               wxT("Error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("Please enter an x-coordinate value"),
+                  wxT("Error"), wxOK|wxICON_INFORMATION, this );
     return false;
   }
   if( yTC_->GetValue().empty() )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("Please enter an y-coordinate value"),
-                                               wxT("Error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("Please enter an y-coordinate value"),
+                  wxT("Error"), wxOK|wxICON_INFORMATION, this );
     return false;
   }
   if( !xTC_->GetValue().ToDouble(&x) )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("invalid number entered as x-coordinate"),
-                                               wxT("Error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid number entered as x-coordinate"),
+                  wxT("Error"), wxOK|wxICON_INFORMATION, this );
     return false;
   }
   if( !yTC_->GetValue().ToDouble(&y) )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("invalid number entered as y-coordinate"),
-                                               wxT("Error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid number entered as y-coordinate"),
+                  wxT("Error"), wxOK|wxICON_INFORMATION, this );
     return false;
   }
   return true;

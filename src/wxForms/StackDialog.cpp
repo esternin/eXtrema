@@ -141,17 +141,14 @@ void StackDialog::OnApply( wxCommandEvent &WXUNUSED(event) )
     wxString fileName( chooseFilePanel_->GetSelection() );
     if( fileName.empty() )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxT("no file has been chosen"),
-                               wxT("Warning"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("no file has been chosen"),
+                    wxT("Warning"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     if( !ExGlobals::SetStackOn(fileName,appendCkB_->IsChecked()) )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(wxT("could not open "))+fileName,
-                                                 wxT("Warning"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxString(wxT("could not open "))+fileName,
+                    wxT("Warning"), wxOK|wxICON_INFORMATION, this );
       return;
     }
   }

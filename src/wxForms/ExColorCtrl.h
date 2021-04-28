@@ -64,8 +64,8 @@ private:
   void OnClick( wxCommandEvent &WXUNUSED(event) )
   {
     ExGlobals::SetWorkingColorFlag( false );
-    BasicColors *bc = new BasicColors( this );
-    bc->ShowModal();
+    BasicColors bc( this );
+    bc.ShowModal();
     if( ExGlobals::GetWorkingColorFlag() )
     {
       GRA_color *color = ExGlobals::GetWorkingColor();

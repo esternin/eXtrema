@@ -279,10 +279,8 @@ void ThreeDPlotForm::OnDraw( wxCommandEvent &WXUNUSED(event) )
   }
   catch( EVariableError const &e )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxString(e.what(),wxConvUTF8),
-                           wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
   GRA_window *gw = ExGlobals::GetGraphWindow();
@@ -334,10 +332,8 @@ void ThreeDPlotForm::OnAngleIncChange( wxCommandEvent &WXUNUSED(event) )
   double ai;
   if( !angleIncTextCtrl_->GetValue().ToDouble(&ai) )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("invalid value entered for angle incrment"),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value entered for angle incrment"),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     angleIncTextCtrl_->ChangeValue( wxString() << angleIncrement_ );
     return;
   }
@@ -350,10 +346,8 @@ void ThreeDPlotForm::OnEye2ObjChange( wxCommandEvent &WXUNUSED(event) )
   double e2o;
   if( !eye2objTextCtrl_->GetValue().ToDouble(&e2o) )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("invalid value entered for eye to object distance factor"),
-                             wxT("Fatal error"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("invalid value entered for eye to object distance factor"),
+                  wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     eye2objTextCtrl_->ChangeValue( wxString() << eye2obj_ );
     return;
   }

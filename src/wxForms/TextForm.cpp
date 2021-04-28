@@ -301,18 +301,14 @@ void TextForm::Draw()
     double xloc, yloc;
     if( !locxTC_->GetValue().ToDouble(&xloc) )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxT("invalid value entered for %x location"),
-                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxT("invalid value entered for %x location"),
+                    wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     if( !locyTC_->GetValue().ToDouble(&yloc) )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxT("invalid value entered for %y location"),
-                               wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxT("invalid value entered for %y location"),
+                    wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     static_cast<GRA_distanceCharacteristic*>(textC->Get(wxT("XLOCATION")))->SetAsPercent( xloc );
@@ -328,9 +324,7 @@ void TextForm::Draw()
     catch ( EGraphicsError &e )
     {
       delete dt;
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
       return;
     }
     if( interactive )visualizationWindow_->SetInteractiveText( dt );

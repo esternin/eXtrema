@@ -216,10 +216,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   wxString fileName( topPanel_->GetSelection() );
   if( fileName.empty() )
   {
-    wxMessageDialog *md =
-      new wxMessageDialog( this, wxT("no file has been chosen"),
-                           wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no file has been chosen"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   CMD_read *readCommand = CMD_read::Instance();
@@ -233,9 +231,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     inStream->open( fileName.mb_str(wxConvUTF8), std::ios_base::in );
     if( !inStream->is_open() )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxString(wxT("Could not open "))+fileName,
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxString(wxT("Could not open "))+fileName,
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
       return;
     }
   }
@@ -245,9 +242,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     formatString = formatTextCtrl_->GetValue();
     if( formatString.empty() )
     {
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("expecting a format"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-      md->ShowModal();
+      wxMessageBox( wxT("expecting a format"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
       inStream->close();
       return;
     }
@@ -255,9 +251,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   wxString matrixName( matrixNameTextCtrl_->GetValue() );
   if( matrixName.empty() )
   {
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("a matrix name must be entered"),
-                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR );
-    md->ShowModal();
+    wxMessageBox( wxT("a matrix name must be entered"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_ERROR, this );
     inStream->close();
     return;
   }
@@ -266,9 +261,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   {
     rowsTextCtrl_->SetValue( wxT("1") );
     inStream->close();
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("the number of rows is required"),
-                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("the number of rows is required"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   long ltmp;
@@ -276,10 +270,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   {
     rowsTextCtrl_->SetValue( wxT("1") );
     inStream->close();
-    wxMessageDialog *md = new wxMessageDialog( this,
-                                               stmp+wxT(" is an invalid value for number of rows"),
-                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( stmp+wxT(" is an invalid value for number of rows"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   int nRow = static_cast<int>(ltmp);
@@ -294,10 +286,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       columnsTextCtrl_->SetValue( wxT("1") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this,
-                                                 stmp+wxT(" is an invalid value for number of columns"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( stmp+wxT(" is an invalid value for number of columns"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     nCol = static_cast<int>(ltmp);
@@ -308,18 +298,16 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
   {
     lineNumberTextCtrl_->SetValue( wxT("1") );
     inStream->close();
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("the starting line number is required"),
-                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("the starting line number is required"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   if( !stmp.ToLong(&ltmp) || ltmp<1L )
   {
     lineNumberTextCtrl_->SetValue( wxT("1") );
     inStream->close();
-    wxMessageDialog *md = new wxMessageDialog( this, wxT("line number must be > 0"),
-                                               wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("line number must be > 0"),
+                  wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   int startingLine = static_cast<int>(ltmp);
@@ -332,10 +320,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     {
       errorFillTextCtrl_->SetValue( wxT("0.0") );
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this,
-                                                 stmp+wxT(" is an invalid value for error fill"),
-                                                 wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( stmp+wxT(" is an invalid value for error fill"),
+                    wxT("Fatal error: nothing was read"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     readCommand->SetErrorFill( errorFillValue );
@@ -351,9 +337,8 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
     if( std::getline(*inStream,buffer).fail() )
     {
       inStream->close();
-      wxMessageDialog *md = new wxMessageDialog( this, wxT("end of file reached reading initial dummy records"),
-                                                 wxT("Fatal error: no matrix was modified"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("end of file reached reading initial dummy records"),
+                    wxT("Fatal error: no matrix was modified"), wxOK|wxICON_INFORMATION, this );
       return;
     }
   }
@@ -376,10 +361,9 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
           inStream->close();
           wxString c( wxT("error reading record ") );
           c << recordNumber;
-          wxMessageDialog *md = new wxMessageDialog( this, c,
-                                                     wxT("Fatal error: no matrix was modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( c,
+                        wxT("Fatal error: no matrix was modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         double vd[] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
@@ -395,10 +379,9 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
           inStream->close();
           wxString c( wxT("error reading record ") );
           c << recordNumber;
-          wxMessageDialog *md = new wxMessageDialog( this, c,
-                                                     wxT("Fatal error: no matrix was modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( c,
+                        wxT("Fatal error: no matrix was modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         else if( result < nRow )
@@ -406,10 +389,9 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
           inStream->close();
           wxString c( wxT("not enough values on record ") );
           c << recordNumber;
-          wxMessageDialog *md = new wxMessageDialog( this, c,
-                                                     wxT("Fatal error: no matrix was modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( c,
+                        wxT("Fatal error: no matrix was modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         //
@@ -430,10 +412,9 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
           inStream->close();
           wxString c( wxT("error reading record ") );
           c << recordNumber;
-          wxMessageDialog *md = new wxMessageDialog( this, c,
-                                                     wxT("Fatal error: no matrix was modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( c,
+                        wxT("Fatal error: no matrix was modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         //
@@ -563,10 +544,9 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
           inStream->close();
           wxString c( wxT("error reading record ") );
           c << recordNumber;
-          wxMessageDialog *md = new wxMessageDialog( this, c,
-                                                     wxT("Fatal error: no matrix was modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( c,
+                        wxT("Fatal error: no matrix was modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         else if( result < nRow )
@@ -574,10 +554,9 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
           inStream->close();
           wxString c( wxT("not enough values on record ") );
           c << recordNumber;
-          wxMessageDialog *md = new wxMessageDialog( this, c,
-                                                     wxT("Fatal error: no matrix was modified"),
-                                                     wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( c,
+                        wxT("Fatal error: no matrix was modified"),
+                        wxOK|wxICON_INFORMATION, this );
           return;
         }
         //
@@ -700,10 +679,9 @@ void ReadMatrixForm::OnApply( wxCommandEvent &WXUNUSED(event) )
                 inStream->close();
                 wxString c( wxT("error reading record ") );
                 c << recordNumber;
-                wxMessageDialog *md = new wxMessageDialog( this, c,
-                                                           wxT("Fatal error: no matrix was modified"),
-                                                           wxOK|wxICON_INFORMATION );
-                md->ShowModal();
+                wxMessageBox( c,
+                              wxT("Fatal error: no matrix was modified"),
+                              wxOK|wxICON_INFORMATION, this );
                 return;
               }
             }

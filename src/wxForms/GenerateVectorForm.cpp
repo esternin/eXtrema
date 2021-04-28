@@ -239,9 +239,7 @@ void GenerateVectorForm::Apply()
   wxString name( nameTC_->GetValue() );
   if( name.empty() )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxT("no output vector has been specified"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxT("no output vector has been specified"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   double vMin, vMax, vInc;
@@ -257,9 +255,7 @@ void GenerateVectorForm::Apply()
   {
     if( minString.empty() || maxString.empty() || numString.empty() )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxT("min, max and number of values must be provided"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("min, max and number of values must be provided"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     try
@@ -272,16 +268,12 @@ void GenerateVectorForm::Apply()
     }
     catch ( EVariableError const &e )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     if( vNum <= 0 )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxT("number of values must be > 0"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxT("number of values must be > 0"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     double delv = vMax - vMin;
@@ -299,27 +291,21 @@ void GenerateVectorForm::Apply()
       case 1:
         if( minString.empty() || incString.empty() || maxString.empty() )
         {
-          wxMessageDialog *md =
-              new wxMessageDialog( this, wxT("min, increment and max must be provided"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( wxT("min, increment and max must be provided"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
           return;
         }
         break;
       case 2:
         if( minString.empty() || incString.empty() || numString.empty() )
         {
-          wxMessageDialog *md =
-              new wxMessageDialog( this, wxT("min, increment and number of elements must be provided"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( wxT("min, increment and number of elements must be provided"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
           return;
         }
         break;
       case 3:
         if( minString.empty() || maxString.empty() || numString.empty() )
         {
-          wxMessageDialog *md =
-              new wxMessageDialog( this, wxT("min, max and number of elements must be provided"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-          md->ShowModal();
+          wxMessageBox( wxT("min, max and number of elements must be provided"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
           return;
         }
         break;
@@ -330,9 +316,7 @@ void GenerateVectorForm::Apply()
     }
     catch ( EVariableError const &e )
     {
-      wxMessageDialog *md =
-          new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-      md->ShowModal();
+      wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
       return;
     }
     if( choice==1 || choice==2 )
@@ -343,16 +327,12 @@ void GenerateVectorForm::Apply()
       }
       catch ( EVariableError const &e )
       {
-        wxMessageDialog *md =
-            new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
       if( vInc == 0.0 )
       {
-        wxMessageDialog *md =
-            new wxMessageDialog( this, wxT("increment must not be 0"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxT("increment must not be 0"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
     }
@@ -364,9 +344,7 @@ void GenerateVectorForm::Apply()
       }
       catch ( EVariableError const &e )
       {
-        wxMessageDialog *md =
-            new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
     }
@@ -380,16 +358,12 @@ void GenerateVectorForm::Apply()
       }
       catch ( EVariableError const &e )
       {
-        wxMessageDialog *md =
-            new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
       if( vNum <= 0 )
       {
-        wxMessageDialog *md =
-            new wxMessageDialog( this, wxT("number of values must be > 0"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxT("number of values must be > 0"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
     }
@@ -398,9 +372,7 @@ void GenerateVectorForm::Apply()
       vNum = static_cast<int>( (vMax-vMin)/vInc ) + 1;
       if( vNum <= 0 )
       {
-        wxMessageDialog *md =
-            new wxMessageDialog( this, wxT("number of values must be > 0"), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-        md->ShowModal();
+        wxMessageBox( wxT("number of values must be > 0"), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
         return;
       }
       x.reserve( vNum );
@@ -432,9 +404,7 @@ void GenerateVectorForm::Apply()
   }
   catch ( EVariableError const &e )
   {
-    wxMessageDialog *md =
-        new wxMessageDialog( this, wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION );
-    md->ShowModal();
+    wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_INFORMATION, this );
     return;
   }
   //
