@@ -118,7 +118,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
 #ifdef HAVE_MUD
   command += wxT("\\MUD");
   int fileHandle;
-  unsigned long dum;
+  unsigned int dum;
   fileHandle = MUD_openRead( const_cast<char*>((char const*)fileName.mb_str(wxConvUTF8)), &dum );
   if( fileHandle == -1 )
     throw ECommandError( wxString()<<command<<wxT(" could not open file ")<<fileName );
@@ -145,10 +145,10 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
                               wxString(title,wxConvUTF8)+wxT("\"") );
     return;
   }
-  unsigned long runNumber;
+  unsigned int runNumber;
   if( !MUD_getRunNumber( fileHandle, &runNumber ) )
     throw ECommandError( command+wxT(" could not get run number") );
-  unsigned long elapsedSec;
+  unsigned int elapsedSec;
   if( !MUD_getElapsedSec( fileHandle, &elapsedSec ) )
     throw ECommandError( command+wxT(" could not get elapsed seconds") );
   //
@@ -167,7 +167,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
-  unsigned long runDesc;
+  unsigned int runDesc;
   if( !MUD_getRunDesc( fileHandle, &runDesc ) )
     throw ECommandError( command+wxT(" could not get run descriptor") );
   try
@@ -179,7 +179,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
-  unsigned long exptNumber;
+  unsigned int exptNumber;
   if( !MUD_getExptNumber( fileHandle, &exptNumber ) )
     throw ECommandError( command+wxT(" could not get exptNumber") );
   try
@@ -191,7 +191,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
-  unsigned long timeBegin;
+  unsigned int timeBegin;
   if( !MUD_getTimeBegin( fileHandle, &timeBegin ) )
     throw ECommandError( command+wxT(" could not get timeBegin") );
   try
@@ -203,7 +203,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
-  unsigned long timeEnd;
+  unsigned int timeEnd;
   if( !MUD_getTimeEnd( fileHandle, &timeEnd ) )
     throw ECommandError( command+wxT(" could not get timeEnd") );
   try
@@ -359,7 +359,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
-  unsigned long pType, nComments;
+  unsigned int pType, nComments;
   if( !MUD_getComments( fileHandle, &pType, &nComments ) )
   {
     pType = 0;
@@ -379,9 +379,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   if( nComments > 0 )
   {
     std::vector<double> data;
-    for( unsigned long i=1; i<=nComments; ++i )
+    for( unsigned int i=1; i<=nComments; ++i )
     {
-      unsigned long a;
+      unsigned int a;
       if( !MUD_getCommentPrev( fileHandle, i, &a ) )
         throw ECommandError( command+wxT(" could not get commentPrev") );
       data.push_back(a);
@@ -396,9 +396,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<double>().swap( data );
-    for( unsigned long i=1; i<=nComments; ++i )
+    for( unsigned int i=1; i<=nComments; ++i )
     {
-      unsigned long a;
+      unsigned int a;
       if( !MUD_getCommentNext( fileHandle, i, &a ) )
         throw ECommandError( command+wxT(" could not get commentNext") );
       data.push_back(a);
@@ -413,9 +413,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<double>().swap( data );
-    for( unsigned long i=1; i<=nComments; ++i )
+    for( unsigned int i=1; i<=nComments; ++i )
     {
-      unsigned long a;
+      unsigned int a;
       if( !MUD_getCommentTime( fileHandle, i, &a ) )
         throw ECommandError( command+wxT(" could not get commentTime") );
       data.push_back(a);
@@ -430,7 +430,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<wxString> sdata;
-    for( unsigned long i=1; i<=nComments; ++i )
+    for( unsigned int i=1; i<=nComments; ++i )
     {
       char a[MAXSTRINGLENGTH];
       if( !MUD_getCommentAuthor( fileHandle, i, a, len ) )
@@ -447,7 +447,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     sdata.clear();
-    for( unsigned long i=1; i<=nComments; ++i )
+    for( unsigned int i=1; i<=nComments; ++i )
     {
       char a[MAXSTRINGLENGTH];
       if( !MUD_getCommentTitle( fileHandle, i, a, len ) )
@@ -464,7 +464,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     sdata.clear();
-    for( unsigned long i=1; i<=nComments; ++i )
+    for( unsigned int i=1; i<=nComments; ++i )
     {
       char a[MAXSTRINGLENGTH];
       if( !MUD_getCommentBody( fileHandle, i, a, len ) )
@@ -481,7 +481,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
   }
-  unsigned long pNum;
+  unsigned int pNum;
   if( !MUD_getHists( fileHandle, &pType, &pNum ) )
     throw ECommandError( command+wxT(" could not get hists") );
   try
@@ -493,17 +493,17 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
-  unsigned long nbintot = 0;
-  unsigned long start = 0;
+  unsigned int nbintot = 0;
+  unsigned int start = 0;
   std::vector<wxString> sdata;
   std::vector<double> nbins, starts, ends;
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
     char c[MAXSTRINGLENGTH];
     if( !MUD_getHistTitle( fileHandle, i, c, len ) )
       throw ECommandError( command+wxT(" could not get histTitle") );
     sdata.push_back(wxString(c,wxConvUTF8));
-    unsigned long p;
+    unsigned int p;
     if( !MUD_getHistNumBins( fileHandle, i, &p ) )
       throw ECommandError( command+wxT(" could not get histNumBins") );
     nbins.push_back(static_cast<double>(p));
@@ -529,7 +529,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   }
   int *pdata = new int[nbintot];
   int istart = 0;
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
     if( !MUD_getHistData( fileHandle, i, pdata+istart ) )
     {
@@ -539,7 +539,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     istart += static_cast<int>(nbins[i-1]);
   }
   std::vector<double> data;
-  for( unsigned long i=0; i<nbintot; ++i )data.push_back( static_cast<double>(pdata[i]) );
+  for( unsigned int i=0; i<nbintot; ++i )data.push_back( static_cast<double>(pdata[i]) );
   delete [] pdata;
   try
   {
@@ -552,9 +552,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistType( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histType") );
     data.push_back(static_cast<double>(j));
@@ -569,9 +569,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistNumBytes( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histNumBytes") );
     data.push_back(static_cast<double>(j));
@@ -586,9 +586,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistBytesPerBin( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histBytesPerBin") );
     data.push_back(static_cast<double>(j));
@@ -603,9 +603,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistFsPerBin( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histFsPerBin") );
     double d = static_cast<double>(j);
@@ -623,9 +623,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistT0_Ps( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histT0_Ps") );
     data.push_back(static_cast<double>(j));
@@ -640,9 +640,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistT0_Bin( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histT0_Bin") );
     data.push_back(static_cast<double>(j));
@@ -657,9 +657,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistGoodBin1( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histGoodBin1") );
     data.push_back(static_cast<double>(j));
@@ -674,9 +674,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistGoodBin2( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histGoodBin2") );
     data.push_back(static_cast<double>(j));
@@ -691,9 +691,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistBkgd1( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histBkgd1") );
     data.push_back(static_cast<double>(j));
@@ -708,9 +708,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistBkgd2( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histBkgd2") );
     data.push_back(static_cast<double>(j));
@@ -725,9 +725,9 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
   std::vector<double>().swap( data );
-  for( unsigned long i=1; i<=pNum; ++i )
+  for( unsigned int i=1; i<=pNum; ++i )
   {
-    unsigned long j;
+    unsigned int j;
     if( !MUD_getHistNumEvents( fileHandle, i, &j ) )
       throw ECommandError( command+wxT(" could not get histNumEvents") );
     data.push_back(static_cast<double>(j));
@@ -741,7 +741,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
   {
     throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
   }
-  unsigned long scalerType, nscalers;
+  unsigned int scalerType, nscalers;
   if( !MUD_getScalers( fileHandle, &scalerType, &nscalers ) )
     throw ECommandError( command+wxT(" could not get scalers") );
   try
@@ -766,8 +766,8 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
     }
     std::vector<double>().swap( data );
     data.resize( 2*nscalers );
-    unsigned long pCounts[2];
-    for( unsigned long i=1; i<=nscalers; ++i )
+    unsigned int pCounts[2];
+    for( unsigned int i=1; i<=nscalers; ++i )
     {
       if( !MUD_getScalerCounts( fileHandle, i, pCounts ) )
         throw ECommandError( command+wxT(" could not get scalerCounts") );
@@ -784,7 +784,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<wxString> sdata;
-    for( unsigned long i=1; i<=nscalers; ++i )
+    for( unsigned int i=1; i<=nscalers; ++i )
     {
       char a[MAXSTRINGLENGTH];
       if( !MUD_getScalerLabel( fileHandle, i, a, len ) )
@@ -802,7 +802,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
   }
-  unsigned long indvartype, indvarnum;
+  unsigned int indvartype, indvarnum;
   if( !MUD_getIndVars( fileHandle, &indvartype, &indvarnum ) )
     ExGlobals::WarningMessage( command + wxT(" could not get indVars") );
   else
@@ -818,7 +818,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<double>().swap( data );
-    for( unsigned long i=1; i<=indvarnum; ++i )
+    for( unsigned int i=1; i<=indvarnum; ++i )
     {
       double tmp;
       if( !MUD_getIndVarLow( fileHandle, i, &tmp ) )
@@ -835,7 +835,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<double>().swap( data );
-    for( unsigned long i=1; i<=indvarnum; ++i )
+    for( unsigned int i=1; i<=indvarnum; ++i )
     {
       double tmp;
       if( !MUD_getIndVarHigh( fileHandle, i, &tmp ) )
@@ -852,7 +852,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<double>().swap( data );
-    for( unsigned long i=1; i<=indvarnum; ++i )
+    for( unsigned int i=1; i<=indvarnum; ++i )
     {
       double tmp;
       if( !MUD_getIndVarMean( fileHandle, i, &tmp ) )
@@ -869,7 +869,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<double>().swap( data );
-    for( unsigned long i=1; i<=indvarnum; ++i )
+    for( unsigned int i=1; i<=indvarnum; ++i )
     {
       double tmp;
       if( !MUD_getIndVarStddev( fileHandle, i, &tmp ) )
@@ -886,7 +886,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     std::vector<double>().swap( data );
-    for( unsigned long i=1; i<=indvarnum; ++i )
+    for( unsigned int i=1; i<=indvarnum; ++i )
     {
       double tmp;
       if( !MUD_getIndVarSkewness( fileHandle, i, &tmp ) )
@@ -903,7 +903,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     sdata.clear();
-    for( unsigned long i=1; i<=indvarnum; ++i )
+    for( unsigned int i=1; i<=indvarnum; ++i )
     {
       char a[MAXSTRINGLENGTH];
       if( !MUD_getIndVarName( fileHandle, i, a, len ) )
@@ -920,7 +920,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     sdata.clear();
-    for( unsigned long i=1; i<=indvarnum; ++i )
+    for( unsigned int i=1; i<=indvarnum; ++i )
     {
       char a[MAXSTRINGLENGTH];
       if( !MUD_getIndVarDescription( fileHandle, i, a, len ) )
@@ -937,7 +937,7 @@ void CMD_restore::RestoreMUD( ParseLine const *p, wxString &command,
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     sdata.clear();
-    for( unsigned long i=1; i<=indvarnum; ++i )
+    for( unsigned int i=1; i<=indvarnum; ++i )
     {
       char a[MAXSTRINGLENGTH];
       if( !MUD_getIndVarUnits( fileHandle, i, a, len ) )
