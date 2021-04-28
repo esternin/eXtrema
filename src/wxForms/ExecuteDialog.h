@@ -27,6 +27,8 @@ class ExecuteDialog : public wxFrame
 {
 public:
   ExecuteDialog( AnalysisWindow * );
+  virtual ~ExecuteDialog();
+
   void Set( wxString const &, wxString const &, wxString const & );
 
 private:
@@ -35,7 +37,6 @@ private:
   // event handlers
   void OnApply( wxCommandEvent & );
   void OnClose( wxCommandEvent & );
-  void CloseEventHandler( wxCloseEvent & );
   
   AnalysisWindow *analysisWindow_;
   wxTextCtrl *parameterTextCtrl_;

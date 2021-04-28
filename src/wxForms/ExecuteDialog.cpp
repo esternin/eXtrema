@@ -39,7 +39,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 BEGIN_EVENT_TABLE( ExecuteDialog, wxFrame )
   EVT_BUTTON( wxID_APPLY, ExecuteDialog::OnApply )
   EVT_BUTTON( wxID_CLOSE, ExecuteDialog::OnClose )
-  EVT_CLOSE( ExecuteDialog::CloseEventHandler )
 END_EVENT_TABLE()
 
 ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
@@ -95,7 +94,7 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
   Show( true );
 }
 
-void ExecuteDialog::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
+ExecuteDialog::~ExecuteDialog()
 {
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
@@ -118,7 +117,6 @@ void ExecuteDialog::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   }
   */
   analysisWindow_->ZeroExecuteDialog();
-  Destroy();
 }
 
 void ExecuteDialog::OnApply( wxCommandEvent &WXUNUSED(event) )
