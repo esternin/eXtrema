@@ -60,7 +60,11 @@ void Script::Run()
     if( !commandLine.empty() && commandLine!=wxString(wxT(" ")) )
     {
       ExGlobals::ProcessCommand(commandLine);
-      if ( ExGlobals::NotInaScript() )
+
+      // Note that calling PauseScripts() rather unexpectedly results in
+      // NotInaScript() returning true, but we do need to continue running this
+      // function in this case, if only to set scriptOriginatingPause_ to true.
+      if ( ExGlobals::NotInaScript() && !ExGlobals::GetPausingScript() )
       {
         // This can only happen if StopAllScripts() was called from inside the
         // command, in which case this script object itself doesn't exist any
