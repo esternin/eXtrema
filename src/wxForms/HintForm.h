@@ -26,7 +26,6 @@ class HintForm : public wxFrame
 {
 public:
   HintForm();
-  ~HintForm();
 
   void HideHint();
   void ShowHint( std::vector<wxString> const & );

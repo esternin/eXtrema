@@ -18,8 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iostream>
 #include <fstream>
 
-#include "wx/config.h"
 #include "wx/dcbuffer.h"
+
+#include <wx/persist/toplevel.h>
 
 #include "ImportWindow.h"
 #include "NumericVariable.h"
@@ -193,13 +194,6 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
               wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE ),
       parent_(parent)
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/DigitizeForm/UPPERLEFTX"), 10l );
-  int uly = config->Read( wxT("/DigitizeForm/UPPERLEFTY"), 10l );
-  int width = config->Read( wxT("/DigitizeForm/WIDTH"), 400l );
-  int height = config->Read( wxT("/DigitizeForm/HEIGHT"), 270l );
-  SetSize( ulx, uly, width, height );
-  
   wxFont font( GetFont() );
   font.SetFamily( wxFONTFAMILY_TELETYPE );
 
@@ -294,6 +288,8 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   startStopB_ = new wxButton( this, ID_start, wxT("Start digitizing") );
   mainSizer->Add( startStopB_, wxSizerFlags(0).Centre().Border(wxTOP,10) );
 
+  wxPersistentRegisterAndRestore(this, "DigitizeForm");
+
   Show( true );
 
   digitizing_ = false;
@@ -302,18 +298,6 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
 
 void DigitizeForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/DigitizeForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/DigitizeForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/DigitizeForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/DigitizeForm/HEIGHT"), static_cast<long>(height) );
-  }
   parent_->ZeroDigitizeForm();
   Destroy();
 }
@@ -475,13 +459,6 @@ DigitizeInfo::DigitizeInfo( DigitizeForm *parent )
               wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE ),
       parent_(parent)
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/DigitizeInfo/UPPERLEFTX"), 10l );
-  int uly = config->Read( wxT("/DigitizeInfo/UPPERLEFTY"), 10l );
-  int width = config->Read( wxT("/DigitizeInfo/WIDTH"), 500l );
-  int height = config->Read( wxT("/DigitizeInfo/HEIGHT"), 150l );
-  SetSize( ulx, uly, width, height );
-  
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   SetSizer( mainSizer );
   
@@ -506,23 +483,13 @@ DigitizeInfo::DigitizeInfo( DigitizeForm *parent )
   nPoints_ = 0;
   parent_->StartPicking();
 
+  wxPersistentRegisterAndRestore(this, "DigitizeInfo");
+
   Show( true );
 }
 
 void DigitizeInfo::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/DigitizeInfo/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/DigitizeInfo/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/DigitizeInfo/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/DigitizeInfo/HEIGHT"), static_cast<long>(height) );
-  }
   parent_->ZeroDigitizeInfo();
   Destroy();
 }

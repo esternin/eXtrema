@@ -16,10 +16,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include "wx/config.h"
 #include "wx/statline.h"
 #include "wx/stattext.h"
 #include "wx/radiobox.h"
+
+#include <wx/persist/toplevel.h>
 
 #include "CurvePopup.h"
 #include "GraphicsPage.h"
@@ -53,16 +54,9 @@ CurvePopup::CurvePopup( GraphicsPage *parent )
 {
   setup_ = true;
   CreateForm();
-  //
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/CurvePopup/UPPERLEFTX"), 950l );
-  int uly = config->Read( wxT("/CurvePopup/UPPERLEFTY"), 150l );
-  int width = config->Read( wxT("/CurvePopup/WIDTH"), 270l );
-  int height = config->Read( wxT("/CurvePopup/HEIGHT"), 420l );
-  SetSize( ulx, uly, width, height );
-  Show( true );
-  //
+  wxPersistentRegisterAndRestore(this, "CurvePopup");
   Layout();
+  Show( true );
 }
 
 void CurvePopup::CreateForm()
@@ -201,18 +195,6 @@ void CurvePopup::Setup( GRA_window *window, GRA_cartesianCurve *curve )
 
 void CurvePopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/CurvePopup/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/CurvePopup/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/CurvePopup/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/CurvePopup/HEIGHT"), static_cast<long>(height) );
-  }
   if( curve_ )curve_->Disconnect();
   //
   // close all child windows

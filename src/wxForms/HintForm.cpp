@@ -18,8 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iostream>
 #include <fstream>
 
-#include "wx/config.h"
 #include "wx/gdicmn.h"
+
+#include <wx/persist/toplevel.h>
 
 #include "HintForm.h"
 
@@ -27,21 +28,19 @@ HintForm::HintForm()
     : wxFrame((wxWindow*)NULL,wxID_ANY,wxT(""),wxDefaultPosition,wxDefaultSize,
               wxSYSTEM_MENU|wxRESIZE_BORDER|wxCAPTION&~(wxMINIMIZE_BOX|wxMAXIMIZE_BOX))
 {
-  int screenWidth, screenHeight;
-  ::wxDisplaySize( &screenWidth, &screenHeight );
-  wxConfigBase *config = wxConfigBase::Get();
-  int width = config->Read( wxT("/HintForm/WIDTH"), 320l );
-  int height = config->Read( wxT("/HintForm/HEIGHT"), 60l );
-  int ulx = config->Read( wxT("/HintForm/UPPERLEFTX"), static_cast<long>((screenWidth-width)/2) );
-  int uly = config->Read( wxT("/HintForm/UPPERLEFTY"), static_cast<long>((screenHeight-height)/2) );
-  SetSize( ulx, uly, width, height );
-  //
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   textLabel_ = new wxStaticText( this, wxID_ANY, wxT("") );
   mainSizer->Add( textLabel_, wxSizerFlags(1).Centre().Border(wxALL,20) );
   SetSizer( mainSizer );
   SetBackgroundColour( wxColour(255,250,205) );
   Layout();
+
+  // Center this window in the middle of the display the first time it's shown.
+  if ( !wxPersistentRegisterAndRestore(this, "HintForm") )
+  {
+    SetSize(320, 60);
+    CenterOnScreen();
+  }
 }
 
 void HintForm::ShowHint( std::vector<wxString> const &lines )
@@ -58,22 +57,6 @@ void HintForm::ShowHint( std::vector<wxString> const &lines )
 void HintForm::HideHint()
 {
   Show( false );
-}
-
-HintForm::~HintForm()
-{
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/HintForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/HintForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/HintForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/HintForm/HEIGHT"), static_cast<long>(height) );
-  }
 }
 
 // end of file

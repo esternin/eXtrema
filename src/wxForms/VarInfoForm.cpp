@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <fstream>
 #include <deque>
 
-#include "wx/config.h"
+#include <wx/persist/toplevel.h>
 
 #include "VarInfoForm.h"
 #include "ShowVariablesForm.h"
@@ -60,31 +60,13 @@ VarInfoForm::VarInfoForm( ShowVariablesForm *parent )
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
   SetSizer( mainSizer );
-  
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/VarInfoForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/VarInfoForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/VarInfoForm/WIDTH"), 570l );
-  int height = config->Read( wxT("/VarInfoForm/HEIGHT"), 145l );
-  SetSize( ulx, uly, width, height );
 
+  wxPersistentRegisterAndRestore(this, "VarInfoForm");
   Show( true );
 }
 
 void VarInfoForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/VarInfoForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/VarInfoForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/VarInfoForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/VarInfoForm/HEIGHT"), static_cast<long>(height) );
-  }
   //
   // close all child windows
   /*

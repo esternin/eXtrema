@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iostream>
 #include <fstream>
 
-#include "wx/config.h"
+#include <wx/persist/toplevel.h>
 
 #include "ColorSelector.h"
 #include "GRA_color.h"
@@ -76,12 +76,7 @@ ColorSelector::ColorSelector( wxWindow *parent )
 
   SetSizer( mainSizer );
   
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/ColorSelector/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/ColorSelector/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/ColorSelector/WIDTH"), 570l );
-  int height = config->Read( wxT("/ColorSelector/HEIGHT"), 145l );
-  SetSize( ulx, uly, width, height );
+  wxPersistentRegisterAndRestore(this, "ColorSelector");
 
   Show( true );
   
@@ -91,18 +86,6 @@ ColorSelector::ColorSelector( wxWindow *parent )
 
 void ColorSelector::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/ColorSelector/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/ColorSelector/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/ColorSelector/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/ColorSelector/HEIGHT"), static_cast<long>(height) );
-  }
   //
   // close all child windows
   /*

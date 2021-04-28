@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/statline.h"
 #include "wx/stattext.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "GenerateVectorForm.h"
 #include "AnalysisWindow.h"
 #include "NumericVariable.h"
@@ -129,12 +131,9 @@ GenerateVectorForm::GenerateVectorForm( AnalysisWindow *parent )
 
   SetSizer( mainSizer );
   
+  wxPersistentRegisterAndRestore(this, "GenerateVectorForm");
+
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/GenerateVectorForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/GenerateVectorForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/GenerateVectorForm/WIDTH"), 535l );
-  int height = config->Read( wxT("/GenerateVectorForm/HEIGHT"), 255l );
-  SetSize( ulx, uly, width, height );
   wxString s;
   config->Read( wxT("/GenerateVectorForm/NAME"), &s, wxT("") );
   nameTC_->SetValue( s );
@@ -161,15 +160,6 @@ void GenerateVectorForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/GenerateVectorForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/GenerateVectorForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/GenerateVectorForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/GenerateVectorForm/HEIGHT"), static_cast<long>(height) );
-    //
     config->Write( wxT("/GenerateVectorForm/NAME"), nameTC_->GetValue() );
     config->Write( wxT("/GenerateVectorForm/MIN"), minValueTC_->GetValue() );
     config->Write( wxT("/GenerateVectorForm/INC"), incValueTC_->GetValue() );

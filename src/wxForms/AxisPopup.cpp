@@ -41,6 +41,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "BasicColors.h"
 #include "EGraphicsError.h"
 
+#include <wx/persist/toplevel.h>
+
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
 //
@@ -71,20 +73,18 @@ AxisPopup::AxisPopup( GraphicsPage *parent )
   CreateForm();
   //
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/AxisPopup/UPPERLEFTX"), 950l );
-  int uly = config->Read( wxT("/AxisPopup/UPPERLEFTY"), 150l );
-  int width = config->Read( wxT("/AxisPopup/WIDTH"), 320l );
-  int height = config->Read( wxT("/AxisPopup/HEIGHT"), 430l );
-  SetSize( ulx, uly, width, height );
   int page = config->Read( wxT("/AxisPopup/PAGE"), 0l );
 #if wxMINOR_VERSION < 8
   notebook_->SetSelection( std::max(0,std::min(4,page)) );
 #else
   notebook_->ChangeSelection( std::max(0,std::min(4,page)) );
 #endif
-  Show( true );
-  //
+
+  wxPersistentRegisterAndRestore(this, "AxisPopup");
+
   Layout();
+
+  Show( true );
 }
 
 void AxisPopup::CreateForm()
@@ -426,15 +426,6 @@ void AxisPopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/AxisPopup/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/AxisPopup/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/AxisPopup/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/AxisPopup/HEIGHT"), static_cast<long>(height) );
-    //
     config->Write( wxT("/AxisPopup/PAGE"), static_cast<long>(notebook_->GetSelection()) );
   }
   //

@@ -19,9 +19,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <fstream>
 #include <sstream>
 
-#include "wx/config.h"
 #include "wx/statline.h"
 #include "wx/stattext.h"
+
+#include <wx/persist/toplevel.h>
 
 #include "ShowVariablesForm.h"
 #include "AnalysisWindow.h"
@@ -94,14 +95,8 @@ ShowVariablesForm::ShowVariablesForm( AnalysisWindow *parent )
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
   SetSizer( mainSizer );
-  
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/ShowVariablesForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/ShowVariablesForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/ShowVariablesForm/WIDTH"), 550l );
-  int height = config->Read( wxT("/ShowVariablesForm/HEIGHT"), 400l );
-  SetSize( ulx, uly, width, height );
 
+  wxPersistentRegisterAndRestore(this, "ShowVariablesForm");
   Show( true );
 
   FillGrid();
@@ -109,18 +104,6 @@ ShowVariablesForm::ShowVariablesForm( AnalysisWindow *parent )
 
 void ShowVariablesForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/ShowVariablesForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/ShowVariablesForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/ShowVariablesForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/ShowVariablesForm/HEIGHT"), static_cast<long>(height) );
-  }
   //
   // close all child windows
   /*

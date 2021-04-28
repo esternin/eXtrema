@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/statline.h"
 #include "wx/stattext.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "ReadTextForm.h"
 #include "ChooseFilePanel.h"
 #include "AnalysisWindow.h"
@@ -152,14 +154,9 @@ ReadTextForm::ReadTextForm( AnalysisWindow *parent )
   SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/ReadTextForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/ReadTextForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/ReadTextForm/WIDTH"), 550l );
-  int height = config->Read( wxT("/ReadTextForm/HEIGHT"), 300l );
-  SetSize( ulx, uly, width, height );
-
   topPanel_->GetFilenames( config, wxT("/ReadTextForm") );
 
+  wxPersistentRegisterAndRestore(this, "ReadTextForm");
   Show( true );
 }
 
@@ -168,15 +165,6 @@ void ReadTextForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/ReadTextForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/ReadTextForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/ReadTextForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/ReadTextForm/HEIGHT"), static_cast<long>(height) );
-
     topPanel_->SaveFilenames( config, wxT("/ReadTextForm") );
   }
   //

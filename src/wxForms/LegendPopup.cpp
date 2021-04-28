@@ -15,10 +15,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include "wx/config.h"
 #include "wx/statline.h"
 #include "wx/stattext.h"
 #include "wx/slider.h"
+
+#include <wx/persist/toplevel.h>
 
 #include "LegendPopup.h"
 #include "GraphicsPage.h"
@@ -59,16 +60,9 @@ LegendPopup::LegendPopup( GraphicsPage *parent )
 {
   setup_ = true;
   CreateForm();
-  //
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/LegendPopup/UPPERLEFTX"), 950l );
-  int uly = config->Read( wxT("/LegendPopup/UPPERLEFTY"), 150l );
-  int width = config->Read( wxT("/LegendPopup/WIDTH"), 290l );
-  int height = config->Read( wxT("/LegendPopup/HEIGHT"), 570l );
-  SetSize( ulx, uly, width, height );
-  Show( true );
-  //
   Layout();
+  wxPersistentRegisterAndRestore(this, "LegendPopup");
+  Show( true );
 }
 
 void LegendPopup::CreateForm()
@@ -322,18 +316,6 @@ void LegendPopup::OnDrawTitle( wxCommandEvent &WXUNUSED(event) )
 
 void LegendPopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/LegendPopup/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/LegendPopup/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/LegendPopup/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/LegendPopup/HEIGHT"), static_cast<long>(height) );
-  }
   if( legend_ )legend_->Disconnect();
   //
   // close all child windows

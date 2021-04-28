@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/config.h"
 #include "wx/statline.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "WriteMatrixForm.h"
 #include "AnalysisWindow.h"
 #include "ChooseFilePanel.h"
@@ -77,14 +79,9 @@ WriteMatrixForm::WriteMatrixForm( AnalysisWindow *parent )
   SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/WriteMatrixForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/WriteMatrixForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/WriteMatrixForm/WIDTH"), 550l );
-  int height = config->Read( wxT("/WriteMatrixForm/HEIGHT"), 300l );
-  SetSize( ulx, uly, width, height );
-
   topPanel_->GetFilenames( config, wxT("/WriteMatrixForm") );
 
+  wxPersistentRegisterAndRestore(this, "WriteMatrixForm");
   Show( true );
 }
 
@@ -93,15 +90,6 @@ void WriteMatrixForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/WriteMatrixForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/WriteMatrixForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/WriteMatrixForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/WriteMatrixForm/HEIGHT"), static_cast<long>(height) );
-
     topPanel_->SaveFilenames( config, wxT("/WriteMatrixForm") );
   }
   //

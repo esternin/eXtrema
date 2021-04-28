@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iostream>
 #include <fstream>
 
-#include "wx/config.h"
+#include <wx/persist/toplevel.h>
 
 #include "InquireDialog.h"
 #include "ExGlobals.h"
@@ -68,12 +68,7 @@ InquireDialog::InquireDialog()
 
   SetSizer( mainSizer );
   
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/InquireDialog/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/InquireDialog/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/InquireDialog/WIDTH"), 570l );
-  int height = config->Read( wxT("/InquireDialog/HEIGHT"), 145l );
-  SetSize( ulx, uly, width, height );
+  wxPersistentRegisterAndRestore(this, "InquireDialog");
   Show( true );
 }
 
@@ -82,18 +77,6 @@ void InquireDialog::SetLabel( wxString const &message )
 
 void InquireDialog::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/InquireDialog/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/InquireDialog/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/InquireDialog/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/InquireDialog/HEIGHT"), static_cast<long>(height) );
-  }
   Destroy();
 }
 

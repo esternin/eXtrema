@@ -18,9 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iostream>
 #include <fstream>
 
-#include "wx/config.h"
 #include "wx/statline.h"
 #include "wx/textctrl.h"
+
+#include <wx/persist/toplevel.h>
 
 #include "SetAspectRatioForm.h"
 #include "VisualizationWindow.h"
@@ -87,13 +88,8 @@ SetAspectRatioForm::SetAspectRatioForm( VisualizationWindow *parent )
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
   SetSizer( mainSizer );
-  
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/SetAspectRatioForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/SetAspectRatioForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/SetAspectRatioForm/WIDTH"), 220l );
-  int height = config->Read( wxT("/SetAspectRatioForm/HEIGHT"), 130l );
-  SetSize( ulx, uly, width, height );
+
+  wxPersistentRegisterAndRestore(this, "SetAspectRatioForm");
 
   double ar = ExGlobals::GetAspectRatio();
 #if wxMINOR_VERSION < 8
@@ -124,19 +120,6 @@ SetAspectRatioForm::SetAspectRatioForm( VisualizationWindow *parent )
 
 void SetAspectRatioForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/SetAspectRatioForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/SetAspectRatioForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/SetAspectRatioForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/SetAspectRatioForm/HEIGHT"), static_cast<long>(height) );
-  }
-  
   ExGlobals::GetVisualizationWindow()->ZeroSetAspectRatioForm();
 
   Destroy();

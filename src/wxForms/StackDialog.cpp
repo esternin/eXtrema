@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "wx/config.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "StackDialog.h"
 #include "ChooseFilePanel.h"
 #include "AnalysisWindow.h"
@@ -77,14 +79,9 @@ StackDialog::StackDialog( AnalysisWindow *parent )
   SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/StackDialog/UPPERLEFTX"), 650l );
-  int uly = config->Read( wxT("/StackDialog/UPPERLEFTY"), 90l );
-  int width = config->Read( wxT("/StackDialog/WIDTH"), 560l );
-  int height = config->Read( wxT("/StackDialog/HEIGHT"), 200l );
-  SetSize( ulx, uly, width, height );
-
   chooseFilePanel_->GetFilenames( config, wxT("/StackDialog") );
-  
+
+  wxPersistentRegisterAndRestore(this, "StackDialog");
   Show( true );
 
   if( ExGlobals::StackIsOn() )
@@ -105,15 +102,6 @@ void StackDialog::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/StackDialog/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/StackDialog/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/StackDialog/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/StackDialog/HEIGHT"), static_cast<long>(height) );
-
     chooseFilePanel_->SaveFilenames( config, wxT("/StackDialog") );
   }
   //

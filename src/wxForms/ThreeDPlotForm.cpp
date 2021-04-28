@@ -17,6 +17,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include "wx/config.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "ThreeDPlotForm.h"
 #include "GRA_threeDPlot.h"
 #include "VisualizationWindow.h"
@@ -61,19 +63,14 @@ ThreeDPlotForm::ThreeDPlotForm( VisualizationWindow *parent )
 {
   CreateForm();
   
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/3DPlotForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/3DPlotForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/3DPlotForm/WIDTH"), 350l );
-  int height = config->Read( wxT("/3DPlotForm/HEIGHT"), 430l );
-  SetSize( ulx, uly, width, height );
-  
+  wxPersistentRegisterAndRestore(this, "3DPlotForm");
   Show( true );
   
   UpdateVectors( xVecComboBox_ );
   UpdateVectors( yVecComboBox_ );
   UpdateVectors( zVecComboBox_ );
 
+  wxConfigBase *config = wxConfigBase::Get();
   wxString sTmp;
   config->Read( wxT("/3DPlotForm/X_VECTOR"), &sTmp, wxT("") );
   if( xVecComboBox_->FindString(sTmp) > 0 )xVecComboBox_->SetStringSelection( sTmp );
@@ -250,14 +247,6 @@ void ThreeDPlotForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/ThreeDPlotForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/ThreeDPlotForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/ThreeDPlotForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/ThreeDPlotForm/HEIGHT"), static_cast<long>(height) );
     config->Write( wxT("/ThreeDPlotForm/X_VECTOR"), xVecComboBox_->GetStringSelection() );
     config->Write( wxT("/ThreeDPlotForm/Y_VECTOR"), yVecComboBox_->GetStringSelection() );
     config->Write( wxT("/ThreeDPlotForm/Z_VECTOR"), zVecComboBox_->GetStringSelection() );

@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/statline.h"
 #include "wx/stattext.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "GraphForm.h"
 #include "VisualizationWindow.h"
 #include "NumericVariable.h"
@@ -65,12 +67,9 @@ GraphForm::GraphForm( VisualizationWindow *parent )
   //
   CreateForm();
   //
+  wxPersistentRegisterAndRestore(this, "GraphForm");
+
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/GraphForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/GraphForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/GraphForm/WIDTH"), 555l );
-  int height = config->Read( wxT("/GraphForm/HEIGHT"), 200l );
-  SetSize( ulx, uly, width, height );
   //
   Show( true );
   //
@@ -216,15 +215,6 @@ void GraphForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/GraphForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/GraphForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/GraphForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/GraphForm/HEIGHT"), static_cast<long>(height) );
-    //
     config->Write( wxT("/GraphForm/DATA_VECTOR"), dataCB_->GetStringSelection() );
     config->Write( wxT("/GraphForm/INDEPENDENT_VECTOR"), indepCB_->GetStringSelection() );
     config->Write( wxT("/GraphForm/ERROR_VECTOR"), errorCB_->GetStringSelection() );

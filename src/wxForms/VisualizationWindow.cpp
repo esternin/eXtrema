@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/dcbuffer.h"
 #include "wx/notebook.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "VisualizationWindow.h"
 #include "VisualizationSpeedButtonPanel.h"
 #include "GRA_window.h"
@@ -86,10 +88,6 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   ExGlobals::SetVisualizationWindow( this );
 
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/VisualizationWindow/UPPERLEFTX"), 10l );
-  int uly = config->Read( wxT("/VisualizationWindow/UPPERLEFTY"), 10l );
-  int width = config->Read( wxT("/VisualizationWindow/WIDTH"), 700l );
-  int height = config->Read( wxT("/VisualizationWindow/HEIGHT"), 500l );
   double aspectRatio;
   config->Read( wxT("/VisualizationWindow/ASPECTRATIO"), &aspectRatio,
                 ExGlobals::GetAspectRatio() );
@@ -178,10 +176,6 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   visualizationSpeedButtonPanel_ = new VisualizationSpeedButtonPanel(this);
   sizer->Add( visualizationSpeedButtonPanel_, wxSizerFlags(0).Expand().Border(wxALL,1) );
 
-  double ratio = static_cast<double>(height)/static_cast<double>(width);
-  ratio > aspectRatio ? height = static_cast<int>(aspectRatio*width+0.5) :
-                        width = static_cast<int>(height/aspectRatio+0.5);
-
   notebook_ = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_RIGHT );
 
   sizer->Add( notebook_, wxSizerFlags(1).Expand().Border(wxALL,5) );
@@ -192,9 +186,18 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   statusBar_ = new MyStatusBar( this );
   SetStatusBar( statusBar_ );
 
-  SetSize( ulx, uly, width, height );
+  wxPersistentRegisterAndRestore(this, "VisualizationWindow");
 
-  ExGlobals::SetMonitorLimits( 0, 0, width, height );
+  // Make the window respect the configured aspect ratio.
+  wxSize size = GetClientSize();
+  if ( static_cast<double>(size.y)/static_cast<double>(size.x) > aspectRatio )
+    size.y = static_cast<int>(aspectRatio*size.x+0.5);
+  else
+    size.x = static_cast<int>(size.y/aspectRatio+0.5);
+
+  SetClientSize(size);
+
+  ExGlobals::SetMonitorLimits( 0, 0, size.x, size.y );
   ExGlobals::SetAspectRatio( aspectRatio );
   page->ResetWindows();
   wxClientDC dc( page );
@@ -211,14 +214,6 @@ void VisualizationWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/VisualizationWindow/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/VisualizationWindow/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/VisualizationWindow/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/VisualizationWindow/HEIGHT"), static_cast<long>(height) );
     config->Write( wxT("/VisualizationWindow/ASPECTRATIO"), ExGlobals::GetAspectRatio() );
   }
   Destroy();

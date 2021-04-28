@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/stattext.h"
 #include "wx/filename.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "ReadVectorsForm.h"
 #include "ChooseFilePanel.h"
 #include "AnalysisWindow.h"
@@ -199,14 +201,9 @@ ReadVectorsForm::ReadVectorsForm( AnalysisWindow *parent )
   SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/ReadVectorsForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/ReadVectorsForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/ReadVectorsForm/WIDTH"), 550l );
-  int height = config->Read( wxT("/ReadVectorsForm/HEIGHT"), 620l );
-  SetSize( ulx, uly, width, height );
-
   topPanel_->GetFilenames( config, wxT("/ReadVectorsForm") );
 
+  wxPersistentRegisterAndRestore(this, "ReadVectorsForm");
   Show( true );
 }
 
@@ -215,14 +212,6 @@ void ReadVectorsForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/ReadVectorsForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/ReadVectorsForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/ReadVectorsForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/ReadVectorsForm/HEIGHT"), static_cast<long>(height) );
     topPanel_->SaveFilenames( config, wxT("/ReadVectorsForm") );
   }
   //

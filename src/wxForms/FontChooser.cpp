@@ -18,6 +18,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/config.h"
 #include "wx/stattext.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "FontChooser.h"
 #include "ExGlobals.h"
 #include "GRA_font.h"
@@ -63,11 +65,8 @@ FontChooser::FontChooser( wxWindow *parent )
   CreateForm();
 
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/FontChooser/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/FontChooser/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/FontChooser/WIDTH"), 480l );
-  int height = config->Read( wxT("/FontChooser/HEIGHT"), 410l );
-  SetSize( ulx, uly, width, height );
+
+  wxPersistentRegisterAndRestore(this, "FontChooser");
 
   Show( true );
 
@@ -248,15 +247,6 @@ void FontChooser::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/FontChooser/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/FontChooser/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/FontChooser/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/FontChooser/HEIGHT"), static_cast<long>(height) );
-    //
     config->Write( wxT("/FontChooser/FONTCODE"), static_cast<long>(fontCode_) );
     config->Write( wxT("/FontChooser/TEXTHEIGHT"), heightTC_->GetValue() );
     config->Write( wxT("/FontChooser/ANGLE"), angleTC_->GetValue() );

@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iostream>
 #include <fstream>
 
-#include "wx/config.h"
+#include <wx/persist/toplevel.h>
 
 #include "InquireYNDialog.h"
 #include "ExGlobals.h"
@@ -70,13 +70,9 @@ InquireYNDialog::InquireYNDialog()
   mainSizer->Add( bottomPanel, wxSizerFlags(1).Expand().Border(wxALL,1) );
 
   SetSizer( mainSizer );
-  
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/InquireYNDialog/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/InquireYNDialog/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/InquireYNDialog/WIDTH"), 570l );
-  int height = config->Read( wxT("/InquireYNDialog/HEIGHT"), 145l );
-  SetSize( ulx, uly, width, height );
+
+  wxPersistentRegisterAndRestore(this, "InquireYNDialog");
+
   Show( true );
 }
 
@@ -87,18 +83,6 @@ void InquireYNDialog::SetLabel( wxString const &message )
 
 void InquireYNDialog::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/InquireYNDialog/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/InquireYNDialog/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/InquireYNDialog/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/InquireYNDialog/HEIGHT"), static_cast<long>(height) );
-  }
   Destroy();
 }
 

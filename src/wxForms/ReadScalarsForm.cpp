@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/statline.h"
 #include "wx/stattext.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "ReadScalarsForm.h"
 #include "AnalysisWindow.h"
 #include "ChooseFilePanel.h"
@@ -150,13 +152,9 @@ ReadScalarsForm::ReadScalarsForm( AnalysisWindow *parent )
   SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/ReadScalarsForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/ReadScalarsForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/ReadScalarsForm/WIDTH"), 575l );
-  int height = config->Read( wxT("/ReadScalarsForm/HEIGHT"), 610l );
-  SetSize( ulx, uly, width, height );
-
   topPanel_->GetFilenames( config, wxT("/ReadScalarsForm") );
+
+  wxPersistentRegisterAndRestore(this, "ReadScalarsForm");
 
   Show( true );
 }
@@ -166,15 +164,6 @@ void ReadScalarsForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/ReadScalarsForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/ReadScalarsForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/ReadScalarsForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/ReadScalarsForm/HEIGHT"), static_cast<long>(height) );
-
     topPanel_->SaveFilenames( config, wxT("/ReadScalarsForm") );
   }
   //

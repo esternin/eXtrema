@@ -36,6 +36,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/bmpbuttn.h"
 #include "wx/frame.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "FigureForm.h"
 #include "ExGlobals.h"
 #include "VisualizationWindow.h"
@@ -72,15 +74,10 @@ FigureForm::FigureForm( VisualizationWindow *parent )
 {
   CreateForm();
 
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/FigureForm/UPPERLEFTX"), 980l );
-  int uly = config->Read( wxT("/FigureForm/UPPERLEFTY"), 60l );
-  int width = config->Read( wxT("/FigureForm/WIDTH"), 370l );
-  int height = config->Read( wxT("/FigureForm/HEIGHT"), 430l );
-
-  SetSize( ulx, uly, width, height );
+  wxPersistentRegisterAndRestore(this, "FigureForm");
   Show( true );
   
+  wxConfigBase *config = wxConfigBase::Get();
   arrowType_ = config->Read( wxT("/FigureForm/ARROWTYPE"), 1l );
   polygonType_ = config->Read( wxT("/FigureForm/POLYGONTYPE"), 1l );
 
@@ -105,15 +102,6 @@ void FigureForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/FigureForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/FigureForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/FigureForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/FigureForm/HEIGHT"), static_cast<long>(height) );
-    //
     config->Write( wxT("/FigureForm/ARROWTYPE"), static_cast<long>(arrowType_) );
     config->Write( wxT("/FigureForm/POLYGONTYPE"), static_cast<long>(polygonType_) );
     config->Write( wxT("/FigureForm/POLYGONANGLE"), static_cast<long>(polygonAngleSC_->GetValue()) );

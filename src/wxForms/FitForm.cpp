@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/stattext.h"
 #include "wx/datetime.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "FitForm.h"
 #include "AnalysisWindow.h"
 #include "NumericVariable.h"
@@ -76,11 +78,7 @@ FitForm::FitForm( AnalysisWindow *parent )
   CreateForm();
   
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/FitForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/FitForm/UPPERLEFTY"), 640l );
-  int width = 850;
-  int height = 630;
-  SetSize( ulx, uly, width, height );
+  wxPersistentRegisterAndRestore(this, "FitForm");
 
   Show( true );
 
@@ -338,10 +336,6 @@ void FitForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/FitForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/FitForm/UPPERLEFTY"), static_cast<long>(uly) );
     //
     config->Write( wxT("/FitForm/DATA_VECTOR"), dataCB_->GetStringSelection() );
     config->Write( wxT("/FitForm/INDEPENDENT_VECTOR"), indepCB_->GetStringSelection() );

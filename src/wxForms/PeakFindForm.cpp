@@ -20,9 +20,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <sstream>
 #include <limits>
 
-#include "wx/config.h"
 #include "wx/statline.h"
 #include "wx/stattext.h"
+
+#include <wx/persist/toplevel.h>
 
 #include "PeakFindForm.h"
 #include "VisualizationWindow.h"
@@ -151,14 +152,8 @@ PeakFindForm::PeakFindForm( VisualizationWindow *parent )
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
   SetSizer( mainSizer );
-  
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/PeakFindForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/PeakFindForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/PeakFindForm/WIDTH"), 300l );
-  int height = config->Read( wxT("/PeakFindForm/HEIGHT"), 215l );
-  SetSize( ulx, uly, width, height );
 
+  wxPersistentRegisterAndRestore(this, "PeakFindForm");
   Show( true );
 
   Initialize();
@@ -168,18 +163,6 @@ void PeakFindForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
   EraseLastArrow();
 
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/PeakFindForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/PeakFindForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/PeakFindForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/PeakFindForm/HEIGHT"), static_cast<long>(height) );
-  }
   //
   // close all child windows
   /*

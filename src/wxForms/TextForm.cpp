@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/stattext.h"
 #include "wx/filedlg.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "TextForm.h"
 #include "VisualizationWindow.h"
 #include "NumericVariable.h"
@@ -79,17 +81,9 @@ TextForm::TextForm( VisualizationWindow *parent )
 {
   CreateForm();
 
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/DrawTextForm/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/DrawTextForm/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/DrawTextForm/WIDTH"), 560l );
-  int height = config->Read( wxT("/DrawTextForm/HEIGHT"), 305l );
-  SetSize( ulx, uly, width, height );
-
-  Show( true );
-
   FillOutForm();
 
+  wxConfigBase *config = wxConfigBase::Get();
   wxString sTmp;
   config->Read( wxT("/DrawTextForm/STRING"), &sTmp, wxT("") );
   stringTC_->SetValue( sTmp );
@@ -107,6 +101,9 @@ TextForm::TextForm( VisualizationWindow *parent )
   alignmentRB_[gwToRadio_[i-1]]->SetValue( true );
 
   Layout();
+
+  wxPersistentRegisterAndRestore(this, "DrawTextForm");
+  Show( true );
 
   fromSet_ = false;
 }
@@ -217,15 +214,6 @@ void TextForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/DrawTextForm/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/DrawTextForm/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/DrawTextForm/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/DrawTextForm/HEIGHT"), static_cast<long>(height) );
-    //
     config->Write( wxT("/DrawTextForm/STRING"), stringTC_->GetValue() );
     config->Write( wxT("/DrawTextForm/XLOC"), locxTC_->GetValue() );
     config->Write( wxT("/DrawTextForm/YLOC"), locyTC_->GetValue() );

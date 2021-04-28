@@ -37,6 +37,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "StackDialog.h"
 #include "ExGlobals.h"
 
+#include <wx/persist/toplevel.h>
+
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
 //
@@ -65,13 +67,6 @@ AnalysisWindow::AnalysisWindow( extrema *extrema )
                wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       extrema_(extrema)
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/AnalysisWindow/UPPERLEFTX"), 500l );
-  int uly = config->Read( wxT("/AnalysisWindow/UPPERLEFTY"), 500l );
-  int width = config->Read( wxT("/AnalysisWindow/WIDTH"), 700l );
-  int height = config->Read( wxT("/AnalysisWindow/HEIGHT"), 500l );
-  SetSize( ulx, uly, width, height );
-
   executeDialog_ = 0;
   showVariablesForm_ = 0;
   readVectorsForm_ = 0;
@@ -133,6 +128,8 @@ AnalysisWindow::AnalysisWindow( extrema *extrema )
   CreateStatusBar( 1 );
   SetStatusText( wxT("Welcome to extrema!") );
 
+  wxPersistentRegisterAndRestore(this, "AnalysisWindow");
+
   // Show the main window.
   // Frames, unlike simple controls, are not shown when created initially.
   Show( true );
@@ -174,18 +171,6 @@ void AnalysisWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
     node = node->GetNext();
   }
   */
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/AnalysisWindow/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/AnalysisWindow/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/AnalysisWindow/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/AnalysisWindow/HEIGHT"), static_cast<long>(height) );
-  }
   Destroy();
 }
 

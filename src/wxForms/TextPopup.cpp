@@ -15,9 +15,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include "wx/config.h"
 #include "wx/statline.h"
 #include "wx/stattext.h"
+
+#include <wx/persist/toplevel.h>
 
 #include "TextPopup.h"
 #include "GraphicsPage.h"
@@ -53,16 +54,9 @@ TextPopup::TextPopup( GraphicsPage *parent )
 {
   setup_ = true;
   CreateForm();
-  //
-  wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/TextPopup/UPPERLEFTX"), 950l );
-  int uly = config->Read( wxT("/TextPopup/UPPERLEFTY"), 150l );
-  int width = config->Read( wxT("/TextPopup/WIDTH"), 270l );
-  int height = config->Read( wxT("/TextPopup/HEIGHT"), 285l );
-  SetSize( ulx, uly, width, height );
-  Show( true );
-  //
   Layout();
+  wxPersistentRegisterAndRestore(this, "TextPopup");
+  Show( true );
 }
 
 void TextPopup::CreateForm()
@@ -226,18 +220,6 @@ void TextPopup::OnFont( wxCommandEvent &WXUNUSED(event) )
 
 void TextPopup::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 {
-  wxConfigBase *config = wxConfigBase::Get();
-  if( config )
-  {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/TextPopup/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/TextPopup/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/TextPopup/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/TextPopup/HEIGHT"), static_cast<long>(height) );
-  }
   if( drawableText_ )drawableText_->Disconnect();
   //
   // close all child windows

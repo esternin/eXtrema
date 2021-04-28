@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/config.h"
 #include "wx/filename.h"
 
+#include <wx/persist/toplevel.h>
+
 #include "ExecuteDialog.h"
 #include "ChooseFilePanel.h"
 #include "AnalysisWindow.h"
@@ -77,14 +79,9 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
   bottomSizer->Add( closeButton, wxSizerFlags(0).Center().Border(wxLEFT,5) );
 
   wxConfigBase *config = wxConfigBase::Get();
-  int ulx = config->Read( wxT("/ExecuteDialog/UPPERLEFTX"), 0l );
-  int uly = config->Read( wxT("/ExecuteDialog/UPPERLEFTY"), 640l );
-  int width = config->Read( wxT("/ExecuteDialog/WIDTH"), 570l );
-  int height = config->Read( wxT("/ExecuteDialog/HEIGHT"), 145l );
-  SetSize( ulx, uly, width, height );
 
   chooseFilePanel_->GetFilenames( config, wxT("/ExecuteDialog") );
-  
+
   wxString tmp;
   config->Read( wxT("/ExecuteDialog/PARAMETERS"), &tmp );
   if( !tmp.empty() )
@@ -92,6 +89,9 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
     ExGlobals::RemoveQuotes( tmp );
     parameterTextCtrl_->SetValue( tmp );
   }
+
+  wxPersistentRegisterAndRestore(this, "ExecuteDialog");
+
   Show( true );
 }
 
@@ -100,15 +100,6 @@ void ExecuteDialog::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
   wxConfigBase *config = wxConfigBase::Get();
   if( config )
   {
-    int ulx, uly;
-    GetPosition( &ulx, &uly );
-    config->Write( wxT("/ExecuteDialog/UPPERLEFTX"), static_cast<long>(ulx) );
-    config->Write( wxT("/ExecuteDialog/UPPERLEFTY"), static_cast<long>(uly) );
-    int width, height;
-    GetSize( &width, &height );
-    config->Write( wxT("/ExecuteDialog/WIDTH"), static_cast<long>(width) );
-    config->Write( wxT("/ExecuteDialog/HEIGHT"), static_cast<long>(height) );
-
     chooseFilePanel_->SaveFilenames( config, wxT("/ExecuteDialog") );
     
     if( !parameterTextCtrl_->GetValue().empty() )
