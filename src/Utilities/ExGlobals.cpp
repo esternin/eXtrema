@@ -780,7 +780,7 @@ bool NotInaScript()
 Script *GetScript()
 {
   if( currentScriptNumber_ == 0 )return 0;
-  return scripts_[currentScriptNumber_-1];
+  return scripts_.at(currentScriptNumber_-1);
 }
 
 void SetExecuteCommand( bool b )
@@ -860,7 +860,7 @@ void SetScript( Script *s )
 
 void RunScript()
 {
-  scripts_[currentScriptNumber_-1]->Run();
+  scripts_.at(currentScriptNumber_-1)->Run();
   if( pausingScript_ )return;
   StopScript();
 }
@@ -877,10 +877,10 @@ void StopScript()
 void ShowScriptError( char const *errorMessage )
 {
   wxString s( wxT("ERROR in script file: ") );
-  s += scripts_[currentScriptNumber_-1]->Filename()+wxT("\n");
+  s += scripts_.at(currentScriptNumber_-1)->Filename()+wxT("\n");
   s += wxString(errorMessage,wxConvUTF8)+wxT("\n");
   s += wxT("The following line caused the error:\n");
-  s += scripts_[currentScriptNumber_-1]->CurrentLine();
+  s += scripts_.at(currentScriptNumber_-1)->CurrentLine();
   wxMessageBox( s, wxT("Script error"), wxOK|wxICON_ERROR );
 }
 
