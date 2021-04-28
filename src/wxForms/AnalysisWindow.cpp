@@ -128,7 +128,11 @@ AnalysisWindow::AnalysisWindow( extrema *extrema )
   CreateStatusBar( 1 );
   SetStatusText( wxT("Welcome to extrema!") );
 
-  wxPersistentRegisterAndRestore(this, "AnalysisWindow");
+  if ( !wxPersistentRegisterAndRestore(this, "AnalysisWindow") )
+  {
+    // Use reasonably big default size for this window initially.
+    SetClientSize(80*GetCharWidth(), 30*GetCharHeight());
+  }
 
   // Show the main window.
   // Frames, unlike simple controls, are not shown when created initially.

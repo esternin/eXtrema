@@ -186,10 +186,19 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   statusBar_ = new MyStatusBar( this );
   SetStatusBar( statusBar_ );
 
-  wxPersistentRegisterAndRestore(this, "VisualizationWindow");
+  wxSize size;
+  if ( !wxPersistentRegisterAndRestore(this, "VisualizationWindow") )
+  {
+    // Make the window of reasonable default size during the very first run
+    // (same as the size of the main window).
+    size = wxSize(80*GetCharWidth(), 30*GetCharHeight());
+  }
+  else
+  {
+    size = GetClientSize();
+  }
 
-  // Make the window respect the configured aspect ratio.
-  wxSize size = GetClientSize();
+  // In any case, make the window respect the configured aspect ratio.
   if ( static_cast<double>(size.y)/static_cast<double>(size.x) > aspectRatio )
     size.y = static_cast<int>(aspectRatio*size.x+0.5);
   else
