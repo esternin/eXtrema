@@ -28,11 +28,8 @@ GRA_font::GRA_font( wxString const &name )
   //
   wxNativeFontInfo nfi;
   nfi.FromString( name_ );
+  nfi.SetPointSize( 12 );  // 12 seems to fit the most number of fonts (using xfontsel)
   wxfont_ = wxFont( nfi );
-  wxfont_.SetFamily( wxFONTFAMILY_DEFAULT );
-  wxfont_.SetStyle( wxFONTSTYLE_NORMAL );
-  wxfont_.SetWeight( wxFONTWEIGHT_NORMAL );
-  wxfont_.SetPointSize( 12 );  // 12 seems to fit the most number of fonts (using xfontsel)
 }
 
 std::ostream &operator<<( std::ostream &out, GRA_font const &font )
