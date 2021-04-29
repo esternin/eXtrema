@@ -11,7 +11,7 @@ fonts[8]=`GEORGIA'
 fonts[9]=`SYMBOL'
 fonts[10]=`TIMES NEW ROMAN'
 fonts[11]=`VERDANA'
-fonts[12]=`WINGDINGS'
+fonts[12]=`ZAPFDINGBATS'
 
 set cursor -1
 set %xloc 20

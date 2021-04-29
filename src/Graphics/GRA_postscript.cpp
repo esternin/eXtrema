@@ -2238,8 +2238,8 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
     //std::cout << " |" << psFontName.mb_str(wxConvUTF8) << "|" << "SymbolMT" << "|\n";
-    if( psFontName == wxT("SymbolMT") ) {
-      //  for SymbolMT NEED TO ADD LOOKUP UTF8 -> PostScript Symbol font (0..255)
+    if( psFontName == wxT("Symbol") ) {
+      //  for Symbol NEED TO ADD LOOKUP UTF8 -> PostScript Symbol font (0..255)
       for( size_t i=0; i<tEnd; ++i ) {
         int j = static_cast<int>(text[i]);
         //std::cout << "j = " << j << "\n";
