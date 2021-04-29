@@ -20,16 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_font.h"
 
 GRA_font::GRA_font( wxString const &name ) 
-    : name_( name.Upper() )
+    : wxfont_(wxFontInfo(12).FaceName(name)),
+      name_( name.Upper() )
 {
-  //neither of the following works to set the font
-  //wxfont_ = wxFont( 12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, name );
-  //wxfont_.SetFaceName( name );
-  //
-  wxNativeFontInfo nfi;
-  nfi.FromString( name_ );
-  nfi.SetPointSize( 12 );  // 12 seems to fit the most number of fonts (using xfontsel)
-  wxfont_ = wxFont( nfi );
 }
 
 std::ostream &operator<<( std::ostream &out, GRA_font const &font )
