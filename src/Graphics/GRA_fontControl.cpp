@@ -33,9 +33,10 @@ namespace GRA_fontControl
     fonts_.push_back( new GRA_font(wxT("BOOKMAN OLD STYLE")) );
     fonts_.push_back( new GRA_font(wxT("CENTURY")) );
     fonts_.push_back( new GRA_font(wxT("COURIER NEW")) );
-    fonts_.push_back( new GRA_font(wxT("GARAMOND")) );
+    fonts_.push_back( new GRA_font(wxT("GEORGIA")) );
     fonts_.push_back( new GRA_font(wxT("SYMBOL")) );
     fonts_.push_back( new GRA_font(wxT("TIMES NEW ROMAN")) );
+    fonts_.push_back( new GRA_font(wxT("VERDANA")) );
     fonts_.push_back( new GRA_font(wxT("WINGDINGS")) );
 
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ARIAL")),wxString(wxT("ArialMT"))) );
@@ -45,9 +46,10 @@ namespace GRA_fontControl
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("BOOKMAN OLD STYLE")),wxString(wxT("BookmanOldStyle"))) );
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("CENTURY")),wxString(wxT("Century"))) );
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("COURIER NEW")),wxString(wxT("CourierNewPSMT"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("GARAMOND")),wxString(wxT("Garamond"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("GEORGIA")),wxString(wxT("Georgia"))) );
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SYMBOL")),wxString(wxT("SymbolMT"))) );
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("TIMES NEW ROMAN")),wxString(wxT("TimesNewRomanPSMT"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("VERDANA")),wxString(wxT("Verdana"))) );
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("WINGDINGS")),wxString(wxT("Wingdings-Regular"))) );
   }
 
