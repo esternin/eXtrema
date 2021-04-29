@@ -35,7 +35,8 @@ BEGIN_EVENT_TABLE( InquireDialog, wxDialog )
 END_EVENT_TABLE()
 
 InquireDialog::InquireDialog()
-    : wxDialog( (wxWindow*)NULL,wxID_ANY,wxT("inquire"),wxDefaultPosition,wxDefaultSize )
+    : wxDialog( (wxWindow*)NULL,wxID_ANY,wxT("inquire"),wxDefaultPosition,wxDefaultSize,
+	wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER )
 {
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
 

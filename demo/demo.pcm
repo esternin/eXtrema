@@ -24,7 +24,7 @@
 ='A1 = SQRT([1:9])'
 ='-------------------------------------------------------------------------------'
 A1 = SQRT([1:9])
-PAUSE
+PAUSE `Press Enter to continue...'
 =' '
 ='Create an array of 15 random real values uniformly distributed'
 ='between 0 and 10'
