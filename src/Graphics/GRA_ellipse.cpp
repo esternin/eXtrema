@@ -82,6 +82,16 @@ void GRA_ellipse::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   int xll, yll, xur, yur;
   graphicsOutput->WorldToOutputType( xmin_, ymin_, xll, yll );
   graphicsOutput->WorldToOutputType( xmax_, ymax_, xur, yur );
+
+  // With wxWidgets 3.0 we need to ensure that width and height are positive
+  // and that we really pass the coordinates of the upper left corner to
+  // DrawEllipse(), so do it as long as we support it, even if it's not
+  // necessary with the later versions.
+  if ( xll > xur )
+    std::swap(xll, xur);
+  if ( yll > yur )
+    std::swap(yll, yur);
+
   int width = xur - xll;
   int height = yur - yll;
   wxPen wxpen( dc.GetPen() );
