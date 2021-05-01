@@ -150,21 +150,21 @@ void CMD_figure::Execute( ParseLine const *p )
       case 1:
       {
         GRA_arrow1 *arrow = new GRA_arrow1(x2w,y2w,x1w,y1w,headsBothEnds,cc,fc,lw,headWidth,headLength);
-        arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
+        //arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( arrow );
         break;
       }
       case 2:
       {
         GRA_arrow2 *arrow = new GRA_arrow2(x2w,y2w,x1w,y1w,headsBothEnds,cc,fc,lw,headWidth,headLength);
-        arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
+        //arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( arrow );
         break;
       }
       case 3:
       {
         GRA_arrow3 *arrow = new GRA_arrow3(x2w,y2w,x1w,y1w,headsBothEnds,cc,lw,headWidth,headLength);
-        arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
+        //arrow->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( arrow );
       }
     }
@@ -212,7 +212,7 @@ void CMD_figure::Execute( ParseLine const *p )
       y2w = y2;
     }
     GRA_rectangle *rect = new GRA_rectangle(x1w,y1w,x2w,y2w,0.0,false,cc,fc,lw);
-    rect->Draw( ExGlobals::GetGraphicsOutput(), dc );
+    //rect->Draw( ExGlobals::GetGraphicsOutput(), dc );
     gw->AddDrawableObject( rect );
   }
   else if( figType == wxString(wxT("TRIANGLE")) )
@@ -266,7 +266,7 @@ void CMD_figure::Execute( ParseLine const *p )
       y3w = y3;
     }
     GRA_triangle *tri = new GRA_triangle(x1w,y1w,x2w,y2w,x3w,y3w,cc,fc,lw);
-    tri->Draw( ExGlobals::GetGraphicsOutput(), dc );
+    //tri->Draw( ExGlobals::GetGraphicsOutput(), dc );
     gw->AddDrawableObject( tri );
   }
   else if( figType == wxString(wxT("ELLIPSE")) )
@@ -311,7 +311,7 @@ void CMD_figure::Execute( ParseLine const *p )
       y2w = y2;
     }
     GRA_ellipse *ellipse = new GRA_ellipse(x1w,y1w,x2w,y2w,false,cc,fc,lw,1);
-    ellipse->Draw( ExGlobals::GetGraphicsOutput(), dc );
+    //ellipse->Draw( ExGlobals::GetGraphicsOutput(), dc );
     gw->AddDrawableObject( ellipse );
   }
   ExGlobals::RefreshGraphics();
