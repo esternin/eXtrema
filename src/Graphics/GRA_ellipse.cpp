@@ -94,18 +94,13 @@ void GRA_ellipse::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
   int width = xur - xll;
   int height = yur - yll;
-  wxPen wxpen( dc.GetPen() );
-  wxpen.SetColour( ExGlobals::GetwxColor(lineColor_) );
-  wxpen.SetWidth( lineWidth_ );
-  dc.SetPen( wxpen );
-  wxBrush wxbrush( dc.GetBrush() );
+
+  dc.SetPen( wxPen(ExGlobals::GetwxColor(lineColor_), lineWidth_) );
+  wxBrush wxbrush;
   if( fillColor_ )
-  {
-    wxbrush.SetColour( ExGlobals::GetwxColor(fillColor_) );
-    wxbrush.SetStyle( wxBRUSHSTYLE_SOLID );
-  }
+    wxbrush = wxBrush( ExGlobals::GetwxColor(fillColor_) );
   else
-    wxbrush.SetStyle( wxBRUSHSTYLE_TRANSPARENT );
+    wxbrush = *wxTRANSPARENT_BRUSH;
 
   dc.SetBrush( wxbrush );
   dc.DrawEllipse( static_cast<int>(xll+0.5), static_cast<int>(yll+0.5), width, height );
