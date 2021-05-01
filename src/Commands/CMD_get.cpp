@@ -1294,9 +1294,9 @@ NEXTLINE:
       static_cast<GRA_boolCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("ON")));
     fvalue = static_cast<double>(static_cast<int>(legendon->Get()));
   }
-  else if( keyword == wxT("LEGENDENTRYLINE") )
+  else if( keyword == wxT("LEGENDENTRYLINEON") )
   {
-    if( percent )throw ECommandError( command+wxT("% is meaningless with LEGENDENTRYLINE") );
+    if( percent )throw ECommandError( command+wxT("% is meaningless with LEGENDENTRYLINEON") );
     GRA_boolCharacteristic *entryline =
       static_cast<GRA_boolCharacteristic*>(gw->GetGraphLegendCharacteristics()->Get(wxT("ENTRYLINEON")));
     fvalue = static_cast<double>(static_cast<int>(entryline->Get()));
