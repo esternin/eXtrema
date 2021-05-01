@@ -30,42 +30,33 @@ set
  ynsincs 1
  xnsincs 4
  linecolour black
- %plotsymbolsize 2
-! legendon 0
-! legendsymbols 1
-! legendframeon 0
-! legendframe 20 65 60 85
-! legendtitleon 0
-! legendentryline 0
+ %plotsymbolsize 1.5
  ynumberofdigits 2
- 
-graph\axesonly
-!
-set
- plotsymbol -14
- plotsymbolcolour black
  legendon 1
  %legendframe 25 70 65 85
- 
-graph\overlay 'VAX' y v
-set
- plotsymbol -16
- plotsymbolcolour red
- 
-graph\overlay 'RISC' y r
-set
- plotsymbol -17
- plotsymbolcolour blue
- 
-graph\overlay 'PENTIUM' y p
-replot
-set legendon 0
-xx = [1980:2004:1]
-yd = 2^((xx-1980)/2)
-set
- linecolour green
- plotsymbol 0
- 
-graph\overlay xx yd
-set legendon 1
+ legendframeon 0
 
+! legendsymbols 3
+! legendtitleon 0
+! legendentryline 0
+
+set plotsymbol -14
+set plotsymbolcolour black
+graph `VAX' y v
+
+set plotsymbol -16
+set plotsymbolcolour red
+graph\overlay `RISC' y r
+
+set plotsymbol -15
+set plotsymbolcolour blue
+graph\overlay `PENTIUM' y p
+
+set legendon 0
+set linecolour green
+set plotsymbol 0
+yy=[1980:2004:1]
+graph\overlay yy,2^((yy-1980)/2)
+
+set legendon 1
+replot
