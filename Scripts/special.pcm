@@ -1,6 +1,6 @@
 clear
 window 0
-defaults
+!defaults
 !
 set
  %xloweraxis 1
@@ -23,8 +23,7 @@ set
  textalign 1
  textinteractive 0
 
-!
-txthite = 2.0
+txthite = 1.75
 skip = txthite+0.75
 !
 ! first column

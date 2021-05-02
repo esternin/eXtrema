@@ -1,24 +1,18 @@
 clear
 defaults
-fonts[1]=`ARIAL'
-fonts[2]=`ARIAL BLACK'
-fonts[3]=`ARIAL NARROW'
-fonts[4]=`BOOK ANTIQUA'
-fonts[5]=`BOOKMAN OLD STYLE'
-fonts[6]=`CENTURY'
-fonts[7]=`COURIER NEW'
-fonts[8]=`GEORGIA'
-fonts[9]=`SYMBOL'
-fonts[10]=`TIMES NEW ROMAN'
-fonts[11]=`VERDANA'
-fonts[12]=`ZAPFDINGBATS'
+fonts[1]=`SANS'
+fonts[2]=`SERIF'
+fonts[3]=`MONO'
 
-set cursor -1
-set %xloc 20
-
-do i=[1:12]
-  set %yloc 80-5*i
+do i=[1:3]
   set font fonts[i]
+  set colour black
+  @special.pcm
+  set cursor -1
+  set %xloc 75
+  set %yloc 5
+  set %textheight 1.5
   set colour -i
-  text fonts[i]//` ABCDabcd<alpha,beta,gamma,int,equiv,sum,copyright,registered>'
+  text `Using font '//fonts[i]
+  pause
 enddo
