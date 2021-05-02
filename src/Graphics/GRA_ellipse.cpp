@@ -82,21 +82,26 @@ void GRA_ellipse::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   int xll, yll, xur, yur;
   graphicsOutput->WorldToOutputType( xmin_, ymin_, xll, yll );
   graphicsOutput->WorldToOutputType( xmax_, ymax_, xur, yur );
+
+  // With wxWidgets 3.0 we need to ensure that width and height are positive
+  // and that we really pass the coordinates of the upper left corner to
+  // DrawEllipse(), so do it as long as we support it, even if it's not
+  // necessary with the later versions.
+  if ( xll > xur )
+    std::swap(xll, xur);
+  if ( yll > yur )
+    std::swap(yll, yur);
+
   int width = xur - xll;
   int height = yur - yll;
-  wxPen wxpen( dc.GetPen() );
-  wxpen.SetColour( ExGlobals::GetwxColor(lineColor_) );
-  wxpen.SetWidth( lineWidth_ );
-  dc.SetPen( wxpen );
-  wxBrush wxbrush( dc.GetBrush() );
+
+  dc.SetPen( wxPen(ExGlobals::GetwxColor(lineColor_), lineWidth_) );
+  wxBrush wxbrush;
   if( fillColor_ )
-  {
-    wxbrush.SetColour( ExGlobals::GetwxColor(fillColor_) );
-    wxbrush.SetStyle( wxBRUSHSTYLE_SOLID );
-    dc.SetBrush( wxbrush );
-    dc.DrawEllipse( static_cast<int>(xll+0.5), static_cast<int>(yll+0.5), width, height );
-  }
-  wxbrush.SetStyle( wxBRUSHSTYLE_TRANSPARENT );
+    wxbrush = wxBrush( ExGlobals::GetwxColor(fillColor_) );
+  else
+    wxbrush = *wxTRANSPARENT_BRUSH;
+
   dc.SetBrush( wxbrush );
   dc.DrawEllipse( static_cast<int>(xll+0.5), static_cast<int>(yll+0.5), width, height );
 }
