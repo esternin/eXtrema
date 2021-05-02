@@ -26,6 +26,13 @@ namespace GRA_fontControl
 
   void Initialize()
   {
+    fonts_.push_back( new GRA_font(wxT("SANS")) );
+    fonts_.push_back( new GRA_font(wxT("SERIF")) );
+    fonts_.push_back( new GRA_font(wxT("MONO")) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SANS")),wxString(wxT("Helvetica"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SERIF")),wxString(wxT("Times"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("MONO")),wxString(wxT("Courier"))) );
+/*
     fonts_.push_back( new GRA_font(wxT("ARIAL")) );
     fonts_.push_back( new GRA_font(wxT("ARIAL BLACK")) );
     fonts_.push_back( new GRA_font(wxT("ARIAL NARROW")) );
@@ -51,6 +58,7 @@ namespace GRA_fontControl
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("TIMES NEW ROMAN")),wxString(wxT("TimesNewRomanPSMT"))) );
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("VERDANA")),wxString(wxT("Verdana"))) );
     psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ZAPFDINGBATS")),wxString(wxT("ZapfDingbats"))) );
+*/
   }
 
   void DeleteStuff()
