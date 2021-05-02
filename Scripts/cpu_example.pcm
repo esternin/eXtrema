@@ -35,10 +35,10 @@ set
  legendon 1
  %legendframe 25 70 65 85
  legendframeon 0
+ legendentrylineon 0
 
 ! legendsymbols 3
 ! legendtitleon 0
-! legendentryline 0
 
 set plotsymbol -14
 set plotsymbolcolour black
@@ -48,7 +48,7 @@ set plotsymbol -16
 set plotsymbolcolour red
 graph\overlay `RISC' y r
 
-set plotsymbol -15
+set plotsymbol -9
 set plotsymbolcolour blue
 graph\overlay `PENTIUM' y p
 
