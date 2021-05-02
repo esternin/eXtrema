@@ -7,8 +7,8 @@ r=[0;0;0;0;10;30;65;142;276;360;748;938;1328;1646;2362;0;0;2290;3379;3379;3279;3
 p=[0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;80;260;900;2785;6000;10600;37219]
 scales\-messages 1980 2004 6 0 16 13
 set
- xlabel `YEAR'
- xlabelon 1
+ xlabel `Year'
+ xlabelon 0
  ylabel `Relative Compute Power (1980 = 1)'
  ylabelon 1
  %xloweraxis 20
@@ -19,11 +19,11 @@ get
  
 set
  %xtextlocation (xus+xls)/2
- %ytextlocation 95
+ %ytextlocation 93
  textalign 2
  textinteractive 0
  
-text "CPU POWER GROWTH"
+text "CPU Power Growth"
 set
  ylogbase 2
  ylogstyle 0
@@ -33,12 +33,11 @@ set
  %plotsymbolsize 1.5
  ynumberofdigits 2
  legendon 1
- %legendframe 25 70 65 85
+ %legendframe 25 70 40 85
  legendframeon 0
  legendentrylineon 0
-
-! legendsymbols 3
-! legendtitleon 0
+ legendsymbols 1
+ legendtitleon 0
 
 set plotsymbol -14
 set plotsymbolcolour black
@@ -48,7 +47,7 @@ set plotsymbol -16
 set plotsymbolcolour red
 graph\overlay `RISC' y r
 
-set plotsymbol -9
+set plotsymbol -17
 set plotsymbolcolour blue
 graph\overlay `PENTIUM' y p
 
