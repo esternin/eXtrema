@@ -588,32 +588,32 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
       {wxT("ALEPH"),0x2135,0x2135},      {wxT("NABLA"),0x2207,0x2207},         {wxT("PARTIAL"),0x2202,0x2202},
       {wxT("LEFTARROW"),0x2190,0x2190},  {wxT("UPARROW"),0x2191,0x2191},       {wxT("DOWNARROW"),0x2193,0x2193},
       {wxT("RIGHTARROW"),0x2192,0x2192}, {wxT("PERP"),0x27C2,0x27C2},          {wxT("MID"),0x2223,0x2223},
-      {wxT("BULLET"),0x2022,0x2022},     {wxT("SUM"),0x00E5,0x00E5},           {wxT("PROD"),0x220F,0x220F},
+      {wxT("BULLET"),0x2022,0x2022},     {wxT("SUM"),0x2211,0x2211},           {wxT("PROD"),0x220F,0x220F},
       {wxT("INT"),0x222B,0x222B},        {wxT("SURD"),0x221A,0x221A},          {wxT("PLUS"),0x002B,0x002B},
-      {wxT("MINUS"),0x2212,0x2212},      {wxT("PM"),0x00B1,0x00B1},            {wxT("TIMES"),0x00B4,0x00B4},
-      {wxT("DIV"),0x00B8,0x00B8},        {wxT("OPLUS"),0x2295,0x2295},         {wxT("OTIMES"),0x2297,0x2297},
+      {wxT("MINUS"),0x2212,0x2212},      {wxT("PM"),0x00B1,0x00B1},            {wxT("TIMES"),0x00D7,0x00D7},
+      {wxT("DIV"),0x00F7,0x00F7},        {wxT("OPLUS"),0x2295,0x2295},         {wxT("OTIMES"),0x2297,0x2297},
       {wxT("CAP"),0x2229,0x2229},        {wxT("SUBSET"),0x2282,0x2282},        {wxT("CUP"),0x222A,0x222A},
       {wxT("SUPSET"),0x2283,0x2283},     {wxT("DEGREE"),0x02DA,0x02DA},        {wxT("LANGLE"),0x27E8,0x27E8},
-      {wxT("RANGLE"),0x27E9,0x27E9},     {wxT("NEG"),0x00D8,0x00D8},           {wxT("THEREFORE"),0x2234,0x2234},
+      {wxT("RANGLE"),0x27E9,0x27E9},     {wxT("NEG"),0x00AC,0x00AC},           {wxT("THEREFORE"),0x2234,0x2234},
       {wxT("ANGLE"),0x2220,0x2220},      {wxT("VEE"),0x2228,0x2228},           {wxT("WEDGE"),0x2227,0x2227},
-      {wxT("CDOT"),0x00D7,0x00D7},       {wxT("INFTY"),0x221E,0x221E},         {wxT("IN"),0x2208,0x2208},
+      {wxT("CDOT"),0x00B7,0x00B7},       {wxT("INFTY"),0x221E,0x221E},         {wxT("IN"),0x2208,0x2208},
       {wxT("NI"),0x220B,0x220B},         {wxT("PROPTO"),0x221D,0x221D},        {wxT("EXISTS"),0x2203,0x2203},
-      {wxT("FORALL"),0x2200,0x2200},     {wxT("NEQ"),0x2260,0x2260},           {wxT("EQUIV"),0x00BA,0x00BA},
+      {wxT("FORALL"),0x2200,0x2200},     {wxT("NEQ"),0x2260,0x2260},           {wxT("EQUIV"),0x2261,0x2261},
       {wxT("APPROX"),0x2248,0x2248},     {wxT("SIM"),0x007E,0x007E},           {wxT("LT"),0x003C,0x003C},
       {wxT("GT"),0x003E,0x003E},         {wxT("LEQ"),0x2264,0x2264},           {wxT("GEQ"),0x2265,0x2265},
       {wxT("VARPI"),0x03D6,0x03D6},      {wxT("CLUBSUIT"),0x2663,0x2663},      {wxT("DIAMONDSUIT"),0x2666,0x2666},
       {wxT("HEARTSUIT"),0x2665,0x2665},  {wxT("SPADESUIT"),0x2660,0x2660},     {wxT("SUBSETEQ"),0x2286,0x2286},
       {wxT("SUPSETEQ"),0x2287,0x2287},   {wxT("LDOTS"),0x2026,0x2026},         {wxT("LEFTRIGHTARROW"),0x21D4,0x21D4},
       {wxT("EMPTYSET"),0x2205,0x2205},   {wxT("WP"),0x2118,0x2118},            {wxT("RE"),0x211C,0x211C},
-      {wxT("IM"),0x2111,0x2111},         {wxT("HOOKLEFTARROW"),0x21B2,0x21B2}, {wxT("COPYRIGHT"),0x00E3,0x00E3},
-      {wxT("REGISTERED"),0x00E2,0x00E2}, {wxT("TM"),0x2122,0x2122},            {wxT("DIAMOND"),0x25CA,0x25CA} 
+      {wxT("IM"),0x2111,0x2111},         {wxT("HOOKLEFTARROW"),0x21B2,0x21B2}, {wxT("COPYRIGHT"),0x00A9,0x00A9},
+      {wxT("REGISTERED"),0x00AE,0x00AE}, {wxT("TM"),0x2122,0x2122},            {wxT("DIAMOND"),0x25CA,0x25CA} 
   };
   for( std::size_t i=0; i<nNames; ++i )
   {
     if( s == spc[i].name )
     {
       //fontName = spc[i].fName;
-      fontName = wxT("symbol");
+      //fontName = wxT("symbol");
       return upperCase ? spc[i].uName : spc[i].lName;
     }
   }
