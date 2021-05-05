@@ -367,11 +367,9 @@ void CMD_ellipse::PopulateEllipse( bool npts, bool xyout, ParseLine const *p,
   }
   else
   {
-    wxClientDC dc( ExGlobals::GetwxWindow() );
     std::vector<double> xe1, ye1, xe2, ye2;
     GRA_cartesianCurve *cartesianCurve = new GRA_cartesianCurve(xout,yout,xe1,ye1,xe2,ye2);
     cartesianCurve->Make();
-    cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
     ExGlobals::GetGraphWindow()->AddDrawableObject( cartesianCurve );
   }
   ExGlobals::RefreshGraphics();

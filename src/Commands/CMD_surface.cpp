@@ -214,18 +214,8 @@ void CMD_surface::Execute( ParseLine const *p )
   bool axes = qualifiers[wxT("AXES")];
   bool sides = qualifiers[wxT("SIDES")];
   //
-  wxClientDC dc( ExGlobals::GetwxWindow() );
   GRA_surfacePlot *sp = new GRA_surfacePlot( x, y, z, nRow, azimuth, altitude,
                                              colour, contours, axes, sides );
-  try
-  {
-    sp->Draw( ExGlobals::GetGraphicsOutput(), dc );
-  }
-  catch ( EGraphicsError &e )
-  {
-    delete sp;
-    throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
-  }
   ExGlobals::GetGraphWindow()->AddDrawableObject( sp );
   ExGlobals::RefreshGraphics();
 }

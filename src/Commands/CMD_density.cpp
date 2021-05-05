@@ -384,17 +384,6 @@ void CMD_density::Execute( ParseLine const *p )
     z.assign( array.begin(), array.end() );
   }
 
-  // We don't need to actually draw anything here, this will be done later,
-  // after RefreshGraphics() is called at the end of this function. However we
-  // do want to call Draw() just to check that the new drawable object can be
-  // drawn successfully before storing it, so we create a dummy DC, using the
-  // smallest possible valid bitmap, only to be able to use it for checking
-  // this.
-  //
-  // IF we can ever prove that checking for EGraphicsError here is unnecessary,
-  // we should remove this DC entirely and not call Draw() at all from here.
-  wxBitmap dummyBitmap(1, 1);
-  wxMemoryDC dc(dummyBitmap);
   if( qualifiers[wxT("BOXES")] )
   {
     GRA_boxPlot *bp = new GRA_boxPlot( x, y, z, nrow, fmin, fmax, qmin, qmax,
@@ -402,16 +391,7 @@ void CMD_density::Execute( ParseLine const *p )
                                        qualifiers[wxT("BORDER")], qualifiers[wxT("ZOOM")],
                                        qualifiers[wxT("AXES")], qualifiers[wxT("RESET")],
                                        bscale );
-    try
-    {
-      bp->Make();
-      bp->Draw( ExGlobals::GetGraphicsOutput(), dc );
-    }
-    catch (EGraphicsError const &e)
-    {
-      delete bp;
-      throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
-    }
+    bp->Make();
     ExGlobals::GetGraphWindow()->AddDrawableObject( bp );
   }
   else if( qualifiers[wxT("DIFFUSION")] )
@@ -421,15 +401,6 @@ void CMD_density::Execute( ParseLine const *p )
                             qualifiers[wxT("XPROFILE")], qualifiers[wxT("YPROFILE")],
                             qualifiers[wxT("BORDER")], qualifiers[wxT("ZOOM")],
                             qualifiers[wxT("AXES")], qualifiers[wxT("RESET")] );
-    try
-    {
-      dp->Draw( ExGlobals::GetGraphicsOutput(), dc );
-    }
-    catch (EGraphicsError const &e)
-    {
-      delete dp;
-      throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
-    }
     ExGlobals::GetGraphWindow()->AddDrawableObject( dp );
   }
   else if( qualifiers[wxT("DITHERING")] )
@@ -443,15 +414,6 @@ void CMD_density::Execute( ParseLine const *p )
                              qualifiers[wxT("LEGEND")], qualifiers[wxT("EQUALLYSPACED")],
                              qualifiers[wxT("AREAS")], qualifiers[wxT("VOLUMES")],
                              qualifiers[wxT("LINES")], dither, contourLevels );
-    try
-    {
-      dp->Draw( ExGlobals::GetGraphicsOutput(), dc );
-    }
-    catch (EGraphicsError const &e)
-    {
-      delete dp;
-      throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
-    }
     ExGlobals::GetGraphWindow()->AddDrawableObject( dp );
     try
     {
@@ -485,15 +447,6 @@ void CMD_density::Execute( ParseLine const *p )
                            qualifiers[wxT("BORDER")], qualifiers[wxT("ZOOM")],
                            qualifiers[wxT("AXES")], qualifiers[wxT("RESET")],
                            qualifiers[wxT("LEGEND")], qualifiers[wxT("LINEAR")] );
-    try
-    {
-      gp->Draw( ExGlobals::GetGraphicsOutput(), dc );
-    }
-    catch (EGraphicsError const &e)
-    {
-      delete gp;
-      throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
-    }
     ExGlobals::GetGraphWindow()->AddDrawableObject( gp );
   }
   ExGlobals::RefreshGraphics();

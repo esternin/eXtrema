@@ -396,7 +396,6 @@ void CMD_graph::Execute( ParseLine const *p )
       }
     }
   }
-  wxClientDC dc( ExGlobals::GetwxWindow() );
   if( qualifiers[wxT("POLAR")] || qualifiers[wxT("RADAR")] )
   {
     GRA_polarAxes *polarAxes = 0;
@@ -407,14 +406,12 @@ void CMD_graph::Execute( ParseLine const *p )
       {
         polarAxes = new GRA_polarAxes( x2, y2, qualifiers[wxT("RADAR")] );
         polarAxes->Make();
-        //polarAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( polarAxes );
       }
       if( !qualifiers[wxT("AXESONLY")] )
       {
         polarCurve = new GRA_polarCurve( x, y );
         polarCurve->Make();
-        //polarCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( polarCurve );
       }
     }
@@ -438,13 +435,11 @@ void CMD_graph::Execute( ParseLine const *p )
       if( cartesianAxes )
       {
         cartesianAxes->Make();
-        //cartesianAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( cartesianAxes );
       }
       if( cartesianCurve )
       {
         cartesianCurve->Make();
-        //cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( cartesianCurve );
       }
     }
