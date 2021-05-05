@@ -603,11 +603,11 @@ NEXTLINE:
                     bgchar->Set(GRA_colorControl::GetColor(ivalue));
         static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
           Set( wxString(wxT("")) );
-	//
+        //
         GraphicsPage *page = ExGlobals::GetGraphicsPage();
         wxClientDC dc( page );
-	page->EraseWindows();
-	page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
+        page->EraseWindows();
+        page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
       }
       else
       {
@@ -631,15 +631,15 @@ NEXTLINE:
       }
       else
       {
-	std::ifstream inStream;
-	inStream.clear( std::ios::goodbit );
-	inStream.open( bgfile.mb_str(wxConvUTF8), std::ios_base::in );
-	if( !inStream.is_open() )throw ECommandError( command+wxT("could not open file: ")+bgfile );
-	inStream.close();
-	static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
+        std::ifstream inStream;
+        inStream.clear( std::ios::goodbit );
+        inStream.open( bgfile.mb_str(wxConvUTF8), std::ios_base::in );
+        if( !inStream.is_open() )throw ECommandError( command+wxT("could not open file: ")+bgfile );
+        inStream.close();
+        static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
           Set( bgfile );
-	static_cast<GRA_colorCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDCOLOR")))->
-	  Set( reinterpret_cast<GRA_color*>(0) );
+        static_cast<GRA_colorCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDCOLOR")))->
+          Set( reinterpret_cast<GRA_color*>(0) );
       }
     }
     catch (EVariableError &e)
