@@ -236,9 +236,7 @@ void VisualizationWindow::ClearWindows()
   // destroy all drawableObjects in all graph windows on the current page
   //
   static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ClearWindows();
-  wxClientDC dc( notebook_->GetCurrentPage() );
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->
-    DisplayBackgrounds( ExGlobals::GetGraphicsOutput(), dc );
+  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->RefreshGraphics();
 }
 
 void VisualizationWindow::ReplotAllWindows()
@@ -324,10 +322,9 @@ void VisualizationWindow::ClearAllPages()
   for( int i=0; i<notebook_->GetPageCount(); ++i )
   {
     static_cast<GraphicsPage*>(notebook_->GetPage(i))->ClearWindows();
-    wxClientDC dc( notebook_->GetPage(i) );
-    dc.SetBackground( *wxWHITE_BRUSH );
-    dc.Clear();
   }
+
+  RefreshGraphics();
 }
 
 void VisualizationWindow::ResetWindows()
@@ -380,11 +377,7 @@ void VisualizationWindow::DrawGraphWindows( GRA_wxWidgets *output, wxDC &dc )
 
 void VisualizationWindow::OnClearGraphicsPage( wxCommandEvent &WXUNUSED(event) )
 {
-  wxWindow *page = notebook_->GetCurrentPage();
-  wxClientDC dc( page );
-  dc.Clear();
-  static_cast<GraphicsPage*>(page)->ClearWindows();
-  static_cast<GraphicsPage*>(page)->DisplayBackgrounds( ExGlobals::GetGraphicsOutput(), dc );
+  ClearWindows();
   if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("CLEAR") );  
 }
 
