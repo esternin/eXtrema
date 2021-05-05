@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "EVariableError.h"
 #include "NVariableTable.h"
 #include "ExGlobals.h"
+#include "GraphicsPage.h"
 #include "GRA_window.h"
 #include "GRA_intCharacteristic.h"
 #include "GRA_sizeCharacteristic.h"
@@ -489,7 +490,7 @@ void GraphForm::Draw()
     wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   cartesianAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
   cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
 

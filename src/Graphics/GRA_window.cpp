@@ -57,6 +57,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_diffusionPlot.h"
 #include "GRA_gradientPlot.h"
 #include "ExGlobals.h"
+#include "GraphicsPage.h"
 #include "UsefulFunctions.h"
 #include "GRA_polarAxes.h"
 #include "GRA_polarCurve.h"
@@ -140,7 +141,7 @@ void GRA_window::CopyStuff( GRA_window const &rhs )
   xPrevious_ = rhs.xPrevious_;
   yPrevious_ = rhs.yPrevious_;
   Clear();
-  wxClientDC dc( ExGlobals::GetVisualizationWindow()->GetPage() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   DisplayBackground( ExGlobals::GetGraphicsOutput(), dc );
   drawableVecIter end = rhs.drawableObjects_.end();
   GRA_drawableObject *p = 0;
@@ -184,7 +185,7 @@ void GRA_window::Reset()
   Clear();
   DeleteCharacteristics();
   SetUp();
-  wxClientDC dc( ExGlobals::GetVisualizationWindow()->GetPage() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   DisplayBackground( ExGlobals::GetGraphicsOutput(), dc );
 }
 
@@ -608,7 +609,7 @@ void GRA_window::Erase()
                                                         Get(wxT("XUPPERWINDOW")))->GetAsWorld();
   double yuw = static_cast<GRA_distanceCharacteristic*>(generalCharacteristics_->
                                                         Get(wxT("YUPPERWINDOW")))->GetAsWorld();
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   int xl, yl, xu, yu;
   ExGlobals::GetGraphicsOutput()->WorldToOutputType( xlw, ylw, xl, yl );
   ExGlobals::GetGraphicsOutput()->WorldToOutputType( xuw, yuw, xu, yu );
@@ -843,7 +844,7 @@ void GRA_window::Replot()
     }
   }
   drawableVecIter end = drawableObjects_.end();
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   for( drawableVecIter i=drawableObjects_.begin(); i!=end; ++i )
   {
     (*i)->Make();
@@ -1563,8 +1564,7 @@ void GRA_window::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
 void GRA_window::RemoveLastTextString()
 {
-  wxWindow *wx = ExGlobals::GetwxWindow();
-  wxClientDC dc( wx );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   for( int i=static_cast<int>(drawableObjects_.size())-1; i>=0; --i )
   {
     if( drawableObjects_[i]->IsaDrawableText() )
@@ -1665,7 +1665,7 @@ void GRA_window::DrawZerolines( bool horizontal, bool vertical )
   zTmp.push_back( 0.0 );
   zTmp.push_back( 0.0 );
   //
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   if( horizontal )
   {
     GRA_intCharacteristic plotsymbolSave(

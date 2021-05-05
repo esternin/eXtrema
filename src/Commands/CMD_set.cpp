@@ -576,7 +576,7 @@ NEXTLINE:
         Set( wxString(wxT("")) );
       //
       GraphicsPage *page = ExGlobals::GetGraphicsPage();
-      wxClientDC dc( page );
+      GraphicsDC dc( page );
       page->EraseWindows();
       page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
     }
@@ -605,7 +605,7 @@ NEXTLINE:
           Set( wxString(wxT("")) );
         //
         GraphicsPage *page = ExGlobals::GetGraphicsPage();
-        wxClientDC dc( page );
+        GraphicsDC dc( page );
         page->EraseWindows();
         page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
       }
@@ -647,7 +647,7 @@ NEXTLINE:
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
     GraphicsPage *page = ExGlobals::GetGraphicsPage();
-    wxClientDC dc( page );
+    GraphicsDC dc( page );
     page->EraseWindows();
     page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
   }
