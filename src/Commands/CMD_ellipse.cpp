@@ -374,6 +374,7 @@ void CMD_ellipse::PopulateEllipse( bool npts, bool xyout, ParseLine const *p,
     cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
     ExGlobals::GetGraphWindow()->AddDrawableObject( cartesianCurve );
   }
+  ExGlobals::RefreshGraphics();
 }
 
 // end of file
