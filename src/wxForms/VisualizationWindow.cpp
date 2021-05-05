@@ -209,9 +209,6 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   ExGlobals::SetMonitorLimits( 0, 0, size.x, size.y );
   ExGlobals::SetAspectRatio( aspectRatio );
   page->ResetWindows();
-  wxClientDC dc( page );
-  dc.SetBackground( *wxWHITE_BRUSH );
-  dc.Clear();
 
   // Show the window.
   // Frames, unlike simple controls, are not shown when created initially.
