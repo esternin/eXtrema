@@ -379,8 +379,11 @@ void ExecuteInit()
   }
 }
 
-wxWindow *GetwxWindow()
+GraphicsPage *GetGraphicsPage()
 { return visualizationWindow_->GetPage(); }
+
+wxWindow *GetwxWindow()
+{ return GetGraphicsPage(); }
 
 GRA_wxWidgets *GetGraphicsOutput()
 { return graphicsOutput_; }

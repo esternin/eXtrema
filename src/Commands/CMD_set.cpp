@@ -575,9 +575,8 @@ NEXTLINE:
       static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
         Set( wxString(wxT("")) );
       //
-      wxWindow *wxw = ExGlobals::GetVisualizationWindow()->GetPage();
-      wxClientDC dc( wxw );
-      GraphicsPage *page = dynamic_cast<GraphicsPage*>(wxw);
+      GraphicsPage *page = ExGlobals::GetGraphicsPage();
+      wxClientDC dc( page );
       page->EraseWindows();
       page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
     }
@@ -605,9 +604,8 @@ NEXTLINE:
         static_cast<GRA_stringCharacteristic*>(gw->GetGeneralCharacteristics()->Get(wxT("BACKGROUNDFILE")))->
           Set( wxString(wxT("")) );
 	//
-	wxWindow *wxw = ExGlobals::GetVisualizationWindow()->GetPage();
-	wxClientDC dc( wxw );
-	GraphicsPage *page = dynamic_cast<GraphicsPage*>(wxw);
+        GraphicsPage *page = ExGlobals::GetGraphicsPage();
+        wxClientDC dc( page );
 	page->EraseWindows();
 	page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
       }
@@ -648,9 +646,8 @@ NEXTLINE:
     {
       throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
     }
-    wxWindow *wxw = ExGlobals::GetVisualizationWindow()->GetPage();
-    wxClientDC dc( wxw );
-    GraphicsPage *page = static_cast<GraphicsPage*>(wxw);
+    GraphicsPage *page = ExGlobals::GetGraphicsPage();
+    wxClientDC dc( page );
     page->EraseWindows();
     page->DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
   }
