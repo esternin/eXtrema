@@ -179,12 +179,8 @@ void GRA_postscript::Initialize( wxString const &filename )
   for( int i=0; i<nf; ++i )
     all_fonts[i] = GRA_fontControl::GetPostScriptFontName(GRA_fontControl::GetFont(i)->GetFontName());
 
-  // this should not be necessary!!!
-  //int nsc = 117; //sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
-  //std::cout << nsc << "\n";
   for(int j = 0; j < nf; j++) {
     outFile_ << "/" << all_fonts[j] << " /" << all_fonts[j] << "-Special [\n";
-//    for(int i = 0; i < nsc; i++) {
     for( auto const& sc: SpecialCharacters ) {
       wxString iName = sc.pname;
       outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << sc.cid << " /" << iName.c_str() << "\n";
@@ -2271,15 +2267,6 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
   double maxHeight = 0.0;
   std::size_t counter = 0;
   std::vector<GRA_simpleText*>::const_iterator textVecEnd( textVec.end() );
-
-  // this should not be necessary!!!
-  //int nsc = 117; //sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
-//  auto findByUcode = [=](wxChar c) {
-////    for(int i = 0; i < nsc; i++)
-//    for( auto const& sc: SpecialCharacters )
-//      if(c == sc.ucode) return sc.cid;
-//    return (wxChar)0x0000;
-//    };
 
   for( std::vector<GRA_simpleText*>::const_iterator i=textVec.begin(); i!=textVecEnd; ++i, ++counter ) {
     wxString text( (*i)->GetString() );
