@@ -182,7 +182,7 @@ void GRA_postscript::Initialize( wxString const &filename )
     outFile_ << "/" << all_fonts[j] << " /" << all_fonts[j] << "-Special [\n";
     for( auto const& sc: SpecialCharacters ) {
       wxString iName = sc.pname;
-      outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << sc.cid << " /" << iName.c_str() << "\n";
+      outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << sc.cid << " /" << iName << "\n";
       }
     outFile_ << "] new-font-encoding\n\n"
            << "/" << all_fonts[j] << "CU\n"
