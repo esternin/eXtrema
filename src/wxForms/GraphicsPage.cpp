@@ -342,7 +342,7 @@ void GraphicsPage::ReplotAllWindows()
     for( std::size_t i=0; i<size; ++i )
     {
       currentWindowNumber_ = i;
-      ReplotCurrentWindow( true );
+      ReplotCurrentWindow();
     }
   }
   catch ( EGraphicsError const &e )
@@ -353,12 +353,12 @@ void GraphicsPage::ReplotAllWindows()
   currentWindowNumber_ = nSave;
 }
 
-void GraphicsPage::ReplotCurrentWindow( bool repaint )
+void GraphicsPage::ReplotCurrentWindow()
 {
   if( graphWindows_[currentWindowNumber_]->GetDrawableObjects().empty() )return;
   graphWindows_[currentWindowNumber_]->Erase();
   graphWindows_[currentWindowNumber_]->Replot();
-  if( repaint )Refresh();
+  Refresh();
 }
 
 void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )

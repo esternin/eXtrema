@@ -230,7 +230,7 @@ namespace ExGlobals
   void ClearWindows();
 
   void ReplotAllWindows();
-  void ReplotCurrentWindow( bool =true );
+  void ReplotCurrentWindow();
 
   void ClearGraphicsMonitor();
   void ClearHistory();

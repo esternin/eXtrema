@@ -241,9 +241,9 @@ void VisualizationWindow::ReplotAllWindows()
   GetPage()->ReplotAllWindows();
 }
 
-void VisualizationWindow::ReplotCurrentWindow( bool repaint )
+void VisualizationWindow::ReplotCurrentWindow()
 {
-  GetPage()->ReplotCurrentWindow(repaint);
+  GetPage()->ReplotCurrentWindow();
 }
 
 void VisualizationWindow::DisplayBackgrounds( GRA_wxWidgets *graphicsOutput, wxDC &dc )
@@ -428,7 +428,7 @@ void VisualizationWindow::OnReplotCurrent( wxCommandEvent &WXUNUSED(event) )
   }
   try
   {
-    graphicsPage->ReplotCurrentWindow( true );
+    graphicsPage->ReplotCurrentWindow();
   }
   catch ( EGraphicsError const &e )
   {

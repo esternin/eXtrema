@@ -76,7 +76,7 @@ public:
   void DisplayBackgrounds( GRA_wxWidgets *, wxDC & );
 
   void ReplotAllWindows();
-  void ReplotCurrentWindow( bool );
+  void ReplotCurrentWindow();
 
   void SetInteractiveWindowMode();
   void SetInteractiveLegendMode();

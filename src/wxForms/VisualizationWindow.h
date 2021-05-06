@@ -70,7 +70,7 @@ public:
 
   void ClearWindows();
   void ReplotAllWindows();
-  void ReplotCurrentWindow( bool );
+  void ReplotCurrentWindow();
   void DisplayBackgrounds( GRA_wxWidgets *, wxDC & );
 
   void RefreshGraphics();

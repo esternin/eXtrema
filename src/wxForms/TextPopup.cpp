@@ -250,7 +250,7 @@ void TextPopup::ReDraw()
   {
     drawableText_->Parse();
     page_->SetGraphWindow( window_ );
-    page_->ReplotCurrentWindow( true );
+    page_->ReplotCurrentWindow();
   }
   catch ( EGraphicsError const &e )
   {

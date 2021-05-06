@@ -751,8 +751,8 @@ int GetNHistory()
 void ReplotAllWindows()
 { visualizationWindow_->ReplotAllWindows(); }
 
-void ReplotCurrentWindow( bool repaint )
-{ visualizationWindow_->ReplotCurrentWindow(repaint); }
+void ReplotCurrentWindow()
+{ visualizationWindow_->ReplotCurrentWindow(); }
 
 void ClearGraphicsMonitor()
 {
