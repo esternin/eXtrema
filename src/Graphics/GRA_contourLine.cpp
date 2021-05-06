@@ -148,7 +148,7 @@ void GRA_contourLine::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
       static_cast<GRA_sizeCharacteristic*>(generalC->Get(wxT("CONTOURLABELHEIGHT")))->GetAsWorld();
   double labelAngle = 0.0;
   int labelAlignment = 5;
-  GRA_font *labelFont = GRA_fontControl::GetFont(wxT("ARIAL"));
+  GRA_font *labelFont = GRA_fontControl::GetFont(wxT("SANS"));
   GRA_color *labelColor = color_;
   std::size_t size = xCurve_.size();
   double const pp[5] = {0.2,0.333,0.5,0.667,0.8};

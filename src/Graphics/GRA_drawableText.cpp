@@ -39,6 +39,130 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "EVariableError.h"
 #include "UsefulFunctions.h"
 #include "TextPopup.h"
+#include "GRA_specialCharacters.h"
+
+GRA_specialCharacter SpecialCharacters[] =
+  {
+      // for Greek letters make an approximation
+      {wxT("ALPHA"),wxT("Alpha"),0x0391,0x41},	// A
+      {wxT("alpha"),wxT("alpha"),0x03B1,0x61},	// a
+      {wxT("BETA"),wxT("Beta"),0x0392,0x42},	// B
+      {wxT("beta"),wxT("beta"),0x03B2,0x62},	// b
+      {wxT("GAMMA"),wxT("Gamma"),0x0393,0x47},	// G
+      {wxT("gamma"),wxT("gamma"),0x03B3,0x67},	// g
+      {wxT("DELTA"),wxT("Delta"),0x0394,0x44},	// D
+      {wxT("delta"),wxT("delta"),0x03B4,0x64},	// d
+      {wxT("EPSILON"),wxT("Epsilon"),0x0395,0x45},	// E
+      {wxT("epsilon"),wxT("epsilon"),0x03B5,0x65},	// e
+      {wxT("ZETA"),wxT("Zeta"),0x0396,0x5A},	// Z
+      {wxT("zeta"),wxT("zeta"),0x03B6,0x7A},	// z
+      {wxT("ETA"),wxT("Eta"),0x0397,0x48},		// H
+      {wxT("eta"),wxT("eta"),0x03B7,0x68},		// h
+      {wxT("THETA"),wxT("Theta"),0x0398,0x46},	// F
+      {wxT("theta"),wxT("theta"),0x03B8,0x66},	// f
+      {wxT("IOTA"),wxT("Iota"),0x0399,0x49},	// I
+      {wxT("iota"),wxT("iota"),0x03B9,0x69},	// i
+      {wxT("KAPPA"),wxT("Kappa"),0x039A,0x4B},	// K
+      {wxT("kappa"),wxT("kappa"),0x03BA,0x6B},	// k
+      {wxT("LAMBDA"),wxT("Lambda"),0x039B,0x4C},	// L
+      {wxT("lambda"),wxT("lambda"),0x03BB,0x6C},	// l
+      {wxT("MU"),wxT("Mu"),0x039C,0x4D},		// M
+      {wxT("mu"),wxT("mu"),0x03BC,0x6D},		// m
+      {wxT("NU"),wxT("Nu"),0x039D,0x4E},		// N
+      {wxT("nu"),wxT("nu"),0x03BD,0x6E},		// n
+      {wxT("XI"),wxT("Xi"),0x039E,0x51},		// Q
+      {wxT("xi"),wxT("xi"),0x03BE,0x71},		// q
+      {wxT("OMICRON"),wxT("Omicron"),0x039F,0x4F},	// O
+      {wxT("omicron"),wxT("omicron"),0x03BF,0x6F},	// o
+      {wxT("PI"),wxT("Pi"),0x03A0,0x50},		// P
+      {wxT("pi"),wxT("pi"),0x03C0,0x70},		// P
+      {wxT("RHO"),wxT("Rho"),0x03A1,0x52},		// R
+      {wxT("rho"),wxT("rho"),0x03C1,0x72},		// r
+      {wxT("SIGMA"),wxT("Sigma"),0x03A3,0x53},	// S
+      {wxT("sigma"),wxT("sigma"),0x03C3,0x73},	// s
+      {wxT("TAU"),wxT("Tau"),0x03A4,0x54},		// T
+      {wxT("tau"),wxT("tau"),0x03C4,0x74},		// t
+      {wxT("UPSILON"),wxT("Upsilon"),0x03A5,0x55},	// U
+      {wxT("upsilon"),wxT("upsilon"),0x03C5,0x75},	// u
+      {wxT("PHI"),wxT("Phi"),0x03A6,0x56},		// V
+      {wxT("phi"),wxT("phi"),0x03C6,0x76},		// v
+      {wxT("CHI"),wxT("Chi"),0x03A7,0x58},		// X
+      {wxT("chi"),wxT("chi"),0x03C7,0x78},		// x
+      {wxT("PSI"),wxT("Psi"),0x03A8,0x59},		// Y
+      {wxT("psi"),wxT("psi"),0x03C8,0x79},		// y
+      {wxT("OMEGA"),wxT("Omega"),0x03A9,0x57},	// W
+      {wxT("omega"),wxT("omega"),0x03C9,0x77},	// w
+      // for the rest, fill in order, unless there is an obvious candidate in ASCII
+      {wxT("VARTHETA"),wxT("theta1"),0x03D1,0x01},
+      {wxT("VARPHI"),wxT("phi1"),0x03D5,0x02},
+      {wxT("VAREPSILON"),wxT("uni03F5"),0x03F5,0x03},
+      {wxT("ALEPH"),wxT("aleph"),0x2135,0x04},
+      {wxT("NABLA"),wxT("nabla"),0x2207,0x05},
+      {wxT("PARTIAL"),wxT("partialdiff"),0x2202,0x06},
+      {wxT("LEFTARROW"),wxT("arrowleft"),0x2190,0x5F},	// _
+      {wxT("UPARROW"),wxT("arrowup"),0x2191,0x5E},	// ^
+      {wxT("DOWNARROW"),wxT("arrowdown"),0x2193,0x5B},	// [
+      {wxT("RIGHTARROW"),wxT("arrowright"),0x2192,0x5D},// ]
+      {wxT("PERP"),wxT("perpendicular"),0x27C2,0x07},
+      {wxT("MID"),wxT("divides"),0x2223,0x7E},
+      {wxT("BULLET"),wxT("bullet"),0x2022,0x08},
+      {wxT("SUM"),wxT("summation"),0x2211,0x09},
+      {wxT("PROD"),wxT("product"),0x220F,0x0A},
+      {wxT("INT"),wxT("integral"),0x222B,0x0B},
+      {wxT("SURD"),wxT("radical"),0x221A,0x0C},
+      {wxT("PLUS"),wxT("plus"),0x002B,0x002B},
+      {wxT("MINUS"),wxT("minus"),0x2212,0x2D},		// -
+      {wxT("PM"),wxT("plusminus"),0x00B1,0x3B},		// ;
+      {wxT("TIMES"),wxT("multiply"),0x00D7,0x2A},	// *
+      {wxT("DIV"),wxT("divide"),0x00F7,0x3A},		// :
+      {wxT("OPLUS"),wxT("pluscircle"),0x2295,0x0D},
+      {wxT("OTIMES"),wxT("timescircle"),0x2297,0x0E},
+      {wxT("CAP"),wxT("intersection"),0x2229,0x0F},
+      {wxT("SUBSET"),wxT("propersubset"),0x2282,0x10},
+      {wxT("CUP"),wxT("union"),0x222A,0x11},
+      {wxT("SUPSET"),wxT("propersuperset"),0x2283,0x12},
+      {wxT("DEGREE"),wxT("degree"),0x02DA,0x13},	//
+      {wxT("LANGLE"),wxT("angleleft"),0x27E8,0x14},	//
+      {wxT("RANGLE"),wxT("angleright"),0x27E9,0x15},	//
+      {wxT("NEG"),wxT("logicalnot"),0x00AC,0x7C},
+      {wxT("THEREFORE"),wxT("therefore"),0x2234,0x16},
+      {wxT("ANGLE"),wxT("angle"),0x2220,0x17},
+      {wxT("VEE"),wxT("logicalor"),0x2228,0x18},
+      {wxT("WEDGE"),wxT("logicaland"),0x2227,0x19},
+      {wxT("CDOT"),wxT("dotmath"),0x22C5,0x2E},		// .
+      {wxT("INFTY"),wxT("infinity"),0x221E,0x1A},
+      {wxT("IN"),wxT("element"),0x2208,0x1B},
+      {wxT("NI"),wxT("suchthat"),0x220B,0x1C},
+      {wxT("PROPTO"),wxT("proportional"),0x221D,0x1D},
+      {wxT("EXISTS"),wxT("thereexists"),0x2203,0x1E},
+      {wxT("FORALL"),wxT("universal"),0x2200,0x1F},
+      {wxT("NEQ"),wxT("notequal"),0x2260,0x21},		// !
+      {wxT("EQUIV"),wxT("equivalence"),0x2261,0x3D},	// =
+      {wxT("APPROX"),wxT("approxequal"),0x2248,0x22},	// "
+      {wxT("SIM"),wxT("similar"),0x007E,0x5C},		// ~
+      {wxT("LT"),wxT("less"),0x003C,0x3C},		// <
+      {wxT("GT"),wxT("greater"),0x003E,0x3E},		// >
+      {wxT("LEQ"),wxT("lessequal"),0x2264,0x23},		// #
+      {wxT("GEQ"),wxT("greaterequal"),0x2265,0x24},		// $
+      {wxT("VARPI"),wxT("omega1"),0x03D6,0x25},		// %
+      {wxT("CLUBSUIT"),wxT("club"),0x2663,0x26},		// &
+      {wxT("DIAMONDSUIT"),wxT("diamond"),0x2666,0x27},		// '
+      {wxT("HEARTSUIT"),wxT("heart"),0x2665,0x28},		// (
+      {wxT("SPADESUIT"),wxT("spade"),0x2660,0x29},		// )
+      {wxT("SUBSETEQ"),wxT("subsetorequal"),0x2286,0x2F},	// /
+      {wxT("SUPSETEQ"),wxT("supersetorequal"),0x2287,0x30},	// 0
+      {wxT("LDOTS"),wxT("ellipsis"),0x2026,0x31},		// 1
+      {wxT("LEFTRIGHTARROW"),wxT("arrowdblboth"),0x21D4,0x32},	// 2
+      {wxT("EMPTYSET"),wxT("emptyset"),0x2205,0x33},		// 3
+      {wxT("WP"),wxT("weierstrass"),0x2118,0x34},		// 4
+      {wxT("RE"),wxT("Rfraktur"),0x211C,0x35},			// 5
+      {wxT("IM"),wxT("Ifraktur"),0x2111,0x36},			// 6
+      {wxT("HOOKLEFTARROW"),wxT("carriagereturn"),0x21B5,0x37}, 	// 7 0x21B5 ?
+      {wxT("COPYRIGHT"),wxT("copyright"),0x00A9,0x38},		// 8
+      {wxT("REGISTERED"),wxT("registered"),0x00AE,0x39},	// 9
+      {wxT("TM"),wxT("trademark"),0x2122,0x4A},			// J
+      {wxT("DIAMOND"),wxT("lozenge"),0x25CA,0x6A} 		// j
+  };
 
 GRA_drawableText::GRA_drawableText( wxString const &inputString, double height,
                                     double angle, double x, double y, int alignment,
@@ -520,103 +644,18 @@ void GRA_drawableText::DetermineCommand( wxString &command,
 wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
 {
   wxString s( command.Upper() );
-  //
   bool upperCase = (const_cast<wxString&>(command)[0]==s[0]);
-  //
-/*
-  struct specialCharacter
-  {
-    wxChar const *name;  // special character name
-    wxChar const uName;  // upper case character
-    wxChar const lName;  // lower case character
-    wxChar const *fName; // font name
-  };
-  std::size_t const nNames = 93;
-  specialCharacter spc[] =
-  {
-      {wxT("ALPHA"),0x41,0x61,wxT("Symbol")},          {wxT("BETA"),0x42,0x62,wxT("Symbol")},          {wxT("GAMMA"),0x47,0x67,wxT("Symbol")},
-      {wxT("DELTA"),0x44,0x64,wxT("Symbol")},          {wxT("EPSILON"),0x45,0x65,wxT("Symbol")},       {wxT("ZETA"),0x5a,0x7a,wxT("Symbol")},
-      {wxT("ETA"),0x48,0x68,wxT("Symbol")},            {wxT("THETA"),0x51,0x71,wxT("Symbol")},         {wxT("IOTA"),0x49,0x69,wxT("Symbol")},
-      {wxT("KAPPA"),0x4b,0x6b,wxT("Symbol")},          {wxT("LAMBDA"),0x4c,0x6c,wxT("Symbol")},        {wxT("MU"),0x4d,0x6d,wxT("Symbol")},
-      {wxT("NU"),0x4e,0x6e,wxT("Symbol")},             {wxT("XI"),0x58,0x78,wxT("Symbol")},            {wxT("OMICRON"),0x4f,0x6f,wxT("Symbol")},
-      {wxT("PI"),0x50,0x70,wxT("Symbol")},             {wxT("RHO"),0x52,0x72,wxT("Symbol")},           {wxT("SIGMA"),0x53,0x73,wxT("Symbol")},
-      {wxT("TAU"),0x54,0x74,wxT("Symbol")},            {wxT("UPSILON"),0x55,0x75,wxT("Symbol")},       {wxT("PHI"),0x46,0x66,wxT("Symbol")},
-      {wxT("CHI"),0x43,0x63,wxT("Symbol")},            {wxT("PSI"),0x59,0x79,wxT("Symbol")},           {wxT("OMEGA"),0x57,0x77,wxT("Symbol")},
-      {wxT("VARTHETA"),0x51,0x71,wxT("Symbol")},       {wxT("VARPHI"),0x6a,0x6a,wxT("Symbol")},        {wxT("VAREPSILON"),0x65,0x65,wxT("Symbol")},
-      {wxT("ALEPH"),0xf0c0,0xf0c0,wxT("Symbol")},          {wxT("NABLA"),0x2014,0x2014,wxT("Symbol")},     {wxT("PARTIAL"),0x2202,0x2202,wxT("Symbol")},
-      {wxT("LEFTARROW"),0x2039,0xa8,wxT("Symbol")},    {wxT("UPARROW"),0x203a,0x2260,wxT("Symbol")},   {wxT("DOWNARROW"),0xfb02,0xd8,wxT("Symbol")},
-      {wxT("RIGHTARROW"),0xfb01,0xc6,wxT("Symbol")},   {wxT("PERP"),0x5e,0x5e,wxT("Symbol")},          {wxT("MID"),0x2d9,0x2d9,wxT("Symbol")},
-      {wxT("BULLET"),0x2211,0x2211,wxT("Symbol")},     {wxT("SUM"),0xc2,0xc2,wxT("Symbol")},           {wxT("PROD"),0x2019,0x2019,wxT("Symbol")},
-      {wxT("INT"),0xf0f2,0xf0f2,wxT("Symbol")},            {wxT("SURD"),0xf7,0xf7,wxT("Symbol")},          {wxT("PLUS"),0x2b,0x2b,wxT("Symbol")},
-      {wxT("MINUS"),0x2d,0x2d,wxT("Symbol")},          {wxT("PM"),0xb1,0xb1,wxT("Symbol")},            {wxT("TIMES"),0xa5,0xa5,wxT("Symbol")},
-      {wxT("DIV"),0x220f,0x220f,wxT("Symbol")},        {wxT("OPLUS"),0x2248,0x2248,wxT("Symbol")},     {wxT("OTIMES"),0x192,0x192,wxT("Symbol")},
-      {wxT("CAP"),0xab,0xab,wxT("Symbol")},            {wxT("SUBSET"),0xc3,0xc3,wxT("Symbol")},        {wxT("CUP"),0xbb,0xbb,wxT("Symbol")},
-      {wxT("SUPSET"),0x2026,0x2026,wxT("Symbol")},     {wxT("DEGREE"),0x221e,0x221e,wxT("Symbol")},    {wxT("LANGLE"),0xb7,0xb7,wxT("Symbol")},
-      {wxT("RANGLE"),0xd2,0xd2,wxT("Symbol")},         {wxT("NEG"),0xff,0xff,wxT("Symbol")},           {wxT("THEREFORE"),0x5c,0x5c,wxT("Symbol")},
-      {wxT("ANGLE"),0x2013,0x2013,wxT("Symbol")},      {wxT("VEE"),0x2044,0x2044,wxT("Symbol")},       {wxT("WEDGE"),0x2044,0x2044,wxT("Symbol")},
-      {wxT("CDOT"),0x2e,0x2e,wxT("Symbol")},           {wxT("INFTY"),0x2022,0x2022,wxT("Symbol")},     {wxT("IN"),0x152,0x152,wxT("Symbol")},
-      {wxT("NI"),0x153,0x153,wxT("Symbol")},           {wxT("PROPTO"),0xb5,0xb5,wxT("Symbol")},        {wxT("EXISTS"),0x24,0x24,wxT("Symbol")},
-      {wxT("FORALL"),0x22,0x22,wxT("Symbol")},         {wxT("NEQ"),0x3c0,0x3c0,wxT("Symbol")},         {wxT("EQUIV"),0x222b,0x222b,wxT("Symbol")},
-      {wxT("APPROX"),0xaa,0xaa,wxT("Symbol")},         {wxT("SIM"),0x7e,0x7e,wxT("Symbol")},           {wxT("LT"),0x3c,0x3c,wxT("Symbol")},
-      {wxT("GT"),0x3e,0x3e,wxT("Symbol")},             {wxT("LEQ"),0xa3,0xa3,wxT("Symbol")},           {wxT("GEQ"),0x2265,0x2265,wxT("Symbol")},
-      {wxT("VARPI"),0x76,0x76,wxT("Symbol")},          {wxT("CLUBSUIT"),0xdf,0xdf,wxT("Symbol")},      {wxT("DIAMONDSUIT"),0xae,0xae,wxT("Symbol")},
-      {wxT("HEARTSUIT"),0xa9,0xa9,wxT("Symbol")},      {wxT("SPADESUIT"),0x2122,0x2122,wxT("Symbol")}, {wxT("SUBSETEQ"),0xd5,0xd5,wxT("Symbol")},
-      {wxT("SUPSETEQ"),0xa0,0xa0,wxT("Symbol")},       {wxT("LDOTS"),0xba,0xba,wxT("Symbol")},         {wxT("LEFTRIGHTARROW"),0x20ac,0xb4,wxT("Symbol")},
-      {wxT("EMPTYSET"),0x2206,0x2206,wxT("Symbol")},   {wxT("WP"),0x221a,0x221a,wxT("Symbol")},        {wxT("RE"),0xac,0xac,wxT("Symbol")},
-      {wxT("IM"),0xa1,0xa1,wxT("Symbol")},             {wxT("HOOKLEFTARROW"),0xf8,0xf8,wxT("Symbol")}, {wxT("COPYRIGHT"),0x201d,0x201d,wxT("Symbol")},
-      {wxT("REGISTERED"),0xf0e2,0xf0e2,wxT("Symbol")}, {wxT("TM"),0x2030,0x2030,wxT("Symbol")},        {wxT("DIAMOND"),0x2021,0x2021,wxT("Symbol")} 
-  };
-*/
-  struct specialCharacter
-  {
-    wxChar const *name;  // special character name
-    wxChar const uName;  // upper case character
-    wxChar const lName;  // lower case character
-  };
-  std::size_t const nNames = 93;
-  specialCharacter spc[] =
-  {
-      {wxT("ALPHA"),0x0391,0x03B1},      {wxT("BETA"),0x0392,0x03B2},          {wxT("GAMMA"),0x0393,0x03B3},
-      {wxT("DELTA"),0x0394,0x03B4},      {wxT("EPSILON"),0x0395,0x03B5},       {wxT("ZETA"),0x0396,0x03B6},
-      {wxT("ETA"),0x0397,0x03B7},        {wxT("THETA"),0x0398,0x03B8},         {wxT("IOTA"),0x0399,0x03B9},
-      {wxT("KAPPA"),0x039A,0x03BA},      {wxT("LAMBDA"),0x039B,0x03BB},        {wxT("MU"),0x039C,0x03BC},
-      {wxT("NU"),0x039D,0x03BD},         {wxT("XI"),0x039E,0x03BE},            {wxT("OMICRON"),0x039F,0x03BF},
-      {wxT("PI"),0x03A0,0x03C0},         {wxT("RHO"),0x03A1,0x03C1},           {wxT("SIGMA"),0x03A3,0x03C3},
-      {wxT("TAU"),0x03A4,0x03C4},        {wxT("UPSILON"),0x03A5,0x03C5},       {wxT("PHI"),0x03A6,0x03C6},
-      {wxT("CHI"),0x03A7,0x03C7},        {wxT("PSI"),0x03A8,0x03C8},           {wxT("OMEGA"),0x03A9,0x03C9},
-      {wxT("VARTHETA"),0x03D1,0x03D1},   {wxT("VARPHI"),0x03D5,0x03D5},        {wxT("VAREPSILON"),0x03F5,0x03F5},
-      {wxT("ALEPH"),0x2135,0x2135},      {wxT("NABLA"),0x2207,0x2207},         {wxT("PARTIAL"),0x2202,0x2202},
-      {wxT("LEFTARROW"),0x2190,0x2190},  {wxT("UPARROW"),0x2191,0x2191},       {wxT("DOWNARROW"),0x2193,0x2193},
-      {wxT("RIGHTARROW"),0x2192,0x2192}, {wxT("PERP"),0x27C2,0x27C2},          {wxT("MID"),0x2223,0x2223},
-      {wxT("BULLET"),0x2022,0x2022},     {wxT("SUM"),0x2211,0x2211},           {wxT("PROD"),0x220F,0x220F},
-      {wxT("INT"),0x222B,0x222B},        {wxT("SURD"),0x221A,0x221A},          {wxT("PLUS"),0x002B,0x002B},
-      {wxT("MINUS"),0x2212,0x2212},      {wxT("PM"),0x00B1,0x00B1},            {wxT("TIMES"),0x00D7,0x00D7},
-      {wxT("DIV"),0x00F7,0x00F7},        {wxT("OPLUS"),0x2295,0x2295},         {wxT("OTIMES"),0x2297,0x2297},
-      {wxT("CAP"),0x2229,0x2229},        {wxT("SUBSET"),0x2282,0x2282},        {wxT("CUP"),0x222A,0x222A},
-      {wxT("SUPSET"),0x2283,0x2283},     {wxT("DEGREE"),0x02DA,0x02DA},        {wxT("LANGLE"),0x27E8,0x27E8},
-      {wxT("RANGLE"),0x27E9,0x27E9},     {wxT("NEG"),0x00AC,0x00AC},           {wxT("THEREFORE"),0x2234,0x2234},
-      {wxT("ANGLE"),0x2220,0x2220},      {wxT("VEE"),0x2228,0x2228},           {wxT("WEDGE"),0x2227,0x2227},
-      {wxT("CDOT"),0x00B7,0x00B7},       {wxT("INFTY"),0x221E,0x221E},         {wxT("IN"),0x2208,0x2208},
-      {wxT("NI"),0x220B,0x220B},         {wxT("PROPTO"),0x221D,0x221D},        {wxT("EXISTS"),0x2203,0x2203},
-      {wxT("FORALL"),0x2200,0x2200},     {wxT("NEQ"),0x2260,0x2260},           {wxT("EQUIV"),0x2261,0x2261},
-      {wxT("APPROX"),0x2248,0x2248},     {wxT("SIM"),0x007E,0x007E},           {wxT("LT"),0x003C,0x003C},
-      {wxT("GT"),0x003E,0x003E},         {wxT("LEQ"),0x2264,0x2264},           {wxT("GEQ"),0x2265,0x2265},
-      {wxT("VARPI"),0x03D6,0x03D6},      {wxT("CLUBSUIT"),0x2663,0x2663},      {wxT("DIAMONDSUIT"),0x2666,0x2666},
-      {wxT("HEARTSUIT"),0x2665,0x2665},  {wxT("SPADESUIT"),0x2660,0x2660},     {wxT("SUBSETEQ"),0x2286,0x2286},
-      {wxT("SUPSETEQ"),0x2287,0x2287},   {wxT("LDOTS"),0x2026,0x2026},         {wxT("LEFTRIGHTARROW"),0x21D4,0x21D4},
-      {wxT("EMPTYSET"),0x2205,0x2205},   {wxT("WP"),0x2118,0x2118},            {wxT("RE"),0x211C,0x211C},
-      {wxT("IM"),0x2111,0x2111},         {wxT("HOOKLEFTARROW"),0x21B2,0x21B2}, {wxT("COPYRIGHT"),0x00A9,0x00A9},
-      {wxT("REGISTERED"),0x00AE,0x00AE}, {wxT("TM"),0x2122,0x2122},            {wxT("DIAMOND"),0x25CA,0x25CA} 
-  };
-  for( std::size_t i=0; i<nNames; ++i )
-  {
-    if( s == spc[i].name )
-    {
-      //fontName = spc[i].fName;
-      //fontName = wxT("symbol");
-      return upperCase ? spc[i].uName : spc[i].lName;
+  int nNames = sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
+  wxChar uc;
+
+  for(int i = 0; i < nNames; i++) {
+    if( s == SpecialCharacters[i].ename ) {
+      uc = SpecialCharacters[i].ucode;
+      if( !upperCase && (uc > 912) && (uc < 938) )  // Greek letters differ in upper/lowercase
+	uc += 0x0020 ;
+      return uc;		// everything else is the same in upper/lowercase
+      }
     }
-  }
   return 0;
 }
 

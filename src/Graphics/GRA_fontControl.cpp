@@ -29,36 +29,9 @@ namespace GRA_fontControl
     fonts_.push_back( new GRA_font(wxT("SANS")) );
     fonts_.push_back( new GRA_font(wxT("SERIF")) );
     fonts_.push_back( new GRA_font(wxT("MONO")) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SANS")),wxString(wxT("Helvetica"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SERIF")),wxString(wxT("Times"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("MONO")),wxString(wxT("Courier"))) );
-/*
-    fonts_.push_back( new GRA_font(wxT("ARIAL")) );
-    fonts_.push_back( new GRA_font(wxT("ARIAL BLACK")) );
-    fonts_.push_back( new GRA_font(wxT("ARIAL NARROW")) );
-    fonts_.push_back( new GRA_font(wxT("BOOK ANTIQUA")) );
-    fonts_.push_back( new GRA_font(wxT("BOOKMAN OLD STYLE")) );
-    fonts_.push_back( new GRA_font(wxT("CENTURY")) );
-    fonts_.push_back( new GRA_font(wxT("COURIER NEW")) );
-    fonts_.push_back( new GRA_font(wxT("GEORGIA")) );
-    fonts_.push_back( new GRA_font(wxT("SYMBOL")) );
-    fonts_.push_back( new GRA_font(wxT("TIMES NEW ROMAN")) );
-    fonts_.push_back( new GRA_font(wxT("VERDANA")) );
-    fonts_.push_back( new GRA_font(wxT("ZAPFDINGBATS")) );
-
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ARIAL")),wxString(wxT("ArialMT"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ARIAL BLACK")),wxString(wxT("Arial-Black"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ARIAL NARROW")),wxString(wxT("ArialNarrow"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("BOOK ANTIQUA")),wxString(wxT("BookAntiqua"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("BOOKMAN OLD STYLE")),wxString(wxT("BookmanOldStyle"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("CENTURY")),wxString(wxT("Century"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("COURIER NEW")),wxString(wxT("CourierNewPSMT"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("GEORGIA")),wxString(wxT("Georgia"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SYMBOL")),wxString(wxT("Symbol"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("TIMES NEW ROMAN")),wxString(wxT("TimesNewRomanPSMT"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("VERDANA")),wxString(wxT("Verdana"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("ZAPFDINGBATS")),wxString(wxT("ZapfDingbats"))) );
-*/
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SANS")),wxString(wxT("FreeSans"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SERIF")),wxString(wxT("FreeSerif"))) );
+    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("MONO")),wxString(wxT("FreeMono"))) );
   }
 
   void DeleteStuff()
