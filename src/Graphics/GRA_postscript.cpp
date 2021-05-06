@@ -349,24 +349,24 @@ void GRA_postscript::GenerateOutput( double x, double y, int pen )
   {
     case 3:
     {
-      outFile_ << "s newpath " << ix << " " << iy << " m\n";
+      outFile_ << "s newpath " << std::dec << ix << " " << std::dec << iy << " m\n";
       counter_ = 0;
       break;
     }
     case 2:
     {
-      outFile_ << ix << " " << iy << " l\n";
+      outFile_ << std::dec << ix << " " << std::dec << iy << " l\n";
       if( ++counter_ == 500 )
       {
-        outFile_ << "s " << ix << " " << iy << " m\n";
+        outFile_ << "s " << std::dec << ix << " " << std::dec << iy << " m\n";
         counter_ = 0;
       }
       break;
     }
     case 20:
     {
-      outFile_ << "s newpath " << ix << " " << iy << " m "
-               << ix << " " << iy << " l\n";
+      outFile_ << "s newpath " << std::dec << ix << " " << std::dec << iy << " m "
+               << std::dec << ix << " " << std::dec << iy << " l\n";
       counter_ = 0;
       break;
     }
@@ -515,14 +515,14 @@ void GRA_postscript::Draw( GRA_polygon *p )
   if( fillColor )
   {
     SetColor( fillColor );
-    outFile_ << "newpath " << ix[0] << " " << iy[0] << " m\n";
-    for( std::size_t i=1; i<size; ++i )outFile_ << ix[i] << " " << iy[i] << " l\n";
+    outFile_ << "newpath " << std::dec << ix[0] << " " << std::dec << iy[0] << " m\n";
+    for( std::size_t i=1; i<size; ++i )outFile_ << std::dec << ix[i] << " " << std::dec << iy[i] << " l\n";
     outFile_ << "closepath fill\n";
   }
   SetLineWidth( p->GetLineWidth() );
   SetColor( p->GetLineColor() );
-  outFile_ << "newpath " << ix[0] << " " << iy[0] << " m\n";
-  for( std::size_t i=1; i<size; ++i )outFile_ << ix[i] << " " << iy[i] << " l\n";
+  outFile_ << "newpath " << std::dec << ix[0] << " " << std::dec << iy[0] << " m\n";
+  for( std::size_t i=1; i<size; ++i )outFile_ << std::dec << ix[i] << " " << std::dec << iy[i] << " l\n";
   outFile_ << "closepath\n" << "s\n";
 }
 
