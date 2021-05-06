@@ -109,7 +109,6 @@ void GRA_postscript::Initialize( wxString const &filename )
            << "%%LanguageLevel: 2\n"
            << "%%EndComments\n"
            << "%%BeginProlog\n"
-           << "userdict begin\n"
            << "1 setlinecap\n"  // round linecap
            << "1 setlinejoin\n" // round linejoin
            << "%%EndProlog\n\n"
