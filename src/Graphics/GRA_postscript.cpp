@@ -73,6 +73,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "UsefulFunctions.h"
 #include "GRA_specialCharacters.h"
 
+extern std::vector<GRA_specialCharacter> SpecialCharacters;
+
 double GRA_postscript::dotsPerInch_ = 72.0;
 
 GRA_postscript::~GRA_postscript()
@@ -178,13 +180,14 @@ void GRA_postscript::Initialize( wxString const &filename )
     all_fonts[i] = GRA_fontControl::GetPostScriptFontName(GRA_fontControl::GetFont(i)->GetFontName());
 
   // this should not be necessary!!!
-  int nsc = 117; //sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
-  std::cout << nsc << "\n";
+  //int nsc = 117; //sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
+  //std::cout << nsc << "\n";
   for(int j = 0; j < nf; j++) {
     outFile_ << "/" << all_fonts[j] << " /" << all_fonts[j] << "-Special [\n";
-    for(int i = 0; i < nsc; i++) {
-      wxString iName = SpecialCharacters[i].pname;
-      outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << SpecialCharacters[i].cid << " /" << iName.c_str() << "\n";
+//    for(int i = 0; i < nsc; i++) {
+    for( auto const& sc: SpecialCharacters ) {
+      wxString iName = sc.pname;
+      outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << sc.cid << " /" << iName.c_str() << "\n";
       }
     outFile_ << "] new-font-encoding\n\n"
            << "/" << all_fonts[j] << "CU\n"
@@ -2222,10 +2225,10 @@ void GRA_postscript::Draw( GRA_bitmap *b )
   double yscale = bheight;
   //
   outFile_ << "gsave\n"
-           << static_cast<int>(xlod+0.5) << " " << static_cast<int>(ylod+0.5) << " translate\n"
+           << std::dec << static_cast<int>(xlod+0.5) << " " << std::dec << static_cast<int>(ylod+0.5) << " translate\n"
            << xscale << " " << yscale << " scale\n"
-           << bwidth << " " << bheight << " 8 [" << bwidth << " 0 0 -"
-           << bheight << " 0 " << bheight << "]\n"
+           << std::dec << bwidth << " " << std::dec << bheight << " 8 [" << std::dec << bwidth << " 0 0 -"
+           << std::dec << bheight << " 0 " << std::dec << bheight << "]\n"
            << "{currentfile " << 3*bwidth << " string readhexstring pop} bind\n"
            << "false 3 colorimage\n";
   //
@@ -2270,12 +2273,13 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
   std::vector<GRA_simpleText*>::const_iterator textVecEnd( textVec.end() );
 
   // this should not be necessary!!!
-  int nsc = 117; //sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
-  auto findByUcode = [=](wxChar c) {
-    for(int i = 0; i < nsc; i++)
-      if(c == SpecialCharacters[i].ucode) return i;
-    return -1;
-    };
+  //int nsc = 117; //sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
+//  auto findByUcode = [=](wxChar c) {
+////    for(int i = 0; i < nsc; i++)
+//    for( auto const& sc: SpecialCharacters )
+//      if(c == sc.ucode) return sc.cid;
+//    return (wxChar)0x0000;
+//    };
 
   for( std::vector<GRA_simpleText*>::const_iterator i=textVec.begin(); i!=textVecEnd; ++i, ++counter ) {
     wxString text( (*i)->GetString() );
@@ -2289,26 +2293,33 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     wxString fontName( (*i)->GetFont()->GetFontName() );
     wxString psFontName;
     psFontName = GRA_fontControl::GetPostScriptFontName( (*i)->GetFont()->GetFontName() );
-    // std::cout << "fontName = \"" << fontName.mb_str(wxConvUTF8) << "\" psFontName = \"" << psFontName.mb_str(wxConvUTF8) << "\"\n";
     ExGlobals::RemoveBlanks( fontName );
     ExGlobals::ToCapitalize( fontName );
     double height = dotsPerInch_*(*i)->GetHeight();
     double xshift = dotsPerInch_*(*i)->GetXShift();
     double yshift = dotsPerInch_*(*i)->GetYShift();
+    // font size fudge factor
+    height *= 85./72.;
+
     maxHeight = std::max( height, maxHeight );
     outFile_ << "TextBuffer " << counter << " [[" << dr << " " << dg << " " << db
-             << "] /" << psFontName.mb_str(wxConvUTF8) << "CU " << 1.38889*height // 100/72 fudge factor
+             << "] /" << psFontName.mb_str(wxConvUTF8) << "CU " << height
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
+    bool found = FALSE;
+    wxChar c;
     for( size_t i=0; i<tEnd; ++i ) {
-      int j = static_cast<int>(text[i]);
-      int k = findByUcode((wxChar)j);
-      if(k >= 0) { // this is a special character, substitute
-        outFile_ << "\\377\\001\\" << std::setfill('0') << std::setw(3) << std::oct <<  SpecialCharacters[k].cid << "\\377\\000" << std::dec << std::setw(0);
+      c = text[i];
+      //auto found_cid = findByUcode((wxChar)j);
+      for( auto const& sc: SpecialCharacters ) {
+        if(c == sc.ucode) { // this is a special character, substitute
+          outFile_ << "\\377\\001\\" << std::setfill('0') << std::setw(3) << std::oct <<  sc.cid << "\\377\\000" << std::dec << std::setw(0);
+	  found = TRUE;
+	  break;
+          }
         }
-      else { // regular character, output as is
-        outFile_ << "\\" << std::setfill('0') << std::setw(3) << std::oct << j << std::dec << std::setw(0);
-        }
+      if( !found ) // regular character, output as is 
+        outFile_ << "\\" << std::setfill('0') << std::setw(3) << std::oct << c << std::dec << std::setw(0);
       }
     outFile_ << ")] put\n";
     }

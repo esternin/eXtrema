@@ -26,8 +26,8 @@ struct GRA_specialCharacter
     wxChar const cid;      // remapped to this ascii
   };
 
-extern GRA_specialCharacter SpecialCharacters[];
 /*
+extern std::vector<GRA_specialCharacter> SpecialCharacters;
 GRA_specialCharacter SpecialCharacters[] =
   {
       // for Greek letters make an approximation

@@ -3,18 +3,22 @@ clear
 ANSWER='YES'
 INQUIRE\YESNO 'First, some sample graphs?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @sample_graphs
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'View a graph with 2 y axes?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @2yaxes
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'View filling the area under a curve?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @fill_under_curve
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'Filling the area between two curves?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @fill_between_curves
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'A filled ring?' ANSWER
@@ -24,26 +28,32 @@ IF EQS(UCASE(ANSWER),'YES') THEN
   defaults
   @filledring 12 5 green 100
 ENDIF
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'Some filled histogram examples?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @filled_histograms
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'Examples of automatic axis label placement?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @automatic_axis_labels
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'The next example shows that you can control just about every aspect of a graph?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @aspect_control
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'A contour plot example, with legend?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @contour_example
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'Now for a real life example of a data plot?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @cpu_example
+hardcopy\POSTSCRIPT junk.eps
 !
 !ANSWER='YES'
 !INQUIRE\YESNO 'And another real life example?' ANSWER
@@ -52,19 +62,24 @@ IF EQS(UCASE(ANSWER),'YES') THEN @cpu_example
 ANSWER='YES'
 INQUIRE\YESNO 'A color gradient density plot (with legend)?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @density_gradient_example
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'A dithering type density plot?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @density_dithering_example
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'A diffusion type density plot (with x and y profiles)?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @density_diffusion_example
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'A derivative example?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @derivative_example
+hardcopy\POSTSCRIPT junk.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'An integration example?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @integration_example
+hardcopy\POSTSCRIPT junk.eps

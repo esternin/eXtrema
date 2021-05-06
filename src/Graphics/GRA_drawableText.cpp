@@ -41,8 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "TextPopup.h"
 #include "GRA_specialCharacters.h"
 
-GRA_specialCharacter SpecialCharacters[] =
-  {
+std::vector <GRA_specialCharacter> SpecialCharacters {
       // for Greek letters make an approximation
       {wxT("ALPHA"),wxT("Alpha"),0x0391,0x41},	// A
       {wxT("alpha"),wxT("alpha"),0x03B1,0x61},	// a
@@ -645,12 +644,13 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
 {
   wxString s( command.Upper() );
   bool upperCase = (const_cast<wxString&>(command)[0]==s[0]);
-  int nNames = sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
+//  int nNames = sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
   wxChar uc;
 
-  for(int i = 0; i < nNames; i++) {
-    if( s == SpecialCharacters[i].ename ) {
-      uc = SpecialCharacters[i].ucode;
+//  for(int i = 0; i < nNames; i++) {
+  for( auto const& sc: SpecialCharacters ) {
+    if( s == sc.ename ) {
+      uc = sc.ucode;
       if( !upperCase && (uc > 912) && (uc < 938) )  // Greek letters differ in upper/lowercase
 	uc += 0x0020 ;
       return uc;		// everything else is the same in upper/lowercase
