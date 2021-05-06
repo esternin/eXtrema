@@ -29,9 +29,9 @@ namespace GRA_fontControl
     fonts_.push_back( new GRA_font(wxT("SANS")) );
     fonts_.push_back( new GRA_font(wxT("SERIF")) );
     fonts_.push_back( new GRA_font(wxT("MONO")) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SANS")),wxString(wxT("FreeSans"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("SERIF")),wxString(wxT("FreeSerif"))) );
-    psFontNames_.insert( std::map<wxString,wxString>::value_type(wxString(wxT("MONO")),wxString(wxT("FreeMono"))) );
+    psFontNames_.insert( { "SANS" , "FreeSans"  } );
+    psFontNames_.insert( { "SERIF", "FreeSerif" } );
+    psFontNames_.insert( { "MONO" , "FreeMono"  } );
   }
 
   void DeleteStuff()
