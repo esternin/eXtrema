@@ -2300,7 +2300,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
       for( auto const& sc: SpecialCharacters ) {
         if(c == sc.ucode) { // this is a special character, substitute
           outFile_ << "\\377\\001\\" << std::setfill('0') << std::setw(3) << std::oct <<  sc.cid << "\\377\\000" << std::dec << std::setw(0);
-	  found = TRUE;
+	  found = true;
 	  break;
           }
         }
