@@ -2297,7 +2297,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     double yshift = dotsPerInch_*(*i)->GetYShift();
     maxHeight = std::max( height, maxHeight );
     outFile_ << "TextBuffer " << counter << " [[" << dr << " " << dg << " " << db
-             << "] /" << psFontName.mb_str(wxConvUTF8) << "CU " << height
+             << "] /" << psFontName.mb_str(wxConvUTF8) << "CU " << 1.38889*height // 100/72 fudge factor
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
     for( size_t i=0; i<tEnd; ++i ) {
