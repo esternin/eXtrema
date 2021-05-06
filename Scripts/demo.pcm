@@ -3,7 +3,7 @@ clear
 ANSWER='YES'
 INQUIRE\YESNO 'First, some sample graphs?' ANSWER
 IF EQS(UCASE(ANSWER),'YES') THEN @sample_graphs
-hardcopy\POSTSCRIPT junk.eps
+hardcopy\postscript demo.eps
 !
 ANSWER='YES'
 INQUIRE\YESNO 'View a graph with 2 y axes?' ANSWER
