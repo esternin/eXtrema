@@ -419,7 +419,7 @@ void FigureForm::FillOutForm( int polygonAngle, int polygonVertices, bool twoHea
       }
       break;
   }
-  GraphicsPage *page = dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage());
+  GraphicsPage *page = ExGlobals::GetGraphicsPage();
   page->SetFigureLineThickness( lineThickness );
   page->SetFigureLineColor( GRA_colorControl::GetColor(lineColor) );
   if( fillColor == 0 )
@@ -488,7 +488,7 @@ void FigureForm::OnArrow1( wxCommandEvent &WXUNUSED(event) )
       break;
   }
   arrowType_ = 1;
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetArrowType( arrowType_ );
+  ExGlobals::GetGraphicsPage()->SetArrowType( arrowType_ );
 }
 
 void FigureForm::OnArrow2( wxCommandEvent &WXUNUSED(event) )
@@ -524,7 +524,7 @@ void FigureForm::OnArrow2( wxCommandEvent &WXUNUSED(event) )
       break;
   }
   arrowType_ = 2;
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetArrowType( arrowType_ );
+  ExGlobals::GetGraphicsPage()->SetArrowType( arrowType_ );
 }
 
 void FigureForm::OnArrow3( wxCommandEvent &WXUNUSED(event) )
@@ -560,7 +560,7 @@ void FigureForm::OnArrow3( wxCommandEvent &WXUNUSED(event) )
       break;
   }
   arrowType_ = 3;
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetArrowType( arrowType_ );
+  ExGlobals::GetGraphicsPage()->SetArrowType( arrowType_ );
 }
 
 void FigureForm::OnClose( wxCommandEvent &WXUNUSED(event) )
@@ -614,8 +614,7 @@ void FigureForm::OnTwoHeads( wxCommandEvent &WXUNUSED(event) )
       }
       break;
   }
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->
-      SetHeadsBothEnds( twoHeadsCheckBox_->IsChecked() );
+  ExGlobals::GetGraphicsPage()->SetHeadsBothEnds( twoHeadsCheckBox_->IsChecked() );
 }
 
 void FigureForm::OnRectangle( wxCommandEvent &WXUNUSED(event) )
@@ -634,7 +633,7 @@ void FigureForm::OnRectangle( wxCommandEvent &WXUNUSED(event) )
       star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
       break;
   }
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetPolygonType( 1 );
+  ExGlobals::GetGraphicsPage()->SetPolygonType( 1 );
   polygonType_ = 1;
   polygonVerticesSC_->Show( false );
 }
@@ -655,7 +654,7 @@ void FigureForm::OnRegular( wxCommandEvent &WXUNUSED(event) )
       star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
       break;
   }
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetPolygonType( 2 );
+  ExGlobals::GetGraphicsPage()->SetPolygonType( 2 );
   polygonType_ = 2;
   polygonVerticesSC_->Show( true );
 }
@@ -676,32 +675,29 @@ void FigureForm::OnStar( wxCommandEvent &WXUNUSED(event) )
     case 3:
       break;
   }
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetPolygonType( 3 );
+  ExGlobals::GetGraphicsPage()->SetPolygonType( 3 );
   polygonType_ = 3;
   polygonVerticesSC_->Show( false );
 }
 
 void FigureForm::OnPolygonAngle( int angle )
 {
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->
-      SetPolygonAngle( angle );
+  ExGlobals::GetGraphicsPage()->SetPolygonAngle( angle );
 }
 
 void FigureForm::OnPolygonVertices( int vertices )
 {
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->
-      SetPolygonVertices( vertices );
+  ExGlobals::GetGraphicsPage()->SetPolygonVertices( vertices );
 }
 
 void FigureForm::OnCircle( wxCommandEvent &WXUNUSED(event) )
 {
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->
-      SetDrawCircles( makeCircleCheckBox_->IsChecked() );
+  ExGlobals::GetGraphicsPage()->SetDrawCircles( makeCircleCheckBox_->IsChecked() );
 }
 
 void FigureForm::OnDrawArrow( wxCommandEvent &WXUNUSED(event) )
 {
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetArrowPlacementMode();
+  ExGlobals::GetGraphicsPage()->SetArrowPlacementMode();
   std::vector<wxString> lines;
   lines.push_back( wxString(wxT("Left click in the visualization window to choose the arrow base,")) );
   lines.push_back( wxString(wxT("then left click again to choose the arrow end point")) );
@@ -719,7 +715,7 @@ void FigureForm::OnEraseArrow( wxCommandEvent &WXUNUSED(event) )
 
 void FigureForm::OnDrawPolygon( wxCommandEvent &WXUNUSED(event) )
 {
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetPolygonPlacementMode();
+  ExGlobals::GetGraphicsPage()->SetPolygonPlacementMode();
   std::vector<wxString> lines;
   switch( polygonType_ )
   {
@@ -750,7 +746,7 @@ void FigureForm::OnErasePolygon( wxCommandEvent &WXUNUSED(event) )
 
 void FigureForm::OnDrawEllipse( wxCommandEvent &WXUNUSED(event) )
 {
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetEllipsePlacementMode();
+  ExGlobals::GetGraphicsPage()->SetEllipsePlacementMode();
   std::vector<wxString> lines;
   if( makeCircleCheckBox_->IsChecked() )
   {
@@ -776,16 +772,16 @@ void FigureForm::OnEraseEllipse( wxCommandEvent &WXUNUSED(event) )
 
 void FigureForm::OnLineThickness( int val )
 {
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetFigureLineThickness( val );
+  ExGlobals::GetGraphicsPage()->SetFigureLineThickness( val );
 }
 
 void FigureForm::OnLineColor( GRA_color *color )
 {
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetFigureLineColor( color );
+  ExGlobals::GetGraphicsPage()->SetFigureLineColor( color );
 }
 
 void FigureForm::OnFillColor( GRA_color *color )
 {
   if( GRA_colorControl::GetColorCode(color) == 0 )color = 0;
-  dynamic_cast<GraphicsPage*>(ExGlobals::GetVisualizationWindow()->GetPage())->SetFigureFillColor( color );
+  ExGlobals::GetGraphicsPage()->SetFigureFillColor( color );
 }

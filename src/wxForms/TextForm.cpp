@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "EVariableError.h"
 #include "NVariableTable.h"
 #include "ExGlobals.h"
+#include "GraphicsPage.h"
 #include "GRA_font.h"
 #include "GRA_fontControl.h"
 #include "GRA_window.h"
@@ -333,11 +334,10 @@ void TextForm::Draw()
       gw->AddDrawableObject( dt );
       dt->SetX( static_cast<GRA_distanceCharacteristic*>(textC->Get(wxT("XLOCATION")))->GetAsWorld() );
       dt->SetY( static_cast<GRA_distanceCharacteristic*>(textC->Get(wxT("YLOCATION")))->GetAsWorld() );
-      wxWindow *wx = ExGlobals::GetwxWindow();
-      wxClientDC dc( wx );
-      wx->PrepareDC( dc );
+      GraphicsPage *page =  ExGlobals::GetGraphicsPage();
+      GraphicsDC dc( page );
       dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
-      ExGlobals::RefreshGraphics();
+      page->Refresh();
     }
   }
   if( ExGlobals::StackIsOn() )

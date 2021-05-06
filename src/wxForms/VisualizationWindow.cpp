@@ -209,9 +209,6 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   ExGlobals::SetMonitorLimits( 0, 0, size.x, size.y );
   ExGlobals::SetAspectRatio( aspectRatio );
   page->ResetWindows();
-  wxClientDC dc( page );
-  dc.SetBackground( *wxWHITE_BRUSH );
-  dc.Clear();
 
   // Show the window.
   // Frames, unlike simple controls, are not shown when created initially.
@@ -229,36 +226,34 @@ void VisualizationWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
 }
 
 void VisualizationWindow::RefreshGraphics()
-{ static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->RefreshGraphics(); }
+{ GetPage()->RefreshGraphics(); }
 
 void VisualizationWindow::ClearWindows()
 {
   // destroy all drawableObjects in all graph windows on the current page
   //
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ClearWindows();
-  wxClientDC dc( notebook_->GetCurrentPage() );
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->
-    DisplayBackgrounds( ExGlobals::GetGraphicsOutput(), dc );
+  GetPage()->ClearWindows();
+  GetPage()->RefreshGraphics();
 }
 
 void VisualizationWindow::ReplotAllWindows()
 {
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ReplotAllWindows();
+  GetPage()->ReplotAllWindows();
 }
 
 void VisualizationWindow::ReplotCurrentWindow( bool repaint )
 {
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->ReplotCurrentWindow(repaint);
+  GetPage()->ReplotCurrentWindow(repaint);
 }
 
 void VisualizationWindow::DisplayBackgrounds( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->DisplayBackgrounds( graphicsOutput, dc );
+  GetPage()->DisplayBackgrounds( graphicsOutput, dc );
 }
 
 void VisualizationWindow::SetInteractiveText( GRA_drawableText *dt )
 {
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->SetTextPlacementMode( dt );
+  GetPage()->SetTextPlacementMode( dt );
   SetFocus();
   Raise();
   //
@@ -279,7 +274,7 @@ void VisualizationWindow::SaveBitmap( int xmin, int ymin, int xmax, int ymax,
   dc.SetBackground( *wxWHITE_BRUSH );
   dc.Clear();
   dc.StartDoc( wxT("produced by EXTREMA") );
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->DrawGraphWindows(&ps,dc);
+  GetPage()->DrawGraphWindows(&ps,dc);
   dc.EndDoc();
   wxImage image( tempBM.ConvertToImage() );
   image.SaveFile( filename, type );
@@ -287,12 +282,12 @@ void VisualizationWindow::SaveBitmap( int xmin, int ymin, int xmax, int ymax,
 
 void VisualizationWindow::SavePS( wxString const &filename )
 {
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->SavePS( filename );
+  GetPage()->SavePS( filename );
 }
 
 void VisualizationWindow::ResetPages()
 {
-  GraphicsPage *currentPage = static_cast<GraphicsPage*>(notebook_->GetCurrentPage());
+  GraphicsPage *currentPage = GetPage();
   Layout();
   
   wxSize size( notebook_->GetClientSize() );
@@ -323,27 +318,26 @@ void VisualizationWindow::ClearAllPages()
 {
   for( int i=0; i<notebook_->GetPageCount(); ++i )
   {
-    static_cast<GraphicsPage*>(notebook_->GetPage(i))->ClearWindows();
-    wxClientDC dc( notebook_->GetPage(i) );
-    dc.SetBackground( *wxWHITE_BRUSH );
-    dc.Clear();
+    DoGetPage(i)->ClearWindows();
   }
+
+  RefreshGraphics();
 }
 
 void VisualizationWindow::ResetWindows()
 {
   for( int i=0; i<notebook_->GetPageCount(); ++i )
-    static_cast<GraphicsPage*>(notebook_->GetPage(i))->ResetWindows();
+    DoGetPage(i)->ResetWindows();
 }
 
 int VisualizationWindow::GetNumberOfPages()
 { return notebook_->GetPageCount(); }
 
-wxWindow *VisualizationWindow::GetPage()
-{ return notebook_->GetCurrentPage(); }
+GraphicsPage *VisualizationWindow::GetPage()
+{ return DoGetPage(notebook_->GetSelection()); }
 
-GraphicsPage *VisualizationWindow::GetPage( int n )
-{ return static_cast<GraphicsPage*>(notebook_->GetPage(n-1)); }
+GraphicsPage *VisualizationWindow::DoGetPage( int n )
+{ return static_cast<GraphicsPage*>(notebook_->GetPage(n)); }
 
 void VisualizationWindow::MakeFirstPage()
 { new GraphicsPage(notebook_); }
@@ -352,53 +346,50 @@ void VisualizationWindow::DeleteAllPages()
 { notebook_->DeleteAllPages(); }
 
 void VisualizationWindow::SetWindowNumber( int n )
-{ static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->SetWindowNumber(n); }
+{ GetPage()->SetWindowNumber(n); }
 
 int VisualizationWindow::GetWindowNumber()
-{ return static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->GetWindowNumber(); }
+{ return GetPage()->GetWindowNumber(); }
 
 int VisualizationWindow::GetNumberOfWindows()
-{ return static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->GetNumberOfWindows(); }
+{ return GetPage()->GetNumberOfWindows(); }
 
 std::vector<GRA_window*> &VisualizationWindow::GetGraphWindows()
-{ return static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->GetGraphWindows(); }
+{ return GetPage()->GetGraphWindows(); }
 
 GRA_window *VisualizationWindow::GetGraphWindow()
-{ return static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->GetGraphWindow(); }
+{ return GetPage()->GetGraphWindow(); }
 
 GRA_window *VisualizationWindow::GetGraphWindow( int n )
-{ return static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->GetGraphWindow(n); }
+{ return GetPage()->GetGraphWindow(n); }
 
 GRA_window *VisualizationWindow::GetGraphWindow( double x, double y )
-{ return static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->GetGraphWindow(x,y); }
+{ return GetPage()->GetGraphWindow(x,y); }
 
 void VisualizationWindow::AddGraphWindow( GRA_window *gw )
-{ static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->AddGraphWindow(gw); }
+{ GetPage()->AddGraphWindow(gw); }
 
 void VisualizationWindow::DrawGraphWindows( GRA_wxWidgets *output, wxDC &dc )
-{ static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->DrawGraphWindows(output,dc); }
+{ GetPage()->DrawGraphWindows(output,dc); }
 
 void VisualizationWindow::OnClearGraphicsPage( wxCommandEvent &WXUNUSED(event) )
 {
-  wxWindow *page = notebook_->GetCurrentPage();
-  wxClientDC dc( page );
-  dc.Clear();
-  static_cast<GraphicsPage*>(page)->ClearWindows();
-  static_cast<GraphicsPage*>(page)->DisplayBackgrounds( ExGlobals::GetGraphicsOutput(), dc );
+  ClearWindows();
   if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("CLEAR") );  
 }
 
 void VisualizationWindow::OnClearWindow( wxCommandEvent &WXUNUSED(event) )
 {
-  GRA_window *gw = static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->GetGraphWindow();
+  GraphicsPage *graphicsPage = GetPage();
+  GRA_window *gw = graphicsPage->GetGraphWindow();
   gw->Erase();
   gw->Clear();
-  notebook_->GetCurrentPage()->Refresh();
+  graphicsPage->Refresh();
 }
 
 void VisualizationWindow::OnReplotAll( wxCommandEvent &WXUNUSED(event) )
 {
-  GraphicsPage *graphicsPage = static_cast<GraphicsPage*>(notebook_->GetCurrentPage());
+  GraphicsPage *graphicsPage = GetPage();
   bool nothingToReplot = true;
   std::size_t numWindows = graphicsPage->GetNumberOfWindows();
   for( std::size_t i=0; i<numWindows; ++i )
@@ -428,7 +419,7 @@ void VisualizationWindow::OnReplotAll( wxCommandEvent &WXUNUSED(event) )
 
 void VisualizationWindow::OnReplotCurrent( wxCommandEvent &WXUNUSED(event) )
 {
-  GraphicsPage *graphicsPage = static_cast<GraphicsPage*>(notebook_->GetCurrentPage());
+  GraphicsPage *graphicsPage = GetPage();
   if( graphicsPage->GetGraphWindow()->GetDrawableObjects().empty() )
   {
     wxMessageBox( wxT("there is nothing to replot in the current window"), wxT("error"),
@@ -506,7 +497,7 @@ void VisualizationWindow::OnSavePS( wxCommandEvent &WXUNUSED(event) )
   outFile.close();
   try
   {
-    static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->SavePS( filename );
+    GetPage()->SavePS( filename );
   }
   catch ( EGraphicsError const &e )
   {
@@ -625,8 +616,7 @@ void VisualizationWindow::SetPage( GraphicsPage *p )
 
 void VisualizationWindow::InheritPage( int m )
 {
-  static_cast<GraphicsPage*>(notebook_->GetCurrentPage())->
-      InheritFrom( static_cast<GraphicsPage*>(notebook_->GetPage(m-1)) );
+  GetPage()->InheritFrom( DoGetPage(m) );
 }
 
 void VisualizationWindow::ZeroGraphForm()

@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_setOfCharacteristics.h"
 #include "GRA_wxWidgets.h"
 #include "ExGlobals.h"
+#include "GraphicsPage.h"
 #include "UsefulFunctions.h"
 #include "LegendPopup.h"
 
@@ -137,7 +138,7 @@ void GRA_legend::AddEntry( wxString const &label )
     throw;
   }
   GRA_wxWidgets *graphicsOutput = ExGlobals::GetGraphicsOutput();
-  wxClientDC dc( ExGlobals::GetwxWindow() ); 
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   if( entries_.empty() )
   {
     if( static_cast<GRA_boolCharacteristic*>(legendC->Get(wxT("FRAMEON")))->Get() )

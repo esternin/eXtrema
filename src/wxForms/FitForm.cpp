@@ -34,6 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "NVariableTable.h"
 #include "EVariableError.h"
 #include "ExGlobals.h"
+#include "GraphicsPage.h"
 #include "UsefulFunctions.h"
 #include "GRA_window.h"
 #include "GRA_intCharacteristic.h"
@@ -841,7 +842,7 @@ void FitForm::TestTheFit()
     wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   cartesianAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
   cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
   currentWindow->AddDrawableObject( cartesianAxes );
@@ -1498,7 +1499,7 @@ void FitForm::PlotFit()
     wxMessageBox( wxString(e.what(),wxConvUTF8), wxT("Fatal error"), wxOK|wxICON_ERROR, this );
     return;
   }
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   cartesianAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
   cartesianCurve->Draw( ExGlobals::GetGraphicsOutput(), dc );
   currentWindow->AddDrawableObject( cartesianAxes );

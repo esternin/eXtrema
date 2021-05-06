@@ -81,8 +81,13 @@ public:
   void DeleteAllPages();
   void MakeFirstPage();
   int GetNumberOfPages();
-  wxWindow *GetPage();
-  GraphicsPage *GetPage( int );
+
+  // Return the currently visible page.
+  GraphicsPage *GetPage();
+
+  // Return the page with the given 1-based (!!) index.
+  GraphicsPage *GetPage( int n ) { return DoGetPage(n-1); }
+
   void NewPage( int );
   void SetPage( int );
   void SetPage( GraphicsPage * );
@@ -141,6 +146,10 @@ public:
   friend std::ostream &operator<<( std::ostream &, VisualizationWindow const * );
   
 private:
+  // Unlike the public GetPage(), this one uses the usual C++ index convention,
+  // i.e. the index starts with 0.
+  GraphicsPage *DoGetPage( int );
+
   GraphForm *graphForm_;
   ThreeDPlotForm *threeDPlotForm_;
   FigureForm *figureForm_;

@@ -379,8 +379,11 @@ void ExecuteInit()
   }
 }
 
-wxWindow *GetwxWindow()
+GraphicsPage *GetGraphicsPage()
 { return visualizationWindow_->GetPage(); }
+
+wxWindow *GetwxWindow()
+{ return GetGraphicsPage(); }
 
 GRA_wxWidgets *GetGraphicsOutput()
 { return graphicsOutput_; }
@@ -753,7 +756,7 @@ void ReplotCurrentWindow( bool repaint )
 
 void ClearGraphicsMonitor()
 {
-  wxClientDC dc( visualizationWindow_->GetPage() );
+  GraphicsDC dc( visualizationWindow_->GetPage() );
   dc.Clear();
   visualizationWindow_->DisplayBackgrounds( graphicsOutput_, dc );
 }
@@ -763,7 +766,7 @@ void ClearGraphicsWindow( bool replot, int n )
   GRA_window *gw = GetGraphWindow( n );
   SetWindowNumber( n );
   gw->Erase();
-  wxClientDC dc( visualizationWindow_->GetPage() );
+  GraphicsDC dc( visualizationWindow_->GetPage() );
   if( replot )gw->Clear();
   gw->DisplayBackground( graphicsOutput_, dc );
 }
@@ -1180,7 +1183,7 @@ void DefaultSize()
   //
   delete graphicsOutput_;
   graphicsOutput_ = new GRA_wxWidgets( xminM_, yminM_, xmaxM_, ymaxM_ );
-  wxClientDC dc( visualizationWindow_->GetPage() );
+  GraphicsDC dc( visualizationWindow_->GetPage() );
   dc.Clear();
   dc.SetBackground( *wxWHITE_BRUSH );
   //
@@ -1195,7 +1198,7 @@ void ChangeSize( double value )
   ymaxM_ = static_cast<int>(ymaxM_*value+0.5);
   delete graphicsOutput_;
   graphicsOutput_ = new GRA_wxWidgets( xminM_, yminM_, xmaxM_, ymaxM_ );
-  wxClientDC dc( visualizationWindow_->GetPage() );
+  GraphicsDC dc( visualizationWindow_->GetPage() );
   dc.Clear();
   dc.SetBackground( *wxWHITE_BRUSH );
   //
@@ -1650,7 +1653,7 @@ void RestoreSession( wxString &file )
       if( xml.GetName() != wxT("drawableobjects") )
         throw std::runtime_error( InvalidNodeMessage(xml.GetName(),wxT("drawableobjects"),file) );
       
-      wxClientDC dc( visualizationWindow_->GetPage() );
+      GraphicsDC dc( visualizationWindow_->GetPage() );
       bool nextObject = xml.GetFirstChild();
       bool drawableObjects = nextObject;
       while( nextObject )

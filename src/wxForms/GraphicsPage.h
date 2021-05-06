@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <vector>
 
+#include "wx/bitmap.h"
+#include "wx/dcmemory.h"
 #include "wx/notebook.h"
 
 class GRA_window;
@@ -40,7 +42,16 @@ public:
   ~GraphicsPage();
 
   void OnPaint( wxPaintEvent & );
+
+  // This is an expensive operation as it redraws all the drawable objects in
+  // all graphics windows, but currently this has to be done whenever anything
+  // in any of them changes.
+  //
+  // TODO: Provide a more targeted way of refreshing, notably do not redraw
+  //       everything when just adding a new drawable object, as this should be
+  //       unnecessary.
   void RefreshGraphics();
+
   //void Reset();
   void InheritFrom( GraphicsPage const * );
 
@@ -93,7 +104,18 @@ public:
 
   friend std::ostream &operator<<( std::ostream &, GraphicsPage const * );
 
+  // This shouldn't be called directly, use GraphicsDC to draw on this window
+  // instead.
+  //
+  // The returned bitmap is always valid, i.e. the page contents will be
+  // re-rendered into it if necessary, making this a potentially expensive
+  // operation.
+  wxBitmap& GetBackingStore();
+
 private:
+  void OnSize( wxSizeEvent & );
+
+
   int currentWindowNumber_;
   std::vector<GRA_window*> graphWindows_;
 
@@ -113,8 +135,40 @@ private:
   void DeleteGraphWindows();
   void SetUpDefaultWindows();
 
+  // Bitmap containing this window contents.
+  wxBitmap backingStore_;
+
   // any class wishing to process wxWidgets events must use this macro
   DECLARE_EVENT_TABLE()
+};
+
+// This class replaces the previous uses of wxClientDC in the code: instead of
+// drawing directly on the window (which doesn't work with the modern GUI
+// toolkits), it draws on the off-screen bitmap and, importantly, refreshes the
+// window in its dtor, so that it gets repainted later using the updated bitmap
+// contents.
+class GraphicsDC : public wxMemoryDC
+{
+public:
+  explicit GraphicsDC(GraphicsPage* page)
+    : wxMemoryDC(page->GetBackingStore()),
+      page_{page}
+  {
+  }
+
+  ~GraphicsDC()
+  {
+    // TODO: We could try optimizing repainting by refreshing only the
+    //       rectangle corresponding to the updated part of the bitmap, but
+    //       it's not totally clear if we can trust GetBoundingBox() for this,
+    //       so for now be conservative and refresh everything.
+    page_->Refresh();
+  }
+
+private:
+  GraphicsPage* const page_;
+
+  wxDECLARE_NO_COPY_CLASS(GraphicsDC);
 };
 
 #endif

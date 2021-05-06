@@ -456,13 +456,13 @@ MySampleText::MySampleText( wxWindow *parent )
 
 void MySampleText::OnPaint( wxPaintEvent &event )
 {
+  wxPaintDC dc( this );
+  dc.SetBackground( *wxWHITE_BRUSH );
+  dc.Clear();
+
   if( font_.Ok() && colour_.Ok() )
   {
     font_.SetPointSize( 10 );
-    wxPaintDC dc( this );
-    //PrepareDC( dc );
-    dc.SetBackground( *wxWHITE_BRUSH );
-    dc.Clear();
     dc.SetFont( font_ );
     dc.SetTextForeground( colour_ );
     dc.DrawText( wxT("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"), 1, 5 );
@@ -473,15 +473,7 @@ void MySampleText::SetText( wxFont &font, wxColour colour )
 {
   font_ = font;
   colour_ = colour;
-  //
-  font.SetPointSize( 10 );
-  wxClientDC dc( this );
-  //PrepareDC( dc );
-  dc.SetBackground( *wxWHITE_BRUSH );
-  dc.Clear();
-  dc.SetFont( font );
-  dc.SetTextForeground( colour );
-  dc.DrawText( wxT("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"), 1, 5 );
+  Refresh();
 }
 
 // end of file
