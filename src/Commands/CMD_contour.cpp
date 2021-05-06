@@ -152,7 +152,6 @@ void CMD_contour::Execute( ParseLine const *p )
   double xll, yll, xll0;
   GRA_setOfCharacteristics *xAxis = gw->GetXAxisCharacteristics();
   GRA_setOfCharacteristics *yAxis = gw->GetYAxisCharacteristics();
-  wxClientDC dc( ExGlobals::GetwxWindow() );
   if( !qualifiers[wxT("CONTINUE")] )
   {
     if( qualifiers[wxT("AXES")] )
@@ -191,7 +190,6 @@ void CMD_contour::Execute( ParseLine const *p )
         delete cartesianAxes;
         throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
       }
-      //cartesianAxes->Draw( ExGlobals::GetGraphicsOutput(), dc );
       gw->AddDrawableObject( cartesianAxes );
       if( qualifiers[wxT("BORDER")] )
       {
@@ -201,7 +199,6 @@ void CMD_contour::Execute( ParseLine const *p )
         GRA_rectangle *border = new GRA_rectangle(xlo,ylo,xhi,yhi,0.0,false,
                                                   GRA_colorControl::GetColor(wxT("BLACK")),0,1);
 
-        //border->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( border );
       }
       if( qualifiers[wxT("LEGEND")] )
@@ -238,7 +235,6 @@ void CMD_contour::Execute( ParseLine const *p )
             delete tb;
             throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
           }
-          //tb->Draw( ExGlobals::GetGraphicsOutput(), dc );
           gw->AddDrawableObject( tb );
         }
         else
@@ -259,7 +255,6 @@ void CMD_contour::Execute( ParseLine const *p )
           delete tb;
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
-        //tb->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( tb );
         tb = new GRA_drawableText(wxT("value"),ht,angle,xll2,yll,
                                   1,font,GRA_colorControl::GetColor(wxT("BLACK")));
@@ -272,7 +267,6 @@ void CMD_contour::Execute( ParseLine const *p )
           delete tb;
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
-        //tb->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( tb );
       }
     }
@@ -459,7 +453,6 @@ void CMD_contour::Execute( ParseLine const *p )
         {
           throw ECommandError( command+wxString(e.what(),wxConvUTF8) );
         }
-        //dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
         gw->AddDrawableObject( dt );
       }
     }
@@ -491,7 +484,6 @@ void CMD_contour::Execute( ParseLine const *p )
     x.clear();
     y.clear();
     contour->Make();
-    //contour->Draw( ExGlobals::GetGraphicsOutput(), dc );
     gw->AddDrawableObject( contour );
   }
   // save the last legend value for the next plot

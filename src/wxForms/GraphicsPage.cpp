@@ -63,6 +63,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 BEGIN_EVENT_TABLE( GraphicsPage, wxNotebookPage )
   EVT_PAINT( GraphicsPage::OnPaint )
+  EVT_SIZE( GraphicsPage::OnSize )
   EVT_LEFT_DOWN( GraphicsPage::OnMouseLeftDown )
   EVT_RIGHT_DOWN( GraphicsPage::OnMouseRightDown )
   EVT_MOTION( GraphicsPage::OnMouseMove )
@@ -71,6 +72,10 @@ END_EVENT_TABLE()
 GraphicsPage::GraphicsPage( wxNotebook *nb )
     : wxNotebookPage(nb,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxRAISED_BORDER)
 {
+  // As we always repaint the entire window, by blitting our backing store
+  // bitmap over it, we don't need to ask the system to erase the background.
+  SetBackgroundStyle(wxBG_STYLE_PAINT);
+
   int pageCount = nb->GetPageCount();
   nb->AddPage( this, wxString()<<wxT("Page ")<<(pageCount+1), true );
 
@@ -125,17 +130,49 @@ void GraphicsPage::DeleteGraphWindows()
     graphWindows_.pop_back();
   }
 }
-  
+
+wxBitmap& GraphicsPage::GetBackingStore()
+{
+  if( !backingStore_.IsOk() )
+  {
+    backingStore_ = wxBitmap(GetClientSize());
+
+    wxMemoryDC dc(backingStore_);
+    dc.SetBackground( *wxWHITE_BRUSH );
+    dc.Clear();
+    DisplayBackgrounds( ExGlobals::GetGraphicsOutput(), dc );
+    DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
+  }
+
+  return backingStore_;
+}
+
 void GraphicsPage::OnPaint( wxPaintEvent & )
 {
   wxPaintDC dc( this );
-  dc.SetBackground( *wxWHITE_BRUSH );
-  dc.Clear();
-  DrawGraphWindows( ExGlobals::GetGraphicsOutput(), dc );
+  dc.DrawBitmap( GetBackingStore(), 0, 0 );
+}
+
+void GraphicsPage::OnSize( wxSizeEvent& event )
+{
+  event.Skip();
+
+  // Invalidate the bitmap if its size has really changed.
+  if( backingStore_.IsOk() && event.GetSize() != backingStore_.GetSize() )
+  {
+    backingStore_ = wxBitmap();
+  }
 }
 
 void GraphicsPage::RefreshGraphics()
-{ Refresh(); }
+{
+  if( backingStore_.IsOk() )
+  {
+    backingStore_ = wxBitmap();
+  }
+
+  Refresh();
+}
 
 void GraphicsPage::SetUpDefaultWindows()
 {
@@ -305,7 +342,7 @@ void GraphicsPage::ReplotAllWindows()
     for( std::size_t i=0; i<size; ++i )
     {
       currentWindowNumber_ = i;
-      ReplotCurrentWindow( true );
+      ReplotCurrentWindow();
     }
   }
   catch ( EGraphicsError const &e )
@@ -316,12 +353,12 @@ void GraphicsPage::ReplotAllWindows()
   currentWindowNumber_ = nSave;
 }
 
-void GraphicsPage::ReplotCurrentWindow( bool repaint )
+void GraphicsPage::ReplotCurrentWindow()
 {
   if( graphWindows_[currentWindowNumber_]->GetDrawableObjects().empty() )return;
   graphWindows_[currentWindowNumber_]->Erase();
   graphWindows_[currentWindowNumber_]->Replot();
-  if( repaint )Refresh();
+  Refresh();
 }
 
 void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )

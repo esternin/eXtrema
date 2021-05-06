@@ -76,8 +76,6 @@ void CMD_text::Execute( ParseLine const *p )
     }
     else
     {
-      wxClientDC dc( ExGlobals::GetwxWindow() );
-      dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
       gw->AddDrawableObject( dt );
     }
   }

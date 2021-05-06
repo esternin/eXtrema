@@ -142,6 +142,7 @@ namespace ExGlobals
   //void SetwxWindow( wxWindow *, int, int );
   wxWindow *GetwxWindow();
   GRA_wxWidgets *GetGraphicsOutput();
+  GraphicsPage *GetGraphicsPage();
 
   void WriteOutput( wxString const & );
   void WarningMessage( wxString const & );
@@ -229,7 +230,7 @@ namespace ExGlobals
   void ClearWindows();
 
   void ReplotAllWindows();
-  void ReplotCurrentWindow( bool =true );
+  void ReplotCurrentWindow();
 
   void ClearGraphicsMonitor();
   void ClearHistory();

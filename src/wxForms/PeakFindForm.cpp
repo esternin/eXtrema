@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "NumericVariable.h"
 #include "EVariableError.h"
 #include "ExGlobals.h"
+#include "GraphicsPage.h"
 #include "UsefulFunctions.h"
 #include "GRA_setOfCharacteristics.h"
 #include "GRA_doubleCharacteristic.h"
@@ -229,7 +230,7 @@ void PeakFindForm::EraseLastArrow()
 {
   if( currentArrow_ )
   {
-    wxClientDC dc( ExGlobals::GetwxWindow() );
+    GraphicsDC dc( ExGlobals::GetGraphicsPage() );
     currentArrow_->SetLineColor( GRA_colorControl::GetColor(wxT("WHITE")) );
     currentArrow_->Draw( ExGlobals::GetGraphicsOutput(), dc );
     delete currentArrow_;
@@ -241,7 +242,7 @@ void PeakFindForm::DrawArrow()
 {
   if( currentArrow_ )
   {
-    wxClientDC dc( ExGlobals::GetwxWindow() );
+    GraphicsDC dc( ExGlobals::GetGraphicsPage() );
     currentArrow_->SetLineColor( GRA_colorControl::GetColor(wxT("RED")) );
     currentArrow_->Draw( ExGlobals::GetGraphicsOutput(), dc );
   }

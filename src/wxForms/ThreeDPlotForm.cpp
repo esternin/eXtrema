@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "EVariableError.h"
 #include "NVariableTable.h"
 #include "ExGlobals.h"
+#include "GraphicsPage.h"
 #include "GRA_window.h"
 #include "GRA_intCharacteristic.h"
 #include "GRA_sizeCharacteristic.h"
@@ -284,10 +285,9 @@ void ThreeDPlotForm::OnDraw( wxCommandEvent &WXUNUSED(event) )
     return;
   }
   GRA_window *gw = ExGlobals::GetGraphWindow();
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   gw->Clear();
   gw->Erase();
-  visualizationWindow_->GetPage()->Refresh();
   threeDPlot_ = new GRA_threeDPlot( this, x, y, z );
   double e2o;
   eye2objTextCtrl_->GetValue().ToDouble( &e2o );
@@ -317,13 +317,14 @@ void ThreeDPlotForm::ReDraw()
   if( !threeDPlot_ )return;
   GRA_threeDPlot *tmp = new GRA_threeDPlot( *threeDPlot_ );
   GRA_window *gw = ExGlobals::GetGraphWindow();
-  wxClientDC dc( ExGlobals::GetwxWindow() );
+  GraphicsPage *page =  ExGlobals::GetGraphicsPage();
+  GraphicsDC dc( page );
   gw->Clear();
   gw->Erase();
-  visualizationWindow_->GetPage()->Refresh();
   threeDPlot_ = tmp;
   threeDPlot_->Draw( ExGlobals::GetGraphicsOutput(), dc );
   gw->AddDrawableObject( threeDPlot_ );
+  page->Refresh();
 }
 
 void ThreeDPlotForm::OnAngleIncChange( wxCommandEvent &WXUNUSED(event) )
