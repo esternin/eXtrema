@@ -409,25 +409,19 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
         {
           case 1:
           {
-            GRA_arrow1 *a1 = new GRA_arrow1( *currentArrow1_ );
-            graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
-            delete currentArrow1_;
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow1_ );
             currentArrow1_ = 0;
             break;
           }
           case 2:
           {
-            GRA_arrow2 *a2 = new GRA_arrow2( *currentArrow2_ );
-            graphWindows_[currentWindowNumber_]->AddDrawableObject( a2 );
-            delete currentArrow2_;
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow2_ );
             currentArrow2_ = 0;
             break;
           }
           case 3:
           {
-            GRA_arrow3 *a3 = new GRA_arrow3( *currentArrow3_ );
-            graphWindows_[currentWindowNumber_]->AddDrawableObject( a3 );
-            delete currentArrow3_;
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( currentArrow3_ );
             currentArrow3_ = 0;
             break;
           }
@@ -440,25 +434,19 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
         {
           case 1:
           {
-            GRA_rectangle *a1 = new GRA_rectangle( *currentRectangle_ );
-            graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
-            delete currentRectangle_;
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( currentRectangle_ );
             currentRectangle_ = 0;
             break;
           }
           case 2:
           {
-            GRA_polygon *a2 = new GRA_polygon( *currentRegularPolygon_ );
-            graphWindows_[currentWindowNumber_]->AddDrawableObject( a2 );
-            delete currentRegularPolygon_;
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( currentRegularPolygon_ );
             currentRegularPolygon_ = 0;
             break;
           }
           case 3:
           {
-            GRA_star5pt *a3 = new GRA_star5pt( *current5PtStar_ );
-            graphWindows_[currentWindowNumber_]->AddDrawableObject( a3 );
-            delete current5PtStar_;
+            graphWindows_[currentWindowNumber_]->AddDrawableObject( current5PtStar_ );
             current5PtStar_ = 0;
             break;
           }
@@ -467,9 +455,7 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
       else if( ellipsePlacementMode_ )
       {
         ellipsePlacementMode_ = false;
-        GRA_ellipse *a1 = new GRA_ellipse( *currentEllipse_ );
-        graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
-        delete currentEllipse_;
+        graphWindows_[currentWindowNumber_]->AddDrawableObject( currentEllipse_ );
         currentEllipse_ = 0;
       }
       RefreshGraphics();
