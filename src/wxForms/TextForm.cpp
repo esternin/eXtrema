@@ -117,7 +117,7 @@ void TextForm::CreateForm()
   wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
 
-  topSizer->Add( new wxStaticText(topPanel,wxID_ANY,wxT("Text string to draw: ")), wxSizerFlags(0).Right().Border(wxTOP,5) );
+  topSizer->Add( new wxStaticText(topPanel,wxID_ANY,wxT("Text string to draw: ")), wxSizerFlags(0).Border(wxTOP,5) );
   stringTC_ = new wxTextCtrl( topPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxSize(300,25) );
   topSizer->Add( stringTC_, wxSizerFlags(1).Left().Border(wxALL,2) );
   
@@ -149,7 +149,7 @@ void TextForm::CreateForm()
   locyTC_ = new wxTextCtrl( locyPanel, wxID_ANY );
   locySizer->Add( locyTC_, wxSizerFlags(0).Center().Border(wxALL,1) );
   locyPanel->SetSizer( locySizer );
-  locSizer->Add( locyPanel, wxSizerFlags(0).Left().Border(wxALL,1) );
+  locSizer->Add( locyPanel, wxSizerFlags(0).Border(wxALL,1) );
   
   locPanel->SetSizer( locSizer );
   nextSizer->Add( locPanel, wxSizerFlags(0).Left().Border(wxALL,1) );
