@@ -644,7 +644,6 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
 {
   wxString s( command.Upper() );
   bool upperCase = (const_cast<wxString&>(command)[0]==s[0]);
-//  int nNames = sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
   wxChar uc;
 
   for( auto const& sc: SpecialCharacters ) {
