@@ -26,6 +26,11 @@ nobase_dist_icons_DATA = \
     icons/hicolor/32x32/apps/extrema.png \
     icons/hicolor/64x64/apps/extrema.png
 
+install-data-hook: update-icon-cache
+uninstall-hook: update-icon-cache
+update-icon-cache:
+	gtk-update-icon-cache --force --ignore-theme-index $(DESTDIR)$(iconsdir)/icons/hicolor
+
 myimagesdir = $(datadir)/extrema/Images
 myimages_DATA = $(abs_top_srcdir)/Images/*.GIF $(abs_top_srcdir)/Images/*.bmp
 
