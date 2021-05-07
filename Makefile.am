@@ -11,10 +11,13 @@
 # autoreconf suggested we move m4 files to a subdirectory, need to know this in Makefile.am ES
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = extrema.desktop ./fonts ./icons ./Images ./Help ./Scripts ./doc ./demo .gitignore reconf
+EXTRA_DIST = ./fonts ./icons ./Images ./Help ./Scripts ./doc ./demo .gitignore reconf
 
 # list immediate subdirectories only
 SUBDIRS = src
+
+applicationsdir = $(datadir)/applications
+dist_applications_DATA = extrema.desktop
 
 myimagesdir = $(datadir)/extrema/Images
 myimages_DATA = $(abs_top_srcdir)/Images/*.GIF $(abs_top_srcdir)/Images/*.bmp
