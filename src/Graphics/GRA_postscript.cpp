@@ -2292,7 +2292,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
              << "] /" << psFontName.mb_str(wxConvUTF8) << "CU " << height
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
-    bool found = FALSE;
+    bool found = false;
     wxChar c;
     for( size_t i=0; i<tEnd; ++i ) {
       c = text[i];
