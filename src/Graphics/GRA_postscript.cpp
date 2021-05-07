@@ -18,6 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <limits>
 #include <iomanip>
 #include <memory>
+#include <wx/gdicmn.h>
 
 #include "GRA_postscript.h"
 #include "GRA_window.h"
@@ -180,10 +181,11 @@ void GRA_postscript::Initialize( wxString const &filename )
 
   for(int j = 0; j < nf; j++) {
     outFile_ << "/" << all_fonts[j] << " /" << all_fonts[j] << "-Special [\n";
-    for( auto const& sc: SpecialCharacters ) {
+    for( auto const& sc: SpecialCharacters )
+    {
       wxString iName = sc.pname;
-      outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << sc.cid << " /" << iName << "\n";
-      }
+      outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << sc.cid << " /" << iName << std::dec << std::setw(0) << "\n";
+    }
     outFile_ << "] new-font-encoding\n\n"
            << "/" << all_fonts[j] << "CU\n"
            << "<<\n"
@@ -347,24 +349,24 @@ void GRA_postscript::GenerateOutput( double x, double y, int pen )
   {
     case 3:
     {
-      outFile_ << "s newpath " << std::dec << ix << " " << std::dec << iy << " m\n";
+      outFile_ << "s newpath " << ix << " " << iy << " m\n";
       counter_ = 0;
       break;
     }
     case 2:
     {
-      outFile_ << std::dec << ix << " " << std::dec << iy << " l\n";
+      outFile_ << ix << " " << iy << " l\n";
       if( ++counter_ == 500 )
       {
-        outFile_ << "s " << std::dec << ix << " " << std::dec << iy << " m\n";
+        outFile_ << "s " << ix << " " << iy << " m\n";
         counter_ = 0;
       }
       break;
     }
     case 20:
     {
-      outFile_ << "s newpath " << std::dec << ix << " " << std::dec << iy << " m "
-               << std::dec << ix << " " << std::dec << iy << " l\n";
+      outFile_ << "s newpath " << ix << " " << iy << " m "
+               << ix << " " << iy << " l\n";
       counter_ = 0;
       break;
     }
@@ -513,14 +515,14 @@ void GRA_postscript::Draw( GRA_polygon *p )
   if( fillColor )
   {
     SetColor( fillColor );
-    outFile_ << "newpath " << std::dec << ix[0] << " " << std::dec << iy[0] << " m\n";
-    for( std::size_t i=1; i<size; ++i )outFile_ << std::dec << ix[i] << " " << std::dec << iy[i] << " l\n";
+    outFile_ << "newpath " << ix[0] << " " << iy[0] << " m\n";
+    for( std::size_t i=1; i<size; ++i )outFile_ << ix[i] << " " << iy[i] << " l\n";
     outFile_ << "closepath fill\n";
   }
   SetLineWidth( p->GetLineWidth() );
   SetColor( p->GetLineColor() );
-  outFile_ << "newpath " << std::dec << ix[0] << " " << std::dec << iy[0] << " m\n";
-  for( std::size_t i=1; i<size; ++i )outFile_ << std::dec << ix[i] << " " << std::dec << iy[i] << " l\n";
+  outFile_ << "newpath " << ix[0] << " " << iy[0] << " m\n";
+  for( std::size_t i=1; i<size; ++i )outFile_ << ix[i] << " " << iy[i] << " l\n";
   outFile_ << "closepath\n" << "s\n";
 }
 
@@ -2220,10 +2222,10 @@ void GRA_postscript::Draw( GRA_bitmap *b )
   double yscale = bheight;
   //
   outFile_ << "gsave\n"
-           << std::dec << static_cast<int>(xlod+0.5) << " " << std::dec << static_cast<int>(ylod+0.5) << " translate\n"
+           << static_cast<int>(xlod+0.5) << " " << static_cast<int>(ylod+0.5) << " translate\n"
            << xscale << " " << yscale << " scale\n"
-           << std::dec << bwidth << " " << std::dec << bheight << " 8 [" << std::dec << bwidth << " 0 0 -"
-           << std::dec << bheight << " 0 " << std::dec << bheight << "]\n"
+           << bwidth << " " << bheight << " 8 [" << bwidth << " 0 0 -"
+           << bheight << " 0 " << bheight << "]\n"
            << "{currentfile " << 3*bwidth << " string readhexstring pop} bind\n"
            << "false 3 colorimage\n";
   //
@@ -2267,40 +2269,41 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
   std::size_t counter = 0;
   std::vector<GRA_simpleText*>::const_iterator textVecEnd( textVec.end() );
 
-  for( std::vector<GRA_simpleText*>::const_iterator i=textVec.begin(); i!=textVecEnd; ++i, ++counter ) {
-    wxString text( (*i)->GetString() );
+//  for( std::vector<GRA_simpleText*>::const_iterator i=textVec.begin(); i!=textVecEnd; ++i, ++counter ) {
+  for( auto simpleText: textVec )
+  {
+    wxString text( (simpleText)->GetString() );
     if( text.empty() )continue;
     int r, g, b;
-    (*i)->GetColor()->GetRGB( r, g, b );
+    (simpleText)->GetColor()->GetRGB( r, g, b );
     double dr = static_cast<double>(r)/255.0;
     double dg = static_cast<double>(g)/255.0;
     double db = static_cast<double>(b)/255.0;
     
-    wxString fontName( (*i)->GetFont()->GetFontName() );
+    wxString fontName( (simpleText)->GetFont()->GetFontName() );
     wxString psFontName;
-    psFontName = GRA_fontControl::GetPostScriptFontName( (*i)->GetFont()->GetFontName() );
+    psFontName = GRA_fontControl::GetPostScriptFontName( (simpleText)->GetFont()->GetFontName() );
     ExGlobals::RemoveBlanks( fontName );
     ExGlobals::ToCapitalize( fontName );
-    double height = dotsPerInch_*(*i)->GetHeight();
-    double xshift = dotsPerInch_*(*i)->GetXShift();
-    double yshift = dotsPerInch_*(*i)->GetYShift();
+    double height = dotsPerInch_*(simpleText)->GetHeight();
+    double xshift = dotsPerInch_*(simpleText)->GetXShift();
+    double yshift = dotsPerInch_*(simpleText)->GetYShift();
     // font size fudge factor
-    height *= 85./72.;
+    height *= 96. / 72.;
 
     maxHeight = std::max( height, maxHeight );
     outFile_ << "TextBuffer " << counter << " [[" << dr << " " << dg << " " << db
              << "] /" << psFontName.mb_str(wxConvUTF8) << "CU " << height
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
-    bool found = false;
+    bool found = FALSE;
     wxChar c;
     for( size_t i=0; i<tEnd; ++i ) {
       c = text[i];
-      //auto found_cid = findByUcode((wxChar)j);
       for( auto const& sc: SpecialCharacters ) {
         if(c == sc.ucode) { // this is a special character, substitute
           outFile_ << "\\377\\001\\" << std::setfill('0') << std::setw(3) << std::oct <<  sc.cid << "\\377\\000" << std::dec << std::setw(0);
-	  found = true;
+	  found = TRUE;
 	  break;
           }
         }
@@ -2308,6 +2311,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
         outFile_ << "\\" << std::setfill('0') << std::setw(3) << std::oct << c << std::dec << std::setw(0);
       }
     outFile_ << ")] put\n";
+    ++counter;
     }
   outFile_ << "SetupText\n";
   double xLoc = dt->GetX();

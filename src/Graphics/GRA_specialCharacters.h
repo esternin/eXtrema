@@ -23,7 +23,7 @@ struct GRA_specialCharacter
     wxChar const *ename;   // special character eXtrema name
     wxChar const *pname;   // special character PostScript name
     wxChar const ucode;    // Unicode character code
-    wxChar const cid;      // remapped to this ascii
+    wxChar const cid;      // remapped to this Character ID
   };
 
 #endif

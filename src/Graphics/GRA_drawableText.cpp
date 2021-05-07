@@ -42,55 +42,55 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_specialCharacters.h"
 
 std::vector <GRA_specialCharacter> SpecialCharacters {
-      // for Greek letters make an approximation
-      {wxT("ALPHA"),wxT("Alpha"),0x0391,0x41},	// A
-      {wxT("alpha"),wxT("alpha"),0x03B1,0x61},	// a
-      {wxT("BETA"),wxT("Beta"),0x0392,0x42},	// B
-      {wxT("beta"),wxT("beta"),0x03B2,0x62},	// b
-      {wxT("GAMMA"),wxT("Gamma"),0x0393,0x47},	// G
-      {wxT("gamma"),wxT("gamma"),0x03B3,0x67},	// g
-      {wxT("DELTA"),wxT("Delta"),0x0394,0x44},	// D
-      {wxT("delta"),wxT("delta"),0x03B4,0x64},	// d
-      {wxT("EPSILON"),wxT("Epsilon"),0x0395,0x45},	// E
-      {wxT("epsilon"),wxT("epsilon"),0x03B5,0x65},	// e
-      {wxT("ZETA"),wxT("Zeta"),0x0396,0x5A},	// Z
-      {wxT("zeta"),wxT("zeta"),0x03B6,0x7A},	// z
-      {wxT("ETA"),wxT("Eta"),0x0397,0x48},		// H
-      {wxT("eta"),wxT("eta"),0x03B7,0x68},		// h
-      {wxT("THETA"),wxT("Theta"),0x0398,0x46},	// F
-      {wxT("theta"),wxT("theta"),0x03B8,0x66},	// f
-      {wxT("IOTA"),wxT("Iota"),0x0399,0x49},	// I
-      {wxT("iota"),wxT("iota"),0x03B9,0x69},	// i
-      {wxT("KAPPA"),wxT("Kappa"),0x039A,0x4B},	// K
-      {wxT("kappa"),wxT("kappa"),0x03BA,0x6B},	// k
-      {wxT("LAMBDA"),wxT("Lambda"),0x039B,0x4C},	// L
-      {wxT("lambda"),wxT("lambda"),0x03BB,0x6C},	// l
-      {wxT("MU"),wxT("Mu"),0x039C,0x4D},		// M
-      {wxT("mu"),wxT("mu"),0x03BC,0x6D},		// m
-      {wxT("NU"),wxT("Nu"),0x039D,0x4E},		// N
-      {wxT("nu"),wxT("nu"),0x03BD,0x6E},		// n
-      {wxT("XI"),wxT("Xi"),0x039E,0x51},		// Q
-      {wxT("xi"),wxT("xi"),0x03BE,0x71},		// q
-      {wxT("OMICRON"),wxT("Omicron"),0x039F,0x4F},	// O
-      {wxT("omicron"),wxT("omicron"),0x03BF,0x6F},	// o
-      {wxT("PI"),wxT("Pi"),0x03A0,0x50},		// P
-      {wxT("pi"),wxT("pi"),0x03C0,0x70},		// P
-      {wxT("RHO"),wxT("Rho"),0x03A1,0x52},		// R
-      {wxT("rho"),wxT("rho"),0x03C1,0x72},		// r
-      {wxT("SIGMA"),wxT("Sigma"),0x03A3,0x53},	// S
-      {wxT("sigma"),wxT("sigma"),0x03C3,0x73},	// s
-      {wxT("TAU"),wxT("Tau"),0x03A4,0x54},		// T
-      {wxT("tau"),wxT("tau"),0x03C4,0x74},		// t
-      {wxT("UPSILON"),wxT("Upsilon"),0x03A5,0x55},	// U
-      {wxT("upsilon"),wxT("upsilon"),0x03C5,0x75},	// u
-      {wxT("PHI"),wxT("Phi"),0x03A6,0x56},		// V
-      {wxT("phi"),wxT("phi"),0x03C6,0x76},		// v
-      {wxT("CHI"),wxT("Chi"),0x03A7,0x58},		// X
-      {wxT("chi"),wxT("chi"),0x03C7,0x78},		// x
-      {wxT("PSI"),wxT("Psi"),0x03A8,0x59},		// Y
-      {wxT("psi"),wxT("psi"),0x03C8,0x79},		// y
-      {wxT("OMEGA"),wxT("Omega"),0x03A9,0x57},	// W
-      {wxT("omega"),wxT("omega"),0x03C9,0x77},	// w
+      // for Greek letters make an approximation, helps debugging PS fonts
+      {wxT("ALPHA"),wxT("Alpha"),0x0391,'A'},
+      {wxT("alpha"),wxT("alpha"),0x03B1,'a'},
+      {wxT("BETA"),wxT("Beta"),0x0392,'B'},
+      {wxT("beta"),wxT("beta"),0x03B2,'b'},
+      {wxT("GAMMA"),wxT("Gamma"),0x0393,'G'},
+      {wxT("gamma"),wxT("gamma"),0x03B3,'g'},
+      {wxT("DELTA"),wxT("Delta"),0x0394,'D'},
+      {wxT("delta"),wxT("delta"),0x03B4,'d'},
+      {wxT("EPSILON"),wxT("Epsilon"),0x0395,'E'},
+      {wxT("epsilon"),wxT("epsilon"),0x03B5,'e'},
+      {wxT("ZETA"),wxT("Zeta"),0x0396,'Z'},
+      {wxT("zeta"),wxT("zeta"),0x03B6,'z'},
+      {wxT("ETA"),wxT("Eta"),0x0397,'H'},	
+      {wxT("eta"),wxT("eta"),0x03B7,'h'},
+      {wxT("THETA"),wxT("Theta"),0x0398,'F'},
+      {wxT("theta"),wxT("theta"),0x03B8,'f'},
+      {wxT("IOTA"),wxT("Iota"),0x0399,'I'},
+      {wxT("iota"),wxT("iota"),0x03B9,'i'},
+      {wxT("KAPPA"),wxT("Kappa"),0x039A,'K'},
+      {wxT("kappa"),wxT("kappa"),0x03BA,'k'},
+      {wxT("LAMBDA"),wxT("Lambda"),0x039B,'L'},
+      {wxT("lambda"),wxT("lambda"),0x03BB,'l'},
+      {wxT("MU"),wxT("Mu"),0x039C,'M'},
+      {wxT("mu"),wxT("mu"),0x03BC,'m'},
+      {wxT("NU"),wxT("Nu"),0x039D,'N'},
+      {wxT("nu"),wxT("nu"),0x03BD,'n'},
+      {wxT("XI"),wxT("Xi"),0x039E,'Q'},
+      {wxT("xi"),wxT("xi"),0x03BE,'q'},
+      {wxT("OMICRON"),wxT("Omicron"),0x039F,'O'},
+      {wxT("omicron"),wxT("omicron"),0x03BF,'o'},
+      {wxT("PI"),wxT("Pi"),0x03A0,'P'},
+      {wxT("pi"),wxT("pi"),0x03C0,'p'},
+      {wxT("RHO"),wxT("Rho"),0x03A1,'R'},
+      {wxT("rho"),wxT("rho"),0x03C1,'r'},
+      {wxT("SIGMA"),wxT("Sigma"),0x03A3,'S'},
+      {wxT("sigma"),wxT("sigma"),0x03C3,'s'},
+      {wxT("TAU"),wxT("Tau"),0x03A4,'T'},
+      {wxT("tau"),wxT("tau"),0x03C4,'t'},
+      {wxT("UPSILON"),wxT("Upsilon"),0x03A5,'U'},
+      {wxT("upsilon"),wxT("upsilon"),0x03C5,'u'},
+      {wxT("PHI"),wxT("Phi"),0x03A6,'V'},
+      {wxT("phi"),wxT("phi"),0x03C6,'v'},
+      {wxT("CHI"),wxT("Chi"),0x03A7,'X'},
+      {wxT("chi"),wxT("chi"),0x03C7,'x'},
+      {wxT("PSI"),wxT("Psi"),0x03A8,'Y'},
+      {wxT("psi"),wxT("psi"),0x03C8,'y'},	
+      {wxT("OMEGA"),wxT("Omega"),0x03A9,'W'},
+      {wxT("omega"),wxT("omega"),0x03C9,'w'},
       // for the rest, fill in order, unless there is an obvious candidate in ASCII
       {wxT("VARTHETA"),wxT("theta1"),0x03D1,0x01},
       {wxT("VARPHI"),wxT("phi1"),0x03D5,0x02},
@@ -644,15 +644,17 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
 {
   wxString s( command.Upper() );
   bool upperCase = (const_cast<wxString&>(command)[0]==s[0]);
+//  int nNames = sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
   wxChar uc;
 
+//  for(int i = 0; i < nNames; i++) {
   for( auto const& sc: SpecialCharacters ) {
     if( s == sc.ename ) {
       uc = sc.ucode;
       if( !upperCase && uc >= L'Α' && uc <= L'Ω' )  // Greek letters differ in upper/lowercase
-        uc += 0x0020 ;
+	uc += 0x0020 ;
       return uc;		// everything else is the same in upper/lowercase
-    }
+      }
     }
   return 0;
 }
