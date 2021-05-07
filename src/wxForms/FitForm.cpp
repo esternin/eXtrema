@@ -852,7 +852,7 @@ void FitForm::TestTheFit()
   static_cast<GRA_intCharacteristic*>(textC->Get(wxT("ALIGNMENT")))->Set( 1 );
   static_cast<GRA_angleCharacteristic*>(textC->Get(wxT("ANGLE")))->Set( 0.0 );
   static_cast<GRA_colorCharacteristic*>(textC->Get(wxT("COLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(textC->Get(wxT("FONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(textC->Get(wxT("FONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(textC->Get(wxT("HEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_boolCharacteristic*>(textC->Get(wxT("INTERACTIVE")))->Set( false );
   double yuaxis = static_cast<GRA_distanceCharacteristic*>(yAxisC->Get(wxT("UPPERAXIS")))->GetAsPercent();
@@ -1642,7 +1642,7 @@ void FitForm::PlotFit()
   static_cast<GRA_intCharacteristic*>(textC->Get(wxT("ALIGNMENT")))->Set( 1 );
   static_cast<GRA_angleCharacteristic*>(textC->Get(wxT("ANGLE")))->Set( 0.0 );
   static_cast<GRA_colorCharacteristic*>(textC->Get(wxT("COLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(textC->Get(wxT("FONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(textC->Get(wxT("FONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(textC->Get(wxT("HEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_boolCharacteristic*>(textC->Get(wxT("INTERACTIVE")))->Set( false );
   static_cast<GRA_distanceCharacteristic*>(textC->Get(wxT("XLOCATION")))->SetAsPercent( xlaxis );

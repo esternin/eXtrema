@@ -867,7 +867,7 @@ void GRA_window::CreateGeneralCharacteristics( double xl, double yl, double xu, 
   generalCharacteristics_->AddColor( wxT("AREAFILLCOLOR"), 0 );
   generalCharacteristics_->AddBool( wxT("GRAPHBOX"), true );
   generalCharacteristics_->AddColor( wxT("COLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  generalCharacteristics_->AddFont( wxT("FONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  generalCharacteristics_->AddFont( wxT("FONT"), GRA_fontControl::GetFont(wxT("SANS")) );
   generalCharacteristics_->AddNumber( wxT("LINEWIDTH"), 1 );
   generalCharacteristics_->AddNumber( wxT("GRIDLINETYPE"), 7 );
   generalCharacteristics_->AddSize( wxT("LEGENDSIZE"), 3.0, true, yl, yu );
@@ -890,7 +890,7 @@ void GRA_window::SetGeneralDefaults()
   static_cast<GRA_colorCharacteristic*>(generalCharacteristics_->Get(wxT("COLOR")))->
       Set( GRA_colorControl::GetColor(wxT("BLACK")) );
   static_cast<GRA_fontCharacteristic*>(generalCharacteristics_->Get(wxT("FONT")))->
-      Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+      Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_intCharacteristic*>(generalCharacteristics_->Get(wxT("LINEWIDTH")))->
       Set( 1 );
   static_cast<GRA_intCharacteristic*>(generalCharacteristics_->Get(wxT("GRIDLINETYPE")))->
@@ -935,11 +935,11 @@ void GRA_window::CreateXAxisCharacteristics( double xl, double yl, double xu, do
   xAxisCharacteristics_->AddString( wxT("LABEL"), wxString(wxT("")) );
   xAxisCharacteristics_->AddBool( wxT("LABELON"), false );
   xAxisCharacteristics_->AddColor( wxT("LABELCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  xAxisCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  xAxisCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SANS")) );
   xAxisCharacteristics_->AddSize( wxT("LABELHEIGHT"), 3.0, true, yl, yu );
   xAxisCharacteristics_->AddBool( wxT("NUMBERSON"), true );
   xAxisCharacteristics_->AddColor( wxT("NUMBERSCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  xAxisCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  xAxisCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SANS")) );
   xAxisCharacteristics_->AddSize( wxT("NUMBERSHEIGHT"), 3.0, true, yl, yu );
   xAxisCharacteristics_->AddAngle( wxT("NUMBERSANGLE"), 0.0 );
   xAxisCharacteristics_->AddNumber( wxT("NUMBEROFDIGITS"), 5 );
@@ -982,11 +982,11 @@ void GRA_window::SetXAxisDefaults()
   static_cast<GRA_boolCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELON")))->Set( false );
   static_cast<GRA_stringCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABEL")))->Set( wxString(wxT("")) );
   static_cast<GRA_colorCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(xAxisCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_boolCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSON")))->Set( true );
   static_cast<GRA_colorCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSHEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_angleCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBERSANGLE")))->Set( 0.0 );
   static_cast<GRA_intCharacteristic*>(xAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 5 );
@@ -1031,11 +1031,11 @@ void GRA_window::CreateYAxisCharacteristics( double xl, double yl, double xu, do
   yAxisCharacteristics_->AddString( wxT("LABEL"), wxString(wxT("")) );
   yAxisCharacteristics_->AddBool( wxT("LABELON"), false );
   yAxisCharacteristics_->AddColor( wxT("LABELCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  yAxisCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  yAxisCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SANS")) );
   yAxisCharacteristics_->AddSize( wxT("LABELHEIGHT"), 3.0, true, yl, yu );
   yAxisCharacteristics_->AddBool( wxT("NUMBERSON"), true );
   yAxisCharacteristics_->AddColor( wxT("NUMBERSCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  yAxisCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  yAxisCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SANS")) );
   yAxisCharacteristics_->AddSize( wxT("NUMBERSHEIGHT"), 3.0, true, yl, yu );
   yAxisCharacteristics_->AddAngle( wxT("NUMBERSANGLE"), 0.0 );
   yAxisCharacteristics_->AddNumber( wxT("NUMBEROFDIGITS"), 5 );
@@ -1078,11 +1078,11 @@ void GRA_window::SetYAxisDefaults()
   static_cast<GRA_boolCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELON")))->Set( false );
   static_cast<GRA_stringCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABEL")))->Set( wxString(wxT("")) );
   static_cast<GRA_colorCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(yAxisCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_boolCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSON")))->Set( true );
   static_cast<GRA_colorCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSHEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_angleCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBERSANGLE")))->Set( 0.0 );
   static_cast<GRA_intCharacteristic*>(yAxisCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 5 );
@@ -1121,7 +1121,7 @@ void GRA_window::CreateGraphLegendCharacteristics( double xl, double yl, double 
   graphLegendCharacteristics_->AddString( wxT("TITLE"), wxString(wxT("")) );
   graphLegendCharacteristics_->AddSize( wxT("TITLEHEIGHT"), 3.0, true, yl, yu );
   graphLegendCharacteristics_->AddColor( wxT("TITLECOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  graphLegendCharacteristics_->AddFont( wxT("TITLEFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  graphLegendCharacteristics_->AddFont( wxT("TITLEFONT"), GRA_fontControl::GetFont(wxT("SANS")) );
 }
 
 void GRA_window::SetGraphLegendDefaults()
@@ -1140,7 +1140,7 @@ void GRA_window::SetGraphLegendDefaults()
   static_cast<GRA_stringCharacteristic*>(graphLegendCharacteristics_->Get(wxT("TITLE")))->Set( wxString(wxT("")) );
   static_cast<GRA_sizeCharacteristic*>(graphLegendCharacteristics_->Get(wxT("TITLEHEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_colorCharacteristic*>(graphLegendCharacteristics_->Get(wxT("TITLECOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(graphLegendCharacteristics_->Get(wxT("TITLEFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(graphLegendCharacteristics_->Get(wxT("TITLEFONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
 }
 
 void GRA_window::CreateDataCurveCharacteristics( double yl, double yu )
@@ -1180,7 +1180,7 @@ void GRA_window::CreateTextCharacteristics( double xl, double yl, double xu, dou
   textCharacteristics_->AddNumber( wxT("ALIGNMENT"), 1 );
   textCharacteristics_->AddAngle( wxT("ANGLE"), 0.0 );
   textCharacteristics_->AddColor( wxT("COLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  textCharacteristics_->AddFont( wxT("FONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  textCharacteristics_->AddFont( wxT("FONT"), GRA_fontControl::GetFont(wxT("SANS")) );
   textCharacteristics_->AddSize( wxT("HEIGHT"), 3.0, true, yl, yu );
   textCharacteristics_->AddBool( wxT("INTERACTIVE"), true );
   textCharacteristics_->AddDistance( wxT("XLOCATION"), 50.0, true, xl, xu );
@@ -1192,7 +1192,7 @@ void GRA_window::SetTextDefaults()
   static_cast<GRA_intCharacteristic*>(textCharacteristics_->Get(wxT("ALIGNMENT")))->Set( 1 );
   static_cast<GRA_angleCharacteristic*>(textCharacteristics_->Get(wxT("ANGLE")))->Set( 0.0 );
   static_cast<GRA_colorCharacteristic*>(textCharacteristics_->Get(wxT("COLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(textCharacteristics_->Get(wxT("FONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(textCharacteristics_->Get(wxT("FONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(textCharacteristics_->Get(wxT("HEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_boolCharacteristic*>(textCharacteristics_->Get(wxT("INTERACTIVE")))->Set( true );
   static_cast<GRA_distanceCharacteristic*>(textCharacteristics_->Get(wxT("XLOCATION")))->SetAsPercent( 50.0 );
@@ -1225,11 +1225,11 @@ void GRA_window::CreatePolarCharacteristics( double xl, double yl, double xu, do
   polarCharacteristics_->AddString( wxT("LABEL"), wxString(wxT("")) );
   polarCharacteristics_->AddBool( wxT("LABELON"), false );
   polarCharacteristics_->AddColor( wxT("LABELCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  polarCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  polarCharacteristics_->AddFont( wxT("LABELFONT"), GRA_fontControl::GetFont(wxT("SANS")) );
   polarCharacteristics_->AddSize( wxT("LABELHEIGHT"), 3.0, true, yl, yu );
   polarCharacteristics_->AddBool( wxT("NUMBERSON"), true );
   polarCharacteristics_->AddColor( wxT("NUMBERSCOLOR"), GRA_colorControl::GetColor(wxT("BLACK")) );
-  polarCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SWISS")) );
+  polarCharacteristics_->AddFont( wxT("NUMBERSFONT"), GRA_fontControl::GetFont(wxT("SANS")) );
   polarCharacteristics_->AddSize( wxT("NUMBERSHEIGHT"), 3.0, true, yl, yu );
   polarCharacteristics_->AddAngle( wxT("NUMBERSANGLE"), 0.0 );
   polarCharacteristics_->AddNumber( wxT("NUMBEROFDIGITS"), 5 );
@@ -1274,11 +1274,11 @@ void GRA_window::SetPolarDefaults()
   static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("LABELON")))->Set( false );
   static_cast<GRA_stringCharacteristic*>(polarCharacteristics_->Get(wxT("LABEL")))->Set( wxString(wxT("")) );
   static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("LABELCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("LABELFONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("LABELHEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_boolCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSON")))->Set( true );
   static_cast<GRA_colorCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSCOLOR")))->Set( GRA_colorControl::GetColor(wxT("BLACK")) );
-  static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SWISS")) );
+  static_cast<GRA_fontCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSFONT")))->Set( GRA_fontControl::GetFont(wxT("SANS")) );
   static_cast<GRA_sizeCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSHEIGHT")))->SetAsPercent( 3.0 );
   static_cast<GRA_angleCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBERSANGLE")))->Set( 0.0 );
   static_cast<GRA_intCharacteristic*>(polarCharacteristics_->Get(wxT("NUMBEROFDIGITS")))->Set( 5 );
