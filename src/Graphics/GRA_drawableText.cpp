@@ -653,7 +653,7 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
       if( !upperCase && uc >= L'Α' && uc <= L'Ω' )  // Greek letters differ in upper/lowercase
         uc += 0x0020 ;
       return uc;		// everything else is the same in upper/lowercase
-      }
+    }
     }
   return 0;
 }
