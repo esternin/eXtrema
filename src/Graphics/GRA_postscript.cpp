@@ -2296,14 +2296,14 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
              << "] /" << psFontName.mb_str(wxConvUTF8) << "CU " << height
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
-    bool found = FALSE;
+    bool found = false;
     wxChar c;
     for( size_t i=0; i<tEnd; ++i ) {
       c = text[i];
       for( auto const& sc: SpecialCharacters ) {
         if(c == sc.ucode) { // this is a special character, substitute
           outFile_ << "\\377\\001\\" << std::setfill('0') << std::setw(3) << std::oct <<  sc.cid << "\\377\\000" << std::dec << std::setw(0);
-	  found = TRUE;
+	  found = true;
 	  break;
           }
         }
