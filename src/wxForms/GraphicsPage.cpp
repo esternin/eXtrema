@@ -440,7 +440,7 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
         {
           case 1:
           {
-            GRA_rectangle *a1 = new GRA_rectangle( *static_cast<GRA_rectangle*>(currentRectangle_) );
+            GRA_rectangle *a1 = new GRA_rectangle( *currentRectangle_ );
             graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
             delete currentRectangle_;
             currentRectangle_ = 0;
@@ -456,7 +456,7 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
           }
           case 3:
           {
-            GRA_star5pt *a3 = new GRA_star5pt( *static_cast<GRA_star5pt*>(current5PtStar_) );
+            GRA_star5pt *a3 = new GRA_star5pt( *current5PtStar_ );
             graphWindows_[currentWindowNumber_]->AddDrawableObject( a3 );
             delete current5PtStar_;
             current5PtStar_ = 0;

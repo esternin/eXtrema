@@ -28,6 +28,8 @@ class GRA_window;
 class GRA_drawableText;
 class GRA_outputType;
 class GRA_polygon;
+class GRA_rectangle;
+class GRA_star5pt;
 class GRA_arrow1;
 class GRA_arrow2;
 class GRA_arrow3;
@@ -129,7 +131,9 @@ private:
   GRA_arrow1 *currentArrow1_;
   GRA_arrow2 *currentArrow2_;
   GRA_arrow3 *currentArrow3_;
-  GRA_polygon *currentRectangle_, *currentRegularPolygon_, *current5PtStar_;
+  GRA_rectangle *currentRectangle_;
+  GRA_polygon *currentRegularPolygon_;
+  GRA_star5pt *current5PtStar_;
   GRA_ellipse *currentEllipse_;
 
   void DeleteGraphWindows();
