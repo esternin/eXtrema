@@ -372,13 +372,10 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
     double x, y;
     graphicsOutput->OutputTypeToWorld( static_cast<int>(xl), static_cast<int>(yl), x, y );
     //
-    wxClientDC dc( this );
-    //PrepareDC( dc );
-    //
     textToPlace_->SetX( x );
     textToPlace_->SetY( y );
-    textToPlace_->Draw( graphicsOutput, dc );
     gw->AddDrawableObject( textToPlace_ );
+    RefreshGraphics();
     ExGlobals::HideHint();
     if( ExGlobals::StackIsOn() )
     {
@@ -408,13 +405,10 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
       if( arrowPlacementMode_ )
       {
         arrowPlacementMode_ = false;
-        wxClientDC dc( this );
-        dc.SetLogicalFunction( wxCOPY );
         switch (arrowType_)
         {
           case 1:
           {
-            currentArrow1_->Draw( graphicsOutput, dc );
             GRA_arrow1 *a1 = new GRA_arrow1( *currentArrow1_ );
             graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
             delete currentArrow1_;
@@ -423,7 +417,6 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
           }
           case 2:
           {
-            currentArrow2_->Draw( graphicsOutput, dc );
             GRA_arrow2 *a2 = new GRA_arrow2( *currentArrow2_ );
             graphWindows_[currentWindowNumber_]->AddDrawableObject( a2 );
             delete currentArrow2_;
@@ -432,7 +425,6 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
           }
           case 3:
           {
-            currentArrow3_->Draw( graphicsOutput, dc );
             GRA_arrow3 *a3 = new GRA_arrow3( *currentArrow3_ );
             graphWindows_[currentWindowNumber_]->AddDrawableObject( a3 );
             delete currentArrow3_;
@@ -444,13 +436,10 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
       else if( polygonPlacementMode_ )
       {
         polygonPlacementMode_ = false;
-        wxClientDC dc( this );
-        dc.SetLogicalFunction( wxCOPY );
         switch (polygonType_)
         {
           case 1:
           {
-            currentRectangle_->Draw( graphicsOutput, dc );
             GRA_rectangle *a1 = new GRA_rectangle( *static_cast<GRA_rectangle*>(currentRectangle_) );
             graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
             delete currentRectangle_;
@@ -459,7 +448,6 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
           }
           case 2:
           {
-            currentRegularPolygon_->Draw( graphicsOutput, dc );
             GRA_polygon *a2 = new GRA_polygon( *currentRegularPolygon_ );
             graphWindows_[currentWindowNumber_]->AddDrawableObject( a2 );
             delete currentRegularPolygon_;
@@ -468,7 +456,6 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
           }
           case 3:
           {
-            current5PtStar_->Draw( graphicsOutput, dc );
             GRA_star5pt *a3 = new GRA_star5pt( *static_cast<GRA_star5pt*>(current5PtStar_) );
             graphWindows_[currentWindowNumber_]->AddDrawableObject( a3 );
             delete current5PtStar_;
@@ -480,16 +467,12 @@ void GraphicsPage::OnMouseLeftDown( wxMouseEvent &event )
       else if( ellipsePlacementMode_ )
       {
         ellipsePlacementMode_ = false;
-        wxClientDC dc( this );
-        dc.SetLogicalFunction( wxCOPY );
-        currentEllipse_->Draw( graphicsOutput, dc );
         GRA_ellipse *a1 = new GRA_ellipse( *currentEllipse_ );
         graphWindows_[currentWindowNumber_]->AddDrawableObject( a1 );
         delete currentEllipse_;
         currentEllipse_ = 0;
       }
-      Refresh();
-      Update();
+      RefreshGraphics();
     }
   }
 }

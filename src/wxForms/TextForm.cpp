@@ -33,7 +33,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "EVariableError.h"
 #include "NVariableTable.h"
 #include "ExGlobals.h"
-#include "GraphicsPage.h"
 #include "GRA_font.h"
 #include "GRA_fontControl.h"
 #include "GRA_window.h"
@@ -334,10 +333,7 @@ void TextForm::Draw()
       gw->AddDrawableObject( dt );
       dt->SetX( static_cast<GRA_distanceCharacteristic*>(textC->Get(wxT("XLOCATION")))->GetAsWorld() );
       dt->SetY( static_cast<GRA_distanceCharacteristic*>(textC->Get(wxT("YLOCATION")))->GetAsWorld() );
-      GraphicsPage *page =  ExGlobals::GetGraphicsPage();
-      GraphicsDC dc( page );
-      dt->Draw( ExGlobals::GetGraphicsOutput(), dc );
-      page->Refresh();
+      visualizationWindow_->RefreshGraphics();
     }
   }
   if( ExGlobals::StackIsOn() )
@@ -411,8 +407,7 @@ void TextForm::OnErase( wxCommandEvent &WXUNUSED(event) )
 void TextForm::Erase()
 {
   ExGlobals::GetGraphWindow()->RemoveLastTextString();
-  ExGlobals::GetwxWindow()->Refresh();
-  ExGlobals::GetwxWindow()->Update();
+  ExGlobals::RefreshGraphics();
   if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("FORM TEXT,ERASE") );
 }
 

@@ -1564,12 +1564,10 @@ void GRA_window::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
 void GRA_window::RemoveLastTextString()
 {
-  GraphicsDC dc( ExGlobals::GetGraphicsPage() );
   for( int i=static_cast<int>(drawableObjects_.size())-1; i>=0; --i )
   {
     if( drawableObjects_[i]->IsaDrawableText() )
     {
-      static_cast<GRA_drawableText*>(drawableObjects_[i])->Erase( ExGlobals::GetGraphicsOutput(), dc );
       drawableObjects_.erase( drawableObjects_.begin()+i );
       break;
     }
