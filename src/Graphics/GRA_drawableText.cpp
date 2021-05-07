@@ -647,7 +647,6 @@ wxChar GRA_drawableText::Special( wxString const &command, wxString &fontName )
 //  int nNames = sizeof(SpecialCharacters) / sizeof(SpecialCharacters[0]);
   wxChar uc;
 
-//  for(int i = 0; i < nNames; i++) {
   for( auto const& sc: SpecialCharacters ) {
     if( s == sc.ename ) {
       uc = sc.ucode;
