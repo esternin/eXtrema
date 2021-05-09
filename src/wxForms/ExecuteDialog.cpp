@@ -154,7 +154,7 @@ void ExecuteDialog::Apply()
   {
     CMD_execute::Instance()->Execute( &p );
   }
-  catch( ECommandError &e )
+  catch( std::runtime_error &e )
   {
     wxMessageBox( wxString(e.what(),wxConvUTF8),
                   wxT("Fatal error"), wxOK|wxICON_ERROR, this );
