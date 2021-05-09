@@ -111,7 +111,7 @@ GRA_wxWidgets *graphicsOutput_;
 wxString scriptExtension_, stackExtension_;
 wxChar continuationCharacter_, executeCharacter_;
 bool echo_, pausing_, stackIsOn_, stackSaved_, executeFlag_;
-int nHistory_, maxHistory_, currentScriptNumber_, scriptNumberSave_;
+int nHistory_, maxHistory_, currentScriptNumber_;
 std::vector<Script*> scripts_;
 bool workingColorFlag_, workingFontFlag_;
 double workingFontHeight_, workingFontAngle_;
@@ -207,7 +207,6 @@ void Initialize()
   scriptExtension_ = wxT("pcm");
   stackExtension_ = wxT("stk");
   currentScriptNumber_ = 0;
-  scriptNumberSave_ = 0;
   executeCommand_ = false;
   returnCommand_ = false;
   pausingScript_ = false;
