@@ -111,20 +111,88 @@ GRA_wxWidgets *graphicsOutput_;
 wxString scriptExtension_, stackExtension_;
 wxChar continuationCharacter_, executeCharacter_;
 bool echo_, pausing_, stackIsOn_, stackSaved_, executeFlag_;
-int nHistory_, maxHistory_, currentScriptNumber_;
-std::vector<Script*> scripts_;
+int nHistory_, maxHistory_;
 bool workingColorFlag_, workingFontFlag_;
 double workingFontHeight_, workingFontAngle_;
 int workingColorCode_, workingFontCode_, workingFontColorCode_;
 wxString currentPath_, executablePath_, helpPath_, imagePath_, stackFile_;
-bool noviceMode_, executeCommand_, returnCommand_, pausingScript_, restartingScript_;
+bool noviceMode_;
+
+// Variables related to script execution.
+//
+// Active scripts are stored in scripts_ vector which is used as a stack, i.e.
+// nested scripts are added to it at the back and popped from it when they
+// finish running.
+//
+// The main complication here is support for pausing, and then restarting, the
+// scripts: the special "pause" command can be used to suspend the script
+// execution, to allow the user to execute any commands other than "execute"
+// interactively before restarting it by entering an empty command (see
+// CommandTextCtrl::DoACommand()). This is implemented by remembering which
+// script was paused in Script::scriptOriginatingPause_ and then, when
+// restarting, re-running all the scripts starting from the first one, but
+// without actually doing anything while restartingScript_ flag is true, until
+// we reach the script for which scriptOriginatingPause_ is set, at which
+// moment we reset it and restartingScript_ flag and resume normal execution.
+//
+// TODO: This seems unnecessarily complicated and it looks like we could just
+// remember the paused script directly and jump to it directly when resuming
+// and avoid all the checks for restartingScript_.
+
+// Owning vector of scripts, i.e. all pointers must be deleted when they're
+// removed from this vector.
+//
+// TODO: Replace with vector of unique_ptr<Script>.
+std::vector<Script*> scripts_;
+
+// 1-based current script number, i.e. there is no current script when it is 0
+// and it is incremented with every nested script execution.
+//
+// Note that it may also be set to 0 temporarily by PauseScripts(), so checking
+// for this should normally also involve checking pausingScript_ value.
+//
+// TODO: There are many inconsistencies with handling this right now, e.g. it
+// is decremented by StopScript(), but usually incremented in SetScript() and
+// not RunScript(), as might be expected. There is also a special hack with
+// IncrementScript() called directly from Script::Run() when restarting, that
+// really shouldn't be necessary in the first place.
+int currentScriptNumber_ = 0;
+
+// Set to true after parsing "execute" command by ProcessCommand() and also in
+// Script::Run() when restarting scripts and the current script is not (yet)
+// the one which had been paused.
+bool executeCommand_ = false;
+
+// Set to true after parsing "return" command by ProcessCommand() only.
+bool returnCommand_ = false;
+
+// True if scripts are currently paused, set by PauseScripts(), checked by
+// GetPausingScript() and reset by RestartScripts().
+bool pausingScript_ = false;
+
+// Set to true only in RestartScripts(), reset only in Script::Run() after
+// finally reaching the script which had been paused.
+bool restartingScript_ = false;
+
+// Set to true only from CMD_if when parsing "if ... then" and executeCommand_
+// is true and then in turn is used for setting executeCommand_ to true in
+// ProcessCommand().
+bool prepareToExecuteScript_ = false;
+
+// Similarly to the above, only set in CMD_if, but when returnCommand_ is true,
+// and then is used for setting returnCommand_ in ProcessCommand().
+bool prepareToStopScript_ = false;
+
+// Also similar to the above flags, but used in conjunction with pausingScript_.
+bool prepareToPauseScript_ = false;
+
+
 wxHtmlHelpController *help_;
 wxPrintData *printData_;
 VisualizationWindow *visualizationWindow_;
 AnalysisWindow *analysisWindow_;
 std::ofstream stackStream_;
 HintForm *hintForm_;
-bool prepareToExecuteScript_, prepareToStopScript_, prepareToPauseScript_;
 std::map<wxString,wxString> alias_;
 AxisPopup *axisPopup_;
 CurvePopup *curvePopup_;
@@ -206,14 +274,6 @@ void Initialize()
   executeFlag_ = true;
   scriptExtension_ = wxT("pcm");
   stackExtension_ = wxT("stk");
-  currentScriptNumber_ = 0;
-  executeCommand_ = false;
-  returnCommand_ = false;
-  pausingScript_ = false;
-  restartingScript_ = false;
-  prepareToStopScript_ = false;
-  prepareToExecuteScript_ = false;
-  prepareToPauseScript_ = false;
   //
   continuationCharacter_ = wxT('-');
   executeCharacter_ = wxT('@');
