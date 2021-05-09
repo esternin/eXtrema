@@ -420,7 +420,7 @@ void ExecuteInit()
       throw std::runtime_error( e.what() );
     }
     Command *command = CommandTable::GetTable()->Get(wxT("EXECUTE"));
-    if( !command )std::runtime_error( "EXECUTE command not found in table" );
+    if( !command )throw std::runtime_error( "EXECUTE command not found in table" );
     command->Execute( &p );
   }
   catch( ECommandError const &e )
