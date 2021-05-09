@@ -20,10 +20,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 struct GRA_specialCharacter
   {
-    wxChar const *ename;   // special character eXtrema name
-    wxChar const *pname;   // special character PostScript name
-    wxChar const ucode;    // Unicode character code
-    wxChar const cid;      // remapped to this Character ID
+    char const *ename;    // special character eXtrema name
+    char const *pname;    // special character PostScript name
+    uint32_t const ucode; // Unicode character code
+    wxChar const cid;     // remapped to this Character ID
   };
 
 #endif

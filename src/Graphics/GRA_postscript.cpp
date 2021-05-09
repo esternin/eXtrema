@@ -183,8 +183,7 @@ void GRA_postscript::Initialize( wxString const &filename )
     outFile_ << "/" << all_fonts[j] << " /" << all_fonts[j] << "-Special [\n";
     for( auto const& sc: SpecialCharacters )
     {
-      wxString iName = sc.pname;
-      outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << sc.cid << " /" << iName << std::dec << std::setw(0) << "\n";
+      outFile_ << " 16#" << std::setfill('0') << std::setw(2) << std::hex << sc.cid << " /" << sc.pname << std::dec << std::setw(0) << "\n";
     }
     outFile_ << "] new-font-encoding\n\n"
            << "/" << all_fonts[j] << "CU\n"
@@ -927,14 +926,15 @@ void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
     // draw the label vertically and centered on the y-axis
     //
     y1 = yOrigin + 0.5*yAxis->GetLength();
-    if( imagTicAngle > 180.0 )
+    if( imagTicAngle > 180.0 )	// RH side axis
     {
       x1 = xOrigin + 1.05*(imagTicLen+numWidth);
       angle = 270.0;
     }
-    else
+    else	// LH side axis
     {
       x1 = xOrigin - 1.05*(imagTicLen+numWidth);
+      std::cout << "PS:     " << xOrigin << " - 1.05*( " << imagTicLen << " + " << numWidth << " ) = " << x1 << "\n";
       angle = 90.0;
     }
     GRA_drawableText *dt = new GRA_drawableText(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
@@ -2288,8 +2288,8 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     double height = dotsPerInch_*(simpleText)->GetHeight();
     double xshift = dotsPerInch_*(simpleText)->GetXShift();
     double yshift = dotsPerInch_*(simpleText)->GetYShift();
-    // font size fudge factor
-    height *= 96. / 72.;
+    // font size conversion factor, "100%" screen(96ppi) -> PostScript(72ppi)
+    height *= dotsPerInch_ / 96.0 * 1.85;  // 1.85 is a fudge factor
 
     maxHeight = std::max( height, maxHeight );
     outFile_ << "TextBuffer " << counter << " [[" << dr << " " << dg << " " << db
@@ -2297,7 +2297,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
     bool found = false;
-    wxChar c;
+    uint32_t c;
     for( size_t i=0; i<tEnd; ++i ) {
       c = text[i];
       for( auto const& sc: SpecialCharacters ) {
