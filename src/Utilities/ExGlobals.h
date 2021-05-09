@@ -69,35 +69,6 @@ class GRA_polarCurve;
 
 namespace ExGlobals
 {
-  extern double splineTension_;
-  extern double xminW_, yminW_, xmaxW_, ymaxW_;             // world coordinates
-  extern double xminClip_, yminClip_, xmaxClip_, ymaxClip_; // clipping boundary
-  extern int xminM_, yminM_, xmaxM_, ymaxM_;             // monitor coordinates
-  //extern wxWindow *graphicsWindow_;
-  extern GRA_wxWidgets *graphicsOutput_;
-  extern wxString scriptExtension_, stackExtension_;
-  extern wxChar continuationCharacter_, executeCharacter_;
-  extern bool echo_, stackIsOn_, stackSaved_, executeFlag_;
-  extern int nHistory_, maxHistory_, currentScriptNumber_, scriptNumberSave_;
-  extern std::vector<Script*> scripts_;
-  extern bool workingColorFlag_, workingFontFlag_;
-  extern double workingFontHeight_, workingFontAngle_;
-  extern int workingColorCode_, workingFontCode_, workingFontColorCode_;
-  extern wxString currentPath_, executablePath_, helpPath_, imagePath_, stackFile_;
-  extern bool noviceMode_, executeCommand_, returnComand_, pausingScript_, restartingScript_;
-  extern wxHtmlHelpController *help_;
-  extern wxPrintData *printData_;
-  extern VisualizationWindow *visualizationWindow_;
-  extern AnalysisWindow *analysisWindow_;
-  extern std::ofstream stackStream_;
-  extern HintForm *hintForm_;
-  extern bool prepareToExecuteScript_, prepareToStopScript_, prepareToPauseScript_;
-  extern std::map<wxString,wxString> alias_;
-  extern AxisPopup *axisPopup_;
-  extern CurvePopup *curvePopup_;
-  extern TextPopup *textPopup_;
-  extern LegendPopup *legendPopup_;
-
   void Initialize();
   wxPrintData *GetPrintData();
   void StartHelp();
