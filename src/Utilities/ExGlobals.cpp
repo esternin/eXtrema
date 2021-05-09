@@ -906,6 +906,15 @@ void IncrementScript()
 
 void SetScript( Script *s )
 {
+  // Executing scripts while paused is not supported and won't work anyhow, as
+  // there are checks for this later, but just incrementing the script number
+  // below while paused would break it, so don't even try doing it.
+  if( GetPausingScript() )
+  {
+    throw std::runtime_error( "Scripts can't be executed while the current "
+                              "script is paused, please resume it first." );
+  }
+
   // stackIsOn_ is set false when executing the top level script
   // so stackSaved_ is used to reset stackIsOn_ after finishing
   // with the top level script
