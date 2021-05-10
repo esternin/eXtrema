@@ -911,8 +911,8 @@ void SetScript( Script *s )
   // below while paused would break it, so don't even try doing it.
   if( GetPausingScript() )
   {
-    throw std::runtime_error( "Scripts can't be executed while the current "
-                              "script is paused, please resume it first." );
+    throw std::runtime_error( "Another script cannot be executed while the current "
+                              "script is paused, it must complete first." );
   }
 
   // stackIsOn_ is set false when executing the top level script
