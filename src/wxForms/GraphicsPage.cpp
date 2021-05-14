@@ -788,6 +788,17 @@ void GraphicsPage::SetFigureFillColor( GRA_color *c )
 
 void GraphicsPage::SavePS( wxString const &filename )
 {
+  // We need to ensure that all objects, notably axes, are drawn on a wxDC
+  // before drawing them on GRA_postscript as some metrices (e.g. axis width)
+  // are not updated before this happens, so get the backing store just for its
+  // side effect of (re)drawing everything if necessary.
+  //
+  // We could also render into a dummy 1*1 bitmap here, but it seems both
+  // simpler and potentially more efficient to reuse the existing function,
+  // because like this we won't update the backing store later if it doesn't
+  // change any more.
+  static_cast<void>(GetBackingStore());
+
   GRA_postscript ps;
   ps.Initialize( filename );
   int gwSave = currentWindowNumber_;
