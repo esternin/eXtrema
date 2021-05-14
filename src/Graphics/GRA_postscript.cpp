@@ -934,7 +934,6 @@ void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
     else	// LH side axis
     {
       x1 = xOrigin - 1.05*(imagTicLen+numWidth);
-      std::cout << "PS:     " << xOrigin << " - 1.05*( " << imagTicLen << " + " << numWidth << " ) = " << x1 << "\n";
       angle = 90.0;
     }
     GRA_drawableText *dt = new GRA_drawableText(label,sizlab,angle,x1,y1,align,labelFont,labelColor);
