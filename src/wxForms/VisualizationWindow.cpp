@@ -287,7 +287,6 @@ void VisualizationWindow::SavePS( wxString const &filename )
 
 void VisualizationWindow::ResetPages()
 {
-  GraphicsPage *currentPage = GetPage();
   Layout();
   
   wxSize size( notebook_->GetClientSize() );
@@ -304,14 +303,6 @@ void VisualizationWindow::ResetPages()
   ExGlobals::SetMonitorLimits( 0, 0, width, height );
 
   notebook_->SetClientSize( width+50, height );
-
-  int nPages = notebook_->GetPageCount();
-  for( int i=0; i<nPages; ++i )
-  {
-    notebook_->GetPage(i)->SetClientSize( width, height );
-  }
-  currentPage->Refresh();
-  SetPage( currentPage );
 }
 
 void VisualizationWindow::ClearAllPages()
