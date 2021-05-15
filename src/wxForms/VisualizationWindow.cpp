@@ -290,9 +290,10 @@ void VisualizationWindow::ResetPages()
   Layout();
   
   wxSize size( notebook_->GetClientSize() );
-  //
-  // the 50 below takes care of the width of the tab on the notebook
-  int width = size.GetWidth() - 50;
+
+  // Approximate the width of the tab on the notebook.
+  const int tabsWidth = notebook_->GetTextExtent("Page 999").x;
+  int width = size.GetWidth() - tabsWidth;
   int height = size.GetHeight();
 
   double ratio = static_cast<double>(height)/static_cast<double>(width);
@@ -302,7 +303,7 @@ void VisualizationWindow::ResetPages()
   
   ExGlobals::SetMonitorLimits( 0, 0, width, height );
 
-  notebook_->SetClientSize( width+50, height );
+  notebook_->SetClientSize( width+tabsWidth, height );
 }
 
 void VisualizationWindow::ClearAllPages()
