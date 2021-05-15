@@ -284,6 +284,10 @@ void VisualizationSpeedButtonPanel::OnPeakFind( wxCommandEvent &event )
 void VisualizationSpeedButtonPanel::OnPrintDrawing( wxCommandEvent &WXUNUSED(event) )
 {
   wxPrintData *printData( ExGlobals::GetPrintData() );
+
+  // Select orientation matching the current aspect ratio.
+  printData->SetOrientation( ExGlobals::GetAspectRatio() >= 1 ? wxPORTRAIT : wxLANDSCAPE );
+
   wxPrintDialogData printDialogData( *printData );
   wxPrinter printer( &printDialogData );
   MyPrintout printout( wxT("Extrema printing") );
