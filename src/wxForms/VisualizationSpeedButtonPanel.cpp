@@ -319,7 +319,10 @@ bool MyPrintout::OnPrintPage( int page )
     // but in fact is too small for some reason. This is a detail that will
     // need to be addressed at some point but can be fudged for the
     // moment.
-    double scale = (double)ppiPrinterX/(double)ppiScreenX;
+    //
+    // The screen logical dpi is assumed 96x96, convert to actual ppi
+    int ppi = dc->GetPPI().GetWidth();  // returns 72 on screen, 300 on print, 192 on high-dpi Chromebook 
+    double scale = ( 96.0 / (double)ppi ) * (double)ppiPrinterX / (double)ppiScreenX;
     //
     // Now we have to check in case our real page size is reduced
     // (e.g. because we're drawing to a print preview memory DC)
@@ -334,8 +337,7 @@ bool MyPrintout::OnPrintPage( int page )
 
     // If printer pageWidth == current DC width, then this doesn't
     // change. But w might be the preview bitmap width, so scale down.
-    double overallScale = scale*w/(double)pageWidth;
-    dc->SetUserScale( overallScale, overallScale );
+    scale *= w / (double)pageWidth;
 
     long xo=0, yo=0;
     dc->SetDeviceOrigin( xo, yo );
@@ -345,13 +347,27 @@ bool MyPrintout::OnPrintPage( int page )
     int dcw = dc->GetPPI().GetWidth();
     double xminW, yminW, xmaxW, ymaxW;
     ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
-    int xmin = static_cast<int>(xminW*dch+0.5)+50;
-    int ymin = static_cast<int>(yminW*dcw+0.5)+50;
-    int xmax = static_cast<int>(0.7*xmaxW*dch+0.5)+50;
-    int ymax = static_cast<int>(0.7*ymaxW*dcw+0.5)+50;
+    int xmin = static_cast<int>(xminW*dch+0.5);
+    int ymin = static_cast<int>(yminW*dcw+0.5);
+    int xmax = static_cast<int>(xmaxW*dch+0.5);
+    int ymax = static_cast<int>(ymaxW*dcw+0.5);
 
     //std::cout << "w=" << w << ", h=" << h << "\n"
     //          << "xmax=" << xmax << ", ymax=" << ymax << "\n";
+
+    if( (xmax-xmin) > (ymax-ymin) ) // landscape, x is the limiting direction
+    {
+       scale *= (double)pageWidth / (double)(xmax-xmin);
+       xmin -= 96; // for some reason, a (-96)-point shift is needed for print to match screen
+       xmax -= 96;
+    }
+    else                            // portrait, y is the limiting direction
+    {
+       scale *= (double)pageHeight / (double)(ymax-ymin);
+       ymin -= 96; // for some reason, a (-96)-point shift is needed for print to match screen
+       ymax -= 96;
+    }
+    dc->SetUserScale( scale, scale );
 
     dc->StartDoc( wxT("extrema printing...") );
     GRA_wxWidgets ps( xmin, ymin, xmax, ymax );
