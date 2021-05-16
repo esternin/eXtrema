@@ -197,7 +197,7 @@ namespace
 wxPrintData *printData_ = nullptr;
 
 // Names of the config section and keys used by the functions below.
-const char* CONFIG_PRINT_SECTION = "/PrintSetup";
+const char* CONFIG_PRINT_SECTION = "/PrintSetup/";
 
 const char* CONFIG_PRINT_NO_COPIES = "Copies";
 const char* CONFIG_PRINT_COLLATE = "Collate";
@@ -514,11 +514,20 @@ wxPrintData *GetPrintData()
 #ifdef __UNIX__
     if( printData_->GetPaperId() == wxPAPER_NONE )
     {
-      // Honour LC_PAPER under Unix to select Letter paper by default in the US and
-      // other territories, to use Unicode term, using it (the default is A4 which
-      // is appropriate for the rest of the world).
-      wxString lcPaper;
-      if ( wxGetEnv("LC_PAPER", &lcPaper) )
+      // Honour the current locale under Unix to select Letter paper by default
+      // in the US and other territories, to use Unicode term, using it (the
+      // default is A4 which is appropriate for the rest of the world).
+
+      // As LC_PAPER is a GNU extension, fall back to a standard category most
+      // similar to it if it's not available. Note that we don't want to use
+      // LC_ALL here as we don't want to change LC_NUMERIC, which affects the
+      // decimal separator used.
+#ifdef LC_PAPER
+      const auto localeCat = LC_PAPER;
+#else
+      const auto localeCat = LC_MESSAGES;
+#endif
+      if( auto lcPaper = setlocale(localeCat, "") )
       {
         // See http://www.unicode.org/reports/tr35/tr35-53/tr35-general.html for
         // the list of territories using US Letter paper format.
@@ -528,7 +537,7 @@ wxPrintData *GetPrintData()
         };
         for( auto c: countries )
         {
-          if( lcPaper.Contains(wxString("_") + c) )
+          if( strstr(lcPaper, wxString("_") + c) )
           {
             printData_->SetPaperId(wxPAPER_LETTER);
             break;
