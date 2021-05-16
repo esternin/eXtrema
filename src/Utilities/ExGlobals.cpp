@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/html/helpctrl.h"
 #include "wx/utils.h"
 #include "wx/cmndata.h"
+#include "wx/paper.h"
 
 #include "ExGlobals.h"
 #include "ExXML.h"
@@ -187,8 +188,141 @@ bool prepareToStopScript_ = false;
 bool prepareToPauseScript_ = false;
 
 
+// Print-related data and functions.
+namespace
+{
+
+// Print data object allocated on demand, i.e. when the user opens the print
+// dialog for the first time.
+wxPrintData *printData_ = nullptr;
+
+// Names of the config section and keys used by the functions below.
+const char* CONFIG_PRINT_SECTION = "/PrintSetup";
+
+const char* CONFIG_PRINT_NO_COPIES = "Copies";
+const char* CONFIG_PRINT_COLLATE = "Collate";
+const char* CONFIG_PRINT_ORIENTATION = "Orientation";
+const char* CONFIG_PRINT_ORIENTATION_REVERSED = "ReversedOrientation";
+const char* CONFIG_PRINT_PRINTER = "PrinterName";
+const char* CONFIG_PRINT_COLOUR = "Colour";
+const char* CONFIG_PRINT_DUPLEX = "Duplex";
+const char* CONFIG_PRINT_PAPER_W = "PaperWidth";
+const char* CONFIG_PRINT_PAPER_H = "PaperHeight";
+const char* CONFIG_PRINT_QUALITY = "Quality";
+const char* CONFIG_PRINT_BIN = "Bin";
+const char* CONFIG_PRINT_MEDIA = "Media";
+
+// Helper saving enums as ints: this is not recommended, generally speaking,
+// because enums values can change, but there are just too many values to
+// convert to/from strings here, so do it like this and hope that they don't.
+template <typename T>
+void WriteToConfig(wxConfigBase* config, const char* name, T value)
+{
+  config->Write(name, static_cast<int>(value));
+}
+
+// Define overloads for bools and strings which are the only things that we
+// don't save as ints.
+void WriteToConfig(wxConfigBase* config, const char* name, bool value)
+{
+  config->Write(name, value);
+}
+
+void WriteToConfig(wxConfigBase* config, const char* name, const wxString& value)
+{
+  config->Write(name, value);
+}
+
+template <typename T>
+T ReadConfigEnum(const wxConfigBase* config, const char* name, T defValue)
+{
+  return static_cast<T>(config->ReadLong(name, defValue));
+}
+
+// Save value to wxConfig only if it's different from default, to avoid writing
+// everything to config file unnecessarily.
+//
+// Note that this means we also need to delete any existing entries when saving
+// the default value, as otherwise we'd use the old value and not the default
+// the next time.
+template <typename T>
+void
+SaveIfSet(wxConfigBase* config, const char* name, T value, T defValue)
+{
+  if( value != defValue )
+    WriteToConfig(config, name, value);
+  else
+    config->DeleteEntry(name);
+}
+
+// Functions for saving and restoring print data to/from wxConfig.
+void
+SavePrintData(const wxPrintData& data, wxConfigBase* config)
+{
+  if( !config )
+    return;
+
+  wxConfigPathChanger changePath(config, CONFIG_PRINT_SECTION);
+
+  // Instead of dealing with the paper ID, which needs to be converted to/from
+  // string, always save the paper size and map it back to the ID when
+  // restoring.
+  auto paperSize = data.GetPaperSize();
+  if( data.GetPaperId() != wxPAPER_NONE )
+  {
+    if( auto paperType = wxThePrintPaperDatabase->FindPaperType(data.GetPaperId()) )
+      paperSize = paperType->GetSize();
+  }
+
+  SaveIfSet(config, CONFIG_PRINT_PAPER_W, paperSize.x, -1);
+  SaveIfSet(config, CONFIG_PRINT_PAPER_H, paperSize.y, -1);
+
+  SaveIfSet(config, CONFIG_PRINT_NO_COPIES, data.GetNoCopies(), 1);
+  SaveIfSet(config, CONFIG_PRINT_COLLATE, data.GetCollate(), false);
+  SaveIfSet(config, CONFIG_PRINT_ORIENTATION, data.GetOrientation(), wxPORTRAIT);
+  SaveIfSet(config, CONFIG_PRINT_ORIENTATION_REVERSED, data.IsOrientationReversed(), false);
+  SaveIfSet(config, CONFIG_PRINT_PRINTER, data.GetPrinterName(), wxString());
+  SaveIfSet(config, CONFIG_PRINT_COLOUR, data.GetColour(), true);
+  SaveIfSet(config, CONFIG_PRINT_DUPLEX, data.GetDuplex(), wxDUPLEX_SIMPLEX);
+  SaveIfSet(config, CONFIG_PRINT_QUALITY, data.GetQuality(), wxPRINT_QUALITY_HIGH);
+  SaveIfSet(config, CONFIG_PRINT_BIN, data.GetBin(), wxPRINTBIN_DEFAULT);
+  SaveIfSet(config, CONFIG_PRINT_MEDIA, data.GetMedia(), wxPRINTMEDIA_DEFAULT);
+}
+
+void
+RestorePrintData(wxPrintData& data, const wxConfigBase* config)
+{
+  if( !config )
+    return;
+
+  wxConfigPathChanger changePath(config, CONFIG_PRINT_SECTION);
+
+  long w, h;
+  if( config->Read(CONFIG_PRINT_PAPER_W, &w) && config->Read(CONFIG_PRINT_PAPER_H, &h) )
+  {
+    const wxSize paperSize(w, h);
+    data.SetPaperSize(paperSize);
+
+    if( auto paperType = wxThePrintPaperDatabase->FindPaperType(paperSize) )
+      data.SetPaperId(paperType->GetId());
+  }
+
+  data.SetNoCopies(config->ReadLong(CONFIG_PRINT_NO_COPIES, 1));
+  data.SetCollate(config->ReadBool(CONFIG_PRINT_COLLATE, false));
+  data.SetOrientation(ReadConfigEnum(config, CONFIG_PRINT_ORIENTATION, wxPORTRAIT));
+  data.SetOrientationReversed(config->ReadBool(CONFIG_PRINT_ORIENTATION_REVERSED, false));
+  data.SetPrinterName(config->Read(CONFIG_PRINT_PRINTER));
+  data.SetColour(config->ReadBool(CONFIG_PRINT_COLOUR, true));
+  data.SetDuplex(ReadConfigEnum(config, CONFIG_PRINT_DUPLEX, wxDUPLEX_SIMPLEX));
+  data.SetQuality(ReadConfigEnum(config, CONFIG_PRINT_QUALITY, wxPRINT_QUALITY_HIGH));
+  data.SetBin(ReadConfigEnum(config, CONFIG_PRINT_BIN, wxPRINTBIN_DEFAULT));
+  data.SetMedia(config->ReadLong(CONFIG_PRINT_MEDIA, wxPRINTMEDIA_DEFAULT));
+}
+
+} // anonymous namespace
+
+
 wxHtmlHelpController *help_;
-wxPrintData *printData_;
 VisualizationWindow *visualizationWindow_;
 AnalysisWindow *analysisWindow_;
 std::ofstream stackStream_;
@@ -231,31 +365,6 @@ void Initialize()
   help_->SetTempDir( currentPath_ );
   if( !help_->AddBook(wxFileName(helpPath_+wxT("/extrema.hhp"))) )
     wxMessageBox( wxT("Failed to add book \"")+helpPath_+wxT("/extrema.hhp\"") );
-  //
-  printData_ = new wxPrintData();
-  // Honour LC_PAPER under Unix to select Letter paper by default in the US and
-  // other territories, to use Unicode term, using it (the default is A4 which
-  // is appropriate for the rest of the world).
-#ifdef __UNIX__
-  wxString lcPaper;
-  if ( wxGetEnv("LC_PAPER", &lcPaper) )
-  {
-    // See http://www.unicode.org/reports/tr35/tr35-53/tr35-general.html for
-    // the list of territories using US Letter paper format.
-    static const char* const countries[] =
-    {
-      "BZ", "CA", "CL", "CO", "CR", "GT", "MX", "NI", "PA", "PH", "PR", "SV", "US", "VE"
-    };
-    for( auto c: countries )
-    {
-      if( lcPaper.Contains(wxString("_") + c) )
-      {
-        printData_->SetPaperId(wxPAPER_LETTER);
-        break;
-      }
-    }
-  }
-#endif // __UNIX__
   //
   splineTension_ = 0.0;
   //
@@ -390,8 +499,49 @@ void HideHint()
 { hintForm_->HideHint(); }
 
 wxPrintData *GetPrintData()
-{ return printData_; }
-    
+{
+  if( !printData_ )
+  {
+    printData_ = new wxPrintData();
+
+    RestorePrintData(*printData_, wxConfig::Get());
+
+    // Under Unix, select the paper size appropriate for the current locale by
+    // default if we didn't store the paper size used the last time (as e.g.
+    // during the first run). Note that we don't need to do this elsewhere, as
+    // the the system-default paper size is used automatically under the other
+    // platforms.
+#ifdef __UNIX__
+    if( printData_->GetPaperId() == wxPAPER_NONE )
+    {
+      // Honour LC_PAPER under Unix to select Letter paper by default in the US and
+      // other territories, to use Unicode term, using it (the default is A4 which
+      // is appropriate for the rest of the world).
+      wxString lcPaper;
+      if ( wxGetEnv("LC_PAPER", &lcPaper) )
+      {
+        // See http://www.unicode.org/reports/tr35/tr35-53/tr35-general.html for
+        // the list of territories using US Letter paper format.
+        static const char* const countries[] =
+        {
+          "BZ", "CA", "CL", "CO", "CR", "GT", "MX", "NI", "PA", "PH", "PR", "SV", "US", "VE"
+        };
+        for( auto c: countries )
+        {
+          if( lcPaper.Contains(wxString("_") + c) )
+          {
+            printData_->SetPaperId(wxPAPER_LETTER);
+            break;
+          }
+        }
+      }
+    }
+#endif // __UNIX__
+  }
+
+  return printData_;
+}
+
 void StartHelp()
 { help_->DisplayContents(); }
 
@@ -494,7 +644,13 @@ void QuitApp()
 void DeleteStuff()
 {
   delete hintForm_;
-  delete printData_;
+
+  if( printData_ )
+  {
+    SavePrintData(*printData_, wxConfig::Get());
+    delete printData_;
+  }
+
   delete help_;
   delete graphicsOutput_;
   while( !scripts_.empty() )
