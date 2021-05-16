@@ -30,6 +30,7 @@ class CommandTextCtrl : public wxTextCtrl
 {
 public:
   CommandTextCtrl( AnalysisCommandPanel * );
+  ~CommandTextCtrl();
 
   void OnKeyDown( wxKeyEvent & );
 

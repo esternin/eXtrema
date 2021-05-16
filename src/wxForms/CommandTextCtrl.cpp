@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "AnalysisCommandPanel.h"
 #include "ExGlobals.h"
 
+#include "wx/config.h"
+
 // the event tables connect the wxWidgets events with the
 // event handler functions which process them
 
@@ -29,12 +31,64 @@ BEGIN_EVENT_TABLE( CommandTextCtrl, wxTextCtrl )
   EVT_KEY_DOWN( CommandTextCtrl::OnKeyDown )
 END_EVENT_TABLE()
 
+namespace
+{
+
+const char* CONFIG_COMMANDS_SECTION = "/Commands/";
+
+} // anonymous namespace
+
 CommandTextCtrl::CommandTextCtrl( AnalysisCommandPanel *parent )
     : wxTextCtrl( (wxWindow*)parent, wxID_ANY, wxT(""), wxDefaultPosition,
                   wxDefaultSize, wxTE_PROCESS_ENTER )
 {
   SetToolTip( wxT("enter commands here") );
   commandStringsIndex_ = -1;
+
+  // Restore the previous commands from the config, if any.
+  if( auto config = wxConfig::Get() )
+  {
+    wxConfigPathChanger changePath(config, CONFIG_COMMANDS_SECTION);
+
+    // Get all entries in this section, we don't currently use their names at
+    // all.
+    wxString name;
+    long idx;
+    bool cont = config->GetFirstEntry(name, idx);
+    while( cont )
+    {
+      AddCommandString(config->Read(name));
+
+      cont = config->GetNextEntry(name, idx);
+    }
+  }
+}
+
+CommandTextCtrl::~CommandTextCtrl()
+{
+  // Save the commands to the config.
+  if( auto config = wxConfig::Get() )
+  {
+    // Limit the number of commands we save to prevent config file from growing
+    // unboundedly. The choice of 100 is arbitrary and could perhaps be made an
+    // option itself.
+    const int CONFIG_MAX_COMMANDS = 100;
+
+    // This is less efficient than just saving the new commands, but much
+    // simpler and shouldn't be really a problem unless we increase the max
+    // commands number by a lot. Until we do, keep things simple and delete
+    // everything and than re-create.
+    config->DeleteGroup(CONFIG_COMMANDS_SECTION);
+
+    wxConfigPathChanger changePath(config, CONFIG_COMMANDS_SECTION);
+
+    const size_t last = commandStrings_.size();
+    const size_t first = last > CONFIG_MAX_COMMANDS ? last - CONFIG_MAX_COMMANDS : 0;
+    for( size_t n = first; n < last; ++n )
+    {
+      config->Write(wxString::Format("%zd", n + 1), commandStrings_[n]);
+    }
+  }
 }
 
 wxString CommandTextCtrl::GetACommand()
