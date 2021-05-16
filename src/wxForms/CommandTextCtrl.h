@@ -33,12 +33,6 @@ public:
 
   void OnKeyDown( wxKeyEvent & );
 
-  void OnKeyUp( wxKeyEvent &event )
-  { event.Skip(); }
-
-  void OnChar( wxKeyEvent &event )
-  { event.Skip(); }
-
   void DoACommand();
 
   void AddCommandString( wxString const & );

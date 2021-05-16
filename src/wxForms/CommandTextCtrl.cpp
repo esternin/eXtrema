@@ -27,8 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 BEGIN_EVENT_TABLE( CommandTextCtrl, wxTextCtrl )
   EVT_KEY_DOWN( CommandTextCtrl::OnKeyDown )
-  EVT_KEY_UP( CommandTextCtrl::OnKeyUp )
-  EVT_CHAR( CommandTextCtrl::OnChar )
 END_EVENT_TABLE()
 
 CommandTextCtrl::CommandTextCtrl( AnalysisCommandPanel *parent )
