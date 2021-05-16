@@ -233,6 +233,29 @@ void Initialize()
     wxMessageBox( wxT("Failed to add book \"")+helpPath_+wxT("/extrema.hhp\"") );
   //
   printData_ = new wxPrintData();
+  // Honour LC_PAPER under Unix to select Letter paper by default in the US and
+  // other territories, to use Unicode term, using it (the default is A4 which
+  // is appropriate for the rest of the world).
+#ifdef __UNIX__
+  wxString lcPaper;
+  if ( wxGetEnv("LC_PAPER", &lcPaper) )
+  {
+    // See http://www.unicode.org/reports/tr35/tr35-53/tr35-general.html for
+    // the list of territories using US Letter paper format.
+    static const char* const countries[] =
+    {
+      "BZ", "CA", "CL", "CO", "CR", "GT", "MX", "NI", "PA", "PH", "PR", "SV", "US", "VE"
+    };
+    for( auto c: countries )
+    {
+      if( lcPaper.Contains(wxString("_") + c) )
+      {
+        printData_->SetPaperId(wxPAPER_LETTER);
+        break;
+      }
+    }
+  }
+#endif // __UNIX__
   //
   splineTension_ = 0.0;
   //
