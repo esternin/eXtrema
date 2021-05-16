@@ -84,7 +84,7 @@ void extrema::QuitApp()
   if( md.ShowModal() == wxID_YES )
   {
     analysisWindow_->Close(true);
-    exit( 0 );
+    ExitMainLoop();
   }
 }
 
