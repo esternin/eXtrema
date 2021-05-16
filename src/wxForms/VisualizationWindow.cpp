@@ -213,6 +213,8 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   // Show the window.
   // Frames, unlike simple controls, are not shown when created initially.
   Show( true );
+
+  printf("Scale factor = %g, DPI=%d\n", GetContentScaleFactor(), GetDPI().y);
 }
 
 void VisualizationWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
