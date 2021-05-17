@@ -11,7 +11,7 @@ set
  graphbox 0
  %xnumbersheight 2
  %ynumbersheight 2
- %xloweraxis 15
+ %xloweraxis 20
  %xupperaxis 85
  xlabelon 1
  xlabel 'This is the X axis label'
@@ -22,7 +22,7 @@ scales\-messages min(x) max(x) min(LHSFunction) max(LHSFunction)
 graph x 1*LHSFunction    ! draw y-axis on left side of box
 set
  %textheight 5
- %xtextlocation 43
+ %xtextlocation 46
  %ytextlocation 19
  textangle 0
  textalign 1

@@ -322,7 +322,7 @@ bool MyPrintout::OnPrintPage( int page )
     //
     double scale = (double)ppiPrinterX / (double)ppiScreenX;
     wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: scale=%g, ppiScreen=%d x %d, ppiPrinter=%d x %d", scale, ppiScreenX, ppiScreenY, ppiPrinterX, ppiPrinterY);
-    
+
     // Now we have to check in case our real page size is reduced
     // (e.g. because we're drawing to a print preview memory DC)
     int pageWidth, pageHeight;
@@ -352,7 +352,7 @@ bool MyPrintout::OnPrintPage( int page )
     wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: map to ps()=%d..%d x %d..%d", xmin, xmax, ymin, ymax);
 
     // Additional correction or replace wx scaling with our own? 
-    scale = 96.0 / ppiScreenX; // 96/96=1 on screen, 96/192=0.5 on high-dpi like Chromebook 
+    scale = 96.0 / ppiScreenX; // 96/96=1 on screen, 96/192=0.5 on high-dpi like Chromebook, override the above scale calculation
 
     if( (xmax-xmin) > (ymax-ymin) ) // landscape, x is the limiting direction
     {
