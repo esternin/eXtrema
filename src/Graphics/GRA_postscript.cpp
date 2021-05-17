@@ -2287,8 +2287,13 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     double height = dotsPerInch_*(simpleText)->GetHeight();
     double xshift = dotsPerInch_*(simpleText)->GetXShift();
     double yshift = dotsPerInch_*(simpleText)->GetYShift();
-    // font size conversion factor, "100%" screen(96ppi) -> PostScript(72ppi)
-    height *= dotsPerInch_ / 96.0 * 1.85;  // 1.85 is a fudge factor
+    // Font sizes nominally in 1"/72 "points" are scaled up to the screen's 96ppi
+    // so need to do the same here to match the appearance of the screen page.
+    // Non-textual elements need no rescaling, so only do it here for fonts, 
+    // not as a general redefinition of dotsPerInch.
+    height *= 96.0 / dotsPerInch_ ;
+    xshift *= 96.0 / dotsPerInch_ ;
+    yshift *= 96.0 / dotsPerInch_ ;
 
     maxHeight = std::max( height, maxHeight );
     outFile_ << "TextBuffer " << counter << " [[" << dr << " " << dg << " " << db
