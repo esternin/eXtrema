@@ -167,9 +167,9 @@ namespace
 {
 
 // Return font needed for the simple simple text display.
-wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text )
+wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text, double scale )
 {
-  double height = text->GetHeight();
+  double height = scale * text->GetHeight();
   int xo, yo1, yo2;
   graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
   graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
@@ -177,6 +177,7 @@ wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text )
 
   wxFont font( text->GetFont()->GetwxFont() );
   font.SetPointSize( h );
+  wxLogDebug("GRA_drawableText::MakeFont: scale=%g, world height=%g, font height=%d", scale, height, h);
 
   return font;
 }
@@ -266,8 +267,8 @@ std::ostream &operator<<( std::ostream &out, GRA_drawableText const &dt )
 
 void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
-  int ppi = dc.GetPPI().GetWidth();
-  //double scale = 72.0 / (double)ppi;
+  int ppi = dc.GetPPI().GetWidth();  // fonts=72, screen=96, "high-dpi" screen=192, print=300
+  double scale = 72.0 / (double)ppi;
   int xminM, yminM, xmaxM, ymaxM;
   graphicsOutput->GetLimits( xminM, yminM, xmaxM, ymaxM );
   double xminW, yminW, xmaxW, ymaxW;
@@ -288,12 +289,7 @@ void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
     int x, y;
     graphicsOutput->WorldToOutputType( xLoc, yLoc, x, y );
-    //
-    //wxFont font( strings_[i]->GetFont()->GetwxFont() );
-    //font.SetPointSize( h );
-    //wxLogDebug("GRA_drawableText::Draw: ppi = %d, world height=%g, font height=%d", ppi, height, h);
-    //dc.SetFont( font );
-    dc.SetFont( MakeFont( graphicsOutput, strings_[i] ) );
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i], scale ) );
     dc.SetTextForeground( ExGlobals::GetwxColor(strings_[i]->GetColor()) );
     dc.DrawRotatedText( strings_[i]->GetString(), x, y, angle );
     //
@@ -305,8 +301,8 @@ void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
 void GRA_drawableText::Erase( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
-  int ppi = dc.GetPPI().GetWidth();
-  //double scale = 72.0 / (double)ppi;
+  int ppi = dc.GetPPI().GetWidth();  // fonts=72, screen=96, "high-dpi" screen=192, print=300
+  double scale = 72.0 / (double)ppi;
   int xminM, yminM, xmaxM, ymaxM;
   graphicsOutput->GetLimits( xminM, yminM, xmaxM, ymaxM );
   double xminW, yminW, xmaxW, ymaxW;
@@ -327,12 +323,7 @@ void GRA_drawableText::Erase( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
     int x, y;
     graphicsOutput->WorldToOutputType( xLoc, yLoc, x, y );
-    //
-    //wxFont font( strings_[i]->GetFont()->GetwxFont() );
-    //font.SetPointSize( h );
-    //wxLogDebug("GRA_drawableText::Erase: ppi = %d, world height=%g, font height=%d", ppi, height, h);
-    //dc.SetFont( font );
-    dc.SetFont( MakeFont( graphicsOutput, strings_[i] ) );
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i], scale ) );
     dc.SetTextForeground( dc.GetBackground().GetColour() );
     dc.DrawRotatedText( strings_[i]->GetString(), x, y, angle );
   }
@@ -348,10 +339,11 @@ void GRA_drawableText::GetStringStuff( std::size_t &size,
   int length = 0;
   int maxHeight = 0;
   size = strings_.size();
-  int ppi = dc.GetPPI().GetWidth();
+  int ppi = dc.GetPPI().GetWidth();  // fonts=72, screen=96, "high-dpi" screen=192, print=300
+  double scale = 72.0 / (double)ppi;
   for( std::size_t i=0; i<size; ++i )
   {
-    dc.SetFont( MakeFont( graphicsOutput, strings_[i] ) );
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i], scale ) );
 
     int w, h, descent, extLead;
     dc.GetTextExtent( strings_[i]->GetString(), &w, &h, &descent, &extLead );

@@ -11,7 +11,7 @@ set
  graphbox 0
  %xnumbersheight 2
  %ynumbersheight 2
- %xloweraxis 20
+ %xloweraxis 15
  %xupperaxis 85
  xlabelon 1
  xlabel 'This is the X axis label'
