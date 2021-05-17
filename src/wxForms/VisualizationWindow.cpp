@@ -534,13 +534,13 @@ void VisualizationWindow::OnSavePNG( wxCommandEvent &WXUNUSED(event) )
 
 void VisualizationWindow::OnSaveJPEG( wxCommandEvent &WXUNUSED(event) )
 {
-  wxString wildcard( wxT("JPEG (*.jpeg)|*.jpeg") );
+  wxString wildcard( wxT("JPEG (*.jpg)|*.jpg") );
   wxFileDialog fd( this, wxT("Choose an output file"), wxT(""), wxT(""),
                    wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
   if( fd.ShowModal() != wxID_OK )return;
   wxString filename( fd.GetFilename() );
   if( filename.empty() )return;
-  if( filename.find_last_of(wxT('.')) == filename.npos )filename += wxT(".jpeg");
+  if( filename.find_last_of(wxT('.')) == filename.npos )filename += wxT(".jpg");
   std::ofstream outFile;
   outFile.open( filename.mb_str(wxConvUTF8), std::ios_base::out );
   if( !outFile.is_open() )

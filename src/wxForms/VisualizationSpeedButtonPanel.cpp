@@ -158,9 +158,9 @@ void VisualizationSpeedButtonPanel::OnImportDrawing( wxCommandEvent &WXUNUSED(ev
 void VisualizationSpeedButtonPanel::OnSaveDrawing( wxCommandEvent &WXUNUSED(event) )
 {
 #ifdef __WINDOWS__
-  wxString wildcard( wxT("Encapsulated PostScript (*.eps)|*.eps|PNG file (*.png)|*.png|JPEG file (*.jpeg)|*.jpeg|Windows metafile (*.wmf)|*.wmf|Windows enhanced metafile (*.emf)|*.emf") );
+  wxString wildcard( wxT("Encapsulated PostScript (*.eps)|*.eps|PNG file (*.png)|*.png|JPEG file (*.jpg)|*.jpg|Windows metafile (*.wmf)|*.wmf|Windows enhanced metafile (*.emf)|*.emf") );
 #else
-  wxString wildcard( wxT("Encapsulated PostScript (*.eps)|*.eps|PNG file (*.png)|*.png|JPEG file (*.jpeg)|*.jpeg") );
+  wxString wildcard( wxT("Encapsulated PostScript (*.eps)|*.eps|PNG file (*.png)|*.png|JPEG file (*.jpg)|*.jpg") );
 #endif
   wxFileDialog fd( this, wxT("Choose an output file"), wxT(""), wxT(""),
                    wildcard, wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxFD_CHANGE_DIR );
@@ -179,7 +179,7 @@ void VisualizationSpeedButtonPanel::OnSaveDrawing( wxCommandEvent &WXUNUSED(even
         extension = wxT(".png");
         break;
       case 2:
-        extension = wxT(".jpeg");
+        extension = wxT(".jpg");
         break;
       case 3:
         extension = wxT(".wmf");
@@ -228,7 +228,7 @@ void VisualizationSpeedButtonPanel::OnSaveDrawing( wxCommandEvent &WXUNUSED(even
     }
     if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxString(wxT("HARDCOPY\\PNG "))+filename );
   }
-  else if( extension == wxT(".jpeg") )
+  else if( extension == wxT(".jpg") )
   {
     try
     {
@@ -316,24 +316,33 @@ bool MyPrintout::OnPrintPage( int page )
     int dcw = dc->GetPPI().GetWidth();
     double xminW, yminW, xmaxW, ymaxW;
     ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
-    int xmin = static_cast<int>(xminW*dch+0.5);
-    int ymin = static_cast<int>(yminW*dcw+0.5);
-    int xmax = static_cast<int>(xmaxW*dch+0.5);
-    int ymax = static_cast<int>(ymaxW*dcw+0.5);
+    int xmin = static_cast<int>(xminW*dcw+0.5);
+    int ymin = static_cast<int>(yminW*dch+0.5);
+    int xmax = static_cast<int>(xmaxW*dcw+0.5);
+    int ymax = static_cast<int>(ymaxW*dch+0.5);
 
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: WorldLimits=%g..%g x %g..%g", xminW, xmaxW, yminW, ymaxW);
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: map to ps()=%d..%d x %d..%d", xmin, xmax, ymin, ymax);
 
-    if( (xmax-xmin) > (ymax-ymin) ) // landscape
+    // If the aspect ratio of the graph window does not match the aspect ratio of the selected paper, 
+    // adjust the scale of the image to fit within the limiting dimension, e.g. a landscape graph on a portraint page
+    double scale;
+    int pageWidth, pageHeight;
+    GetPageSizePixels( &pageWidth, &pageHeight );
+    if( (xmax-xmin) > (ymax-ymin) ) // landscape, x is the limiting direction
     {
        xmin -= 96; // for some reason, a (-96)-point shift is needed for print to match screen
        xmax -= 96;
+       scale = ( pageWidth > pageHeight ) ? 1 : (double)pageWidth / (double)pageHeight;
     }
-    else                            // portrait
+    else                            // portrait, y is the limiting direction
     {
        ymin -= 96; // for some reason, a (-96)-point shift is needed for print to match screen
        ymax -= 96;
+       scale = ( pageHeight > pageWidth ) ? 1 : (double)pageHeight / (double)pageWidth;
     }
+    //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: scale=%g, page=%dx%d", scale, pageWidth, pageHeight);
+    dc->SetUserScale( scale, scale );
 
     dc->StartDoc( wxT("extrema printing...") );
     GRA_wxWidgets ps( xmin, ymin, xmax, ymax );
