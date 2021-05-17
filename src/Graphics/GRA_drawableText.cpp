@@ -163,6 +163,26 @@ std::vector <GRA_specialCharacter> SpecialCharacters {
       {"DIAMOND","lozenge",0x25CA,0x6A} 		// j
   };
 
+namespace
+{
+
+// Return font needed for the simple simple text display.
+wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text )
+{
+  double height = text->GetHeight();
+  int xo, yo1, yo2;
+  graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
+  graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
+  int h = yo1 - yo2;
+
+  wxFont font( text->GetFont()->GetwxFont() );
+  font.SetPointSize( h );
+
+  return font;
+}
+
+} // anonymous namespace
+
 GRA_drawableText::GRA_drawableText( wxString const &inputString, double height,
                                     double angle, double x, double y, int alignment,
                                     GRA_font *font, GRA_color *color )
@@ -265,24 +285,19 @@ void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     xLoc += width*cosx - strings_[i]->GetYShift()*sinx + strings_[i]->GetXShift()*cosx;
     yLoc += width*sinx + strings_[i]->GetYShift()*cosx + strings_[i]->GetXShift()*sinx;
     width = wv[i]*xConvert;
-    double height = strings_[i]->GetHeight();
-
-    int xo, yo1, yo2;
-    graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
-    graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
-    int h = yo1 - yo2;
 
     int x, y;
     graphicsOutput->WorldToOutputType( xLoc, yLoc, x, y );
     //
-    wxFont font( strings_[i]->GetFont()->GetwxFont() );
-    font.SetPointSize( h );
-    wxLogDebug("GRA_drawableText::Draw: ppi = %d, world height=%g, font height=%d", ppi, height, h);
-    dc.SetFont( font );
+    //wxFont font( strings_[i]->GetFont()->GetwxFont() );
+    //font.SetPointSize( h );
+    //wxLogDebug("GRA_drawableText::Draw: ppi = %d, world height=%g, font height=%d", ppi, height, h);
+    //dc.SetFont( font );
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i] ) );
     dc.SetTextForeground( ExGlobals::GetwxColor(strings_[i]->GetColor()) );
     dc.DrawRotatedText( strings_[i]->GetString(), x, y, angle );
     //
-    int w, descent, externalLeading;
+    int w, h, descent, externalLeading;
     dc.GetTextExtent( strings_[i]->GetString(), &w, &h, &descent, &externalLeading );
     strings_[i]->SetBoundary( x, y, w, h );
   }
@@ -309,20 +324,15 @@ void GRA_drawableText::Erase( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     xLoc += width*cosx - strings_[i]->GetYShift()*sinx + strings_[i]->GetXShift()*cosx;
     yLoc += width*sinx + strings_[i]->GetYShift()*cosx + strings_[i]->GetXShift()*sinx;
     width = wv[i]*xConvert;
-    double height = strings_[i]->GetHeight();
-
-    int xo, yo1, yo2;
-    graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
-    graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
-    int h = yo2 - yo1;
 
     int x, y;
     graphicsOutput->WorldToOutputType( xLoc, yLoc, x, y );
     //
-    wxFont font( strings_[i]->GetFont()->GetwxFont() );
-    font.SetPointSize( h );
-    wxLogDebug("GRA_drawableText::Erase: ppi = %d, world height=%g, font height=%d", ppi, height, h);
-    dc.SetFont( font );
+    //wxFont font( strings_[i]->GetFont()->GetwxFont() );
+    //font.SetPointSize( h );
+    //wxLogDebug("GRA_drawableText::Erase: ppi = %d, world height=%g, font height=%d", ppi, height, h);
+    //dc.SetFont( font );
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i] ) );
     dc.SetTextForeground( dc.GetBackground().GetColour() );
     dc.DrawRotatedText( strings_[i]->GetString(), x, y, angle );
   }
@@ -341,18 +351,9 @@ void GRA_drawableText::GetStringStuff( std::size_t &size,
   int ppi = dc.GetPPI().GetWidth();
   for( std::size_t i=0; i<size; ++i )
   {
-    double height = strings_[i]->GetHeight();
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i] ) );
 
-    int xo, yo1, yo2;
-    graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
-    graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
-    int h = yo1 - yo2;
-
-    wxFont font( strings_[i]->GetFont()->GetwxFont() );
-    //font.SetPointSize( static_cast<int>(height*ppi+0.5) );
-    font.SetPointSize( h );
-    dc.SetFont( font );
-    int w, descent, extLead;
+    int w, h, descent, extLead;
     dc.GetTextExtent( strings_[i]->GetString(), &w, &h, &descent, &extLead );
     wv.push_back( w );
     maxHeight = std::max( maxHeight, h );
