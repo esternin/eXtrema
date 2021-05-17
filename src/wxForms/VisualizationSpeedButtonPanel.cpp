@@ -320,10 +320,9 @@ bool MyPrintout::OnPrintPage( int page )
     // need to be addressed at some point but can be fudged for the
     // moment.
     //
-    // The screen logical dpi is assumed 96x96, convert to actual ppi
-    int ppi = dc->GetPPI().GetWidth();  // returns 72 on screen, 300 on print, 192 on high-dpi Chromebook 
-    double scale = ( 96.0 / (double)ppi ) * (double)ppiPrinterX / (double)ppiScreenX;
-    //
+    double scale = (double)ppiPrinterX / (double)ppiScreenX;
+    wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: scale=%g, ppiScreen=%d x %d, ppiPrinter=%d x %d", scale, ppiScreenX, ppiScreenY, ppiPrinterX, ppiPrinterY);
+    
     // Now we have to check in case our real page size is reduced
     // (e.g. because we're drawing to a print preview memory DC)
     int pageWidth, pageHeight;
@@ -331,19 +330,16 @@ bool MyPrintout::OnPrintPage( int page )
     dc->GetSize( &w, &h );
     GetPageSizePixels( &pageWidth, &pageHeight );
 
-    //std::cout << "scale=" << scale << ", ppiPrinterX=" << ppiPrinterX << ", ppiScreenX=" << ppiScreenX << "\n"
-    //          << "w=" << w << ", h=" << h << "\n"
-    //          << "pageWidth=" << pageWidth << ", pageHeight=" << pageHeight << "\n";
-
     // If printer pageWidth == current DC width, then this doesn't
     // change. But w might be the preview bitmap width, so scale down.
-    scale *= w / (double)pageWidth;
+    scale *= (double)w / (double)pageWidth;
+    wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: scale=%g, page=%d x %d, PageSizePixels=%d x %d", scale, w, h, pageWidth, pageHeight);
 
     long xo=0, yo=0;
     dc->SetDeviceOrigin( xo, yo );
     dc->SetMapMode( wxMM_TEXT );
 
-    int dch = dc->GetPPI().GetHeight();
+    int dch = dc->GetPPI().GetHeight();  
     int dcw = dc->GetPPI().GetWidth();
     double xminW, yminW, xmaxW, ymaxW;
     ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
@@ -352,21 +348,23 @@ bool MyPrintout::OnPrintPage( int page )
     int xmax = static_cast<int>(xmaxW*dch+0.5);
     int ymax = static_cast<int>(ymaxW*dcw+0.5);
 
-    //std::cout << "w=" << w << ", h=" << h << "\n"
-    //          << "xmax=" << xmax << ", ymax=" << ymax << "\n";
+    wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: WorldLimits=%g..%g x %g..%g", xminW, xmaxW, yminW, ymaxW);
+    wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: map to ps()=%d..%d x %d..%d", xmin, xmax, ymin, ymax);
+
+    // Additional correction or replace wx scaling with our own? 
+    scale = 96.0 / ppiScreenX; // 96/96=1 on screen, 96/192=0.5 on high-dpi like Chromebook 
 
     if( (xmax-xmin) > (ymax-ymin) ) // landscape, x is the limiting direction
     {
-       scale *= (double)pageWidth / (double)(xmax-xmin);
        xmin -= 96; // for some reason, a (-96)-point shift is needed for print to match screen
        xmax -= 96;
     }
     else                            // portrait, y is the limiting direction
     {
-       scale *= (double)pageHeight / (double)(ymax-ymin);
        ymin -= 96; // for some reason, a (-96)-point shift is needed for print to match screen
        ymax -= 96;
     }
+    wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: scale=%g, %d..%d x %d..%d", scale, xmin, xmax, ymin, ymax);
     dc->SetUserScale( scale, scale );
 
     dc->StartDoc( wxT("extrema printing...") );

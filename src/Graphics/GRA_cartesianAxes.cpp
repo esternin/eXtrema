@@ -319,11 +319,13 @@ void  GRA_cartesianAxes::DrawYLabel( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     if( imagTicAngle > 180.0 )
     {
       x1 = xOrigin + 1.05*(imagTicLen+numWidth);
+      wxLogDebug("DrawYLabel: x1 = %g = %g + 1.05*(%g+%g)",x1,xOrigin,imagTicLen,numWidth);
       angle = 270.0;
     }
     else
     {
       x1 = xOrigin - 1.05*(imagTicLen+numWidth);
+      wxLogDebug("DrawYLabel: x1 = %g = %g - 1.05*(%g+%g)",x1,xOrigin,imagTicLen,numWidth);
       angle = 90.0;
     }
     GRA_drawableText *dt = new GRA_drawableText(label,sizlab,angle,x1,y1,align,labelFont,labelColor);

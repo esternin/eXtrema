@@ -62,3 +62,5 @@ set
  textcolor blue
 
 text 'y = '//RHSString
+
+hardcopy\postscript 2yaxes.eps

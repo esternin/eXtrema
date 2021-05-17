@@ -246,6 +246,8 @@ std::ostream &operator<<( std::ostream &out, GRA_drawableText const &dt )
 
 void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
+  int ppi = dc.GetPPI().GetWidth();
+  double scale = (double)ppi / 72.0;
   int xminM, yminM, xmaxM, ymaxM;
   graphicsOutput->GetLimits( xminM, yminM, xmaxM, ymaxM );
   double xminW, yminW, xmaxW, ymaxW;
@@ -258,7 +260,6 @@ void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   std::vector<int> wv;
   GetStringStuff( size, angle, cosx, sinx, xLoc, yLoc, wv, xConvert, yConvert, graphicsOutput, dc );
   double width = 0.0;
-  int ppi = dc.GetPPI().GetWidth();
   for( std::size_t i=0; i<size; ++i )
   {
     xLoc += width*cosx - strings_[i]->GetYShift()*sinx + strings_[i]->GetXShift()*cosx;
@@ -276,6 +277,7 @@ void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     //
     wxFont font( strings_[i]->GetFont()->GetwxFont() );
     font.SetPointSize( h );
+    wxLogDebug("GRA_drawableText::Draw: ppi = %d, world height=%g, font height=%d", ppi, height, h);
     dc.SetFont( font );
     dc.SetTextForeground( ExGlobals::GetwxColor(strings_[i]->GetColor()) );
     dc.DrawRotatedText( strings_[i]->GetString(), x, y, angle );
