@@ -28,7 +28,7 @@ AC_ARG_ENABLE(debug,
                 xyes) debug_option=yes ;;
                  xno) debug_option=no ;;
                    *) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
-             esac], [debug_option=yes])
+             esac], [debug_option=no])
 
 if test "$debug_option" = "yes"; then
     DEBUG_FLAG="-g"
