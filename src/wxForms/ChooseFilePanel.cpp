@@ -39,10 +39,10 @@ ChooseFilePanel::ChooseFilePanel( wxWindow *parent, bool read, wxString const &m
   wxString imageDir = ExGlobals::GetImagePath();
 
   wxBoxSizer *sizer = new wxBoxSizer( wxHORIZONTAL );
-  wxButton *chooseFileButton = new wxButton( this, ID_chooseFile, wxT("Browse"), wxDefaultPosition, wxSize(100,25) );
+  wxButton *chooseFileButton = new wxButton( this, ID_chooseFile, wxT("Browse"), wxDefaultPosition, wxSize(8*GetCharWidth(), 1.5*GetCharHeight()));
   chooseFileButton->SetToolTip( wxT("click to open a file browser") );
   sizer->Add( chooseFileButton, wxSizerFlags(0).Border(wxALL,5) );
-  filenameComboBox_ = new wxComboBox( this, wxID_ANY, wxT(""), wxDefaultPosition, wxSize(350,25),
+  filenameComboBox_ = new wxComboBox( this, wxID_ANY, wxT(""), wxDefaultPosition, wxSize(80*GetCharWidth(), 1.5*GetCharHeight()),
                                       0, 0, wxCB_READONLY );
   sizer->Add( filenameComboBox_, wxSizerFlags(1).Border(wxALL,5) );
   wxBitmapButton *clearListButton =
