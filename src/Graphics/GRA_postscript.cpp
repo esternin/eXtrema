@@ -2291,9 +2291,9 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     // so need to do the same here to match the appearance of the screen page.
     // Non-textual elements need no rescaling, so only do it here for fonts, 
     // not as a general redefinition of dotsPerInch.
-    height *= 96.0 / dotsPerInch_ ;
-    xshift *= 96.0 / dotsPerInch_ ;
-    yshift *= 96.0 / dotsPerInch_ ;
+    //height *= 96.0 / dotsPerInch_ ;
+    //xshift *= 96.0 / dotsPerInch_ ;
+    //yshift *= 96.0 / dotsPerInch_ ;
 
     maxHeight = std::max( height, maxHeight );
     outFile_ << "TextBuffer " << counter << " [[" << dr << " " << dg << " " << db

@@ -316,10 +316,10 @@ bool MyPrintout::OnPrintPage( int page )
     int dcw = dc->GetPPI().GetWidth();
     double xminW, yminW, xmaxW, ymaxW;
     ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
-    int xmin = static_cast<int>(xminW*dcw+0.5);
-    int ymin = static_cast<int>(yminW*dch+0.5);
-    int xmax = static_cast<int>(xmaxW*dcw+0.5);
-    int ymax = static_cast<int>(ymaxW*dch+0.5);
+    int xmin = static_cast<int>(xminW*dcw+0.5)+96;  // leave 1" margin on the printed page
+    int ymin = static_cast<int>(yminW*dch+0.5)+96;
+    int xmax = static_cast<int>(xmaxW*dcw+0.5)-96;
+    int ymax = static_cast<int>(ymaxW*dch+0.5)-96;
 
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: WorldLimits=%g..%g x %g..%g", xminW, xmaxW, yminW, ymaxW);
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: map to ps()=%d..%d x %d..%d", xmin, xmax, ymin, ymax);
@@ -331,17 +331,13 @@ bool MyPrintout::OnPrintPage( int page )
     GetPageSizePixels( &pageWidth, &pageHeight );
     if( (xmax-xmin) > (ymax-ymin) ) // landscape, x is the limiting direction
     {
-       xmin -= 96; // for some reason, a (-96)-point shift is needed for print to match screen
-       xmax -= 96;
-       scale = ( pageWidth > pageHeight ) ? 1 : (double)pageWidth / (double)pageHeight;
+       scale = ( pageWidth > pageHeight ) ? 1.0 : (double)pageWidth / (double)pageHeight;
     }
     else                            // portrait, y is the limiting direction
     {
-       ymin -= 96; // for some reason, a (-96)-point shift is needed for print to match screen
-       ymax -= 96;
-       scale = ( pageHeight > pageWidth ) ? 1 : (double)pageHeight / (double)pageWidth;
+       scale = ( pageHeight > pageWidth ) ? 1.0 : (double)pageHeight / (double)pageWidth;
     }
-    //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: scale=%g, page=%dx%d", scale, pageWidth, pageHeight);
+    wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: scale=%g, page=%dx%d", scale, pageWidth, pageHeight);
     dc->SetUserScale( scale, scale );
 
     dc->StartDoc( wxT("extrema printing...") );

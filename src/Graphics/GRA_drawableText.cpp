@@ -167,17 +167,35 @@ namespace
 {
 
 // Return font needed for the simple simple text display.
-wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text, double scale )
+wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text, int ppi )
 {
+  // an ugly hack, seems the only way to get the proper font scaling
+  // for all ppi values: fonts=72, screen=96, "high-dpi" screen=192, print=300
+  // may not be necessary for wx 3.1.6+
+  double scale;
+  switch (ppi)
+  {
+    case 192:
+      scale = 144.0 / 192.0;
+      break;
+    case 96:
+      scale = 72.0 / 96.0;
+      break;
+    default:
+      scale = 96.0 / 72.0; // this covers both ppi=72 and ppi=300
+  }
   double height = scale * text->GetHeight();
-  int xo, yo1, yo2;
-  graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
-  graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
-  int h = yo1 - yo2;
-
   wxFont font( text->GetFont()->GetwxFont() );
-  font.SetPointSize( h );
-  wxLogDebug("GRA_drawableText::MakeFont: scale=%g, world height=%g, font height=%d", scale, height, h);
+
+  //int xo, yo1, yo2;
+  //graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
+  //graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
+  //int h = yo1 - yo2;
+  //font.SetPointSize( h );
+  //wxLogDebug("GRA_drawableText::MakeFont: scale=%g, world height=%g, font height=%d", scale, height, h);
+
+  font.SetPixelSize( wxSize(0, scale*ppi*height) );
+  wxLogDebug("GRA_drawableText::MakeFont: scale=%g, world height=%g, pixel height=%g", scale, height, scale*ppi*height);
 
   return font;
 }
@@ -268,7 +286,6 @@ std::ostream &operator<<( std::ostream &out, GRA_drawableText const &dt )
 void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   int ppi = dc.GetPPI().GetWidth();  // fonts=72, screen=96, "high-dpi" screen=192, print=300
-  double scale = 72.0 / (double)ppi;
   int xminM, yminM, xmaxM, ymaxM;
   graphicsOutput->GetLimits( xminM, yminM, xmaxM, ymaxM );
   double xminW, yminW, xmaxW, ymaxW;
@@ -289,7 +306,7 @@ void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
     int x, y;
     graphicsOutput->WorldToOutputType( xLoc, yLoc, x, y );
-    dc.SetFont( MakeFont( graphicsOutput, strings_[i], scale ) );
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i], ppi ) );
     dc.SetTextForeground( ExGlobals::GetwxColor(strings_[i]->GetColor()) );
     dc.DrawRotatedText( strings_[i]->GetString(), x, y, angle );
     //
@@ -302,7 +319,6 @@ void GRA_drawableText::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 void GRA_drawableText::Erase( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 {
   int ppi = dc.GetPPI().GetWidth();  // fonts=72, screen=96, "high-dpi" screen=192, print=300
-  double scale = 72.0 / (double)ppi;
   int xminM, yminM, xmaxM, ymaxM;
   graphicsOutput->GetLimits( xminM, yminM, xmaxM, ymaxM );
   double xminW, yminW, xmaxW, ymaxW;
@@ -323,7 +339,7 @@ void GRA_drawableText::Erase( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
     int x, y;
     graphicsOutput->WorldToOutputType( xLoc, yLoc, x, y );
-    dc.SetFont( MakeFont( graphicsOutput, strings_[i], scale ) );
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i], ppi ) );
     dc.SetTextForeground( dc.GetBackground().GetColour() );
     dc.DrawRotatedText( strings_[i]->GetString(), x, y, angle );
   }
@@ -339,11 +355,10 @@ void GRA_drawableText::GetStringStuff( std::size_t &size,
   int length = 0;
   int maxHeight = 0;
   size = strings_.size();
-  int ppi = dc.GetPPI().GetWidth();  // fonts=72, screen=96, "high-dpi" screen=192, print=300
-  double scale = 72.0 / (double)ppi;
+  int ppi = dc.GetPPI().GetWidth();
   for( std::size_t i=0; i<size; ++i )
   {
-    dc.SetFont( MakeFont( graphicsOutput, strings_[i], scale ) );
+    dc.SetFont( MakeFont( graphicsOutput, strings_[i], ppi ) );
 
     int w, h, descent, extLead;
     dc.GetTextExtent( strings_[i]->GetString(), &w, &h, &descent, &extLead );
