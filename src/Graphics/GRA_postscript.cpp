@@ -2292,7 +2292,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     // Non-textual elements need no rescaling, so only do it here for fonts, 
     // not as a general redefinition of dotsPerInch.
     //height *= 96.0 / dotsPerInch_ ;
-    //xshift *= 96.0 / dotsPerInch_ ;
+    xshift *= 96.0 / dotsPerInch_ ;
     //yshift *= 96.0 / dotsPerInch_ ;
 
     maxHeight = std::max( height, maxHeight );
@@ -2324,7 +2324,7 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
  // apply fudge factor
   double xminW, yminW, xmaxW, ymaxW;
   ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
-  //yLoc += 0.01*(ymaxW-yminW);
+  yLoc += 0.005*(ymaxW-yminW);
 
   if( dt->GetGraphUnits() ) // convert to world units
   {
@@ -2355,9 +2355,9 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
                << "/Cosx " << cosx << " def\n"
                << "/Sinx " << sinx << " def\n"
                << "/Xloc " << static_cast<int>(xLoc*dotsPerInch_+0.5)
-               << " TotalLength 2 div Cosx mul sub def\n"
+               << " TotalLength 2 div Cosx mul sub MaxHeight Sinx mul sub def\n"
                << "/Yloc " << static_cast<int>(yLoc*dotsPerInch_+0.5)
-               << " TotalLength 2 div Sinx mul sub def\n";
+               << " TotalLength 2 div Sinx mul sub MaxHeight Cosx mul add def\n";
       break;
     case 3:   // lower right
       outFile_ << "/MaxHeight " << static_cast<int>(maxHeight+0.5) << " def\n"
