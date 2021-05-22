@@ -176,16 +176,13 @@ wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text, int ppi )
   switch (ppi)
   {
     case 300:
-      scale = 1.0;
+      scale = 1.20 ; // surprisingly, NOT 96/72
       break;
-    case 192:
-      scale = 144.0 / 192.0;
-      break;
-    case 96:
-      scale = 72.0 / 96.0;
+    case 72:
+      scale = 96.0 / 72.0; 
       break;
     default:
-      scale = 96.0 / 72.0; // this covers ppi=72
+      scale = 1.0;
   }
   double height = scale * text->GetHeight();
   wxFont font( text->GetFont()->GetwxFont() );

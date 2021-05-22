@@ -316,10 +316,10 @@ bool MyPrintout::OnPrintPage( int page )
     int dcw = dc->GetPPI().GetWidth();
     double xminW, yminW, xmaxW, ymaxW;
     ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
-    int xmin = static_cast<int>(xminW*dcw+0.5)+96;  // leave 1" margin on the printed page
-    int ymin = static_cast<int>(yminW*dch+0.5)+96;
-    int xmax = static_cast<int>(xmaxW*dcw+0.5)-96;
-    int ymax = static_cast<int>(ymaxW*dch+0.5)-96;
+    int xmin = static_cast<int>(xminW*dcw+0.5);  // leave 1" margin on the printed page
+    int ymin = static_cast<int>(yminW*dch+0.5);
+    int xmax = static_cast<int>(xmaxW*dcw+0.5);
+    int ymax = static_cast<int>(ymaxW*dch+0.5);
 
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: WorldLimits=%g..%g x %g..%g", xminW, xmaxW, yminW, ymaxW);
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: map to ps()=%d..%d x %d..%d", xmin, xmax, ymin, ymax);
