@@ -169,34 +169,19 @@ namespace
 // Return font needed for the simple simple text display.
 wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text, int ppi )
 {
-  // an ugly hack, seems the only way to get the proper font scaling
-  // for all ppi values: fonts=72, screen=96, "high-dpi" screen=192, print=300
+  double height = text->GetHeight();
+  // a hack to accommodate "high-dpi" screens like Chromebooks, which wxWidgets
+  // does not handle properly: fonts=72, screen=96, "high-dpi" screen=192, print=300
   // may not be necessary for wx 3.1.6+
-  double scale;
-  switch (ppi)
-  {
-    case 300:
-      scale = 1.20 ; // surprisingly, NOT 96/72
-      break;
-    case 72:
-      scale = 96.0 / 72.0; 
-      break;
-    default:
-      scale = 1.0;
-  }
-  double height = scale * text->GetHeight();
+  double fontScale = ExGlobals::GetFontScale();
+
   wxFont font( text->GetFont()->GetwxFont() );
-
-  //int xo, yo1, yo2;
-  //graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
-  //graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
-  //int h = yo1 - yo2;
-  //font.SetPointSize( h );
-  //wxLogDebug("GRA_drawableText::MakeFont: scale=%g, world height=%g, font height=%d", scale, height, h);
-
-  font.SetPixelSize( wxSize(0, scale*ppi*height) );
-  wxLogDebug("GRA_drawableText::MakeFont: scale=%g, world height=%g, pixel height=%g", scale, height, scale*ppi*height);
-
+  int xo, yo1, yo2;
+  graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
+  graphicsOutput->WorldToOutputType( 0.0, fontScale*height, xo, yo2 );
+  int h = yo1 - yo2;
+  font.SetPointSize( h );
+  wxLogDebug("GRA_drawableText::MakeFont: ppi=%d, scale=%g, world height=%g, font height=%d", ppi, fontScale, height, h);
   return font;
 }
 

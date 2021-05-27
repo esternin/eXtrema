@@ -109,6 +109,8 @@ namespace ExGlobals
   GRA_color *GetWorkingFontColor();
   double GetWorkingFontHeight();
   double GetWorkingFontAngle();
+  double GetFontScale();
+  void SetFontScale( double );
 
   //void SetwxWindow( wxWindow *, int, int );
   wxWindow *GetwxWindow();

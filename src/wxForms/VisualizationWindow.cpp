@@ -190,8 +190,8 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   if ( !wxPersistentRegisterAndRestore(this, "VisualizationWindow") )
   {
     // Make the window of reasonable default size during the very first run
-    // (same as the size of the main window).
-    size = wxSize(80*GetCharWidth(), 30*GetCharHeight());
+    // (same width as the analysis window, default aspect ratio).
+    size = wxSize(80*GetCharWidth(), 60*GetCharHeight());
   }
   else
   {
@@ -589,11 +589,11 @@ void VisualizationWindow::NewPage( int n )
 
 void VisualizationWindow::SetPage( int n )
 {
-#if wxMINOR_VERSION < 8
-  notebook_->SetSelection( n-1 );
-#else
+//#if wxMINOR_VERSION < 8
+//  notebook_->SetSelection( n-1 );
+//#else
   notebook_->ChangeSelection( n-1 );
-#endif
+//#endif
 }
 
 void VisualizationWindow::SetPage( GraphicsPage *p )
