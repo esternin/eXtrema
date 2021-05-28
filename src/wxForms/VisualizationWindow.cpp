@@ -592,11 +592,7 @@ void VisualizationWindow::NewPage( int n )
 
 void VisualizationWindow::SetPage( int n )
 {
-//#if wxMINOR_VERSION < 8
-//  notebook_->SetSelection( n-1 );
-//#else
   notebook_->ChangeSelection( n-1 );
-//#endif
 }
 
 void VisualizationWindow::SetPage( GraphicsPage *p )
