@@ -308,11 +308,6 @@ bool MyPrintout::OnPrintPage( int page )
   wxDC *dc = GetDC();
   if( dc )
   {
-    int ppiScreenX, ppiScreenY;
-    GetPPIScreen( &ppiScreenX, &ppiScreenY );
-    double fontScale = ExGlobals::GetFontScale();
-    ExGlobals::SetFontScale( 96.0 / (double)ppiScreenX );
-    
     long xo=0, yo=0;
     dc->SetDeviceOrigin( xo, yo );
     dc->SetMapMode( wxMM_TEXT );
@@ -337,7 +332,7 @@ bool MyPrintout::OnPrintPage( int page )
     if( (xmax-xmin) > (ymax-ymin) ) // landscape, x is the limiting direction
     {
        scale = ( pageWidth > pageHeight ) ? 1.0 : (double)pageWidth / (double)pageHeight;
-       xmin -= 72;
+       xmin -= 72;                  // there seems to be a built-in 1" margin, shift
        xmax -= 72;
     }
     else                            // portrait, y is the limiting direction
@@ -359,7 +354,6 @@ bool MyPrintout::OnPrintPage( int page )
       return false;
     }
     dc->EndDoc();
-    ExGlobals::SetFontScale( fontScale );
     return true;
   }
   else return false;
