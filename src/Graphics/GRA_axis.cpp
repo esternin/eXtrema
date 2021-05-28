@@ -145,8 +145,8 @@ void GRA_axis::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   int ppi = dc.GetPPI().GetWidth(); 
   if(ppi >= 300)
   {
-      maxWidth_ *= 96.0 / (double)ppi;  //ExGlobals::GetFontScale();
-      wxLogDebug("ppi=%d, fontScale_=%g",ppi, ExGlobals::GetFontScale() );
+      maxWidth_ *= 96.0 / (double)ppi;
+      wxLogDebug("GRA_axis: ppi=%d, fontScale_=%g",ppi, ExGlobals::GetFontScale() );
   }
 }
 

@@ -213,7 +213,7 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   // fudge needed for proper fonts' scaling on high-dpi displays, prior to wx 3.1.6
   wxScreenDC *d = new wxScreenDC();
   int ppiScreenX = d->GetPPI().GetWidth();
-  double fontScale = 96.0 / (double)ppiScreenX;
+  double fontScale = (ppiScreenX >= 96.0) ? 96.0 / (double)ppiScreenX : 1.0;
   ExGlobals::SetFontScale( fontScale );
   wxLogDebug("VisualizationWindow::VisualizationWindow: scale=%g, fontScale=%g", GetContentScaleFactor(), fontScale);
   d->~wxScreenDC();
