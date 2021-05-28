@@ -926,8 +926,8 @@ void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
     double xOrigin, yOrigin;
     yAxis->GetOrigin( xOrigin, yOrigin );
     double numWidth = yAxis->GetMaxWidth();
-    // a strange fudge to ensure PostScript label placement consistent with the screen
-    numWidth *= (pixelsPerInch_ / dotsPerInch_) * (pixelsPerInch_ / highresPerInch_);
+    // a fudge to ensure PostScript label placement consistent with the screen
+    numWidth *= pixelsPerInch_ / highresPerInch_;
     //
     // draw the label vertically and centered on the y-axis
     //
