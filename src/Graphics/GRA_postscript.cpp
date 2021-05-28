@@ -77,6 +77,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 extern std::vector<GRA_specialCharacter> SpecialCharacters;
 
 double GRA_postscript::dotsPerInch_ = 72.0;
+// Font sizes nominally in 1"/72 "points", need to scale them up to the screen's 96ppi
+// Non-textual elements need no rescaling, so vectors and positions keep using dotsPerInch_
+double GRA_postscript::pixelsPerInch_ = 96.0;
+double GRA_postscript::highresPerInch_ = 300.0;
 
 GRA_postscript::~GRA_postscript()
 { outFile_.close(); }
@@ -273,8 +277,8 @@ void GRA_postscript::GetLimits( double &xmin, double &ymin, double &xmax, double
 
 void GRA_postscript::OutputTypeToWorld( int xo, int yo, double &xw, double &yw ) const
 {
-  xw = o2wMatrix_[0][0]*xo + o2wMatrix_[0][1]*(yMax_-yo) + o2wShift_[0];
-  yw = o2wMatrix_[1][0]*xo + o2wMatrix_[1][1]*(yMax_-yo) + o2wShift_[1];
+  xw = (o2wMatrix_[0][0]*xo + o2wMatrix_[0][1]*(yMax_-yo) + o2wShift_[0])/dotsPerInch_;
+  yw = (o2wMatrix_[1][0]*xo + o2wMatrix_[1][1]*(yMax_-yo) + o2wShift_[1])/dotsPerInch_;
 }
 
 void GRA_postscript::WorldToOutputType( double xw, double yw, double &xo, double &yo ) const
@@ -922,6 +926,8 @@ void GRA_postscript::Draw( GRA_cartesianAxes *cartesianAxes )
     double xOrigin, yOrigin;
     yAxis->GetOrigin( xOrigin, yOrigin );
     double numWidth = yAxis->GetMaxWidth();
+    // a fudge to ensure PostScript label placement consistent with the screen
+    numWidth *= pixelsPerInch_ / highresPerInch_;
     //
     // draw the label vertically and centered on the y-axis
     //
@@ -2284,16 +2290,9 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
     psFontName = GRA_fontControl::GetPostScriptFontName( (simpleText)->GetFont()->GetFontName() );
     ExGlobals::RemoveBlanks( fontName );
     ExGlobals::ToCapitalize( fontName );
-    double height = dotsPerInch_*(simpleText)->GetHeight();
-    double xshift = dotsPerInch_*(simpleText)->GetXShift();
-    double yshift = dotsPerInch_*(simpleText)->GetYShift();
-    // Font sizes nominally in 1"/72 "points" are scaled up to the screen's 96ppi
-    // so need to do the same here to match the appearance of the screen page.
-    // Non-textual elements need no rescaling, so only do it here for fonts, 
-    // not as a general redefinition of dotsPerInch.
-    height *= 96.0 / dotsPerInch_ ;
-    //xshift *= 96.0 / dotsPerInch_ ;
-    //yshift *= 96.0 / dotsPerInch_ ;
+    double height = pixelsPerInch_*(simpleText)->GetHeight();
+    double xshift = pixelsPerInch_*(simpleText)->GetXShift();
+    double yshift = pixelsPerInch_*(simpleText)->GetYShift();
 
     maxHeight = std::max( height, maxHeight );
     outFile_ << "TextBuffer " << counter << " [[" << dr << " " << dg << " " << db

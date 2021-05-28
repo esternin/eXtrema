@@ -190,8 +190,8 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   if ( !wxPersistentRegisterAndRestore(this, "VisualizationWindow") )
   {
     // Make the window of reasonable default size during the very first run
-    // (same as the size of the main window).
-    size = wxSize(80*GetCharWidth(), 30*GetCharHeight());
+    // (same width as the analysis window, default aspect ratio).
+    size = wxSize(80*GetCharWidth(), 60*GetCharHeight());
   }
   else
   {
@@ -210,12 +210,15 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   ExGlobals::SetAspectRatio( aspectRatio );
   page->ResetWindows();
 
+  // fudge needed for proper fonts' scaling on high-dpi displays, prior to wx 3.1.6
+  int ppiScreenX = wxScreenDC().GetPPI().GetWidth();
+  double fontScale = (ppiScreenX >= 96.0) ? 96.0 / (double)ppiScreenX : 1.0;
+  ExGlobals::SetFontScale( fontScale );
+  wxLogDebug("VisualizationWindow::VisualizationWindow: scale=%g, fontScale=%g", GetContentScaleFactor(), fontScale);
+
   // Show the window.
   // Frames, unlike simple controls, are not shown when created initially.
   Show( true );
-
-  //printf("Scale factor = %g, DPI=%d\n", GetContentScaleFactor(), GetDPI().y);
-  wxLogDebug("VisualizationWindow::VisualizationWindow: scale factor = %g", GetContentScaleFactor());
 }
 
 void VisualizationWindow::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )
@@ -589,11 +592,11 @@ void VisualizationWindow::NewPage( int n )
 
 void VisualizationWindow::SetPage( int n )
 {
-#if wxMINOR_VERSION < 8
-  notebook_->SetSelection( n-1 );
-#else
+//#if wxMINOR_VERSION < 8
+//  notebook_->SetSelection( n-1 );
+//#else
   notebook_->ChangeSelection( n-1 );
-#endif
+//#endif
 }
 
 void VisualizationWindow::SetPage( GraphicsPage *p )

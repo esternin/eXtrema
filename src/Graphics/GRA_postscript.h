@@ -128,6 +128,8 @@ private:
   bool newLine_;
   double drawLineTable_[3][10];
   static double dotsPerInch_;
+  static double pixelsPerInch_;
+  static double highresPerInch_;
   int counter_;
 };
 

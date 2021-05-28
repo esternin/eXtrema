@@ -115,6 +115,7 @@ bool echo_, pausing_, stackIsOn_, stackSaved_, executeFlag_;
 int nHistory_, maxHistory_;
 bool workingColorFlag_, workingFontFlag_;
 double workingFontHeight_, workingFontAngle_;
+double fontScale_;
 int workingColorCode_, workingFontCode_, workingFontColorCode_;
 wxString currentPath_, executablePath_, helpPath_, imagePath_, stackFile_;
 bool noviceMode_;
@@ -402,6 +403,8 @@ void Initialize()
   //
   GRA_colorControl::Initialize();
   GRA_fontControl::Initialize();
+  //
+  SetFontScale( 1.0 );
   //
   executeFlag_ = true;
   scriptExtension_ = wxT("pcm");
@@ -776,6 +779,12 @@ double GetWorkingFontHeight()
 
 double GetWorkingFontAngle()
 { return workingFontAngle_; }
+
+double GetFontScale()
+{ return fontScale_; }
+
+void SetFontScale( double s )
+{ fontScale_ = s; }
 
 void WarningMessage( wxString const &s )
 { WriteOutput( wxString(wxT("Warning: "))+s ); }

@@ -316,7 +316,7 @@ bool MyPrintout::OnPrintPage( int page )
     int dcw = dc->GetPPI().GetWidth();
     double xminW, yminW, xmaxW, ymaxW;
     ExGlobals::GetWorldLimits( xminW, yminW, xmaxW, ymaxW );
-    int xmin = static_cast<int>(xminW*dcw+0.5);  // leave 1" margin on the printed page
+    int xmin = static_cast<int>(xminW*dcw+0.5);
     int ymin = static_cast<int>(yminW*dch+0.5);
     int xmax = static_cast<int>(xmaxW*dcw+0.5);
     int ymax = static_cast<int>(ymaxW*dch+0.5);
@@ -332,6 +332,8 @@ bool MyPrintout::OnPrintPage( int page )
     if( (xmax-xmin) > (ymax-ymin) ) // landscape, x is the limiting direction
     {
        scale = ( pageWidth > pageHeight ) ? 1.0 : (double)pageWidth / (double)pageHeight;
+       xmin -= 72;                  // there seems to be a built-in 1" margin, shift
+       xmax -= 72;
     }
     else                            // portrait, y is the limiting direction
     {

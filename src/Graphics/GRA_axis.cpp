@@ -141,6 +141,13 @@ void GRA_axis::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     double width = (*i)->GetWidth();
     if( maxWidth_ < width )maxWidth_ = width;
   }
+  // a fudge required for proper placement of axis' label on print page
+  int ppi = dc.GetPPI().GetWidth(); 
+  if(ppi >= 300)
+  {
+      maxWidth_ *= 96.0 / (double)ppi;
+      wxLogDebug("GRA_axis: ppi=%d, fontScale_=%g",ppi, ExGlobals::GetFontScale() );
+  }
 }
 
 void GRA_axis::MakeLinearAxis()
