@@ -45,7 +45,6 @@ CommandTextCtrl::CommandTextCtrl( AnalysisCommandPanel *parent )
   SetToolTip( wxT("enter commands here") );
   commandStringsIndex_ = -1;
 
-  std::cout << " restoring commands \n";
   // Restore the previous commands from the config, if any.
   if( auto config = wxConfig::Get() )
   {
