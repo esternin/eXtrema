@@ -14,9 +14,11 @@ Required:
 
 Compiling requires general development tools (compilers etc.); and
 eXtrema requires wxWidgets' library, currently tested for v.3.0.4
-(see http://www.wxwidgets.org), which in turn needs gtk+3.0:
+(see http://www.wxwidgets.org), which in turn needs gtk+3.0. Also,
+eXtrema relies on FreeFont family being available, without this, special
+characters may not render correctly.
 
-$ sudo apt-get install build-essential autotools-dev libwxgtk3.0-gtk3-dev libgtk-3-dev
+$ sudo apt-get install build-essential autotools-dev libwxgtk3.0-gtk3-dev libgtk-3-dev fonts-freefont-ttf fonts-freefont-otf
 
 If you are building wxWidgets library yourself, configure it with the following options:
 
@@ -34,12 +36,12 @@ used for other data. See https://musr.ca/mud/ for information on
 downloading and installing. The MUD package comes with various Makefiles
 for the supported architectures.
 
-A quick guide (only works on 32-bit systems at the moment):
+A quick guide:
 
-$ wget https://musr.ca/mud/mud.tar.gz
-$ tar -xvf mud.tar.gz
-$ cd mud
+$ git clone https://github.com/esternin/MUD.git
+$ cd MUD
 $ make
+$ sudo make install
 
 MINUIT
 ======
@@ -57,11 +59,16 @@ Building
 
 Untar the distribution:
 
-$ tar zxf extrema-x.y.z.tar.gz
+$ tar zxf eXtrema-x.y.z.tar.gz
 
 which will create a directory named extrema-x.y.z.  
 
-$ cd extrema-x.y.z
+$ cd eXtrema-x.y.z
+
+Alternatively, you can use 
+
+$ git clone https://github.com/esternin/eXtrema.git
+$ cd eXtrema
 
 Then type the commands:
 
