@@ -3,14 +3,8 @@ defaults
 fonts[1]=`SANS'
 fonts[2]=`SERIF'
 fonts[3]=`MONO'
-fonts[4]=`SANS BOLD'
-fonts[5]=`SERIF BOLD'
-fonts[6]=`MONO BOLD'
-fonts[7]=`SANS ITALIC'
-fonts[8]=`SERIF ITALIC'
-fonts[9]=`MONO ITALIC'
 
-do i=[1:9]
+do i=[1:3]
   set font fonts[i]
   set colour black
   @special.pcm
