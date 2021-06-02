@@ -32,12 +32,14 @@ class GRA_simpleText
   //
 public:
   GRA_simpleText( wxString string, double height, GRA_color *color, GRA_font *font,
+                  wxFontStyle style, wxFontWeight weight,
                   double xShift, double yShift )
       : string_(string), height_(height), color_(color), font_(font),
+        style_(style), weight_(weight),
         xShift_(xShift), yShift_(yShift)
   {}
   
-  GRA_simpleText( wxString, double, GRA_color *, wxChar const *, double, double );
+  GRA_simpleText( wxString, double, GRA_color *, wxChar const *, wxFontStyle, wxFontWeight, double, double );
 
   ~GRA_simpleText()
   {}
@@ -65,6 +67,18 @@ public:
   double GetHeight() const
   { return height_; }
 
+  void SetStyle ( wxFontStyle s )
+  { style_ = s; }
+
+  wxFontStyle GetStyle() const
+  { return style_; }
+
+  void SetWeight ( wxFontWeight w )
+  { weight_ = w; }
+
+  wxFontWeight GetWeight() const
+  { return weight_; }
+
   double GetXShift() const
   { return xShift_; }
 
@@ -83,6 +97,8 @@ private:
   wxString string_;
   GRA_color *color_;
   GRA_font *font_;
+  wxFontStyle style_;
+  wxFontWeight weight_;
   //
   double xShift_, yShift_;
   //

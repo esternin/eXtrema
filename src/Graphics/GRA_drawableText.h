@@ -138,6 +138,8 @@ private:
   double x_, y_, height_, angle_;
   int alignment_;
   GRA_font *font_;
+  wxFontStyle style_;
+  wxFontWeight weight_; 
   GRA_color *color_;
   //
   double subsupFactor_;
@@ -152,7 +154,7 @@ private:
   void AlignXY( double, double, double &, double &, double &, double &, double & );
 
   void DetermineCommand( wxString &, double &, double &, double &,
-                         bool &, bool &, int &, int & );
+                         wxFontStyle &, wxFontWeight &, int &, int & );
   wxChar Special( wxString const &, wxString & );
 
 

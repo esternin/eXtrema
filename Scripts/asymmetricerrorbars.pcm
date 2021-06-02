@@ -23,7 +23,7 @@ get
  
 set
  %textheight 6
- textfont 'ArialBlack'
+ textfont SANS
  %xtextlocation (xlx+xux)/2
  %ytextlocation yux+2
  textalign 2

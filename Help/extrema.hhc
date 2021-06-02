@@ -4,7 +4,7 @@
 <center>
 <p><font size="+3" color="green">Data Analysis and Visualisation Software</font></p>
 </center>
-<P><font size="-1" face="Arial black" color="red">EXTREMA</font> is a high level,
+<P><font size="-1" face="arial,helvetica,sans-serif" color="red">EXTREMA</font> is a high level,
  interactive programming environment with user friendly graphics
  and sophisticated mathematical analysis capabilities. Over <code>200</code>
  numeric and character functions are provided, as well as over <code>30</code>
