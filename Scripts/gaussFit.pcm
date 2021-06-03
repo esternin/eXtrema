@@ -29,7 +29,7 @@ get
 
 set
  %textheight 3
- textfont 'Arial'
+ textfont SANS
  %xtextlocation 0.5*(xlx+xux)
  %ytextlocation yux+1
  textalign 2

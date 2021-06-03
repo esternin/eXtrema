@@ -40,7 +40,7 @@ do i = [1:len(phi)-1]
 enddo
 set
  %textheight 6
- textfont 'Arial Black'
+ textfont SANS
  textalign 1
  textinteractive 0
  %xtextlocation 10

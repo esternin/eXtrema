@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_fontControl.h"
 
 GRA_simpleText::GRA_simpleText( wxString string, double height, GRA_color *color,
-                                wxChar const *fontName, double xShift, double yShift )
+                                wxChar const *fontName, wxFontStyle style, wxFontWeight weight, double xShift, double yShift )
     : string_(string), height_(height), color_(color), xShift_(xShift), yShift_(yShift),
       font_( GRA_fontControl::GetFont(fontName) )
 {}
@@ -33,6 +33,8 @@ void GRA_simpleText::CopyStuff( GRA_simpleText const &rhs )
   color_ = rhs.color_;
   height_ = rhs.height_;
   font_ = rhs.font_;
+  style_ = rhs.style_;
+  weight_ = rhs.weight_;
   xShift_ = rhs.xShift_;
   yShift_ = rhs.yShift_;
 }
@@ -41,6 +43,7 @@ bool GRA_simpleText::operator==( GRA_simpleText const &rhs ) const
 {
   if( string_ != rhs.string_ || height_ != rhs.height_ ||
       color_ != rhs.color_  || font_ != rhs.font_ ||
+      style_ != rhs.style_  || weight_ != rhs.weight_ ||
       xShift_ != rhs.xShift_ || yShift_ != rhs.yShift_ )return false;
   return true;
 }

@@ -180,6 +180,8 @@ wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text )
   graphicsOutput->WorldToOutputType( 0.0, fontScale*height, xo, yo2 );
   int h = yo1 - yo2;
   font.SetPointSize( h );
+  font.SetWeight( text->GetWeight() );
+  font.SetStyle( text->GetStyle() );
   wxLogDebug("GRA_drawableText::MakeFont: fontScale=%g, world height=%g, font height=%d", fontScale, height, h);
   return font;
 }
@@ -437,8 +439,8 @@ void GRA_drawableText::Parse()
   // multiple adjacent commands can entered as <comand><command>  or  <command,command>
   //
   double xShift=0.0, yShift=0.0;
-  bool italics = false;
-  bool bold = false;
+  wxFontStyle style = style_;
+  wxFontWeight weight = weight_;
   int upCounter = 0;
   int downCounter = 0;
   double height = height_;
@@ -477,7 +479,7 @@ void GRA_drawableText::Parse()
       {
         if( !text.empty() )
         {
-          GRA_simpleText *tmp = new GRA_simpleText(text,height,color_,font_,xShift,yShift);
+          GRA_simpleText *tmp = new GRA_simpleText(text,height,color_,font_,style,weight,xShift,yShift);
           strings_.push_back( tmp );
           text.erase();
           xShift = 0.0;
@@ -495,7 +497,7 @@ void GRA_drawableText::Parse()
       {
         try
         {
-          DetermineCommand( command, height, xShift, yShift, italics, bold, upCounter, downCounter );
+          DetermineCommand( command, height, xShift, yShift, style, weight, upCounter, downCounter );
         }
         catch ( std::runtime_error &e )
         {
@@ -526,22 +528,25 @@ void GRA_drawableText::Parse()
   }
   if( !text.empty() )
   {
-    GRA_simpleText *tmp = new GRA_simpleText(text,height,color_,font_,xShift,yShift);
+    GRA_simpleText *tmp = new GRA_simpleText(text,height,color_,font_,style,weight,xShift,yShift);
     strings_.push_back( tmp );
   }
 }
 
 void GRA_drawableText::DetermineCommand( wxString &command,
                                          double &height, double &xShift, double &yShift,
-                                         bool &italics, bool &bold,
+                                         wxFontStyle &style, wxFontWeight &weight,
                                          int &upCounter, int &downCounter )
+
 {
   wxString fontName;
   wxChar c = Special( command, fontName );
   if( c )
   {
-    GRA_simpleText *tmp = new GRA_simpleText(c,height,color_,fontName.c_str(),xShift,yShift);
+    GRA_simpleText *tmp = new GRA_simpleText(c,height,color_,fontName.c_str(),style,weight,xShift,yShift);
     strings_.push_back( tmp );
+    style = wxFONTSTYLE_NORMAL;
+    weight = wxFONTWEIGHT_NORMAL;
     xShift = 0.0;
     yShift = 0.0;
     return;
@@ -558,7 +563,14 @@ void GRA_drawableText::DetermineCommand( wxString &command,
   std::size_t len = command.size();
   command.UpperCase();  // convert to upper case
   //
-  if( command[0] == wxT('F') ) // set the font
+  if( command[0] == wxT('B') ) // boldface on/off
+  {
+    if(command.substr(1,len-1)==wxT('1'))
+      weight = wxFONTWEIGHT_BOLD ;
+    else
+      weight = wxFONTWEIGHT_NORMAL ;
+  }
+  else if( command[0] == wxT('F') ) // set the font
   {
     font_ = GRA_fontControl::GetFont( command.substr(1,len-1) );
   }
@@ -569,6 +581,13 @@ void GRA_drawableText::DetermineCommand( wxString &command,
     wxString s( command.substr(1,end) );
     if( !s.ToDouble(&height) )throw std::runtime_error( "invalid value for height" );
     if( percent )height = std::min( dy, std::max(0.0,height*dy/100.) );
+  }
+  else if( command[0] == wxT('I') ) // italics on/off
+  {
+    if(command.substr(1,len-1)==wxT('1'))
+      style = wxFONTSTYLE_ITALIC;
+    else
+      style = wxFONTSTYLE_NORMAL;
   }
   else if( command[0] == wxT('Z') ) // include a horizontal space
   {

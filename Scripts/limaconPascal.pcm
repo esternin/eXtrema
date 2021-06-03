@@ -27,7 +27,7 @@ get
  
 set
  %textheight 6
- textfont 'Arial Black'
+ textfont SANS
  %xtextlocation (xux+xlx)/2
  %ytextlocation yux+1
  textalign 2
@@ -36,7 +36,7 @@ set
 text 'Limacon of Pascal'
 set
  %textheight 3
- textfont 'Arial'
+ textfont SERIF
  %xtextlocation 45
  %ytextlocation 75
  textalign 1
