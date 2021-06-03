@@ -21,7 +21,7 @@ get %polaroriginx px
 get %polaroriginy py
 
 set %textheight 5
-set textfont 'Arial Black'
+set textfont SANS
 set %xtextlocation 50
 set %ytextlocation 100
 set textalign 8
@@ -30,7 +30,7 @@ set textinteractive 0
 text 'Limacon of Pascal'
 
 set %textheight 3
-set textfont 'Arial'
+set textfont SANS
 set %xtextlocation 65
 set %ytextlocation 84
 set textalign 1
