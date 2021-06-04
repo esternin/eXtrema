@@ -67,14 +67,8 @@ public:
   double GetHeight() const
   { return height_; }
 
-  void SetStyle ( wxFontStyle s )
-  { style_ = s; }
-
   wxFontStyle GetStyle() const
   { return style_; }
-
-  void SetWeight ( wxFontWeight w )
-  { weight_ = w; }
 
   wxFontWeight GetWeight() const
   { return weight_; }

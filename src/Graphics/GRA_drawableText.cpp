@@ -182,7 +182,8 @@ wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text )
   font.SetPointSize( h );
   font.SetWeight( text->GetWeight() );
   font.SetStyle( text->GetStyle() );
-  wxLogDebug("GRA_drawableText::MakeFont: fontScale=%g, world height=%g, font height=%d", fontScale, height, h);
+  wxLogDebug("GRA_drawableText::MakeFont: fontScale=%g, world height=%g, font height=%d, style=%d(%d), weight=%d(%d)", 
+          fontScale, height, h, text->GetStyle(), wxFONTSTYLE_NORMAL, text->GetWeight(), wxFONTWEIGHT_NORMAL);
   return font;
 }
 
@@ -439,8 +440,8 @@ void GRA_drawableText::Parse()
   // multiple adjacent commands can entered as <comand><command>  or  <command,command>
   //
   double xShift=0.0, yShift=0.0;
-  wxFontStyle style = style_;
-  wxFontWeight weight = weight_;
+  wxFontStyle style = wxFONTSTYLE_NORMAL;
+  wxFontWeight weight = wxFONTWEIGHT_NORMAL;
   int upCounter = 0;
   int downCounter = 0;
   double height = height_;
@@ -545,8 +546,6 @@ void GRA_drawableText::DetermineCommand( wxString &command,
   {
     GRA_simpleText *tmp = new GRA_simpleText(c,height,color_,fontName.c_str(),style,weight,xShift,yShift);
     strings_.push_back( tmp );
-    style = wxFONTSTYLE_NORMAL;
-    weight = wxFONTWEIGHT_NORMAL;
     xShift = 0.0;
     yShift = 0.0;
     return;

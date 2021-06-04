@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 GRA_simpleText::GRA_simpleText( wxString string, double height, GRA_color *color,
                                 wxChar const *fontName, wxFontStyle style, wxFontWeight weight, double xShift, double yShift )
-    : string_(string), height_(height), color_(color), xShift_(xShift), yShift_(yShift),
+    : string_(string), height_(height), color_(color), style_(style), weight_(weight), xShift_(xShift), yShift_(yShift),
       font_( GRA_fontControl::GetFont(fontName) )
 {}
 
