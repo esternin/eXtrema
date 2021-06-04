@@ -119,7 +119,7 @@ NOTE:
 
    and to run extrema, type
 
-   $ $EXTREMA_DIR/src/extrema
+   $ $EXTREMA_DIR/build-linux-x86_64/src/extrema
 
 
 Basic Installation
