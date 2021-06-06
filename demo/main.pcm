@@ -1,7 +1,0 @@
-=`in main: starting a loop'
-
-do i=[1:5]
- @sub1 i
-enddo
-
-=`in main: all done'

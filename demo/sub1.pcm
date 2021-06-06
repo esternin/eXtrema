@@ -1,7 +1,0 @@
-=`in sub1: i = '//rchar(?1)
-
-do j=[1:2]
-  @sub2 j
-enddo
-
-=`in sub1: returning'
