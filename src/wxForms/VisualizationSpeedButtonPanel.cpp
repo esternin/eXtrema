@@ -323,7 +323,7 @@ bool MyPrintout::OnPrintPage( int page )
 
     double fontScale = ExGlobals::GetFontScale();
     int ppiScreenX = wxScreenDC().GetPPI().GetWidth();
-    ExGlobals::SetFontScale( 96.0 / (double)ppiScreenX );
+    ExGlobals::SetFontScale( (ppiScreenX >=96) ? 96.0 / (double)ppiScreenX : 1.0);
 
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: WorldLimits=%g..%g x %g..%g", xminW, xmaxW, yminW, ymaxW);
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: map to ps()=%d..%d x %d..%d", xmin, xmax, ymin, ymax);
