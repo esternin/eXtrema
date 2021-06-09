@@ -60,7 +60,7 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
 
   midSizer->Add(
     new wxStaticText(midPanel,wxID_ANY,wxT("Parameter(s): ")), wxSizerFlags(0).Border(wxALL,10) );
-  parameterTextCtrl_ = new wxTextCtrl( midPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxSize(40*GetCharWidth(), 1.5*GetCharHeight()) );
+  parameterTextCtrl_ = new wxTextCtrl( midPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxSize(40*GetCharWidth(), -1));//1.5*GetCharHeight()) );
   parameterTextCtrl_->SetToolTip( wxT("enter any required parameters") );
   midSizer->Add( parameterTextCtrl_, wxSizerFlags(1).Expand().Left().Border(wxALL,10) );
   
