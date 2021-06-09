@@ -23,8 +23,11 @@ dist_applications_DATA = extrema.desktop
 # include it in iconsdir itself, as would be typical.
 iconsdir = $(datadir)
 nobase_dist_icons_DATA = \
+    icons/hicolor/16x16/apps/extrema.png \
     icons/hicolor/32x32/apps/extrema.png \
-    icons/hicolor/64x64/apps/extrema.png
+    icons/hicolor/64x64/apps/extrema.png \
+    icons/hicolor/512x512/apps/extrema.png \
+    icons/hicolor/scalable/apps/extrema.svg
 
 install-data-hook: update-icon-cache
 uninstall-hook: update-icon-cache

@@ -126,7 +126,7 @@ AnalysisWindow::AnalysisWindow( extrema *extrema )
   SetSizer( sizer );
 
   CreateStatusBar( 1 );
-  SetStatusText( wxT("Welcome to extrema!") );
+  SetStatusText( wxT("Welcome to eXtrema!") );
 
   if ( !wxPersistentRegisterAndRestore(this, "AnalysisWindow") )
   {
@@ -183,7 +183,7 @@ void AnalysisWindow::OnHelp( wxCommandEvent &WXUNUSED(event) )
 
 void AnalysisWindow::OnAbout( wxCommandEvent &WXUNUSED(event) )
 {
-  wxDialog dg( this, wxID_ANY, wxT("Extrema"), wxDefaultPosition, wxDefaultSize );
+  wxDialog dg( this, wxID_ANY, wxT("eXtrema"), wxDefaultPosition, wxDefaultSize );
   wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
   wxTextCtrl *textCtrl = new wxTextCtrl( &dg, wxID_ANY, wxT(""),
                                          wxDefaultPosition, wxDefaultSize,
@@ -191,7 +191,7 @@ void AnalysisWindow::OnAbout( wxCommandEvent &WXUNUSED(event) )
   wxTextAttr ta( *wxRED, wxNullColour, wxNullFont, wxTEXT_ALIGNMENT_CENTRE );
   textCtrl->SetDefaultStyle( ta );
   textCtrl->AppendText( wxT(" \n") );
-  textCtrl->AppendText( wxT("EXTREMA\n") );
+  textCtrl->AppendText( wxT("eXtrema\n") );
   textCtrl->AppendText( wxT(" \n") );
   wxTextAttr ta2( *wxBLACK, wxNullColour, wxNullFont, wxTEXT_ALIGNMENT_CENTRE );
   textCtrl->SetDefaultStyle( ta2 );
@@ -201,7 +201,7 @@ void AnalysisWindow::OnAbout( wxCommandEvent &WXUNUSED(event) )
   textCtrl->AppendText( wxT("Copyright 2012-21 by Edward Sternin\n") );
 
   textCtrl->AppendText( wxT(" \n") );
-  textCtrl->AppendText( wxT("Extrema comes with ABSOLUTELY NO WARRANTY\n") );
+  textCtrl->AppendText( wxT("eXtrema comes with ABSOLUTELY NO WARRANTY\n") );
   textCtrl->AppendText( wxT("This is free software, distributed under the\n") );
   textCtrl->AppendText( wxT("GNU General Public License, version 2 or greater,\n") );
   textCtrl->AppendText( wxT("as published by the FSF.\n") );
