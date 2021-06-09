@@ -2,7 +2,7 @@
 Name=eXtrema
 Comment=Data visualisation and analysis
 Exec=/usr/local/bin/extrema
-Icon=eXtrema
+Icon=extrema
 Terminal=0
 Type=Application
 Encoding=UTF-8

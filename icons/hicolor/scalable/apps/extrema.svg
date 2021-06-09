@@ -16,7 +16,7 @@
    viewBox="0 0 153.67289 153.91269"
    version="1.1"
    id="svg8"
-   sodipodi:docname="eXtrema-icon.svg"
+   sodipodi:docname="eXtrema.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    inkscape:export-filename="/home/edik/triumf/eXtrema/icons/hicolor/32x32/apps/eXtrema.png"
    inkscape:export-xdpi="5.2843385"
@@ -133,7 +133,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.3158766"
-     inkscape:cx="170.86559"
+     inkscape:cx="50.413566"
      inkscape:cy="291.65133"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -186,7 +186,7 @@
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:114.65277863px;font-family:FreeSerif;-inkscape-font-specification:'FreeSerif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">e</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:44.09722137px;line-height:1.25;font-family:Georgia;-inkscape-font-specification:'Georgia, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#f37732;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:44.09722137px;line-height:1.25;font-family:Georgia;-inkscape-font-specification:'Georgia, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff5f22;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
        x="116.536"
        y="103.80849"
        id="text4531"><tspan
@@ -194,7 +194,7 @@
          id="tspan4529"
          x="116.536"
          y="103.80849"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:44.09722137px;font-family:Georgia;-inkscape-font-specification:'Georgia, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#f37732;fill-opacity:1;stroke-width:0.26458332;">x</tspan></text>
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:44.09722137px;font-family:Georgia;-inkscape-font-specification:'Georgia, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ff5f22;fill-opacity:1;stroke-width:0.26458332;">x</tspan></text>
     <ellipse
        style="fill:none;fill-opacity:1;stroke:#008dff;stroke-width:12.74383163;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path4541"
