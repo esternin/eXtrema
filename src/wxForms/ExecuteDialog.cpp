@@ -62,7 +62,7 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
     new wxStaticText(midPanel,wxID_ANY,wxT("Parameter(s): ")), wxSizerFlags(0).Border(wxALL,10) );
   parameterTextCtrl_ = new wxTextCtrl( midPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxSize(40*GetCharWidth(), -1));//1.5*GetCharHeight()) );
   parameterTextCtrl_->SetToolTip( wxT("enter any required parameters") );
-  midSizer->Add( parameterTextCtrl_, wxSizerFlags(1).Expand().Left().Border(wxALL,10) );
+  midSizer->Add( parameterTextCtrl_, wxSizerFlags(1).Left().Border(wxALL,10) );
   
   wxPanel *bottomPanel = new wxPanel( this );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
@@ -101,7 +101,7 @@ ExecuteDialog::~ExecuteDialog()
   {
     chooseFilePanel_->SaveFilenames( config, wxT("/ExecuteDialog") );
     
-    if( !parameterTextCtrl_->GetValue().empty() )
+    //if( !parameterTextCtrl_->GetValue().empty() )
       config->Write( wxT("/ExecuteDialog/PARAMETERS"), parameterTextCtrl_->GetValue() );
   }
   //
