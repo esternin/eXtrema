@@ -5,10 +5,10 @@ This  directory contains a few pre-compiled binaries. If you do not wish to comp
 To run it from the distribution directory set this environment variable to the appropriate location of the top-level directory (where `Help/` and `Images/` are, for example 
 ```export EXTREMA_DIR=~/extrema-x.y.z```
 and then run run the appropriate executable from the command line, for example 
-```$ETREMA_DIR/bin/extrema-4.6.0-appimage```
+```$ETREMA_DIR/bin/eXtrema-4.6.0-x86_64.AppImage```
  
 <ul>
   <li><a href="extrema-4.6.0-x86_64">extrema-4.6.0-x86_64</a> - a dynamically linked executable for Ubuntu 20.04 LTS, wxWidgets 3.0.4</li>
-  <li><a href="extrema-4.6.0-chromebook">extrema-4.6.0-chromebook</a> - a dynamically linked executable for Debian in a termina container under ChomeOS v.91, wxWidgets 3.0.4</li>
-  <li><a href="extrema-4.6.0-appimage">extrema-4.6.0-appimage</a> - a self-contained AppImage executable for most Linux distros (Ubuntu,RHEL tested), wxWidgets 3.0.4</li>
+  <li><a href="extrema-4.6.0-chromebook">extrema-4.6.0.chromebook</a> - a dynamically linked executable for Debian in a termina container under ChomeOS v.91, wxWidgets 3.0.4</li>
+  <li><a href="https://toor.do/eXtrema-latest-x86_64.AppImage">https://toor.do/eXtrema-latest-x86_64.AppImage</a> - a self-contained AppImage executable for most Linux distros (Ubuntu 16.04+,RHEL tested), wxWidgets 3.0.4</li>
 </ul>
