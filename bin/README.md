@@ -8,7 +8,7 @@ and then run run the appropriate executable from the command line, for example
 ```$ETREMA_DIR/bin/eXtrema-4.6.0-x86_64.AppImage```
  
 <ul>
-  <li><a href="http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0.x86_64">http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0.x86_64</a> - a dynamically linked executable for Ubuntu 20.04 LTS, wxWidgets 3.0.4</li>
+  <li><a href="http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0-x86_64">http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0-x86_64</a> - a dynamically linked executable for Ubuntu 20.04 LTS, wxWidgets 3.0.4</li>
   <li><a href="http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0.chromebook">http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0.chromebook</a> - a dynamically linked executable for Debian in a termina container under ChomeOS v.91, wxWidgets 3.0.4</li>
-  <li><a href="http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0-x86_64.appimage">http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0-x86_64.appimage</a> - a self-contained AppImage executable for most Linux distros (Ubuntu 16.04+,RHEL tested), wxWidgets 3.0.4</li>
+  <li><a href="http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0-x86_64.appimage">http://landau.physics.brocku.ca/extrema-4.6.0/bin/extrema-4.6.0-x86_64.appimage</a> - (412MB) a self-contained AppImage executable for most Linux distros (Ubuntu 16.04+,RHEL tested), wxWidgets 3.0.4</li>
 </ul>
