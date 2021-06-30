@@ -1,3 +1,19 @@
+30/06/2021  Edward Sternin <edward.sternin@brocku.ca>
+
+	4.6.0
+
+	* updated to wxWidgets v 3.0.x (mostly compatible wih 3.1.x),
+	intermediate bitmap/screen update scheme revamped
+
+	* a switch to FreeFonts, rationalization of UTF16 support
+
+	* bold/italic switches in text strings
+
+	* temporary accommodations for high-dpi screens, like Chromebook;
+	these will need further revision for wx 3.1.x+ and for Windows
+
+	* self-contained binary AppImages for Linux created
+
 20/03/2021  Edward Sternin <edward.sternin@brocku.ca>
 
 	4.5
