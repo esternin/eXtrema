@@ -88,6 +88,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "LegendPopup.h"
 #include "GRA_polarAxes.h"
 #include "GRA_polarCurve.h"
+#include "ToAscii.h"
 
 DECLARE_APP(extrema)
 
@@ -1195,7 +1196,7 @@ void PreParse( wxString &line )
   std::size_t lineLen = line.length();
   while ( i < lineLen )
   {
-    int iascii = toascii( line[i] );
+    int iascii = TryConvertToAscii( line[i] );
     cline.append( line[i] );
     currentState = newState;
     newState = stateTable[currentState-1][classes[iascii]-1];

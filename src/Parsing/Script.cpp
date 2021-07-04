@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "ESyntaxError.h"
 #include "ParseToken.h"
 #include "ExGlobals.h"
+#include "ToAscii.h"
 
 wxChar Script::commentCharacter_ = wxT('!');
 wxChar Script::parameterCharacter_ = wxT('?');
@@ -386,7 +387,7 @@ void Script::RemakeInputLine( wxString &line )
     }
     else if( line[i] == parameterCharacter_ )
     {
-      int ival = i+1<lineLen ? toascii(line[i+1]) : 0;
+      int ival = i+1<lineLen ? TryConvertToAscii(line[i+1]) : 0;
       if( ival<48 || ival>57 )
       {
         // sequential parameter substitution
@@ -410,7 +411,7 @@ void Script::RemakeInputLine( wxString &line )
         s.append( line[++i] );
         for( ;; )
         {
-          ival = i+1<lineLen ? toascii(line[i+1]) : 0;
+          ival = i+1<lineLen ? TryConvertToAscii(line[i+1]) : 0;
           if( ival<48 || ival>57 )break;
           s.append( line[++i] );
         }

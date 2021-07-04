@@ -412,6 +412,7 @@ noinst_LTLIBRARIES += libutilities.la
 libutilities_la_SOURCES = \
     Utilities/ExGlobals.cpp Utilities/ExGlobals.h \
     Utilities/ExXML.cpp Utilities/ExXML.h \
+    Utilities/ToAscii.h \
     Utilities/UsefulFunctions.cpp Utilities/UsefulFunctions.h
 
 noinst_LTLIBRARIES += libvariables.la

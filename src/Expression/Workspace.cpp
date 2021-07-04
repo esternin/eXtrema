@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "FunctionTable.h"
 #include "OperatorDefinition.h"
 #include "OperatorTable.h"
+#include "ToAscii.h"
 
 Workspace::Workspace()
     : level_(0), expression_(0), string_( wxT("") )
@@ -449,7 +450,7 @@ void Workspace::ParseCodes( bool expand )
       }
       else       //  deduce the class of the current character
       {
-        int iascii = toascii( string_[first+ilast-2] );
+        int iascii = TryConvertToAscii( string_[first+ilast-2] );
         state = expars[exClass[iascii]-1][state-1];
 
         //std::cout << "iascii= " << iascii << ", state= " << state << "\n";
