@@ -439,9 +439,8 @@ void VisualizationWindow::OnReplotCurrent( wxCommandEvent &WXUNUSED(event) )
   }
 }
 
-void VisualizationWindow::OnSize( wxSizeEvent &event )
+void VisualizationWindow::OnSize( wxSizeEvent &WXUNUSED(event) )
 {
-  SetSize( event.GetSize() );
   ResetPages();
 }
 
