@@ -67,7 +67,6 @@ BEGIN_EVENT_TABLE( VisualizationWindow, wxFrame )
   EVT_MENU( ID_removePage, VisualizationWindow::OnRemovePage )
   EVT_MENU( ID_aspectRatio, VisualizationWindow::OnSetAspectRatio )
   EVT_CLOSE( VisualizationWindow::CloseEventHandler )
-  EVT_SIZE( VisualizationWindow::OnSize )
 END_EVENT_TABLE()
   //EVT_SET_FOCUS( VisualizationWindow::OnSetFocus )
   //EVT_KILL_FOCUS( VisualizationWindow::OnKillFocus )
@@ -203,6 +202,10 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
     size.y = static_cast<int>(aspectRatio*size.x+0.5);
   else
     size.x = static_cast<int>(size.y/aspectRatio+0.5);
+
+  // Bind this event handler now that all members are initialized, calling it
+  // earlier could crash due to using e.g. uninitialized "notebook_" field.
+  Bind(wxEVT_SIZE, &VisualizationWindow::OnSize, this);
 
   SetClientSize(size);
 
