@@ -22,12 +22,9 @@ systems, but Windows may require the TTF version of the FreeFonts.
 $ sudo apt-get install build-essential autotools-dev libwxgtk3.0-gtk3-dev libgtk-3-dev fonts-freefont-ttf fonts-freefont-otf
 
 If you are building wxWidgets library yourself, the default configuration
-should be sufficient, but if there are linker complaints, try the following 
-settings:
+should work fine, but you can also prefer to build static libraries by using
 
-$ ./configure --enable-optimise --enable-exceptions --enable-unicode
-  --enable-htmlhelp --enable-postscript --enable-giff --enable-static
-  --with-gtk --with-libpng --with-libjpeg --with-libtiff --with-gnomeprint
+$ ./configure --enable-static
 
 Optional:
 
