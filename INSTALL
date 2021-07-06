@@ -124,6 +124,37 @@ NOTE:
    $ $EXTREMA_DIR/build-linux-x86_64/src/extrema
 
 
+Building Microsoft Windows Version
+==================================
+
+Extrema is portable and can also run under Microsoft Windows. The build
+process is similar to the one outlined above, i.e. it still must be built
+under a GNU/Linux system, but using MinGW cross-compiler rather than the
+compiler producing native binaries.
+
+On Debian and similar systems, the cross-compiler can be installed using
+
+        $ sudo apt-get install g++-mingw-w64-x86-64
+
+(or g++-mingw-w64-i686 if you want to build 32-bit version for some reason).
+
+You will need to build wxWidgets from source using
+
+        $ ./configure --host=x86_64-w64-mingw32 --enable-static
+
+(for 32-bit version use i686-w64-mingw32 host triplet).
+
+Then build Extrema itself using the same --host option, but otherwise
+following the same steps as above.
+
+Note that when running the program you will need MinGW DLLs from
+/usr/lib/gcc/x86_64-w64-mingw32/$GCC_VERSION which are part of
+gcc-mingw-w64-x86-64-win32-runtime package under Debian, i.e. you will
+need to copy libgcc_s_seh-1.dll and libstdc++-6.dll from that directory
+to the directory containing extrema.exe on the Microsoft Windows system.
+
+
+
 Basic Installation
 ==================
 
