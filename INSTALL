@@ -140,7 +140,7 @@ On Debian and similar systems, the cross-compiler can be installed using
 
 You will need to build wxWidgets from source using
 
-        $ ./configure --host=x86_64-w64-mingw32 --enable-static
+        $ ./configure --host=x86_64-w64-mingw32 --disable-shared
 
 (for 32-bit version use i686-w64-mingw32 host triplet).
 
