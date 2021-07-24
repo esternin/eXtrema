@@ -49,14 +49,16 @@ ReadTextForm::ReadTextForm( AnalysisWindow *parent )
     : wxFrame(parent,wxID_ANY,wxT("Read text"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       analysisWindow_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
+
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   mainSizer->InsertSpacer( 0, 10 );
 
-  topPanel_ = new ChooseFilePanel( this, true,
+  topPanel_ = new ChooseFilePanel( mainPanel, true,
                                    wxT("Choose a data file for reading"), wxT("any file|*.*") );
   mainSizer->Add( topPanel_, wxSizerFlags(0).Border(wxALL,1) );
 
-  wxPanel *varNamePanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRAISED_BORDER );
+  wxPanel *varNamePanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRAISED_BORDER );
   wxGridSizer *varNameSizer = new wxGridSizer( 1, 2, 0, 0 );
 
   varNameSizer->Add(
@@ -69,7 +71,7 @@ ReadTextForm::ReadTextForm( AnalysisWindow *parent )
   varNamePanel->SetSizer( varNameSizer );
   mainSizer->Add( varNamePanel, wxSizerFlags(0).Center().Border(wxALL,1) );
 
-  wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *midPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *midSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxPanel *leftPanel = new wxPanel( midPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRAISED_BORDER );
@@ -137,7 +139,7 @@ ReadTextForm::ReadTextForm( AnalysisWindow *parent )
 
   mainSizer->Add( midPanel, wxSizerFlags(0).Center().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( (wxWindow*)this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxButton *applyButton = new wxButton( bottomPanel, wxID_APPLY, wxT("Apply") );
@@ -151,7 +153,7 @@ ReadTextForm::ReadTextForm( AnalysisWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
   topPanel_->GetFilenames( config, wxT("/ReadTextForm") );

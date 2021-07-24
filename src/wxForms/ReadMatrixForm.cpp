@@ -50,14 +50,16 @@ ReadMatrixForm::ReadMatrixForm( AnalysisWindow *parent )
     : wxFrame(parent,wxID_ANY,wxT("Read matrix"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       analysisWindow_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
+
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   mainSizer->InsertSpacer( 0, 10 );
 
-  topPanel_ = new ChooseFilePanel( this, true,
+  topPanel_ = new ChooseFilePanel( mainPanel, true,
                                    wxT("Choose a data file for reading"), wxT("any file|*.*") );
   mainSizer->Add( topPanel_, wxSizerFlags(0).Border(wxALL,1) );
 
-  wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *midPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *midSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxPanel *leftPanel = new wxPanel( midPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRAISED_BORDER );
@@ -159,7 +161,7 @@ ReadMatrixForm::ReadMatrixForm( AnalysisWindow *parent )
 
   mainSizer->Add( midPanel, wxSizerFlags(0).Center().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( (wxWindow*)this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                                       wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
 
@@ -174,7 +176,7 @@ ReadMatrixForm::ReadMatrixForm( AnalysisWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
   topPanel_->GetFilenames( config, wxT("/ReadMatrixForm") );

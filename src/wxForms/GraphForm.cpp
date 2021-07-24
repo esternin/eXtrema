@@ -118,10 +118,12 @@ GraphForm::GraphForm( VisualizationWindow *parent )
 
 void GraphForm::CreateForm()
 {
+  wxPanel* const mainPanel = new wxPanel(this);
+
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   mainSizer->AddSpacer( 10 );
   
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxPanel *topLeftPanel = new wxPanel( topPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
@@ -190,7 +192,7 @@ void GraphForm::CreateForm()
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(0).Center().Border(wxALL,1) );
 
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxButton *drawButton = new wxButton( bottomPanel, wxID_APPLY, wxT("Draw") );
@@ -208,7 +210,7 @@ void GraphForm::CreateForm()
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
   
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 }
 
 void GraphForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )

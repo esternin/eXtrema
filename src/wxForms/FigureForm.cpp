@@ -123,9 +123,11 @@ void FigureForm::CreateForm()
 {
   SetSizeHints( wxDefaultSize, wxDefaultSize );
   
+  wxPanel* const mainPanel = new wxPanel(this);
+
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
 	
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                                    wxTAB_TRAVERSAL );
   wxBoxSizer *topPanelSizer = new wxBoxSizer( wxHORIZONTAL );
   
@@ -344,7 +346,7 @@ void FigureForm::CreateForm()
   topPanelSizer->Fit( topPanel );
   mainSizer->Add( topPanel, 0, wxEXPAND | wxALL, 1 );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition,
                                       wxDefaultSize, wxTAB_TRAVERSAL );
   wxBoxSizer* bpSizer = new wxBoxSizer( wxVERTICAL );
   
@@ -357,7 +359,7 @@ void FigureForm::CreateForm()
   bpSizer->Fit( bottomPanel );
   mainSizer->Add( bottomPanel, 0, wxEXPAND | wxALL, 1 );
   
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   Layout();
   mainSizer->Fit( this );
 }

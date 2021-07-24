@@ -38,6 +38,8 @@ class ImportForm : public wxFrame
 public:
   ImportForm( wxWindow *, wxImage & );
   
+  wxPanel* GetMainPanel() const { return mainPanel_; }
+
   void ZeroDigitizeForm();
 
   void StartDigitizing();
@@ -60,6 +62,7 @@ public:
   void OnMouseLeftDown( wxMouseEvent & );
 
 private:
+  wxPanel* mainPanel_;
   DigitizeForm *digitizeForm_;
   wxBitmap *bitmap_;
   ImportWindow *window_;

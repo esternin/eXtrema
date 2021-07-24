@@ -59,11 +59,12 @@ PeakFindForm::PeakFindForm( VisualizationWindow *parent )
 {
   wxString imageDir = ExGlobals::GetImagePath();
 
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
 
   mainSizer->InsertSpacer( 0, 2 );
 
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxVERTICAL );
   
   wxPanel *topTopPanel = new wxPanel( topPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
@@ -138,7 +139,7 @@ PeakFindForm::PeakFindForm( VisualizationWindow *parent )
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(0).Center().Border(wxALL,2) );
 
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   
   wxButton *initializeButton = new wxButton( bottomPanel, ID_initialize, wxT("Initialize") );
@@ -152,7 +153,7 @@ PeakFindForm::PeakFindForm( VisualizationWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 
   wxPersistentRegisterAndRestore(this, "PeakFindForm");
   Show( true );

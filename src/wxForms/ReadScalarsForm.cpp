@@ -51,13 +51,15 @@ ReadScalarsForm::ReadScalarsForm( AnalysisWindow *parent )
     : wxFrame(parent,wxID_ANY,wxT("Read scalars"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       analysisWindow_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
+
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   mainSizer->InsertSpacer( 0, 10 );
 
-  topPanel_ = new ChooseFilePanel( this, true, wxT("Choose a data file for reading"), wxT("any file|*.*") );
+  topPanel_ = new ChooseFilePanel( mainPanel, true, wxT("Choose a data file for reading"), wxT("any file|*.*") );
   mainSizer->Add( topPanel_, wxSizerFlags(0).Border(wxALL,1) );
 
-  wxPanel *gridPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *gridPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *gridSizer = new wxBoxSizer( wxHORIZONTAL );
 
   // create the scalar name/column grid
@@ -74,7 +76,7 @@ ReadScalarsForm::ReadScalarsForm( AnalysisWindow *parent )
 
   mainSizer->Add( gridPanel, wxSizerFlags(0).Center().Border(wxALL,1) );
 
-  wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRAISED_BORDER );
+  wxPanel *midPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRAISED_BORDER );
   wxBoxSizer *midSizer = new wxBoxSizer( wxVERTICAL );
 
   closeBefore_ = new wxCheckBox( midPanel, wxID_ANY, wxT("Close file before reading") );
@@ -135,7 +137,7 @@ ReadScalarsForm::ReadScalarsForm( AnalysisWindow *parent )
 
   mainSizer->Add( midPanel, wxSizerFlags(0).Center().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( (wxWindow*)this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxButton *applyButton = new wxButton( bottomPanel, wxID_APPLY, wxT("Apply") );
@@ -149,7 +151,7 @@ ReadScalarsForm::ReadScalarsForm( AnalysisWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
   topPanel_->GetFilenames( config, wxT("/ReadScalarsForm") );

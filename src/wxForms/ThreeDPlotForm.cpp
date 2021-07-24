@@ -97,9 +97,10 @@ void ThreeDPlotForm::CreateForm()
 
   SetSizeHints( wxDefaultSize, wxDefaultSize );
   
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition,
                                    wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxVERTICAL );
   
@@ -142,7 +143,7 @@ void ThreeDPlotForm::CreateForm()
   topSizer->Fit( topPanel );
   mainSizer->Add( topPanel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition,
                                       wxDefaultSize, wxNO_BORDER&wxTAB_TRAVERSAL );
   wxBoxSizer* bottomSizer = new wxBoxSizer( wxVERTICAL );
 
@@ -231,11 +232,11 @@ void ThreeDPlotForm::CreateForm()
   bottomSizer->Fit( bottomPanel );
   mainSizer->Add( bottomPanel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
   
-  wxButton *closeButton = new wxButton( this, wxID_CLOSE, wxT("Close"),
+  wxButton *closeButton = new wxButton( mainPanel, wxID_CLOSE, wxT("Close"),
                                         wxDefaultPosition, wxDefaultSize, 0 );
   mainSizer->Add( closeButton, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
   
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   Layout();
   mainSizer->Fit( this );
 }

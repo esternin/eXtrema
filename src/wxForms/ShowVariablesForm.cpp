@@ -48,9 +48,10 @@ ShowVariablesForm::ShowVariablesForm( AnalysisWindow *parent )
 {
   varInfoForm_ = 0;
 
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   
-  wxPanel *gridPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(550,350), wxNO_BORDER );
+  wxPanel *gridPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxSize(550,350), wxNO_BORDER );
   wxBoxSizer *gridSizer = new wxBoxSizer( wxHORIZONTAL );
   //
   // create the variable grid
@@ -80,7 +81,7 @@ ShowVariablesForm::ShowVariablesForm( AnalysisWindow *parent )
 
   mainSizer->Add( gridPanel, wxSizerFlags(1).Expand().Border(wxALL,2) );
 
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   
   wxButton *refreshButton = new wxButton( bottomPanel, wxID_REFRESH, wxT("Refresh") );
@@ -94,7 +95,7 @@ ShowVariablesForm::ShowVariablesForm( AnalysisWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 
   wxPersistentRegisterAndRestore(this, "ShowVariablesForm");
   Show( true );

@@ -39,9 +39,10 @@ END_EVENT_TABLE()
 SetAspectRatioForm::SetAspectRatioForm( VisualizationWindow *parent )
     : wxFrame((wxWindow*)parent,wxID_ANY,wxT("Aspect ratio"),wxDefaultPosition,wxSize(215,130))
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
 
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxVERTICAL );
 
   wxPanel *heightPanel = new wxPanel( topPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
@@ -72,7 +73,7 @@ SetAspectRatioForm::SetAspectRatioForm( VisualizationWindow *parent )
 
   mainSizer->Add( topPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxButton *OKButton = new wxButton( bottomPanel, wxID_OK, wxT("OK") );
@@ -87,7 +88,7 @@ SetAspectRatioForm::SetAspectRatioForm( VisualizationWindow *parent )
 
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 
   wxPersistentRegisterAndRestore(this, "SetAspectRatioForm");
 

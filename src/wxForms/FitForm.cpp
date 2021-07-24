@@ -168,10 +168,12 @@ FitForm::FitForm( AnalysisWindow *parent )
 
 void FitForm::CreateForm()
 {
+  wxPanel* const mainPanel = new wxPanel(this);
+
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   mainSizer->AddSpacer( 10 );
   
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxPanel *topRightPanel = new wxPanel( topPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
@@ -261,7 +263,7 @@ void FitForm::CreateForm()
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(0).Center().Border(wxALL,1) );
 
-  wxPanel *exprPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *exprPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *exprSizer = new wxBoxSizer( wxHORIZONTAL );
 
   exprST_ = new wxStaticText( exprPanel, wxID_ANY, wxT("   Fit expression: Data vector = ") );
@@ -271,7 +273,7 @@ void FitForm::CreateForm()
   exprPanel->SetSizer( exprSizer );
   mainSizer->Add( exprPanel, wxSizerFlags(0).Center().Border(wxALL,5) );
 
-  wxPanel *parmPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *parmPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxFlexGridSizer *parmSizer = new wxFlexGridSizer( 9, 4, 5, 5 );
 
   parmSizer->Add( new wxStaticText(parmPanel,wxID_ANY,wxT("Fix     ")), wxSizerFlags(0).Right().Border(wxTOP,10) );
@@ -294,7 +296,7 @@ void FitForm::CreateForm()
   parmPanel->SetSizer( parmSizer );
   mainSizer->Add( parmPanel, wxSizerFlags(0).Center().Border(wxALL,5) );
 
-  wxPanel *legendPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *legendPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *legendSizer = new wxBoxSizer( wxHORIZONTAL );
 
   legendSizer->Add( new wxStaticText(legendPanel,wxID_ANY,wxT("Legend location:  %x ")), wxSizerFlags(0).Left().Border(wxTOP,5) );
@@ -307,7 +309,7 @@ void FitForm::CreateForm()
   legendPanel->SetSizer( legendSizer );
   mainSizer->Add( legendPanel, wxSizerFlags(0).Center().Border(wxALL,10) );
 
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
 
   testButton_ = new wxButton( bottomPanel, ID_test, wxT("Test the fit") );
@@ -329,7 +331,7 @@ void FitForm::CreateForm()
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
   
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 }
 
 void FitForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )

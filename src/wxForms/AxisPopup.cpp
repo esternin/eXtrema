@@ -89,10 +89,11 @@ AxisPopup::AxisPopup( GraphicsPage *parent )
 
 void AxisPopup::CreateForm()
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 
-  notebook_ = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_TOP );
+  notebook_ = new wxNotebook( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_TOP );
   mainSizer->Add( notebook_, wxSizerFlags(0).Left().Border(wxALL,5) );
   //
   MakeAxisPanel();
@@ -101,7 +102,7 @@ void AxisPopup::CreateForm()
   MakeLocationPanel();
   MakeAxisScalesPanel();
   //
-  closeBTN_ = new wxButton( this, wxID_CLOSE, wxT("Close") );
+  closeBTN_ = new wxButton( mainPanel, wxID_CLOSE, wxT("Close") );
   mainSizer->Add( closeBTN_, wxSizerFlags(0).Center().Border(wxALL,2) );
 }
 

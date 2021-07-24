@@ -61,9 +61,11 @@ ImportForm::ImportForm( wxWindow *parent, wxImage &image )
   // proportion > 0    allows for vertical expansion
   // Expand()          allows for horizontal expansion
   
+  mainPanel_ = new wxPanel(this);
+
   wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
   
-  wxPanel *panel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+  wxPanel *panel = new wxPanel( mainPanel_, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                                 wxRAISED_BORDER|wxTAB_TRAVERSAL );
   wxBoxSizer *panelSizer = new wxBoxSizer( wxHORIZONTAL );
   wxButton *digitizeButton = new wxButton( panel, ID_digitize, wxT("Digitize"),
@@ -81,7 +83,7 @@ ImportForm::ImportForm( wxWindow *parent, wxImage &image )
   window_ = new ImportWindow( this, bitmap_ );
   
   sizer->Add( window_, wxSizerFlags(1).Expand().Border(wxALL,1) );
-  SetSizer( sizer );
+  mainPanel_->SetSizer( sizer );
   
   // Show the window.
   // Frames, unlike simple controls, are not shown when created initially.
@@ -144,7 +146,7 @@ BEGIN_EVENT_TABLE( ImportWindow, wxWindow )
 END_EVENT_TABLE()
 
 ImportWindow::ImportWindow( ImportForm *parent, wxBitmap *bitmap )
-    : wxWindow( parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE ),
+    : wxWindow( parent->GetMainPanel(), wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE ),
       parent_(parent), bitmap_(bitmap)
 {
   SetBackgroundColour( *wxBLACK );
@@ -190,17 +192,18 @@ BEGIN_EVENT_TABLE( DigitizeForm, wxFrame )
 END_EVENT_TABLE()
 
 DigitizeForm::DigitizeForm( ImportForm *parent )
-    : wxFrame((wxWindow*)parent,wxID_ANY,wxT("Digitize Form"),
+    : wxFrame(parent->GetMainPanel(),wxID_ANY,wxT("Digitize Form"),
               wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE ),
       parent_(parent)
 {
   wxFont font( GetFont() );
   font.SetFamily( wxFONTFAMILY_TELETYPE );
 
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
-  wxPanel *xPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *xPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( xPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *xSizer = new wxBoxSizer( wxHORIZONTAL );
   xPanel->SetSizer( xSizer );
@@ -210,7 +213,7 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   xTC_->SetToolTip( wxT("enter the name for the independent vector to be created") );
   xSizer->Add( xTC_, wxSizerFlags(0).Left().Border(wxALL,2) );
   
-  wxPanel *yPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *yPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( yPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *ySizer = new wxBoxSizer( wxHORIZONTAL );
   yPanel->SetSizer( ySizer );
@@ -220,7 +223,7 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   yTC_->SetToolTip( wxT("enter the name for the dependent vector to be created") );
   ySizer->Add( yTC_, wxSizerFlags(0).Left().Border(wxALL,2) );
   
-  wxPanel *fpPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *fpPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( fpPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *fpSizer = new wxBoxSizer( wxHORIZONTAL );
   fpPanel->SetSizer( fpSizer );
@@ -233,7 +236,7 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   fpST_->SetFont( font );
   fpSizer->Add( fpST_,wxSizerFlags(0).Left().Border(wxTOP,2) );
   
-  wxPanel *spPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *spPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( spPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *spSizer = new wxBoxSizer( wxHORIZONTAL );
   spPanel->SetSizer( spSizer );
@@ -246,7 +249,7 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   spST_->SetFont( font );
   spSizer->Add( spST_,wxSizerFlags(0).Left().Border(wxTOP,2) );
   
-  wxPanel *tpPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *tpPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( tpPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *tpSizer = new wxBoxSizer( wxHORIZONTAL );
   tpPanel->SetSizer( tpSizer );
@@ -259,7 +262,7 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   tpST_->SetFont( font );
   tpSizer->Add( tpST_,wxSizerFlags(0).Left().Border(wxTOP,2) );
   
-  wxPanel *numPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *numPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( numPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *numSizer = new wxBoxSizer( wxHORIZONTAL );
   numPanel->SetSizer( numSizer );
@@ -272,7 +275,7 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   numST_->SetFont( font );
   numSizer->Add( numST_,wxSizerFlags(0).Left().Border(wxTOP,2) );
   
-  wxPanel *lastPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *lastPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( lastPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *lastSizer = new wxBoxSizer( wxHORIZONTAL );
   lastPanel->SetSizer( lastSizer );
@@ -285,7 +288,7 @@ DigitizeForm::DigitizeForm( ImportForm *parent )
   lastST_->SetFont( font );
   lastSizer->Add( lastST_,wxSizerFlags(0).Left().Border(wxTOP,2) );
 
-  startStopB_ = new wxButton( this, ID_start, wxT("Start digitizing") );
+  startStopB_ = new wxButton( mainPanel, ID_start, wxT("Start digitizing") );
   mainSizer->Add( startStopB_, wxSizerFlags(0).Centre().Border(wxTOP,10) );
 
   wxPersistentRegisterAndRestore(this, "DigitizeForm");
@@ -456,10 +459,11 @@ DigitizeInfo::DigitizeInfo( DigitizeForm *parent )
               wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE ),
       parent_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
-  wxPanel *infoPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
+  wxPanel *infoPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition,
                                     wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( infoPanel, wxSizerFlags(1).Expand().Border(wxALL,5) );
   wxBoxSizer *infoSizer = new wxBoxSizer( wxHORIZONTAL );
@@ -469,7 +473,7 @@ DigitizeInfo::DigitizeInfo( DigitizeForm *parent )
                               wxALIGN_LEFT|wxST_NO_AUTORESIZE );
   infoSizer->Add( infoST_, wxSizerFlags(0).Left().Border(wxTOP,2) );
 
-  abortB_ = new wxButton( this, ID_abort, wxT("Abort") );
+  abortB_ = new wxButton( mainPanel, ID_abort, wxT("Abort") );
   mainSizer->Add( abortB_, wxSizerFlags(0).Centre().Border(wxALL,5) );
 
   wxString label( wxT("Click with the left mouse button on a location\n") );
@@ -527,10 +531,11 @@ GetCoordinates::GetCoordinates( ImportWindow *parent, int x, int y )
               wxDefaultPosition,wxDefaultSize, wxDEFAULT_FRAME_STYLE ),
       parent_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
-  wxPanel *xPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *xPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( xPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *xSizer = new wxBoxSizer( wxHORIZONTAL );
   xPanel->SetSizer( xSizer );
@@ -539,7 +544,7 @@ GetCoordinates::GetCoordinates( ImportWindow *parent, int x, int y )
   xTC_->SetToolTip( wxT("enter the x coordinate value") );
   xSizer->Add( xTC_, wxSizerFlags(0).Left().Border(wxALL,2) );
   
-  wxPanel *yPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+  wxPanel *yPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
   mainSizer->Add( yPanel, wxSizerFlags(0).Left().Border(wxALL,5) );
   wxBoxSizer *ySizer = new wxBoxSizer( wxHORIZONTAL );
   yPanel->SetSizer( ySizer );
@@ -548,7 +553,7 @@ GetCoordinates::GetCoordinates( ImportWindow *parent, int x, int y )
   yTC_->SetToolTip( wxT("enter the y coordinate value") );
   ySizer->Add( yTC_, wxSizerFlags(0).Left().Border(wxALL,2) );
 
-  wxButton *okB = new wxButton( this, wxID_OK, wxT("OK") );
+  wxButton *okB = new wxButton( mainPanel, wxID_OK, wxT("OK") );
   mainSizer->Add( okB, wxSizerFlags(0).Centre().Border(wxALL,5) );
 
   int width = 350;

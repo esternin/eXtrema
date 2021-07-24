@@ -43,9 +43,10 @@ StackDialog::StackDialog( AnalysisWindow *parent )
               wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       analysisWindow_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
 
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
   wxString choices[2] = { wxT("ON"), wxT("OFF") };
   onOffRB_ = new wxRadioBox( topPanel, ID_onoff, wxT("Command recording"), wxDefaultPosition, wxDefaultSize,
@@ -54,18 +55,18 @@ StackDialog::StackDialog( AnalysisWindow *parent )
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(1).Centre().Border(wxALL,1) );
 
-  chooseFilePanel_ = new ChooseFilePanel( this, false, wxT("Browse folders"),
+  chooseFilePanel_ = new ChooseFilePanel( mainPanel, false, wxT("Browse folders"),
                                           wxT("stack file|*.stk|any file|*.*") );
   mainSizer->Add( chooseFilePanel_, wxSizerFlags(1).Expand().Border(wxALL,1) );
 
-  wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
+  wxPanel *midPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
   wxBoxSizer *midSizer = new wxBoxSizer( wxHORIZONTAL );
   appendCkB_ = new wxCheckBox( midPanel, wxID_ANY, wxT("Append to file") );
   midSizer->Add( appendCkB_, wxSizerFlags(0).Center().Border(wxALL,1) );
   midPanel->SetSizer( midSizer );
   mainSizer->Add( midPanel, wxSizerFlags(1).Expand().Centre().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   wxButton *applyButton = new wxButton( bottomPanel, wxID_APPLY, wxT("Apply") );
   applyButton->SetToolTip( wxT("click to turn command recording on/off") );
@@ -76,7 +77,7 @@ StackDialog::StackDialog( AnalysisWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(1).Expand().Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
   chooseFilePanel_->GetFilenames( config, wxT("/StackDialog") );

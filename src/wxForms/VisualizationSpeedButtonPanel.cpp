@@ -48,7 +48,7 @@ END_EVENT_TABLE()
   //EVT_BUTTON( ID_fillColor, VisualizationSpeedButtonPanel::OnFillColor )
 
 VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindow *parent )
-    : wxPanel( parent,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxRAISED_BORDER|wxTAB_TRAVERSAL ),
+    : wxPanel( parent->GetMainPanel(),wxID_ANY,wxDefaultPosition,wxDefaultSize,wxRAISED_BORDER|wxTAB_TRAVERSAL ),
       visualizationWindow_(parent)
 {
   wxString imageDir = ExGlobals::GetImagePath();

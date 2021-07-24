@@ -170,15 +170,16 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   // proportion > 0    allows for vertical expansion
   // Expand()          allows for horizontal expansion
   
+  mainPanel_ = new wxPanel(this);
   wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
 
   visualizationSpeedButtonPanel_ = new VisualizationSpeedButtonPanel(this);
   sizer->Add( visualizationSpeedButtonPanel_, wxSizerFlags(0).Expand().Border(wxALL,1) );
 
-  notebook_ = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_RIGHT );
+  notebook_ = new wxNotebook( mainPanel_, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_RIGHT );
 
   sizer->Add( notebook_, wxSizerFlags(1).Expand().Border(wxALL,5) );
-  SetSizer( sizer );
+  mainPanel_->SetSizer( sizer );
 
   GraphicsPage *page = new GraphicsPage(notebook_);
 
@@ -785,7 +786,7 @@ BEGIN_EVENT_TABLE( MyStatusBar, wxStatusBar )
 END_EVENT_TABLE()
 
 MyStatusBar::MyStatusBar( VisualizationWindow *parent )
-    : wxStatusBar( (wxWindow*)parent, wxID_ANY )
+    : wxStatusBar( parent->GetMainPanel(), wxID_ANY )
 {
   unitsType_ = 0;
   units_[0] = wxT("graph units");

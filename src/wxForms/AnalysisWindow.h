@@ -49,6 +49,8 @@ class AnalysisWindow : public wxFrame
 public:
   AnalysisWindow( extrema * );
   
+  wxPanel* GetMainPanel() const { return mainPanel_; }
+
   void WriteOutput( wxString const & );
   void ClearOutput();
   void AddCommandString( wxString const & );
@@ -100,6 +102,7 @@ public:
 
 private:
   extrema *extrema_;
+  wxPanel* mainPanel_;
   AnalysisMessagePanel *messagePanel_;
   AnalysisCommandPanel *commandPanel_;
   ReadVectorsForm *readVectorsForm_;

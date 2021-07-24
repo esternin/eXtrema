@@ -43,9 +43,10 @@ ColorSelector::ColorSelector( wxWindow *parent )
     : wxFrame(parent,wxID_ANY,wxT("color selector"),
               wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
 
   colorMapGrid_ = new wxGrid( topPanel, ID_grid, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER );
@@ -63,7 +64,7 @@ ColorSelector::ColorSelector( wxWindow *parent )
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(1).Expand().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   wxButton *okButton = new wxButton( bottomPanel, wxID_OK, wxT("OK") );
   okButton->SetToolTip( wxT("accept the color as chosen above") );
@@ -74,7 +75,7 @@ ColorSelector::ColorSelector( wxWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(1).Expand().Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
   wxPersistentRegisterAndRestore(this, "ColorSelector");
 

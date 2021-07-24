@@ -46,6 +46,8 @@ class VisualizationWindow : public wxFrame
 public:
   VisualizationWindow( wxWindow * );
 
+  wxPanel* GetMainPanel() const { return mainPanel_; }
+
   void ZeroGraphForm();
   GraphForm *GetGraphForm();
   void SetGraphForm( GraphForm * );
@@ -150,6 +152,7 @@ private:
   // i.e. the index starts with 0.
   GraphicsPage *DoGetPage( int );
 
+  wxPanel* mainPanel_;
   GraphForm *graphForm_;
   ThreeDPlotForm *threeDPlotForm_;
   FigureForm *figureForm_;

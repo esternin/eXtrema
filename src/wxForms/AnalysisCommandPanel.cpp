@@ -27,7 +27,7 @@ BEGIN_EVENT_TABLE( AnalysisCommandPanel, wxPanel )
 END_EVENT_TABLE()
 
 AnalysisCommandPanel::AnalysisCommandPanel( AnalysisWindow *parent )
-    : wxPanel(parent,wxID_ANY,wxDefaultPosition,wxDefaultSize)
+    : wxPanel(parent->GetMainPanel(),wxID_ANY,wxDefaultPosition,wxDefaultSize)
 {
   // this panel will expand horizontally but not vertically
   //

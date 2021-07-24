@@ -48,10 +48,12 @@ GenerateVectorForm::GenerateVectorForm( AnalysisWindow *parent )
     : wxFrame(parent,wxID_ANY,wxT("Generate a vector"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       analysisWindow_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
+
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   mainSizer->InsertSpacer( 0, 10 );
 
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
   topSizer->Add(
     new wxStaticText(topPanel,wxID_ANY,wxT("Generated vector name"),wxDefaultPosition,wxDefaultSize,wxALIGN_RIGHT ),
@@ -62,7 +64,7 @@ GenerateVectorForm::GenerateVectorForm( AnalysisWindow *parent )
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(0).Center().Border(wxALL,1) );
 
-  wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *midPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *midSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxPanel *leftPanel = new wxPanel( midPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxRAISED_BORDER );
@@ -111,7 +113,7 @@ GenerateVectorForm::GenerateVectorForm( AnalysisWindow *parent )
 
   mainSizer->Add( midPanel, wxSizerFlags(0).Center().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxButton *defaultsButton = new wxButton( bottomPanel, ID_defaults, wxT("Reset") );
@@ -129,7 +131,7 @@ GenerateVectorForm::GenerateVectorForm( AnalysisWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
   wxPersistentRegisterAndRestore(this, "GenerateVectorForm");
 

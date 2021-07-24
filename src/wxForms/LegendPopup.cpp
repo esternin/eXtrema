@@ -67,14 +67,15 @@ LegendPopup::LegendPopup( GraphicsPage *parent )
 
 void LegendPopup::CreateForm()
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 
-  drawLegendCB_ = new wxCheckBox( this, ID_drawLegend, wxT("Draw legend") );
+  drawLegendCB_ = new wxCheckBox( mainPanel, ID_drawLegend, wxT("Draw legend") );
   drawLegendCB_->SetToolTip( wxT("toggle the graph legend on/off") );
   mainSizer->Add( drawLegendCB_, wxSizerFlags(0).Center().Border(wxALL,5) );
   
-  wxPanel *framePanel = new wxPanel( this );
+  wxPanel *framePanel = new wxPanel( mainPanel );
   wxStaticBoxSizer *frameSizer = new wxStaticBoxSizer( wxVERTICAL, framePanel, wxT("Legend frame") );
   framePanel->SetSizer( frameSizer );
   mainSizer->Add( framePanel, wxSizerFlags(0).Center().Border(wxALL,5) );
@@ -120,7 +121,7 @@ void LegendPopup::CreateForm()
   expandV_->SetToolTip( wxT("expand the legend vertically") );
   frameBotSizer->Add( expandV_, wxSizerFlags(0).Left().Border(wxALL,2) );
   
-  wxPanel *titlePanel = new wxPanel( this );
+  wxPanel *titlePanel = new wxPanel( mainPanel );
   wxStaticBoxSizer *titleSizer = new wxStaticBoxSizer( wxVERTICAL, titlePanel, wxT("Legend title") );
   titlePanel->SetSizer( titleSizer );
   mainSizer->Add( titlePanel, wxSizerFlags(0).Center().Border(wxALL,5) );
@@ -167,7 +168,7 @@ void LegendPopup::CreateForm()
   titleFontCB_->SetToolTip( wxT("choose the title font") );
   titleBotSizer->Add( titleFontCB_, wxSizerFlags(0).Left().Border(wxALL,2) );
 
-  closeBTN_ = new wxButton( this, wxID_CLOSE, wxT("Close") );
+  closeBTN_ = new wxButton( mainPanel, wxID_CLOSE, wxT("Close") );
   mainSizer->Add( closeBTN_, wxSizerFlags(0).Center().Border(wxALL,2) );
 }
 

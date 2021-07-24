@@ -40,7 +40,7 @@ BEGIN_EVENT_TABLE( AnalysisSpeedButtonPanel, wxPanel )
 END_EVENT_TABLE()
 
 AnalysisSpeedButtonPanel::AnalysisSpeedButtonPanel( AnalysisWindow *parent )
-    : wxPanel(parent,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxRAISED_BORDER|wxTAB_TRAVERSAL),
+    : wxPanel(parent->GetMainPanel(),wxID_ANY,wxDefaultPosition,wxDefaultSize,wxRAISED_BORDER|wxTAB_TRAVERSAL),
       analysisWindow_(parent)
 {
   wxString imageDir = ExGlobals::GetImagePath();
