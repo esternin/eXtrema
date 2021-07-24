@@ -50,7 +50,7 @@ WriteScalarsForm::WriteScalarsForm( AnalysisWindow *parent )
   mainSizer->Add( topPanel_, wxSizerFlags(0).Border(wxALL,1) );
 
   variableList_ = new wxCheckListBox( this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                      0, 0, wxLB_MULTIPLE|wxLB_EXTENDED|wxLB_NEEDED_SB );
+                                      0, 0, wxLB_MULTIPLE );
   FillList();
   mainSizer->Add( variableList_, wxSizerFlags(1).Expand().Border(wxALL,5) );
   
