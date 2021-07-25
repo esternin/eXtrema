@@ -149,17 +149,17 @@ void FigureForm::CreateForm()
   
   wxString imageDir = ExGlobals::GetImagePath();
   arrow1_ = new wxBitmapButton( arrowImagesPanel, ID_arrow1,
-                                wxBitmap(imageDir+wxT("/arrow1.bmp"),wxBITMAP_TYPE_BMP) );
+                                wxBitmap(imageDir+wxT("/arrow1.gif"),wxBITMAP_TYPE_GIF) );
   arrow1_->SetToolTip( wxT("click to choose this arrow type") );
   arrowImagesSizer->Add( arrow1_, 0, wxALL, 1 );
   
   arrow2_ = new wxBitmapButton( arrowImagesPanel, ID_arrow2,
-                                wxBitmap(imageDir+wxT("/arrow2.bmp"),wxBITMAP_TYPE_BMP) );
+                                wxBitmap(imageDir+wxT("/arrow2.gif"),wxBITMAP_TYPE_GIF) );
   arrow2_->SetToolTip( wxT("click to choose this arrow type") );
   arrowImagesSizer->Add( arrow2_, 0, wxALL, 1 );
   
   arrow3_ = new wxBitmapButton( arrowImagesPanel, ID_arrow3,
-                                wxBitmap(imageDir+wxT("/arrow3.bmp"),wxBITMAP_TYPE_BMP) );
+                                wxBitmap(imageDir+wxT("/arrow3.gif"),wxBITMAP_TYPE_GIF) );
   arrow3_->SetToolTip( wxT("click to choose this arrow type") );
   arrowImagesSizer->Add( arrow3_, 0, wxALL, 1 );
   
@@ -215,17 +215,17 @@ void FigureForm::CreateForm()
   wxBoxSizer* polygonImagesSizer = new wxBoxSizer( wxHORIZONTAL );
   
   rectangle_ = new wxBitmapButton( polygonImagesPanel, ID_rectangle,
-                                   wxBitmap(imageDir+wxT("/rectangle.bmp"),wxBITMAP_TYPE_BMP) );
+                                   wxBitmap(imageDir+wxT("/rectangle.gif"),wxBITMAP_TYPE_GIF) );
   rectangle_->SetToolTip( wxT("click to choose a rectangle") );
   polygonImagesSizer->Add( rectangle_, 0, wxALL, 1 );
   
   regular_ = new wxBitmapButton( polygonImagesPanel, ID_regular,
-                                 wxBitmap(imageDir+wxT("/regularPolygon.bmp"),wxBITMAP_TYPE_BMP) );
+                                 wxBitmap(imageDir+wxT("/regularPolygon.gif"),wxBITMAP_TYPE_GIF) );
   regular_->SetToolTip( wxT("click to choose a regular polygon") );
   polygonImagesSizer->Add( regular_, 0, wxALL, 1 );
   
   star_ = new wxBitmapButton( polygonImagesPanel, ID_star,
-                              wxBitmap(imageDir+wxT("/star.bmp"),wxBITMAP_TYPE_BMP) );
+                              wxBitmap(imageDir+wxT("/star.gif"),wxBITMAP_TYPE_GIF) );
   star_->SetToolTip( wxT("click to choose a star shape") );
   polygonImagesSizer->Add( star_, 0, wxALL, 1 );
   
@@ -381,43 +381,43 @@ void FigureForm::FillOutForm( int polygonAngle, int polygonVertices, bool twoHea
     case 1:
       if( twoHeads )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
     case 2:
       if( twoHeads )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
     case 3:
       if( twoHeads )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
   }
@@ -434,21 +434,21 @@ void FigureForm::FillOutForm( int polygonAngle, int polygonVertices, bool twoHea
   switch( polygonType_ )
   {
     case 1:  // rectangle
-      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle.bmp"),wxBITMAP_TYPE_BMP));
-      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.bmp"),wxBITMAP_TYPE_BMP));
-      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
+      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle.gif"),wxBITMAP_TYPE_GIF));
+      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.gif"),wxBITMAP_TYPE_GIF));
+      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.gif"),wxBITMAP_TYPE_GIF));
       polygonVerticesSC_->Show( false );
       break;
     case 2:  // regular polygon
-      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.bmp"),wxBITMAP_TYPE_BMP));
-      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon.bmp"),wxBITMAP_TYPE_BMP));
-      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
+      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.gif"),wxBITMAP_TYPE_GIF));
+      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon.gif"),wxBITMAP_TYPE_GIF));
+      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.gif"),wxBITMAP_TYPE_GIF));
       polygonVerticesSC_->Show( true );
       break;
     case 3:  // 5 pt star
-      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.bmp"),wxBITMAP_TYPE_BMP));
-      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.bmp"),wxBITMAP_TYPE_BMP));
-      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star.bmp"),wxBITMAP_TYPE_BMP));
+      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.gif"),wxBITMAP_TYPE_GIF));
+      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.gif"),wxBITMAP_TYPE_GIF));
+      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star.gif"),wxBITMAP_TYPE_GIF));
       polygonVerticesSC_->Show( false );
       break;
   }
@@ -467,25 +467,25 @@ void FigureForm::OnArrow1( wxCommandEvent &WXUNUSED(event) )
     case 2:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
     case 3:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
   }
@@ -501,13 +501,13 @@ void FigureForm::OnArrow2( wxCommandEvent &WXUNUSED(event) )
     case 1:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
     case 2:
@@ -515,13 +515,13 @@ void FigureForm::OnArrow2( wxCommandEvent &WXUNUSED(event) )
     case 3:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.bmp"),wxBITMAP_TYPE_BMP));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.bmp"),wxBITMAP_TYPE_BMP));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
   }
@@ -537,25 +537,25 @@ void FigureForm::OnArrow3( wxCommandEvent &WXUNUSED(event) )
     case 1:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
     case 2:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.bmp"),wxBITMAP_TYPE_BMP));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.bmp"),wxBITMAP_TYPE_BMP));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
     case 3:
@@ -576,43 +576,43 @@ void FigureForm::OnTwoHeads( wxCommandEvent &WXUNUSED(event) )
     case 1:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow12.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.gif"),wxBITMAP_TYPE_GIF));
       }
       else 
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow1.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
     case 2:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow22.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow33.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow2.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow31.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
     case 3:
       if( twoHeadsCheckBox_->IsChecked() )
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow13.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow23.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow32.gif"),wxBITMAP_TYPE_GIF));
       }
       else
       {
-        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.bmp"),wxBITMAP_TYPE_BMP));
-        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.bmp"),wxBITMAP_TYPE_BMP));
-        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.bmp"),wxBITMAP_TYPE_BMP));
+        arrow1_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow11.gif"),wxBITMAP_TYPE_GIF));
+        arrow2_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow21.gif"),wxBITMAP_TYPE_GIF));
+        arrow3_->SetBitmapLabel(wxBitmap(imageDir+wxT("/arrow3.gif"),wxBITMAP_TYPE_GIF));
       }
       break;
   }
@@ -627,12 +627,12 @@ void FigureForm::OnRectangle( wxCommandEvent &WXUNUSED(event) )
     case 1:
       break;
     case 2:
-      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle.bmp"),wxBITMAP_TYPE_BMP));
-      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.bmp"),wxBITMAP_TYPE_BMP));
+      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle.gif"),wxBITMAP_TYPE_GIF));
+      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.gif"),wxBITMAP_TYPE_GIF));
       break;
     case 3:
-      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle.bmp"),wxBITMAP_TYPE_BMP));
-      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
+      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle.gif"),wxBITMAP_TYPE_GIF));
+      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.gif"),wxBITMAP_TYPE_GIF));
       break;
   }
   ExGlobals::GetGraphicsPage()->SetPolygonType( 1 );
@@ -646,14 +646,14 @@ void FigureForm::OnRegular( wxCommandEvent &WXUNUSED(event) )
   switch (polygonType_)
   {
     case 1:
-      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.bmp"),wxBITMAP_TYPE_BMP));
-      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon.bmp"),wxBITMAP_TYPE_BMP));
+      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.gif"),wxBITMAP_TYPE_GIF));
+      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon.gif"),wxBITMAP_TYPE_GIF));
       break;
     case 2:
       break;
     case 3:
-      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon.bmp"),wxBITMAP_TYPE_BMP));
-      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.bmp"),wxBITMAP_TYPE_BMP));
+      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon.gif"),wxBITMAP_TYPE_GIF));
+      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star1.gif"),wxBITMAP_TYPE_GIF));
       break;
   }
   ExGlobals::GetGraphicsPage()->SetPolygonType( 2 );
@@ -667,12 +667,12 @@ void FigureForm::OnStar( wxCommandEvent &WXUNUSED(event) )
   switch (polygonType_)
   {
     case 1:
-      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.bmp"),wxBITMAP_TYPE_BMP));
-      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star.bmp"),wxBITMAP_TYPE_BMP));
+      rectangle_->SetBitmapLabel(wxBitmap(imageDir+wxT("/rectangle1.gif"),wxBITMAP_TYPE_GIF));
+      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star.gif"),wxBITMAP_TYPE_GIF));
       break;
     case 2:
-      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.bmp"),wxBITMAP_TYPE_BMP));
-      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star.bmp"),wxBITMAP_TYPE_BMP));
+      regular_->SetBitmapLabel(wxBitmap(imageDir+wxT("/regularPolygon1.gif"),wxBITMAP_TYPE_GIF));
+      star_->SetBitmapLabel(wxBitmap(imageDir+wxT("/star.gif"),wxBITMAP_TYPE_GIF));
       break;
     case 3:
       break;

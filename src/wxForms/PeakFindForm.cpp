@@ -71,14 +71,14 @@ PeakFindForm::PeakFindForm( VisualizationWindow *parent )
   wxBoxSizer *topTopSizer = new wxBoxSizer( wxHORIZONTAL );
   
   wxBitmapButton *leftButton = new wxBitmapButton( topTopPanel, ID_left,
-                                                   wxBitmap(imageDir+wxT("/leftArrow.GIF"),wxBITMAP_TYPE_GIF) );
+                                                   wxBitmap(imageDir+wxT("/leftarrow.gif"),wxBITMAP_TYPE_GIF) );
   leftButton->SetToolTip( wxT("scan to the left for peaks") );
   topTopSizer->Add( leftButton, wxSizerFlags(0).Border(wxTOP,15) );
 
   topTopSizer->InsertSpacer( 1, 10 );
   
   wxBitmapButton *rightButton = new wxBitmapButton( topTopPanel, ID_right,
-                                                    wxBitmap(imageDir+wxT("/rightArrow.GIF"),wxBITMAP_TYPE_GIF) );
+                                                    wxBitmap(imageDir+wxT("/rightarrow.gif"),wxBITMAP_TYPE_GIF) );
   rightButton->SetToolTip( wxT("scan to the right for peaks") );
   topTopSizer->Add( rightButton, wxSizerFlags(0).Border(wxTOP,15) );
 
