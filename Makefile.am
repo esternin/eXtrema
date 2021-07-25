@@ -35,7 +35,7 @@ update-icon-cache:
 	gtk-update-icon-cache --force --ignore-theme-index $(DESTDIR)$(iconsdir)/icons/hicolor
 
 myimagesdir = $(datadir)/extrema/Images
-myimages_DATA = $(abs_top_srcdir)/Images/*.GIF $(abs_top_srcdir)/Images/*.bmp
+myimages_DATA = $(abs_top_srcdir)/Images/*.gif
 
 myhelpdir = $(datadir)/extrema/Help
 myhelp_DATA = $(abs_top_srcdir)/Help/extrema.hhc $(abs_top_srcdir)/Help/extrema.hhk $(abs_top_srcdir)/Help/extrema.hhp $(abs_top_srcdir)/Help/*.gif $(abs_top_srcdir)/Help/extremaMain.htm
