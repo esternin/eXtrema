@@ -486,6 +486,15 @@ bin_PROGRAMS = extrema
 extrema_SOURCES = extrema.cpp extrema.h
 extrema_LDADD = libextrema.la $(WX_LIBS) $(MUD_LIB) $(MINUIT_LIB)
 
+if USE_MSW
+# Note that Automake doesn't recognize pattern rules, so use the old style
+# suffix rule instead.
+.rc.o:
+	$(WINDRES) -I $(top_srcdir) $(WX_CPPFLAGS) $< $@
+
+extrema_SOURCES += extrema_res.rc
+endif
+
 install-data-local:
 	-cp -Rf ../Images $(pkgdatadir)/Images
 	-cp -Rf ../Help $(pkgdatadir)/Help
