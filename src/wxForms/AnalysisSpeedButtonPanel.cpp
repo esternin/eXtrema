@@ -125,15 +125,7 @@ void AnalysisSpeedButtonPanel::OnClearMessages( wxCommandEvent &WXUNUSED(event) 
 
 void AnalysisSpeedButtonPanel::OnExit( wxCommandEvent &WXUNUSED(event) )
 {
-  wxMessageDialog md( (wxWindow*)this,
-                           wxT("Do you really want to quit?"),
-                           wxT("Confirm quit"),
-                           wxYES_NO|wxICON_QUESTION );
-  if( md.ShowModal() == wxID_YES )
-  {
-    if( ExGlobals::StackIsOn() )ExGlobals::WriteStack( wxT("QUIT") );
-    GetParent()->Close(true);
-  }
+  wxGetApp().QuitApp();
 }
 
 void AnalysisSpeedButtonPanel::OnShowVariables( wxCommandEvent &event )
