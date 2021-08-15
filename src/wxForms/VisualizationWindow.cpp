@@ -165,21 +165,9 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
 
   SetMenuBar( menuBar );
   
-  // for a vertical sizer:
-  // proportion = 0    means no vertical expansion
-  // proportion > 0    allows for vertical expansion
-  // Expand()          allows for horizontal expansion
-  
   mainPanel_ = new wxPanel(this);
-  wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
-
   visualizationSpeedButtonPanel_ = new VisualizationSpeedButtonPanel(this);
-  sizer->Add( visualizationSpeedButtonPanel_, wxSizerFlags(0).Expand().Border(wxALL,1) );
-
   notebook_ = new wxNotebook( mainPanel_, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_RIGHT );
-
-  sizer->Add( notebook_, wxSizerFlags(1).Expand().Border(wxALL,5) );
-  mainPanel_->SetSizer( sizer );
 
   GraphicsPage *page = new GraphicsPage(notebook_);
 
@@ -206,7 +194,7 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
 
   // Bind this event handler now that all members are initialized, calling it
   // earlier could crash due to using e.g. uninitialized "notebook_" field.
-  Bind(wxEVT_SIZE, &VisualizationWindow::OnSize, this);
+  mainPanel_->Bind(wxEVT_SIZE, &VisualizationWindow::OnSize, this);
 
   SetClientSize(size);
 
@@ -298,9 +286,9 @@ void VisualizationWindow::SavePS( wxString const &filename )
 
 void VisualizationWindow::ResetPages()
 {
-  Layout();
-  
-  wxSize size( notebook_->GetClientSize() );
+  // Start with the size available for the notebook.
+  wxSize size( mainPanel_->GetClientSize() );
+  size.y -= visualizationSpeedButtonPanel_->GetBestSize().y;
 
   // Approximate the width of the tab on the notebook.
   const int tabsWidth = notebook_->GetTextExtent("Page 999").x;
@@ -314,7 +302,7 @@ void VisualizationWindow::ResetPages()
   
   ExGlobals::SetMonitorLimits( 0, 0, width, height );
 
-  notebook_->SetClientSize( width+tabsWidth, height );
+  notebook_->SetSize( width+tabsWidth, height );
 }
 
 void VisualizationWindow::ClearAllPages()
@@ -440,8 +428,19 @@ void VisualizationWindow::OnReplotCurrent( wxCommandEvent &WXUNUSED(event) )
   }
 }
 
+// Note that this is wxEVT_SIZE handler for mainPanel_, not the frame itself.
+//
+// We use it instead of using a sizer because we want to maintain the aspect
+// ratio of the notebook pages as done in ResetPages().
 void VisualizationWindow::OnSize( wxSizeEvent &WXUNUSED(event) )
 {
+  const wxSize totalSize = mainPanel_->GetClientSize();
+  const wxSize buttonsSize = visualizationSpeedButtonPanel_->GetBestSize();
+
+  visualizationSpeedButtonPanel_->SetSize(0, 0, totalSize.x, buttonsSize.y);
+  notebook_->Move(0, buttonsSize.y);
+
+  // This will set the notebook size.
   ResetPages();
 }
 
