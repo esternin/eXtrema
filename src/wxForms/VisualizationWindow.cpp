@@ -819,8 +819,8 @@ void MyStatusBar::OnChangeUnits( wxCommandEvent &WXUNUSED(event) )
   unitsButton_->SetLabel( units_[unitsType_] );
 }
 
-void MyStatusBar::OnSize( wxSizeEvent &WXUNUSED(event) )
-{ SetButtonSize(); }
+void MyStatusBar::OnSize( wxSizeEvent &event )
+{ SetButtonSize(); event.Skip(); }
 
 void MyStatusBar::SetButtonSize()
 {
