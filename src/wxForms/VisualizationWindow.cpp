@@ -786,7 +786,7 @@ BEGIN_EVENT_TABLE( MyStatusBar, wxStatusBar )
 END_EVENT_TABLE()
 
 MyStatusBar::MyStatusBar( VisualizationWindow *parent )
-    : wxStatusBar( parent->GetMainPanel(), wxID_ANY )
+    : wxStatusBar( parent, wxID_ANY )
 {
   unitsType_ = 0;
   units_[0] = wxT("graph units");
