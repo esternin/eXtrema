@@ -458,7 +458,7 @@ void VisualizationWindow::OnImportPNG( wxCommandEvent &WXUNUSED(event) )
   // open the png file and open a window to display it in
   //
   wxImage image( filename, wxBITMAP_TYPE_PNG );
-  ImportForm *importForm = new ImportForm( this, image );
+  new ImportForm( this, image );
 }
 
 void VisualizationWindow::OnImportJPEG( wxCommandEvent &WXUNUSED(event) )
@@ -476,7 +476,7 @@ void VisualizationWindow::OnImportJPEG( wxCommandEvent &WXUNUSED(event) )
   // open the file and open a window to display it in
   //
   wxImage image( filename, wxBITMAP_TYPE_JPEG );
-  ImportForm *importForm = new ImportForm( this, image );
+  new ImportForm( this, image );
 }
 
 void VisualizationWindow::OnSavePS( wxCommandEvent &WXUNUSED(event) )
