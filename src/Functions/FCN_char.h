@@ -33,7 +33,7 @@ public:
     return fcn_char_;
   }
 
-  void TextArrayEval( int const, std::vector<Workspace*> &, std::vector<wxString> & ) const;
+  void TextArrayEval( int, std::vector<Workspace*> &, std::vector<wxString> & ) const;
 
 private:
   FCN_char() : FunctionDefinition( wxT("CHAR"), 1, 1, MIXED2CHAR )
