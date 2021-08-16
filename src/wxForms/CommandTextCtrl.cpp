@@ -183,7 +183,7 @@ void CommandTextCtrl::DoACommand()
   //
   bool continuing = false;
   int len = inputLine.size();
-  if( inputLine[len-1] == ExGlobals::GetContinuationCharacter() )
+  if( len > 0 && inputLine[len-1] == ExGlobals::GetContinuationCharacter() )
   {
     if( --len == 0 )
     {
