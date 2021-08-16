@@ -1368,7 +1368,7 @@ void FitForm::DoTheFit()
     for( std::size_t j=0; j<nparam; ++j )cov[j+i*nparam] = errmat[j][i];
   }
   chiTC_->SetValue( ExGlobals::GetNiceNumber(chisq_) );
-  confTC_->SetValue( ExGlobals::GetNiceNumber(confidenceLevel_) + wxT('\%') );
+  confTC_->SetValue( ExGlobals::GetNiceNumber(confidenceLevel_) + wxT('%') );
   degFreeTC_->SetValue( wxString()<<nFree_ );
   try
   {
