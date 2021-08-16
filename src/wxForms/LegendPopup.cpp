@@ -160,10 +160,10 @@ void LegendPopup::CreateForm()
   titleBotSizer->Add( new wxStaticText(titleBotPanel,wxID_ANY,wxT("Font")),
                       wxSizerFlags(0).Left().Border(wxALL,2) );
   int nf = GRA_fontControl::GetCount();
-  wxString choices[nf];
+  std::vector<wxString> choices(nf);
   for( int i=0; i<nf; ++i )choices[i] = GRA_fontControl::GetFont(i)->GetFontName();
   titleFontCB_ = new wxComboBox( titleBotPanel, ID_font, wxT(""), wxDefaultPosition, wxSize(200,25), nf,
-                                 choices, wxCB_READONLY );
+                                 &choices[0], wxCB_READONLY );
   titleFontCB_->SetToolTip( wxT("choose the title font") );
   titleBotSizer->Add( titleFontCB_, wxSizerFlags(0).Left().Border(wxALL,2) );
 

@@ -214,9 +214,9 @@ void AxisPopup::MakeNumbersPanel()
   
   sizer->Add( new wxStaticText(panel,wxID_ANY,wxT("Font ")), wxSizerFlags(0).Left().Border(wxTOP,5) );
   int nf = GRA_fontControl::GetCount();
-  wxString choices[nf];
+  std::vector<wxString> choices(nf);
   for( int i=0; i<nf; ++i )choices[i] = GRA_fontControl::GetFont(i)->GetFontName();
-  nFontCB_ = new wxComboBox( panel, ID_numbersFont, wxT(""), wxDefaultPosition, wxSize(200,25), nf, choices, wxCB_READONLY );
+  nFontCB_ = new wxComboBox( panel, ID_numbersFont, wxT(""), wxDefaultPosition, wxSize(200,25), nf, &choices[0], wxCB_READONLY );
   nFontCB_->SetToolTip( wxT("choose the axis numbers font") );
   sizer->Add( nFontCB_, wxSizerFlags(0).Left().Border(wxALL,2) );
   
@@ -268,9 +268,9 @@ void AxisPopup::MakeLabelPanel()
   
   topSizer->Add( new wxStaticText(topPanel,wxID_ANY,wxT("Font ")), wxSizerFlags(0).Left().Border(wxTOP,5) );
   int nf = GRA_fontControl::GetCount();
-  wxString choices[nf];
+  std::vector<wxString> choices(nf);
   for( int i=0; i<nf; ++i )choices[i] = GRA_fontControl::GetFont(i)->GetFontName();
-  lFontCB_ = new wxComboBox( topPanel, ID_labelFont, wxT(""), wxDefaultPosition, wxSize(200,25), nf, choices, wxCB_READONLY );
+  lFontCB_ = new wxComboBox( topPanel, ID_labelFont, wxT(""), wxDefaultPosition, wxSize(200,25), nf, &choices[0], wxCB_READONLY );
   lFontCB_->SetToolTip( wxT("choose the axis label font") );
   topSizer->Add( lFontCB_, wxSizerFlags(0).Left().Border(wxALL,2) );
   
