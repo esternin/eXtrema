@@ -137,7 +137,11 @@ void ExecuteDialog::Apply()
   ExGlobals::SetCurrentPath( wxfn.GetPath() );
   //
   wxString commandLine( wxT("EXECUTE ") );
-  commandLine += fileName;
+  // Note that we shouldn't use the full path here as ParseLine would mis-parse
+  // backslashes occurring in it under MSW that have special meaning to it. As
+  // we already call SetCurrentPath() above, it's enough to use just the name.
+  // Alternatively, we could convert all backslashes in the file to slashes.
+  commandLine += wxfn.GetFullName();
   if( !parameterTextCtrl_->GetValue().empty() )
     commandLine += wxT(' ') + parameterTextCtrl_->GetValue();
   ParseLine p( commandLine );
