@@ -15,7 +15,7 @@ AC_PREREQ([2.59])
 AC_CONFIG_MACRO_DIRS([m4])
 
 # touch src/wxForms/AnalysisWindow.cpp to get the latest version number
-AC_INIT([extrema],[4.6.0],[edward.sternin@brocku.ca],[extrema],[https://www.physics.brocku.ca/Labs/extrema/])
+AC_INIT([extrema],[4.6.1],[edward.sternin@brocku.ca],[extrema],[https://www.physics.brocku.ca/Labs/extrema/])
 
 # use foreign to avoid "mandatory" NEWS and AUTHORS; automake syntax changed at v1.12
 AM_INIT_AUTOMAKE([1.12 foreign subdir-objects])
@@ -81,7 +81,7 @@ WX_CONFIG_OPTIONS
 
 dnl This macro will define WX_CXXFLAGS and WX_LIBS used in the makefiles if
 dnl successful and abort with the failure message otherwise.
-WX_CONFIG_CHECK([3.0.4],[],[],[base,xml,core,adv,html])
+WX_CONFIG_CHECK([3.1.5],[],[],[base,xml,core,adv,html])
 
 AC_CONFIG_FILES([
    Makefile

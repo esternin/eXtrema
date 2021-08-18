@@ -11,7 +11,7 @@
 # autoreconf suggested we move m4 files to a subdirectory, need to know this in Makefile.am ES
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = ./fonts ./Images ./Help ./Scripts ./doc ./demo .gitignore reconf
+EXTRA_DIST = ./fonts ./Images ./Help ./Scripts ./doc .gitignore
 
 # list immediate subdirectories only
 SUBDIRS = src
@@ -36,6 +36,9 @@ update-icon-cache:
 
 myimagesdir = $(datadir)/extrema/Images
 myimages_DATA = $(abs_top_srcdir)/Images/*.gif
+
+myscriptsdir = $(datadir)/extrema/Scripts
+myscripts_DATA = $(abs_top_srcdir)/Scripts/*.pcm $(abs_top_srcdir)/Scripts/*.dat
 
 myhelpdir = $(datadir)/extrema/Help
 myhelp_DATA = $(abs_top_srcdir)/Help/extrema.hhc $(abs_top_srcdir)/Help/extrema.hhk $(abs_top_srcdir)/Help/extrema.hhp $(abs_top_srcdir)/Help/*.gif $(abs_top_srcdir)/Help/extremaMain.htm
