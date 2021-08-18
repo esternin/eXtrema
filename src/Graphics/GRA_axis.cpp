@@ -483,7 +483,7 @@ void GRA_axis::MakeLinearAxis()
       if( i > 0 )number.erase( 0, i );
       //
       std::size_t nSize = number.size();
-      if( leadingZeros>0 && number.at(0)==wxT('.') )
+      if( leadingZeros && number.at(0)==wxT('.') )
       {
         number.resize( nSize+1 );
         for( std::size_t j=0; j<nSize; ++j )number.at(nSize-j) = number.at(nSize-j-1);

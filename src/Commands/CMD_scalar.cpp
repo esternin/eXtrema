@@ -110,7 +110,7 @@ void CMD_scalar::Execute( ParseLine const *p )
         }
         else if( (limits.at(j)==wxT(')')||limits.at(j)==wxT('}')||limits.at(j)==wxT(']')) && (cntr--==1) )
         {
-          if( j = start )
+          if( j == start )
           {
             highLimits.push_back( 0.0 );
             highLimits.push_back( false );

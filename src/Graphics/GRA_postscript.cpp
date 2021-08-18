@@ -179,7 +179,7 @@ void GRA_postscript::Initialize( wxString const &filename )
            << "  newfontname newfont definefont pop\n"
            << "end} def\n";
   int nf = GRA_fontControl::GetCount();
-  wxString all_fonts[nf];
+  std::vector<wxString> all_fonts(nf);
   for( int i=0; i<nf; ++i )
     all_fonts[i] = GRA_fontControl::GetPostScriptFontName(GRA_fontControl::GetFont(i)->GetFontName());
 

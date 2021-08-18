@@ -101,10 +101,10 @@ void TextPopup::CreateForm()
   //
   fSizer->Add( new wxStaticText(fPanel,wxID_ANY,wxT("Font")), wxSizerFlags(0).Left().Border(wxTOP,2) );
   int nf = GRA_fontControl::GetCount();
-  wxString choices[nf];
+  std::vector<wxString> choices(nf);
   for( int i=0; i<nf; ++i )choices[i] = GRA_fontControl::GetFont(i)->GetFontName();
   fontCB_ = new wxComboBox( fPanel, ID_font, wxT(""), wxDefaultPosition, wxSize(200,25), nf,
-                            choices, wxCB_READONLY );
+                            &choices[0], wxCB_READONLY );
   fontCB_->SetToolTip( wxT("choose the text font") );
   fSizer->Add( fontCB_, wxSizerFlags(0).Left().Border(wxALL,2) );
   

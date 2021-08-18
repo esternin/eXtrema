@@ -31,7 +31,7 @@ public:
     return fcn_cosint_;
   }
   
-  void ScalarEval( int const, std::vector<double> & ) const;
+  void ScalarEval( int, std::vector<double> & ) const;
 
 private:
   FCN_cosint() : ScalarFunction( wxT("COSINT") )

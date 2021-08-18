@@ -33,7 +33,7 @@ public:
     return fcn_vartype_;
   }
   
-  void TextArrayEval( int const, std::vector<Workspace*> &,
+  void TextArrayEval( int, std::vector<Workspace*> &,
                       std::vector<wxString> & ) const
   {}
   

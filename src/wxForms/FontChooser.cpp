@@ -100,9 +100,9 @@ void FontChooser::CreateForm()
   topSizer->Add( new wxStaticText(topPanel,wxID_ANY,wxT("Font ")), wxSizerFlags(0).Right().Border(wxTOP,5) );
   //
   int nf = GRA_fontControl::GetCount();
-  wxString choices[nf];
+  std::vector<wxString> choices(nf);
   for( int i=0; i<nf; ++i )choices[i] = GRA_fontControl::GetFont(i)->GetFontName();
-  fontCB_ = new wxComboBox( topPanel, ID_font, wxT(""), wxDefaultPosition, wxSize(200,25), nf, choices, wxCB_READONLY );
+  fontCB_ = new wxComboBox( topPanel, ID_font, wxT(""), wxDefaultPosition, wxSize(200,25), nf, &choices[0], wxCB_READONLY );
   topSizer->Add( fontCB_, wxSizerFlags(1).Left().Border(wxALL,2) );
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(0).Expand().Border(wxALL,2) );

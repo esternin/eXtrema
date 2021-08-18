@@ -2970,7 +2970,7 @@ void Workspace::SetUp()
               else
                 throw EExpressionError( wxString(wxT("item "))<<m+1<<wxT(" of range is invalid") );
               delete bCode;
-              codes_.erase( codes_.begin()+codeSize-1-i-(j+1+n)+m );
+              codes_.erase( codes_.begin()+(codeSize-1-i-(j+1+n)+m) );
               --codeSize;
             }
             if( rng->GetInc() == 0.0 )
@@ -3028,7 +3028,7 @@ void Workspace::SetUp()
                   wxString(wxT("subscripts out of range for index "))<<ndm-j
                   <<wxT(" for variable ")<<v->GetName() );
               delete bCode;
-              codes_.erase( codes_.begin()+codeSize-1-i-(j+1+n)+m );
+              codes_.erase( codes_.begin()+(codeSize-1-i-(j+1+n)+m) );
               --codeSize;
             }
             ++ii;
@@ -3111,7 +3111,7 @@ void Workspace::SetUp()
                 throw EExpressionError( wxString(wxT("item "))<<m+1
                                         <<wxT(" of range is invalid") );
               delete bCode;
-              codes_.erase( codes_.begin()+codeSize-1-i-(j+1+n)+m );
+              codes_.erase( codes_.begin()+(codeSize-1-i-(j+1+n)+m) );
               --codeSize;
             }
             if( rng->GetInc() == 0.0 )
@@ -3167,7 +3167,7 @@ void Workspace::SetUp()
                 throw EExpressionError( wxString(wxT("subscripts out of range for index "))
                                         <<ndm-j);
               delete bCode;
-              codes_.erase( codes_.begin()+codeSize-1-i-(j+1+n)+m );
+              codes_.erase( codes_.begin()+(codeSize-1-i-(j+1+n)+m) );
               --codeSize;
             }
             ++i;
@@ -3208,7 +3208,7 @@ void Workspace::SetUp()
         else
           throw EExpressionError( wxString(wxT("item "))<<m+1<<wxT(" of range is invalid") );
         delete aCode;
-        codes_.erase( codes_.begin()+codeSize-1-i-n+m );
+        codes_.erase( codes_.begin()+(codeSize-1-i-n+m) );
         --codeSize;
       }
       if( rng->GetInc() == 0.0 )
@@ -3271,7 +3271,7 @@ void Workspace::SetUp()
         else
           throw EExpressionError( wxString(wxT("item "))<<m+1<<wxT(" of list is invalid") );
         delete aCode;
-        codes_.erase( codes_.begin()+codeSize-1-i-n+m );
+        codes_.erase( codes_.begin()+(codeSize-1-i-n+m) );
         --codeSize;
       }
     }
