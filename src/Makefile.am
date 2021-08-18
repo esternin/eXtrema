@@ -412,6 +412,7 @@ noinst_LTLIBRARIES += libutilities.la
 libutilities_la_SOURCES = \
     Utilities/ExGlobals.cpp Utilities/ExGlobals.h \
     Utilities/ExXML.cpp Utilities/ExXML.h \
+    Utilities/ToAscii.h \
     Utilities/UsefulFunctions.cpp Utilities/UsefulFunctions.h
 
 noinst_LTLIBRARIES += libvariables.la
@@ -484,6 +485,15 @@ libextrema_la_LIBADD = \
 bin_PROGRAMS = extrema
 extrema_SOURCES = extrema.cpp extrema.h
 extrema_LDADD = libextrema.la $(WX_LIBS) $(MUD_LIB) $(MINUIT_LIB)
+
+if USE_MSW
+# Note that Automake doesn't recognize pattern rules, so use the old style
+# suffix rule instead.
+.rc.o:
+	$(WINDRES) -I $(top_srcdir) $(WX_CPPFLAGS) $< $@
+
+extrema_SOURCES += extrema_res.rc
+endif
 
 install-data-local:
 	-cp -Rf ../Images $(pkgdatadir)/Images

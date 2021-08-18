@@ -41,14 +41,15 @@ VarInfoForm::VarInfoForm( ShowVariablesForm *parent )
     : wxFrame(parent,wxID_ANY,wxT("variable info"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       showVariablesForm_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
 
-  textCtrl_ = new wxTextCtrl( this, wxID_ANY, wxT(""), wxDefaultPosition, wxDefaultSize,
+  textCtrl_ = new wxTextCtrl( mainPanel, wxID_ANY, wxT(""), wxDefaultPosition, wxDefaultSize,
                               wxTE_MULTILINE|wxTE_READONLY|wxSUNKEN_BORDER );
 
   mainSizer->Add( textCtrl_, wxSizerFlags(1).Expand().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   wxButton *refreshButton = new wxButton( bottomPanel, ID_refresh, wxT("Refresh") );
   refreshButton->SetToolTip( wxT("refresh the variable names") );
@@ -59,7 +60,7 @@ VarInfoForm::VarInfoForm( ShowVariablesForm *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 
   wxPersistentRegisterAndRestore(this, "VarInfoForm");
   Show( true );

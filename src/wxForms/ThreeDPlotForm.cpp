@@ -97,9 +97,10 @@ void ThreeDPlotForm::CreateForm()
 
   SetSizeHints( wxDefaultSize, wxDefaultSize );
   
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition,
                                    wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxVERTICAL );
   
@@ -142,33 +143,33 @@ void ThreeDPlotForm::CreateForm()
   topSizer->Fit( topPanel );
   mainSizer->Add( topPanel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition,
                                       wxDefaultSize, wxNO_BORDER&wxTAB_TRAVERSAL );
   wxBoxSizer* bottomSizer = new wxBoxSizer( wxVERTICAL );
 
   wxBoxSizer* rotateSizer = new wxBoxSizer( wxHORIZONTAL );
   wxBitmapButton *leftButton =
       new wxBitmapButton( bottomPanel, ID_left,
-                          wxBitmap(imageDir+wxT("/leftarrow.bmp"),wxBITMAP_TYPE_BMP),
+                          wxBitmap(imageDir+wxT("/leftarrow.gif"),wxBITMAP_TYPE_GIF),
                           wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
   leftButton->SetToolTip( wxT("rotate left 1 angle increment") );
   rotateSizer->Add( leftButton, 0, wxALL, 5 );
   
   wxBitmapButton *rightButton =
       new wxBitmapButton( bottomPanel, ID_right,
-                          wxBitmap(imageDir+wxT("/rightarrow.bmp"),wxBITMAP_TYPE_BMP),
+                          wxBitmap(imageDir+wxT("/rightarrow.gif"),wxBITMAP_TYPE_GIF),
                           wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
   rotateSizer->Add( rightButton, 0, wxALL, 5 );
   
   wxBitmapButton *upButton =
       new wxBitmapButton( bottomPanel, ID_up,
-                          wxBitmap(imageDir+wxT("/uparrow.bmp"),wxBITMAP_TYPE_BMP),
+                          wxBitmap(imageDir+wxT("/uparrow.gif"),wxBITMAP_TYPE_GIF),
                           wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
   rotateSizer->Add( upButton, 0, wxALL, 5 );
   
   wxBitmapButton *downButton =
       new wxBitmapButton( bottomPanel, ID_down,
-                          wxBitmap(imageDir+wxT("/downarrow.bmp"),wxBITMAP_TYPE_BMP),
+                          wxBitmap(imageDir+wxT("/downarrow.gif"),wxBITMAP_TYPE_GIF),
                           wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
   rotateSizer->Add( downButton, 0, wxALL, 5 );
   
@@ -177,14 +178,14 @@ void ThreeDPlotForm::CreateForm()
   wxBoxSizer* zoomSizer = new wxBoxSizer( wxHORIZONTAL );
   wxBitmapButton *zoomInButton =
       new wxBitmapButton( bottomPanel, ID_zoomIn,
-                          wxBitmap(imageDir+wxT("/zoomin.bmp"),wxBITMAP_TYPE_BMP),
+                          wxBitmap(imageDir+wxT("/zoomin.gif"),wxBITMAP_TYPE_GIF),
                           wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
   zoomInButton->SetToolTip( wxT("click to zoom in") );
   zoomSizer->Add( zoomInButton, 0, wxALL, 5 );
   
   wxBitmapButton *zoomOutButton =
       new wxBitmapButton( bottomPanel, ID_zoomOut,
-                          wxBitmap(imageDir+wxT("/zoomout.bmp"),wxBITMAP_TYPE_BMP),
+                          wxBitmap(imageDir+wxT("/zoomout.gif"),wxBITMAP_TYPE_GIF),
                           wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW );
   zoomOutButton->SetToolTip( wxT("click to zoom out") );
   zoomSizer->Add( zoomOutButton, 0, wxALL, 5 );
@@ -231,11 +232,11 @@ void ThreeDPlotForm::CreateForm()
   bottomSizer->Fit( bottomPanel );
   mainSizer->Add( bottomPanel, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
   
-  wxButton *closeButton = new wxButton( this, wxID_CLOSE, wxT("Close"),
+  wxButton *closeButton = new wxButton( mainPanel, wxID_CLOSE, wxT("Close"),
                                         wxDefaultPosition, wxDefaultSize, 0 );
   mainSizer->Add( closeButton, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
   
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   Layout();
   mainSizer->Fit( this );
 }

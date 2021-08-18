@@ -18,6 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Variable.h"
 #include "EVariableError.h"
 #include "ExGlobals.h"
+#include "ToAscii.h"
 
 Variable::Variable()
 {}
@@ -89,7 +90,7 @@ wxString Variable::SimpleName( wxString const &name )
   while ( i < uName.length() )
   {
     int currentState = newState;
-    std::size_t iascii = toascii( uName[i] );
+    int iascii = TryConvertToAscii( uName[i] );
     newState = stateTable[currentState-1][classes[iascii]-1];
     if( newState == 2 )         // start variable name
       start = i;

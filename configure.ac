@@ -45,6 +45,20 @@ fi
 AC_PROG_CC
 AC_PROG_CXX
 
+dnl Define conditional variable for MSW-specific parts of our makefiles.
+USE_MSW=0
+case "${host}" in
+    *-*-mingw* )
+        USE_MSW=1
+        ;;
+esac
+
+AM_CONDITIONAL(USE_MSW, [test "$USE_MSW" = 1])
+
+if test "$USE_MSW" = 1; then
+    AC_CHECK_TOOL([WINDRES], [windres], no)
+fi
+
 dnl This is a workaround for the harmless but annoying warning
 dnl
 dnl ar: `u' modifier ignored since `D' is the default (see `U')

@@ -43,22 +43,24 @@ WriteScalarsForm::WriteScalarsForm( AnalysisWindow *parent )
     : wxFrame(parent,wxID_ANY,wxT("Write scalars"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       analysisWindow_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
+
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   mainSizer->InsertSpacer( 0, 10 );
   
-  topPanel_ = new ChooseFilePanel( this, false, wxT("Choose a data file for writing"), wxT("any file|*.*") );
+  topPanel_ = new ChooseFilePanel( mainPanel, false, wxT("Choose a data file for writing"), wxT("any file|*.*") );
   mainSizer->Add( topPanel_, wxSizerFlags(0).Border(wxALL,1) );
 
-  variableList_ = new wxCheckListBox( this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                      0, 0, wxLB_MULTIPLE|wxLB_EXTENDED|wxLB_NEEDED_SB );
+  variableList_ = new wxCheckListBox( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                      0, 0, wxLB_MULTIPLE );
   FillList();
   mainSizer->Add( variableList_, wxSizerFlags(1).Expand().Border(wxALL,5) );
   
-  append_ = new wxCheckBox( this, wxID_ANY, wxT("Append data to the file") );
+  append_ = new wxCheckBox( mainPanel, wxID_ANY, wxT("Append data to the file") );
   mainSizer->Add( append_, wxSizerFlags(0).Border(wxALL,5) );
   append_->SetValue( false );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   
   wxButton *refreshButton = new wxButton( bottomPanel, wxID_REFRESH, wxT("Refresh") );
@@ -76,7 +78,7 @@ WriteScalarsForm::WriteScalarsForm( AnalysisWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
   
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
   wxConfigBase *config = wxConfigBase::Get();
   topPanel_->GetFilenames( config, wxT("/WriteScalarsForm") );

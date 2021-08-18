@@ -67,7 +67,6 @@ BEGIN_EVENT_TABLE( VisualizationWindow, wxFrame )
   EVT_MENU( ID_removePage, VisualizationWindow::OnRemovePage )
   EVT_MENU( ID_aspectRatio, VisualizationWindow::OnSetAspectRatio )
   EVT_CLOSE( VisualizationWindow::CloseEventHandler )
-  EVT_SIZE( VisualizationWindow::OnSize )
 END_EVENT_TABLE()
   //EVT_SET_FOCUS( VisualizationWindow::OnSetFocus )
   //EVT_KILL_FOCUS( VisualizationWindow::OnKillFocus )
@@ -166,20 +165,9 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
 
   SetMenuBar( menuBar );
   
-  // for a vertical sizer:
-  // proportion = 0    means no vertical expansion
-  // proportion > 0    allows for vertical expansion
-  // Expand()          allows for horizontal expansion
-  
-  wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
-
+  mainPanel_ = new wxPanel(this);
   visualizationSpeedButtonPanel_ = new VisualizationSpeedButtonPanel(this);
-  sizer->Add( visualizationSpeedButtonPanel_, wxSizerFlags(0).Expand().Border(wxALL,1) );
-
-  notebook_ = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_RIGHT );
-
-  sizer->Add( notebook_, wxSizerFlags(1).Expand().Border(wxALL,5) );
-  SetSizer( sizer );
+  notebook_ = new wxNotebook( mainPanel_, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_RIGHT );
 
   GraphicsPage *page = new GraphicsPage(notebook_);
 
@@ -203,6 +191,10 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
     size.y = static_cast<int>(aspectRatio*size.x+0.5);
   else
     size.x = static_cast<int>(size.y/aspectRatio+0.5);
+
+  // Bind this event handler now that all members are initialized, calling it
+  // earlier could crash due to using e.g. uninitialized "notebook_" field.
+  mainPanel_->Bind(wxEVT_SIZE, &VisualizationWindow::OnSize, this);
 
   SetClientSize(size);
 
@@ -294,9 +286,9 @@ void VisualizationWindow::SavePS( wxString const &filename )
 
 void VisualizationWindow::ResetPages()
 {
-  Layout();
-  
-  wxSize size( notebook_->GetClientSize() );
+  // Start with the size available for the notebook.
+  wxSize size( mainPanel_->GetClientSize() );
+  size.y -= visualizationSpeedButtonPanel_->GetBestSize().y;
 
   // Approximate the width of the tab on the notebook.
   const int tabsWidth = notebook_->GetTextExtent("Page 999").x;
@@ -310,7 +302,7 @@ void VisualizationWindow::ResetPages()
   
   ExGlobals::SetMonitorLimits( 0, 0, width, height );
 
-  notebook_->SetClientSize( width+tabsWidth, height );
+  notebook_->SetSize( width+tabsWidth, height );
 }
 
 void VisualizationWindow::ClearAllPages()
@@ -436,9 +428,19 @@ void VisualizationWindow::OnReplotCurrent( wxCommandEvent &WXUNUSED(event) )
   }
 }
 
-void VisualizationWindow::OnSize( wxSizeEvent &event )
+// Note that this is wxEVT_SIZE handler for mainPanel_, not the frame itself.
+//
+// We use it instead of using a sizer because we want to maintain the aspect
+// ratio of the notebook pages as done in ResetPages().
+void VisualizationWindow::OnSize( wxSizeEvent &WXUNUSED(event) )
 {
-  SetSize( event.GetSize() );
+  const wxSize totalSize = mainPanel_->GetClientSize();
+  const wxSize buttonsSize = visualizationSpeedButtonPanel_->GetBestSize();
+
+  visualizationSpeedButtonPanel_->SetSize(0, 0, totalSize.x, buttonsSize.y);
+  notebook_->Move(0, buttonsSize.y);
+
+  // This will set the notebook size.
   ResetPages();
 }
 
@@ -455,7 +457,7 @@ void VisualizationWindow::OnImportPNG( wxCommandEvent &WXUNUSED(event) )
   // open the png file and open a window to display it in
   //
   wxImage image( filename, wxBITMAP_TYPE_PNG );
-  ImportForm *importForm = new ImportForm( this, image );
+  new ImportForm( this, image );
 }
 
 void VisualizationWindow::OnImportJPEG( wxCommandEvent &WXUNUSED(event) )
@@ -473,7 +475,7 @@ void VisualizationWindow::OnImportJPEG( wxCommandEvent &WXUNUSED(event) )
   // open the file and open a window to display it in
   //
   wxImage image( filename, wxBITMAP_TYPE_JPEG );
-  ImportForm *importForm = new ImportForm( this, image );
+  new ImportForm( this, image );
 }
 
 void VisualizationWindow::OnSavePS( wxCommandEvent &WXUNUSED(event) )
@@ -783,7 +785,7 @@ BEGIN_EVENT_TABLE( MyStatusBar, wxStatusBar )
 END_EVENT_TABLE()
 
 MyStatusBar::MyStatusBar( VisualizationWindow *parent )
-    : wxStatusBar( (wxWindow*)parent, wxID_ANY )
+    : wxStatusBar( parent, wxID_ANY )
 {
   unitsType_ = 0;
   units_[0] = wxT("graph units");
@@ -816,8 +818,8 @@ void MyStatusBar::OnChangeUnits( wxCommandEvent &WXUNUSED(event) )
   unitsButton_->SetLabel( units_[unitsType_] );
 }
 
-void MyStatusBar::OnSize( wxSizeEvent &WXUNUSED(event) )
-{ SetButtonSize(); }
+void MyStatusBar::OnSize( wxSizeEvent &event )
+{ SetButtonSize(); event.Skip(); }
 
 void MyStatusBar::SetButtonSize()
 {

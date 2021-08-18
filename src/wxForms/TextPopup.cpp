@@ -61,10 +61,11 @@ TextPopup::TextPopup( GraphicsPage *parent )
 
 void TextPopup::CreateForm()
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
-  wxPanel *sPanel = new wxPanel( this );
+  wxPanel *sPanel = new wxPanel( mainPanel );
   wxBoxSizer *sSizer = new wxBoxSizer( wxVERTICAL );
   sPanel->SetSizer( sSizer );
   mainSizer->Add( sPanel, wxSizerFlags(0).Center().Border(wxALL,5) );
@@ -75,7 +76,7 @@ void TextPopup::CreateForm()
   stringTC_->SetToolTip( wxT("enter the new text string (hit Enter key to accept string)") );
   sSizer->Add( stringTC_, wxSizerFlags(0).Left().Border(wxALL,2) );
   //
-  wxPanel *topPanel = new wxPanel( this );
+  wxPanel *topPanel = new wxPanel( mainPanel );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(0).Center().Border(wxALL,5) );
@@ -94,7 +95,7 @@ void TextPopup::CreateForm()
   angleSC_->SetToolTip( wxT("set the text angle (0 to 360 degrees)") );
   topSizer->Add( angleSC_, wxSizerFlags(0).Left().Border(wxALL,2) );
   
-  wxPanel *fPanel = new wxPanel( this );
+  wxPanel *fPanel = new wxPanel( mainPanel );
   wxBoxSizer *fSizer = new wxBoxSizer( wxVERTICAL );
   fPanel->SetSizer( fSizer );
   mainSizer->Add( fPanel, wxSizerFlags(0).Center().Border(wxALL,5) );
@@ -108,7 +109,7 @@ void TextPopup::CreateForm()
   fontCB_->SetToolTip( wxT("choose the text font") );
   fSizer->Add( fontCB_, wxSizerFlags(0).Left().Border(wxALL,2) );
   
-  wxPanel *botPanel = new wxPanel( this );
+  wxPanel *botPanel = new wxPanel( mainPanel );
   wxBoxSizer *botSizer = new wxBoxSizer( wxHORIZONTAL );
   botPanel->SetSizer( botSizer );
   mainSizer->Add( botPanel, wxSizerFlags(0).Center().Border(wxALL,5) );
@@ -123,7 +124,7 @@ void TextPopup::CreateForm()
   yLocSC_->SetToolTip( wxT("set the text y location (as a % of the window)") );
   botSizer->Add( yLocSC_, wxSizerFlags(0).Left().Border(wxALL,2) );
   //
-  closeBTN_ = new wxButton( this, wxID_CLOSE, wxT("Close") );
+  closeBTN_ = new wxButton( mainPanel, wxID_CLOSE, wxT("Close") );
   mainSizer->Add( closeBTN_, wxSizerFlags(0).Center().Border(wxALL,2) );
 }
 

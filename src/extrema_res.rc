@@ -1,0 +1,8 @@
+// MS Windows resource file for Extrema.
+
+// Define the program icon as first in this file and first in alphabetical
+// order, so that Explorer shows it for the program executable.
+aaaaaaaaa	ICON	"icons/extrema.ico"
+
+// Get the manifest.
+#include <wx/msw/wx.rc>

@@ -135,7 +135,11 @@ wxBitmap& GraphicsPage::GetBackingStore()
 {
   if( !backingStore_.IsOk() )
   {
-    backingStore_ = wxBitmap(GetClientSize());
+    wxSize size = GetClientSize();
+    // The window could be so small that the page size is 0 in one dimension,
+    // but creating wxBitmap requires a valid size, so force it to 1.
+    size.IncTo(wxSize(1, 1));
+    backingStore_ = wxBitmap(size);
 
     wxMemoryDC dc(backingStore_);
     dc.SetBackground( *wxWHITE_BRUSH );

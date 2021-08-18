@@ -37,6 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "GRA_wxWidgets.h"
 #include "ExGlobals.h"
 #include "EVariableError.h"
+#include "ToAscii.h"
 #include "UsefulFunctions.h"
 #include "TextPopup.h"
 #include "GRA_specialCharacters.h"
@@ -468,7 +469,7 @@ void GRA_drawableText::Parse()
   for( std::size_t i=0; i<length; ++i )
   {
     currentState = newState;
-    newState = stateTable[currentState][classes[toascii(inputString_[i])]];
+    newState = stateTable[currentState][classes[TryConvertToAscii(inputString_[i])]];
     switch (newState)
     {
       case 0: // just add to text

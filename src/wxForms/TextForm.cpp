@@ -110,10 +110,11 @@ TextForm::TextForm( VisualizationWindow *parent )
 
 void TextForm::CreateForm()
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
   mainSizer->AddSpacer( 10 );
   
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
 
   topSizer->Add( new wxStaticText(topPanel,wxID_ANY,wxT("Text string to draw: ")), wxSizerFlags(0).Border(wxTOP,5) );
@@ -123,7 +124,7 @@ void TextForm::CreateForm()
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(0).Center().Border(wxALL,2) );
 
-  wxPanel *nextPanel = new wxPanel( this, wxID_ANY );
+  wxPanel *nextPanel = new wxPanel( mainPanel, wxID_ANY );
   wxBoxSizer *nextSizer = new wxBoxSizer( wxHORIZONTAL);
 
   interactiveCkB_ = new wxCheckBox( nextPanel, ID_interactive, wxT("Interactively position string   ") );
@@ -156,7 +157,7 @@ void TextForm::CreateForm()
   nextPanel->SetSizer( nextSizer );
   mainSizer->Add( nextPanel, wxSizerFlags(0).Center().Border(wxALL,2) );
 
-  wxPanel *alignPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER );
+  wxPanel *alignPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER );
   wxGridSizer *alignSizer = new wxGridSizer( 4, 3, 2, 2 );
 
   alignSizer->Add( new wxStaticText(alignPanel,wxID_ANY,wxT("Alignment")), wxSizerFlags(0).Left().Border(wxALL,5) );
@@ -184,11 +185,11 @@ void TextForm::CreateForm()
   alignPanel->SetSizer( alignSizer );
   mainSizer->Add( alignPanel, wxSizerFlags(0).Center().Border(wxALL,2) );
 
-  wxButton *fontButton = new wxButton( this, ID_font, wxT("Font") );
+  wxButton *fontButton = new wxButton( mainPanel, ID_font, wxT("Font") );
   fontButton->SetToolTip( wxT("click to change the font") );
   mainSizer->Add( fontButton, wxSizerFlags(0).Center().Border(wxALL,10) );
   
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   
   wxButton *eraseButton = new wxButton( bottomPanel, ID_erase, wxT("Erase") );
@@ -206,7 +207,7 @@ void TextForm::CreateForm()
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
   
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 }
 
 void TextForm::CloseEventHandler( wxCloseEvent &WXUNUSED(event) )

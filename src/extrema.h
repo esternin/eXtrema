@@ -40,4 +40,6 @@ private:
   AnalysisWindow *analysisWindow_;
 };
 
+wxDECLARE_APP(extrema);
+
 #endif

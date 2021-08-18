@@ -61,19 +61,20 @@ CurvePopup::CurvePopup( GraphicsPage *parent )
 
 void CurvePopup::CreateForm()
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
-  SetSizer( sizer );
+  mainPanel->SetSizer( sizer );
 
   wxString choices[3];
   choices[0] = wxT("Non-histogram");
   choices[1] = wxT("Histogram without tails");
   choices[2] = wxT("Histogram with tails");
   histogramRB_ =
-    new wxRadioBox( this,ID_curveType,wxT("Curve type"),wxDefaultPosition,wxDefaultSize,3,choices );
+    new wxRadioBox( mainPanel,ID_curveType,wxT("Curve type"),wxDefaultPosition,wxDefaultSize,3,choices );
   histogramRB_->SetToolTip( wxT("set the type of curve") );
   sizer->Add( histogramRB_, wxSizerFlags(0).Center().Border(wxALL,5) );
   
-  wxPanel *topMidPanel = new wxPanel( this );
+  wxPanel *topMidPanel = new wxPanel( mainPanel );
   wxBoxSizer *topMidSizer = new wxBoxSizer( wxHORIZONTAL );
   topMidPanel->SetSizer( topMidSizer );
   
@@ -89,7 +90,7 @@ void CurvePopup::CreateForm()
 
   sizer->Add( topMidPanel, wxSizerFlags(0).Center().Border(wxALL,2) );
   
-  wxPanel *topLowerPanel = new wxPanel( this );
+  wxPanel *topLowerPanel = new wxPanel( mainPanel );
   wxBoxSizer *topLowerSizer = new wxBoxSizer( wxHORIZONTAL );
   topLowerPanel->SetSizer( topLowerSizer );
   
@@ -105,7 +106,7 @@ void CurvePopup::CreateForm()
 
   sizer->Add( topLowerPanel, wxSizerFlags(0).Center().Border(wxALL,2) );
   
-  plotsymbolPanel_ = new wxPanel( this );
+  plotsymbolPanel_ = new wxPanel( mainPanel );
   wxStaticBoxSizer *plotsymbolSizer = new wxStaticBoxSizer( wxVERTICAL, plotsymbolPanel_, wxT("Plotsymbol") );
   plotsymbolPanel_->SetSizer( plotsymbolSizer );
   
@@ -148,7 +149,7 @@ void CurvePopup::CreateForm()
   
   sizer->Add( plotsymbolPanel_, wxSizerFlags(0).Center().Border(wxALL,2) );
   
-  closeBTN_ = new wxButton( this, wxID_CLOSE, wxT("Close") );
+  closeBTN_ = new wxButton( mainPanel, wxID_CLOSE, wxT("Close") );
   sizer->Add( closeBTN_, wxSizerFlags(0).Center().Border(wxALL,2) );
 }
 

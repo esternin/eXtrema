@@ -117,13 +117,14 @@ AnalysisWindow::AnalysisWindow( extrema *extrema )
   // proportion > 0    allows for vertical expansion
   // Expand()          allows for horizontal expansion
   //
+  mainPanel_ = new wxPanel(this);
   wxBoxSizer *sizer = new wxBoxSizer( wxVERTICAL );
   sizer->Add( new AnalysisSpeedButtonPanel(this), wxSizerFlags(0).Expand().Border(wxALL,1) );
   messagePanel_ = new AnalysisMessagePanel(this);
   sizer->Add( messagePanel_, wxSizerFlags(1).Expand().Border(wxALL,1) );
   commandPanel_ = new AnalysisCommandPanel(this);
   sizer->Add( commandPanel_, wxSizerFlags(0).Expand().Border(wxALL,1) );
-  SetSizer( sizer );
+  mainPanel_->SetSizer( sizer );
 
   CreateStatusBar( 1 );
   SetStatusText( wxT("Welcome to eXtrema!") );

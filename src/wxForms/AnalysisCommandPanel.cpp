@@ -27,7 +27,7 @@ BEGIN_EVENT_TABLE( AnalysisCommandPanel, wxPanel )
 END_EVENT_TABLE()
 
 AnalysisCommandPanel::AnalysisCommandPanel( AnalysisWindow *parent )
-    : wxPanel(parent,wxID_ANY,wxDefaultPosition,wxDefaultSize)
+    : wxPanel(parent->GetMainPanel(),wxID_ANY,wxDefaultPosition,wxDefaultSize)
 {
   // this panel will expand horizontally but not vertically
   //
@@ -39,7 +39,7 @@ AnalysisCommandPanel::AnalysisCommandPanel( AnalysisWindow *parent )
   sizer->Add( commandTextCtrl_, wxSizerFlags(0).Align(0).Expand().Border(wxALL,1) );
   
   wxButton *processCommandButton =
-      new wxButton( (wxWindow*)this, ID_processCommand, wxT("Process Command") );
+      new wxButton( (wxWindow*)this, ID_processCommand, wxT("Process Command"), wxDefaultPosition, wxSize(15*GetCharWidth(), -1) );
   processCommandButton->SetToolTip( 
   wxT("click here to enter command or just hit the enter key") );
   sizer->Add( processCommandButton, wxSizerFlags(0).Center().Border(wxALL,5) );

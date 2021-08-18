@@ -59,25 +59,26 @@ PeakFindForm::PeakFindForm( VisualizationWindow *parent )
 {
   wxString imageDir = ExGlobals::GetImagePath();
 
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
 
   mainSizer->InsertSpacer( 0, 2 );
 
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxVERTICAL );
   
   wxPanel *topTopPanel = new wxPanel( topPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topTopSizer = new wxBoxSizer( wxHORIZONTAL );
   
   wxBitmapButton *leftButton = new wxBitmapButton( topTopPanel, ID_left,
-                                                   wxBitmap(imageDir+wxT("/leftArrow.GIF"),wxBITMAP_TYPE_GIF) );
+                                                   wxBitmap(imageDir+wxT("/leftarrow.gif"),wxBITMAP_TYPE_GIF) );
   leftButton->SetToolTip( wxT("scan to the left for peaks") );
   topTopSizer->Add( leftButton, wxSizerFlags(0).Border(wxTOP,15) );
 
   topTopSizer->InsertSpacer( 1, 10 );
   
   wxBitmapButton *rightButton = new wxBitmapButton( topTopPanel, ID_right,
-                                                    wxBitmap(imageDir+wxT("/rightArrow.GIF"),wxBITMAP_TYPE_GIF) );
+                                                    wxBitmap(imageDir+wxT("/rightarrow.gif"),wxBITMAP_TYPE_GIF) );
   rightButton->SetToolTip( wxT("scan to the right for peaks") );
   topTopSizer->Add( rightButton, wxSizerFlags(0).Border(wxTOP,15) );
 
@@ -138,7 +139,7 @@ PeakFindForm::PeakFindForm( VisualizationWindow *parent )
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(0).Center().Border(wxALL,2) );
 
-  wxPanel *bottomPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   
   wxButton *initializeButton = new wxButton( bottomPanel, ID_initialize, wxT("Initialize") );
@@ -152,7 +153,7 @@ PeakFindForm::PeakFindForm( VisualizationWindow *parent )
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(0).Centre().Border(wxALL,1) );
 
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
 
   wxPersistentRegisterAndRestore(this, "PeakFindForm");
   Show( true );

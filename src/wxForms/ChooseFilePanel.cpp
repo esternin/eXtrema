@@ -46,12 +46,12 @@ ChooseFilePanel::ChooseFilePanel( wxWindow *parent, bool read, wxString const &m
                                       0, 0, wxCB_READONLY );
   sizer->Add( filenameComboBox_, wxSizerFlags(1).Border(wxALL,5) );
   wxBitmapButton *clearListButton =
-      new wxBitmapButton( this, ID_clearList, wxBitmap(imageDir+wxT("/executeClearList.GIF"),wxBITMAP_TYPE_GIF) );
+      new wxBitmapButton( this, ID_clearList, wxBitmap(imageDir+wxT("/executeClearList.gif"),wxBITMAP_TYPE_GIF) );
   clearListButton->SetToolTip( wxT("remove all files from the list") );
   sizer->Add( clearListButton, wxSizerFlags(0).Border(wxALL,5) );
   wxBitmapButton *removeFilenameButton =
     new wxBitmapButton( this, ID_removeFilename,
-                        wxBitmap(imageDir+wxT("/executeRemoveFilename.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/executeRemoveFilename.gif"),wxBITMAP_TYPE_GIF) );
   removeFilenameButton->SetToolTip( wxT("remove the displayed file from the list") );
   sizer->Add( removeFilenameButton, wxSizerFlags(0).Border(wxALL,5) );
   SetSizer( sizer );

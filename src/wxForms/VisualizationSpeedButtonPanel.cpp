@@ -48,7 +48,7 @@ END_EVENT_TABLE()
   //EVT_BUTTON( ID_fillColor, VisualizationSpeedButtonPanel::OnFillColor )
 
 VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindow *parent )
-    : wxPanel( parent,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxRAISED_BORDER|wxTAB_TRAVERSAL ),
+    : wxPanel( parent->GetMainPanel(),wxID_ANY,wxDefaultPosition,wxDefaultSize,wxRAISED_BORDER|wxTAB_TRAVERSAL ),
       visualizationWindow_(parent)
 {
   wxString imageDir = ExGlobals::GetImagePath();
@@ -56,25 +56,25 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
 
   wxBitmapButton *clearGraphicsPageButton =
     new wxBitmapButton( (wxWindow*)this, ID_clearGraphicsPage,
-                        wxBitmap(imageDir+wxT("/clear.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/clear.gif"),wxBITMAP_TYPE_GIF) );
   clearGraphicsPageButton->SetToolTip( wxT("clear the entire graphics page") );
   sizer->Add( clearGraphicsPageButton, wxSizerFlags(0).Border(wxTOP|wxLEFT|wxRIGHT,5) );
 
   wxBitmapButton *drawGraphButton =
     new wxBitmapButton( (wxWindow*)this, ID_drawGraph,
-                        wxBitmap(imageDir+wxT("/drawgraph.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/drawgraph.gif"),wxBITMAP_TYPE_GIF) );
   drawGraphButton->SetToolTip( wxT("draw a graph") );
   sizer->Add( drawGraphButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
   wxBitmapButton *threeDPlotButton =
     new wxBitmapButton( (wxWindow*)this, ID_3dplot,
-                        wxBitmap(imageDir+wxT("/3dplot.bmp"),wxBITMAP_TYPE_BMP) );
+                        wxBitmap(imageDir+wxT("/3dplot.gif"),wxBITMAP_TYPE_GIF) );
   threeDPlotButton->SetToolTip( wxT("draw a 3D graph") );
   sizer->Add( threeDPlotButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
   wxBitmapButton *drawTextButton =
     new wxBitmapButton( (wxWindow*)this, ID_drawText,
-                        wxBitmap(imageDir+wxT("/drawtext.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/drawtext.gif"),wxBITMAP_TYPE_GIF) );
   drawTextButton->SetToolTip( wxT("draw a text string in the graphics window") );
   sizer->Add( drawTextButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
@@ -82,13 +82,13 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
   
   wxBitmapButton *peakFindButton =
     new wxBitmapButton( (wxWindow*)this, ID_peakFind,
-                        wxBitmap(imageDir+wxT("/peakfind.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/peakfind.gif"),wxBITMAP_TYPE_GIF) );
   peakFindButton->SetToolTip( wxT("find peaks") );
   sizer->Add( peakFindButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
   
   wxBitmapButton *drawFigureButton =
     new wxBitmapButton( (wxWindow*)this, ID_drawFigure,
-                        wxBitmap(imageDir+wxT("/drawfigure.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/drawfigure.gif"),wxBITMAP_TYPE_GIF) );
   drawFigureButton->SetToolTip( wxT("draw geometric figures") );
   sizer->Add( drawFigureButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
@@ -96,19 +96,19 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
   
   wxBitmapButton *saveDrawingButton =
     new wxBitmapButton( (wxWindow*)this, ID_saveDrawing,
-                        wxBitmap(imageDir+wxT("/save.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/save.gif"),wxBITMAP_TYPE_GIF) );
   saveDrawingButton->SetToolTip( wxT("save the graphics page to a file") );
   sizer->Add( saveDrawingButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
   
   wxBitmapButton *importDrawingButton =
     new wxBitmapButton( (wxWindow*)this, ID_importDrawing,
-                        wxBitmap(imageDir+wxT("/importdrawing.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/importdrawing.gif"),wxBITMAP_TYPE_GIF) );
   importDrawingButton->SetToolTip( wxT("import a drawing") );
   sizer->Add( importDrawingButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
   
   wxBitmapButton *printDrawingButton =
     new wxBitmapButton( (wxWindow*)this, ID_printDrawing,
-                        wxBitmap(imageDir+wxT("/print.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/print.gif"),wxBITMAP_TYPE_GIF) );
   printDrawingButton->SetToolTip( wxT("print the graphics page") );
   sizer->Add( printDrawingButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
@@ -116,13 +116,13 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
   
   wxBitmapButton *newPageButton =
     new wxBitmapButton( (wxWindow*)this, ID_newPage,
-                        wxBitmap(imageDir+wxT("/newPage.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/newPage.gif"),wxBITMAP_TYPE_GIF) );
   newPageButton->SetToolTip( wxT("open a new graphics page") );
   sizer->Add( newPageButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
   
   wxBitmapButton *removePageButton =
     new wxBitmapButton( (wxWindow*)this, ID_removePage,
-                        wxBitmap(imageDir+wxT("/removePage.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/removePage.gif"),wxBITMAP_TYPE_GIF) );
   removePageButton->SetToolTip( wxT("delete the last graphics page") );
   sizer->Add( removePageButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
 
@@ -130,7 +130,7 @@ VisualizationSpeedButtonPanel::VisualizationSpeedButtonPanel( VisualizationWindo
   
   wxBitmapButton *aspectRatioButton =
     new wxBitmapButton( (wxWindow*)this, ID_aspectRatio,
-                        wxBitmap(imageDir+wxT("/aspectRatio.GIF"),wxBITMAP_TYPE_GIF) );
+                        wxBitmap(imageDir+wxT("/aspectRatio.gif"),wxBITMAP_TYPE_GIF) );
   aspectRatioButton->SetToolTip( wxT("set the graphics page aspect ratio") );
   sizer->Add( aspectRatioButton, wxSizerFlags(0).Border(wxTOP|wxRIGHT,5) );
   

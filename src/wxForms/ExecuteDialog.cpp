@@ -45,15 +45,16 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
     : wxFrame(parent,wxID_ANY,wxT("execute a script"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_FRAME_STYLE),
       analysisWindow_(parent)
 {
+  wxPanel* const mainPanel = new wxPanel(this);
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
-  SetSizer( mainSizer );
+  mainPanel->SetSizer( mainSizer );
   
-  chooseFilePanel_ = new ChooseFilePanel( this, true, wxT("Choose an extrema script file"),
+  chooseFilePanel_ = new ChooseFilePanel( mainPanel, true, wxT("Choose an extrema script file"),
                                    wxT("script file|*.pcm|stack file|*.stk|any file|*.*") );
   mainSizer->Add( chooseFilePanel_, wxSizerFlags(1).Expand().Left().Border(wxALL,5) );
 
-  wxPanel *midPanel = new wxPanel( this );
-  //wxPanel *midPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
+  wxPanel *midPanel = new wxPanel( mainPanel );
+  //wxPanel *midPanel = new wxPanel( mainPanel, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
   wxBoxSizer *midSizer = new wxBoxSizer( wxHORIZONTAL );
   midPanel->SetSizer( midSizer );
   mainSizer->Add( midPanel, wxSizerFlags(1).Expand().Border(wxALL,1) );
@@ -64,7 +65,7 @@ ExecuteDialog::ExecuteDialog( AnalysisWindow *parent )
   parameterTextCtrl_->SetToolTip( wxT("enter any required parameters") );
   midSizer->Add( parameterTextCtrl_, wxSizerFlags(1).Left().Border(wxALL,10) );
   
-  wxPanel *bottomPanel = new wxPanel( this );
+  wxPanel *bottomPanel = new wxPanel( mainPanel );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
   bottomPanel->SetSizer( bottomSizer );
   mainSizer->Add( bottomPanel, wxSizerFlags(1).Center().Border(wxALL,5) );
@@ -136,7 +137,11 @@ void ExecuteDialog::Apply()
   ExGlobals::SetCurrentPath( wxfn.GetPath() );
   //
   wxString commandLine( wxT("EXECUTE ") );
-  commandLine += fileName;
+  // Note that we shouldn't use the full path here as ParseLine would mis-parse
+  // backslashes occurring in it under MSW that have special meaning to it. As
+  // we already call SetCurrentPath() above, it's enough to use just the name.
+  // Alternatively, we could convert all backslashes in the file to slashes.
+  commandLine += wxfn.GetFullName();
   if( !parameterTextCtrl_->GetValue().empty() )
     commandLine += wxT(' ') + parameterTextCtrl_->GetValue();
   ParseLine p( commandLine );

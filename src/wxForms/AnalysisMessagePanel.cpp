@@ -30,7 +30,7 @@ BEGIN_EVENT_TABLE( AnalysisMessagePanel, wxPanel )
 END_EVENT_TABLE()
 
 AnalysisMessagePanel::AnalysisMessagePanel( AnalysisWindow *parent )
-    : wxPanel(parent,-1,wxDefaultPosition,wxDefaultSize)
+    : wxPanel(parent->GetMainPanel(),-1,wxDefaultPosition,wxDefaultSize)
 {
   // this panel will expand both horizontally and vertically
   //
