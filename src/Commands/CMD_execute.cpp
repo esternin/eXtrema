@@ -188,17 +188,18 @@ void CMD_execute::TryPaths( wxString &fname )
   if( filePath.empty() )
   {
     wxString fname2 = ExGlobals::GetCurrentPath() + wxT("/") + fname;
+    wxLogDebug("CMD_execute::TryPaths: fname=%s",fname2);
     inStream_.open( fname2.mb_str(wxConvUTF8), std::ios::in );
     if( !inStream_.is_open() )
     {
       inStream_.clear( std::ios::goodbit );
-      wxString fname3 = ExGlobals::GetExecutablePath() + wxT("/Scripts/") + fname;
+      wxString fname3 = ExGlobals::GetScriptsPath() + wxT("/") + fname;
       inStream_.open( fname3.mb_str(wxConvUTF8), std::ios::in );
       if( !inStream_.is_open() )
       {
         inStream_.clear( std::ios::goodbit );
         wxString s(wxT("could not open "));
-        if( ExGlobals::GetCurrentPath() != (ExGlobals::GetExecutablePath()+wxT("/Scripts/")) )
+        if( ExGlobals::GetCurrentPath() != ExGlobals::GetScriptsPath() )
         {
           s += fname2 + wxString(wxT("\n or ")) + fname3;
         }

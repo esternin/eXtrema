@@ -116,9 +116,8 @@ bool echo_, pausing_, stackIsOn_, stackSaved_, executeFlag_;
 int nHistory_, maxHistory_;
 bool workingColorFlag_, workingFontFlag_;
 double workingFontHeight_, workingFontAngle_;
-double fontScale_;
 int workingColorCode_, workingFontCode_, workingFontColorCode_;
-wxString currentPath_, executablePath_, helpPath_, imagePath_, stackFile_;
+wxString currentPath_, executablePath_, helpPath_, scriptsPath_, imagePath_, stackFile_;
 bool noviceMode_;
 
 // Variables related to script execution.
@@ -350,6 +349,7 @@ void Initialize()
     executablePath_ = wxT(EX_BINDIR);
     imagePath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Images");
     helpPath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Help");
+    scriptsPath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Scripts");
   }
   else
   {
@@ -360,6 +360,7 @@ void Initialize()
     //
     imagePath_ = executablePath_ + wxT("/Images");
     helpPath_ = executablePath_ + wxT("/Help");
+    scriptsPath_ = executablePath_ + wxT("/Scripts");
   }
   currentPath_ = ::wxGetCwd().c_str();
   //
@@ -404,8 +405,6 @@ void Initialize()
   //
   GRA_colorControl::Initialize();
   GRA_fontControl::Initialize();
-  //
-  SetFontScale( 1.0 );
   //
   executeFlag_ = true;
   scriptExtension_ = wxT("pcm");
@@ -702,6 +701,9 @@ wxString GetImagePath()
 wxString GetHelpPath()
 { return helpPath_; }
 
+wxString GetScriptsPath()
+{ return scriptsPath_; }
+
 void SetTension( double t )
 { splineTension_ = t; }
 
@@ -780,12 +782,6 @@ double GetWorkingFontHeight()
 
 double GetWorkingFontAngle()
 { return workingFontAngle_; }
-
-double GetFontScale()
-{ return fontScale_; }
-
-void SetFontScale( double s )
-{ fontScale_ = s; }
 
 void WarningMessage( wxString const &s )
 { WriteOutput( wxString(wxT("Warning: "))+s ); }

@@ -202,13 +202,6 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   ExGlobals::SetAspectRatio( aspectRatio );
   page->ResetWindows();
 
-  //ExGlobals::SetFontScale( 1.0 );
-  // fudge needed for proper fonts' scaling on high-dpi displays, prior to wx 3.1.6
-  int ppiScreenX = wxScreenDC().GetPPI().GetWidth();
-  double fontScale = (ppiScreenX >= 96.0) ? 96.0 / (double)ppiScreenX : 1.0;
-  ExGlobals::SetFontScale( fontScale );
-  wxLogDebug("VisualizationWindow::VisualizationWindow: scale=%g, fontScale=%g", GetContentScaleFactor(), fontScale);
-
   // Show the window.
   // Frames, unlike simple controls, are not shown when created initially.
   Show( true );

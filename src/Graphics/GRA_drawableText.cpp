@@ -171,20 +171,16 @@ namespace
 wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text )
 {
   double height = text->GetHeight();
-  // A fudge to accommodate "high-dpi" screens like Chromebooks, for wx before 3.1.6
-  // Set in VisualizationWindow.cpp
-  double fontScale = ExGlobals::GetFontScale();
-
   wxFont font( text->GetFont()->GetwxFont() );
   int xo, yo1, yo2;
   graphicsOutput->WorldToOutputType( 0.0, 0.0, xo, yo1 );
-  graphicsOutput->WorldToOutputType( 0.0, fontScale*height, xo, yo2 );
+  graphicsOutput->WorldToOutputType( 0.0, height, xo, yo2 );
   int h = yo1 - yo2;
   font.SetPointSize( h );
   font.SetWeight( text->GetWeight() );
   font.SetStyle( text->GetStyle() );
-  wxLogDebug("GRA_drawableText::MakeFont: fontScale=%g, world height=%g, font height=%d, style=%d(%d), weight=%d(%d)", 
-          fontScale, height, h, text->GetStyle(), wxFONTSTYLE_NORMAL, text->GetWeight(), wxFONTWEIGHT_NORMAL);
+  wxLogDebug("GRA_drawableText::MakeFont: world height=%g, font height=%d, style=%d(%d), weight=%d(%d)", 
+          height, h, text->GetStyle(), wxFONTSTYLE_NORMAL, text->GetWeight(), wxFONTWEIGHT_NORMAL);
   return font;
 }
 

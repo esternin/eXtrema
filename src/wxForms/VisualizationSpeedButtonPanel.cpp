@@ -321,10 +321,6 @@ bool MyPrintout::OnPrintPage( int page )
     int xmax = static_cast<int>(xmaxW*dcw+0.5);
     int ymax = static_cast<int>(ymaxW*dch+0.5);
 
-    double fontScale = ExGlobals::GetFontScale();
-    int ppiScreenX = wxScreenDC().GetPPI().GetWidth();
-    ExGlobals::SetFontScale( (ppiScreenX >=96) ? 96.0 / (double)ppiScreenX : 1.0);
-
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: WorldLimits=%g..%g x %g..%g", xminW, xmaxW, yminW, ymaxW);
     //wxLogDebug("VisualizationSpeedButtonPanel::OnPrintPage: map to ps()=%d..%d x %d..%d", xmin, xmax, ymin, ymax);
 
@@ -358,7 +354,6 @@ bool MyPrintout::OnPrintPage( int page )
       return false;
     }
     dc->EndDoc();
-    ExGlobals::SetFontScale( fontScale );
     return true;
   }
   else return false;
