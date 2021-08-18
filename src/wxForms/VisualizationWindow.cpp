@@ -197,6 +197,8 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   mainPanel_->Bind(wxEVT_SIZE, &VisualizationWindow::OnSize, this);
 
   SetClientSize(size);
+  mainPanel_->SetSize(size);
+  LayoutMainPanel();
 
   ExGlobals::SetMonitorLimits( 0, 0, size.x, size.y );
   ExGlobals::SetAspectRatio( aspectRatio );
@@ -425,7 +427,7 @@ void VisualizationWindow::OnReplotCurrent( wxCommandEvent &WXUNUSED(event) )
 //
 // We use it instead of using a sizer because we want to maintain the aspect
 // ratio of the notebook pages as done in ResetPages().
-void VisualizationWindow::OnSize( wxSizeEvent &WXUNUSED(event) )
+void VisualizationWindow::LayoutMainPanel()
 {
   const wxSize totalSize = mainPanel_->GetClientSize();
   const wxSize buttonsSize = visualizationSpeedButtonPanel_->GetBestSize();

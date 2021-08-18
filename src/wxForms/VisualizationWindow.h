@@ -110,7 +110,7 @@ public:
   
   // event handlers
   void CloseEventHandler( wxCloseEvent & );
-  void OnSize( wxSizeEvent & );
+  void OnSize( wxSizeEvent & ) { LayoutMainPanel(); }
 
   void OnImportPNG( wxCommandEvent & );
   void OnImportJPEG( wxCommandEvent & );
@@ -151,6 +151,9 @@ private:
   // Unlike the public GetPage(), this one uses the usual C++ index convention,
   // i.e. the index starts with 0.
   GraphicsPage *DoGetPage( int );
+
+  // Lay out contents of the main panel using its current size.
+  void LayoutMainPanel();
 
   wxPanel* mainPanel_;
   GraphForm *graphForm_;
