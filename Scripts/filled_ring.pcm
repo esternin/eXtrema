@@ -1,13 +1,49 @@
-clear
-defaults
-GENERATE THETA 0,,360 100
-XTEMP = 12*COSD(THETA)
-YTEMP = 12*SIND(THETA)
-XTEMP[200:101:-1] = 5*COSD(THETA)
-YTEMP[200:101:-1] = 5*SIND(THETA)
+! This script will draw two circles and fill the region between them
+!
+! OUTER_RADIUS = outer circle radius
+! INNER_RADIUS = inner circle radius
+! NPTS = number points used to draw circles
+! FILLCOLOR = area fill color name
+!
+! set up circle parameters and fill pattern
+!
+OUTER_RADIUS = ?1                ! make scalar
+INNER_RADIUS = ?2                ! make scalar
+FILLCOLOR = string(?3)           ! make color name string variable
+NPTS = ?4                        ! make scalar
+!
+! Generate the data for the circles
+!
+GENERATE THETA 0,,360 NPTS       ! make temporary vectors
+XTEMP = OUTER_RADIUS*COSD(THETA) !
+YTEMP = OUTER_RADIUS*SIND(THETA) !
+!
+! append in reverse order
+!
+XTEMP[NPTS*2:NPTS+1:-1] = INNER_RADIUS*COSD(THETA)
+YTEMP[NPTS*2:NPTS+1:-1] = INNER_RADIUS*SIND(THETA)
+YTEMP = YTEMP*(ABS(YTEMP)>1.E-5)
+XTEMP[2*NPTS+1] = XTEMP[NPTS]
+YTEMP[2*NPTS+1] = YTEMP[NPTS]
+!
+! Draw the circles and fill
+!
 SET
- AREAFILLCOLOR green
+ AREAFILLCOLOR FILLCOLOR
  PLOTSYMBOL 0                    ! no plotting symbol
  AUTOSCALE COMMENSURATE          ! choose axis autoscaling type
 
 GRAPH XTEMP YTEMP                ! plot data with axes
+SET
+ AREAFILLCOLOR 0                 ! turn off area fill color
+ CURVECOLOR FILLCOLOR
+
+GRAPH\OVERLAY XTEMP YTEMP        ! to get rid of the outline color
+SET
+ CURVECOLOR BLACK
+ LINEWIDTH 1
+ 
+GRAPH\OVERLAY OUTER_RADIUS*COSD(THETA) OUTER_RADIUS*SIND(THETA)
+GRAPH\OVERLAY INNER_RADIUS*COSD(THETA) INNER_RADIUS*SIND(THETA)
+
+ 
