@@ -11,7 +11,7 @@
 # autoreconf suggested we move m4 files to a subdirectory, need to know this in Makefile.am ES
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = ./fonts ./Images ./Help ./Scripts ./doc .gitignore
+EXTRA_DIST = ./Images ./Help ./Scripts ./doc .gitignore
 
 # list immediate subdirectories only
 SUBDIRS = src
