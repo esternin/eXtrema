@@ -9,8 +9,6 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 AM_CXXFLAGS = \
-    -DEX_BINDIR='"$(bindir)"' \
-    -DEX_DATADIR='"$(datadir)"' \
     -I$(top_srcdir)/src \
     -I$(top_srcdir)/src/Commands \
     -I$(top_srcdir)/src/Expression \
