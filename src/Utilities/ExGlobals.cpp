@@ -117,7 +117,7 @@ int nHistory_, maxHistory_;
 bool workingColorFlag_, workingFontFlag_;
 double workingFontHeight_, workingFontAngle_;
 int workingColorCode_, workingFontCode_, workingFontColorCode_;
-wxString currentPath_, executablePath_, helpPath_, scriptsPath_, imagePath_, stackFile_;
+wxString currentPath_, helpPath_, scriptsPath_, imagePath_, stackFile_;
 bool noviceMode_;
 
 // Variables related to script execution.
@@ -336,6 +336,8 @@ LegendPopup *legendPopup_;
 
 void Initialize()
 {
+  wxString executablePath_;
+
   if( !wxGetEnv(wxT("EXTREMA_DIR"),&executablePath_) )
   {
     //
@@ -691,9 +693,6 @@ void SetCurrentPath( wxString const &path )
 
 wxString GetCurrentPath()
 { return currentPath_; }
-
-wxString GetExecutablePath()
-{ return executablePath_; }
 
 wxString GetImagePath()
 { return imagePath_; }
