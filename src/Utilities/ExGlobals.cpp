@@ -584,7 +584,7 @@ void ExecuteInit()
       if( in.is_open() )fname = fname2;
       else
       {
-        fname2 = ExGlobals::GetExecutablePath()+wxT("/")+fname;
+        fname2 = ExGlobals::GetScriptsPath()+wxT("/")+fname;
         in.open( fname2.mb_str(wxConvUTF8) );
         if( !in.is_open() )return;
         fname = fname2;
