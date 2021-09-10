@@ -1,3 +1,14 @@
+30/07/2021  Edward Sternin <edward.sternin@brocku.ca>
+
+	4.6.1
+
+	* codebase made compatible with MingW compiler for Windows; @vadz
+	  32-/64-bit Windows versions need wxWidgets 3.1.5+ 
+
+	* all button images converted to .gif, transparent background; 
+	  buttons organized into wxPanel's 
+
+
 30/06/2021  Edward Sternin <edward.sternin@brocku.ca>
 
 	4.6.0
