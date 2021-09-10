@@ -63,4 +63,4 @@ set
 
 text 'y = '//RHSString
 
-hardcopy\postscript 2yaxes.eps
+!hardcopy\postscript 2yaxes.eps
