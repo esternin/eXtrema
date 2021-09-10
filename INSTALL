@@ -100,6 +100,10 @@ $ ../configure --prefix=/usr
 which will cause the extrema executable to be installed in /usr/bin, and the
 help and image files in /usr/share/extrema.
 
+eXtrema uses unique_ptr, a feature that may not be available on gcc/gcpp compilers
+before the so-called C++11 standard. If you see compilation errors relating to that,
+you may need to append CXXFLAGS='-std=c++11' to the ../configure command.
+
 To compile and link the program, type
 
 $ make
