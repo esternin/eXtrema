@@ -196,12 +196,13 @@ VisualizationWindow::VisualizationWindow( wxWindow *parent )
   // earlier could crash due to using e.g. uninitialized "notebook_" field.
   mainPanel_->Bind(wxEVT_SIZE, &VisualizationWindow::OnSize, this);
 
+  // Call this before LayoutMainPanel() which will use it.
+  ExGlobals::SetAspectRatio( aspectRatio );
+
   SetClientSize(size);
   mainPanel_->SetSize(size);
   LayoutMainPanel();
 
-  ExGlobals::SetMonitorLimits( 0, 0, size.x, size.y );
-  ExGlobals::SetAspectRatio( aspectRatio );
   page->ResetWindows();
 
   // Show the window.
