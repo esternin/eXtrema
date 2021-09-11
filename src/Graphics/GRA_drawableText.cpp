@@ -179,7 +179,7 @@ wxFont MakeFont( GRA_wxWidgets* graphicsOutput, GRA_simpleText* text )
   font.SetPointSize( h );
   font.SetWeight( text->GetWeight() );
   font.SetStyle( text->GetStyle() );
-  wxLogDebug("GRA_drawableText::MakeFont: world height=%g, font height=%d, style=%d(%d), weight=%d(%d)", 
+  wxLogTrace("font", "GRA_drawableText::MakeFont: world height=%g, font height=%d, style=%d(%d), weight=%d(%d)",
           height, h, text->GetStyle(), wxFONTSTYLE_NORMAL, text->GetWeight(), wxFONTWEIGHT_NORMAL);
   return font;
 }
