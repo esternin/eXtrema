@@ -90,7 +90,6 @@ namespace ExGlobals
 
   wxString GetCurrentPath();
   void SetCurrentPath( wxString const & );
-  wxString GetExecutablePath();
   wxString GetHelpPath();
   wxString GetScriptsPath();
   wxString GetImagePath();
