@@ -25,7 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "wx/html/helpctrl.h"
 #include "wx/utils.h"
 #include "wx/cmndata.h"
+#include "wx/filename.h"
 #include "wx/paper.h"
+#include "wx/stdpaths.h"
 
 #include "ExGlobals.h"
 #include "ExXML.h"
@@ -117,7 +119,7 @@ int nHistory_, maxHistory_;
 bool workingColorFlag_, workingFontFlag_;
 double workingFontHeight_, workingFontAngle_;
 int workingColorCode_, workingFontCode_, workingFontColorCode_;
-wxString currentPath_, executablePath_, helpPath_, scriptsPath_, imagePath_, stackFile_;
+wxString currentPath_, helpPath_, scriptsPath_, imagePath_, stackFile_;
 bool noviceMode_;
 
 // Variables related to script execution.
@@ -336,32 +338,54 @@ LegendPopup *legendPopup_;
 
 void Initialize()
 {
+  wxString executablePath_;
+
   if( !wxGetEnv(wxT("EXTREMA_DIR"),&executablePath_) )
   {
-    //
-    // EX_BINDIR is defined as $(prefix)/bin which is /usr/local/bin by default
-    // EX_DATADIR is defined as $(prefix)/share  which is /usr/local/share by default
-    //
+    // Try to find the directory containing our files using the path of the
+    // program itself.
+    for ( wxFileName fn = wxStandardPaths::Get().GetExecutablePath();
+          executablePath_.empty() && fn.GetDirCount() > 0;
+          fn.RemoveLastDir() )
+    {
+      const auto checkDataDirs = [](const wxString& path)
+      {
+        return wxFileName::DirExists(path + "/Images") &&
+                  wxFileName::DirExists(path + "/Help") &&
+                    wxFileName::DirExists(path + "/Scripts");
+      };
 
-    //std::cout << "EX_BINDIR = " << EX_BINDIR << "\n"
-    //          << "EX_DATADIR = " << EX_DATADIR << "\n";        
-    
-    executablePath_ = wxT(EX_BINDIR);
-    imagePath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Images");
-    helpPath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Help");
-    scriptsPath_ = wxString(wxT(EX_DATADIR)) + wxT("/extrema/Scripts");
+      // We can have files directly under the directory under which the program
+      // is installed or under its "share/extrema" subdirectory, as is typical
+      // when the program is installed on a Unix system, check both locations.
+      auto path = fn.GetPath();
+      if ( !checkDataDirs(path) )
+      {
+        path += "/share/extrema";
+        if ( !checkDataDirs(path) )
+          continue;
+      }
+
+      executablePath_ = path;
+    }
+
+    if ( executablePath_.empty() )
+    {
+      wxMessageBox( "Failed to find the program files, please define "
+                    "EXTREMA_DIR environment variable to point to the "
+                    "directory containing them.",
+                    "Extrema Installation Error",
+                    wxICON_ERROR | wxOK);
+
+      // This is bogus, but we must use something.
+      executablePath_ = ".";
+    }
   }
-  else
-  {
-    // extrema is not installed, so must define environment variable EXTREMA_DIR,
-    // pointing to the extrema executable, e.g.,
-    //
-    // $ export EXTREMA_DIR=~/extrema-x.y.z
-    //
-    imagePath_ = executablePath_ + wxT("/Images");
-    helpPath_ = executablePath_ + wxT("/Help");
-    scriptsPath_ = executablePath_ + wxT("/Scripts");
-  }
+
+  imagePath_ = executablePath_ + wxT("/Images");
+  helpPath_ = executablePath_ + wxT("/Help");
+  scriptsPath_ = executablePath_ + wxT("/Scripts");
+
   currentPath_ = ::wxGetCwd().c_str();
   //
   help_ = new wxHtmlHelpController();
@@ -584,7 +608,7 @@ void ExecuteInit()
       if( in.is_open() )fname = fname2;
       else
       {
-        fname2 = ExGlobals::GetExecutablePath()+wxT("/")+fname;
+        fname2 = ExGlobals::GetScriptsPath()+wxT("/")+fname;
         in.open( fname2.mb_str(wxConvUTF8) );
         if( !in.is_open() )return;
         fname = fname2;
@@ -691,9 +715,6 @@ void SetCurrentPath( wxString const &path )
 
 wxString GetCurrentPath()
 { return currentPath_; }
-
-wxString GetExecutablePath()
-{ return executablePath_; }
 
 wxString GetImagePath()
 { return imagePath_; }
