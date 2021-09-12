@@ -1,10 +1,48 @@
-x=[1:10]
-y=x*x
-window 1 0 0 50 50
-window 2 0 50 50 100
-window 3 50 50 100 100
-window 4 50 0 100 50
-window 0
 clear
 defaults
-graph x y
+
+x=[5:775:5]
+y=3*sind(x-20)*exp(-x/800)+ran(x)
+set
+ pchar -1
+ %charsz 0.9
+ color red
+ box 0
+ xaxis 0
+ yaxis 0
+
+graph x,y
+scalar\vary a,b,c,d
+a=3
+c=500
+fit\nomessages y=a*sind(x-b)*exp(-x/c)+d
+
+generate xx min(x),,max(x) 1000
+set
+ pchar 0
+ color blue
+
+graph\overlay xx,a*sind(xx-b)*exp(-xx/c)+d
+
+set
+  textalign 5
+  textinteractive 0
+  %xtextlocation 52
+  %ytextlocation 92
+  %textheight 6
+  textcolor purple
+  textfont SERIF
+
+text `<b1>Welcome to <i1>e<^>X<_>trema<i0> !'
+
+set
+  textalign 1
+  %xtextlocation 55
+  %ytextlocation 10
+  %textheight 4
+
+text `<b1,i1>Your best fit...'
+
+=`This is eXtrema v.4.6.2. Type @demo to demonstrate some of its features'
+
+defaults

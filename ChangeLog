@@ -1,3 +1,16 @@
+11/09/2021  Edward Sternin <edward.sternin@brocku.ca>
+
+	4.6.2
+
+	* commit to using wxWidgets 3.1.5+ on all platforms, remove
+	temporary accommodations for for high-dpi screens
+
+	* change path handling for service files, everything is now
+	relative to the path to the executable
+
+	* issue an AppImage (Linux) and a self-contained binary zip (Win)
+
+
 30/07/2021  Edward Sternin <edward.sternin@brocku.ca>
 
 	4.6.1
