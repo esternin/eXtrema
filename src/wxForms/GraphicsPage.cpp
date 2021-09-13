@@ -165,6 +165,10 @@ void GraphicsPage::OnSize( wxSizeEvent& event )
   if( backingStore_.IsOk() && event.GetSize() != backingStore_.GetSize() )
   {
     backingStore_ = wxBitmap();
+
+    // We need to ensure that the entire window, not just the new parts of it,
+    // is repainted, so refresh all of it.
+    Refresh();
   }
 }
 
