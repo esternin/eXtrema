@@ -1,22 +1,58 @@
 clear
 window 5
 defaults
-x=[1:10]
-set
- xlabelon 1
- xlabel 'X<^>2<_> vs X'
- %xlabelheight 6
 
-graph x x*x
+x=[5:775:5]
+y=3*sind(x-20)*exp(-x/800)+ran(x)
+set
+ %ylaxis 20
+ %xlabelheight 4
+ %xlaxis 15
+ %ylabelheight 4
+ xlabel 'time, <i1>t<i0>'
+ ylabel 'a decaying oscillation'
+ pchar -1
+ %charsz 0.9
+ plotsymbolcolor red
+
+graph x,y
+scalar\vary a,b,c,d
+a=3
+c=500
+fit\nomessages y=a*sind(x-b)*exp(-x/c)+d
+
+generate xx min(x),,max(x) 1000
+set
+ pchar 0
+ curvecolor blue
+
+graph\overlay xx,a*sind(xx-b)*exp(-xx/c)+d
+set
+ %xlabelheight 4
+ %ylaxis 20
+ %xlaxis 15
+ %ylabelheight 4
+
 window 6
 defaults
-x2=[-5:5]
+x=[-5:5:0.05]
 set
- xlabelon 1
- xlabel 'X<^>3<_> vs X'
- %xlabelheight 6
+ xlabel '<i1>x<i0>'
+ ylabel 'functions of <i1>x<i0>'
+ %xlabelheight 4
+ %ylaxis 20
+ %xlaxis 15
+ %ylabelheight 4
+ curvecolor red
+ legendon 1
+ %legendframe 40 20 90 40
+ legendframeon 0
 
-graph x2 x2^3
+
+graph `y(x)=x<^>3' x,x^3
+set curvecolor blue
+graph\overlay `y(x)=5x<^>2' x,5*x^2
+
 window 7
 defaults
 pi = acos(-1)
@@ -25,7 +61,60 @@ if exist('r') then destroy\-messages r
 r[1:len(theta)] = 1
 set
  xlabelon 1
- xlabel 'R*SIN(<theta>)  vs  R*COS(<theta>)'
- %xlabelheight 6
+ ylabel `<i1>r<i0> sin(3<i1,theta,i0>)'
+ xlabel `<i1>r<i0> cos(5<i1,theta,i0>)'
+ %xlabelheight 4
+ %ylaxis 20
+ %xlaxis 15
+ %ylabelheight 4
 
-graph r*cos(theta) r*sin(theta)
+graph r*cos(3*theta) r*sin(5*theta)
+
+window 8
+defaults
+define\constants
+generate phi 0,,3*pi 250
+a=0.2
+b=0.5
+x=a*phi-b*sin(phi)
+y=a-b*cos(phi)
+f=2*phi^2-3*phi+5
+set colormap rainbow
+get colormapsize csize
+c=int(f*csize/max(f)+0.99)
+scales\-messages min(x) max(x) min(y) max(y)
+set
+ plotsymbol 0
+ %xnumbersheight 3
+ %ynumbersheight 3
+ curvelinewidth 10
+ %xupperaxis 80
+ %yloweraxis 20
+ 
+graph\axesonly
+do i = [1:len(phi)-1]
+ set curvecolor c[i]
+ graph\overlay [x[i];x[i+1]] [y[i];y[i+1]]
+enddo
+scales\-messages 0 1 min(f) max(f)
+generate tmp min(f),,max(f) len(phi)
+set
+ %xloweraxis 85
+ %xupperaxis 90
+ xaxison 0
+ yaxison 1
+
+graph\axesonly\yonright 
+do i = [1:len(phi)-1]
+  set curvecolor c[i]
+  graph\overlay [0.5;0.5] [tmp[i];tmp[i+1]]
+enddo
+set
+ %textheight 6
+ textfont SANS
+ textalign 1
+ textinteractive 0
+ %xtextlocation 10
+ %ytextlocation 90
+ 
+text 'Prolate Cycloid'

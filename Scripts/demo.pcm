@@ -26,7 +26,7 @@ IF EQS(UCASE(ANSWER),'YES') THEN
   clear
   window 0
   defaults
-  @filledring 12 5 green 100
+  @filled_ring 12 5 green 100
 ENDIF
 !hardcopy\postscript demo.eps
 !

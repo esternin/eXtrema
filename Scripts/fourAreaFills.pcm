@@ -1,14 +1,14 @@
 clear
+defaults
 destroy\-messages *
 !
 window 5
-defaults
 generate x -5,,5 50
 y=x^2+3*x-2
 @curvefill x y red
 !
 window 6
-defaults
+!defaults
 generate x 0,,180 100
 y=sind(x)
 generate x1 0,,180 50
@@ -17,8 +17,8 @@ scales\-messages -10 200 -.2 1
 @fill x y x1 y1 red
 !
 window 7
-defaults
-@filledring 12 5 green 100
+!defaults
+@filled_ring 12 5 green 100
 !
 window 8
 defaults
