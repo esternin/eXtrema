@@ -33,7 +33,7 @@ set
   textcolor purple
   textfont SERIF
 
-text `<b1>Welcome to <i1>e<^>X<_>trema<i0> !'
+text `<b1>Welcome to <i1>e<^>x<_>trema<i0> !'
 
 set
   textalign 1
@@ -43,6 +43,6 @@ set
 
 text `<b1,i1>Your best fit...'
 
-=`This is eXtrema v.4.6.2. Type @demo to demonstrate some of its features'
+=`This is eXtrema v.4.7.0. Type @demo to demonstrate some of its features'
 
 defaults
