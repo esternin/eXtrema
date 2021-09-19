@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 GRA_font::GRA_font( wxString const &name ) 
     : wxfont_(wxFontInfo(12).FaceName(name)),
-      name_( name.Upper() )
+      name_( name )
 {
 }
 
