@@ -22,21 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "wx/wx.h"
 
+namespace GRA_fontControl { void Initialize(); }
+
 class GRA_font
 {
 public:
-  // how to pick a font:
-  //   -- choose a family (DECORATIVE,ROMAN,SCRIPT,SWISS,MODERN,TELETYPE)
-  //   -- or open the font dialog and pick a specific font
-
-  GRA_font( wxString const & );
-  
-  GRA_font( wxFont &font )
-  { wxfont_ = font; }
-
-  ~GRA_font()
-  {}
-  
   GRA_font( GRA_font const &rhs )
   {
     wxfont_ = rhs.wxfont_;
@@ -68,6 +58,12 @@ public:
   friend std::ostream &operator<<( std::ostream &, GRA_font const & );
 
 private:
+  friend void GRA_fontControl::Initialize();
+
+  // Ctor is private because objects of this class are only created by
+  // GRA_fontControl::Initialize().
+  GRA_font( wxString const & );
+
   wxFont wxfont_;
   wxString name_;
 };
