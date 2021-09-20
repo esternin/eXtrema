@@ -1,19 +1,21 @@
 #!/bin/sh
 
-if [ -e /tmp/eXtrema-462.zip ]; then
-  echo "  makeZipBinary: /tmp/eXtrema-462.zip already exists, remove or rename to save it, aborting"
+VERSION=470
+
+if [ -e /tmp/eXtrema-$VERSION.zip ]; then
+  echo "  makeZipBinary: /tmp/eXtrema-$VERSION.zip already exists, remove or rename to save it, aborting"
   exit 0
 fi
 
-mkdir -p /tmp/eXtrema-462/Docs
+mkdir -p /tmp/eXtrema-$VERSION/Docs
 strip src/extrema.exe
-cp src/extrema.exe /tmp/eXtrema-462
-cp ../bin/*.dll /tmp/eXtrema-462
-cp -r ../Help ../Images ../Scripts /tmp/eXtrema-462
-cp ../doc/* /tmp/eXtrema-462/Docs
+cp src/extrema.exe /tmp/eXtrema-$VERSION
+cp ../bin/*.dll /tmp/eXtrema-$VERSION
+cp -r ../Help ../Images ../Scripts ../fonts /tmp/eXtrema-$VERSION
+cp ../doc/* /tmp/eXtrema-$VERSION/Docs
 
 cd /tmp
-zip -r eXtrema-462.zip eXtrema-462
+zip -r eXtrema-$VERSION.zip eXtrema-$VERSION
 
-echo "  makeZipBinary: /tmp/eXtrema-462.zip is ready."
+echo "  makeZipBinary: /tmp/eXtrema-$VERSION.zip is ready."
 

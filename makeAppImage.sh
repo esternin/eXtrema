@@ -17,6 +17,10 @@ if [ ! -e linuxdeploy-x86_64.AppImage ]; then
 fi
 ./linuxdeploy-x86_64.AppImage --appdir /tmp/AppDir --executable src/extrema --desktop-file ../extrema.desktop --icon-file ../icons/hicolor/scalable/apps/extrema.svg 
 
+mkdir -p /tmp/AppDir/usr/local/share/fonts/freefont
+BASEDIR=$(dirname $(readlink -f "$0"))
+install -m 644 $BASEDIR/fonts/* /tmp/AppDir/usr/local/share/fonts/freefont
+
 cat <<'EOT' > /tmp/AppDir/AppRun
 #!/bin/sh
 
@@ -29,8 +33,8 @@ EOT
 
 chmod 755 /tmp/AppDir/AppRun 
 
-mkdir /tmp/AppDir/usr/share/metainfo
-cat <<EOT > /tmp/AppDir/usr/share/metainfo/ca.brocku.physics.extrema.metainfo.xml
+mkdir /tmp/AppDir/usr/local/share/metainfo
+cat <<EOT > /tmp/AppDir/usr/local/share/metainfo/ca.brocku.physics.extrema.metainfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>ca.brocku.physics.extrema</id>

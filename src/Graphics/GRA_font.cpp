@@ -30,19 +30,19 @@ wxFontInfo GetAvailableVariantOf(wxString const& name)
 
   wxFontInfo info(12);
 
+  // Prefer one of the FreeFonts that we install with Extrema 
+  wxString nameBest = "Free" + name;
+  if ( allFacenames.Index(nameBest, false /* case-insensitive */) != wxNOT_FOUND )
+    return info.FaceName(nameBest);
+
+  // Find an available alternative. Is there an actual font "SANS", "SERIF", or "MONO"?
   if ( allFacenames.Index(name, false /* case-insensitive */) != wxNOT_FOUND )
   {
     // This font is available, just use it directly.
     return info.FaceName(name);
   }
 
-  // Find an available alternative: start by the fonts that we install with
-  // Extrema that should be always available.
-  wxString nameAlt = "Free" + name;
-  if ( allFacenames.Index(nameAlt, false /* case-insensitive */) != wxNOT_FOUND )
-    return info.FaceName(nameAlt);
-
-  // If they aren't, just fall back to the corresponding default font of the
+  // Fall back to the corresponding default font of the
   // given family for the current platform.
   wxFontFamily family;
   if ( name == "SANS" )
