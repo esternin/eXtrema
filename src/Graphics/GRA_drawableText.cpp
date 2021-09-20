@@ -103,7 +103,7 @@ std::vector <GRA_specialCharacter> SpecialCharacters {
       {"UPARROW","arrowup",0x2191,0x5E},	// ^
       {"DOWNARROW","arrowdown",0x2193,0x5B},	// [
       {"RIGHTARROW","arrowright",0x2192,0x5D},// ]
-      {"PERP","perpendicular",0x27C2,0x07},
+      {"PERP","perpendicular",0x22A5,0x07},
       {"MID","divides",0x2223,0x7E},
       {"BULLET","bullet",0x2022,0x08},
       {"SUM","summation",0x2211,0x09},
@@ -122,8 +122,8 @@ std::vector <GRA_specialCharacter> SpecialCharacters {
       {"CUP","union",0x222A,0x11},
       {"SUPSET","propersuperset",0x2283,0x12},
       {"DEGREE","degree",0x02DA,0x13},	//
-      {"LANGLE","angleleft",0x27E8,0x14},	//
-      {"RANGLE","angleright",0x27E9,0x15},	//
+      {"LANGLE","angleleft",0x2329,0x14},	//
+      {"RANGLE","angleright",0x232A,0x15},	//
       {"NEG","logicalnot",0x00AC,0x7C},
       {"THEREFORE","therefore",0x2234,0x16},
       {"ANGLE","angle",0x2220,0x17},
