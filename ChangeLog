@@ -1,3 +1,21 @@
+20/09/2021  Edward Sternin <edward.sternin@brocku.ca> 
+
+	4.7.0 
+
+	* first fully common-codebase release under Linux and Windows
+
+	* a significant change in functionality justifies a minor version
+	advance.  Minor subversions are reserved for bug fixes and minor
+	changes.
+
+	* a re-work of how fonts are handled, and standartization to one
+	preferred foundry, GNU FreeFont, on all platforms. To do: font-picking
+	selector, font inclusion in .eps, etc.
+
+	* many demo scripts enhanced and overhauled.
+
+	* bugs quashed: graphics refresh under MSW 
+
 11/09/2021  Edward Sternin <edward.sternin@brocku.ca>
 
 	4.6.2
