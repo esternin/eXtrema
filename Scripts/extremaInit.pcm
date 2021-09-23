@@ -33,7 +33,7 @@ set
   textcolor purple
   textfont SERIF
 
-text `<b1>Welcome to <i1>e<^>x<_>trema<i0> !'
+text `<b1>Welcome to <i1>e<^,v2%,z0.5%>x<v1.75%,_,z-0.5%>trema<i0> !'
 
 set
   textalign 1
