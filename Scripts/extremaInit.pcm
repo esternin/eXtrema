@@ -43,6 +43,7 @@ set
 
 text `<b1,i1>Your best fit...'
 
-=`This is eXtrema v.4.7.0. Type @demo to demonstrate some of its features'
-
+destroy a,b,c,d,x,y,xx
 defaults
+
+=`This is eXtrema v.4.7.0. Type @demo to demonstrate some of its features'
