@@ -43,7 +43,8 @@ set
 
 text `<b1,i1>Your best fit...'
 
-destroy a,b,c,d,x,y,xx
+destroy\all
+clear\history
 defaults
 
 =`This is eXtrema v.4.7.0. Type @demo to demonstrate some of its features'
