@@ -2274,7 +2274,6 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
   std::size_t counter = 0;
   std::vector<GRA_simpleText*>::const_iterator textVecEnd( textVec.end() );
 
-//  for( std::vector<GRA_simpleText*>::const_iterator i=textVec.begin(); i!=textVecEnd; ++i, ++counter ) {
   for( auto simpleText: textVec )
   {
     wxString text( (simpleText)->GetString() );
@@ -2299,11 +2298,12 @@ void GRA_postscript::Draw( GRA_drawableText *dt )
              << "] /" << psFontName.mb_str(wxConvUTF8) << "CU " << height
              << " " << xshift << " " << yshift << " (";
     std::size_t tEnd = text.size();
-    bool found = false;
+    bool found;
     uint32_t c;
     for( size_t i=0; i<tEnd; ++i ) {
       c = text[i];
       for( auto const& sc: SpecialCharacters ) {
+        found = false;
         if(c == sc.ucode) { // this is a special character, substitute
           outFile_ << "\\377\\001\\" << std::setfill('0') << std::setw(3) << std::oct <<  sc.cid << "\\377\\000" << std::dec << std::setw(0);
 	  found = true;
