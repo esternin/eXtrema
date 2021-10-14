@@ -266,7 +266,7 @@ void  GRA_cartesianAxes::DrawXLabel( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     catch ( EGraphicsError const &e )
     {
       delete dt;
-      throw;
+      throw EGraphicsError( wxString()<<wxT("x-axis label contains ")<<wxString( e.what(),wxConvUTF8) );
     }
     dt->Draw( graphicsOutput, dc );
   }
@@ -336,7 +336,7 @@ void  GRA_cartesianAxes::DrawYLabel( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     catch ( EGraphicsError const &e )
     {
       delete dt;
-      throw;
+      throw EGraphicsError( wxString()<<wxT("y-axis label contains ")<<wxString( e.what(),wxConvUTF8) );
     }
     dt->Draw( graphicsOutput, dc );
   }

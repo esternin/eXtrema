@@ -642,8 +642,9 @@ void GRA_drawableText::DetermineCommand( wxString &command,
   }
   else
   {
-    wxString s( wxT("invalid text formatting command: ") );
+    wxString s( wxT("invalid text formatting command: \"") );
     s += command;
+    s += wxT("\"");
     throw std::runtime_error( std::string(s.mb_str(wxConvUTF8)) );
   }
 }
