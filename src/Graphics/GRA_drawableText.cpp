@@ -538,6 +538,8 @@ void GRA_drawableText::DetermineCommand( wxString &command,
 
 {
   wxString fontName;
+  // trim leading and trailing whitespace, not used in formatting commands
+  command.Trim(false).Trim(true);
   wxChar c = Special( command, fontName );
   if( c )
   {
