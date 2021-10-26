@@ -71,7 +71,7 @@ void CMD_clear::Execute( ParseLine const *p )
   }
   int n = static_cast<int>( d );
   if( n < 0 )throw ECommandError( Name()+wxT(": window number < 0") );
-  if( n > static_cast<int>(ExGlobals::GetNumberOfWindows()) )
+  if( n >= static_cast<int>(ExGlobals::GetNumberOfWindows()) )
     throw ECommandError( command+wxT("window number > largest defined window number") );
   ExGlobals::ClearGraphicsWindow( qualifiers[wxT("REPLOT")], n );
   AddToStackLine( p->GetString(1) );
