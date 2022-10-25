@@ -205,7 +205,7 @@ void CMD_window::Execute( ParseLine const *p )
     }
     inherit = static_cast<int>( d );
     if( inherit < 0 )throw ECommandError( command+wxT("window number to inherit from < 0") );
-    if( inherit > maxWindow )
+    if( inherit >= maxWindow )
      throw ECommandError( command+wxT("window number to inherit from > largest defined window number") );
     //
     AddToStackLine( p->GetString(2) );
