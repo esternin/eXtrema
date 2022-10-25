@@ -15,11 +15,11 @@ READ\FAST file{\lineRange} x1 { x2 ... }</CODE></TD>
 </TR><TR>
 <TD valign="top"><B>Qualifiers:</B></TD>
 <TD valign="top"><CODE>
- \APPEND, \ERRSTOP, \ERRSKIP, \ERRFILL, \OVERLAY, \EXTEND, \FAST</CODE></TD>
+ \APPEND, \ERRORSTOP, \ERRORSKIP, \ERRORFILL, \OVERLAY, \EXTEND, \FAST</CODE></TD>
 </TR><TR>
 <TD valign="top"><B>Defaults:</B></TD>
 <TD valign="top"><CODE>
- \-APPEND, \ERRSTOP, \-OVERLAY, \EXTEND, \-FAST, cI = I</CODE></TD>
+ \-APPEND, \ERRORSTOP, \-OVERLAY, \EXTEND, \-FAST, cI = I</CODE></TD>
 </TR>
 </TABLE>
 <P>
@@ -101,11 +101,11 @@ READ\FAST file{\lineRange} x1 { x2 ... }</CODE></TD>
  Records beginning with ! are considered to be comments and are ignored. </P>
 <P>
  By default, an invalid field stops the read, but the data that has been
- read up to the error is saved. If the <CODE>\ERRSKIP</CODE> qualifier is
+ read up to the error is saved. If the <CODE>\ERRORSKIP</CODE> qualifier is
  used, an invalid field causes the entire record to be skipped. If the
- <CODE>\ERRFILL</CODE> qualifier is used, an invalid field causes the entire record to be
+ <CODE>\ERRORFILL</CODE> qualifier is used, an invalid field causes the entire record to be
  filled with the value of <CODE>ERRORFILL</CODE> if a format was entered, or
- only the invalid field will be set to <CODE>ERRFILL</CODE> if no format
+ only the invalid field will be set to <CODE>ERRORFILL</CODE> if no format
  was entered. By default, <CODE>ERRORFILL=0</CODE>,
  but it's value can be controlled with the <CODE>
  <a href="../Characteristics/errorfill.htm">ERRORFILL</a></CODE> characteristic.</P>
