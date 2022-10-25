@@ -280,7 +280,7 @@ void CMD_read::Execute( ParseLine const *p )
     s += backSlash + wxString(wxT("SCALARS"));
     if( qualifiers[wxT("ERRORSKIP")] )
     {
-      ExGlobals::WarningMessage( s + wxT("ERRSKIP is meaningless when reading one record") );
+      ExGlobals::WarningMessage( s + wxT("ERRORSKIP is meaningless when reading one record") );
       qualifiers[wxT("ERRORSKIP")] = false;
       qualifiers[wxT("ERRORSTOP")] = true;
     }
@@ -318,7 +318,7 @@ void CMD_read::Execute( ParseLine const *p )
     if( qualifiers[wxT("ERRORFILL")] )
       ExGlobals::WarningMessage( s + wxT("ERRORFILL is meaningless when reading text") );
     if( qualifiers[wxT("ERRORSKIP")] )
-      ExGlobals::WarningMessage( s + wxT("ERRSKIP is meaningless when reading text") );
+      ExGlobals::WarningMessage( s + wxT("ERRORSKIP is meaningless when reading text") );
     if( qualifiers[wxT("OVERLAY")] )
       ExGlobals::WarningMessage( s + wxT("OVERLAY is meaningless when reading text") );
     if( qualifiers[wxT("APPEND")] )
@@ -341,7 +341,7 @@ void CMD_read::Execute( ParseLine const *p )
     if( qualifiers[wxT("ERRORFILL")] )
       ExGlobals::WarningMessage( s + wxT("ERRORFILL is meaningless when reading a matrix") );
     if( qualifiers[wxT("ERRORSKIP")] )
-      ExGlobals::WarningMessage( s + wxT("ERRSKIP is meaningless when reading a matrix") );
+      ExGlobals::WarningMessage( s + wxT("ERRORSKIP is meaningless when reading a matrix") );
     if( qualifiers[wxT("OVERLAY")] )
       ExGlobals::WarningMessage( s + wxT("OVERLAY is meaningless when reading a matrix") );
     if( qualifiers[wxT("APPEND")] )
@@ -364,7 +364,7 @@ void CMD_read::Execute( ParseLine const *p )
     if( qualifiers[wxT("ERRORFILL")] )
       ExGlobals::WarningMessage( s + wxT("ERRORFILL is meaningless when reading a tensor") );
     if( qualifiers[wxT("ERRORSKIP")] )
-      ExGlobals::WarningMessage( s + wxT("ERRSKIP is meaningless when reading a tensor") );
+      ExGlobals::WarningMessage( s + wxT("ERRORSKIP is meaningless when reading a tensor") );
     if( qualifiers[wxT("OVERLAY")] )
       ExGlobals::WarningMessage( s + wxT("OVERLAY is meaningless when reading a tensor") );
     if( qualifiers[wxT("APPEND")] )
@@ -387,7 +387,7 @@ void CMD_read::Execute( ParseLine const *p )
     if( qualifiers[wxT("BINARY")] && qualifiers[wxT("ERRORFILL")] )
       ExGlobals::WarningMessage( s + wxT("ERRORFILL cannot be used with UNFORMATTED") );
     if( qualifiers[wxT("BINARY")] && qualifiers[wxT("ERRORSKIP")] )
-      ExGlobals::WarningMessage( s + wxT("ERRSKIP cannot be used with UNFORMATTED") );
+      ExGlobals::WarningMessage( s + wxT("ERRORSKIP cannot be used with UNFORMATTED") );
     if( !qualifiers[wxT("EXTEND")] && qualifiers[wxT("APPEND")] )
       ExGlobals::WarningMessage( s + wxT("-EXTEND cannot be used with APPEND") );
     try
@@ -1466,7 +1466,10 @@ void CMD_read::ReadVectors( QualifierMap &qualifiers, bool const output )
           {
             if( readError )
             {
-              data[id[k]].push_back( errorFill_ );
+              if( qualifiers[wxT("ERRORFILL")] )
+	      {
+                  data[id[k]].push_back( errorFill_ );
+	      }
               if( output )
               {
                 wxString c( wxT("field ") );
@@ -1653,7 +1656,10 @@ void CMD_read::ReadVectors( QualifierMap &qualifiers, bool const output )
                   stopReading = true;
                   break;
                 }
-                data[id[k]].push_back( errorFill_ );
+                if( qualifiers[wxT("ERRORFILL")] )
+		{
+                  data[id[k]].push_back( errorFill_ );
+		}
                 if( output )
                 {
                   wxString c( wxT("field ") );
