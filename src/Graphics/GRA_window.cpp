@@ -615,7 +615,7 @@ void GRA_window::Erase()
   ExGlobals::GetGraphicsOutput()->WorldToOutputType( xuw, yuw, xu, yu );
   dc.SetBrush( *wxWHITE_BRUSH );
   dc.SetPen( *wxWHITE_PEN );
-  dc.DrawRectangle( xl, yu, xu-xl+1, yu-yl+1 );
+  dc.DrawRectangle( xl, yl, xu-xl+1, yu-yl+1 );
 }
 
 void GRA_window::Replot()
