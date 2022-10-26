@@ -40,7 +40,7 @@ InquireYNDialog::InquireYNDialog()
 {
   wxBoxSizer *mainSizer = new wxBoxSizer( wxVERTICAL );
 
-  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize(400,100), wxNO_BORDER );
+  wxPanel *topPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *topSizer = new wxBoxSizer( wxHORIZONTAL );
 
   messageCtrl_ = new wxStaticText( topPanel, -1, wxT(" ") );
@@ -49,8 +49,7 @@ InquireYNDialog::InquireYNDialog()
   topPanel->SetSizer( topSizer );
   mainSizer->Add( topPanel, wxSizerFlags(1).Expand().Border(wxALL,1) );
   
-  wxPanel *bottomPanel = new wxPanel( (wxWindow*)this, wxID_ANY, wxDefaultPosition,
-                                      wxSize(400,100), wxNO_BORDER );
+  wxPanel *bottomPanel = new wxPanel( (wxWindow*)this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER );
   wxBoxSizer *bottomSizer = new wxBoxSizer( wxHORIZONTAL );
 
   wxButton *yesButton = new wxButton( bottomPanel, wxID_YES, wxT("Yes") );
