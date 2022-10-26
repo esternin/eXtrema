@@ -82,6 +82,7 @@ void Script::Run()
     else if( ExGlobals::GetReturnCommand() )
     {
       ExGlobals::SetReturnCommand( false );
+      ExGlobals::StopAllScripts();
       return;
     }
     else if( ExGlobals::GetPausingScript() )
