@@ -1,6 +1,14 @@
+27/10/2022  Edward Sternin <edward.sternin@brocku.ca> 
+
+        4.7.1
+	
+	* switch to wxWidgets 3.2.1, better high-dpi operations
+
+       * bugfix release: replot, window indexing fixed
+	
 20/09/2021  Edward Sternin <edward.sternin@brocku.ca> 
 
-	4.7.0 
+        4.7.0
 
 	* first fully common-codebase release under Linux and Windows
 
