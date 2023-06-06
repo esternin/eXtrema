@@ -81,7 +81,7 @@ WX_CONFIG_OPTIONS
 
 dnl This macro will define WX_CXXFLAGS and WX_LIBS used in the makefiles if
 dnl successful and abort with the failure message otherwise.
-WX_CONFIG_CHECK([3.2.1],[],[],[base,xml,core,adv,html])
+WX_CONFIG_CHECK([3.0.5],[],[],[base,xml,core,adv,html])
 
 AC_CONFIG_FILES([
    Makefile
