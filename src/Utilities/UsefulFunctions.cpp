@@ -1838,8 +1838,9 @@ double GaussInverse( double p )
   //
   // get first approximation by hastings formula
   //
-  if( p > 0.5 )p = 1.0-p;
-  double f = -log(p);
+  double b = p;
+  if( b > 0.5 )b = 1.0-b;
+  double f = -log(b);
   double e = sqrt(f+f);
   double xo = -e+((0.010328*e+0.802853)*e+2.515517)/(((0.001308*e+0.189269)*e+1.432788)*e+1.);
   //
