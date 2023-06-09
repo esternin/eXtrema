@@ -5,21 +5,43 @@ if [ -e /tmp/AppDir ]; then
   exit 0
 fi
 
-mkdir /tmp/AppDir
+# Absolute path to this script's location
+BASEDIR=$(dirname $(readlink -f "$0"))
 
+mkdir /tmp/AppDir
 make install DESTDIR=/tmp/AppDir
 strip /tmp/AppDir/usr/local/lib/libextrema.a
 
 if [ ! -e linuxdeploy-x86_64.AppImage ]; then
   echo "  makeAppImage: downloading linuxdeploy-x86_64.AppImage"
   wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-  chmod 755 linuxdeploy-x86_64.AppImage 
+  ##wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+  wget https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
+  chmod 755 linuxdeploy-x86_64.AppImage linuxdeploy-plugin-gtk.sh
 fi
-./linuxdeploy-x86_64.AppImage --appdir /tmp/AppDir --executable src/extrema --desktop-file ../extrema.desktop --icon-file ../icons/hicolor/scalable/apps/extrema.svg 
 
-mkdir -p /tmp/AppDir/usr/local/share/fonts/freefont
+LD_LIBRARY_PATH=/usr/local/lib:/usr/lib64 ./linuxdeploy-x86_64.AppImage \
+  --appdir /tmp/AppDir \
+  --executable src/extrema \
+  --desktop-file $BASEDIR/extrema.desktop \
+  --plugin gtk \
+  --icon-file $BASEDIR/icons/hicolor/scalable/apps/extrema.svg 
+
+
+#  --library /lib64/libfribidi.so.0 \
+#  --library /lib64/libpangoft2-1.0.so.0 \
+#  --library /lib64/libfontconfig.so.1 \
+#  --library /lib64/libharfbuzz.so.0
+#  --library libwx_baseu-3.2.so.0 \
+#  --library libwx_baseu_xml-3.2.so.0 \
+#  --library libwx_gtk3u_core-3.2.so.0 \
+#  --library libwx_gtk3u_html-3.2.so.0 \
+
+mkdir -p /tmp/AppDir/usr/share/fonts/truetype/freefont
 BASEDIR=$(dirname $(readlink -f "$0"))
-install -m 644 $BASEDIR/fonts/* /tmp/AppDir/usr/local/share/fonts/freefont
+install -m 644 $BASEDIR/Fonts/* /tmp/AppDir/usr/share/fonts/truetype/freefont
+mkdir -p /tmp/AppDir/usr/share/themes/Default
+cp -R /usr/share/themes/Default/* /tmp/AppDir/usr/share/themes/Default/
 
 cat <<'EOT' > /tmp/AppDir/AppRun
 #!/bin/sh
@@ -28,7 +50,7 @@ cat <<'EOT' > /tmp/AppDir/AppRun
 BASEDIR=$(dirname $(readlink -f "$0"))
 
 export EXTREMA_DIR=$BASEDIR/usr/local/share/extrema
-LD_LIBRARY_PATH=$BASEDIR/usr/lib $BASEDIR/usr/local/bin/extrema
+LD_LIBRARY_PATH=$BASEDIR/usr/lib:$BASEDIR/usr/local/lib $BASEDIR/usr/local/bin/extrema
 EOT
 
 chmod 755 /tmp/AppDir/AppRun 
