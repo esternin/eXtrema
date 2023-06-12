@@ -1,3 +1,11 @@
+12/06/2023  Edward Sternin <edward.sternin@brocku.ca> 
+
+        4.7.2
+	
+       * roll back to wxWidgets 3.0.5 as minimum in Makefile.in; use 3.2.2.1
+
+       * bugfix release: gaussin() bugs fixed
+
 27/10/2022  Edward Sternin <edward.sternin@brocku.ca> 
 
         4.7.1

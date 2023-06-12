@@ -15,7 +15,7 @@ AC_PREREQ([2.59])
 AC_CONFIG_MACRO_DIRS([m4])
 
 # touch src/wxForms/AnalysisWindow.cpp to get the latest version number
-AC_INIT([extrema],[4.7.1],[edward.sternin@brocku.ca],[extrema],[https://www.physics.brocku.ca/Labs/extrema/])
+AC_INIT([extrema],[4.7.2],[edward.sternin@brocku.ca],[extrema],[https://www.physics.brocku.ca/Labs/extrema/])
 
 # use foreign to avoid "mandatory" NEWS and AUTHORS; automake syntax changed at v1.12
 AM_INIT_AUTOMAKE([1.12 foreign subdir-objects])
