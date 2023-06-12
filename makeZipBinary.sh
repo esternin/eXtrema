@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=471
+VERSION=472
 
 if [ -e /tmp/eXtrema-$VERSION.zip ]; then
   echo "  makeZipBinary: /tmp/eXtrema-$VERSION.zip already exists, remove or rename to save it, aborting"
