@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iomanip>
 #include <sstream>
 #include <stdexcept>
+#include <float.h>
 
 #include "UsefulFunctions.h"
 #include "EExpressionError.h"
@@ -1828,55 +1829,55 @@ double GaussInverse( double p )
   //
   // ACCURACY : TO AT LEAST 1.0D-8
   //
-  if( p<0.0 || p>1.0 )throw EExpressionError(wxT("GaussInverse: argument must be >=0 and <=1") );
-  if( p == 0.0 )return -1.0e10;
-  if( p == 1.0 )return 1.0e10;
+  int i;
+
+  if ( p<0.0 || p>1.0+DBL_EPSILON )
+    throw EExpressionError(wxT("GaussInverse: argument must be >=0 and <=1") );
+  else if ( p == 0.0 )
+    return -1.0e10;
+  else if ( p == 1.0 )
+    return 1.0e10;
   //
   double const rthfpi = 1.2533141373;
   double const rrt2pi = 0.3989422804;
-  double const termin = 1.e-11;
+  double const termin = 10.0*DBL_EPSILON;
   //
   // get first approximation by hastings formula
   //
-  double b = p;
-  if( b > 0.5 )b = 1.0-b;
-  double f = -log(b);
+  double f = (p > 0.5) ? -log(1.0-p) : -log(p);
   double e = sqrt(f+f);
   double xo = -e+((0.010328*e+0.802853)*e+2.515517)/(((0.001308*e+0.189269)*e+1.432788)*e+1.);
   //
   double po, x1;
-  if( xo >= 0.0 )
-  {
+  if( xo >= 0.0 ) {
     xo = 0.0;
     po = 0.5;
     x1 = -rthfpi;
-  }
-  else
-  {
+    }
+  else {
     //
     // find the area corresponding to x0
     //
     double y = xo*xo;
-    if( xo <= -1.9 ) // continued fraction approximation
-    {
+    if( xo <= -1.9 ) {  // continued fraction approximation
       double z = 1./y;
       double a1 = 1.0;
       double a2 = 1.0;
       double a3 = z+1.0;
       double a4 = 1.0;
-      do
-      {
-        a1 = a4+a1*2*z;
-        a2 = a3+a2*2*z;
-        a3 = a2+a3*3*z;
-        a4 = a1+a4*3*z;
-      }
-      while( a1/a2-a4/a3 >= termin );
+      double w = 1.;
+      do {
+        w += 1.;
+        a1 = a4+a1*w*z;
+        a2 = a3+a2*w*z;
+        w += 1.;
+        a3 = a2+a3*w*z;
+        a4 = a1+a4*w*z;
+        } while( a1/a2-a4/a3 >= termin );
       x1 = a4/a3/xo;
       po = -x1*rrt2pi*exp(-0.5*y);
-    }
-    else
-    {
+      }
+    else {
       y *= -0.5;
       //
       // series approximation
@@ -1889,12 +1890,12 @@ double GaussInverse( double p )
          7.5757575758e-4,  4.6296296296e-3,  2.3809523810e-2,
          0.1,              0.333333333333 };
       po = connor[0];
-      for( int i=1; i<17; ++i )po = po*y+connor[i];
+      for( int i=1; i<17; ++i ) po = po*y+connor[i];
       po = (po*y+1.0)*xo;
       x1 = -(po+rthfpi)*exp(-y);
       po = po*rrt2pi+0.5;
+      }
     }
-  }
   //
   // get accurate value by taylor expansion
   //
@@ -1902,7 +1903,7 @@ double GaussInverse( double p )
   double x2 = xo*x1*x1-x1;
   double x3 = (x1*x1+2.0*xo*x2)*x1-x2;
   double x = ((x3/3.*d+x2)*d*0.5+x1)*d+xo;
-  if( p > 0.5 )x *= -1.0;
+  if( p > 0.5 ) x *= -1.0;
   return x;
 }
 
