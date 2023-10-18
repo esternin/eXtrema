@@ -181,6 +181,9 @@ void CMD_fit::Execute( ParseLine const *p )
   // extract the vector from the left hand side of the wxT("=")
   //
   wxString lhs( p->GetString(icnt) );
+  //std::cout << "LHS icnt = " << icnt << " tokens = " << p->GetNumberOfTokens() << " lhs = " << lhs << '\n';
+  if( p->GetNumberOfTokens()<3 || !p->IsString(1) )
+    throw ECommandError( command+wxT("expecting <vector> = [ <fit_expression> ]") );
   std::vector<double> yVec;
   try
   {
@@ -224,7 +227,8 @@ void CMD_fit::Execute( ParseLine const *p )
   //
   AddToStackLine( wxT("=") );
   icnt += 2;
-  if( p->GetNumberOfTokens()-1 < icnt )
+  //std::cout << "RHS icnt = " << icnt << " tokens = " << p->GetNumberOfTokens() << " lhs = " << lhs << '\n';
+  if( p->GetNumberOfTokens() < icnt )
   {
     if( lhsSave_[ilf].length() == 0 )
     {
