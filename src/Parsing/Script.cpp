@@ -195,7 +195,21 @@ void Script::AddScriptLine( std::size_t numberOfParameters, wxString &fname, wxS
   {
     if( uLine.find(wxT(' ')) != uLine.npos )
       throw ESyntaxError(wxT("blanks are not allowed in a script label"));
-    AddLabel( scriptLines_.size(), uLine.substr(0,lineLength-1) );
+    bool found = false;
+    std::size_t end = labels_.size();
+    for( std::size_t i=0; i<end; ++i ) {
+      if( uLine.substr(0,lineLength-1) == labels_[i] ) {
+        found = true;
+	break;
+        }
+      }
+    if( found ) {
+      wxChar c[100];
+      ::wxSnprintf( c, 100, wxT("duplicate label: %s at line %d"), uLine.substr(0,lineLength-1),scriptLines_.size()+1 );
+      throw ESyntaxError( c );
+    } else {
+      AddLabel( scriptLines_.size(), uLine.substr(0,lineLength-1) );
+      }
   }
   else if( uLine.substr(0,3) == wxT("IF ") )
   {
