@@ -285,30 +285,34 @@ void GRA_polygon::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
     graphicsOutput->WorldToOutputType( x[i], y[i], ix, iy );
     pArray[i] = wxPoint( ix, iy );
   }
-  wxPen wxpen( dc.GetPen() );
-  wxpen.SetWidth( std::max(1,lineWidth_) );
-  wxpen.SetColour( ExGlobals::GetwxColor(lineColor_) );
-  dc.SetPen( wxpen );
+  // wxBrush controls must come BEFORE wxPen controls
   wxBrush wxbrush( dc.GetBrush() );
   if( fillColor_ )
   {
     wxbrush.SetColour( ExGlobals::GetwxColor(fillColor_) );
     wxbrush.SetStyle( wxBRUSHSTYLE_SOLID );
-    dc.SetBrush( wxbrush );
-    dc.DrawPolygon( static_cast<int>(size), pArray );
+  } else {
+    wxbrush.SetColour( wxTransparentColour );
+    wxbrush.SetStyle( wxBRUSHSTYLE_TRANSPARENT );
   }
-  wxbrush.SetStyle( wxBRUSHSTYLE_TRANSPARENT );
   dc.SetBrush( wxbrush );
+  //
+  wxPen wxpen( dc.GetPen() );
+  wxpen.SetWidth( std::max(1,lineWidth_) );
+  wxpen.SetColour( ExGlobals::GetwxColor(lineColor_) );
+  dc.SetPen( wxpen );
+  //
   dc.DrawPolygon( static_cast<int>(size), pArray );
   delete [] pArray;
 }
 
 std::ostream &operator<<( std::ostream &out, GRA_polygon const &p )
 {
-  out << "<polygon linewidth=\"" << p.lineWidth_ << "\" linetype=\""
-      << p.lineType_ << "\" linecolor=\""
-      << GRA_colorControl::GetColorCode(p.lineColor_) << "\" fillcolor=\""
-      << GRA_colorControl::GetColorCode(p.fillColor_) << "\">\n";
+  out << "<polygon linewidth=\"" << p.lineWidth_ 
+      << "\" linetype=\"" << p.lineType_ 
+      << "\" linecolor=\"" << GRA_colorControl::GetColorCode(p.lineColor_) 
+      << "\" fillcolor=\"" << GRA_colorControl::GetColorCode(p.fillColor_) 
+      << "\">\n";
   std::size_t size = p.x_.size();
   out << "<data size=\"" << size << "\">";
   for( std::size_t i=0; i<size; ++i )out << p.x_[i] << " " << p.y_[i] << " ";

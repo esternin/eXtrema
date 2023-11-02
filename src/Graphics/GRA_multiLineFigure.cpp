@@ -74,9 +74,10 @@ void GRA_multiLineFigure::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
 
 std::ostream &operator<<( std::ostream &out, GRA_multiLineFigure const &mlf )
 {
-  out << "<multilinefigure linewidth=\"" << mlf.lineWidth_ << "\" linetype=\""
-      << mlf.lineType_ << "\" linecolor=\""
-      << GRA_colorControl::GetColorCode(mlf.lineColor_) << "\">\n";
+  out << "<multilinefigure linewidth=\"" << mlf.lineWidth_ 
+      << "\" linetype=\"" << mlf.lineType_ 
+      << "\" linecolor=\"" << GRA_colorControl::GetColorCode(mlf.lineColor_) 
+      << "\">\n";
   std::size_t size = mlf.x_.size();
   out << "<data size=\"" << size << "\">";
   for( std::size_t i=0; i<size; ++i )
