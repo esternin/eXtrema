@@ -11,8 +11,7 @@
 <TR>
 <TD width="20%" valign="top"><B>Syntax</B>:</TD>
 <TD width="80%" valign="top"><CODE>
-SET LINEWIDTH n<br>
-GET LINEWIDTH { n }</CODE>
+SET LINEWIDTH n</CODE>
 </TD></TR>
 <TR>
 <TD width="20%" valign="top"><B>Default value</B>:</TD>
@@ -33,6 +32,15 @@ LINEWIDTH = 1</CODE>
  <CODE><font color="blue">SET LINEWIDTH</font></CODE> is a shorthand way to set
  <a href="curvelinewidth.htm"><CODE>CURVELINEWIDTH</CODE></a> and
  <a href="plotsymbollinewidth.htm"><CODE>PLOTSYMBOLLINEWIDTH</CODE></a>.</P>
+<P>
+ <CODE><font color="blue">GET LINEWIDTH</font></CODE> is ambiguous, and will produce a syntax error. Use
+ <CODE><font color="blue">GET</font></CODE>&nbsp;<a href="curvelinewidth.htm"><CODE>CURVELINEWIDTH</CODE></a> or
+ <CODE><font color="blue">GET</font></CODE>&nbsp;<a href="plotsymbollinewidth.htm"><CODE>PLOTSYMBOLLINEWIDTH</CODE></a> instead.</P>
+<P>
+ Other line widths that can be set include 
+ <a href="xaxislinewidth.htm"><CODE>XAXISLINEWIDTH</CODE></a>,
+ <a href="yaxislinewidth.htm"><CODE>YAXISLINEWIDTH</CODE></a>, and
+ <a href="polaraxislinewidth.htm"><CODE>POLARAXISLINEWIDTH</CODE></a>.</P>
 <P>
   <a href="font.htm"><img border="0" src="../shadow_left.gif">&nbsp;
     <font size="+1" color="olive">FONT</font></a><br />
