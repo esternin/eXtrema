@@ -157,6 +157,7 @@ void GRA_cartesianAxes::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   // if xgrid is zero, no tic coordinates are recorded, so no grid lines will be drawn
   //
   GRA_setOfCharacteristics *xAxisC = xAxis_->GetCharacteristics();
+  GRA_setOfCharacteristics *yAxisC = yAxis_->GetCharacteristics();
   std::vector<double> ticX, ticY;
   xAxis_->GetTicCoordinates( ticX, ticY );
   std::size_t size = ticX.size();
@@ -169,8 +170,9 @@ void GRA_cartesianAxes::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
    ExGlobals::GetwxColor( static_cast<GRA_colorCharacteristic*>(xAxisC->Get(wxT("AXISCOLOR")))->Get()) );
   //
   double xlaxis, ylaxis, xuaxis, yuaxis;
-  xAxis_->GetOrigin( xlaxis, ylaxis );
-  xAxis_->GetEndPoint( xuaxis, yuaxis );
+  // x-axis grid lines are parallel to y-axis
+  yAxis_->GetOrigin( xlaxis, ylaxis );
+  yAxis_->GetEndPoint( xuaxis, yuaxis );
   int ngrid = abs(xAxis_->GetGrid());
   for( std::size_t i=0; i<size; i+=ngrid )
   {
@@ -185,13 +187,16 @@ void GRA_cartesianAxes::Draw( GRA_wxWidgets *graphicsOutput, wxDC &dc )
   // draw the y-axis grid lines
   // if ygrid is zero, no tic coordinates are recorded, so no grid lines will be drawn
   //
-  GRA_setOfCharacteristics *yAxisC = yAxis_->GetCharacteristics();
+  //GRA_setOfCharacteristics *yAxisC = yAxis_->GetCharacteristics();
   yAxis_->GetTicCoordinates( ticX, ticY );
   size = ticX.size();
   //
   wxpen.SetColour(
    ExGlobals::GetwxColor( static_cast<GRA_colorCharacteristic*>(yAxisC->Get(wxT("AXISCOLOR")))->Get()) );
   //
+  // y-axis grid lines are parallel to x-axis
+  xAxis_->GetOrigin( xlaxis, ylaxis );
+  xAxis_->GetEndPoint( xuaxis, yuaxis );
   ngrid = abs(yAxis_->GetGrid());
   for( std::size_t i=0; i<size; i+=ngrid )
   {
