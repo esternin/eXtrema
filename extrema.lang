@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="extrema" _name="Extrema" version="2.0"  _section="Markup">
+  <metadata>
+    <property name="mimetypes">text/plain</property>
+    <property name="globs">*.pcm</property>
+  </metadata>
+
+  <styles>
+    <style id="execute"  _name="Execute"   map-to="def:function" />
+    <style id="comment"  _name="Comment"   map-to="def:comment" />
+    <style id="string"   _name="String"    map-to="def:string" />
+    <style id="command"  _name="Command"   map-to="def:keyword" />
+    <style id="function" _name="Function"  map-to="def:builtin" />
+    <style id="option"   _name="Option"    map-to="def:type" />
+    <style id="label"    _name="Label"     map-to="def:preprocessor" />
+  </styles>
+
+  <default-regex-options case-sensitive="false" />
+
+  <definitions>
+    <context id="extrema">
+      <include>
+        <context id="execute" style-ref="execute">
+          <start>@[^,\s]*</start>
+          <end>\s*</end>
+        </context>
+        <context id="comment" style-ref="comment">
+          <start>!</start>
+          <end>$</end>
+        </context>
+        <context id="string" end-at-line-end="true" style-ref="string">
+          <start>`</start>
+          <end>'</end>
+        </context>
+        <context id="label" style-ref="label">
+          <match>\s*[^,:]*:$</match>
+        </context>
+        <context id="option" style-ref="option">
+          <match>\\[^,\s]*\s</match>
+        </context>
+
+        <context id="command" style-ref="command">
+          <keyword>alias</keyword>
+          <keyword>bestfit</keyword>
+          <keyword>bin</keyword>
+          <keyword>bin2d</keyword>
+          <keyword>clear</keyword>
+          <keyword>contour</keyword>
+          <keyword>dealias</keyword>
+          <keyword>defaults</keyword>
+          <keyword>destroy</keyword>
+          <keyword>display</keyword>
+          <keyword>do</keyword>
+          <keyword>ellipse</keyword>
+          <keyword>endif</keyword>
+          <keyword>enddo</keyword>
+          <keyword>figure</keyword>
+          <keyword>filter</keyword>
+          <keyword>fit</keyword>
+          <keyword>generate</keyword>
+          <keyword>get</keyword>
+          <keyword>goto</keyword>
+          <keyword>graph</keyword>
+          <keyword>grid</keyword>
+          <keyword>hardcopy</keyword>
+          <keyword>if</keyword>
+          <keyword>inquire</keyword>
+          <keyword>list</keyword>
+          <keyword>matrix</keyword>
+          <keyword>minuit</keyword>
+          <keyword>page</keyword>
+          <keyword>pause</keyword>
+          <keyword>polygon</keyword>
+          <keyword>quit</keyword>
+          <keyword>read</keyword>
+          <keyword>rebin</keyword>
+          <keyword>replot</keyword>
+          <keyword>restore</keyword>
+          <keyword>return</keyword>
+          <keyword>save</keyword>
+          <keyword>scalar</keyword>
+          <keyword>scales</keyword>
+          <keyword>set</keyword>
+          <keyword>show</keyword>
+          <keyword>sort</keyword>
+          <keyword>stack</keyword>
+          <keyword>statistics</keyword>
+          <keyword>terminal</keyword>
+          <keyword>then</keyword>
+          <keyword>vector</keyword>
+          <keyword>world</keyword>
+          <keyword>write</keyword>
+          <keyword>zerolines</keyword>
+        </context>
+
+        <context id="function" style-ref="function">
+          <keyword>abs</keyword>
+          <keyword>sqrt</keyword>
+          <keyword>exp</keyword>
+          <keyword>log</keyword>
+          <keyword>log10</keyword>
+          <keyword>ln</keyword>
+          <keyword>sin</keyword>
+          <keyword>sind</keyword>
+          <keyword>cos</keyword>
+          <keyword>cosd</keyword>
+          <keyword>tan</keyword>
+          <keyword>tand</keyword>
+          <keyword>cot</keyword>
+          <keyword>sec</keyword>
+          <keyword>csc</keyword>
+          <keyword>asin</keyword>
+          <keyword>asind</keyword>
+          <keyword>acos</keyword>
+          <keyword>acosd</keyword>
+          <keyword>atan</keyword>
+          <keyword>atand</keyword>
+          <keyword>acot</keyword>
+          <keyword>asec</keyword>
+          <keyword>acsc</keyword>
+          <keyword>sinh</keyword>
+          <keyword>cosh</keyword>
+          <keyword>tanh</keyword>
+          <keyword>coth</keyword>
+          <keyword>sech</keyword>
+          <keyword>csch</keyword>
+          <keyword>asinh</keyword>
+          <keyword>acosh</keyword>
+          <keyword>atanh</keyword>
+          <keyword>acoth</keyword>
+          <keyword>asech</keyword>
+          <keyword>acsch</keyword>
+          <keyword>atan2</keyword>
+          <keyword>atan2d</keyword>
+          <keyword>eltime</keyword>
+          <keyword>factorial</keyword>
+          <keyword>int</keyword>
+          <keyword>mod</keyword>
+          <keyword>nint</keyword>
+          <keyword>pdiff</keyword>
+          <keyword>ran</keyword>
+          <keyword>sign</keyword>
+          <keyword>date</keyword>
+          <keyword>time</keyword>
+          <keyword>ucase</keyword>
+          <keyword>lcase</keyword>
+          <keyword>tcase</keyword>
+          <keyword>char</keyword>
+          <keyword>ichar</keyword>
+          <keyword>varname</keyword>
+          <keyword>string</keyword>
+          <keyword>rchar</keyword>
+          <keyword>eqs</keyword>
+          <keyword>nes</keyword>
+          <keyword>sub</keyword>
+          <keyword>sup</keyword>
+          <keyword>index</keyword>
+          <keyword>evaluate</keyword>
+          <keyword>expand</keyword>
+          <keyword>canopen</keyword>
+          <keyword>airy</keyword>
+          <keyword>biry</keyword>
+          <keyword>area</keyword>
+          <keyword>besj0</keyword>
+          <keyword>besj1</keyword>
+          <keyword>besy0</keyword>
+          <keyword>besy1</keyword>
+          <keyword>besi0</keyword>
+          <keyword>besi1</keyword>
+          <keyword>besk0</keyword>
+          <keyword>besk1</keyword>
+          <keyword>beta</keyword>
+          <keyword>lnbeta</keyword>
+          <keyword>betain</keyword>
+          <keyword>cheby</keyword>
+          <keyword>cosint</keyword>
+          <keyword>dawson</keyword>
+          <keyword>deconvolute</keyword>
+          <keyword>deriv</keyword>
+          <keyword>det</keyword>
+          <keyword>dilog</keyword>
+          <keyword>eigen</keyword>
+          <keyword>finellic</keyword>
+          <keyword>ellick</keyword>
+          <keyword>einellic</keyword>
+          <keyword>ellice</keyword>
+          <keyword>expint</keyword>
+          <keyword>ei</keyword>
+          <keyword>expn</keyword>
+          <keyword>ferdirac</keyword>
+          <keyword>fft</keyword>
+          <keyword>frec1</keyword>
+          <keyword>fres1</keyword>
+          <keyword>frec2</keyword>
+          <keyword>fres2</keyword>
+          <keyword>gamma</keyword>
+          <keyword>gammln</keyword>
+          <keyword>logam</keyword>
+          <keyword>lnagamma</keyword>
+          <keyword>gammacin</keyword>
+          <keyword>gammain</keyword>
+          <keyword>gammatin</keyword>
+          <keyword>gammq</keyword>
+          <keyword>gaussj</keyword>
+          <keyword>hermite</keyword>
+          <keyword>hypgeo</keyword>
+          <keyword>chlogu</keyword>
+          <keyword>identity</keyword>
+          <keyword>ifft</keyword>
+          <keyword>integral</keyword>
+          <keyword>inverse</keyword>
+          <keyword>jacobi</keyword>
+          <keyword>join</keyword>
+          <keyword>ber</keyword>
+          <keyword>bei</keyword>
+          <keyword>ker</keyword>
+          <keyword>kei</keyword>
+          <keyword>laguerre</keyword>
+          <keyword>legendre</keyword>
+          <keyword>plmu</keyword>
+          <keyword>plmn</keyword>
+          <keyword>pfactors</keyword>
+          <keyword>poica</keyword>
+          <keyword>psi</keyword>
+          <keyword>digamma</keyword>
+          <keyword>radmac</keyword>
+          <keyword>savgol</keyword>
+          <keyword>sinint</keyword>
+          <keyword>smooth</keyword>
+          <keyword>splsmooth</keyword>
+          <keyword>bivsmooth</keyword>
+          <keyword>struve0</keyword>
+          <keyword>struve1</keyword>
+          <keyword>tina</keyword>
+          <keyword>clesg</keyword>
+          <keyword>wign3j</keyword>
+          <keyword>wign6j</keyword>
+          <keyword>wign9j</keyword>
+          <keyword>racah</keyword>
+          <keyword>jahnuf</keyword>
+          <keyword>voigt</keyword>
+          <keyword>volume</keyword>
+          <keyword>walsh</keyword>
+          <keyword>adev</keyword>
+          <keyword>binom</keyword>
+          <keyword>bivarnor</keyword>
+          <keyword>chisq</keyword>
+          <keyword>chisqinv</keyword>
+          <keyword>erf</keyword>
+          <keyword>aerf</keyword>
+          <keyword>erfc</keyword>
+          <keyword>aerfc</keyword>
+          <keyword>fisher</keyword>
+          <keyword>gauss</keyword>
+          <keyword>gaussin</keyword>
+          <keyword>normal</keyword>
+          <keyword>gmean</keyword>
+          <keyword>imax</keyword>
+          <keyword>imin</keyword>
+          <keyword>kurt</keyword>
+          <keyword>max</keyword>
+          <keyword>mean</keyword>
+          <keyword>median</keyword>
+          <keyword>min</keyword>
+          <keyword>poisson</keyword>
+          <keyword>prod</keyword>
+          <keyword>rms</keyword>
+          <keyword>rprod</keyword>
+          <keyword>rsum</keyword>
+          <keyword>skew</keyword>
+          <keyword>stdev</keyword>
+          <keyword>student</keyword>
+          <keyword>studenti</keyword>
+          <keyword>sum</keyword>
+          <keyword>var</keyword>
+          <keyword>len</keyword>
+          <keyword>vlen</keyword>
+          <keyword>clen</keyword>
+          <keyword>vartype</keyword>
+          <keyword>exist</keyword>
+          <keyword>iclose</keyword>
+          <keyword>iequal</keyword>
+          <keyword>where</keyword>
+          <keyword>roll</keyword>
+          <keyword>step</keyword>
+          <keyword>wrap</keyword>
+          <keyword>fold</keyword>
+          <keyword>unfold</keyword>
+        </context>
+
+      </include>
+    </context>
+  </definitions>
+
+</language>
+
