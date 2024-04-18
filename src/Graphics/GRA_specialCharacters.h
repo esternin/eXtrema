@@ -18,6 +18,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef GRA_SPECIALCHARACTERS
 #define GRA_SPECIALCHARACTERS
 
+#include <cstdint>	// gcc v.13+ requires this for uint32_t
+
 struct GRA_specialCharacter
   {
     char const *ename;    // special character eXtrema name
