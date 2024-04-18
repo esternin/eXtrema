@@ -36,7 +36,7 @@
           <match>\s*[^,:]*:$</match>
         </context>
         <context id="option" style-ref="option">
-          <match>\\[^,\s]*\s</match>
+          <match>\\[^,\s]*\s*</match>
         </context>
 
         <context id="command" style-ref="command">
